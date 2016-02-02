@@ -35,7 +35,7 @@
 			              </div>
 			            </div>
 
-			            <div class="form-group">
+<!-- 			            <div class="form-group">
 			              <div class="col-md-6 col-md-offset-4">
 			                <div class="checkbox">
 			                  <label>
@@ -43,13 +43,13 @@
 			                  </label>
 			                </div>
 			              </div>
-			            </div>
+			            </div> -->
 
 			            <div class="form-group">
-			              <div class="col-md-6 col-md-offset-4">
+			              <div class="col-md-6 col-md-offset-5">
 			                <button type="submit" class="btn btn-primary">Ingresar</button>
 
-			                <a class="btn btn-link" href="{!! url('/password/email') !!}">Olvidó su Contraseña?</a>
+			                <!-- <a class="btn btn-link" href="{!! url('/password/email') !!}">Olvidó su Contraseña?</a> -->
 			              </div>
 			            </div>
 			          {!! Form::close() !!}
