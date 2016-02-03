@@ -58,6 +58,27 @@ Route::get('afiliado/{id}', function ($id){
 
 
 
+//busqueda
+
+Route::get('busca_afiliado', function () {
+   return view('afiliados.search');
+});
+
+
+
+
+
+
+Route::get('home/searchredirect', function(){
+     
+    if (empty(Input::get('search'))) return redirect()->back();
+    
+    $search = urlencode(e(Input::get('search')));
+    $route = "home/search/$search";
+    return redirect($route);
+});
+Route::get("home/search/{search}", "AfiliadoController@search");
+
 
 
 
