@@ -34,3 +34,30 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+
+Route::get('afiliado/{id}', function ($id){
+
+	Auth::loginUsingId(1);
+
+	$afil = App\Afiliado::findOrFail($id);
+
+	if (Gate::denies('view-afiliado', $afil)){
+// allows
+		// abort(403);
+		// return view('welcome'); 
+		return $afil;
+	}
+
+	return $afil->ci;
+});
+
+
+
+
+
+
+
+
+
+
+

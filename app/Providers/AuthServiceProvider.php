@@ -26,6 +26,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         parent::registerPolicies($gate);
 
-        //
+        
+        $gate->define('view-afiliado', function($user, $afiliado){
+
+            return $user->role == 'fondo_retiro';
+        });
     }
 }
