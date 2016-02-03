@@ -40,7 +40,7 @@ Route::resource('afiliado', 'AfiliadoController');
 
 
 //Permisos
-Route::get('afiliado/{id}', function ($id){
+Route::get('afiliadoo/{id}', function ($id){
 
 	Auth::loginUsingId(1);
 
@@ -69,7 +69,7 @@ Route::get('busca_afiliado', function () {
 
 
 
-Route::get('home/searchredirect', function(){
+Route::get('searchafi', function(){
      
     if (empty(Input::get('search'))) return redirect()->back();
     

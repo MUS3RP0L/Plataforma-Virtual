@@ -10,7 +10,7 @@
 				<div class="panel-body">
 					
 
-					<form class="navbar-form navbar-left" role="search" action="{{url('home/searchredirect')}}">
+					<form class="navbar-form navbar-left" role="search" action="{{url('searchafi')}}">
 					 <div class="form-group">
 					  <input type="text" class="form-control" name='search' placeholder="Buscar ..." />
 					 </div>

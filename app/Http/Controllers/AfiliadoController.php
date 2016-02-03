@@ -96,18 +96,18 @@ class AfiliadoController extends Controller
 
     public function search($search){
         $search = urldecode($search);
-        $afiliados = Afiliado::select()
+        $afiliado = Afiliado::select()
                 ->where('ci', 'LIKE', '%'.$search.'%')
                 ->orderBy('id', 'desc')
                 ->get();
         
-        if (count($afiliados) == 0){
+        if (count($afiliado) == 0){
             return View('home')
             ->with('message', 'No hay resultados que mostrar')
             ->with('search', $search);
         } else{
             return View('afiliados.view')
-            ->with('afiliados', $afiliados);
+            ->with('afiliados', $afiliado);
         }
     }
 }
