@@ -53,7 +53,7 @@
 								{!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
 							</div>
 						</div>
-					</form>
+					{!! Form::close() !!}
 				</div>
 			</div>
 		</div>

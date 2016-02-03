@@ -35,6 +35,11 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
+Route::resource('afiliado', 'AfiliadoController');
+
+
+
+//Permisos
 Route::get('afiliado/{id}', function ($id){
 
 	Auth::loginUsingId(1);
