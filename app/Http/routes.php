@@ -40,9 +40,9 @@ Route::get('afiliado/{id}', function ($id){
 	Auth::loginUsingId(1);
 
 	$afil = App\Afiliado::findOrFail($id);
-
+		// allows
 	if (Gate::denies('view-afiliado', $afil)){
-// allows
+		
 		// abort(403);
 		// return view('welcome'); 
 		return $afil;
