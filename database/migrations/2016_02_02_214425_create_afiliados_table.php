@@ -25,8 +25,8 @@ class CreateAfiliadosTable extends Migration
             $table->string('ap_esp');
             $table->string('est_civ');
             $table->string('sex');
-            $table->string('item');
             $table->string('matri');
+            $table->string('fech_nac');
             $table->date('fech_ing');
             $table->timestamps();
         });

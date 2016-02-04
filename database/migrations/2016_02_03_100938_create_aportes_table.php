@@ -22,6 +22,7 @@ class CreateAportesTable extends Migration
             $table->string('mes');
             $table->string('anio');
 
+            $table->string('item');
             $table->string('cat');
             $table->string('ant');
 
