@@ -11,11 +11,15 @@ use App\Afiliado;
 
 class ImportController extends Controller
 {
-    public function import()
+    public function import(Request $request)
     {
-    	Excel::load('books.csv', function($reader) {
+    	
+    	$input=$request->file('image');
+        $filename=$input->getRealPath();
 
-     		foreach ($reader->get() as $afiliado) {
+    	Excel::filter('chunk')->load($filename, $input)->chunk(5000, function($reader) {
+
+     		foreach ($reader as $afiliado) {
      			Afiliado::create([
      				'ci' => $afiliado->ci,
      				'pat' =>$afiliado->pat,
@@ -24,5 +28,13 @@ class ImportController extends Controller
       		}
 		});
 		return afiliado::all();
+    }
+
+
+
+
+    public function importSelect()
+    {
+		return view('import.import_select');
     }
 }
