@@ -23,8 +23,8 @@ class CreateAfiliadosTable extends Migration
             $table->string('nom')->nullable();
             $table->string('nom2')->nullable();
             $table->string('ap_esp')->nullable();
-            $table->string('est_civ')->nullable();
-            $table->string('sex')->nullable();
+            $table->enum('est_civ', ['C', 'S'])->nullable();
+            $table->enum('sex', ['M', 'F'])->nullable();
             $table->string('matri')->nullable();
             $table->string('fech_nac')->nullable();
             $table->date('fech_ing')->nullable();

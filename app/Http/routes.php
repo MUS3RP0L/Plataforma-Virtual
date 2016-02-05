@@ -81,7 +81,8 @@ Route::get("home/search/{search}", "AfiliadoController@search");
 
 
 
-Route::get('import_select', 'ImportController@importSelect');
+
+Route::get('importar_archivo', 'ImportController@importSelect');
 Route::post('import', 'ImportController@import');
 
 
