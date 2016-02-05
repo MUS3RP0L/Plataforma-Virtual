@@ -9,7 +9,7 @@
 				<div class="panel-body">
 					
 				<form method='post' action='{{url("import")}}' enctype='multipart/form-data'>
-					{{csrf_field()}}
+					 <input name="_token" hidden value="{!! csrf_token() !!}" />
 					<div class='form-group'>
 						<label for='image'>Excel: </label>
 						<input type="file" name="image" />

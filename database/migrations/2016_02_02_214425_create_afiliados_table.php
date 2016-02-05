@@ -17,17 +17,17 @@ class CreateAfiliadosTable extends Migration
             $table->engine = 'InnoDB';
             
             $table->increments('id');         
-            $table->string('ci');
-            $table->string('pat');
-            $table->string('mat');
-            $table->string('nom');
-            $table->string('nom2');
-            $table->string('ap_esp');
-            $table->string('est_civ');
-            $table->string('sex');
-            $table->string('matri');
-            $table->string('fech_nac');
-            $table->date('fech_ing');
+            $table->string('ci')->nullable();
+            $table->string('pat')->nullable();
+            $table->string('mat')->nullable();
+            $table->string('nom')->nullable();
+            $table->string('nom2')->nullable();
+            $table->string('ap_esp')->nullable();
+            $table->string('est_civ')->nullable();
+            $table->string('sex')->nullable();
+            $table->string('matri')->nullable();
+            $table->string('fech_nac')->nullable();
+            $table->date('fech_ing')->nullable();
             $table->timestamps();
         });
     }
