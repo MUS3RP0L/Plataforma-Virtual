@@ -18,15 +18,23 @@ class CreateAportesTable extends Migration
             
             $table->increments('id');
             $table->integer('afiliado_id')->unsigned();
-            $table->timestamps();
+
+
             $table->string('mes');
             $table->string('anio');
 
-            $table->string('item');
-            $table->string('cat');
-            $table->string('ant');
+            $table->string('uni');
+            $table->string('desg');
 
+            $table->string('niv');
+            $table->string('gra');
+
+            $table->string('item');
+
+            $table->string('cat');
+            
             $table->double('sue');
+            $table->double('ant');
             $table->double('b_est');
             $table->double('b_car');
             $table->double('b_fron');
@@ -43,6 +51,7 @@ class CreateAportesTable extends Migration
             $table->double('cot');
             $table->double('cot_adi');
             $table->double('mus');
+            $table->timestamps();
 
         });
         

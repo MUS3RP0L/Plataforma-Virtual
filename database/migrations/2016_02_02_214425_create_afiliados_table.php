@@ -26,7 +26,7 @@ class CreateAfiliadosTable extends Migration
             $table->enum('est_civ', ['C', 'S'])->nullable();
             $table->enum('sex', ['M', 'F'])->nullable();
             $table->string('matri')->nullable();
-            $table->string('fech_nac')->nullable();
+            $table->date('fech_nac')->nullable();
             $table->date('fech_ing')->nullable();
             $table->timestamps();
         });
