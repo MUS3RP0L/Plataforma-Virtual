@@ -34,24 +34,25 @@ class CreateAportesTable extends Migration
             $table->string('cat');
             
             $table->double('sue');
-            $table->double('ant');
+            $table->double('b_ant');
             $table->double('b_est');
             $table->double('b_car');
-            $table->double('b_fron');
+            $table->double('b_fro');
             $table->double('b_ori');
-            $table->double('seg');
-            $table->double('dfu');
+            $table->double('b_seg');
 
+            $table->string('dfu');
             $table->string('nat');
             $table->string('lac');
             $table->string('pre');
-            $table->string('sub');
+            $table->double('sub');
 
             $table->double('gan');
             $table->double('cot');
             $table->double('cot_adi');
             $table->double('mus');
             $table->timestamps();
+            $table->softDeletes();
 
         });
         

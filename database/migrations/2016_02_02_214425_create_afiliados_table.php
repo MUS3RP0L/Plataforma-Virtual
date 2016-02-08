@@ -29,6 +29,7 @@ class CreateAfiliadosTable extends Migration
             $table->date('fech_nac')->nullable();
             $table->date('fech_ing')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
