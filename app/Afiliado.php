@@ -45,4 +45,31 @@ class Afiliado extends Model
     {
         return $query->where('ci', $ci);
     }
+
+    public function getFullDateNac()
+    {	
+		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		return date("d", strtotime($this->fech_nac))." de ".$meses[date("n", strtotime($this->fech_nac))-1]. " del ".date("Y", strtotime($this->fech_nac));
+ 
+    }
+	
+	public function getCivil()
+	{
+	    if ($this->est_civ == 'S') {
+	        return "Soltero";
+	    } 
+	    else if ($this->est_civ == 'C'){
+	        return "Casado";
+	    }
+	}
+
+	public function getSex()
+	{
+	    if ($this->sex == 'M') {
+	        return "Masculino";
+	    } 
+	    else if ($this->sex == 'F'){
+	        return "Femenino";
+	    }
+	}
 }

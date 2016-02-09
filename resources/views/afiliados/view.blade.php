@@ -28,13 +28,13 @@
 
 					<div class="row">
 						<div class="col-md-4">
-							<b>FECHA NACIMIENTO </b> {!! $afiliado->fech_nac !!} <br/>
+							<b>FECHA NACIMIENTO </b> {!! $afiliado->getFullDateNac() !!} <br/>
 						</div>
 						<div class="col-md-4">
-							<b>ESTADO CIVIL </b> {!! $afiliado->est_civ !!}<br/>
+							<b>ESTADO CIVIL </b> {!! $afiliado->getCivil() !!} <br/>
 						</div>
 						<div class="col-md-4">
-							<b>SEXO </b> {!! $afiliado->sex !!}<br/>
+							<b>SEXO </b> {!! $afiliado->getSex() !!} <br/>
 						</div>
 					</div>
 
