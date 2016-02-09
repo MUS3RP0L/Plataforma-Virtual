@@ -57,31 +57,11 @@ Route::get('afiliadoo/{id}', function ($id){
 });
 
 
+//search
+Route::get('buscar_afiliado', 'AfiliadoController@search');
+Route::get('ir_afiliado', 'AfiliadoController@go_search');
 
-//busqueda
-
-Route::get('busca_afiliado', function () {
-   return view('afiliados.search');
-});
-
-
-
-
-
-
-Route::get('searchafi', function(){
-     
-    if (empty(Input::get('search'))) return redirect()->back();
-    
-    $search = urlencode(e(Input::get('search')));
-    $route = "home/search/$search";
-    return redirect($route);
-});
-Route::get("home/search/{search}", "AfiliadoController@search");
-
-
-
-
+// import
 Route::get('importar_archivo', 'ImportController@importSelect');
 Route::post('import', 'ImportController@import');
 

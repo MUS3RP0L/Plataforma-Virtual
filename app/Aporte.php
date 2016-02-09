@@ -13,11 +13,6 @@ class Aporte extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function afiliado(){
-
-    	return $this->belongsTo('Afiliado');
-    }
-
     protected $fillable = [
 
 	'afiliado_id',
@@ -55,4 +50,16 @@ class Aporte extends Model
     'mus',
 
 	];
+
+    protected $guarded = ['id'];
+
+    public function afiliado(){
+
+        return $this->belongsTo('App\Afiliado');
+    }
+
+    public function scopeIdIs($query, $id)
+    {
+        return $query->where('id', $id);
+    }
 }

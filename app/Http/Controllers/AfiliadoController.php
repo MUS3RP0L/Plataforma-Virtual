@@ -17,7 +17,7 @@ class AfiliadoController extends Controller
      */
     public function index()
     {
-        $afiliados = Afiliado::orderBy('pat', 'asc')->paginate();
+        $afiliados = Afiliado::orderBy('pat', 'asc')->paginate(2);
 
         return view('afiliados.index', compact('afiliados'));
     }
@@ -29,7 +29,7 @@ class AfiliadoController extends Controller
      */
     public function create()
     {
-        return view('afiliados.create');
+        // 
     }
 
     /**
@@ -40,9 +40,7 @@ class AfiliadoController extends Controller
      */
     public function store(Request $request)
     {
-        $afiliado = Afiliado::create($request->all());
-
-        return $afiliado->nit;
+        // 
     }
 
     /**
@@ -53,7 +51,13 @@ class AfiliadoController extends Controller
      */
     public function show($id)
     {
-        //
+        $afiliado = Afiliado::idIs($id)->with('aportes')->firstOrFail();
+
+        $data = array(
+            'afiliado' => $afiliado
+        );
+
+        return view('afiliados.view', $data);
     }
 
     /**
@@ -91,23 +95,21 @@ class AfiliadoController extends Controller
     }
 
 
-
-
-
-    public function search($search){
-        $search = urldecode($search);
-        $afiliado = Afiliado::select()
-                ->where('ci', 'LIKE', '%'.$search.'%')
-                ->orderBy('id', 'desc')
-                ->get();
-        
-        if (count($afiliado) == 0){
-            return View('home')
-            ->with('message', 'No hay resultados que mostrar')
-            ->with('search', $search);
-        } else{
-            return View('afiliados.view')
-            ->with('afiliados', $afiliado);
-        }
+    public function search()
+    {
+        return view('afiliados.search');
     }
+
+    public function go_search(Request $request)
+    {
+
+        $afiliado = Afiliado::ciIs($request->search)->firstOrFail();
+       
+        $data = array(
+            'afiliado' => $afiliado
+        );
+
+        return view('afiliados.view', $data);
+    }
+
 }

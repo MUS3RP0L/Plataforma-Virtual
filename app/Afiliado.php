@@ -28,4 +28,21 @@ class Afiliado extends Model
 	'fech_ing',
 	
 	];
+
+	protected $guarded = ['id'];
+
+	public function aportes()
+    {
+        return $this->hasMany('App\Aporte');
+    }
+
+	public function scopeIdIs($query, $id)
+    {
+        return $query->where('id', $id);
+    }
+
+    public function scopeCiIs($query, $ci)
+    {
+        return $query->where('ci', $ci);
+    }
 }
