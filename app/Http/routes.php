@@ -11,45 +11,53 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@showIndex');
 
-Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 // Authentication routes...
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('login', 'Auth\AuthController@postLogin');
 Route::get('logout', 'Auth\AuthController@getLogout');
 
-// Registration routes...
-Route::get('register', 'Auth\AuthController@getRegister');
-Route::post('register', 'Auth\AuthController@postRegister');
 
-// Password reset link request routes...
-Route::get('password/email', 'Auth\PasswordController@getEmail');
-Route::post('password/email', 'Auth\PasswordController@postEmail');
+Route::group(['middleware' => 'auth'], function() {
 
-// Password reset routes...
-Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-Route::post('password/reset', 'Auth\PasswordController@postReset');
+	Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
+
+	// Registration routes...
+	Route::get('register', 'Auth\AuthController@getRegister');
+	Route::post('register', 'Auth\AuthController@postRegister');
+
+	// Password reset link request routes...
+	Route::get('password/email', 'Auth\PasswordController@getEmail');
+	Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+	// Password reset routes...
+	Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+	Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+	//search
+	Route::get('buscar_afiliado', 'AfiliadoController@search');
+	Route::get('ir_afiliado', 'AfiliadoController@go_search');
+
+	// import
+	Route::get('importar_archivo', 'ImportController@importSelect');
+	Route::post('import', 'ImportController@import');
 
 
-Route::resource('afiliado', 'AfiliadoController');
+	Route::resource('afiliado', 'AfiliadoController');
+
+});
 
 
 
 //Permisos
 Route::get('afiliadoo/{id}', function ($id){
 
-	Auth::loginUsingId(1);
-
 	$afil = App\Afiliado::findOrFail($id);
 		// allows
 	if (Gate::denies('view-afiliado', $afil)){
 		
-		// abort(403);
-		// return view('welcome'); 
 		return $afil;
 	}
 
@@ -57,12 +65,5 @@ Route::get('afiliadoo/{id}', function ($id){
 });
 
 
-//search
-Route::get('buscar_afiliado', 'AfiliadoController@search');
-Route::get('ir_afiliado', 'AfiliadoController@go_search');
-
-// import
-Route::get('importar_archivo', 'ImportController@importSelect');
-Route::post('import', 'ImportController@import');
 
 

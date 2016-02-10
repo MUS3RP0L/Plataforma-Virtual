@@ -30,10 +30,10 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest', ['except' => 'getLogout']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('guest', ['except' => 'getLogout']);
+    // }
 
     /**
      * Get a validator for an incoming registration request.
@@ -127,4 +127,8 @@ class AuthController extends Controller
             ->with('message', 'Error al iniciar sesión');
         }
     }
+
+
+
+
 }
