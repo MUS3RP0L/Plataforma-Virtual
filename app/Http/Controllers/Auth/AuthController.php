@@ -78,7 +78,7 @@ class AuthController extends Controller
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
 
-            $user->role = 'user';
+            $user->role = 'admin';
             $user->save();
             
             return redirect("register")

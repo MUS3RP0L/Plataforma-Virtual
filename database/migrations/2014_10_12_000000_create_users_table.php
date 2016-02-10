@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->enum('role',['fondo_retiro', 'admin']);
+            $table->enum('role',['admin', 'fondo_retiro']);
             $table->boolean('active')->default(1);
             $table->string('confirm_token', 100);
 
