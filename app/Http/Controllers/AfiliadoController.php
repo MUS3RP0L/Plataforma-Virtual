@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Afiliado;
+use App\Aporte;
 
 class AfiliadoController extends Controller
 {
@@ -51,10 +52,12 @@ class AfiliadoController extends Controller
      */
     public function show($id)
     {
-        $afiliado = Afiliado::idIs($id)->with('aportes')->firstOrFail();
+        $afiliado = Afiliado::idIs($id)->with('aportes')->orderBy('id', 'desc')->firstOrFail();
+        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->firstOrFail();
 
         $data = array(
-            'afiliado' => $afiliado
+            'afiliado' => $afiliado,
+            'lastAporte' => $lastAporte
         );
 
         return view('afiliados.view', $data);
@@ -104,12 +107,8 @@ class AfiliadoController extends Controller
     {
 
         $afiliado = Afiliado::ciIs($request->search)->firstOrFail();
-       
-        $data = array(
-            'afiliado' => $afiliado
-        );
 
-        return view('afiliados.view', $data);
+        return redirect("afiliado/{$afiliado->id}");
     }
 
 }

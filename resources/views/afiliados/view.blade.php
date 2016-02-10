@@ -36,15 +36,42 @@
 						<div class="col-md-4">
 							<b>SEXO </b> {!! $afiliado->getSex() !!} <br/>
 						</div>
-					</div>
+					</div><br/>
+
+					<div class="row">
+						<div class="col-md-12">
+							<h4><b>Datos Policiales</b></h4>
+						</div>
+					</div><br/>
+					<div class="row">
+						<div class="col-md-4">
+							<b>FECHA DE INGRESO </b> {!! $afiliado->getFullDateIng() !!} <br/>
+						</div>
+						<div class="col-md-4">
+							<b>GRADO </b> {!! $lastAporte->gra !!}<br/>
+						</div>
+						<div class="col-md-4">
+							<b>UNIDAD </b> {!! $lastAporte->uni !!}<br/>
+						</div>
+					</div><br/>
+
+					<div class="row">
+						<div class="col-md-4">
+							<b>Número de Ítem </b> {!! $lastAporte->item !!} <br/>
+						</div>
+						<div class="col-md-4">
+							<b>Matrícula </b>  <br/>
+						</div>
+						<div class="col-md-4">
+						</div>
+					</div><br/>
 
 					<div class="row">												
 						<div class="panel-body">					
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th>Mes</th>
-										<th>Año</th>
+										<th>Periódo</th>
 										<th>Unidad</th>
 										<th>Item</th>
 										<th>Sueldo</th>
@@ -62,8 +89,7 @@
 								<tbody>
 									@foreach($afiliado->aportes as $aporte)
 										<tr>
-											<th>{{ $aporte->mes }}</th>
-											<th>{{ $aporte->anio }}</th>
+											<th>{{ $aporte->mes }}-{{ $aporte->anio }}</th>
 											<th>{{ $aporte->uni }}</th>
 											<th>{{ $aporte->item }}</th>
 											<th>{{ $aporte->sue }}</th>

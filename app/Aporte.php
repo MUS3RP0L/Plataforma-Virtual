@@ -62,4 +62,9 @@ class Aporte extends Model
     {
         return $query->where('id', $id);
     }
+
+    public function scopeAfiliadoId($query, $id)
+    {
+        return $query->where('afiliado_id', $id);
+    }
 }

@@ -49,7 +49,7 @@ class Afiliado extends Model
     public function getFullDateNac()
     {	
 		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		return date("d", strtotime($this->fech_nac))." de ".$meses[date("n", strtotime($this->fech_nac))-1]. " del ".date("Y", strtotime($this->fech_nac));
+		return date("d", strtotime($this->fech_nac))." de ".$meses[date("n", strtotime($this->fech_nac))-1]. " de ".date("Y", strtotime($this->fech_nac));
  
     }
 	
@@ -72,4 +72,11 @@ class Afiliado extends Model
 	        return "Femenino";
 	    }
 	}
+
+	public function getFullDateIng()
+    {	
+		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		return date("d", strtotime($this->fech_ing))." de ".$meses[date("n", strtotime($this->fech_ing))-1]. " de ".date("Y", strtotime($this->fech_ing));
+ 
+    }
 }
