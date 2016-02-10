@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-primary">
-				<div class="panel-heading"><h5>Importar Archivo de Aportes</h5></div>
+				<div class="panel-heading"><h5 class="text-center">Importar Archivo de Aportes</h5></div>
 				<div class="panel-body">
 			    	<div class="col-md-10 col-md-offset-1">
 					    {!! Form::open(['url' => 'import', 'role' => 'form', 'class' => 'form-horizontal', 'files' => true ])!!}

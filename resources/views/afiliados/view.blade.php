@@ -4,10 +4,11 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><h4 class="text-center">Estado de Cuenta Individual</h4></div>
   				<div class="panel-body">
     				<div class="row">
-    					<h2 class="text-center"><b>Estado de Cuenta Individual</b></h2>
+    					<h2 class="text-center"><b></b></h2>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
@@ -48,7 +49,7 @@
 							<b>FECHA DE INGRESO </b> {!! $afiliado->getFullDateIng() !!} <br/>
 						</div>
 						<div class="col-md-4">
-							<b>GRADO </b> {!! $lastAporte->gra !!}<br/>
+							<b>GRADO </b> {!! $grado->lit !!}<br/>
 						</div>
 						<div class="col-md-4">
 							<b>UNIDAD </b> {!! $lastAporte->uni !!}<br/>
@@ -60,7 +61,7 @@
 							<b>Número de Ítem </b> {!! $lastAporte->item !!} <br/>
 						</div>
 						<div class="col-md-4">
-							<b>Matrícula </b>  <br/>
+							<b>Matrícula </b> {!! $afiliado->matri !!} <br/>
 						</div>
 						<div class="col-md-4">
 						</div>

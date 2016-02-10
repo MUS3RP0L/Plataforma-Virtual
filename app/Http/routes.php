@@ -13,16 +13,12 @@
 
 Route::get('/', 'HomeController@showIndex');
 
-
 // Authentication routes...
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('login', 'Auth\AuthController@postLogin');
 Route::get('logout', 'Auth\AuthController@getLogout');
 
-
 Route::group(['middleware' => 'auth'], function() {
-
-	Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 	// Registration routes...
 	Route::get('register', 'Auth\AuthController@getRegister');
@@ -44,12 +40,9 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('importar_archivo', 'ImportController@importSelect');
 	Route::post('import', 'ImportController@import');
 
-
 	Route::resource('afiliado', 'AfiliadoController');
 
 });
-
-
 
 //Permisos
 Route::get('afiliadoo/{id}', function ($id){

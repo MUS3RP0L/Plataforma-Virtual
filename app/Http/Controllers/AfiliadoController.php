@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Afiliado;
 use App\Aporte;
+use App\Grado;
 
 class AfiliadoController extends Controller
 {
@@ -55,11 +56,13 @@ class AfiliadoController extends Controller
         $afiliado = Afiliado::idIs($id)->with('aportes')->orderBy('id', 'desc')->firstOrFail();
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->firstOrFail();
 
+        $grado = Grado::where('niv', $lastAporte->niv)->where('grad', $lastAporte->gra)->firstOrFail();
+
         $data = array(
             'afiliado' => $afiliado,
-            'lastAporte' => $lastAporte
+            'lastAporte' => $lastAporte,
+            'grado' => $grado
         );
-
         return view('afiliados.view', $data);
     }
 

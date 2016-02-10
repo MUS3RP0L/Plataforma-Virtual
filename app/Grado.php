@@ -18,5 +18,5 @@ class Grado extends Model
 	
 	];
 
-	// protected $guarded = ['id'];
+	protected $guarded = ['id'];
 }
