@@ -42,7 +42,7 @@ class ImportController extends Controller
 	        		$afiliado->ap_esp = $result->apes;
 	        		$afiliado->est_civ = $result->eciv;
 	        		$afiliado->sex = $result->sex;
-	        		// $afiliado->matri = ;
+	        		$afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 	        		$afiliado->fech_nac = Util::date($result->nac);
 	        		$afiliado->fech_ing = Util::date($result->ing);
 	       	 		$afiliado->save();
@@ -63,9 +63,10 @@ class ImportController extends Controller
 					$aporte->niv = $result->niv;
 					$aporte->gra = $result->gra;
 					$aporte->item = $result->item;
-					// $aporte->cat = ;
+
 					$aporte->sue = Util::decimal($result->sue);
 					$aporte->b_ant = Util::decimal($result->cat);
+					$aporte->cat = $aporte->b_ant/$aporte->sue;
 					$aporte->b_est = Util::decimal($result->est);
 					$aporte->b_car = Util::decimal($result->carg);
 					$aporte->b_fro = Util::decimal($result->fro);
@@ -77,7 +78,7 @@ class ImportController extends Controller
 					$aporte->pre = $result->pre;
 					$aporte->sub = Util::decimal($result->sub);
 					$aporte->gan = Util::decimal($result->gan);
-					// $aporte->cot = ;
+					$aporte->cot = (FLOAT)$aporte->sue + (FLOAT)$aporte->b_ant + (FLOAT)$aporte->b_est + (FLOAT)$aporte->b_car + (FLOAT)$aporte->b_fro + (FLOAT)$aporte->b_ori;
 					// $aporte->cot_adi = ;
 					$aporte->mus = Util::decimal($result->mus);
 	     			$aporte->save();
