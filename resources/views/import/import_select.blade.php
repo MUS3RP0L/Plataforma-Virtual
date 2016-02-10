@@ -1,23 +1,30 @@
 @extends('layout')
 @section('content')
 
-<div class="container-fluid">
+<div class="container-fluid" style="margin: 2% 0 0 0;">
 	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-default">
-				<div class="panel-heading">Subir Archivo</div>
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><h5>Importar Archivo de Aportes</h5></div>
 				<div class="panel-body">
-					
-				<form method='post' action='{{url("import")}}' enctype='multipart/form-data'>
-					 <input name="_token" hidden value="{!! csrf_token() !!}" />
-					<div class='form-group'>
-						<label for='image'>Excel: </label>
-						<input type="file" name="image" />
-						<div class='text-danger'>{{$errors->first('image')}}</div>
-					</div>
-					<button type='submit' class='btn btn-primary'>subir archivo</button>
-				</form>
+			    	<div class="col-md-10 col-md-offset-1">
+					    {!! Form::open(['url' => 'import', 'role' => 'form', 'class' => 'form-horizontal', 'files' => true ])!!}
+							
+							<div class="form-group is-empty is-fileinput" >
+				              <label class="control-label" for="inputFile3">Archivo</label>
+				              <input type="file" id="inputFile3" name="image">
+				              <input type="text" readonly="" class="form-control " placeholder="Seleccione el Archivo Excel...">
 
+							</div>
+
+				            <div class="form-group form-group-lg">
+				                <div class="col-md-2 col-md-offset-8">
+				                <button type="submit" class="btn btn-raised btn-primary">Subir</button>
+				              </div>
+				            </div>
+
+						{!! Form::close() !!}
+					</div>
 				</div>
 			</div>
 		</div>
