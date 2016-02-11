@@ -1,23 +1,22 @@
 @extends('master')
 
 @section('content')
-<div class="container-fluid" style="margin: 5% 0 0 0;">
 
-  	<div class="row">
+<div class="container-fluid">
+	
+    @if($errors->has())
+        <div class="alert alert-warning" role="alert">
+           @foreach ($errors->all() as $error)
+              <div>{{ $error }}</div>
+          @endforeach
+        </div>
+    @endif
+
+  	<div class="row" style="margin: 6% 0 0 0;">
     	<div class="col-md-6 col-md-offset-3">
       		<div class="panel panel-primary">
         		<div class="panel-heading"><h4 class="text-center">Plataforma Virtual</h4></div>
         			<div class="panel-body">
-          				@if (count($errors) > 0)
-            			<div class="alert alert-danger">
-							Por favor corrige los siguientes errores:<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
 
 			          {!! Form::open(['url' => 'login', 'role' => 'form', 'class' => 'form-horizontal'])!!}
 

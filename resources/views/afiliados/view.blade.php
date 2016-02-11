@@ -77,11 +77,11 @@
 										<th>Item</th>
 										<th>Sueldo</th>
 										<th>Antigüedad</th>
-										<th>Estudio</th>
-										<th>Cargo</th>
-										<th>Frontera</th>
-										<th>Oriente</th>
-										<th>Seguridad</th>
+										<th>Bono Estudio</th>
+										<th>Bono Cargo</th>
+										<th>BonoFrontera</th>
+										<th>BonoOriente</th>
+										<th>Bono Seguridad Cuidadana</th>
 										<th>Ganancia</th>
 										<th>Muserpol</th>
 									</tr>

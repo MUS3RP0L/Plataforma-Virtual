@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Validator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Afiliado;
@@ -134,10 +135,28 @@ class AfiliadoController extends Controller
 
     public function go_search(Request $request)
     {
+        $rules = [
+            'search' => 'required',
+        ];
+        
+        $messages = [
+            'name.required' => 'El campo es requerido',
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()){
+            return redirect("/")
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
 
         $afiliado = Afiliado::ciIs($request->search)->firstOrFail();
 
         return redirect("afiliado/{$afiliado->id}");
+        }
+
     }
 
     

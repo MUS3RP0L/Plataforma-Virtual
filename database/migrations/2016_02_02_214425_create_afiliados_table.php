@@ -17,7 +17,7 @@ class CreateAfiliadosTable extends Migration
             $table->engine = 'InnoDB';
             
             $table->increments('id');         
-            $table->string('ci')->nullable();
+            $table->string('ci')->unique()->required();
             $table->string('pat')->nullable();
             $table->string('mat')->nullable();
             $table->string('nom')->nullable();
