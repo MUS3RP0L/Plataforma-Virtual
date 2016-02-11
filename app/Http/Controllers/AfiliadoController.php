@@ -125,7 +125,7 @@ class AfiliadoController extends Controller
 
     public function anyData()
     {
-        return Datatables::of(Afiliado::orderBy('pat', 'asc'))->make(true);
+        return Datatables::of(Afiliado::get())->make(true);
     }
 
 }

@@ -14,6 +14,7 @@
             <tr>
                 <th>Paterno</th>
                 <th>Materno</th>
+                <th>Nombre</th>
 
             </tr>
         </thead>
@@ -35,7 +36,8 @@ $(function() {
         ajax: '{!! route('getAfiliado') !!}',
         columns: [
             { data: 'pat', name: 'pat' },
-            { data: 'mat', name: 'mat' }
+            { data: 'mat', name: 'mat' },
+            { data: 'nom', name: 'nom' }
         ]
     });
 });
