@@ -4,35 +4,40 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-			@if(!$afiliado->isEmpty())
+
 			<div class="panel panel-default">
 				<div class="panel-heading">Despliegue Afiliados</div>
 				<div class="panel-body">
 					
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th>CI</th>
-								<th>nombre</th>
-							</tr>
+					<table class="table table-bordered" id="users-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
 
-						</thead>
-						<tbody>
-							@foreach($afiliado as $afiliado)
-								<tr>
-									<th>{{ $afiliado->nom }}</th>
-									<th>{{ $afiliado->ci }}</th>
-								</tr>
-							@endforeach
-						</tbody>
-					</table>
-
-					{!! $afiliados->render() !!}
+            </tr>
+        </thead>
+    </table>
 				</div>
 			</div>
-			 @endif
+			
 		</div>
 	</div>
 </div>
 @endsection
 
+@push('scripts')
+<script>
+$(function() {
+    $('#users-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{!! route('datatables.data') !!}',
+        columns: [
+            { data: 'pat', name: 'pat' },
+            { data: 'mat', name: 'mat' }
+        ]
+    });
+});
+</script>
+@endpush

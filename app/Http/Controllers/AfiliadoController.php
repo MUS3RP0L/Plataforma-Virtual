@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Afiliado;
 use App\Aporte;
 use App\Grado;
+use Datatables;
+
 
 class AfiliadoController extends Controller
 {
@@ -112,6 +114,18 @@ class AfiliadoController extends Controller
         $afiliado = Afiliado::ciIs($request->search)->firstOrFail();
 
         return redirect("afiliado/{$afiliado->id}");
+    }
+
+    
+
+    public function getIndex()
+    {
+        return view('afiliados.index');
+    }
+
+    public function anyData()
+    {
+        return Datatables::of(Afiliado::orderBy('pat', 'asc'))->make(true);
     }
 
 }

@@ -58,5 +58,8 @@ Route::get('afiliadoo/{id}', function ($id){
 });
 
 
-
+Route::controller('datatables', 'AfiliadoController', [
+    'anyData'  => 'datatables.data',
+    'getIndex' => 'datatables',
+]);
 
