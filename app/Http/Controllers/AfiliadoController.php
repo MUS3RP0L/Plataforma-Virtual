@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Validator;
+use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Afiliado;
@@ -140,7 +141,7 @@ class AfiliadoController extends Controller
         ];
         
         $messages = [
-            'name.required' => 'El campo es requerido',
+            'search.required' => 'El campo es requerido para realizar la búsqueda del Afiliado.',
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -152,9 +153,17 @@ class AfiliadoController extends Controller
         }
         else{
 
-        $afiliado = Afiliado::ciIs($request->search)->firstOrFail();
+        $afiliado = Afiliado::ciIs($request->search)->first();
 
-        return redirect("afiliado/{$afiliado->id}");
+            if($afiliado){
+                return redirect("afiliado/{$afiliado->id}");
+            }
+            else{
+                Session::flash('message', "No logramos encontrar al Afiliado con Carnet: ".$request->search);
+                
+                return redirect("/");
+            }
+
         }
 
     }

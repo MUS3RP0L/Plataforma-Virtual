@@ -16,16 +16,16 @@ class ImportController extends Controller
     public function import(Request $request)
     {
 
-    	set_time_limit(360);
+    	set_time_limit(3600);
 
     	$reader = $request->file('image');
         $filename = $reader->getRealPath();
 
-    	Excel::selectSheets('Hoja1')->filter('chunk')->load($filename,$reader)->chunk(250, function($results) {
+    	Excel::selectSheets('Hoja1')->filter('chunk')->load($filename,$reader)->chunk(500, function($results) {
 			
 			foreach ($results as $result) {
 				
-				set_time_limit(360);
+				set_time_limit(3600);
 
 				$carnet = Util::zero($result->car);
 
