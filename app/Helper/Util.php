@@ -29,12 +29,12 @@ class Util
 
 	public static function calcCat($b_ant, $sue)
 	{
-		if ($b_ant || $sue) {
-			return $cat = $b_ant/$sue;
+		if ($b_ant == 00000000.00 || $sue == 00000000.00) {
+			return '';
 		}
 		else
 		{
-			return 0;
+			return $cat = $b_ant/$sue;
 		}
 
 	}
@@ -48,14 +48,23 @@ class Util
 		$month_first = substr($nac_month, 0, 1);
 		$month_second = substr($nac_month, 1, 1);
 		
-		if($pat){
+		if($pat  <> ''){
 			$pat_first = substr($pat, 0, 1);		
 		}
-		if($mat){
+		else{
+			$pat_first = '';
+		}
+		if($mat <> ''){
 			$mat_first = substr($mat, 0, 1);		
+		}
+		else{
+			$mat_first = '';
 		}		
-		if($nom){
+		if($nom<> ''){
 			$nom_first = substr($nom, 0, 1);		
+		}
+		else{
+			$nom_first = '';
 		}
 
 		if($sex == "M"){
