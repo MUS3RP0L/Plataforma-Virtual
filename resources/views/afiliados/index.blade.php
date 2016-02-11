@@ -12,8 +12,8 @@
 					<table class="table table-bordered" id="users-table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th>Paterno</th>
+                <th>Materno</th>
 
             </tr>
         </thead>
@@ -32,7 +32,7 @@ $(function() {
     $('#users-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{!! route('datatables.data') !!}',
+        ajax: '{!! route('getAfiliado') !!}',
         columns: [
             { data: 'pat', name: 'pat' },
             { data: 'mat', name: 'mat' }

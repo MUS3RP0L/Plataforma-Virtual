@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('import', 'ImportController@import');
 
 	Route::resource('afiliado', 'AfiliadoController');
+	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@anyData'));
+
 
 });
 
@@ -57,9 +59,4 @@ Route::get('afiliadoo/{id}', function ($id){
 	return $afil->ci;
 });
 
-
-Route::controller('datatables', 'AfiliadoController', [
-    'anyData'  => 'datatables.data',
-    'getIndex' => 'datatables',
-]);
 
