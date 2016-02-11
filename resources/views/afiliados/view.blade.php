@@ -12,80 +12,60 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<h4><b>Datos Personales</b></h4>
+							<h3>Datos Personales</h3>
 						</div>
 					</div><br/>
 					<div class="row">
 						<div class="col-md-4">
-							<b>CARNET IDENTIDAD </b> {!! $afiliado->ci !!} <br/>
+							<h4><b>Carnet Identidad</b> {!! $afiliado->ci !!} </h4>
 						</div>
 						<div class="col-md-4">
-							<b>APELLIDOS </b> {!! $afiliado->pat !!} {!! $afiliado->mat !!}<br/>
+							<h4><b>Apellidos </b> {!! $afiliado->pat !!} {!! $afiliado->mat !!}</h4>
 						</div>
 						<div class="col-md-4">
-							<b>NOMBRES </b> {!! $afiliado->nom !!} {!! $afiliado->nom2 !!}<br/>
+							<h4><b>Nombres </b> {!! $afiliado->nom !!} {!! $afiliado->nom2 !!}</h4>
 						</div>
 					</div><br/>
 
 					<div class="row">
 						<div class="col-md-4">
-							<b>FECHA NACIMIENTO </b> {!! $afiliado->getFullDateNac() !!} <br/>
+							<h4><b>Fecha Nacimiento </b> {!! $afiliado->getFullDateNac() !!}</h4>
 						</div>
 						<div class="col-md-4">
-							<b>ESTADO CIVIL </b> {!! $afiliado->getCivil() !!} <br/>
+							<h4><b>Estado Civil </b> {!! $afiliado->getCivil() !!}</h4>
 						</div>
 						<div class="col-md-4">
-							<b>SEXO </b> {!! $afiliado->getSex() !!} <br/>
+							<h4><b>Sexo </b> {!! $afiliado->getSex() !!}</h4>
 						</div>
 					</div><br/>
 
 					<div class="row">
 						<div class="col-md-12">
-							<h4><b>Datos Policiales</b></h4>
+							<h3>Datos Policiales</h3>
 						</div>
 					</div><br/>
 					<div class="row">
 						<div class="col-md-4">
-							<b>FECHA DE INGRESO </b> {!! $afiliado->getFullDateIng() !!} <br/>
+							<h4><b>Fecha de Ingreso </b> {!! $afiliado->getFullDateIng() !!}</h4>
 						</div>
 						<div class="col-md-4">
-							<b>GRADO </b> {!! $grado->lit !!}<br/>
+							<h4><b>Grado </b> {!! $grado->lit !!}</h4>
 						</div>
 						<div class="col-md-4">
-							<b>UNIDAD </b> {!! $lastAporte->uni !!}<br/>
-						</div>
-					</div><br/>
-
-					<div class="row">
-						<div class="col-md-4">
-							<b>Número de Ítem </b> {!! $lastAporte->item !!} <br/>
-						</div>
-						<div class="col-md-4">
-							<b>Matrícula </b> {!! $afiliado->matri !!} <br/>
-						</div>
-						<div class="col-md-4">
+							<h4><b>Unidad </b> {!! $lastAporte->uni !!}</h4>
 						</div>
 					</div><br/>
 
 					<div class="row">
 						<div class="col-md-4">
-							<h3>Totales
-							<table class="table" style="width:100%">
-								<tr>
-									<td><small>Total Ganado</small></td>
-									<td style="text-align: right">{{ $totalGanado }}</td>
-								</tr>
-								<tr>
-									<td><small>Total Aporte Muserpol</small></td>
-									<td style="text-align: right">{{ $totalMuserpol }}</td>
-								</tr>
-
-
-							</table>
-							</h3>
+							<h4><b>Número de Ítem </b> {!! $lastAporte->item !!}<h4>
 						</div>
-					</div>
-
+						<div class="col-md-4">
+							<h4><b>Matrícula </b> {!! $afiliado->matri !!}<h4>
+						</div>
+						<div class="col-md-4">
+						</div>
+					</div><br/>
 
 					<div class="row">												
 						<div class="panel-body">					
@@ -129,6 +109,23 @@
 							</table>
 						</div>					
 					</div>
+
+					<div class="row">
+						<div class="col-md-3 col-md-offset-8">
+							<h3>Totales
+							<table class="table" style="width:100%">
+								<tr>
+									<td><small>Total Ganado</small></td>
+									<td style="text-align: right">{{ $totalGanado }}</td>
+								</tr>
+								<tr>
+									<td><small>Total Aporte Muserpol</small></td>
+									<td style="text-align: right">{{ $totalMuserpol }}</td>
+								</tr>
+							</table>
+							</h3>
+						</div>
+					</div
   				</div>
 			</div>				
 		</div>

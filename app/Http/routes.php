@@ -45,8 +45,6 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('totalganado/{id?}', 'TotalController@totalGanado');
 
-
-
 });
 
 //Permisos

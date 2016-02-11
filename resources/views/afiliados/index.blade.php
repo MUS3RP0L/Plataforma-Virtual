@@ -12,9 +12,11 @@
 					<table class="table table-bordered" id="users-table">
         <thead>
             <tr>
+                <th>Carnet</th>
                 <th>Paterno</th>
                 <th>Materno</th>
                 <th>Nombre</th>
+                <th>Matrícula</th>
 
             </tr>
         </thead>
@@ -35,9 +37,11 @@ $(function() {
         serverSide: true,
         ajax: '{!! route('getAfiliado') !!}',
         columns: [
+            { data: 'ci', name: 'ci' },
             { data: 'pat', name: 'pat' },
             { data: 'mat', name: 'mat' },
-            { data: 'nom', name: 'nom' }
+            { data: 'nom', name: 'nom' },
+            { data: 'matri', name: 'matri' }
         ]
     });
 });
