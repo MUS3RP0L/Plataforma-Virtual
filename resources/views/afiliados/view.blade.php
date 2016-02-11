@@ -67,6 +67,26 @@
 						</div>
 					</div><br/>
 
+					<div class="row">
+						<div class="col-md-4">
+							<h3>Totales
+							<table class="table" style="width:100%">
+								<tr>
+									<td><small>Total Ganado</small></td>
+									<td style="text-align: right">{{ $totalGanado }}</td>
+								</tr>
+								<tr>
+									<td><small>Total Aporte Muserpol</small></td>
+									<td style="text-align: right">{{ $totalMuserpol }}</td>
+								</tr>
+
+
+							</table>
+							</h3>
+						</div>
+					</div>
+
+
 					<div class="row">												
 						<div class="panel-body">					
 							<table class="table table-striped table-hover">

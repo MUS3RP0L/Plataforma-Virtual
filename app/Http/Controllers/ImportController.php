@@ -66,7 +66,7 @@ class ImportController extends Controller
 
 					$aporte->sue = Util::decimal($result->sue);
 					$aporte->b_ant = Util::decimal($result->cat);
-					$aporte->cat = $aporte->b_ant/$aporte->sue;
+					$aporte->cat = Util::calcCat($aporte->b_ant,$aporte->sue);
 					$aporte->b_est = Util::decimal($result->est);
 					$aporte->b_car = Util::decimal($result->carg);
 					$aporte->b_fro = Util::decimal($result->fro);

@@ -27,6 +27,18 @@ class Util
 		return preg_replace('/^0+/', '', $string);
 	}
 
+	public static function calcCat($b_ant, $sue)
+	{
+		if ($b_ant || $sue) {
+			return $cat = $b_ant/$sue;
+		}
+		else
+		{
+			return 0;
+		}
+
+	}
+
 	public static function calcMatri($nac, $pat, $mat, $nom, $sex)
 	{
 		$nac_day = substr($nac, 0, 2);

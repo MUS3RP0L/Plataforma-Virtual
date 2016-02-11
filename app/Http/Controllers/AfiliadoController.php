@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Afiliado;
@@ -56,15 +56,39 @@ class AfiliadoController extends Controller
     public function show($id)
     {
         $afiliado = Afiliado::idIs($id)->with('aportes')->orderBy('id', 'desc')->firstOrFail();
+
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->firstOrFail();
 
         $grado = Grado::where('niv', $lastAporte->niv)->where('grad', $lastAporte->gra)->firstOrFail();
 
+        $totalGanado = DB::table('afiliados')
+                ->select(DB::raw('SUM(aportes.gan) as ganado'))
+                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                ->where('afiliados.id', '=', $afiliado->id)
+                ->get();
+        foreach ($totalGanado as $item) {
+            $ganado = $item->ganado;
+        }
+
+        $totalMuserpol = DB::table('afiliados')
+                ->select(DB::raw('SUM(aportes.mus) as muserpol'))
+                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                ->where('afiliados.id', '=', $afiliado->id)
+                ->get();
+        foreach ($totalMuserpol as $item) {
+            $muserpol = $item->muserpol;
+        }
+
+
         $data = array(
             'afiliado' => $afiliado,
             'lastAporte' => $lastAporte,
-            'grado' => $grado
+            'grado' => $grado,
+            'totalGanado' => $ganado,
+            'totalMuserpol' => $muserpol
         );
+
+        // return ($totalGanado);
         return view('afiliados.view', $data);
     }
 

@@ -43,6 +43,9 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('afiliado', 'AfiliadoController');
 	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@anyData'));
 
+	Route::get('totalganado/{id?}', 'TotalController@totalGanado');
+
+
 
 });
 
