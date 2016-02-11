@@ -41,23 +41,23 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('import', 'ImportController@import');
 
 	Route::resource('afiliado', 'AfiliadoController');
-	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@anyData'));
+	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
 
 	Route::get('totalganado/{id?}', 'TotalController@totalGanado');
 
 });
 
-//Permisos
-Route::get('afiliadoo/{id}', function ($id){
+// //Permisos
+// Route::get('afiliadoo/{id}', function ($id){
 
-	$afil = App\Afiliado::findOrFail($id);
-		// allows
-	if (Gate::denies('view-afiliado', $afil)){
+// 	$afil = App\Afiliado::findOrFail($id);
+// 		// allows
+// 	if (Gate::denies('view-afiliado', $afil)){
 		
-		return $afil;
-	}
+// 		return $afil;
+// 	}
 
-	return $afil->ci;
-});
+// 	return $afil->ci;
+// });
 
 

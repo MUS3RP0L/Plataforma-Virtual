@@ -168,14 +168,7 @@ class AfiliadoController extends Controller
 
     }
 
-    
-
-    public function getIndex()
-    {
-        return view('afiliados.index');
-    }
-
-    public function anyData()
+    public function afiliadosData()
     {
         return Datatables::of(Afiliado::get())->make(true);
     }
