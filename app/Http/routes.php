@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 	//search
 	Route::get('buscar_afiliado', 'AfiliadoController@search');
-	Route::get('ir_afiliado', 'AfiliadoController@go_search');
+	Route::post('ir_afiliado', 'AfiliadoController@go_search');
 
 	// import
 	Route::get('importar_archivo', 'ImportController@importSelect');
@@ -43,7 +43,11 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('afiliado', 'AfiliadoController');
 	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
 
-	Route::get('totalganado/{id?}', 'TotalController@totalGanado');
+	// Route::get('totales/{m}/{a}', 'ReporteController@GenerateReportAporte');
+
+	Route::get('totales', 'ReporteController@ReportAporte');
+	Route::post('ir_totales', 'ReporteController@GenerateReportAporte');
+
 
 });
 

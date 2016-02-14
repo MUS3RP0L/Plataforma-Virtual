@@ -10,22 +10,29 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Afiliado;
 use App\Aporte;
 use App\Helper\Util;
+use DB;
 
 class ImportController extends Controller
 {
     public function import(Request $request)
     {
 
-    	set_time_limit(360);
+
+		ini_set('upload_max_filesize', '700M');
+		ini_set('post_max_size', '700M');
+		ini_set('max_execution_time', 36000);
+		ini_set('max_input_time', 36000);
+		ini_set("memory_limit","700M");
+    	set_time_limit(36000);
 
     	$reader = $request->file('image');
         $filename = $reader->getRealPath();
 
-    	Excel::selectSheets('Hoja1')->filter('chunk')->load($filename,$reader)->chunk(250, function($results) {
+    	Excel::selectSheets('Hoja1')->filter('chunk')->load($filename,$reader)->chunk(500, function($results) {
 			
 			foreach ($results as $result) {
 				
-				set_time_limit(360);
+				set_time_limit(36000);
 
 				$carnet = Util::zero($result->car);
 

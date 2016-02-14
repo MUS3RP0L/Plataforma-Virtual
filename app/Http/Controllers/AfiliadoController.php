@@ -90,7 +90,6 @@ class AfiliadoController extends Controller
             'totalMuserpol' => $muserpol
         );
 
-        // return ($totalGanado);
         return view('afiliados.view', $data);
     }
 
