@@ -40,8 +40,15 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('importar_archivo', 'ImportController@importSelect');
 	Route::post('import', 'ImportController@import');
 
+	// Afiliados
 	Route::resource('afiliado', 'AfiliadoController');
 	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
+
+	// Usuarios
+	Route::resource('usuario', 'UsuarioController');
+	Route::get('getUsuario', array('as'=>'getUsuario', 'uses'=>'UsuarioController@UsuariosData'));
+
+
 
 	// Route::get('totales/{m}/{a}', 'ReporteController@GenerateReportAporte');
 

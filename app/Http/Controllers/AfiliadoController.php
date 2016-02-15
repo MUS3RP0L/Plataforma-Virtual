@@ -23,9 +23,12 @@ class AfiliadoController extends Controller
      */
     public function index()
     {
-        $afiliados = Afiliado::orderBy('pat', 'asc')->paginate(2);
+        return view('afiliados.index');
+    }
 
-        return view('afiliados.index', compact('afiliados'));
+    public function afiliadosData()
+    {
+        return Datatables::of(Afiliado::get())->make(true);
     }
 
     /**
@@ -167,9 +170,6 @@ class AfiliadoController extends Controller
 
     }
 
-    public function afiliadosData()
-    {
-        return Datatables::of(Afiliado::get())->make(true);
-    }
+
 
 }

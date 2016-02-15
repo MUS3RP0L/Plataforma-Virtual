@@ -9,7 +9,7 @@
 				<div class="panel-heading">Despliegue Afiliados</div>
 				<div class="panel-body">
 					
-					<table class="table table-bordered" id="users-table">
+					<table class="table table-bordered" id="afiliados-table">
         <thead>
             <tr>
                 <th>Carnet</th>
@@ -32,7 +32,7 @@
 @push('scripts')
 <script>
 $(function() {
-    $('#users-table').DataTable({
+    $('#afiliados-table').DataTable({
         processing: true,
         serverSide: true,
         ajax: '{!! route('getAfiliado') !!}',
