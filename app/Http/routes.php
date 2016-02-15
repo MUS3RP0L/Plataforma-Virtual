@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 	//search
 	Route::get('buscar_afiliado', 'AfiliadoController@search');
-	Route::post('ir_afiliado', 'AfiliadoController@go_search');
+	Route::get('ir_afiliado', 'AfiliadoController@go_search');
 
 	// import
 	Route::get('importar_archivo', 'ImportController@importSelect');

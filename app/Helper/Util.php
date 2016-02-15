@@ -87,7 +87,7 @@ class Util
 	    $value = number_format($value, 2, '.', ',');
         $symbol = 'Bs ';
 
-        return "{$symbol}{$value}";
+        return "<p class='text-right'>{$symbol}{$value}</p>";
 
     }
 }
