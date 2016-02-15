@@ -81,4 +81,13 @@ class Util
 		}
 		
 	}
+
+	public static function formatMoney($value){
+
+	    $value = number_format($value, 2, '.', ',');
+        $symbol = 'Bs ';
+
+        return "{$symbol}{$value}";
+
+    }
 }

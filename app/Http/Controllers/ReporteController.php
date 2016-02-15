@@ -9,6 +9,8 @@ use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Aporte;
+use App\Helper\Util;
+
 class ReporteController extends Controller
 {
     /**
@@ -27,7 +29,8 @@ class ReporteController extends Controller
 
         $data = array(
             'anios' => $anios,
-            'meses' => $meses
+            'meses' => $meses,
+            'resultado' => 0
         );
 
         return view('reportes.view', $data);
@@ -66,21 +69,26 @@ class ReporteController extends Controller
             $mus = $item->mus;
         }
 
+        $anios = array('9' => '19','0' => '20','1' => '20','2' => '20','3' => '20');
+        $a = substr($anio, 0, 1);
+        $meses = array('01' => 'Enero','02' => 'Febrero','03' => 'Marzo','04' => 'Abril','05' => 'Mayo','06' => 'Junio','07' => 'Julio','08' => 'Agosto','09' => 'Septiembre','10' => 'Octubre','11' => 'Noviembre','12' => 'Diciembre');
+
         $data = array(
             'totalRegistros' => $registros,
-            'totalSueldo' => $sueldo,
-            'totalAnti' => $anti,
-            'totalB_est' => $b_est,
-            'totalB_car' => $b_car,
-            'totalB_fro' => $b_fro,
-            'totalB_ori' => $b_ori,
-            'totalB_seg' => $b_seg,
-            'totalGanado' => $gan,
-            'totalMuserpol' => $mus,
+            'totalSueldo' => Util::formatMoney($sueldo),
+            'totalAnti' => Util::formatMoney($anti),
+            'totalB_est' => Util::formatMoney($b_est),
+            'totalB_car' => Util::formatMoney($b_car),
+            'totalB_fro' => Util::formatMoney($b_fro),
+            'totalB_ori' => Util::formatMoney($b_ori),
+            'totalB_seg' => Util::formatMoney($b_seg),
+            'totalGanado' => Util::formatMoney($gan),
+            'totalMuserpol' => Util::formatMoney($mus),
+            'anio' => $anios[$a] . $anio,
+            'mes' => $meses[$request->mes]
         );
 
-        return ($data);
+        return view('reportes.show', $data);
     }
 
-// $mes, $anio
 }
