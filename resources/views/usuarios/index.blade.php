@@ -14,6 +14,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>Correo</th>
+                <th>Opción</th>
             </tr>
         </thead>
     </table>
@@ -34,7 +35,8 @@ $(function() {
         ajax: '{!! route('getUsuario') !!}',
         columns: [
             { data: 'name', name: 'name' },
-            { data: 'email', name: 'email' }
+            { data: 'email', name: 'email' },
+            {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });
 });
