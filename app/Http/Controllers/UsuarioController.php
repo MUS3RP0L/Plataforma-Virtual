@@ -37,7 +37,7 @@ class UsuarioController extends Controller
 
         return Datatables::of($users)->addColumn('action', function ($user) {
                 return ' <div class="btn-group">
-                            <a href="bootstrap-elements.html" data-target="#" class="btn btn-raised dropdown-toggle" data-toggle="dropdown">
+                            <a href="bootstrap-elements.html" data-target="#" class="btn dropdown-toggle btn-sm btn-success" data-toggle="dropdown">
                                 Opciones
                                 <span class="caret"></span>
                             </a>

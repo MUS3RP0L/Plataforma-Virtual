@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading"><h4 class="text-center">Despliegue de Usuarios</h4></div>
+                <div class="panel-heading"><h4 class="text-center">Gestión de Usuarios</h4></div>
                     <div class="panel-body">
 					
 					<table class="table table-bordered" id="users-table">
@@ -29,8 +29,10 @@
 <script>
 $(function() {
     $('#users-table').DataTable({
-        processing: true,
-        serverSide: true,
+        "paging": false,
+        "ordering": false,
+        "info": false,
+
         ajax: '{!! route('getUsuario') !!}',
         columns: [
             { data: 'name', name: 'name' },
