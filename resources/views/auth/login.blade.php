@@ -36,12 +36,13 @@
 
 				              </div>
 				            </div>
-
-				            <div class="form-group form-group-lg">
-				              <div class="col-md-2 col-md-offset-8">
-				                <button type="submit" class="btn btn-raised btn-primary">Ingresar</button>
-				              </div>
-				            </div>
+							<div class="row text-center">
+					            <div class="form-group form-group-lg">
+					              <div class="col-md-12">
+					                <button type="submit" class="btn btn-raised btn-primary">Ingresar</button>
+					              </div>
+					            </div>
+					        </div>
 
 			          {!! Form::close() !!}
 				</div>

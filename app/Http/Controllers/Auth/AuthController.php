@@ -36,56 +36,6 @@ class AuthController extends Controller
     // }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-
-    public function postRegister(Request $request){
-        
-        $rules = [
-            'name' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
-        ];
-        
-        $messages = [
-            'name.required' => 'El campo es requerido',
-            'name.min' => 'El mínimo de caracteres permitidos son 3',
-            'name.regex' => 'Sólo se aceptan letras',
-            'email.required' => 'El campo es requerido',
-            'email.email' => 'El formato de email es incorrecto',
-            'email.unique' => 'El email ya existe',
-            'password.required' => 'El campo es requerido',
-            'password.min' => 'El mínimo de caracteres permitidos son 6',
-            'password.confirmed' => 'Los passwords no coinciden',
-        ];
-        
-        $validator = Validator::make($request->all(), $rules, $messages);
-        
-        if ($validator->fails()){
-            return redirect("register")
-            ->withErrors($validator)
-            ->withInput();
-        }
-        else{
-            $user = new User;
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
-
-            $user->role = 'admin';
-            $user->save();
-            
-            return redirect("register")
-            ->with("message", "Usuario creado");
-        }
-            
-        
-    }
-
-    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data

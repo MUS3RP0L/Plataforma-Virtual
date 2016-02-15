@@ -25,10 +25,26 @@ class UsuarioController extends Controller
 
     public function UsuariosData()
     {
+        // $users = User::select(['id', 'name', 'email']);
+
+        // return Datatables::of($users)->addColumn('action', function ($user) {
+        //         return '<a href="usuario/'.$user->id.'/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar Usuario</a>';
+        //     })
+        //     ->editColumn('id', 'ID: {{$id}}')
+        //     ->make(true);
+
         $users = User::select(['id', 'name', 'email']);
 
         return Datatables::of($users)->addColumn('action', function ($user) {
-                return '<a href="usuario/'.$user->id.'/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar Usuario</a>';
+                return ' <div class="btn-group">
+                            <a href="bootstrap-elements.html" data-target="#" class="btn btn-raised dropdown-toggle" data-toggle="dropdown">
+                                Opciones
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="usuario/'.$user->id.'/edit"><i class="glyphicon glyphicon-edit"></i> Editar Usuario</a></li>
+                            </ul>
+                        </div>';
             })
             ->editColumn('id', 'ID: {{$id}}')
             ->make(true);

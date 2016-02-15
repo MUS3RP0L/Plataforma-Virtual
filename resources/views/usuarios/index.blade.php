@@ -2,12 +2,11 @@
 
 @section('content')
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-
-			<div class="panel panel-default">
-				<div class="panel-heading">Despliegue de Usuarios</div>
-				<div class="panel-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h4 class="text-center">Despliegue de Usuarios</h4></div>
+                    <div class="panel-body">
 					
 					<table class="table table-bordered" id="users-table">
         <thead>
