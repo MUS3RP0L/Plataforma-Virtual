@@ -86,8 +86,7 @@ class UsuarioController extends Controller
             'user' => $user
         ];
 
-        // return View('usuarios.edit', $data);
-        return $data;
+        return View('usuarios.edit', $data);
     }
 
     /**

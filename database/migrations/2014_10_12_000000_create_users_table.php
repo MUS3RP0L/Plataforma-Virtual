@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('tel')->nullable();
             $table->string('username')->unique();
             $table->string('password', 60);
-            $table->enum('role',['admin', 'fondo_retiro', 'complemento']);
+            $table->enum('role',['admin', 'fondo_retiro', 'complemento_economico']);
             $table->enum('status',['Activo', 'Inactivo'])->default('Activo');
             $table->rememberToken();
             $table->timestamps();
