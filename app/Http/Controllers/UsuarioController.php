@@ -25,28 +25,15 @@ class UsuarioController extends Controller
 
     public function UsuariosData()
     {
-        // $users = User::select(['id', 'name', 'email']);
 
-        // return Datatables::of($users)->addColumn('action', function ($user) {
-        //         return '<a href="usuario/'.$user->id.'/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar Usuario</a>';
-        //     })
-        //     ->editColumn('id', 'ID: {{$id}}')
-        //     ->make(true);
-
-        $users = User::select(['id', 'name', 'email']);
+        $users = User::select(['id', 'ape', 'nom', 'tel','role','status'])->where('id', '>', 1);
 
         return Datatables::of($users)->addColumn('action', function ($user) {
-                return ' <div class="btn-group">
-                            <a href="bootstrap-elements.html" data-target="#" class="btn dropdown-toggle btn-sm btn-success" data-toggle="dropdown">
-                                Opciones
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="usuario/'.$user->id.'/edit"><i class="glyphicon glyphicon-edit"></i> Editar Usuario</a></li>
-                            </ul>
-                        </div>';
+                return '<a href="usuario/'.$user->id.'/edit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                <a href="usuario/'.$user->id.'/edit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-ban-circle"></i> bloquear</a>
+                        ';
             })
-            ->editColumn('id', 'ID: {{$id}}')
+            ->editColumn('name', '{{$ape}} {{$nom}}')
             ->make(true);
     }
 
@@ -57,7 +44,14 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        
+        $role = array('fondo_retiro' => 'Fondo de Retiro','complemento' => 'Complemento Económico');
+        
+        $data = array(
+            'role' => $role,
+        );
+
+        return view('usuarios.create', $data);
     }
 
     /**
@@ -68,7 +62,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return ($request);
     }
 
     /**

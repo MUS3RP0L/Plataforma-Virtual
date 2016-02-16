@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('tel')->nullable();
             $table->string('username')->unique();
             $table->string('password', 60);
-            $table->enum('role',['admin', 'fondo_retiro']);
-            $table->boolean('status')->default(1);
+            $table->enum('role',['admin', 'fondo_retiro', 'complemento']);
+            $table->enum('status',['Activo', 'Inactivo'])->default('Activo');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

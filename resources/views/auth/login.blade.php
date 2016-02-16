@@ -23,7 +23,7 @@
 				            <div class="form-group form-group-lg">
 				              	{!! Form::label('usermane', 'USUARIO', ['class' => 'col-md-4 control-label']) !!}
 				              	<div class="col-md-6">
-	                  				{!! Form::text('username', null, ['class' => 'form-control' , 'required' => 'required']) !!}
+	                  				{!! Form::text('username', null, ['class' => 'form-control', 'required' => 'required']) !!}
 				                	<span class="help-block">Ingrese su Apellido y Nombre</span>
 				              	</div>
 				            </div>

@@ -13,7 +13,9 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Tipo</th>
+                                <th>Estado</th>
                                 <th>Opción</th>
                             </tr>
                         </thead>
@@ -35,10 +37,13 @@ $(function() {
         "info": false,
 
         ajax: '{!! route('getUsuario') !!}',
+
         columns: [
-            { data: 'name', name: 'name' },
-            { data: 'email', name: 'email' },
-            {data: 'action', name: 'action', orderable: false, searchable: false}
+            { data: 'name', name: 'name', sWidth: '30%' },
+            { data: 'tel', name: 'tel', sWidth: '20%' },
+            { data: 'role', name: 'role', sWidth: '15%' },
+            { data: 'status', name: 'status', sWidth: '15%' },
+            { data: 'action', name: 'action', sWidth: '20%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
         ]
     });
 });

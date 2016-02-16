@@ -48,7 +48,7 @@ class AuthController extends Controller
                 [
                     'username' => $request->username,
                     'password' => $request->password,
-                    'status' => 1
+                    'status' => 'Activo'
                 ]
                 , $request->has('remember')
                 )){

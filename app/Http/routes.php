@@ -20,6 +20,10 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => 'auth'], function() {
 
+	// Gestion de Usuarios
+	Route::resource('usuario', 'UsuarioController');
+	Route::get('getUsuario', array('as'=>'getUsuario', 'uses'=>'UsuarioController@UsuariosData'));
+
 	// Registration routes...
 	// Route::get('register', 'Auth\AuthController@getRegister');
 	// Route::post('register', 'Auth\AuthController@postRegister');
@@ -44,9 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('afiliado', 'AfiliadoController');
 	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
 
-	// Usuarios
-	Route::resource('usuario', 'UsuarioController');
-	Route::get('getUsuario', array('as'=>'getUsuario', 'uses'=>'UsuarioController@UsuariosData'));
+
 
 	// Route::get('totales/{m}/{a}', 'ReporteController@GenerateReportAporte');
 
