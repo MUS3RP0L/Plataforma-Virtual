@@ -62,18 +62,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        return ($request);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return $this->save($request);
     }
 
     /**
@@ -84,13 +73,21 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
+        $role = array('fondo_retiro' => 'Fondo de Retiro','complemento' => 'Complemento Económico');
+        
+        $data = array(
+            'role' => $role,
+        );
+
         $user = User::where('id', '=', $id)->firstOrFail();
 
         $data = [
-            'user' => $user,
+            'role' => $role,
+            'user' => $user
         ];
 
-        return View('usuarios.edit', $data);
+        // return View('usuarios.edit', $data);
+        return $data;
     }
 
     /**
@@ -102,9 +99,8 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         return $this->save($request, $id);
-        // $user = User::where('id', '=', $id)->firstOrFail();
-        // return $request->name;
     }
 
     public function save($request, $id = false)
@@ -112,25 +108,32 @@ class UsuarioController extends Controller
 
         if ($id) {
             $rules = [
-            'name' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'email' => 'required|email',
+                'ape' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+                'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+                'tel' => 'required|min:8',
+                'username' => 'required|min:8',
+                'password' => 'required|min:6|confirmed',
+                'role' => 'required'
             ];
         }
         else{ 
             $rules = [
-                'name' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-                'email' => 'required|email|unique:users,email',
+                'ape' => 'required|min:3',
+                'nom' => 'required|min:3',
+                'tel' => 'required|min:8',
+                'username' => 'required|min:8',
                 'password' => 'required|min:6|confirmed',
+                'role' => 'required'
             ];
         } 
         
         $messages = [
-            'name.required' => 'El campo es requerido',
-            'name.min' => 'El mínimo de caracteres permitidos son 3',
-            'name.regex' => 'Sólo se aceptan letras',
-            'email.required' => 'El campo Correo Electrónico es requerido',
-            'email.email' => 'El formato de email es incorrecto',
-            'email.unique' => 'El email ya existe',
+            'ape.required' => 'El campo Apellidos es requerido',
+            'ape.min' => 'El mínimo de caracteres permitidos para Apellidos es 3', 
+            'ape.regex' => 'Sólo se aceptan letras para Apellidos',
+            'nom.required' => 'El campo es Nombre requerido',
+            'nom.min' => 'El mínimo de caracteres permitidos para Nombre es 3',
+            'nom.regex' => 'Sólo se aceptan letras para Nombres',
             'password.required' => 'El campo contraseña es requerido',
             'password.min' => 'El mínimo de caracteres permitidos son 6',
             'password.confirmed' => 'Los passwords no coinciden',
@@ -147,20 +150,18 @@ class UsuarioController extends Controller
 
             if ($id) {
                 $user = User::where('id', '=', $id)->firstOrFail();
-                $user->name = trim($request->name);
-                $user->email = trim($request->email);
-                if($request->password){
-                    $user->password = trim(bcrypt($request->password));
-                }
-
             } else {
                 $user = new User();
-                $user->name = trim($request->name);
-                $user->email = trim($request->email);
+            } 
+                
+            $user->ape = trim($request->ape);
+            $user->nom = trim($request->nom);
+            $user->tel = trim($request->tel);
+            $user->username = trim($request->username);
+            if($request->password){
                 $user->password = trim(bcrypt($request->password));
-                $user->role = 'fondo_retiro';
-
             }
+            $user->role = trim($request->role); 
 
             $user->save();
 
