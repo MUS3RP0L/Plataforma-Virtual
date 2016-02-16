@@ -110,7 +110,7 @@ class UsuarioController extends Controller
                 'ape' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'tel' => 'required|min:8',
-                'username' => 'required|min:4',
+                'username' => 'required|unique:users,username,'.$id,
                 'role' => 'required'
             ];
         }
@@ -118,20 +118,26 @@ class UsuarioController extends Controller
             $rules = [
                 'ape' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-                'tel' => 'required|min:8|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-                'username' => 'required|min:4',
+                'tel' => 'required|min:8',
+                'username' => 'required|unique:users,username',
                 'password' => 'required|min:6|confirmed',
                 'role' => 'required'
             ];
         } 
         
         $messages = [
-            'ape.required' => 'El campo Apellidos es requerido',
-            'ape.min' => 'El mínimo de caracteres permitidos para Apellidos es 3', 
-            'ape.regex' => 'Sólo se aceptan letras para Apellidos',
-            'nom.required' => 'El campo es Nombre requerido',
-            'nom.min' => 'El mínimo de caracteres permitidos para Nombre es 3',
-            'nom.regex' => 'Sólo se aceptan letras para Nombres',
+            'ape.required' => 'El campo apellidos es requerido',
+            'ape.min' => 'El mínimo de caracteres permitidos para apellidos es 3', 
+            'ape.regex' => 'Sólo se aceptan letras para apellidos',
+
+            'nom.required' => 'El campo nombre requerido',
+            'nom.min' => 'El mínimo de caracteres permitidos para nombre es 3',
+            'nom.regex' => 'Sólo se aceptan letras para nombre',
+
+            'username.required' => 'El campo nombre de usuario requerido',
+            'username.min' => 'El mínimo de caracteres permitidos para nombre de usuario es 5',
+            'username.unique' => 'El nombre de usuario ya existe',
+
             'password.required' => 'El campo contraseña es requerido',
             'password.min' => 'El mínimo de caracteres permitidos son 6',
             'password.confirmed' => 'Los passwords no coinciden',
