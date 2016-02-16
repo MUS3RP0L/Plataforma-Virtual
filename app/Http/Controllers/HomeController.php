@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Muserpol\Http\Requests;
+use Muserpol\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {

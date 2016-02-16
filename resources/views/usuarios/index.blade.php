@@ -7,16 +7,17 @@
             <div class="panel panel-primary">
                 <div class="panel-heading"><h4 class="text-center">Gestión de Usuarios</h4></div>
                     <div class="panel-body">
-					
+
 					<table class="table table-bordered" id="users-table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Opción</th>
-            </tr>
-        </thead>
-    </table>
+
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Opción</th>
+                            </tr>
+                        </thead>
+                    </table>
 				</div>
 			</div>
 			

@@ -48,8 +48,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('usuario', 'UsuarioController');
 	Route::get('getUsuario', array('as'=>'getUsuario', 'uses'=>'UsuarioController@UsuariosData'));
 
-
-
 	// Route::get('totales/{m}/{a}', 'ReporteController@GenerateReportAporte');
 
 	Route::get('totales', 'ReporteController@ReportAporte');
@@ -61,7 +59,7 @@ Route::group(['middleware' => 'auth'], function() {
 // //Permisos
 // Route::get('afiliadoo/{id}', function ($id){
 
-// 	$afil = App\Afiliado::findOrFail($id);
+// 	$afil = Muserpol\Afiliado::findOrFail($id);
 // 		// allows
 // 	if (Gate::denies('view-afiliado', $afil)){
 		

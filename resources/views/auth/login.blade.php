@@ -15,27 +15,27 @@
   	<div class="row" style="margin: 6% 0 0 0;">
     	<div class="col-md-6 col-md-offset-3">
       		<div class="panel panel-primary">
-        		<div class="panel-heading"><h4 class="text-center">Plataforma Virtual</h4></div>
+        		<div class="panel-heading"><h4 class="text-center">Plataforma Virtual Muserpol</h4></div>
         			<div class="panel-body">
 
-			          {!! Form::open(['url' => 'login', 'role' => 'form', 'class' => 'form-horizontal'])!!}
+			        	{!! Form::open(['url' => 'login', 'role' => 'form', 'class' => 'form-horizontal'])!!}
 
 				            <div class="form-group form-group-lg">
-				              	{!! Form::label('email', 'USUARIO', ['class' => 'col-md-4 control-label']) !!}
-				              <div class="col-md-6">
-				                {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
-				                <span class="help-block">Ingrese su Correo Electrónico</span>
-				              </div>
+				              	{!! Form::label('usermane', 'USUARIO', ['class' => 'col-md-4 control-label']) !!}
+				              	<div class="col-md-6">
+	                  				{!! Form::text('username', null, ['class' => 'form-control' , 'required' => 'required']) !!}
+				                	<span class="help-block">Ingrese su Apellido y Nombre</span>
+				              	</div>
 				            </div>
 
 				            <div class="form-group form-group-lg">
 				                {!! Form::label('password', 'CONTRASEÑA', ['class' => 'col-md-4 control-label']) !!}
-				              <div class="col-md-6">
-				                {!! Form::password('password', ['class' => 'form-control']) !!}
-				                <span class="help-block">Ingrese su Contraseña</span>
-
-				              </div>
+				              	<div class="col-md-6">
+				                	{!! Form::password('password', ['class' => 'form-control', 'required' => 'required']) !!}
+				                	<span class="help-block">Ingrese su Contraseña</span>
+				              	</div>
 				            </div>
+
 							<div class="row text-center">
 					            <div class="form-group form-group-lg">
 					              <div class="col-md-12">
@@ -44,7 +44,7 @@
 					            </div>
 					        </div>
 
-			          {!! Form::close() !!}
+			          	{!! Form::close() !!}
 				</div>
 			</div>
 		</div>

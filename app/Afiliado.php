@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,7 +33,7 @@ class Afiliado extends Model
 
 	public function aportes()
     {
-        return $this->hasMany('App\Aporte');
+        return $this->hasMany('Muserpol\Aporte');
     }
 
 	public function scopeIdIs($query, $id)

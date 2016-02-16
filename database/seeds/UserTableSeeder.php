@@ -23,12 +23,14 @@ class UserTableSeeder extends Seeder
 
     private function createAdmin()
     {
-    	App\User::create([
+    	Muserpol\User::create([
 
-        	'name' => 'Erick Guis',
-        	'email' => 'aleguis@icloud.com',
-        	'password' => bcrypt('123123'),
-        	'role' => 'admin',
+            'ape' => 'Guisbert',
+            'nom' => 'Erick',
+        	'tel' => '77551112',
+        	'username' => 'admin',
+        	'password' => bcrypt('admin'),
+        	'role' => 'admin'
         ]);
     }
 }

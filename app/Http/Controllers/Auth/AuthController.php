@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Muserpol\Http\Controllers\Auth;
 
-use App\User;
+use Muserpol\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Muserpol\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
@@ -46,9 +46,9 @@ class AuthController extends Controller
     
         if (Auth::attempt(
                 [
-                    'email' => $request->email,
+                    'username' => $request->username,
                     'password' => $request->password,
-                    'active' => 1
+                    'status' => 1
                 ]
                 , $request->has('remember')
                 )){
@@ -56,14 +56,13 @@ class AuthController extends Controller
         }
         else{
             $rules = [
-                'email' => 'required|email',
+                'username' => 'required',
                 'password' => 'required',
             ];
             
             $messages = [
-                'email.required' => 'El campo email es requerido',
-                'email.email' => 'El formato de email es incorrecto',
-                'password.required' => 'El campo password es requerido',
+                'username.required' => 'El Nombre de Usuario es requerido',
+                'password.required' => 'La Contraseña es requerida',
             ];
             
             $validator = Validator::make($request->all(), $rules, $messages);

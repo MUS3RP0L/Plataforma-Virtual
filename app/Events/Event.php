@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Muserpol\Events;
 
 abstract class Event
 {

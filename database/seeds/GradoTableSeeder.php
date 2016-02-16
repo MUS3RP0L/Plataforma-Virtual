@@ -65,7 +65,7 @@ class GradoTableSeeder extends Seeder
 
         foreach ($statuses as $status) {
 
-                App\Grado::create($status);
+                Muserpol\Grado::create($status);
             
         }
     }

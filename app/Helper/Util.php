@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helper;
+namespace Muserpol\Helper;
 
 class Util
 {
