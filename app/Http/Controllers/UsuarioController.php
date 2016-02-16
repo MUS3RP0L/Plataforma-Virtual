@@ -111,7 +111,6 @@ class UsuarioController extends Controller
                 'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'tel' => 'required|min:8',
                 'username' => 'required|min:8',
-                'password' => 'required|min:6|confirmed',
                 'role' => 'required'
             ];
         }
