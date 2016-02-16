@@ -110,16 +110,16 @@ class UsuarioController extends Controller
                 'ape' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'tel' => 'required|min:8',
-                'username' => 'required|min:8',
+                'username' => 'required|min:4',
                 'role' => 'required'
             ];
         }
         else{ 
             $rules = [
-                'ape' => 'required|min:3',
-                'nom' => 'required|min:3',
-                'tel' => 'required|min:8',
-                'username' => 'required|min:8',
+                'ape' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+                'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+                'tel' => 'required|min:8|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+                'username' => 'required|min:4',
                 'password' => 'required|min:6|confirmed',
                 'role' => 'required'
             ];

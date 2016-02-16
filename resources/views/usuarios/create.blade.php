@@ -39,14 +39,14 @@
 										<div class="col-md-6">
 											{!! Form
 												::text('username', null, ['class'=> 'form-control', 'required' => 'required']) !!}
-												<span class="help-block">Nombre de Usuario</span>
+												<span class="help-block">Número de carnet de identidad</span>
 										</div>
 									</div>
 									<div class="form-group form-group-lg">
 											{!! Form::label('password', 'CONTRASEÑA', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-6">
 											{!! Form::password('password', ['class' => 'form-control']) !!}
-											<span class="help-block">Ingrese la Contraseña</span>
+											<span class="help-block">Ingrese la contraseña</span>
 										</div>
 									</div>
 									<div class="form-group form-group-lg">

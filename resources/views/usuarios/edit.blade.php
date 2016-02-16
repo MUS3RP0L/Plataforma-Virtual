@@ -39,7 +39,7 @@
 										<div class="col-md-6">
 											{!! Form
 												::text('username', $user->username, ['class'=> 'form-control', 'required' => 'required']) !!}
-												<span class="help-block">Nombre de Usuario</span>
+												<span class="help-block">Número de Carnet</span>
 										</div>
 									</div>
 									<div class="form-group form-group-lg">
