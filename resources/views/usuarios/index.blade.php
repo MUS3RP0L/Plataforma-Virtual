@@ -41,9 +41,9 @@ $(function() {
         columns: [
             { data: 'name', name: 'name', sWidth: '30%' },
             { data: 'tel', name: 'tel', sWidth: '20%' },
-            { data: 'role', name: 'role', sWidth: '15%' },
-            { data: 'status', name: 'status', sWidth: '15%' },
-            { data: 'action', name: 'action', sWidth: '20%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
+            { data: 'role', name: 'role', sWidth: '14%' },
+            { data: 'status', name: 'status', sWidth: '14%' },
+            { data: 'action', name: 'action', sWidth: '22%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
         ]
     });
 });

@@ -22,6 +22,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// Gestion de Usuarios
 	Route::resource('usuario', 'UsuarioController');
+	Route::get('usuario/block/{id}', 'UsuarioController@block');
+	Route::get('usuario/unblock/{id}', 'UsuarioController@unBlock');
 	Route::get('getUsuario', array('as'=>'getUsuario', 'uses'=>'UsuarioController@UsuariosData'));
 
 	// Registration routes...

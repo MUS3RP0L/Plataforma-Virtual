@@ -29,14 +29,16 @@ class UsuarioController extends Controller
         $users = User::select(['id', 'ape', 'nom', 'tel','role','status'])->where('id', '>', 1);
 
         return Datatables::of($users)->addColumn('action', function ($user) {
-                return '<a href="usuario/'.$user->id.'/edit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i> Editar</a>
-                <a href="usuario/'.$user->id.'/edit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-ban-circle"></i> bloquear</a>
-                        ';
+                return $user->status == "Activo" ? 
+                        '<a href="usuario/'.$user->id.'/edit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                        <a href="usuario/block/'.$user->id.'" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-ban-circle"></i> Bloquear</a>'
+                        :
+                        '<a href="usuario/'.$user->id.'/edit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                        <a href="usuario/unblock/'.$user->id.'" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-ok-circle"></i> Desbloquear</a>';
             })
             ->editColumn('name', '{{$ape}} {{$nom}}')
             ->make(true);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -187,8 +189,24 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function block($id)
     {
-        //
+        $user = User::where('id', '=', $id)->firstOrFail();
+        $user->status = "Inactivo";
+        $user->save();
+
+        $message = "Usuario Inactivado";
+        Session::flash('message', $message);
+        return redirect('usuario');
+    }
+    public function unBlock($id)
+    {
+        $user = User::where('id', '=', $id)->firstOrFail();
+        $user->status = "Activo";
+        $user->save();
+
+        $message = "Usuario Activado";
+        Session::flash('message', $message);
+        return redirect('usuario');
     }
 }
