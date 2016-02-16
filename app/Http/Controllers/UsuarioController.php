@@ -111,7 +111,7 @@ class UsuarioController extends Controller
             $rules = [
                 'ape' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-                'tel' => 'required|min:8',
+                'tel' => 'required|min:8|numeric',
                 'username' => 'required|unique:users,username,'.$id,
                 'role' => 'required'
             ];
@@ -120,7 +120,7 @@ class UsuarioController extends Controller
             $rules = [
                 'ape' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-                'tel' => 'required|min:8',
+                'tel' => 'required|min:8|numeric',
                 'username' => 'required|unique:users,username',
                 'password' => 'required|min:6|confirmed',
                 'role' => 'required'
@@ -139,6 +139,10 @@ class UsuarioController extends Controller
             'username.required' => 'El campo nombre de usuario requerido',
             'username.min' => 'El mínimo de caracteres permitidos para nombre de usuario es 5',
             'username.unique' => 'El nombre de usuario ya existe',
+
+            'tel.required' => 'El campo teléfono es requerido',
+            'tel.min' => 'El mínimo de caracteres permitidos para teléfono de usuario es 8',
+            'tel.numeric' => 'El campo teléfono tiene q ser númerico',
 
             'password.required' => 'El campo contraseña es requerido',
             'password.min' => 'El mínimo de caracteres permitidos son 6',
