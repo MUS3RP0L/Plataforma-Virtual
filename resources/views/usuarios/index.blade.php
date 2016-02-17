@@ -4,14 +4,28 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel-heading"><h3>Gestión de usuarios</h3></div>
+
+            <div class="panel-heading">
+                <h3>
+                    <div class="row">
+                        <div class="col-md-8">
+                            Gestión de usuarios
+                        </div>
+                        <div class="col-md-4">
+                                <p class="text-right">
+                                    <a href="{!! url('usuario/create') !!}" class="btn btn-raised btn-success">Crear Usuario</a>
+                                </p>
+                        </div>
+                    </div>
+                </h3>
+            </div>
             <div class="panel panel-default">
                     <div class="panel-body">
 
 					<table  class="table table-striped table-hover" id="users-table">
 
                         <thead>
-                            <tr>
+                            <tr class="success">
                                 <th>Usuario</th>
                                 <th>Nombre</th>
                                 <th>Teléfono</th>
@@ -34,7 +48,6 @@
 $(function() {
     $('#users-table').DataTable({
         "paging": false,
-        "ordering": false,
         "info": false,
 
         ajax: '{!! route('getUsuario') !!}',

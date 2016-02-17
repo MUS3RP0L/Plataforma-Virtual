@@ -30,11 +30,11 @@ class UsuarioController extends Controller
 
         return Datatables::of($users)->addColumn('action', function ($user) {
                 return $user->status == "Activo" ? 
-                        '<a href="usuario/'.$user->id.'/edit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i> Editar</a>
-                        <a href="usuario/block/'.$user->id.'" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-ban-circle"></i> Bloquear</a>'
+                        '<div class="row text-center"><a href="usuario/'.$user->id.'/edit" ><i class="glyphicon glyphicon-edit"></i> Editar</a>&nbsp;&nbsp;
+                        <a href="usuario/block/'.$user->id.'" ><i class="glyphicon glyphicon-ban-circle"></i> Bloquear </a>'
                         :
-                        '<a href="usuario/'.$user->id.'/edit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i> Editar</a>
-                        <a href="usuario/unblock/'.$user->id.'" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-ok-circle"></i> Desbloquear</a>';
+                        '<a href="usuario/'.$user->id.'/edit" ><i class="glyphicon glyphicon-edit"></i> Editar</a>&nbsp;&nbsp;
+                        <a href="usuario/unblock/'.$user->id.'" ><i class="glyphicon glyphicon-ok-circle"></i> Desbloquear </a></div>';
             })
             ->editColumn('name', '{{$ape}} {{$nom}}')
             ->make(true);
