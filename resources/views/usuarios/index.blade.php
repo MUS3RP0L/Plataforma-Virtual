@@ -1,22 +1,21 @@
 @extends('layout')
 
 @section('content')
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="panel-heading">
-                
-                    <div class="row">
-                        <div class="col-md-8">
-                            <h3>Gestión de usuarios</h3>
-                        </div>
-                        <div class="col-md-4">
-                                <p class="text-right">
-                                    <a href="{!! url('usuario/create') !!}" class="btn btn-raised btn-success">Crear Usuario</a>
-                                </p>
-                        </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3>Gestión de usuarios</h3>
                     </div>
-               
+                    <div class="col-md-4">
+                            <p class="text-right">
+                                <a href="{!! url('usuario/create') !!}" class="btn btn-raised btn-success">Crear Usuario</a>
+                            </p>
+                    </div>
+                </div>             
             </div>
             <div class="panel panel-default">
                     <div class="panel-body">
@@ -34,9 +33,7 @@
                             </tr>
                         </thead>
                     </table>
-				</div>
 			</div>
-			
 		</div>
 	</div>
 </div>

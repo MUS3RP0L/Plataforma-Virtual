@@ -17,7 +17,6 @@ class ImportController extends Controller
     public function import(Request $request)
     {
 
-
 		ini_set('upload_max_filesize', '700M');
 		ini_set('post_max_size', '700M');
 		ini_set('max_execution_time', 36000);
@@ -25,16 +24,26 @@ class ImportController extends Controller
 		ini_set("memory_limit","700M");
     	set_time_limit(36000);
 
-    	$reader = $request->file('image');
+    	$reader = $request->file('archive');
         $filename = $reader->getRealPath();
 
-    	Excel::selectSheets('Hoja1')->filter('chunk')->load($filename,$reader)->chunk(500, function($results) {
-			
+  //       Excel::selectSheetsByIndex(0)->load($filename, function($reader) {
+		
+		// 	echo $results = $reader->select(array('nac', 'pat'))->first();
+    
+		// });
+
+     	Excel::selectSheetsByIndex(0)->filter('chunk')->select(array('car', 'pat', 'mat', 'nom', 'nom2', 'apes',
+						'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
+						'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro',
+						'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'mus'))->load($filename,$reader)->chunk(500, function($results) {
+
 			foreach ($results as $result) {
 				
 				set_time_limit(36000);
 
 				$carnet = Util::zero($result->car);
+
 
 				$afiliado = Afiliado::where('ci', '=', $carnet)->first();
 				
