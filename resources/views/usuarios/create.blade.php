@@ -9,6 +9,8 @@
 					<div class="panel-body">
 
 						{!! Form::open(['method' => 'POST', 'route' => ['usuario.store'], 'class' => 'form-horizontal']) !!}
+							<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+							
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group form-group-lg">

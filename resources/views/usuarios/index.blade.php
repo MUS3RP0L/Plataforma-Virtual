@@ -4,14 +4,15 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading"><h4 class="text-center">Gestión de Usuarios</h4></div>
+            <div class="panel-heading"><h3>Gestión de usuarios</h3></div>
+            <div class="panel panel-default">
                     <div class="panel-body">
 
-					<table class="table table-bordered" id="users-table">
+					<table  class="table table-striped table-hover" id="users-table">
 
                         <thead>
                             <tr>
+                                <th>Usuario</th>
                                 <th>Nombre</th>
                                 <th>Teléfono</th>
                                 <th>Tipo</th>
@@ -39,11 +40,12 @@ $(function() {
         ajax: '{!! route('getUsuario') !!}',
 
         columns: [
-            { data: 'name', name: 'name', sWidth: '30%' },
-            { data: 'tel', name: 'tel', sWidth: '20%' },
-            { data: 'role', name: 'role', sWidth: '14%' },
-            { data: 'status', name: 'status', sWidth: '14%' },
-            { data: 'action', name: 'action', sWidth: '22%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
+            { data: 'username', name: 'username', sWidth: '20%' },
+            { data: 'name', name: 'name', sWidth: '25%' },
+            { data: 'tel', name: 'tel', sWidth: '10%' },
+            { data: 'role', name: 'role', sWidth: '10%' },
+            { data: 'status', name: 'status', sWidth: '8%' },
+            { data: 'action', name: 'action', sWidth: '20%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
         ]
     });
 });
