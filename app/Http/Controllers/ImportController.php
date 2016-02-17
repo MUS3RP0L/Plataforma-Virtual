@@ -3,19 +3,24 @@
 namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
+use Session;
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
 use Muserpol\Helper\Util;
-use DB;
+
+$countAfi = 0;
+$countApor = 0;
 
 class ImportController extends Controller
 {
+
     public function import(Request $request)
     {
+		global $countAfi, $countApor;
 
 		ini_set('upload_max_filesize', '700M');
 		ini_set('post_max_size', '700M');
@@ -29,7 +34,10 @@ class ImportController extends Controller
 
   //       Excel::selectSheetsByIndex(0)->load($filename, function($reader) {
 		
-		// 	echo $results = $reader->select(array('nac', 'pat'))->first();
+		// 	echo $results = $reader->select(array('car', 'pat', 'mat', 'nom', 'nom2', 'apes',
+		// 				'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
+		// 				'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro',
+		// 				'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'mus'))->first();
     
 		// });
 
@@ -37,13 +45,15 @@ class ImportController extends Controller
 						'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
 						'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro',
 						'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'mus'))->load($filename,$reader)->chunk(500, function($results) {
+    	
+			$countAfi = 0;
+			$countApor = 0;
 
 			foreach ($results as $result) {
 				
 				set_time_limit(36000);
 
 				$carnet = Util::zero($result->car);
-
 
 				$afiliado = Afiliado::where('ci', '=', $carnet)->first();
 				
@@ -62,6 +72,8 @@ class ImportController extends Controller
 	        		$afiliado->fech_nac = Util::date($result->nac);
 	        		$afiliado->fech_ing = Util::date($result->ing);
 	       	 		$afiliado->save();
+	       	 		$countAfi ++;
+
 				}
 
 				$aporte = Aporte::where('mes', '=', $result->mes)
@@ -98,10 +110,17 @@ class ImportController extends Controller
 					// $aporte->cot_adi = ;
 					$aporte->mus = Util::decimal($result->mus);
 	     			$aporte->save();
+	     			$countApor ++;
 	     		}
       		}
 
+      		$message = "Se realizaron " . $countAfi . " registros de Afiliados Nuevos y " . $countApor . " en Planillas";
+
+            Session::flash('message', $message);
+
 		});
+
+
 
 		return view('import.import_select');
     }

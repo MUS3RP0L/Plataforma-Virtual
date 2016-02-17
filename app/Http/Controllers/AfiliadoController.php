@@ -161,7 +161,9 @@ class AfiliadoController extends Controller
                 return redirect("afiliado/{$afiliado->id}");
             }
             else{
-                Session::flash('message', "No logramos encontrar al Afiliado con Carnet: ".$request->search);
+                    $message = "No logramos encontrar al Afiliado con Carnet: ".$request->search;
+
+                    Session::flash('message', $message);
                 
                 return redirect("/");
             }

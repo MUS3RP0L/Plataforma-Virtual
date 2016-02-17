@@ -176,9 +176,9 @@ class UsuarioController extends Controller
             $user->save();
 
             if ($id) {
-                $message = "Usuario Actualizado con exito";
+                $message = "Usuario Actualizado con éxito";
             } else {
-                $message = "Usuario Creado con exito";
+                $message = "Usuario Creado con éxito";
             }
 
             Session::flash('message', $message);
