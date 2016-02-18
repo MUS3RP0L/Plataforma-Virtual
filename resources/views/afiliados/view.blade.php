@@ -2,68 +2,76 @@
 
 @section('content')
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading"><h4 class="text-center">Estado de Cuenta Individual</h4></div>
-  				<div class="panel-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-heading">
+                <h3>Cuenta Individual</h3>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
     				<div class="row">
     					<h2 class="text-center"><b></b></h2>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<h3>Datos Personales</h3>
+							<h4>Datos Personales</h4>
 						</div>
 					</div><br/>
 					<div class="row">
 						<div class="col-md-4">
-							<h4><b>Carnet Identidad</b> {!! $afiliado->ci !!} </h4>
+							<b>Carnet Identidad</b> {!! $afiliado->ci !!} 
 						</div>
 						<div class="col-md-4">
-							<h4><b>Apellidos </b> {!! $afiliado->pat !!} {!! $afiliado->mat !!}</h4>
+							<b>Apellidos </b> {!! $afiliado->pat !!} {!! $afiliado->mat !!}
 						</div>
 						<div class="col-md-4">
-							<h4><b>Nombres </b> {!! $afiliado->nom !!} {!! $afiliado->nom2 !!}</h4>
+							<b>Nombres </b> {!! $afiliado->nom !!} {!! $afiliado->nom2 !!}
 						</div>
 					</div><br/>
 
 					<div class="row">
 						<div class="col-md-4">
-							<h4><b>Fecha Nacimiento </b> {!! $afiliado->getFullDateNac() !!}</h4>
+							<b>Fecha Nacimiento </b> {!! $afiliado->getFullDateNac() !!}
 						</div>
 						<div class="col-md-4">
-							<h4><b>Estado Civil </b> {!! $afiliado->getCivil() !!}</h4>
+							<b>Estado Civil </b> {!! $afiliado->getCivil() !!}
 						</div>
 						<div class="col-md-4">
-							<h4><b>Sexo </b> {!! $afiliado->getSex() !!}</h4>
+							<b>Sexo </b> {!! $afiliado->getSex() !!}
 						</div>
 					</div><br/>
 
 					<div class="row">
 						<div class="col-md-12">
-							<h3>Datos Policiales</h3>
+							<h4>Datos Policiales</h4>
 						</div>
 					</div><br/>
 					<div class="row">
 						<div class="col-md-4">
-							<h4><b>Fecha de Ingreso </b> {!! $afiliado->getFullDateIng() !!}</h4>
+							<b>Fecha de Ingreso </b> {!! $afiliado->getFullDateIng() !!}
 						</div>
 						<div class="col-md-4">
-							<h4><b>Grado </b> {!! $grado->lit !!}</h4>
+							<b>Grado </b> {!! $grado->lit !!}
 						</div>
 						<div class="col-md-4">
-							<h4><b>Unidad </b> {!! $lastAporte->uni !!}</h4>
+							<b>Unidad </b> {!! $lastAporte->uni !!}
 						</div>
 					</div><br/>
 
 					<div class="row">
 						<div class="col-md-4">
-							<h4><b>Número de Ítem </b> {!! $lastAporte->item !!}<h4>
+							<b>Número de Ítem </b> {!! $lastAporte->item !!}
 						</div>
 						<div class="col-md-4">
-							<h4><b>Matrícula </b> {!! $afiliado->matri !!}<h4>
+							<b>Matrícula </b> {!! $afiliado->matri !!}
 						</div>
 						<div class="col-md-4">
+						</div>
+					</div><br/>
+
+					<div class="row">
+						<div class="col-md-12">
+							<h4>Reintegro de Haberes</h4>
 						</div>
 					</div><br/>
 
@@ -79,8 +87,8 @@
 										<th>Antigüedad</th>
 										<th>Bono Estudio</th>
 										<th>Bono Cargo</th>
-										<th>BonoFrontera</th>
-										<th>BonoOriente</th>
+										<th>Bono Frontera</th>
+										<th>Bono Oriente</th>
 										<th>Bono Seguridad Cuidadana</th>
 										<th>Ganancia</th>
 										<th>Muserpol</th>

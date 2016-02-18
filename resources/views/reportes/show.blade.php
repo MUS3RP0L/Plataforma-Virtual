@@ -2,22 +2,13 @@
 
 @section('content')
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading"><h4 class="text-center">Reporte de Planillas</h4></div>
-				<div class="panel-body">
-
-					<div class="row">
-			            <div class="form-group form-group col-md-6">
-							<h3>Gestión: {!! $mes !!} - {!! $anio !!}</h3>
-			            </div>
-
-			            <div class="form-group form-group col-md-6">
-							<h3>Total de Registros: {!! $totalRegistros !!}</h3>
-			            </div>
-			        </div>
-					<br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-heading">
+                <h3>Reporte del mes de: {!! $mes !!} - {!! $anio !!}</h3>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
 
 					<div class="row">
 						<div class="col-md-4">  

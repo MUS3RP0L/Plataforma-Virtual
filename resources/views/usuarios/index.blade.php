@@ -29,7 +29,7 @@
                                 <th>Teléfono</th>
                                 <th>Tipo</th>
                                 <th>Estado</th>
-                                <th>Opción</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                     </table>

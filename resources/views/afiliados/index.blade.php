@@ -2,25 +2,27 @@
 
 @section('content')
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-
-			<div class="panel panel-default">
-				<div class="panel-heading">Despliegue Afiliados</div>
-				<div class="panel-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-heading">
+                <h3>Despliegue de Afiliados</h3>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
 					
-					<table class="table table-bordered" id="afiliados-table">
-        <thead>
-            <tr>
-                <th>Carnet</th>
-                <th>Paterno</th>
-                <th>Materno</th>
-                <th>Nombre</th>
-                <th>Matrícula</th>
+					<table class="table table-striped table-hover" id="afiliados-table">
+                        <thead>
+                            <tr>
+                                <th>Carnet</th>
+                                <th>Paterno</th>
+                                <th>Materno</th>
+                                <th>Nombre</th>
+                                <th>Matrícula</th>
+                                <th>Opciones</th>
 
-            </tr>
-        </thead>
-    </table>
+                            </tr>
+                        </thead>
+                    </table>
 				</div>
 			</div>
 			
@@ -37,11 +39,12 @@ $(function() {
         serverSide: true,
         ajax: '{!! route('getAfiliado') !!}',
         columns: [
-            { data: 'ci', name: 'ci' },
-            { data: 'pat', name: 'pat' },
-            { data: 'mat', name: 'mat' },
-            { data: 'nom', name: 'nom' },
-            { data: 'matri', name: 'matri' }
+            { data: 'ci', name: 'ci', sWidth: '15%' },
+            { data: 'pat', name: 'pat', sWidth: '15%' },
+            { data: 'mat', name: 'mat', sWidth: '15%' },
+            { data: 'nom', name: 'nom', sWidth: '15%' },
+            { data: 'matri', name: 'matri', sWidth: '15%' },
+            { data: 'action', name: 'action', sWidth: '10%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
         ]
     });
 });

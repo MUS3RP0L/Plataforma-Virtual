@@ -28,7 +28,11 @@ class AfiliadoController extends Controller
 
     public function afiliadosData()
     {
-        return Datatables::of(Afiliado::get())->make(true);
+        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'matri']);
+
+        return Datatables::of($afiliados)->addColumn('action', function ($user) {
+                return  '<div class="row text-center"><a href="afiliado/'.$user->id.'" ><i class="glyphicon glyphicon-zoom-in"></i> Ver</a></div>';
+            })->make(true);
     }
 
     /**

@@ -20,7 +20,7 @@ class ImportController extends Controller
 
     public function import(Request $request)
     {
-		global $countAfi, $countApor;
+    	global $countAfi, $countApor;
 
 		ini_set('upload_max_filesize', '700M');
 		ini_set('post_max_size', '700M');
@@ -45,9 +45,8 @@ class ImportController extends Controller
 						'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
 						'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro',
 						'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'mus'))->load($filename,$reader)->chunk(500, function($results) {
-    	
-			$countAfi = 0;
-			$countApor = 0;
+
+     		global $countAfi, $countApor;
 
 			foreach ($results as $result) {
 				
@@ -114,13 +113,11 @@ class ImportController extends Controller
 	     		}
       		}
 
-      		$message = "Se realizaron " . $countAfi . " registros de Afiliados Nuevos y " . $countApor . " en Planillas";
-
-            Session::flash('message', $message);
-
 		});
 
+      	$message = "Se realizaron " . $countAfi . " registros de Afiliados Nuevos y " . $countApor . " en Planillas";
 
+        Session::flash('message', $message);
 
 		return view('import.import_select');
     }

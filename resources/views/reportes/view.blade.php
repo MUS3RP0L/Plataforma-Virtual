@@ -2,11 +2,13 @@
 
 @section('content')
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading"><h4 class="text-center">Reporte de Planillas</h4></div>
-				<div class="panel-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-heading">
+                <h3>Reporte Planillas por Mes</h3>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
 					
 					{!! Form::open(['url' => 'ir_totales', 'role' => 'form', 'class' => 'form-horizontal']) !!}					
 						<div class="row">
