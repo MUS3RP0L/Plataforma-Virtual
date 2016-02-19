@@ -32,25 +32,36 @@ class ImportController extends Controller
     	$reader = $request->file('archive');
         $filename = $reader->getRealPath();
 
-  //       Excel::selectSheetsByIndex(0)->load($filename, function($reader) {
-		
-		// 	echo $results = $reader->select(array('car', 'pat', 'mat', 'nom', 'nom2', 'apes',
-		// 				'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
-		// 				'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro',
-		// 				'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'mus'))->first();
-    
-		// });
+        Excel::selectSheetsByIndex(0)->load($filename, function($reader) {
 
-     	Excel::selectSheetsByIndex(0)->filter('chunk')->select(array('car', 'pat', 'mat', 'nom', 'nom2', 'apes',
-						'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
-						'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro',
-						'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'mus'))->load($filename,$reader)->chunk(500, function($results) {
+			$count = 0;
+			$col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
+						'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'mus');
+
+		 	$results = $reader->select($col)->first();
+			 
+			foreach ($results as $nombre => $valor) {
+				if (in_array($nombre, $col)) {
+					$count ++;
+				}
+			}	
+
+			if ($count < count($col))
+			{
+				$message = "Falta Columnas Favor Verificar el Archivo";
+				Session::flash('message', $message);
+				return view('import.import_select');
+			}
+		});
+
+     	Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load($filename,$reader)->chunk(500, function($results) {
 
      		global $countAfi, $countApor;
 
 			foreach ($results as $result) {
 				
 				set_time_limit(36000);
+
 
 				$carnet = Util::zero($result->car);
 
