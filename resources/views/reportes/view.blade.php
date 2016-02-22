@@ -11,6 +11,8 @@
                 <div class="panel-body">
 					
 					{!! Form::open(['url' => 'ir_totales', 'role' => 'form', 'class' => 'form-horizontal']) !!}					
+						<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+						
 						<div class="row">
 				            <div class="form-group form-group col-md-6">
 				              	{!! Form::label('mes', 'Mes', ['class' => 'col-md-4 control-label-lg']) !!}

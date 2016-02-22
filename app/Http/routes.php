@@ -50,10 +50,11 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('afiliado', 'AfiliadoController');
 	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
 
+	//Aportes
+	Route::get('getAporte/{id}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
 
 
 	// Route::get('totales/{m}/{a}', 'ReporteController@GenerateReportAporte');
-
 	Route::get('totales', 'ReporteController@ReportAporte');
 	Route::post('ir_totales', 'ReporteController@GenerateReportAporte');
 
