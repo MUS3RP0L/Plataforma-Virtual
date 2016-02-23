@@ -95,7 +95,7 @@
 										<th>Sub.</th>
 										<th>Gan.</th>
 										<th>Cot.</th>
-										<th>Mus</th> 
+										<th>Mus.</th> 
 		                            </tr>
 		                        </thead>
 		                    </table>
@@ -130,7 +130,8 @@
 	    $('#afiliados-table').DataTable({
 	    	"order": [[ 0, "asc" ]],
 	    	"scrollX": true,
-
+	        processing: true,
+	        serverSide: true,
 	        ajax: {
 	            url: '{!! route('getAporte') !!}',
 	            data: function (d) {
@@ -159,18 +160,7 @@
 	            { data: 'cot', name: 'cot' },
 	            { data: 'mus', name: 'mus' },
 	            
-	        ],
-	        
-	        initComplete: function () {
-	            this.api().columns().every(function () {
-	                var column = this;
-	                var input = document.createElement("input");
-	                $(input).appendTo($(column.footer()).empty())
-	                .on('change', function () {
-	                    column.search($(this).val(), false, false, true).draw();
-	                });
-	            });
-	        }
+	        ]
 	    });
 	});
 </script>
