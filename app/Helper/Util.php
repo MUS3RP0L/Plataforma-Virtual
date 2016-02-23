@@ -85,9 +85,28 @@ class Util
 	public static function formatMoney($value){
 
 	    $value = number_format($value, 2, '.', ',');
+
+        return $value;
+    }
+    
+    public static function formatMoneyBs($value){
+
+	    $value = number_format($value, 2, '.', ',');
         $symbol = 'Bs ';
 
         return "<p class='text-right'>{$symbol}{$value}</p>";
-
     }
+
+    public static function calcFon($mus)
+	{
+		return number_format($mus*0.0185/0.025, 2, '.', ',');
+
+	}
+
+	public static function calcVid($mus)
+	{
+		return number_format($mus*0.0065/0.025, 2, '.', ',');
+
+	}
+
 }

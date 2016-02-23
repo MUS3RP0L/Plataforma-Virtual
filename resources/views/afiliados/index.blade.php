@@ -12,7 +12,7 @@
 					
 					<table class="table table-striped table-hover" id="afiliados-table">
                         <thead>
-                            <tr>
+                            <tr class="success">
                                 <th>Carnet</th>
                                 <th>Paterno</th>
                                 <th>Materno</th>

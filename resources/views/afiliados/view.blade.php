@@ -5,14 +5,43 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel-heading">
-                <h3>Cuenta Individual</h3>
+                <h4><b>{!! $grado->lit !!}</b> {!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h4>
             </div>
+
+		    <div class="row">
+		        <div class="col-md-6">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Información Personal</h3>
+						</div>
+						<div class="panel-body">
+							<div class="row"><p>
+								<div class="col-md-6">
+									<b>Carnet de Identidad</b> {!! $afiliado->ci !!} 
+								</div>
+								<div class="col-md-6">
+									<b>Fecha Nacimiento </b> {!! $afiliado->getFullDateNac() !!}
+								</div></p>
+							</div>
+							<div class="row"><p>
+								<div class="col-md-6">
+									<b>Apellido Paterno </b> {!! $afiliado->pat !!} 
+								</div>
+								<div class="col-md-6">
+									<b>Apellido Materno </b> {!! $afiliado->mat !!}
+								</div></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
             <div class="panel panel-default">
                 <div class="panel-body">
 
 					<div class="row">
 						<div class="col-md-12">
-							<h4>Datos Personales</h4>
+							<h4></h4>
 						</div>
 					</div><br/>
 					<div class="row">
@@ -76,26 +105,28 @@
 							
 							<table class="table table-striped table-hover" id="afiliados-table">
 		                        <thead>
-		                            <tr>
-		                                <th>Mes-Año</th>
-		                                <th>Niv-Gra</th>
-		                                <th>Unid.</th>
-		                                <th>Item</th>
-										<th>Suel.</th>
-										<th>Bo. Anti.</th>
-										<th>Bo. Estu.</th>
-										<th>Bo. Carg</th>
-										<th>Bo. Fron.</th>
-										<th>Bo. Orie.</th>
-										<th>Bo. Seg. Cui.</th>
-										<th>Def.</th>
-										<th>Nat.</th>
-										<th>Lac.</th>
-										<th>Pre.</th>
-										<th>Sub.</th>
-										<th>Gan.</th>
-										<th>Cot.</th>
-										<th>Mus.</th> 
+		                            <tr class="success">
+		                                <th>MM AA</th>
+		                                <th>Niv Gra</th>
+		                                <th>Uni</th>
+		                                <th>Ite</th>
+										<th>Sue</th>
+										<th>Bon Ant</th>
+										<th>Bon Est</th>
+										<th>Bon Car</th>
+										<th>Bon Fro</th>
+										<th>Bon Ori</th>
+										<th>Bon Seg</th>
+										<th>Def</th>
+										<th>Nat</th>
+										<th>Lac</th>
+										<th>Pre</th>
+										<th>Sub</th>
+										<th>Gan</th>
+										<th>Cot</th>
+										<th>Mus</th> 
+										<th>Fon</th> 
+										<th>Vid</th> 
 		                            </tr>
 		                        </thead>
 		                    </table>
@@ -159,6 +190,8 @@
 	            { data: 'gan', name: 'gan' },
 	            { data: 'cot', name: 'cot' },
 	            { data: 'mus', name: 'mus' },
+	            { data: 'fon', name: 'fon' },
+	            { data: 'vid', name: 'vid' },
 	            
 	        ]
 	    });
