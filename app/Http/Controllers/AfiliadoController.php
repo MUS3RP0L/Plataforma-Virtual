@@ -12,6 +12,7 @@ use Muserpol\Afiliado;
 use Muserpol\Aporte;
 use Muserpol\Grado;
 use Datatables;
+use Muserpol\Helper\Util;
 
 
 class AfiliadoController extends Controller
@@ -79,6 +80,24 @@ class AfiliadoController extends Controller
             $ganado = $item->ganado;
         }
 
+        $totalSegCiu = DB::table('afiliados')
+                ->select(DB::raw('SUM(aportes.b_seg) as SegCiu'))
+                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                ->where('afiliados.id', '=', $afiliado->id)
+                ->get();
+        foreach ($totalSegCiu as $item) {
+            $SegCiu = $item->SegCiu;
+        }
+
+        $totalCotizable = DB::table('afiliados')
+                ->select(DB::raw('SUM(aportes.cot) as cotizable'))
+                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                ->where('afiliados.id', '=', $afiliado->id)
+                ->get();
+        foreach ($totalCotizable as $item) {
+            $cotizable = $item->cotizable;
+        }
+
         $totalMuserpol = DB::table('afiliados')
                 ->select(DB::raw('SUM(aportes.mus) as muserpol'))
                 ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
@@ -88,13 +107,24 @@ class AfiliadoController extends Controller
             $muserpol = $item->muserpol;
         }
 
+        //add item 0 +
+        $cotizablefinal = $cotizable;
+
+        $Fon = Util::calcFon($muserpol);
+
+        $SegVid = Util::calcVid($muserpol);
 
         $data = array(
             'afiliado' => $afiliado,
             'lastAporte' => $lastAporte,
             'grado' => $grado,
-            'totalGanado' => $ganado,
-            'totalMuserpol' => $muserpol
+            'totalGanado' => Util::formatMoneyBs($ganado),
+            'totalSegCiu' => Util::formatMoneyBs($SegCiu),
+            'totalCotizable' => Util::formatMoneyBs($cotizable),
+            'totalCotizableAd' => Util::formatMoneyBs($cotizablefinal),
+            'totalFon' => 'Bs ' . $Fon,
+            'totalSegVid' => 'Bs ' . $SegVid,
+            'totalMuserpol' => Util::formatMoneyBs($muserpol)
         );
 
         return view('afiliados.view', $data);

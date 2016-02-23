@@ -94,7 +94,7 @@ class Util
 	    $value = number_format($value, 2, '.', ',');
         $symbol = 'Bs ';
 
-        return "<p class='text-right'>{$symbol}{$value}</p>";
+        return $symbol . $value;
     }
 
     public static function calcFon($mus)

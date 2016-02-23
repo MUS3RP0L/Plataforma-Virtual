@@ -14,23 +14,241 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">Información Personal</h3>
 						</div>
+						<div class="panel-body" style="font-size: 16px">
+							<div class="row"><p >
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>Carnet Identidad</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->ci !!} 
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>Fec. Nacimiento</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->getFullDateNac() !!}
+										</div>
+									</div>
+								</div></p>
+							</div>
+							<div class="row"><p>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>Ape. Paterno</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->pat !!}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>Ape. Materno</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->mat !!}
+										</div>
+									</div>
+								</div></p>
+							</div>
+							<div class="row"><p>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>1er. Nombre</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->nom !!}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>2do. Nombre</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->nom2 !!}
+										</div>
+									</div>
+								</div></p>
+							</div>
+							@if ($afiliado->ap_esp)
+							<div class="row"><p>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>Apellido Esposo</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->ap_esp !!}
+										</div>
+									</div>
+								</div></p>
+							</div>
+							@endif
+							<div class="row"><p>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>Estado Civil</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->getCivil() !!}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>Sexo</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->getSex() !!}
+										</div>
+									</div>
+								</div></p>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Información Policial</h3>
+						</div>
+						<div class="panel-body" style="font-size: 16px">
+							<div class="row"><p >
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>Carnet Identidad</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->ci !!} 
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>Fec. Nacimiento</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->getFullDateNac() !!}
+										</div>
+									</div>
+								</div></p>
+							</div>
+							<div class="row"><p>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>Ape. Paterno</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->pat !!}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>Ape. Materno</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->mat !!}
+										</div>
+									</div>
+								</div></p>
+							</div>
+							<div class="row"><p>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>1er. Nombre</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->nom !!}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<b>2do. Nombre</b>
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->nom2 !!}
+										</div>
+									</div>
+								</div></p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Totales</h3>
+						</div>
 						<div class="panel-body">
+
 							<div class="row"><p>
-								<div class="col-md-6">
-									<b>Carnet de Identidad</b> {!! $afiliado->ci !!} 
+								<div class="col-md-12">
+									<table class="table" style="width:100%;font-size: 16px">
+										<tr>
+											<td>Total Ganado</td>
+											<td style="text-align: right">{{ $totalGanado }}</td>
+										</tr>
+										<tr>
+											<td>Total Bono de Seguridad Ciudadana</td>
+											<td style="text-align: right">{{ $totalSegCiu }}</td>
+										</tr>
+										<tr>
+											<td>SubTotal Cotizable</td>
+											<td style="text-align: right">{{ $totalCotizable }}</td>
+										</tr>
+										<tr>
+											<td>Total Cotizable Adicional</td>
+											<td style="text-align: right">Bs 0.00</td>
+										</tr>
+										<tr>
+											<td>Total Cotizable</td>
+											<td style="text-align: right">{{ $totalCotizableAd }}</td>
+										</tr>
+									</table>
+									
+									<br/>
+
+									<table class="table" style="width:100%;font-size: 16px">
+										<tr>
+											<td>Total Aporte Fondo de Retiro</td>
+											<td style="text-align: right">{{ $totalFon }}</td>
+										</tr>
+										<tr>
+											<td>Total Aporte Seguro de Vida</td>
+											<td style="text-align: right">{{ $totalSegVid }}</td>
+										</tr>
+										<tr>
+											<td>Total Aporte Muserpol</td>
+											<td style="text-align: right">{{ $totalMuserpol }}</td>
+										</tr>
+									</table>
+
+
+
 								</div>
-								<div class="col-md-6">
-									<b>Fecha Nacimiento </b> {!! $afiliado->getFullDateNac() !!}
-								</div></p>
+
 							</div>
-							<div class="row"><p>
-								<div class="col-md-6">
-									<b>Apellido Paterno </b> {!! $afiliado->pat !!} 
-								</div>
-								<div class="col-md-6">
-									<b>Apellido Materno </b> {!! $afiliado->mat !!}
-								</div></p>
-							</div>
+							
 						</div>
 					</div>
 				</div>
