@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGradosTable extends Migration
+class CreateUnidadesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class CreateGradosTable extends Migration
      */
     public function up()
     {
-        Schema::create('grados', function (Blueprint $table) {
+        Schema::create('unidades', function (Blueprint $table) {
         
             $table->engine = 'InnoDB';    
             
             $table->increments('id');         
-            $table->string('niv');
-            $table->string('grad');
+            $table->string('ciu');
+            $table->string('cod');
             $table->string('lit');
             $table->string('abre');
             $table->timestamps();
@@ -32,6 +32,6 @@ class CreateGradosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('grados');
+        Schema::drop('unidades');
     }
 }

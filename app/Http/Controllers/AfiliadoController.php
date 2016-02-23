@@ -11,6 +11,7 @@ use Muserpol\Http\Controllers\Controller;
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
 use Muserpol\Grado;
+use Muserpol\Unidad;
 use Datatables;
 use Muserpol\Helper\Util;
 
@@ -70,6 +71,8 @@ class AfiliadoController extends Controller
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->firstOrFail();
 
         $grado = Grado::where('niv', $lastAporte->niv)->where('grad', $lastAporte->gra)->firstOrFail();
+        $unidad = Unidad::where('cod', $lastAporte->uni)->firstOrFail();
+
 
         $totalGanado = DB::table('afiliados')
                 ->select(DB::raw('SUM(aportes.gan) as ganado'))
@@ -118,6 +121,7 @@ class AfiliadoController extends Controller
             'afiliado' => $afiliado,
             'lastAporte' => $lastAporte,
             'grado' => $grado,
+            'unidad' => $unidad,
             'totalGanado' => Util::formatMoneyBs($ganado),
             'totalSegCiu' => Util::formatMoneyBs($SegCiu),
             'totalCotizable' => Util::formatMoneyBs($cotizable),

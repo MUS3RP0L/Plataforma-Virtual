@@ -5,17 +5,17 @@ namespace Muserpol;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Grado extends Model
+class Unidad extends Model
 {
-    protected $table = 'grados';
+    protected $table = 'unidades';
 
 	protected $fillable = [
 	
-	'niv',
-	'grad',
+	'cod',
+	'ciu',
 	'lit',
 	'abre'
-	
+
 	];
 
 	protected $guarded = ['id'];

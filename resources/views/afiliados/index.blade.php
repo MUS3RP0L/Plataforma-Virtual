@@ -2,32 +2,39 @@
 
 @section('content')
 <div class="container-fluid">
+
     <div class="row">
         <div class="col-md-12">
             <div class="panel-heading">
-                <h3>Despliegue de Afiliados</h3>
+                <h4 ><b>Afiliados</b></h4>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-					
-					<table class="table table-striped table-hover" id="afiliados-table">
-                        <thead>
-                            <tr class="success">
-                                <th>Carnet</th>
-                                <th>Paterno</th>
-                                <th>Materno</th>
-                                <th>Nombre</th>
-                                <th>Matrícula</th>
-                                <th>Opciones</th>
 
-                            </tr>
-                        </thead>
-                    </table>
-				</div>
-			</div>
-			
-		</div>
-	</div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Despliegue de Afiliados</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row"><p>
+                        <div class="col-md-12">
+                            <table class="table table-striped table-hover" id="afiliados-table">
+                                <thead>
+                                    <tr class="success">
+                                        <th>Carnet</th>
+                                        <th>Paterno</th>
+                                        <th>Materno</th>
+                                        <th>Nombre</th>
+                                        <th>Matrícula</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>                      
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 @endsection
 

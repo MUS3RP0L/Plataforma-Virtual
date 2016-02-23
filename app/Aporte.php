@@ -47,7 +47,7 @@ class Aporte extends Model
     'gan',
     'cot',
     'cot_adi',
-    'mus',
+    'mus'
 
 	];
 

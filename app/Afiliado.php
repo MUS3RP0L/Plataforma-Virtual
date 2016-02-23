@@ -25,7 +25,7 @@ class Afiliado extends Model
 	'sex',
 	'matri',
 	'fech_nac',
-	'fech_ing',
+	'fech_ing'
 	
 	];
 
@@ -75,8 +75,8 @@ class Afiliado extends Model
 
 	public function getFullDateIng()
     {	
-		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		return date("d", strtotime($this->fech_ing))." de ".$meses[date("n", strtotime($this->fech_ing))-1]. " de ".date("Y", strtotime($this->fech_ing));
+		$meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sept","Oct","Nov","Dic");
+		return date("d", strtotime($this->fech_ing))." ".$meses[date("n", strtotime($this->fech_ing))-1]. " ".date("Y", strtotime($this->fech_ing));
  
     }
 }
