@@ -48,7 +48,6 @@ class AporteController extends Controller
     // 'cot_adi',
     // 'mus',
 
-
     public function aportesData(Request $request)
     {   
 

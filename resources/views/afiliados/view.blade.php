@@ -126,52 +126,52 @@
 
 @push('scripts')
 <script>
-$(function() {
-    $('#afiliados-table').DataTable({
-    	"order": [[ 0, "asc" ]],
-    	"scrollX": true,
+	$(function() {
+	    $('#afiliados-table').DataTable({
+	    	"order": [[ 0, "asc" ]],
+	    	"scrollX": true,
 
-        ajax: {
-            url: '{!! route('getAporte') !!}',
-            data: function (d) {
-                d.id = {{ $afiliado->id }};
-            }
-        },
+	        ajax: {
+	            url: '{!! route('getAporte') !!}',
+	            data: function (d) {
+	                d.id = {{ $afiliado->id }};
+	            }
+	        },
 
-        columns: [
-            { data: 'period', name: 'period' },
-            { data: 'nivgra', name: 'nivgra' },
-            { data: 'uni', name: 'uni' },
-            { data: 'item', name: 'item' },
-            { data: 'sue', name: 'sue' },
-            { data: 'b_ant', name: 'b_ant' },
-            { data: 'b_est', name: 'b_est' },
-            { data: 'b_car', name: 'b_car' },
-            { data: 'b_fro', name: 'b_fro' },
-            { data: 'b_ori', name: 'b_ori' },
-            { data: 'b_seg', name: 'b_seg' },
-            { data: 'dfu', name: 'dfu' },
-            { data: 'nat', name: 'nat' },
-            { data: 'lac', name: 'lac' },
-            { data: 'pre', name: 'pre' },
-            { data: 'sub', name: 'sub' },
-            { data: 'gan', name: 'gan' },
-            { data: 'cot', name: 'cot' },
-            { data: 'mus', name: 'mus' },
-            
-        ],
-        
-        initComplete: function () {
-            this.api().columns().every(function () {
-                var column = this;
-                var input = document.createElement("input");
-                $(input).appendTo($(column.footer()).empty())
-                .on('change', function () {
-                    column.search($(this).val(), false, false, true).draw();
-                });
-            });
-        }
-    });
-});
+	        columns: [
+	            { data: 'period', name: 'period' },
+	            { data: 'nivgra', name: 'nivgra' },
+	            { data: 'uni', name: 'uni' },
+	            { data: 'item', name: 'item' },
+	            { data: 'sue', name: 'sue' },
+	            { data: 'b_ant', name: 'b_ant' },
+	            { data: 'b_est', name: 'b_est' },
+	            { data: 'b_car', name: 'b_car' },
+	            { data: 'b_fro', name: 'b_fro' },
+	            { data: 'b_ori', name: 'b_ori' },
+	            { data: 'b_seg', name: 'b_seg' },
+	            { data: 'dfu', name: 'dfu' },
+	            { data: 'nat', name: 'nat' },
+	            { data: 'lac', name: 'lac' },
+	            { data: 'pre', name: 'pre' },
+	            { data: 'sub', name: 'sub' },
+	            { data: 'gan', name: 'gan' },
+	            { data: 'cot', name: 'cot' },
+	            { data: 'mus', name: 'mus' },
+	            
+	        ],
+	        
+	        initComplete: function () {
+	            this.api().columns().every(function () {
+	                var column = this;
+	                var input = document.createElement("input");
+	                $(input).appendTo($(column.footer()).empty())
+	                .on('change', function () {
+	                    column.search($(this).val(), false, false, true).draw();
+	                });
+	            });
+	        }
+	    });
+	});
 </script>
 @endpush
