@@ -29,7 +29,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Fec. Nacimiento</b>
+											<b>Fecha Nacimiento</b>
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->getFullDateNac() !!}
@@ -41,7 +41,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Ape. Paterno</b>
+											<b>Apellido Paterno</b>
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->pat !!}
@@ -51,7 +51,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Ape. Materno</b>
+											<b>Apellido Materno</b>
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->mat !!}
@@ -63,7 +63,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>1er. Nombre</b>
+											<b>Primer Nombre</b>
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->nom !!}
@@ -73,7 +73,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>2do. Nombre</b>
+											<b>Segundo Nombre</b>
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->nom2 !!}
@@ -186,8 +186,15 @@
 
 				<div class="col-md-6">
 					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h3 class="panel-title">Totales</h3>
+						<div class="panel-heading">						
+							<div class="row">
+								<div class="col-md-6">
+									<h3 class="panel-title">Totales</h3>
+								</div>
+								<div class="col-md-6">
+									<h3 class="panel-title"style="text-align: right">Bolivianos </h3>
+								</div>
+							</div>
 						</div>
 						<div class="panel-body">
 
@@ -233,8 +240,6 @@
 										</tr>
 									</table>
 
-
-
 								</div>
 
 							</div>
@@ -252,8 +257,28 @@
 							<h3 class="panel-title">Planillas de Reintegro de Haberes</h3>
 						</div>
 						<div class="panel-body">
-							<div class="row"><p>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-3">
+											<b>Desde</b>
+										</div>
+										<div class="col-md-3">
+											 {!! $firstAporte->desde !!} 
+										</div>
+										<div class="col-md-3">
+											<b>hasta</b>
+										</div>
+										<div class="col-md-3">
+											 {!! $lastAporte->hasta !!} 
+										</div>
+									</div>
+								</div>
+							</div><br>
+							<div class="row">
 								<div class="col-md-12">
+									
+
 									<table class="table table-striped table-hover" id="afiliados-table">
 				                        <thead>
 				                            <tr class="success">
@@ -276,8 +301,8 @@
 												<th>Gan</th>
 												<th>Cot</th>
 												<th>Mus</th> 
-												<th>Fon</th> 
-												<th>Vid</th> 
+												<th>F.R.P</th> 
+												<th>S.V.</th> 
 				                            </tr>
 				                        </thead>
 				                    </table>
@@ -296,10 +321,12 @@
 <script>
 	$(function() {
 	    $('#afiliados-table').DataTable({
+	    	"dom": '<"top"l>t<"bottom"ip>',
 	    	"order": [[ 0, "asc" ]],
 	    	"scrollX": true,
 	        processing: true,
 	        serverSide: true,
+	        bFilter: false,
 	        ajax: {
 	            url: '{!! route('getAporte') !!}',
 	            data: function (d) {

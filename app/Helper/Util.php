@@ -88,14 +88,6 @@ class Util
 
         return $value;
     }
-    
-    public static function formatMoneyBs($value){
-
-	    $value = number_format($value, 2, '.', ',');
-        $symbol = 'Bs ';
-
-        return $symbol . $value;
-    }
 
     public static function calcFon($mus)
 	{

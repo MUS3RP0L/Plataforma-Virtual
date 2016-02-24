@@ -26,15 +26,20 @@ class AfiliadoController extends Controller
     public function index()
     {
         return view('afiliados.index');
+
     }
 
     public function afiliadosData()
     {
-        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'matri']);
+        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri']);
 
-        return Datatables::of($afiliados)->addColumn('action', function ($user) {
-                return  '<div class="row text-center"><a href="afiliado/'.$user->id.'" ><i class="glyphicon glyphicon-zoom-in"></i> Ver</a></div>';
-            })->make(true);
+        return Datatables::of($afiliados)
+                ->addColumn('niv', function ($afiliado) { return Aporte::select('niv', 'gra')->afiliadoId($afiliado->id)->orderBy('id', 'desc')->first()->niv.'-'.
+                    Aporte::select('niv', 'gra')->afiliadoId($afiliado->id)->orderBy('id', 'desc')->first()->gra; })
+                ->addColumn('action', function ($afiliado) {
+                return  '<div class="row text-center"><a href="afiliado/'.$afiliado->id.'" ><i class="glyphicon glyphicon-zoom-in"></i> Ver</a></div>';})
+                ->addColumn('mons', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
+                ->make(true);
     }
 
     /**
@@ -68,7 +73,15 @@ class AfiliadoController extends Controller
     {
         $afiliado = Afiliado::idIs($id)->with('aportes')->orderBy('id', 'desc')->firstOrFail();
 
-        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->firstOrFail();
+        $firstAporte = Aporte::afiliadoId($afiliado->id)->orderBy('anio', 'asc')->orderBy('mes', 'asc')->firstOrFail();
+
+        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+        $firstAporte->desde = $meses[$firstAporte->mes-1] .' - '.  $firstAporte->anio;
+
+        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('anio', 'desc')->orderBy('mes', 'desc')->firstOrFail();
+
+        $lastAporte->hasta = $meses[$lastAporte->mes-1] .' - '.  $lastAporte->anio;
 
         $grado = Grado::where('niv', $lastAporte->niv)->where('grad', $lastAporte->gra)->firstOrFail();
         $unidad = Unidad::where('cod', $lastAporte->uni)->firstOrFail();
@@ -120,15 +133,16 @@ class AfiliadoController extends Controller
         $data = array(
             'afiliado' => $afiliado,
             'lastAporte' => $lastAporte,
+            'firstAporte' => $firstAporte,
             'grado' => $grado,
             'unidad' => $unidad,
-            'totalGanado' => Util::formatMoneyBs($ganado),
-            'totalSegCiu' => Util::formatMoneyBs($SegCiu),
-            'totalCotizable' => Util::formatMoneyBs($cotizable),
-            'totalCotizableAd' => Util::formatMoneyBs($cotizablefinal),
-            'totalFon' => 'Bs ' . $Fon,
-            'totalSegVid' => 'Bs ' . $SegVid,
-            'totalMuserpol' => Util::formatMoneyBs($muserpol)
+            'totalGanado' => Util::formatMoney($ganado),
+            'totalSegCiu' => Util::formatMoney($SegCiu),
+            'totalCotizable' => Util::formatMoney($cotizable),
+            'totalCotizableAd' => Util::formatMoney($cotizablefinal),
+            'totalFon' => $Fon,
+            'totalSegVid' => $SegVid,
+            'totalMuserpol' => Util::formatMoney($muserpol)
         );
 
         return view('afiliados.view', $data);
