@@ -49,6 +49,7 @@
 									</div>
 								</div>
 							</div>
+							
 							<div class="col-md-6">
 								<div class="form-group form-group-lg">
 										{!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}

@@ -148,6 +148,85 @@ class AfiliadoController extends Controller
         return view('afiliados.view', $data);
     }
 
+    public function afiliadoReporte($id)
+    {
+        $afiliado = Afiliado::idIs($id)->with('aportes')->orderBy('id', 'desc')->firstOrFail();
+
+        $firstAporte = Aporte::afiliadoId($afiliado->id)->orderBy('anio', 'asc')->orderBy('mes', 'asc')->firstOrFail();
+
+        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+        $firstAporte->desde = $meses[$firstAporte->mes-1] .' - '.  $firstAporte->anio;
+
+        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('anio', 'desc')->orderBy('mes', 'desc')->firstOrFail();
+
+        $lastAporte->hasta = $meses[$lastAporte->mes-1] .' - '.  $lastAporte->anio;
+
+        $grado = Grado::where('niv', $lastAporte->niv)->where('grad', $lastAporte->gra)->firstOrFail();
+        $unidad = Unidad::where('cod', $lastAporte->uni)->firstOrFail();
+
+
+        $totalGanado = DB::table('afiliados')
+                ->select(DB::raw('SUM(aportes.gan) as ganado'))
+                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                ->where('afiliados.id', '=', $afiliado->id)
+                ->get();
+        foreach ($totalGanado as $item) {
+            $ganado = $item->ganado;
+        }
+
+        $totalSegCiu = DB::table('afiliados')
+                ->select(DB::raw('SUM(aportes.b_seg) as SegCiu'))
+                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                ->where('afiliados.id', '=', $afiliado->id)
+                ->get();
+        foreach ($totalSegCiu as $item) {
+            $SegCiu = $item->SegCiu;
+        }
+
+        $totalCotizable = DB::table('afiliados')
+                ->select(DB::raw('SUM(aportes.cot) as cotizable'))
+                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                ->where('afiliados.id', '=', $afiliado->id)
+                ->get();
+        foreach ($totalCotizable as $item) {
+            $cotizable = $item->cotizable;
+        }
+
+        $totalMuserpol = DB::table('afiliados')
+                ->select(DB::raw('SUM(aportes.mus) as muserpol'))
+                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                ->where('afiliados.id', '=', $afiliado->id)
+                ->get();
+        foreach ($totalMuserpol as $item) {
+            $muserpol = $item->muserpol;
+        }
+
+        //add item 0 +
+        $cotizablefinal = $cotizable;
+
+        $Fon = Util::calcFon($muserpol);
+
+        $SegVid = Util::calcVid($muserpol);
+
+        $data = array(
+            'afiliado' => $afiliado,
+            'lastAporte' => $lastAporte,
+            'firstAporte' => $firstAporte,
+            'grado' => $grado,
+            'unidad' => $unidad,
+            'totalGanado' => Util::formatMoney($ganado),
+            'totalSegCiu' => Util::formatMoney($SegCiu),
+            'totalCotizable' => Util::formatMoney($cotizable),
+            'totalCotizableAd' => Util::formatMoney($cotizablefinal),
+            'totalFon' => $Fon,
+            'totalSegVid' => $SegVid,
+            'totalMuserpol' => Util::formatMoney($muserpol)
+        );
+
+        return view('afiliados.view', $data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
