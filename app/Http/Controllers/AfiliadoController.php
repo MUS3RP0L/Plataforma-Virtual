@@ -224,7 +224,7 @@ class AfiliadoController extends Controller
             'totalMuserpol' => Util::formatMoney($muserpol)
         );
 
-        return view('afiliados.view', $data);
+        return view('afiliados.report', $data);
     }
 
     /**
