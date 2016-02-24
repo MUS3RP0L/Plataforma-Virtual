@@ -5,8 +5,15 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel-heading">
-                <h4 ><b>{!! $grado->lit !!}</b> {!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h4>
-            </div>
+            	<div class="row">  
+	             	<div class="col-md-8">
+	                    <h4><b>{!! $grado->lit !!}</b></h4><h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
+	                </div>
+	                <div class="col-md-4 text-right">             
+	                    <a href="{!! url('afiliado/' . $afiliado->id . '/edit') !!}" class="btn btn-raised btn-success">Editar Afiliado</a>
+	                </div>
+            	</div>
+        	</div>
 
 		    <div class="row">
 		        <div class="col-md-6">
@@ -192,7 +199,7 @@
 									<h3 class="panel-title">Totales</h3>
 								</div>
 								<div class="col-md-6">
-									<h3 class="panel-title"style="text-align: right">Bolivianos </h3>
+									<h3 class="panel-title"style="text-align: right">Bolivianos</h3>
 								</div>
 							</div>
 						</div>

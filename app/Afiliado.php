@@ -56,10 +56,30 @@ class Afiliado extends Model
 	public function getCivil()
 	{
 	    if ($this->est_civ == 'S') {
-	        return "Soltero";
+	        
+	        if ($this->sex == 'M') {
+	        	return "Soltero";
+	    	}
+	    	else{
+	    		return "Soltera";
+	    	}
+	        
 	    } 
 	    else if ($this->est_civ == 'C'){
-	        return "Casado";
+	        if ($this->sex == 'M') {
+	        	return "Casado";
+	    	}
+	    	else{
+	    		return "Casada";
+	    	}
+	    }
+	    else if ($this->est_civ == 'V'){
+	        if ($this->sex == 'M') {
+	        	return "Viudo";
+	    	}
+	    	else{
+	    		return "Viuda";
+	    	}
 	    }
 	}
 

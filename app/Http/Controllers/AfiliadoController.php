@@ -156,7 +156,14 @@ class AfiliadoController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $afiliado = Afiliado::where('id', '=', $id)->firstOrFail();
+
+        $data = [
+            'afiliado' => $afiliado
+        ];
+
+        return View('afiliados.edit', $data);
     }
 
     /**
@@ -168,7 +175,69 @@ class AfiliadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->save($request, $id);
+    }
+
+    public function save($request, $id = false)
+    {
+
+
+        $rules = [
+            'pat' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'mat' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'nom2' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'est_civ' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+
+        ];
+
+        $messages = [
+            'pat.required' => 'El campo apellido paterno es requerido',
+            'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
+            'pat.regex' => 'Sólo se aceptan letras para apellido paterno',
+
+            'mat.required' => 'El campo apellido materno requerido',
+            'mat.min' => 'El mínimo de caracteres permitidos para apellido materno es 3',
+            'mat.regex' => 'Sólo se aceptan letras para apellido materno',
+
+            'nom.required' => 'El campo primer nombre requerido',
+            'nom.min' => 'El mínimo de caracteres permitidos para primer nombre es 3',
+            'nom.regex' => 'Sólo se aceptan letras para primer nombre',
+
+            'nom2.required' => 'El campo segundo nombre es requerido',
+            'nom2.min' => 'El mínimo de caracteres permitidos para teléfono de usuario es 3',
+            'nom2.regex' => 'Sólo se aceptan letras para segundo nombre',
+
+            'est_civ.required' => 'El campo estado civil es requerido',
+            'est_civ.min' => 'El mínimo de caracteres permitidos para estado civil es 3',
+            'est_civ.regex' => 'Sólo se aceptan letras para estado civil',
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()){
+            return redirect('afiliado/'.$id.'/edit')
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
+
+            $afiliado = Afiliado::where('id', '=', $id)->firstOrFail();
+                
+            $afiliado->pat = trim($request->pat);
+            $afiliado->mat = trim($request->mat);
+            $afiliado->nom = trim($request->nom);
+            $afiliado->nom2 = trim($request->nom2);
+            $afiliado->est_civ = trim($request->est_civ); 
+            $afiliado->ap_esp = trim($request->ap_esp); 
+            $afiliado->save();
+
+            $message = "Afiliado Actualizado con éxito";
+
+            Session::flash('message', $message);
+        }
+        
+        return redirect('afiliado/'.$id);
     }
 
     /**
