@@ -50,14 +50,10 @@ class CreateAportesTable extends Migration
             $table->double('gan');
             $table->double('cot');
             $table->double('mus');
-            
+
             $table->timestamps();
             $table->softDeletes();
 
-        });
-        
-        Schema::table('aportes', function($table) {
-        
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
         
         });

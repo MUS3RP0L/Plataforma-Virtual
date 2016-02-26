@@ -27,8 +27,6 @@ class CreateTitularesTable extends Migration
             $table->string('nom2')->nullable();
             $table->string('ap_esp')->nullable();
 
-            $table->enum('est_civ', ['C', 'S', 'V', 'D'])->nullable();
-
             $table->enum('sex', ['M', 'F'])->nullable();
 
             $table->date('fech_nac')->nullable();

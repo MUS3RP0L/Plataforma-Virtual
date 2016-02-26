@@ -81,6 +81,14 @@ class Afiliado extends Model
 	    		return "Viuda";
 	    	}
 	    }
+	    else if ($this->est_civ == 'D'){
+	        if ($this->sex == 'M') {
+	        	return "divorciado";
+	    	}
+	    	else{
+	    		return "divorciada";
+	    	}
+	    }
 	}
 
 	public function getSex()

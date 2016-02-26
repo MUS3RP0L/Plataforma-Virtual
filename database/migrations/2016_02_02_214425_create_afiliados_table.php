@@ -12,15 +12,16 @@ class CreateAfiliadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('departamentos', function($table)
+        Schema::create('departamentos', function(Blueprint $table)
         {
             $table->engine = 'InnoDB';
             
             $table->increments('id');
             $table->string('name');
+            $table->string('cod');
         }); 
 
-        Schema::create('afi_types', function($table)
+        Schema::create('afi_types', function(Blueprint $table)
         {
             $table->engine = 'InnoDB';
 
@@ -29,7 +30,8 @@ class CreateAfiliadosTable extends Migration
             $table->string('status');
         }); 
 
-        Schema::create('afiliados', function (Blueprint $table) {
+        Schema::create('afiliados', function (Blueprint $table)
+         {
             
             $table->engine = 'InnoDB';
             
@@ -77,7 +79,7 @@ class CreateAfiliadosTable extends Migration
 
         });
 
-        Schema::create('notes', function($table)
+        Schema::create('notes', function(Blueprint $table)
         {
             $table->engine = 'InnoDB';
 
@@ -103,6 +105,9 @@ class CreateAfiliadosTable extends Migration
      */
     public function down()
     {
+        Schema::drop('departamentos');
+        Schema::drop('afi_types');
         Schema::drop('afiliados');
+        Schema::drop('notes');
     }
 }

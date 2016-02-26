@@ -5,22 +5,14 @@ namespace Muserpol;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Titulares extends Model
+class AfiType extends Model
 {
-    protected $table = 'titulares';
+    protected $table = 'afi_types';
 
 	protected $fillable = [
 	
-		'ci',
-		'pat',
-		'mat',
-		'nom',
-		'nom2',
-		'ap_esp',
-		'est_civ',
-		'sex',
-		'matri',
-		'fech_nac'
+		'type',
+		'status'
 		
 	];
 
