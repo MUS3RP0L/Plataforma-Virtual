@@ -5,7 +5,7 @@ namespace Muserpol;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Titulares extends Model
+class Titular extends Model
 {
     protected $table = 'titulares';
 

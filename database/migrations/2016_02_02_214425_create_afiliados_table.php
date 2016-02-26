@@ -19,6 +19,8 @@ class CreateAfiliadosTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('cod');
+            $table->timestamps();
+
         }); 
 
         Schema::create('afi_types', function(Blueprint $table)
@@ -28,6 +30,7 @@ class CreateAfiliadosTable extends Migration
             $table->increments('id');
             $table->string('type');
             $table->string('status');
+            $table->timestamps();
         }); 
 
         Schema::create('afiliados', function (Blueprint $table)

@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Departamento extends Model
 {
-    use SoftDeletes;
-    
     protected $table = 'departamentos';
 
 	protected $fillable = [
