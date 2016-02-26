@@ -49,8 +49,8 @@ class CreateAportesTable extends Migration
 
             $table->double('gan');
             $table->double('cot');
-            // $table->double('cot_adi');
             $table->double('mus');
+            
             $table->timestamps();
             $table->softDeletes();
 

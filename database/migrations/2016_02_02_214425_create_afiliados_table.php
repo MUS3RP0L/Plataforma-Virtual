@@ -25,7 +25,7 @@ class CreateAfiliadosTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->string('name');
+            $table->string('type');
             $table->string('status');
         }); 
 
@@ -58,6 +58,14 @@ class CreateAfiliadosTable extends Migration
 
             $table->date('fech_nac')->nullable();
             $table->date('fech_ing')->nullable();
+            $table->date('fech_dece')->nullable();
+
+            $table->string('zona')->nullable();
+            $table->string('calle')->nullable();
+            $table->string('num_domi')->nullable();
+            $table->string('tele')->nullable();
+            $table->string('celu')->nullable();
+            $table->string('email')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
@@ -68,6 +76,24 @@ class CreateAfiliadosTable extends Migration
             $table->foreign('depa_rad_id')->references('id')->on('departamentos');
 
         });
+
+        Schema::create('notes', function($table)
+        {
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+
+            $table->integer('afiliado_id')->unsigned();
+            $table->string('type');
+            $table->string('obs');
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('afiliado_id')->references('id')->on('afiliados');
+
+        });
+
     }
 
     /**

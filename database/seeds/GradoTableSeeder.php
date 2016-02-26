@@ -28,7 +28,6 @@ class GradoTableSeeder extends Seeder
             ['id' => '3', 'niv' => '00', 'grad' => '02', 'lit' => 'SUBCOMANDANTE', 'abre' => 'CMTE. GRAL.'],
             ['id' => '4', 'niv' => '00', 'grad' => '03', 'lit' => 'INSPECTOR GENERAL', 'abre' => 'INSP. GRAL.'],
             ['id' => '5', 'niv' => '00', 'grad' => '04', 'lit' => 'DIRECTOR GENERAL', 'abre' => 'DIR. GRAL.'],
-
             ['id' => '6', 'niv' => '01', 'grad' => '01', 'lit' => 'CORONEL CON SUELDO DE GENERAL', 'abre' => 'CNL.'],
             ['id' => '7', 'niv' => '01', 'grad' => '02', 'lit' => 'CORONEL', 'abre' => 'CNL.'],      
             ['id' => '8', 'niv' => '01', 'grad' => '03', 'lit' => 'TENIENTE CORONEL', 'abre' => 'TCNL.'],
