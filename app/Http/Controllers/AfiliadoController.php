@@ -262,20 +262,19 @@ class AfiliadoController extends Controller
 
 
         $rules = [
-            'pat' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'mat' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'nom2' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'mat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'nom2' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'est_civ' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
 
         ];
 
         $messages = [
-            'pat.required' => 'El campo apellido paterno es requerido',
+
             'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
             'pat.regex' => 'Sólo se aceptan letras para apellido paterno',
 
-            'mat.required' => 'El campo apellido materno requerido',
             'mat.min' => 'El mínimo de caracteres permitidos para apellido materno es 3',
             'mat.regex' => 'Sólo se aceptan letras para apellido materno',
 
