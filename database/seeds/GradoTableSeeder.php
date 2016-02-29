@@ -11,7 +11,6 @@ class GradoTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('grados')->truncate();
 
         Eloquent::unguard();
 

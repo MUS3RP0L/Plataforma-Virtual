@@ -18,14 +18,16 @@ class CreateSueldosTable extends Migration
 
             $table->increments('id');
 
+            $table->integer('grado_id')->unsigned();
+
             $table->string('anio')->required();
 
-            $table->string('grado_id')->required();
             $table->string('sue');
-
-            $table->foreign('grado_id')->references('id')->on('grados');
        
             $table->timestamps();
+
+            $table->foreign('grado_id')->references('id')->on('grados');
+
         });
     }
 
