@@ -366,7 +366,7 @@ class MunicipiosTableSeeder extends Seeder
     	
     	foreach ($statuses as $status) {
 
-                Muserpol\Municipios::create($status);
+                Muserpol\Municipio::create($status);
             
         }
     }

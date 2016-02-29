@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UnidadTableSeeder::class);
         $this->call(DepartamentoTableSeeder::class);
         $this->call(AfiTypeTableSeeder::class);
+        $this->call(MunicipiosTableSeeder::class);
+        $this->call(IpcTasasTableSeeder::class);
 
         Model::reguard();
     }

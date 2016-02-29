@@ -19,7 +19,7 @@ class DepartamentoTableSeeder extends Seeder
         Eloquent::reguard();
     }
 
-        private function createDepartamentos()
+    private function createDepartamentos()
     {
         $statuses = [
             ['id' => '1', 'name' => 'Beni', 'cod' => 'BN'],
