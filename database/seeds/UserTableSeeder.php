@@ -11,14 +11,11 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-    	DB::table('users')->truncate();
-
     	Eloquent::unguard();
 
         $this->createAdmin();
 
         Eloquent::reguard();
-
     }
 
     private function createAdmin()

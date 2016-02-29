@@ -11,8 +11,6 @@ class UnidadTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('unidades')->truncate();
-
         Eloquent::unguard();
 
         $this->createUnidades();

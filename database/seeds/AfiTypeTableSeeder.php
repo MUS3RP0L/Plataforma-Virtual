@@ -11,8 +11,6 @@ class AfiTypeTableSeeder extends Seeder
      */
     public function run()
     {
-        // \DB::table('afi_types')->truncate();
-
         Eloquent::unguard();
 
         $this->createAfiType();

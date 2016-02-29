@@ -12,9 +12,6 @@ class DepartamentoTableSeeder extends Seeder
      */
     public function run()
     {
-
-        // DB::table('departamentos')->truncate();
-
         Eloquent::unguard();
 
         $this->createDepartamentos();
