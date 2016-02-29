@@ -11,11 +11,10 @@ class CreateAportesMusersTable extends Migration
      * @return void
      */
 
-
     public function up()
     {
 
-        Schema::create('apor_types', function(Blueprint $table){
+        Schema::create('apor_mus_types', function(Blueprint $table){
             
             $table->engine = 'InnoDB';
 
@@ -32,7 +31,7 @@ class CreateAportesMusersTable extends Migration
             $table->increments('id');
             
             $table->integer('afiliado_id')->unsigned();
-            $table->integer('apor_type_id')->unsigned();
+            $table->integer('apor_mus_type_id')->unsigned();
 
             $table->string('mes')->required();
             $table->string('anio')->required();
@@ -47,7 +46,7 @@ class CreateAportesMusersTable extends Migration
             $table->softDeletes();
 
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
-            $table->foreign('apor_type_id')->references('id')->on('apor_types');
+            $table->foreign('apor_mus_type_id')->references('id')->on('apor_mus_types');
 
         });
     }
@@ -58,8 +57,9 @@ class CreateAportesMusersTable extends Migration
      * @return void
      */
     public function down()
-    {
-        Schema::drop('aportes_musers');
+    {       
         Schema::drop('apor_types');
+        Schema::drop('aportes_musers');
+       
     }
 }

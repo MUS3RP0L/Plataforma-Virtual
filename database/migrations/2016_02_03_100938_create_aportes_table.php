@@ -19,7 +19,6 @@ class CreateAportesTable extends Migration
             $table->increments('id');
             $table->integer('afiliado_id')->unsigned();
 
-
             $table->string('mes')->required();
             $table->string('anio')->required();
 

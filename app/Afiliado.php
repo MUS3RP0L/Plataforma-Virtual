@@ -16,6 +16,7 @@ class Afiliado extends Model
 	protected $fillable = [
 	
 	'ci',
+	'matri',
 	'pat',
 	'mat',
 	'nom',
@@ -23,10 +24,16 @@ class Afiliado extends Model
 	'ap_esp',
 	'est_civ',
 	'sex',
-	'matri',
 	'fech_nac',
 	'fech_ing'
-	
+	'fech_dece',
+	'zona',
+	'calle',
+	'num_domi',
+	'tele',
+	'celu',
+	'email',
+
 	];
 
 	protected $guarded = ['id'];

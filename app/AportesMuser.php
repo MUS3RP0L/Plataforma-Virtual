@@ -12,6 +12,7 @@ class AportesMuser extends Model
 	protected $fillable = [
 	
 		'afiliado_id',
+		'apor_mus_type_id',
 		'mes',
 		'anio',
 	    'fech_apor',

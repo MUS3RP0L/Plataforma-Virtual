@@ -81,8 +81,6 @@ class CreateAfiliadosTable extends Migration
             $table->string('nom2')->nullable();
             $table->string('ap_esp')->nullable();
 
-            $table->string('exp')->nullable();
-
             $table->enum('est_civ', ['C', 'S', 'V', 'D'])->nullable();
 
             $table->enum('sex', ['M', 'F'])->nullable();
@@ -135,9 +133,10 @@ class CreateAfiliadosTable extends Migration
     public function down()
     {
         Schema::drop('departamentos');
+        Schema::drop('municipios');
         Schema::drop('afi_types');
         Schema::drop('afiliados');
         Schema::drop('notes');
-        Schema::drop('municipios');
+        
     }
 }
