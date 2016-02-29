@@ -54,7 +54,7 @@ class CreateAfiliadosTable extends Migration
             $table->unsignedInteger('afi_type_id');
             $table->string('name');
 
-            $table->foreign('afi_type_id')->references('id')->on('afi_states');
+            $table->foreign('afi_type_id')->references('id')->on('afi_types');
 
             $table->timestamps();
         }); 
