@@ -23,6 +23,19 @@ class CreateAfiliadosTable extends Migration
 
         }); 
 
+        Schema::create('municipios', function (Blueprint $table) {
+        
+            $table->engine = 'InnoDB';    
+            
+            $table->increments('id');   
+            $table->unsignedInteger('depa_exp_id');
+            $table->string('name');
+
+            $table->foreign('depa_exp_id')->references('id')->on('departamentos');
+
+            $table->timestamps();
+        });
+
         Schema::create('afi_types', function(Blueprint $table)
         {
             $table->engine = 'InnoDB';
@@ -44,7 +57,7 @@ class CreateAfiliadosTable extends Migration
 
             $table->unsignedInteger('depa_exp_id')->nullable();
             $table->unsignedInteger('depa_nat_id')->nullable();
-            $table->unsignedInteger('depa_rad_id')->nullable();
+            $table->unsignedInteger('muni_id')->nullable();
 
             $table->string('ci')->unique()->required();
             $table->string('matri')->unique()->required();
@@ -78,7 +91,7 @@ class CreateAfiliadosTable extends Migration
             $table->foreign('afi_type_id')->references('id')->on('afi_types');
             $table->foreign('depa_exp_id')->references('id')->on('departamentos');
             $table->foreign('depa_nat_id')->references('id')->on('departamentos');
-            $table->foreign('depa_rad_id')->references('id')->on('departamentos');
+            $table->foreign('muni_id')->references('id')->on('municipios');
 
         });
 
@@ -112,5 +125,6 @@ class CreateAfiliadosTable extends Migration
         Schema::drop('afi_types');
         Schema::drop('afiliados');
         Schema::drop('notes');
+        Schema::drop('municipios');
     }
 }
