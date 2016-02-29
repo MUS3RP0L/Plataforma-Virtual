@@ -5,14 +5,14 @@ namespace Muserpol;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AfiType extends Model
+class AfiState extends Model
 {
-    protected $table = 'afi_types';
+        protected $table = 'afi_states';
 
 	protected $fillable = [
 	
 		'name'
-		
+	
 	];
 
 	protected $guarded = ['id'];
