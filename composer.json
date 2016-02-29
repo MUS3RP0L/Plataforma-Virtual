@@ -10,7 +10,8 @@
         "laravelcollective/html": "5.1.*",
         "maatwebsite/excel": "~2.1.0",
         "barryvdh/laravel-debugbar": "^2.1",
-        "yajra/laravel-datatables-oracle": "^6.4"
+        "yajra/laravel-datatables-oracle": "^6.4",
+        "barryvdh/laravel-dompdf": "0.6.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
