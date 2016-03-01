@@ -16,10 +16,9 @@ class CreateSueldosTable extends Migration
             
             $table->engine = 'InnoDB';
 
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
-
-            $table->integer('grado_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('user_id');
+            $table->UnsignedBigInteger('grado_id');
 
             $table->string('anio')->required();
 

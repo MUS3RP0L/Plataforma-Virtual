@@ -16,7 +16,7 @@ class CreateUnidadesTable extends Migration
         
             $table->engine = 'InnoDB';    
             
-            $table->increments('id');         
+            $table->bigIncrements('id');         
             $table->string('ciu');
             $table->string('cod');
             $table->string('lit');

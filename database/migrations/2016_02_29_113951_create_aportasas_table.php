@@ -16,10 +16,10 @@ class CreateAportasasTable extends Migration
             
             $table->engine = 'InnoDB';
 
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('user_id');
 
-            $table->unsignedInteger('afi_type_id');
+            $table->UnsignedBigInteger('afi_type_id');
 
             $table->string('mes')->required();
             $table->string('anio')->required();

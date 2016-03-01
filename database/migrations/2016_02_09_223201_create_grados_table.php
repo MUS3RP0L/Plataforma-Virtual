@@ -16,7 +16,7 @@ class CreateGradosTable extends Migration
         
             $table->engine = 'InnoDB';    
             
-            $table->increments('id');         
+            $table->bigIncrements('id');         
             $table->string('niv');
             $table->string('grad');
             $table->string('lit');

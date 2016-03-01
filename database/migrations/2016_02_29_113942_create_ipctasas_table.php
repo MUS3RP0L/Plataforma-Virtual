@@ -16,8 +16,8 @@ class CreateIpctasasTable extends Migration
             
             $table->engine = 'InnoDB';
 
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('user_id');
 
             $table->string('mes')->required();
             $table->string('anio')->required();
@@ -29,6 +29,14 @@ class CreateIpctasasTable extends Migration
             $table->foreign('user_id')->references('id')->on('users'); 
 
         });
+
+        Schema::table('aportes_musers', function (Blueprint $table) {
+
+            $table->UnsignedBigInteger('ipc_tasa_id');
+            $table->foreign('ipc_tasa_id')->references('id')->on('ipc_tasas');
+
+        });
+
     }
 
     /**

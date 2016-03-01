@@ -16,7 +16,7 @@ class CreateAfiliadosTable extends Migration
         {
             $table->engine = 'InnoDB';
             
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('cod');
 
@@ -28,8 +28,8 @@ class CreateAfiliadosTable extends Migration
         
             $table->engine = 'InnoDB';    
             
-            $table->increments('id');   
-            $table->unsignedInteger('depa_id');
+            $table->bigIncrements('id');   
+            $table->UnsignedBigInteger('depa_id');
             $table->string('name');
 
             $table->timestamps();
@@ -42,7 +42,7 @@ class CreateAfiliadosTable extends Migration
         {
             $table->engine = 'InnoDB';
 
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
 
             $table->timestamps();
@@ -52,8 +52,8 @@ class CreateAfiliadosTable extends Migration
         {
             $table->engine = 'InnoDB';
 
-            $table->increments('id');
-            $table->unsignedInteger('afi_type_id');
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('afi_type_id');
             $table->string('name');
 
             $table->timestamps();
@@ -67,12 +67,12 @@ class CreateAfiliadosTable extends Migration
             
             $table->engine = 'InnoDB';
             
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('afi_state_id')->nullable();
-            $table->unsignedInteger('depa_exp_id')->nullable();
-            $table->unsignedInteger('depa_nat_id')->nullable();
-            $table->unsignedInteger('muni_id')->nullable();
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('user_id');
+            $table->UnsignedBigInteger('afi_state_id')->nullable();
+            $table->UnsignedBigInteger('depa_exp_id')->nullable();
+            $table->UnsignedBigInteger('depa_nat_id')->nullable();
+            $table->UnsignedBigInteger('muni_id')->nullable();
 
             $table->string('ci')->unique()->required();
             $table->string('matri')->unique()->required();
@@ -113,9 +113,9 @@ class CreateAfiliadosTable extends Migration
         {
             $table->engine = 'InnoDB';
 
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->integer('afiliado_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('user_id');
+            $table->UnsignedBigInteger('afiliado_id');
             $table->string('type');
             $table->string('obs');
 

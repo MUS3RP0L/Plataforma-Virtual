@@ -18,9 +18,21 @@ class CreateAportesMusersTable extends Migration
             
             $table->engine = 'InnoDB';
 
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             
+            $table->timestamps();
+
+        });
+
+        Schema::create('pagos', function(Blueprint $table){
+            
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('id');
+
+            $table->date('fech_pag')->nullable();
+
             $table->timestamps();
 
         });
@@ -29,16 +41,17 @@ class CreateAportesMusersTable extends Migration
             
             $table->engine = 'InnoDB';
 
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->integer('afiliado_id')->unsigned();
-            $table->integer('apor_mus_type_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('user_id');
+            $table->UnsignedBigInteger('afiliado_id');
+            $table->UnsignedBigInteger('apor_mus_type_id');
+            
+            $table->UnsignedBigInteger('pago_id');
 
             $table->string('mes')->required();
             $table->string('anio')->required();
 
-            $table->date('fech_apor')->nullable();
-
+        
             $table->string('num_rec')->required();
 
             $table->double('mus')->required();
@@ -49,6 +62,7 @@ class CreateAportesMusersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->foreign('apor_mus_type_id')->references('id')->on('apor_mus_types');
+            $table->foreign('pago_id')->references('id')->on('pagos');
 
         });
     }
