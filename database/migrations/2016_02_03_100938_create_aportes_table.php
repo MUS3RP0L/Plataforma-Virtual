@@ -23,8 +23,8 @@ class CreateAportesTable extends Migration
             $table->string('mes')->required();
             $table->string('anio')->required();
 
-            $table->string('uni');
-            $table->string('desg');
+            $table->bigInteger('uni');
+            $table->bigInteger('desg');
 
             $table->string('niv');
             $table->string('gra');
@@ -48,6 +48,8 @@ class CreateAportesTable extends Migration
             $table->double('sub');
 
             $table->double('gan');
+            $table->double('pag');
+
             $table->double('cot');
             $table->double('mus');
 

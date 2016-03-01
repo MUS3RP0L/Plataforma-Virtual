@@ -100,5 +100,14 @@ class Util
 		return number_format($mus*0.0065/0.025, 2, '.', ',');
 
 	}
+	public static function getAfp($afp)
+	{
+	    if ($afp == 'V') {
+	        return true;
+	    } 
+	    else if ($afp == 'F'){
+	        return false;
+	    }
+	}
 
 }

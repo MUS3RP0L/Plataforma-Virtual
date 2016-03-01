@@ -25,14 +25,14 @@ class Afiliado extends Model
 	'est_civ',
 	'sex',
 	'fech_nac',
-	'fech_ing'
+	'fech_ing',
 	'fech_dece',
 	'zona',
 	'calle',
 	'num_domi',
 	'tele',
 	'celu',
-	'email',
+	'email'
 
 	];
 

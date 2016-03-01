@@ -69,7 +69,7 @@ class CreateAfiliadosTable extends Migration
             
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
-            $table->UnsignedBigInteger('afi_state_id')->nullable();
+            $table->UnsignedBigInteger('afi_state_id');
             $table->UnsignedBigInteger('depa_exp_id')->nullable();
             $table->UnsignedBigInteger('depa_nat_id')->nullable();
             $table->UnsignedBigInteger('muni_id')->nullable();
@@ -97,6 +97,10 @@ class CreateAfiliadosTable extends Migration
             $table->string('tele')->nullable();
             $table->string('celu')->nullable();
             $table->string('email')->nullable();
+
+            $table->boolean('afp')->nullable();
+            $table->bigInteger('nua')->nullable();
+
 
             $table->timestamps();
             $table->softDeletes();
