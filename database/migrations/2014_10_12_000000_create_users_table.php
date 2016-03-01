@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->enum('role',['admin', 'fondo_retiro', 'complemento_economico']);
             $table->enum('status',['Activo', 'Inactivo'])->default('Activo');
             $table->rememberToken();
+            
             $table->timestamps();
             $table->softDeletes();
         });

@@ -21,6 +21,7 @@ class CreateUnidadesTable extends Migration
             $table->string('cod');
             $table->string('lit');
             $table->string('abre');
+            
             $table->timestamps();
         });
     }

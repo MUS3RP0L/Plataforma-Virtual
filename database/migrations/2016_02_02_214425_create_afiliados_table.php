@@ -19,6 +19,7 @@ class CreateAfiliadosTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('cod');
+
             $table->timestamps();
 
         }); 
@@ -31,9 +32,10 @@ class CreateAfiliadosTable extends Migration
             $table->unsignedInteger('depa_id');
             $table->string('name');
 
+            $table->timestamps();
+
             $table->foreign('depa_id')->references('id')->on('departamentos');
 
-            $table->timestamps();
         });
 
         Schema::create('afi_types', function(Blueprint $table)
@@ -54,9 +56,10 @@ class CreateAfiliadosTable extends Migration
             $table->unsignedInteger('afi_type_id');
             $table->string('name');
 
+            $table->timestamps();
+
             $table->foreign('afi_type_id')->references('id')->on('afi_types');
 
-            $table->timestamps();
         }); 
 
         Schema::create('afiliados', function (Blueprint $table)
@@ -95,14 +98,14 @@ class CreateAfiliadosTable extends Migration
             $table->string('celu')->nullable();
             $table->string('email')->nullable();
 
+            $table->timestamps();
+            $table->softDeletes();
+
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afi_state_id')->references('id')->on('afi_states');
             $table->foreign('depa_exp_id')->references('id')->on('departamentos');
             $table->foreign('depa_nat_id')->references('id')->on('departamentos');
             $table->foreign('muni_id')->references('id')->on('municipios');
-
-            $table->timestamps();
-            $table->softDeletes();
 
         });
 
@@ -116,11 +119,11 @@ class CreateAfiliadosTable extends Migration
             $table->string('type');
             $table->string('obs');
 
-            $table->foreign('user_id')->references('id')->on('users'); 
-            $table->foreign('afiliado_id')->references('id')->on('afiliados');
-
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users'); 
+            $table->foreign('afiliado_id')->references('id')->on('afiliados');
 
         });
 

@@ -21,6 +21,7 @@ class CreateGradosTable extends Migration
             $table->string('grad');
             $table->string('lit');
             $table->string('abre');
+            
             $table->timestamps();
         });
     }

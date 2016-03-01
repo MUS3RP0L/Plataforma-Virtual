@@ -28,11 +28,11 @@ class CreateAportasasTable extends Migration
             $table->double('apor_fr');
             $table->double('apor_sv');
 
+            $table->timestamps();
+
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afi_type_id')->references('id')->on('afi_types');
       
-            $table->timestamps();
-
         });
     }
 
