@@ -17,6 +17,7 @@ class CreateAportesTable extends Migration
             $table->engine = 'InnoDB';
             
             $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->integer('afiliado_id')->unsigned();
 
             $table->string('mes')->required();
@@ -53,6 +54,7 @@ class CreateAportesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
         
         });

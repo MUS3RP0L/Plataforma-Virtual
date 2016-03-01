@@ -29,7 +29,7 @@ class CreateAportesMusersTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            
+            $table->unsignedInteger('user_id');
             $table->integer('afiliado_id')->unsigned();
             $table->integer('apor_mus_type_id')->unsigned();
 
@@ -44,7 +44,8 @@ class CreateAportesMusersTable extends Migration
 
             $table->timestamps();
             $table->softDeletes();
-
+            
+            $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->foreign('apor_mus_type_id')->references('id')->on('apor_mus_types');
 

@@ -17,6 +17,7 @@ class CreateSueldosTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
+            $table->unsignedInteger('user_id');
 
             $table->integer('grado_id')->unsigned();
 
@@ -26,6 +27,7 @@ class CreateSueldosTable extends Migration
        
             $table->timestamps();
 
+            $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('grado_id')->references('id')->on('grados');
 
         });

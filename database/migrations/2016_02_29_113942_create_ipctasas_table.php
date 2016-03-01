@@ -17,6 +17,7 @@ class CreateIpctasasTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
+            $table->unsignedInteger('user_id');
 
             $table->string('mes')->required();
             $table->string('anio')->required();
@@ -24,6 +25,8 @@ class CreateIpctasasTable extends Migration
             $table->double('ipc');
             
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users'); 
 
         });
     }

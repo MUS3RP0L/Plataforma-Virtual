@@ -17,6 +17,7 @@ class CreateTitularesTable extends Migration
             $table->engine = 'InnoDB';
             
             $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->integer('afiliado_id')->unsigned();
 
             $table->string('ci')->unique()->required();
@@ -41,6 +42,7 @@ class CreateTitularesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
         });
     }
