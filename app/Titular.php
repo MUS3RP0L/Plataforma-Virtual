@@ -25,4 +25,9 @@ class Titular extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function afiliado()
+    {
+        return $this->belongsTo('App\Afiliado');
+    }
 }

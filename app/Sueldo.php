@@ -16,4 +16,9 @@ class Sueldo extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function grado()
+    {
+        return $this->belongsTo('Muserpol\Grado');
+    }
 }

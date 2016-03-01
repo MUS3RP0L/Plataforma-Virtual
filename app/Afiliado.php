@@ -43,6 +43,43 @@ class Afiliado extends Model
         return $this->hasMany('Muserpol\Aporte');
     }
 
+    public function aportes_musers()
+    {
+        return $this->hasMany('Muserpol\AportesMuser');
+    }    
+
+    public function notes()
+    {
+        return $this->hasMany('Muserpol\Note');
+    }
+
+    public function titular()
+    {
+        return $this->hasOne('Muserpol\Titular');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('Muserpol\User');
+    }
+
+    public function afi_state()
+    {
+        return $this->belongsTo('Muserpol\AfiState');
+    }
+
+    public function municipio()
+    {
+        return $this->belongsTo('Muserpol\Municipio');
+    }
+
+    public function departamento()
+    {
+        return $this->belongsTo('Muserpol\Departamento');
+    }
+
+
+
 	public function scopeIdIs($query, $id)
     {
         return $query->where('id', $id);
@@ -52,6 +89,9 @@ class Afiliado extends Model
     {
         return $query->where('ci', $ci);
     }
+
+
+
 
     public function getFullDateNac()
     {	

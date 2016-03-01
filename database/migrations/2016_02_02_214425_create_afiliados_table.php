@@ -64,10 +64,9 @@ class CreateAfiliadosTable extends Migration
             
             $table->engine = 'InnoDB';
             
-            $table->increments('id');  
-
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->unsignedInteger('afi_state_id')->nullable();
-
             $table->unsignedInteger('depa_exp_id')->nullable();
             $table->unsignedInteger('depa_nat_id')->nullable();
             $table->unsignedInteger('muni_id')->nullable();
@@ -96,13 +95,14 @@ class CreateAfiliadosTable extends Migration
             $table->string('celu')->nullable();
             $table->string('email')->nullable();
 
-            $table->timestamps();
-            $table->softDeletes();
-
+            $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afi_state_id')->references('id')->on('afi_states');
             $table->foreign('depa_exp_id')->references('id')->on('departamentos');
             $table->foreign('depa_nat_id')->references('id')->on('departamentos');
             $table->foreign('muni_id')->references('id')->on('municipios');
+
+            $table->timestamps();
+            $table->softDeletes();
 
         });
 
@@ -111,15 +111,16 @@ class CreateAfiliadosTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-
+            $table->unsignedInteger('user_id');
             $table->integer('afiliado_id')->unsigned();
             $table->string('type');
             $table->string('obs');
 
+            $table->foreign('user_id')->references('id')->on('users'); 
+            $table->foreign('afiliado_id')->references('id')->on('afiliados');
+
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('afiliado_id')->references('id')->on('afiliados');
 
         });
 

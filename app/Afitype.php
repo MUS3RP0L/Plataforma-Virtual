@@ -16,4 +16,9 @@ class AfiType extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function afi_states()
+    {
+        return $this->hasMany('Muserpol\AfiState');
+    } 
 }

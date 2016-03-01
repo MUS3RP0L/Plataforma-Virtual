@@ -19,7 +19,7 @@ class CreateAportesMusersTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->string('type');
+            $table->string('name');
             $table->timestamps();
 
         });

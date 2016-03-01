@@ -16,4 +16,9 @@ class Municipio extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function departamento(){
+
+        return $this->belongsTo('Muserpol\Departamento');
+    }
 }

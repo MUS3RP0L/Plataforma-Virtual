@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AfiState extends Model
 {
-        protected $table = 'afi_states';
+    protected $table = 'afi_states';
 
 	protected $fillable = [
 	
@@ -16,4 +16,9 @@ class AfiState extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function afi_type()
+    {
+        return $this->belongsTo('Muserpol\AfiType');
+    }
 }

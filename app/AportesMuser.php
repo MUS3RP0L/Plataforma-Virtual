@@ -22,4 +22,9 @@ class AportesMuser extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function apor_mus_types()
+    {
+        return $this->hasMany('Muserpol\AporMusType');
+    }
 }

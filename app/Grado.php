@@ -19,4 +19,9 @@ class Grado extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function sueldos()
+    {
+        return $this->hasMany('Muserpol\Sueldo');
+    }
 }

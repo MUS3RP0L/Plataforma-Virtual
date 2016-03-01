@@ -22,7 +22,7 @@ class UnidadTableSeeder extends Seeder
     {
         $statuses = [
 	    	['id' => '1', 'ciu' => 'SUCRE', 'cod' => '10182', 'abre' => 'CDPN.', 'lit' => 'CMDO DPTAL SUCRE'],
-	    	['id' => '2', 'ciu' => 'sucre', 'cod' => '10194', 'abre' => 'DCSP.', 'lit' => 'NARCOTICOS SUCRE'],
+	    	['id' => '2', 'ciu' => 'SUCRE', 'cod' => '10194', 'abre' => 'DCSP.', 'lit' => 'NARCOTICOS SUCRE'],
 	    	['id' => '3', 'ciu' => 'LA PAZ', 'cod' => '20181', 'abre' => 'S.F.E.', 'lit' => 'SEGURIDAD FISICA ESTATAL'],
 	    	['id' => '4', 'ciu' => 'LA PAZ', 'cod' => '20182', 'abre' => 'CDPN.', 'lit' => 'CMDO DPTAL LA PAZ'],
 	    	['id' => '5', 'ciu' => 'LA PAZ', 'cod' => '20183', 'abre' => 'ANAPOL', 'lit' => 'ACADEMIA NAL DE POLICIA'],
