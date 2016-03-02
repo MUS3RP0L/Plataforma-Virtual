@@ -32,12 +32,12 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">Información Personal</h3>
 						</div>
-						<div class="panel-body" style="font-size: 16px">
+						<div class="panel-body" style="font-size: 14px">
 							<div class="row"><p>
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Carnet Identidad</b>
+											Carnet Identidad
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->ci !!} 
@@ -47,7 +47,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Fecha Nacimiento</b>
+											Fecha Nacimiento
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->getFullDateNac() !!}
@@ -59,7 +59,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Apellido Paterno</b>
+											Apellido Paterno
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->pat !!}
@@ -69,7 +69,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Apellido Materno</b>
+											Apellido Materno
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->mat !!}
@@ -81,7 +81,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>1er Nombre</b>
+											Primer Nombre
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->nom !!}
@@ -91,7 +91,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>2do Nombre</b>
+											Segundo Nombre
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->nom2 !!}
@@ -104,7 +104,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Apellido Esposo</b>
+											Apellido de Esposo
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->ap_esp !!}
@@ -117,7 +117,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Estado Civil</b>
+											Estado Civil
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->getCivil() !!}
@@ -127,7 +127,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Sexo</b>
+											Sexo
 										</div>
 										<div class="col-md-6">
 											 {!! $afiliado->getSex() !!}
@@ -139,14 +139,36 @@
 					</div>
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">Información Policial</h3>
+							<h3 class="panel-title">Información Policial Actual</h3>
 						</div>
-						<div class="panel-body" style="font-size: 16px">
-							<div class="row"><p >
+						<div class="panel-body" style="font-size: 14px">
+							<div class="row"><p>
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Unidad</b>
+											Estado
+										</div>
+										<div class="col-md-6">
+											{!! $afiliado->afi_state->name !!}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											Fecha de Ingreso
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->getFullDateIng() !!}
+										</div>
+									</div>
+								</div></p>
+							</div>
+							<div class="row"><p>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											Unidad
 										</div>
 										<div class="col-md-6">
 											{!! $lastAporte->unidad->lit !!}
@@ -156,7 +178,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Grado</b>
+											Grado
 										</div>
 										<div class="col-md-6">
 											 {!! $lastAporte->grado->lit !!}
@@ -168,7 +190,7 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Número de Ítem</b>
+											Número de Ítem
 										</div>
 										<div class="col-md-6">
 											{!! $lastAporte->item !!}
@@ -178,10 +200,39 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Matrícula</b>
+											Número de Matrícula
 										</div>
 										<div class="col-md-6">
 											{!! $afiliado->matri !!}
+										</div>
+									</div>
+								</div></p>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Información de Domicilio</h3>
+						</div>
+						<div class="panel-body" style="font-size: 14px">
+							<div class="row"><p>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											Zona
+										</div>
+										<div class="col-md-6">
+											{!! $afiliado->zona !!}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											Calle
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->calle !!}
 										</div>
 									</div>
 								</div></p>
@@ -190,10 +241,42 @@
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-6">
-											<b>Fecha Ingreso</b>
+											Núm Domicilio
 										</div>
 										<div class="col-md-6">
-											{!! $afiliado->getFullDateIng() !!}
+											{!! $afiliado->num_domi !!}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											Teléfono
+										</div>
+										<div class="col-md-6">
+											 {!! $afiliado->tele !!}
+										</div>
+									</div>
+								</div></p>
+							</div>
+							<div class="row"><p>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											Correo electrónico
+										</div>
+										<div class="col-md-6">
+											{!! $afiliado->celu !!}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											Celular
+										</div>
+										<div class="col-md-6">
+											{!! $afiliado->email !!}
 										</div>
 									</div>
 								</div></p>
@@ -242,6 +325,7 @@
 									</table>
 									
 									<br/>
+									<br/>
 
 									<table class="table" style="width:100%;font-size: 16px">
 										<tr>
@@ -272,7 +356,7 @@
 				<div class="col-md-12">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">Planillas de Reintegro de Haberes</h3>
+							<h3 class="panel-title">Planillas de Haberes</h3>
 						</div>
 						<div class="panel-body">
 							<div class="row">

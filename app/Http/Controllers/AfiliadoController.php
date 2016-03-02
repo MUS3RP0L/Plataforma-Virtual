@@ -41,7 +41,7 @@ class AfiliadoController extends Controller
                             <a href="afiliado/'.$afiliado->id.'" ><i class="glyphicon glyphicon-zoom-in"></i> Ver </a>&nbsp;|&nbsp;
                             <a href="afiliado/'.$afiliado->id. '/edit" ><i class="glyphicon glyphicon-pencil"></i> Editar </a></div>';})
 
-                ->editColumn('est', function ($aportes) { return $aportes->afi_state->name; })
+                ->addColumn('est', function ($afiliado) { return $afiliado->afi_state->name; })
                 ->make(true);
     }
 
@@ -262,8 +262,8 @@ class AfiliadoController extends Controller
             'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'mat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'nom2' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'est_civ' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'nom2' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'est_civ' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
 
         ];
 

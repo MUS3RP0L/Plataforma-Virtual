@@ -34,21 +34,21 @@
 									<div class="form-group form-group-lg">
 											{!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
-											{!! Form::text('pat', $afiliado->pat, ['class'=> 'form-control', 'required' => 'required']) !!}
+											{!! Form::text('pat', $afiliado->pat, ['class'=> 'form-control']) !!}
 											<span class="help-block">Apellido paterno</span>
 										</div>
 									</div>									
 									<div class="form-group form-group-lg">
 											{!! Form::label('nom', 'PRIMER NOMBRE', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
-											{!! Form::text('nom', $afiliado->nom, ['class'=> 'form-control', 'required' => 'required']) !!}
+											{!! Form::text('nom', $afiliado->nom, ['class'=> 'form-control']) !!}
 											<span class="help-block">Primer nombre</span>
 										</div>
 									</div>
 									<div class="form-group form-group-lg">
 											{!! Form::label('est_civ', 'ESTADO CIVIL', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
-											{!! Form::text('est_civ', $afiliado->getCivil(), ['class'=> 'form-control', 'required' => 'required']) !!}
+											{!! Form::text('est_civ', $afiliado->getCivil(), ['class'=> 'form-control']) !!}
 											<span class="help-block">Estado civil</span>
 										</div>
 									</div>
@@ -56,7 +56,7 @@
 									<div class="form-group form-group-lg">
 											{!! Form::label('ap_esp', 'APELLIDO ESPOSO', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
-											{!! Form::text('ap_esp', $afiliado->ap_esp, ['class'=> 'form-control', 'required' => 'required']) !!}
+											{!! Form::text('ap_esp', $afiliado->ap_esp, ['class'=> 'form-control']) !!}
 											<span class="help-block">Apellido esposo (Opcional)</span>
 										</div>
 									</div>
@@ -72,14 +72,14 @@
 									<div class="form-group form-group-lg">
 											{!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
-											{!! Form::text('mat', $afiliado->mat, ['class'=> 'form-control', 'required' => 'required']) !!}
+											{!! Form::text('mat', $afiliado->mat, ['class'=> 'form-control']) !!}
 											<span class="help-block">Apellido Materno</span>
 										</div>
 									</div>
 									<div class="form-group form-group-lg">
 											{!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
-											{!! Form::text('nom2', $afiliado->nom2, ['class'=> 'form-control', 'required' => 'required']) !!}
+											{!! Form::text('nom2', $afiliado->nom2, ['class'=> 'form-control']) !!}
 											<span class="help-block">Segundo nombre</span>
 										</div>
 									</div>
