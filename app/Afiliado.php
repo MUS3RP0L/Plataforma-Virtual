@@ -95,7 +95,7 @@ class Afiliado extends Model
 
     public function getFullDateNac()
     {	
-		$meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sept","Oct","Nov","Dic");
+		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 		return date("d", strtotime($this->fech_nac))." ".$meses[date("n", strtotime($this->fech_nac))-1]. " ".date("Y", strtotime($this->fech_nac));
  
     }
@@ -150,7 +150,7 @@ class Afiliado extends Model
 
 	public function getFullDateIng()
     {	
-		$meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sept","Oct","Nov","Dic");
+		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 		return date("d", strtotime($this->fech_ing))." ".$meses[date("n", strtotime($this->fech_ing))-1]. " ".date("Y", strtotime($this->fech_ing));
  
     }

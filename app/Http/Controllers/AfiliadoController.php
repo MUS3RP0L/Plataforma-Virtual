@@ -235,8 +235,15 @@ class AfiliadoController extends Controller
 
         $afiliado = Afiliado::where('id', '=', $id)->firstOrFail();
 
+        if ($afiliado->sex == 'M') {
+            $list_est_civ = array('' => '','C' => 'Casado','S' => 'Soltero','V' => 'Viudo','D' => 'Divorciado');
+        }elseif ($afiliado->sex == 'F') {
+            $list_est_civ = array('' => '','C' => 'Casada','S' => 'Soltera','V' => 'Viuda','D' => 'Divorciada');
+        }
+
         $data = [
-            'afiliado' => $afiliado
+            'afiliado' => $afiliado,
+            'list_est_civ' => $list_est_civ,
         ];
 
         return View('afiliados.edit', $data);
@@ -256,15 +263,12 @@ class AfiliadoController extends Controller
 
     public function save($request, $id = false)
     {
-
-
         $rules = [
             'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'mat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom2' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'est_civ' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-
+            'ap_esp' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
         ];
 
         $messages = [
@@ -275,17 +279,14 @@ class AfiliadoController extends Controller
             'mat.min' => 'El mínimo de caracteres permitidos para apellido materno es 3',
             'mat.regex' => 'Sólo se aceptan letras para apellido materno',
 
-            'nom.required' => 'El campo primer nombre requerido',
             'nom.min' => 'El mínimo de caracteres permitidos para primer nombre es 3',
             'nom.regex' => 'Sólo se aceptan letras para primer nombre',
 
-            'nom2.required' => 'El campo segundo nombre es requerido',
             'nom2.min' => 'El mínimo de caracteres permitidos para teléfono de usuario es 3',
             'nom2.regex' => 'Sólo se aceptan letras para segundo nombre',
 
-            'est_civ.required' => 'El campo estado civil es requerido',
-            'est_civ.min' => 'El mínimo de caracteres permitidos para estado civil es 3',
-            'est_civ.regex' => 'Sólo se aceptan letras para estado civil',
+            'ap_esp.min' => 'El mínimo de caracteres permitidos para estado civil es 3',
+            'ap_esp.regex' => 'Sólo se aceptan letras para estado civil',
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
