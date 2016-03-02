@@ -23,17 +23,20 @@ class AporteController extends Controller
      */
     public function index()
     {
-        //
+        //->addColumn('nivgra', '{{$niv}}-{{$gra}}')
     }
 
     public function aportesData(Request $request)
     {   
 
-        $aportes = Aporte::select(['id', 'mes', 'anio', 'niv', 'gra', 'uni', 'item', 'sue',
+        $aportes = Aporte::select(['id', 'mes', 'anio', 'grado_id', 'unidad_id', 'item', 'sue',
                              'b_ant', 'b_est', 'b_car', 'b_fro', 'b_ori', 'b_seg',
                              'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'cot', 'mus' ])->where('afiliado_id', $request->id);
 
-        return Datatables::of($aportes)->addColumn('period', '{{$mes}}-{{$anio}}')
+        return Datatables::of($aportes)
+                        ->editColumn('anio', function ($aportes) { return $aportes->mes . "-" . $aportes->anio; })
+                        ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
+                        ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
                         ->editColumn('sue', function ($aportes) { return Util::formatMoney($aportes->sue); })
                         ->editColumn('b_ant', function ($aportes) { return Util::formatMoney($aportes->b_ant); })
                         ->editColumn('b_est', function ($aportes) { return Util::formatMoney($aportes->b_est); })
@@ -46,9 +49,7 @@ class AporteController extends Controller
                         ->editColumn('mus', function ($aportes) { return Util::formatMoney($aportes->mus); })
                         ->addColumn('fon', function ($aportes) { return Util::calcFon($aportes->mus); })
                         ->addColumn('vid', function ($aportes) { return Util::calcVid($aportes->mus); })
-
-
-                        ->addColumn('nivgra', '{{$niv}}-{{$gra}}')->make(true);
+                        ->make(true);
     }
 
     /**

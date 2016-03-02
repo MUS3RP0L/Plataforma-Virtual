@@ -7,7 +7,7 @@
             <div class="panel-heading">
             	<div class="row">  
 	             	<div class="col-md-8">
-	                    <h4><b>{!! $grado->lit !!}</b></h4><h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
+	                    <h4><b>{!! $lastAporte->grado->lit !!}</b></h4><h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
 	                </div>
 	                <div class="col-md-4 text-right"> 
 						<div class="btn-group">
@@ -149,7 +149,7 @@
 											<b>Unidad</b>
 										</div>
 										<div class="col-md-6">
-											{!! $unidad->lit !!}
+											{!! $lastAporte->unidad->lit !!}
 										</div>
 									</div>
 								</div>
@@ -159,7 +159,7 @@
 											<b>Grado</b>
 										</div>
 										<div class="col-md-6">
-											 {!! $grado->lit !!}
+											 {!! $lastAporte->grado->lit !!}
 										</div>
 									</div>
 								</div></p>
@@ -353,9 +353,9 @@
 	        },
 
 	        columns: [
-	            { data: 'period', name: 'period' },
-	            { data: 'nivgra', name: 'nivgra' },
-	            { data: 'uni', name: 'uni' },
+	            { data: 'anio', name: 'anio' },
+	            { data: 'grado_id', name: 'grado_id' },
+	            { data: 'unidad_id', name: 'unidad_id' },
 	            { data: 'item', name: 'item' },
 	            { data: 'sue', name: 'sue' },
 	            { data: 'b_ant', name: 'b_ant' },

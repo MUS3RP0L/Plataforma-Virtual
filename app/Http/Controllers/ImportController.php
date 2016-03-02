@@ -12,6 +12,8 @@ use Muserpol\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
+use Muserpol\Grado;
+use Muserpol\Unidad;
 use Muserpol\Helper\Util;
 
 $countAfi = 0;
@@ -117,12 +119,10 @@ class ImportController extends Controller
 					$aporte->afiliado_id = $afiliado->id;
 					$aporte->mes = $result->mes;
 					$aporte->anio = $result->a_o;
-					$aporte->uni = $result->uni;
+					$aporte->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
 					$aporte->desg = $result->desg;
-					$aporte->niv = $result->niv;
-					$aporte->gra = $result->gra;
+					$aporte->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
 					$aporte->item = $result->item;
-
 					$aporte->sue = Util::decimal($result->sue);
 					$aporte->b_ant = Util::decimal($result->cat);
 					$aporte->cat = Util::calcCat($aporte->b_ant,$aporte->sue);

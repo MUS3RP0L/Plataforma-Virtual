@@ -19,12 +19,13 @@
                             <table class="table table-striped table-hover" id="afiliados-table">
                                 <thead>
                                     <tr class="success">
-                                        <th>Carnet Identidad</th>
-                                        <th>Nivel - Grado</th>
+                                        <th>Matrícula</th>
+                                        <th>Estado</th>
+                                        <th>Núm. Carnet</th>
+                                        <th>Grado</th>
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
-                                        <th>Nombres</th>
-                                        <th>Matrícula</th>
+                                        <th>Nombres</th>     
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -47,12 +48,14 @@ $(function() {
         serverSide: true,
         ajax: '{!! route('getAfiliado') !!}',
         columns: [
+            { data: 'matri', name: 'matri', sWidth: '8%' },
+            { data: 'est', name: 'est', sWidth: '8%' },
             { data: 'ci', name: 'ci', sWidth: '10%' },
-            { data: 'niv', name: 'niv', sWidth: '10%' },
+            { data: 'gra', name: 'gra', sWidth: '10%' },
             { data: 'pat', name: 'pat', sWidth: '15%' },
             { data: 'mat', name: 'mat', sWidth: '15%' },
             { data: 'mons', name: 'mons', sWidth: '15%' },
-            { data: 'matri', name: 'matri', sWidth: '10%' },
+            
             { data: 'action', name: 'action', sWidth: '10%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
         ]
     });

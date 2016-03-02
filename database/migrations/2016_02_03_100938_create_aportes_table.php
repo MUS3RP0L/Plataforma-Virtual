@@ -23,11 +23,7 @@ class CreateAportesTable extends Migration
             $table->string('mes')->required();
             $table->string('anio')->required();
 
-            $table->bigInteger('uni');
             $table->bigInteger('desg');
-
-            $table->string('niv');
-            $table->string('gra');
 
             $table->string('item');
 

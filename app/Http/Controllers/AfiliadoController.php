@@ -31,14 +31,17 @@ class AfiliadoController extends Controller
 
     public function afiliadosData()
     {
-        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri']);
+        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri', 'afi_state_id']);
 
         return Datatables::of($afiliados)
-                ->addColumn('niv', function ($afiliado) { return Aporte::select('niv', 'gra')->afiliadoId($afiliado->id)->orderBy('id', 'desc')->first()->niv.'-'.
-                    Aporte::select('niv', 'gra')->afiliadoId($afiliado->id)->orderBy('id', 'desc')->first()->gra; })
-                ->addColumn('action', function ($afiliado) {
-                return  '<div class="row text-center"><a href="afiliado/'.$afiliado->id.'" ><i class="glyphicon glyphicon-zoom-in"></i> Ver</a></div>';})
+                ->addColumn('gra', function ($afiliado) { return Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->first()->grado->abre; })
                 ->addColumn('mons', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
+                ->addColumn('action', function ($afiliado) { 
+                    return  '<div class="row text-center">
+                            <a href="afiliado/'.$afiliado->id.'" ><i class="glyphicon glyphicon-zoom-in"></i> Ver </a>&nbsp;|&nbsp;
+                            <a href="afiliado/'.$afiliado->id. '/edit" ><i class="glyphicon glyphicon-pencil"></i> Editar </a></div>';})
+
+                ->editColumn('est', function ($aportes) { return $aportes->afi_state->name; })
                 ->make(true);
     }
 
@@ -71,7 +74,7 @@ class AfiliadoController extends Controller
      */
     public function show($id)
     {
-        $afiliado = Afiliado::idIs($id)->with('aportes')->orderBy('id', 'desc')->firstOrFail();
+        $afiliado = Afiliado::idIs($id)->orderBy('id', 'desc')->firstOrFail();
 
         $firstAporte = Aporte::afiliadoId($afiliado->id)->orderBy('anio', 'asc')->orderBy('mes', 'asc')->firstOrFail();
 
@@ -82,10 +85,6 @@ class AfiliadoController extends Controller
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('anio', 'desc')->orderBy('mes', 'desc')->firstOrFail();
 
         $lastAporte->hasta = $meses[$lastAporte->mes-1] .' - '.  $lastAporte->anio;
-
-        $grado = Grado::where('niv', $lastAporte->niv)->where('grad', $lastAporte->gra)->firstOrFail();
-        $unidad = Unidad::where('cod', $lastAporte->uni)->firstOrFail();
-
 
         $totalGanado = DB::table('afiliados')
                 ->select(DB::raw('SUM(aportes.gan) as ganado'))
@@ -134,8 +133,6 @@ class AfiliadoController extends Controller
             'afiliado' => $afiliado,
             'lastAporte' => $lastAporte,
             'firstAporte' => $firstAporte,
-            'grado' => $grado,
-            'unidad' => $unidad,
             'totalGanado' => Util::formatMoney($ganado),
             'totalSegCiu' => Util::formatMoney($SegCiu),
             'totalCotizable' => Util::formatMoney($cotizable),

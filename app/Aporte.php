@@ -57,6 +57,15 @@ class Aporte extends Model
 
         return $this->belongsTo('Muserpol\Afiliado');
     }
+    
+    public function grado(){
+
+        return $this->belongsTo('Muserpol\Grado');
+    }
+    public function unidad(){
+
+        return $this->belongsTo('Muserpol\Unidad');
+    }
 
     public function scopeIdIs($query, $id)
     {
