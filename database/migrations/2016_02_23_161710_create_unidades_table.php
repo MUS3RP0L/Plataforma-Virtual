@@ -25,6 +25,13 @@ class CreateUnidadesTable extends Migration
             $table->timestamps();
         });
 
+        Schema::table('afiliados', function (Blueprint $table) {
+
+            $table->UnsignedBigInteger('unidad_id');
+            $table->foreign('unidad_id')->references('id')->on('unidades');
+
+        });
+
         Schema::table('aportes', function (Blueprint $table) {
 
             $table->UnsignedBigInteger('unidad_id');

@@ -63,6 +63,16 @@ class Afiliado extends Model
         return $this->belongsTo('Muserpol\User');
     }
 
+    public function grado(){
+
+        return $this->belongsTo('Muserpol\Grado');
+    }
+
+    public function unidad(){
+
+        return $this->belongsTo('Muserpol\Unidad');
+    }
+
     public function afi_state()
     {
         return $this->belongsTo('Muserpol\AfiState');
@@ -90,9 +100,6 @@ class Afiliado extends Model
         return $query->where('ci', $ci);
     }
 
-
-
-
     public function getFullDateNac()
     {	
 		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
@@ -105,35 +112,35 @@ class Afiliado extends Model
 	    if ($this->est_civ == 'S') {
 	        
 	        if ($this->sex == 'M') {
-	        	return "Soltero";
+	        	return "SOLTERO";
 	    	}
 	    	else{
-	    		return "Soltera";
+	    		return "SOLTERA";
 	    	}
 	        
 	    } 
 	    else if ($this->est_civ == 'C'){
 	        if ($this->sex == 'M') {
-	        	return "Casado";
+	        	return "CASADO";
 	    	}
 	    	else{
-	    		return "Casada";
+	    		return "CASADA";
 	    	}
 	    }
 	    else if ($this->est_civ == 'V'){
 	        if ($this->sex == 'M') {
-	        	return "Viudo";
+	        	return "VIUDO";
 	    	}
 	    	else{
-	    		return "Viuda";
+	    		return "VIUDA";
 	    	}
 	    }
 	    else if ($this->est_civ == 'D'){
 	        if ($this->sex == 'M') {
-	        	return "divorciado";
+	        	return "DIVIRCIADO";
 	    	}
 	    	else{
-	    		return "divorciada";
+	    		return "DIVIRCIADA";
 	    	}
 	    }
 	}
@@ -141,10 +148,10 @@ class Afiliado extends Model
 	public function getSex()
 	{
 	    if ($this->sex == 'M') {
-	        return "Masculino";
+	        return "MASCULINO";
 	    } 
 	    else if ($this->sex == 'F'){
-	        return "Femenino";
+	        return "FEMENINO";
 	    }
 	}
 

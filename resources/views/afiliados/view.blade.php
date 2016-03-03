@@ -7,7 +7,7 @@
             <div class="panel-heading">
             	<div class="row">  
 	             	<div class="col-md-8">
-	                    <h4><b>{!! $lastAporte->grado->lit !!}</b></h4><h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
+	                    <h4><b>{!! $afiliado->grado->lit !!}</b></h4><h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
 	                </div>
 	                <div class="col-md-4 text-right"> 
 						<div class="btn-group">

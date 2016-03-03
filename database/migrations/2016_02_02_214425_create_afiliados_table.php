@@ -70,6 +70,7 @@ class CreateAfiliadosTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('afi_state_id');
+
             $table->UnsignedBigInteger('depa_exp_id')->nullable();
             $table->UnsignedBigInteger('depa_nat_id')->nullable();
             $table->UnsignedBigInteger('muni_id')->nullable();
@@ -107,6 +108,9 @@ class CreateAfiliadosTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afi_state_id')->references('id')->on('afi_states');
+
+
+
             $table->foreign('depa_exp_id')->references('id')->on('departamentos');
             $table->foreign('depa_nat_id')->references('id')->on('departamentos');
             $table->foreign('muni_id')->references('id')->on('municipios');

@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use DB;
 use Validator;
 use Session;
+use Cache;
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
 use Muserpol\Grado;
 use Muserpol\Unidad;
+use Muserpol\AfiState;
 use Datatables;
 use Muserpol\Helper\Util;
 
@@ -236,16 +238,37 @@ class AfiliadoController extends Controller
         $afiliado = Afiliado::where('id', '=', $id)->firstOrFail();
 
         if ($afiliado->sex == 'M') {
-            $list_est_civ = array('' => '','C' => 'Casado','S' => 'Soltero','V' => 'Viudo','D' => 'Divorciado');
+            $list_est_civ = array('' => '','C' => 'CASADO','S' => 'SOLTERO','V' => 'VIUDO','D' => 'DIVIRCIADO');
         }elseif ($afiliado->sex == 'F') {
-            $list_est_civ = array('' => '','C' => 'Casada','S' => 'Soltera','V' => 'Viuda','D' => 'Divorciada');
+            $list_est_civ = array('' => '','C' => 'CASADA','S' => 'SOLTERA','V' => 'VIDUA','D' => 'DIVIRCIADA');
         }
+
+        $afi_states = AfiState::all();
+
+        foreach ($afi_states as $item) {
+             $list_afi_states[$item->id]=$item->name;
+        }
+
+        $unidades = Unidad::all();
+
+        foreach ($unidades as $item) {
+             $list_unidades[$item->id]=$item->cod . " | " . $item->lit;
+        }
+
+        $grados = Grado::all();
+
+        foreach ($grados as $item) {
+             $list_grados[$item->id]=$item->niv. "-" .$item->grad . " | " . $item->lit;
+        } 
 
         $data = [
             'afiliado' => $afiliado,
             'list_est_civ' => $list_est_civ,
+            'list_afi_states' => $list_afi_states,
+            'list_unidades' => $list_unidades,
+            'list_grados' => $list_grados,
         ];
-
+        
         return View('afiliados.edit', $data);
     }
 
@@ -306,6 +329,18 @@ class AfiliadoController extends Controller
             $afiliado->nom2 = trim($request->nom2);
             $afiliado->est_civ = trim($request->est_civ); 
             $afiliado->ap_esp = trim($request->ap_esp); 
+
+            $afiliado->afi_state_id = $request->afi_state_id; 
+            $afiliado->unidad_id = $request->unidad_id; 
+            $afiliado->grado_id = $request->grado_id;
+
+            $afiliado->zona = trim($request->zona);
+            $afiliado->num_domi = trim($request->num_domi);
+            $afiliado->email = trim($request->email);
+            $afiliado->calle = trim($request->calle);
+            $afiliado->tele = trim($request->tele);
+            $afiliado->celu = trim($request->celu);
+
             $afiliado->save();
 
             $message = "Afiliado Actualizado con éxito";

@@ -24,4 +24,9 @@ class Grado extends Model
     {
         return $this->hasMany('Muserpol\Sueldo');
     }
+
+    public function afiliados()
+    {
+        return $this->hasMany('Muserpol\Afiliado');
+    }
 }

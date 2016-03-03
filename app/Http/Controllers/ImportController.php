@@ -76,20 +76,38 @@ class ImportController extends Controller
 
 				$carnet = Util::zero($result->car);
 
-				$afiliado = Afiliado::where('ci', '=', $carnet)->first();
 				
-				if ($afiliado === null) {
+				if (Afiliado::where('ci', '=', $carnet)->first()) {
 	
+					$afiliado = Afiliado::where('ci', '=', $carnet)->first();
+	        		$afiliado->user_id = Auth::user()->id;
+	        		
+	        		if(Util::decimal($result->desg) == 0){
+	        			$afiliado->afi_state_id = 1;
+	        		}
+	        		else{
+	        			$afiliado->afi_state_id = 2;
+	        		}
+	        		$afiliado->unidad_act_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
+	        		$afiliado->grado_act_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+	        		$afiliado->afp = Util::getAfp($result->afp);
+	        		$afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
+	        		$afiliado->nua = $result->nua;
+	       	 		$afiliado->save();
+	       	 		
+				}else{
+
 					$afiliado = new Afiliado;
 	        		$afiliado->user_id = Auth::user()->id;
 	        		
-	        		if(Util::decimal($result->sue) == 0){
-	        			$afiliado->afi_state_id = 2;
-	        		}
-	        		else{
+	        		if(Util::decimal($result->desg) == 0){
 	        			$afiliado->afi_state_id = 1;
 	        		}
-	        		
+	        		else{
+	        			$afiliado->afi_state_id = 2;
+	        		}
+	        		$afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
+	        		$afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
 	        		$afiliado->ci = $carnet;
 	        		$afiliado->pat = $result->pat;
 	        		$afiliado->mat = $result->mat;

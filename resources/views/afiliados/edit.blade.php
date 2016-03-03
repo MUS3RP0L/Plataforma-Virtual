@@ -23,7 +23,6 @@
 						<div class="panel-body" style="font-size: 14px">
 							<div class="row">
 								<div class="col-md-6">
-
 									<div class="form-group form-group">
 											{!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
@@ -33,29 +32,29 @@
 									<div class="form-group form-group">
 											{!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
-											{!! Form::text('pat', $afiliado->pat, ['class'=> 'form-control']) !!}
+											{!! Form::text('pat', $afiliado->pat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
 											<span class="help-block">Apellido paterno</span>
 										</div>
 									</div>									
 									<div class="form-group form-group">
 											{!! Form::label('nom', 'PRIMER NOMBRE', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
-											{!! Form::text('nom', $afiliado->nom, ['class'=> 'form-control']) !!}
+											{!! Form::text('nom', $afiliado->nom, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
 											<span class="help-block">Primer nombre</span>
 										</div>
 									</div>
 									<div class="form-group form-group">
-											{!! Form::label('est_civ', 'ESTADO CIVIL', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('est_civ', 'ESTADO CIVIL', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-8">
-							              	{!! Form::select('est_civ', $list_est_civ, $afiliado->est_civ,['class' => 'combobox form-control']) !!}
-							                <span class="help-block">Selecione el estado civil</span>
+							              		{!! Form::select('est_civ', $list_est_civ, $afiliado->est_civ,['class' => 'combobox form-control']) !!}
+							                	<span class="help-block">Selecione el estado civil</span>
 							              	</div>
 									</div>
 									@if ($afiliado->sex == 'F')
 										<div class="form-group form-group">
 												{!! Form::label('ap_esp', 'APELLIDO ESPOSO', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-8">
-												{!! Form::text('ap_esp', $afiliado->ap_esp, ['class'=> 'form-control']) !!}
+												{!! Form::text('ap_esp', $afiliado->ap_esp, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
 												<span class="help-block">Apellido esposo (Opcional)</span>
 											</div>
 										</div>
@@ -71,14 +70,14 @@
 									<div class="form-group form-group">
 											{!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
-											{!! Form::text('mat', $afiliado->mat, ['class'=> 'form-control']) !!}
+											{!! Form::text('mat', $afiliado->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
 											<span class="help-block">Apellido Materno</span>
 										</div>
 									</div>
 									<div class="form-group form-group">
 											{!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
-											{!! Form::text('nom2', $afiliado->nom2, ['class'=> 'form-control']) !!}
+											{!! Form::text('nom2', $afiliado->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
 											<span class="help-block">Segundo nombre</span>
 										</div>
 									</div>
@@ -102,38 +101,39 @@
 							<h3 class="panel-title">Datos Policiales</h3>
 						</div>
 						<div class="panel-body" style="font-size: 14px">
+
 							<div class="row">
-								<div class="col-md-6">
-
+								<div class="col-md-12">		
 									<div class="form-group form-group">
-											{!! Form::label('afi_state', 'ESTADO', ['class' => 'col-md-4 control-label']) !!}
-										<div class="col-md-8">
-											{!! Form::text('afi_state', $afiliado->afi_state->name, ['class'=> 'form-control']) !!}
-										</div>
+											{!! Form::label('afi_state_id', 'ESTADO', ['class' => 'col-md-3 control-label']) !!}
+										<div class="col-md-9">
+						              		{!! Form::select('afi_state_id', $list_afi_states, $afiliado->afi_state_id,['class' => 'combobox form-control']) !!}
+						                	<span class="help-block"></span>
+						              	</div>
 									</div>
-									<div class="form-group form-group">
-											{!! Form::label('uni', 'UNIDAD', ['class' => 'col-md-4 control-label']) !!}
-										<div class="col-md-8">
-											{!! Form::text('uni', '', ['class'=> 'form-control']) !!}
-											<span class="help-block">Apellido paterno</span>
-										</div>
-									</div>								
 								</div>
-								<div class="col-md-6">
-									<div class="form-group form-group">
-											{!! Form::label('fech_ing', 'FECHA DE INGRESO', ['class' => 'col-md-4 control-label']) !!}
-										<div class="col-md-8">
-											{!! Form::text('fech_ing', $afiliado->getFullDateIng(), ['class'=> 'form-control', 'disabled' => '']) !!}
-										</div>
-									</div>
-									<div class="form-group form-group">
-											{!! Form::label('mat', 'GRADO', ['class' => 'col-md-4 control-label']) !!}
-										<div class="col-md-8">
-											{!! Form::text('mat', $afiliado->mat, ['class'=> 'form-control']) !!}
-											<span class="help-block">Apellido Materno</span>
-										</div>
-									</div>
+							</div>
 
+							<div class="row">
+								<div class="col-md-12">		
+									<div class="form-group form-group">
+											{!! Form::label('unidad_id', 'UNIDAD', ['class' => 'col-md-3 control-label']) !!}
+										<div class="col-md-9">
+						              		{!! Form::select('unidad_id', $list_unidades, $afiliado->unidad_id,['class' => 'combobox form-control']) !!}
+						                	<span class="help-block"></span>
+						                </div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">		
+									<div class="form-group form-group">
+											{!! Form::label('grado_id', 'GRADO', ['class' => 'col-md-3 control-label']) !!}
+										<div class="col-md-9">
+						              		{!! Form::select('grado_id', $list_grados, $afiliado->grado_id,['class' => 'combobox form-control']) !!}
+						                	<span class="help-block"></span>
+						                </div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -173,7 +173,7 @@
 									<div class="form-group form-group">
 											{!! Form::label('calle', 'CALLE', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
-											{!! Form::text('calle', $afiliado->calle, ['class'=> 'form-control', 'disabled' => '']) !!}
+											{!! Form::text('calle', $afiliado->calle, ['class'=> 'form-control']) !!}
 										</div>
 									</div>
 									<div class="form-group form-group">

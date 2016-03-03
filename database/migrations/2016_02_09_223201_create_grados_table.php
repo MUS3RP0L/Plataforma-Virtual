@@ -25,11 +25,16 @@ class CreateGradosTable extends Migration
             $table->timestamps();
         });
 
+        Schema::table('afiliados', function (Blueprint $table) {
+
+            $table->UnsignedBigInteger('grado_id');
+            $table->foreign('grado_id')->references('id')->on('grados');
+        });
+
         Schema::table('aportes', function (Blueprint $table) {
 
             $table->UnsignedBigInteger('grado_id');
             $table->foreign('grado_id')->references('id')->on('grados');
-
         });
     }
 
