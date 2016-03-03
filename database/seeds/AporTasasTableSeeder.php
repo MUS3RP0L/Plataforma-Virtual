@@ -394,7 +394,8 @@ class AporTasasTableSeeder extends Seeder
 			['anio' => '2015', 'mes' => '11', 'apor_a' => '2.5000', 'apor_fr_a' =>'1.8500', 'apor_sv_a'  =>'.6500', 'apor_p' => '1.5000', 'apor_fr_p' => '.0000', 'apor_sv_p'  =>'.0000','user_id' => '1'],
 			['anio' => '2015', 'mes' => '12', 'apor_a' => '2.5000', 'apor_fr_a' =>'1.8500', 'apor_sv_a'  =>'.6500', 'apor_p' => '1.5000', 'apor_fr_p' => '.0000', 'apor_sv_p'  =>'.0000','user_id' => '1'],
 			['anio' => '2016', 'mes' => '1', 'apor_a' => '2.5000', 'apor_fr_a' =>'1.8500', 'apor_sv_a'  =>'.6500', 'apor_p' => '1.5000', 'apor_fr_p' => '.0000', 'apor_sv_p'  =>'.0000','user_id' => '1'],
-			['anio' => '2016', 'mes' => '2', 'apor_a' => '2.5000', 'apor_fr_a' =>'1.8500', 'apor_sv_a'  =>'.6500', 'apor_p' => '1.5000', 'apor_fr_p' => '.0000', 'apor_sv_p'  =>'.0000','user_id' => '1']
+			['anio' => '2016', 'mes' => '2', 'apor_a' => '2.5000', 'apor_fr_a' =>'1.8500', 'apor_sv_a'  =>'.6500', 'apor_p' => '1.5000', 'apor_fr_p' => '.0000', 'apor_sv_p'  =>'.0000','user_id' => '1'],
+			['anio' => '2016', 'mes' => '3', 'apor_a' => '2.5000', 'apor_fr_a' =>'1.8500', 'apor_sv_a'  =>'.6500', 'apor_p' => '1.5000', 'apor_fr_p' => '.0000', 'apor_sv_p'  =>'.0000','user_id' => '1']
         ];
 
         foreach ($statuses as $status) {

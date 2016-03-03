@@ -13,9 +13,12 @@ class AporTasa extends Model
 		'afi_type_id',
 		'mes',
 		'anio',
-		'apor',
-		'apor_fr',
-		'apor_sv'
+        'apor_a',
+        'apor_fr_a',
+        'apor_sv_a',
+        'apor_p',
+        'apor_fr_p',
+        'apor_sv_p'
 	];
 
 	protected $guarded = ['id'];

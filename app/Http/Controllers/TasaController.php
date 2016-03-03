@@ -4,6 +4,7 @@ namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 use Validator;
 use Session;
 use Muserpol\Http\Requests;
@@ -64,7 +65,73 @@ class TasaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
+    }
+
+    public function save($request, $id = false)
+    {
+        $rules = [
+            'apor_a' => 'required|numeric',
+            'apor_fr_a' => 'required|numeric',
+            'apor_sv_a' => 'required|numeric',
+            'apor_p' => 'required|numeric',
+            'apor_fr_p' => 'required|numeric',
+            'apor_sv_p' => 'required|numeric'
+
+        ];
+
+        $messages = [
+
+            'apor_a.required' => 'El campo Aporte Muserpol Sector Activo no puede ser vacío', 
+            'apor_a.numeric' => 'El campo Aporte Muserpol Sector Activo sólo se aceptan números',
+
+            'apor_fr_a.required' => 'El campo Fondo de Retiro Sector Activo no puede ser vacío', 
+            'apor_fr_a.numeric' => 'El campo Fondo de Retiro Sector Activo sólo se aceptan números',
+
+            'apor_sv_a.required' => 'El campo Seguro de Vida Sector Activo no puede ser vacío', 
+            'apor_sv_a.numeric' => 'El campo Seguro de Vida Sector Activo sólo se aceptan números',
+
+            'apor_p.required' => 'El campo Aporte Muserpol Sector Pasivo no puede ser vacío', 
+            'apor_p.numeric' => 'El campo Aporte Muserpol Sector Pasivo sólo se aceptan números',
+
+            'apor_fr_p.required' => 'El campo Fondo de Retiro Sector Pasivo no puede ser vacío', 
+            'apor_fr_p.numeric' => 'El campo Fondo de Retiro Sector Pasivo sólo se aceptan números',
+
+            'apor_sv_p.required' => 'El campo Seguro de Vida Sector Pasivo no puede ser vacío', 
+            'apor_sv_p.numeric' => 'El campo Seguro de Vida Sector Pasivo sólo se aceptan números',
+
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()){
+            return redirect('tasa/'.$id.'/edit')
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
+
+            $aporTasa = AporTasa::where('id', '=', $id)->firstOrFail();
+
+            $aporTasa->user_id = Auth::user()->id;
+                
+            $aporTasa->apor_a = trim($request->apor_a);
+            $aporTasa->apor_fr_a = trim($request->apor_fr_a);
+            $aporTasa->apor_sv_a = trim($request->apor_sv_a);
+
+            $aporTasa->apor_p = trim($request->apor_p); 
+            $aporTasa->apor_fr_a = trim($request->apor_fr_a);
+            $aporTasa->apor_sv_p = trim($request->apor_sv_p);
+
+
+            $aporTasa->save();
+
+            $message = "Tasas de Aporte Actualizado con éxito";
+
+            Session::flash('message', $message);
+        }
+        
+        return redirect('tasa');
     }
 
     /**
@@ -108,7 +175,7 @@ class TasaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->save($request, $id);
     }
 
     /**
