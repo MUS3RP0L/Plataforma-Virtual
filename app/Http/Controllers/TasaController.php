@@ -11,6 +11,7 @@ use Muserpol\Http\Controllers\Controller;
 use Muserpol\AporTasa;
 use Datatables;
 use Muserpol\Helper\Util;
+use Carbon\Carbon;
 
 class TasaController extends Controller
 {
@@ -22,7 +23,17 @@ class TasaController extends Controller
     public function index()
     {
 
-        return view('tasas.index');
+        $aporTasa = AporTasa::orderBy('id', 'desc')->firstOrFail();
+
+        $date = Carbon::now();
+
+        $data = array(
+            'date' => $date->format('m-Y'),
+            'aporTasa' => $aporTasa
+
+        );
+
+        return view('tasas.index', $data);
     }
 
     public function tasasData()
@@ -75,7 +86,17 @@ class TasaController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $aporTasa = AporTasa::where('id', '=', $id)->firstOrFail();
+
+        $date = Carbon::now();
+
+        $data = [
+            'date' => $date->format('m-Y'),
+            'aporTasa' => $aporTasa
+        ];
+
+        return View('tasas.edit', $data);
     }
 
     /**

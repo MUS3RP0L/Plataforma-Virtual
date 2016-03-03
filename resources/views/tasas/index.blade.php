@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-md-4">
                         <p class="text-right">
-                            <a href="{!! url('usuario/create') !!}" class="btn btn-raised btn-success">Añadir Aportes mes de</a>
+                            <a href="{!! url('tasa/' . $aporTasa->id . '/edit') !!}" class="btn btn-raised btn-success">Actualizar Aportes de {!! $date !!}</a>
                         </p>
                     </div>
                 </div> 
