@@ -24,7 +24,8 @@ class AfiTypeTableSeeder extends Seeder
         $statuses = [
             ['id' => '1', 'name' => 'Activo'],
             ['id' => '2', 'name' => 'Pasivo'],
-            ['id' => '3', 'name' => 'Otro']
+            ['id' => '3', 'name' => 'Excluido'],
+            ['id' => '4', 'name' => 'Baja']
         ];
 
         foreach ($statuses as $status) {
@@ -40,14 +41,15 @@ class AfiTypeTableSeeder extends Seeder
         $statuses = [
             ['id' => '1', 'afi_type_id' => '1', 'name' => 'Servicio'],
             ['id' => '2', 'afi_type_id' => '1', 'name' => 'Comisión'],
-            ['id' => '3', 'afi_type_id' => '2', 'name' => 'Jubilado'],
-            ['id' => '4', 'afi_type_id' => '2', 'name' => 'Fallecido'],
-            ['id' => '5', 'afi_type_id' => '3', 'name' => 'Baja Forzosa'],
-            ['id' => '6', 'afi_type_id' => '3', 'name' => 'Baja Voluntaria'],
-            ['id' => '7', 'afi_type_id' => '3', 'name' => 'Jubilación por Invalidez'],
-            ['id' => '8', 'afi_type_id' => '3', 'name' => 'Excluido Juridico'],
-            ['id' => '9', 'afi_type_id' => '3', 'name' => 'Excluido Financiero'],
-            ['id' => '10', 'afi_type_id' => '3', 'name' => 'Excluido Inversiones']
+            ['id' => '3', 'afi_type_id' => '2', 'name' => 'Fallecido'],
+            ['id' => '4', 'afi_type_id' => '2', 'name' => 'Jubilado'],
+            ['id' => '5', 'afi_type_id' => '2', 'name' => 'Jubilación por Invalidez'],
+            ['id' => '6', 'afi_type_id' => '3', 'name' => 'Juridico'],
+            ['id' => '7', 'afi_type_id' => '3', 'name' => 'Financiero'],
+            ['id' => '8', 'afi_type_id' => '3', 'name' => 'Inversiones'],
+            ['id' => '9', 'afi_type_id' => '4', 'name' => 'Forzosa'],
+            ['id' => '10', 'afi_type_id' => '4', 'name' => 'Voluntaria']
+
         ];
 
         foreach ($statuses as $status) {

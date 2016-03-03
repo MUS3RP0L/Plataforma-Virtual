@@ -30,7 +30,7 @@ class TasaController extends Controller
         $tasas = AporTasa::select(['mes', 'anio', 'apor_a', 'apor_fr_a', 'apor_sv_a', 'apor_p', 'apor_fr_p', 'apor_sv_p']);
 
         return Datatables::of($tasas)
-                ->editColumn('anio', function ($aportes) { return $aportes->mes . "-" . $aportes->anio; })
+                // ->editColumn('anio', function ($aportes) { return $aportes->mes . "-" . $aportes->anio; })
 
                 ->make(true);
     }
