@@ -54,6 +54,9 @@ Route::group(['middleware' => 'auth'], function() {
 	//Aportes
 	Route::get('getAporte/{id}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
 
+	// AporTasa
+	Route::resource('tasa', 'TasaController');
+	Route::get('getTasa', array('as'=>'getTasa', 'uses'=>'TasaController@tasasData'));
 
 	// Route::get('totales/{m}/{a}', 'ReporteController@GenerateReportAporte');
 	Route::get('totales', 'ReporteController@ReportAporte');

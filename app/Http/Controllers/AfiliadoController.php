@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use DB;
 use Validator;
 use Session;
-use Cache;
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 use Muserpol\Afiliado;
