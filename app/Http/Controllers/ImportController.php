@@ -14,6 +14,7 @@ use Muserpol\Afiliado;
 use Muserpol\Aporte;
 use Muserpol\Grado;
 use Muserpol\Unidad;
+use Muserpol\AporTasa;
 use Muserpol\Helper\Util;
 
 $countAfi = 0;
@@ -88,8 +89,8 @@ class ImportController extends Controller
 	        		else{
 	        			$afiliado->afi_state_id = 2;
 	        		}
-	        		$afiliado->unidad_act_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
-	        		$afiliado->grado_act_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+	        		$afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
+	        		$afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
 	        		$afiliado->afp = Util::getAfp($result->afp);
 	        		$afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 	        		$afiliado->nua = $result->nua;
@@ -135,8 +136,8 @@ class ImportController extends Controller
 					$aporte = new Aporte;
 					$aporte->user_id = Auth::user()->id;
 					$aporte->afiliado_id = $afiliado->id;
-					$aporte->mes = $result->mes;
-					$aporte->anio = $result->a_o;
+					$aporte->mes = Util::zero($result->mes);
+					$aporte->anio = Util::formatYear($result->a_o);
 					$aporte->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
 					$aporte->desg = $result->desg;
 					$aporte->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
@@ -158,6 +159,11 @@ class ImportController extends Controller
 					$aporte->pag = Util::decimal($result->pag);
 					$aporte->cot = (FLOAT)$aporte->sue + (FLOAT)$aporte->b_ant + (FLOAT)$aporte->b_est + (FLOAT)$aporte->b_car + (FLOAT)$aporte->b_fro + (FLOAT)$aporte->b_ori;
 					$aporte->mus = Util::decimal($result->mus);
+					if ($aporte->mus) {
+						$por_apor = AporTasa::where('mes', $aporte->mes)->where('anio', $aporte->anio)->first();
+						$aporte->fr = $aporte->mus * $por_apor->apor_fr_a / $por_apor->apor_a;
+						$aporte->sv = $aporte->mus * $por_apor->apor_sv_a / $por_apor->apor_a;
+					}
 	     			$aporte->save();
 	     			$countApor ++;
 	     		}

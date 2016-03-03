@@ -48,6 +48,8 @@ class CreateAportesTable extends Migration
 
             $table->double('cot');
             $table->double('mus');
+            $table->double('fr');
+            $table->double('sv');
 
             $table->timestamps();
             $table->softDeletes();

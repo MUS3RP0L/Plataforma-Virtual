@@ -100,6 +100,22 @@ class Util
 		return number_format($mus*0.0065/0.025, 2, '.', ',');
 
 	}
+
+	public static function formatYear($year)
+	{
+		$first = substr($year, 0, 1); 
+
+		if ($first == '9') {
+			return "19" . $year;
+		}
+		else
+		{
+			return "20" . $year;
+		}
+
+
+	}
+
 	public static function getAfp($afp)
 	{
 	    if ($afp == 'V') {
