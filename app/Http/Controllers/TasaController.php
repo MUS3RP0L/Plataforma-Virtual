@@ -21,14 +21,13 @@ class TasaController extends Controller
      */
     public function index()
     {
-        return AporTasa::select(['mes', 'anio', 'apor', 'apor_fr', 'apor_sv'])->pluck('mes');
 
-        // return view('tasas.index');
+        return view('tasas.index');
     }
 
     public function tasasData()
     {
-        $tasas = AporTasa::select(['mes', 'anio', 'apor']);
+        $tasas = AporTasa::select(['mes', 'anio', 'apor_a', 'apor_fr_a', 'apor_sv_a', 'apor_p', 'apor_fr_p', 'apor_sv_p']);
 
         return Datatables::of($tasas)
                 ->editColumn('anio', function ($aportes) { return $aportes->mes . "-" . $aportes->anio; })

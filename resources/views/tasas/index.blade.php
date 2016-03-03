@@ -18,8 +18,18 @@
                         <div class="col-md-12">
                             <table class="table table-striped table-hover" id="afiliados-table">
                                 <thead>
+
                                     <tr class="success">
-                                        <th>Mes- Año</th>
+                                        <th rowspan="2">Mes- Año</th>
+                                        <th colspan="3">Sector Activo</th>
+                                        <th colspan="4">Sector Pasivo</th>
+                                    </tr>
+                                    <tr class="success">
+                                        <th>Porcentaje de Aporte</th>
+                                        <th>Porcentaje de Aporte</th>
+                                        <th>Porcentaje de Aporte</th>
+                                        <th>Porcentaje de Aporte</th>
+                                        <th>Porcentaje de Aporte</th>
                                         <th>Porcentaje de Aporte</th>
                                     </tr>
                                 </thead>
@@ -42,8 +52,13 @@ $(function() {
         serverSide: true,
         ajax: '{!! route('getTasa') !!}',
         columns: [
-            { data: 'anio', name: 'anio', sWidth: '30%' },
-            { data: 'apor', name: 'apor', sWidth: '30%' }
+            { data: 'anio', name: 'anio', sWidth: '10%' },
+            { data: 'apor_a', name: 'apor_a', sWidth: '15%' },
+            { data: 'apor_fr_a', name: 'apor_fr_a', sWidth: '15%' },
+            { data: 'apor_sv_a', name: 'apor_sv_a', sWidth: '15%' },
+            { data: 'apor_p', name: 'apor_p', sWidth: '15%' },
+            { data: 'apor_fr_p', name: 'apor_fr_p', sWidth: '15%' },
+            { data: 'apor_sv_p', name: 'apor_sv_p', sWidth: '15%' },
         ]
     });
 });
