@@ -58,6 +58,10 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('tasa', 'TasaController');
 	Route::get('getTasa', array('as'=>'getTasa', 'uses'=>'TasaController@tasasData'));
 
+	// AporTasa
+	Route::resource('ipc', 'IpcController');
+	Route::get('getIpc', array('as'=>'getIpc', 'uses'=>'IpcController@ipctasasData'));
+
 	// Route::get('totales/{m}/{a}', 'ReporteController@GenerateReportAporte');
 	Route::get('totales', 'ReporteController@ReportAporte');
 	Route::post('ir_totales', 'ReporteController@GenerateReportAporte');
