@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "49506db4dfa3218dd46e00f9fc82a71e",
-    "content-hash": "ea0088595dd126746d217a6cc6a83b4d",
+    "hash": "cfc95b8df7bf9d0b0675bf968cc5ba9c",
+    "content-hash": "34cd284c7b8d74f7fb25ed9e149cbd8c",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -831,16 +831,16 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "4c89f4cb1d30090a256530e1dce0ed3765eca7fa"
+                "reference": "aae17dbd6f39606cf8f588359a7a79438ab5aa53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/4c89f4cb1d30090a256530e1dce0ed3765eca7fa",
-                "reference": "4c89f4cb1d30090a256530e1dce0ed3765eca7fa",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/aae17dbd6f39606cf8f588359a7a79438ab5aa53",
+                "reference": "aae17dbd6f39606cf8f588359a7a79438ab5aa53",
                 "shasum": ""
             },
             "require": {
@@ -895,7 +895,7 @@
                 "import",
                 "laravel"
             ],
-            "time": "2015-12-15 20:14:50"
+            "time": "2016-03-01 17:45:44"
         },
         {
             "name": "maximebf/debugbar",
@@ -960,16 +960,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.17.2",
+            "version": "1.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24"
+                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
-                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
+                "reference": "e19b764b5c855580e8ffa7e615f72c10fd2f99cc",
                 "shasum": ""
             },
             "require": {
@@ -998,6 +998,7 @@
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
@@ -1007,7 +1008,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -1033,7 +1034,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-10-14 12:51:02"
+            "time": "2016-03-01 18:00:40"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1179,16 +1180,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "b0e69d10852716b2ccbdff69c75c477637220790"
+                "reference": "f078eba3bcf140fd69b5fcc3ea5ac809abf729dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/b0e69d10852716b2ccbdff69c75c477637220790",
-                "reference": "b0e69d10852716b2ccbdff69c75c477637220790",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/f078eba3bcf140fd69b5fcc3ea5ac809abf729dc",
+                "reference": "f078eba3bcf140fd69b5fcc3ea5ac809abf729dc",
                 "shasum": ""
             },
             "require": {
@@ -1223,7 +1224,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-02-06 03:52:05"
+            "time": "2016-02-29 17:25:04"
         },
         {
             "name": "phenx/php-font-lib",
@@ -2397,16 +2398,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v6.7.2",
+            "version": "v6.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "5f4c96659cc28e82f8523a7f6e8f1a73f927a238"
+                "reference": "da17c40fbbf69490dd7ed6b5d70c0612565eba5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/5f4c96659cc28e82f8523a7f6e8f1a73f927a238",
-                "reference": "5f4c96659cc28e82f8523a7f6e8f1a73f927a238",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/da17c40fbbf69490dd7ed6b5d70c0612565eba5f",
+                "reference": "da17c40fbbf69490dd7ed6b5d70c0612565eba5f",
                 "shasum": ""
             },
             "require": {
@@ -2450,7 +2451,7 @@
                 "laravel4",
                 "laravel5"
             ],
-            "time": "2016-02-28 07:31:50"
+            "time": "2016-03-02 15:14:56"
         }
     ],
     "packages-dev": [

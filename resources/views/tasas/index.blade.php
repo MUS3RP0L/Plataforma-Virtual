@@ -6,7 +6,16 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel-heading">
-                <h4 ><b>Tasas de Aporte</b></h4>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3>Tasas de Aporte</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-right">
+                            <a href="{!! url('usuario/create') !!}" class="btn btn-raised btn-success">Añadir Aportes mes de</a>
+                        </p>
+                    </div>
+                </div> 
             </div>
 
             <div class="panel panel-primary">
@@ -26,12 +35,12 @@
                                         <th colspan="4">Sector Pasivo</th>
                                     </tr>
                                     <tr class="success">
-                                        <th>Porcentaje de Aporte</th>
-                                        <th>Porcentaje de Aporte</th>
-                                        <th>Porcentaje de Aporte</th>
-                                        <th>Porcentaje de Aporte</th>
-                                        <th>Porcentaje de Aporte</th>
-                                        <th>Porcentaje de Aporte</th>
+                                        <th>Aporte Muserpol</th>
+                                        <th>Fondo de Retiro</th>
+                                        <th>Seguro de Vida</th>
+                                        <th>Aporte Muserpol</th>
+                                        <th>Fondo de Retiro</th>
+                                        <th>Seguro de Vida</th>
                                     </tr>
                                 </thead>
                             </table>
