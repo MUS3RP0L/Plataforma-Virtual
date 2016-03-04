@@ -51,7 +51,6 @@ class CreateAportesMusersTable extends Migration
             $table->integer('mes')->required();
             $table->integer('anio')->required();
 
-        
             $table->string('num_rec')->required();
 
             $table->double('mus')->required();

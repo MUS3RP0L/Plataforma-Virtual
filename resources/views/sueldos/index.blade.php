@@ -11,9 +11,9 @@
                         <h3>SUELDOS DE PERSONAL DE LA POLICIA NACIONAL</h3>
                     </div>
                     <div class="col-md-4">
-{{--                         <p class="text-right">
-                            <a href="{!! url('tasa/' . $aporTasa->id . '/edit') !!}" class="btn btn-raised btn-success">Actualizar Aportes de {!! $date !!}</a>
-                        </p> --}}
+                        <p class="text-right">
+                            <a href="{!! url('sueldo/' . $sueldo->id . '/edit') !!}" class="btn btn-raised btn-success">Importar Sueldos de {!! $date !!}</a>
+                        </p>
                     </div>
                 </div> 
             </div>
@@ -29,18 +29,18 @@
                                 <thead>
                                     <tr class="success">
                                         <th>AÑO</th>
-                                        <th>CMTE. GRAL.</th>
-                                        <th>CMTE. GRAL.</th>
-                                        <th>SBCMTE. GRAL.</th>
-                                        <th>INSP. GRAL.</th>
-                                        <th>DIR. GRAL.</th>
-                                        <th>CNL.</th>
-                                        <th>CNL.</th>
-                                        <th>TCNL.</th>
-                                        <th>MY.</th>
-                                        <th>CAP.</th>
-                                        <th>TTE.</th>
-                                        <th>SBTTE.</th>
+                                        <th>CMTE GRAL</th>
+                                        <th>CMTE GRAL</th>
+                                        <th>SBCMTE GRAL</th>
+                                        <th>INSP GRAL</th>
+                                        <th>DIR GRAL</th>
+                                        <th>CNL</th>
+                                        <th>CNL</th>
+                                        <th>TCNL</th>
+                                        <th>MY</th>
+                                        <th>CAP</th>
+                                        <th>TTE</th>
+                                        <th>SBTTE</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -138,76 +138,100 @@
 <script>
 $(function() {
     $('#sueldoPri-table').DataTable({
+        "dom": '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
+        lengthMenu: false,
+        bFilter: false, 
+        bInfo: false,
+        pageLength: 5,
+        "scrollX": true,
         ajax: '{!! route('getSueldoPri') !!}',
         order: [[0, "desc"]],
         columns: [
-            { data: 'anio', name: 'anio' },
-            { data: 'c1', name: 'c1' },
-            { data: 'c2', name: 'c2' },
-            { data: 'c3', name: 'c3' },
-            { data: 'c4', name: 'c4' },
-            { data: 'c5', name: 'c5' },
-            { data: 'c6', name: 'c6' },
-            { data: 'c7', name: 'c7' },
-            { data: 'c8', name: 'c8' },
-            { data: 'c9', name: 'c9' },
-            { data: 'c10', name: 'c10' },
-            { data: 'c11', name: 'c11' },
-            { data: 'c12', name: 'c12' }
+            { data: 'anio', name: 'anio', "sClass": "text-center", sWidth: '4%' },
+            { data: 'c1', name: 'c1', "sClass": "text-right", sWidth: '10%' },
+            { data: 'c2', name: 'c2', "sClass": "text-right", sWidth: '10%' },
+            { data: 'c3', name: 'c3', "sClass": "text-right", sWidth: '11%' },
+            { data: 'c4', name: 'c4', "sClass": "text-right", sWidth: '10%' },
+            { data: 'c5', name: 'c5', "sClass": "text-right", sWidth: '10%' },
+            { data: 'c6', name: 'c6', "sClass": "text-right", sWidth: '6%' },
+            { data: 'c7', name: 'c7', "sClass": "text-right", sWidth: '6%' },
+            { data: 'c8', name: 'c8', "sClass": "text-right", sWidth: '6%' },
+            { data: 'c9', name: 'c9', "sClass": "text-right", sWidth: '6%' },
+            { data: 'c10', name: 'c10', "sClass": "text-right", sWidth: '7%' },
+            { data: 'c11', name: 'c11', "sClass": "text-right", sWidth: '7%' },
+            { data: 'c12', name: 'c12', "sClass": "text-right", sWidth: '7%' }
         ]
     });
 
     $('#sueldoSeg-table').DataTable({
+        "dom": '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
+        lengthMenu: false,
+        bFilter: false, 
+        bInfo: false,
+        pageLength: 5,
+        "scrollX": true,
         ajax: '{!! route('getSueldoSeg') !!}',
         order: [[0, "desc"]],
         columns: [
-            { data: 'anio', name: 'anio' },
-            { data: 'c13', name: 'c13' },
-            { data: 'c14', name: 'c14' },
-            { data: 'c15', name: 'c15' },
-            { data: 'c16', name: 'c16' },
-            { data: 'c17', name: 'c17' },
-            { data: 'c18', name: 'c18' }
+            { data: 'anio', name: 'anio', "sClass": "text-center" },
+            { data: 'c13', name: 'c13', "sClass": "text-right", sWidth: '16%' },
+            { data: 'c14', name: 'c14', "sClass": "text-right", sWidth: '16%' },
+            { data: 'c15', name: 'c15', "sClass": "text-right", sWidth: '16%' },
+            { data: 'c16', name: 'c16', "sClass": "text-right", sWidth: '16%' },
+            { data: 'c17', name: 'c17', "sClass": "text-right", sWidth: '16%' },
+            { data: 'c18', name: 'c18', "sClass": "text-right", sWidth: '16%' }
         ]
     });
 
     $('#sueldoTer-table').DataTable({
+        "dom": '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
+        lengthMenu: false,
+        bFilter: false, 
+        bInfo: false,
+        pageLength: 5,
+        "scrollX": true,
         ajax: '{!! route('getSueldoTer') !!}',
         order: [[0, "desc"]],
         columns: [
-            { data: 'anio', name: 'anio' },
-            { data: 'c19', name: 'c19' },
-            { data: 'c20', name: 'c20' },
-            { data: 'c21', name: 'c21' },
-            { data: 'c22', name: 'c22' },
-            { data: 'c23', name: 'c23' },
-            { data: 'c24', name: 'c24' },
-            { data: 'c25', name: 'c25' },
-            { data: 'c26', name: 'c26' }
+            { data: 'anio', name: 'anio', "sClass": "text-center" },
+            { data: 'c19', name: 'c19', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c20', name: 'c20', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c21', name: 'c21', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c22', name: 'c22', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c23', name: 'c23', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c24', name: 'c24', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c25', name: 'c25', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c26', name: 'c26', "sClass": "text-right", sWidth: '12%' }
         ]
     });
 
     $('#sueldoCua-table').DataTable({
+        "dom": '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
+        lengthMenu: false,
+        bFilter: false, 
+        bInfo: false,
+        pageLength: 5,
+        "scrollX": true,
         ajax: '{!! route('getSueldoCua') !!}',
         order: [[0, "desc"]],
         columns: [
-            { data: 'anio', name: 'anio' },
-            { data: 'c27', name: 'c27' },
-            { data: 'c28', name: 'c28' },
-            { data: 'c29', name: 'c29' },
-            { data: 'c30', name: 'c30' },
-            { data: 'c31', name: 'c31' },
-            { data: 'c32', name: 'c32' },
-            { data: 'c33', name: 'c33' },
-            { data: 'c34', name: 'c34' }
+            { data: 'anio', name: 'anio', "sClass": "text-center" },
+            { data: 'c27', name: 'c27', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c28', name: 'c28', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c29', name: 'c29', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c30', name: 'c30', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c31', name: 'c31', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c32', name: 'c32', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c33', name: 'c33', "sClass": "text-right", sWidth: '12%' },
+            { data: 'c34', name: 'c34', "sClass": "text-right", sWidth: '12%' }
         ]
     });
 });

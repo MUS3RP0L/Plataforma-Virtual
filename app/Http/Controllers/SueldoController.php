@@ -23,7 +23,18 @@ class SueldoController extends Controller
      */
     public function index()
     {
-        return view('sueldos.index');
+        $Sueldo = Sueldo::orderBy('id', 'desc')->firstOrFail();
+
+        $date = Carbon::now();
+
+        $data = array(
+            'date' => $date->format('Y'),
+            'sueldo' => $Sueldo
+
+        );
+
+        return view('sueldos.index', $data);
+
     }
 
     public function sueldoPriData()
@@ -33,7 +44,7 @@ class SueldoController extends Controller
             c6.sue as c6, c7.sue as c7, c8.sue as c8, c9.sue as c9, c10.sue as c10,
             c11.sue as c11, c12.sue as c12');
         
-        $result = DB::table('sueldos')
+        $results = DB::table('sueldos')
         ->select($select)
         ->leftJoin('sueldos as c1', 'c1.anio', '=', 'sueldos.anio')
         ->leftJoin('sueldos as c2', 'c2.anio', '=', 'sueldos.anio')
@@ -61,7 +72,20 @@ class SueldoController extends Controller
         ->where('c12.grado_id', '=', '12')
         ->groupBy('sueldos.anio');
 
-        return Datatables::of($result)->make(true);
+        return Datatables::of($results)
+                        ->editColumn('c1', function ($result) { return Util::formatMoney($result->c1); })
+                        ->editColumn('c2', function ($result) { return Util::formatMoney($result->c2); })
+                        ->editColumn('c3', function ($result) { return Util::formatMoney($result->c3); })
+                        ->editColumn('c4', function ($result) { return Util::formatMoney($result->c4); })
+                        ->editColumn('c5', function ($result) { return Util::formatMoney($result->c5); })
+                        ->editColumn('c6', function ($result) { return Util::formatMoney($result->c6); })
+                        ->editColumn('c7', function ($result) { return Util::formatMoney($result->c7); })
+                        ->editColumn('c8', function ($result) { return Util::formatMoney($result->c8); })
+                        ->editColumn('c9', function ($result) { return Util::formatMoney($result->c9); })
+                        ->editColumn('c10', function ($result) { return Util::formatMoney($result->c10); })
+                        ->editColumn('c11', function ($result) { return Util::formatMoney($result->c11); })
+                        ->editColumn('c12', function ($result) { return Util::formatMoney($result->c12); })
+                        ->make(true);
     }
 
     public function sueldoSegData()
@@ -85,7 +109,14 @@ class SueldoController extends Controller
         ->where('c18.grado_id', '=', '18')
         ->groupBy('sueldos.anio');
 
-        return Datatables::of($result)->make(true);
+        return Datatables::of($result)
+                        ->editColumn('c13', function ($result) { return Util::formatMoney($result->c13); })
+                        ->editColumn('c14', function ($result) { return Util::formatMoney($result->c14); })
+                        ->editColumn('c15', function ($result) { return Util::formatMoney($result->c15); })
+                        ->editColumn('c16', function ($result) { return Util::formatMoney($result->c16); })
+                        ->editColumn('c17', function ($result) { return Util::formatMoney($result->c17); })
+                        ->editColumn('c18', function ($result) { return Util::formatMoney($result->c18); })
+                        ->make(true);
     }
 
     public function sueldoTerData()
@@ -114,7 +145,16 @@ class SueldoController extends Controller
         ->where('c26.grado_id', '=', '26')
         ->groupBy('sueldos.anio');
 
-        return Datatables::of($result)->make(true);
+        return Datatables::of($result)
+                        ->editColumn('c19', function ($result) { return Util::formatMoney($result->c19); })
+                        ->editColumn('c20', function ($result) { return Util::formatMoney($result->c20); })
+                        ->editColumn('c21', function ($result) { return Util::formatMoney($result->c21); })
+                        ->editColumn('c22', function ($result) { return Util::formatMoney($result->c22); })
+                        ->editColumn('c23', function ($result) { return Util::formatMoney($result->c23); })
+                        ->editColumn('c24', function ($result) { return Util::formatMoney($result->c24); })
+                        ->editColumn('c25', function ($result) { return Util::formatMoney($result->c25); })
+                        ->editColumn('c26', function ($result) { return Util::formatMoney($result->c26); })
+                        ->make(true);
     }
 
     public function sueldoCuaData()
@@ -143,7 +183,16 @@ class SueldoController extends Controller
         ->where('c34.grado_id', '=', '34')
         ->groupBy('sueldos.anio');
 
-        return Datatables::of($result)->make(true);
+        return Datatables::of($result)
+                        ->editColumn('c27', function ($result) { return Util::formatMoney($result->c27); })
+                        ->editColumn('c28', function ($result) { return Util::formatMoney($result->c28); })
+                        ->editColumn('c29', function ($result) { return Util::formatMoney($result->c29); })
+                        ->editColumn('c30', function ($result) { return Util::formatMoney($result->c30); })
+                        ->editColumn('c31', function ($result) { return Util::formatMoney($result->c31); })
+                        ->editColumn('c32', function ($result) { return Util::formatMoney($result->c32); })
+                        ->editColumn('c33', function ($result) { return Util::formatMoney($result->c33); })
+                        ->editColumn('c34', function ($result) { return Util::formatMoney($result->c34); })
+                        ->make(true);
     }
 
     /**
