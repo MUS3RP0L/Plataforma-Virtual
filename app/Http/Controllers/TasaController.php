@@ -23,7 +23,6 @@ class TasaController extends Controller
      */
     public function index()
     {
-
         $aporTasa = AporTasa::orderBy('id', 'desc')->firstOrFail();
 
         $date = Carbon::now();

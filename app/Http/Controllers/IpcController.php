@@ -29,7 +29,7 @@ class IpcController extends Controller
 
         $data = array(
             'date' => $date->format('m-Y'),
-            'aporTasa' => $ipcTasa
+            'ipcTasa' => $ipcTasa
 
         );
 
