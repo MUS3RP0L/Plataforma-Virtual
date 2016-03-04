@@ -38,9 +38,12 @@ class IpcController extends Controller
 
     public function ipctasasData()
     {
-        $ipc = IpcTasa::select(['mes', 'anio', 'ipc']);
+        $ipcs = IpcTasa::select(['mes', 'anio', 'ipc']);
 
-        return Datatables::of($ipc)->make(true);
+        return Datatables::of($ipcs)
+                ->editColumn('mes', function ($ipc) { return Util::getMes($ipc->mes); })
+                ->editColumn('ipc', function ($ipc) { return Util::formatMoney($ipc->ipc); })
+                ->make(true);
     }
     /**
      * Show the form for creating a new resource.

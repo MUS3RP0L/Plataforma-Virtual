@@ -48,8 +48,8 @@ class CreateAportesMusersTable extends Migration
             
             $table->UnsignedBigInteger('pago_id');
 
-            $table->string('mes')->required();
-            $table->string('anio')->required();
+            $table->integer('mes')->required();
+            $table->integer('anio')->required();
 
         
             $table->string('num_rec')->required();

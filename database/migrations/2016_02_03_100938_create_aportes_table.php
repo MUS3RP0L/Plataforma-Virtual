@@ -20,8 +20,8 @@ class CreateAportesTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('afiliado_id');
 
-            $table->string('mes')->required();
-            $table->string('anio')->required();
+            $table->integer('mes')->required();
+            $table->integer('anio')->required();
 
             $table->bigInteger('desg');
 

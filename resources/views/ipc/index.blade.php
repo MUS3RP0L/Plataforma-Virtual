@@ -8,7 +8,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-8">
-                        <h3>Tasas de Aporte</h3>
+                        <h3>Índice de Precios al Consumidor</h3>
                     </div>
                     <div class="col-md-4">
                         <p class="text-right">
@@ -20,7 +20,7 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Despliegue de Tasas de IPC</h3>
+                    <h3 class="panel-title">Despliegue de Índice de Precios al Consumidor</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row"><p>
@@ -30,7 +30,7 @@
                                     <tr class="success">
                                         <th>Año</th>
                                         <th>Mes</th>
-                                        <th>Ipc</th>
+                                        <th>IPC</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -51,7 +51,8 @@ $(function() {
         processing: true,
         serverSide: true,
         ajax: '{!! route('getIpc') !!}',
-        "order": [[ 0, "desc" ]],
+        order: [[0, "desc"], [1, "desc"]],
+
         columns: [
             { data: 'anio', name: 'anio', sWidth: '15%' },
             { data: 'mes', name: 'mes', sWidth: '15%' },

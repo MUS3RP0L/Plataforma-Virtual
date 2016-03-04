@@ -126,4 +126,12 @@ class Util
 	    }
 	}
 
+	public static function getMes($mes)
+	{
+	    
+	    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+        return $meses[$mes-1];
+	}
+
 }

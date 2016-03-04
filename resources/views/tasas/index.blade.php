@@ -61,16 +61,16 @@ $(function() {
         processing: true,
         serverSide: true,
         ajax: '{!! route('getTasa') !!}',
-        "order": [[ 0, "desc" ]],
+        order: [[0, "desc"], [1, "desc"]],
         columns: [
-            { data: 'anio', name: 'anio', sWidth: '5%' },
-            { data: 'mes', name: 'mes', sWidth: '5%' },
-            { data: 'apor_a', name: 'apor_a', sWidth: '15%' },
-            { data: 'apor_fr_a', name: 'apor_fr_a', sWidth: '15%' },
-            { data: 'apor_sv_a', name: 'apor_sv_a', sWidth: '15%' },
-            { data: 'apor_p', name: 'apor_p', sWidth: '15%' },
-            { data: 'apor_fr_p', name: 'apor_fr_p', sWidth: '15%' },
-            { data: 'apor_sv_p', name: 'apor_sv_p', sWidth: '15%' },
+            { data: 'anio', name: 'anio', sWidth: '6%' },
+            { data: 'mes', name: 'mes', sWidth: '10%' },
+            { data: 'apor_a', name: 'apor_a', sWidth: '12%' },
+            { data: 'apor_fr_a', name: 'apor_fr_a', sWidth: '12%' },
+            { data: 'apor_sv_a', name: 'apor_sv_a', sWidth: '12%' },
+            { data: 'apor_p', name: 'apor_p', sWidth: '12%' },
+            { data: 'apor_fr_p', name: 'apor_fr_p', sWidth: '12%' },
+            { data: 'apor_sv_p', name: 'apor_sv_p', sWidth: '12%' },
         ]
     });
 });

@@ -395,7 +395,8 @@ class IpcTasasTableSeeder extends Seeder
 			['anio' => '2015', 'mes' => '11', 'ipc' =>  '160.1700', 'user_id' => '1'],
 			['anio' => '2015', 'mes' => '12', 'ipc' =>  '160.4400', 'user_id' => '1'],
 			['anio' => '2016', 'mes' => '1',  'ipc' => '161.1000', 'user_id' => '1'],
-			['anio' => '2016', 'mes' => '2',  'ipc' => '161.1000', 'user_id' => '1']
+			['anio' => '2016', 'mes' => '2',  'ipc' => '161.1000', 'user_id' => '1'],
+			['anio' => '2016', 'mes' => '3',  'ipc' => '161.1000', 'user_id' => '1']
 
         ];
 

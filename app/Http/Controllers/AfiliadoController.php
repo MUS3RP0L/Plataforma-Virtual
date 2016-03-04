@@ -154,11 +154,11 @@ class AfiliadoController extends Controller
 
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 
-        $firstAporte->desde = $meses[$firstAporte->mes-1] .' - '.  $firstAporte->anio;
+        $firstAporte->desde = Util::getMes($firstAporte->mes) .' - '.  $firstAporte->anio;
 
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('anio', 'desc')->orderBy('mes', 'desc')->firstOrFail();
 
-        $lastAporte->hasta = $meses[$lastAporte->mes-1] .' - '.  $lastAporte->anio;
+        $lastAporte->hasta = Util::getMes($lastAporte->mes) .' - '.  $lastAporte->anio;
 
         $grado = Grado::where('niv', $lastAporte->niv)->where('grad', $lastAporte->gra)->firstOrFail();
         $unidad = Unidad::where('cod', $lastAporte->uni)->firstOrFail();
