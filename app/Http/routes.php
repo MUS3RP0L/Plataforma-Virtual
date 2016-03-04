@@ -58,9 +58,16 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('tasa', 'TasaController');
 	Route::get('getTasa', array('as'=>'getTasa', 'uses'=>'TasaController@tasasData'));
 
-	// AporTasa
+	// IPC
 	Route::resource('ipc', 'IpcController');
 	Route::get('getIpc', array('as'=>'getIpc', 'uses'=>'IpcController@ipctasasData'));
+
+	// Sueldos
+	Route::resource('sueldo', 'SueldoController');
+	Route::get('getSueldoPri', array('as'=>'getSueldoPri', 'uses'=>'SueldoController@sueldoPriData'));
+	Route::get('getSueldoSeg', array('as'=>'getSueldoSeg', 'uses'=>'SueldoController@sueldoSegData'));
+	Route::get('getSueldoTer', array('as'=>'getSueldoTer', 'uses'=>'SueldoController@sueldoTerData'));
+	Route::get('getSueldoCua', array('as'=>'getSueldoCua', 'uses'=>'SueldoController@sueldoCuaData'));
 
 	// Route::get('totales/{m}/{a}', 'ReporteController@GenerateReportAporte');
 	Route::get('totales', 'ReporteController@ReportAporte');
