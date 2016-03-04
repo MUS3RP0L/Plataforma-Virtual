@@ -7,7 +7,7 @@
             <div class="panel-heading">
                 <div class="row">  
                     <div class="col-md-8">
-                        <h4><b>Actualizar Aportes de {!! $date !!}</b></h4>
+                        <h4><b>Índice de Precios al Consumidor</b></h4>
                     </div>
                 </div>
             </div>
@@ -15,14 +15,6 @@
             <div class="row">
                 
                 <div class="col-md-6">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3>Índice de Precios al Consumidor</h3>
-                            </div>
-                        </div> 
-                    </div>
-
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">Despliegue de Índice de Precios al Consumidor</h3>
@@ -48,16 +40,9 @@
                 {!! Form::model($ipcTasa, ['method' => 'PATCH', 'route' => ['ipc.update', $ipcTasa->id], 'class' => 'form-horizontal']) !!}
 
                 <div class="col-md-6">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3>Actualizar IPC de {!! $date !!}</h3> 
-                            </div>
-                        </div> 
-                    </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">ACTUALIZAR</h3>
+                            <h3 class="panel-title">Actualizar Aportes de {!! $subMonth ." " . $ipcTasa->anio !!}</h3>
                         </div>
                         <div class="panel-body" style="font-size: 14px">
 
@@ -66,22 +51,31 @@
                                     <div class="form-group form-group-lg">
                                             {!! Form::label('anio', 'AÑO', ['class' => 'col-md-5 control-label']) !!}
                                         <div class="col-md-4">
-                                            {!! Form::text('anio', $ipcTasa->anio, ['class'=> 'form-control', 'required' => 'required', 'disabled' => '']) !!}
-                                            <span class="help-block">Número de Carnet</span>
+                                            {!! Form::text('anio', $ipcTasa->anio, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                            <span class="help-block">año</span>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-lg">
                                             {!! Form::label('mes', 'MES', ['class' => 'col-md-5 control-label']) !!}
                                         <div class="col-md-4">
-                                            {!! Form::text('mes', $ipcTasa->mes, ['class'=> 'form-control', 'required' => 'required', 'disabled' => '']) !!}
-                                            <span class="help-block">Número de Carnet</span>
+                                            {!! Form::select('mes', $meses, $ipcTasa->mes,['class' => 'combobox form-control', 'required' => 'required']) !!}
+                                            <span class="help-block">Selecione el mes</span>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-lg">
                                             {!! Form::label('ipc', 'IPC', ['class' => 'col-md-5 control-label']) !!}
                                         <div class="col-md-4">
                                             {!! Form::text('ipc', $ipcTasa->ipc, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                            <span class="help-block">Número de Carnet</span>
+                                            <span class="help-block">Monto de IPC</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <div class="col-md-offset-4 col-md-10">
+                                            <div class="togglebutton">
+                                              <label>
+                                                <input type="checkbox" name="now" checked=""> Repetir al Mes de {!! $month !!} 
+                                              </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -110,17 +104,27 @@
 
 @push('scripts')
 <script>
+
+$(document).ready(function(){
+        $('.combobox').combobox();
+      });
+
 $(function() {
     $('#afiliados-table').DataTable({
+        "dom": '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
+        bFilter: false, 
+        bInfo: false,
+        pageLength: 10,
+        "scrollX": true,
         ajax: '{!! route('getIpc') !!}',
         order: [[0, "desc"], [1, "desc"]],
 
         columns: [
-            { data: 'anio', name: 'anio', sWidth: '15%' },
-            { data: 'mes', name: 'mes', sWidth: '15%' },
-            { data: 'ipc', name: 'ipc', sWidth: '15%' },
+            { data: 'anio', name: 'anio', sWidth: '10%' },
+            { data: 'mes', name: 'mes', "sClass": "text-center", sWidth: '45%' },
+            { data: 'ipc', name: 'ipc', "sClass": "text-center", sWidth: '45%' }
         ]
     });
 });

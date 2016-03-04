@@ -29,7 +29,7 @@ class ReporteController extends Controller
 
         $data = array(
             'anios' => $anios,
-            'meses' => $meses,
+            'meses' => Util::getAllMeses(),
             'resultado' => 0
         );
 

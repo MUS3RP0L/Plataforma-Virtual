@@ -23,14 +23,16 @@ class IpcController extends Controller
      */
     public function index()
     {
-        $ipcTasa = IpcTasa::orderBy('id', 'desc')->firstOrFail();
+        $now = Carbon::now();
 
-        $date = Carbon::now();
+        $ipcTasa = IpcTasa::where('mes', '=', $now->subMonth()->format('m'))
+                               ->where('anio', '=', $now->format('Y'))->firstOrFail();
 
         $data = array(
-            'date' => $date->format('m-Y'),
-            'ipcTasa' => $ipcTasa
-
+            'subMonth' => Util::getMes($now->format('m')),
+            'ipcTasa' => $ipcTasa,
+            'month' => Util::getMes($now->addMonth()->format('m')),
+            'meses' => Util::getAllMeses()
         );
 
         return view('ipc.index', $data);
@@ -66,6 +68,61 @@ class IpcController extends Controller
         //
     }
 
+    public function save($request, $id = false)
+    {
+        $rules = [
+            'anio' => 'required|numeric',
+            'mes' => 'required|numeric',
+            'ipc' => 'required|numeric'
+        ];
+
+        $messages = [
+
+            'anio.required' => 'El campo Año no puede ser vacío', 
+            'anio.numeric' => 'El campo Año sólo se aceptan números',
+
+            'mes.required' => 'El campo Mes no puede ser vacío', 
+            'mes.numeric' => 'El campo Mes sólo se aceptan números',
+
+            'ipc.required' => 'El campo IPC no puede ser vacío', 
+            'ipc.numeric' => 'El campo IPC sólo se aceptan números'
+
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()){
+            return redirect('ipc')
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
+
+            $ipcTasa = IpcTasa::where('anio', '=', $request->anio)->where('mes', '=', $request->mes)->firstOrFail();
+
+            $ipcTasa->user_id = Auth::user()->id;
+            $ipcTasa->ipc = trim($request->ipc);
+
+            $ipcTasa->save();
+            if ($request->now) {
+                $ipcTasa = IpcTasa::where('anio', '=', $request->anio)->where('mes', '=', Carbon::now()->format('m'))->firstOrFail();
+
+                $ipcTasa->user_id = Auth::user()->id;
+                $ipcTasa->ipc = trim($request->ipc);
+
+                $ipcTasa->save();
+
+            }
+
+
+            $message = "Índice de Precios al Consumidor actualizado con éxito";
+
+            Session::flash('message', $message);
+        }
+        
+        return redirect('ipc');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -97,7 +154,7 @@ class IpcController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->save($request, $id);
     }
 
     /**

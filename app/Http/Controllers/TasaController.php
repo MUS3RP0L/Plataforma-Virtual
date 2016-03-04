@@ -157,13 +157,13 @@ class TasaController extends Controller
      */
     public function edit($id)
     {
+        $now = Carbon::now();
 
-        $aporTasa = AporTasa::where('id', '=', $id)->firstOrFail();
-
-        $date = Carbon::now();
+        $aporTasa = AporTasa::where('mes', '=', $now->format('m'))
+                               ->where('anio', '=', $now->format('Y'))->firstOrFail();
 
         $data = [
-            'date' => $date->format('m-Y'),
+            'date' => $now->format('m-Y'),
             'aporTasa' => $aporTasa
         ];
 
