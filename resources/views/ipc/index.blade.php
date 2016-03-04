@@ -83,7 +83,6 @@
                             <div class="row text-center">
                                 <div class="form-group form-group">
                                   <div class="col-md-12">
-                                    <a href="{!! url('tasa') !!}" class="btn btn-raised btn-warning">Cancelar</a>
                                     <button type="submit" class="btn btn-raised btn-primary">Aceptar</button>
                                   </div>
                                 </div>
