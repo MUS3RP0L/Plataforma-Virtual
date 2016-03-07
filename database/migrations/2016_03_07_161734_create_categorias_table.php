@@ -18,10 +18,19 @@ class CreateCategoriasTable extends Migration
 
             $table->bigIncrements('id');
             $table->double('por');
+            $table->integer('from');
+            $table->integer('to');
             $table->timestamps();
         });
 
         Schema::table('afiliados', function (Blueprint $table) {
+
+            $table->UnsignedBigInteger('categoria_id');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
+
+        });
+
+        Schema::table('aportes', function (Blueprint $table) {
 
             $table->UnsignedBigInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias');

@@ -15,6 +15,7 @@ use Muserpol\Aporte;
 use Muserpol\Grado;
 use Muserpol\Unidad;
 use Muserpol\AporTasa;
+use Muserpol\Categoria;
 use Muserpol\Helper\Util;
 
 $countAfi = 0;
@@ -105,8 +106,6 @@ class ImportController extends Controller
 	        		if($result->sue == 0){$afiliado->afi_state_id = 2;}
 	        		else{$afiliado->afi_state_id = 1;}
 
-	        		$afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
-	        		$afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
 	        		$afiliado->ci = $carnet;
 
 	        		$afiliado->pat = $result->pat;
@@ -116,9 +115,11 @@ class ImportController extends Controller
 	        		$afiliado->ap_esp = $result->apes;
 	        		$afiliado->est_civ = $result->eciv;
 	        		$afiliado->sex = $result->sex;
-
+					
 	        		$afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
 	        		$afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+	        		$afiliado->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
+	
 	        		$afiliado->afp = Util::getAfp($result->afp);
 	        		$afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 	        		$afiliado->fech_nac = Util::date($result->nac);
@@ -143,10 +144,11 @@ class ImportController extends Controller
 					$aporte->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
 					$aporte->desg = $result->desg;
 					$aporte->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+	        		$aporte->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
+
 					$aporte->item = $result->item;
 					$aporte->sue = Util::decimal($result->sue);
 					$aporte->b_ant = Util::decimal($result->cat);
-					$aporte->cat = Util::calcCat($aporte->b_ant,$aporte->sue);
 					$aporte->b_est = Util::decimal($result->est);
 					$aporte->b_car = Util::decimal($result->carg);
 					$aporte->b_fro = Util::decimal($result->fro);
