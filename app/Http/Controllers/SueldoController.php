@@ -298,9 +298,9 @@ class SueldoController extends Controller
                 $sueldo = new sueldo;
                 $sueldo->user_id = Auth::user()->id;
                 
-                $sueldo->grado_id = $result->pat;
+                $sueldo->grado_id = $result->codigo;
                 $sueldo->anio = Carbon::now()->format('Y');
-                $sueldo->sue = $result->pat;
+                $sueldo->sue = $result->sueldo;
                 
                 $sueldo->save();
             }
