@@ -30,7 +30,7 @@ class CreateIpctasasTable extends Migration
 
         });
 
-        Schema::table('aportes_musers', function (Blueprint $table) {
+        Schema::table('aportes', function (Blueprint $table) {
 
             $table->UnsignedBigInteger('ipc_tasa_id');
             $table->foreign('ipc_tasa_id')->references('id')->on('ipc_tasas');
