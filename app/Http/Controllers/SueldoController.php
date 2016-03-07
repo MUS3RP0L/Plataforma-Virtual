@@ -14,7 +14,6 @@ use Muserpol\Sueldo;
 use Datatables;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
-use Maatwebsite\Excel\Facades\Excel;
 
 class SueldoController extends Controller
 {
