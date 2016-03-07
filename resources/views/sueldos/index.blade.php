@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-md-4">
                         <p class="text-right">
-                            <a href="{!! url('sueldo/' . $sueldo->id . '/edit') !!}" class="btn btn-raised btn-success">Importar Sueldos de {!! $date !!}</a>
+                            <a href="{!! url('sueldo/create') !!}" class="btn btn-raised btn-success">Importar Sueldos de {!! $date !!}</a>
                         </p>
                     </div>
                 </div> 

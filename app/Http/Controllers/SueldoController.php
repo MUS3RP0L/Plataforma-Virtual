@@ -14,6 +14,7 @@ use Muserpol\Sueldo;
 use Datatables;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SueldoController extends Controller
 {
@@ -203,7 +204,7 @@ class SueldoController extends Controller
      */
     public function create()
     {
-        return view('import.import_select');
+        return view('sueldos.import');
     }
 
     /**
@@ -214,7 +215,7 @@ class SueldoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->save($request);
     }
 
     /**
@@ -251,20 +252,8 @@ class SueldoController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function save($request, $id = false)
     {
-        //
-    }
-
-    public function import(Request $request)
-    {
-        global $countAfi, $countApor;
 
         ini_set('upload_max_filesize', '700M');
         ini_set('post_max_size', '700M');
@@ -279,8 +268,7 @@ class SueldoController extends Controller
         Excel::selectSheetsByIndex(0)->load($filename, function($reader) {
 
             $count = 0;
-            $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
-                        'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
+            $col = array('codigo', 'nivel', 'grado', 'literal', 'saldo');
 
             $results = $reader->select($col)->first();
              
@@ -299,121 +287,44 @@ class SueldoController extends Controller
             }
         });
 
-            $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
-                        'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
+            $col = array('codigo', 'nivel', 'grado', 'literal', 'saldo');
 
 
-        Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load($filename,$reader)->chunk(500, function($results) {
-
-            global $countAfi, $countApor;
-
-            $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
-                        'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
+        Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load($filename,$reader)->chunk(10, function($results) {
 
             foreach ($results as $result) {
                 
-                set_time_limit(36000);
+                set_time_limit(36000);           
 
-                $carnet = Util::zero($result->car);
-
+                $sueldo = new sueldo;
+                $sueldo->user_id = Auth::user()->id;
                 
-                if (Afiliado::where('ci', '=', $carnet)->first()) {
-    
-                    $afiliado = Afiliado::where('ci', '=', $carnet)->first();
-                    $afiliado->user_id = Auth::user()->id;
-                    
-                    if(Util::decimal($result->desg) == 0){
-                        $afiliado->afi_state_id = 1;
-                    }
-                    else{
-                        $afiliado->afi_state_id = 2;
-                    }
-                    $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
-                    $afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
-                    $afiliado->afp = Util::getAfp($result->afp);
-                    $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
-                    $afiliado->nua = $result->nua;
-                    $afiliado->save();
-                    
-                }else{
-
-                    $afiliado = new Afiliado;
-                    $afiliado->user_id = Auth::user()->id;
-                    
-                    if(Util::decimal($result->desg) == 0){
-                        $afiliado->afi_state_id = 1;
-                    }
-                    else{
-                        $afiliado->afi_state_id = 2;
-                    }
-                    $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
-                    $afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
-                    $afiliado->ci = $carnet;
-                    $afiliado->pat = $result->pat;
-                    $afiliado->mat = $result->mat;
-                    $afiliado->nom = $result->nom;
-                    $afiliado->nom2 = $result->nom2;
-                    $afiliado->ap_esp = $result->apes;
-                    $afiliado->est_civ = $result->eciv;
-                    $afiliado->sex = $result->sex;
-                    $afiliado->afp = Util::getAfp($result->afp);
-                    $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
-                    $afiliado->fech_nac = Util::date($result->nac);
-                    $afiliado->fech_ing = Util::date($result->ing);
-                    $afiliado->nua = $result->nua;
-                    
-                    $afiliado->save();
-                    $countAfi ++;
-                }
-
-                $aporte = Aporte::where('mes', '=', $result->mes)
-                                ->where('anio', '=', $result->a_o)
-                                ->where('afiliado_id', '=', $afiliado->id)->first();
-
-                if ($aporte === null) {
-
-                    $aporte = new Aporte;
-                    $aporte->user_id = Auth::user()->id;
-                    $aporte->afiliado_id = $afiliado->id;
-                    $aporte->mes = Util::zero($result->mes);
-                    $aporte->anio = Util::formatYear($result->a_o);
-                    $aporte->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
-                    $aporte->desg = $result->desg;
-                    $aporte->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
-                    $aporte->item = $result->item;
-                    $aporte->sue = Util::decimal($result->sue);
-                    $aporte->b_ant = Util::decimal($result->cat);
-                    $aporte->cat = Util::calcCat($aporte->b_ant,$aporte->sue);
-                    $aporte->b_est = Util::decimal($result->est);
-                    $aporte->b_car = Util::decimal($result->carg);
-                    $aporte->b_fro = Util::decimal($result->fro);
-                    $aporte->b_ori = Util::decimal($result->ori);
-                    $aporte->b_seg = Util::decimal($result->bseg);
-                    $aporte->dfu = $result->dfu;
-                    $aporte->nat = $result->nat;
-                    $aporte->lac = $result->lac;
-                    $aporte->pre = $result->pre;
-                    $aporte->sub = Util::decimal($result->sub);
-                    $aporte->gan = Util::decimal($result->gan);
-                    $aporte->pag = Util::decimal($result->pag);
-                    $aporte->cot = (FLOAT)$aporte->sue + (FLOAT)$aporte->b_ant + (FLOAT)$aporte->b_est + (FLOAT)$aporte->b_car + (FLOAT)$aporte->b_fro + (FLOAT)$aporte->b_ori;
-                    $aporte->mus = Util::decimal($result->mus);
-                    if ($aporte->mus) {
-                        $por_apor = AporTasa::where('mes', $aporte->mes)->where('anio', $aporte->anio)->first();
-                        $aporte->fr = $aporte->mus * $por_apor->apor_fr_a / $por_apor->apor_a;
-                        $aporte->sv = $aporte->mus * $por_apor->apor_sv_a / $por_apor->apor_a;
-                    }
-                    $aporte->save();
-                    $countApor ++;
-                }
+                $sueldo->grado_id = $result->pat;
+                $sueldo->anio = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+                $sueldo->sue = $result->pat;
+                
+                $sueldo->save();
             }
 
         });
 
-        $message = "Se realizaron " . $countAfi . " registros de Afiliados Nuevos y " . $countApor . " en Planillas";
+        $message = "Se importó los Sueldos Correctamente.";
 
         Session::flash('message', $message);
 
-        return redirect('importar_archivo');
+        return redirect('sueldo'); 
+
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
 }

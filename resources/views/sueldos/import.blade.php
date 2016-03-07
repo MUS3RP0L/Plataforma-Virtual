@@ -5,13 +5,13 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel-heading">
-				<h3>Importar Archivo de Aportes</h3>
+				<h3>Importar Archivo de Sueldos</h3>
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-body">
 
 			    	<div class="col-md-10 col-md-offset-1">
-					    {!! Form::open(['url' => 'import', 'role' => 'form', 'class' => 'form-horizontal', 'files' => true ])!!}
+							{!! Form::open(['method' => 'POST', 'route' => ['sueldo.store'], 'class' => 'form-horizontal']) !!}
 							<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
 							<div class="row">
@@ -20,7 +20,7 @@
 											{!! Form::label('archive', 'ARCHIVO ', ['class' => 'col-md-4 control-label']) !!}
 										<div class="col-md-8">
 				              				<input type="file" id="inputFile" name="archive">
-				              				<input type="text" readonly="" class="form-control " placeholder="Seleccione el Archivo Proporcionado por Comando General...">
+				              				<input type="text" readonly="" class="form-control " placeholder="Seleccione Archivo de sueldos según formato...">
 										</div>
 									</div>
 								</div>

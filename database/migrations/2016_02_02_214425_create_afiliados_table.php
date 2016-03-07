@@ -76,7 +76,7 @@ class CreateAfiliadosTable extends Migration
             $table->UnsignedBigInteger('muni_id')->nullable();
 
             $table->string('ci')->unique()->required();
-            $table->string('matri')->unique()->required();
+            $table->string('matri')->required();
 
             $table->string('pat')->nullable();
             $table->string('mat')->nullable();
