@@ -267,7 +267,7 @@ class SueldoController extends Controller
         Excel::selectSheetsByIndex(0)->load($filename, function($reader) {
 
             $count = 0;
-            $col = array('codigo', 'nivel', 'grado', 'literal', 'saldo');
+            $col = array('codigo', 'nivel', 'grado', 'literal', 'sueldo');
 
             $results = $reader->select($col)->first();
              
@@ -286,7 +286,7 @@ class SueldoController extends Controller
             }
         });
 
-            $col = array('codigo', 'nivel', 'grado', 'literal', 'saldo');
+            $col = array('codigo', 'nivel', 'grado', 'literal', 'sueldo');
 
 
         Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load($filename,$reader)->chunk(10, function($results) {

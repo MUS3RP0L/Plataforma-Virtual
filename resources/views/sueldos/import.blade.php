@@ -11,7 +11,7 @@
 				<div class="panel-body">
 
 			    	<div class="col-md-10 col-md-offset-1">
-							{!! Form::open(['method' => 'POST', 'route' => ['sueldo.store'], 'class' => 'form-horizontal']) !!}
+							{!! Form::open(['method' => 'POST', 'route' => ['sueldo.store'], 'class' => 'form-horizontal', 'files' => true ]) !!}
 							<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
 							<div class="row">
