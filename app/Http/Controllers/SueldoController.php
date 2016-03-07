@@ -299,7 +299,7 @@ class SueldoController extends Controller
                 $sueldo->user_id = Auth::user()->id;
                 
                 $sueldo->grado_id = $result->pat;
-                $sueldo->anio = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+                $sueldo->anio = Carbon::now()->format('Y');
                 $sueldo->sue = $result->pat;
                 
                 $sueldo->save();
