@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(IpcTasasTableSeeder::class);
         $this->call(AporTasasTableSeeder::class);
         $this->call(SueldosTableSeeder::class);
+        $this->call(CategoriasTableSeeder::class);
 
         Model::reguard();
     }
