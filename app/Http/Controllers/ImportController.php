@@ -81,7 +81,7 @@ class ImportController extends Controller
 					$afiliado = Afiliado::where('ci', '=', $carnet)->first();
 	        		$afiliado->user_id = Auth::user()->id;
 	        		
-	        		if($result->sue == 0){$afiliado->afi_state_id = 2;}
+	        		if(Util::decimal($result->sue)<> 0){$afiliado->afi_state_id = 2;}
 	        		else{$afiliado->afi_state_id = 1;}
 	        		
 	        		$afiliado->pat = $result->pat;
@@ -103,7 +103,7 @@ class ImportController extends Controller
 					$afiliado = new Afiliado;
 	        		$afiliado->user_id = Auth::user()->id;
 	        		
-	        		if($result->sue == 0){$afiliado->afi_state_id = 2;}
+	        		if(Util::decimal($result->sue)<> 0){$afiliado->afi_state_id = 2;}
 	        		else{$afiliado->afi_state_id = 1;}
 
 	        		$afiliado->ci = $carnet;
