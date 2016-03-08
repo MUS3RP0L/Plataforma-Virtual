@@ -17,8 +17,7 @@ class Aporte extends Model
 
 	'afiliado_id',
 
-	'mes',
-	'anio',
+	'gest',
 
     'uni',
     'desg',

@@ -10,8 +10,7 @@ class IpcTasa extends Model
 
 	protected $fillable = [
 	
-		'mes',
-		'anio',
+		'gest',
 		'ipc'
 	];
 

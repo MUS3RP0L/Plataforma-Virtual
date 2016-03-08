@@ -11,8 +11,7 @@ class AporTasa extends Model
 	protected $fillable = [
 	
 		'afi_type_id',
-		'mes',
-		'anio',
+		'gest',
         'apor_a',
         'apor_fr_a',
         'apor_sv_a',

@@ -11,7 +11,7 @@ class Sueldo extends Model
 	protected $fillable = [
 	
 		'grado_id',
-		'anio',
+		'gest',
 		'sue'
 	];
 
