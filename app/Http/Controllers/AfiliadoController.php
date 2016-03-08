@@ -33,7 +33,7 @@ class AfiliadoController extends Controller
 
     public function afiliadosData()
     {
-        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri', 'afi_state_id']);
+        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri', 'afi_state_id'])->get();
 
         return Datatables::of($afiliados)
                 ->addColumn('gra', function ($afiliado) { return Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->first()->grado->abre; })
@@ -45,6 +45,25 @@ class AfiliadoController extends Controller
 
                 ->addColumn('est', function ($afiliado) { return $afiliado->afi_state->name; })
                 ->make(true);
+    }
+
+
+    public function RegPagoData(Request $request)
+    {   
+
+        $aportes = Aporte::select(['gest'])->where('afiliado_id', $request->id)->get();
+
+        $data = Carbon::now();
+
+        // return Datatables::of($aportes)
+        //                 ->editColumn('anio', function ($aportes) { return $aportes->mes . "-" . $aportes->anio; })
+        //                 ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
+        //                 ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
+        //                 ->editColumn('mus', function ($aportes) { return Util::formatMoney($aportes->mus); })
+        //                 ->make(true);
+
+        return $data;
+
     }
 
     /**
