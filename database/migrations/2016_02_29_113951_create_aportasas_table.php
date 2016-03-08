@@ -19,8 +19,7 @@ class CreateAportasasTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
 
-            $table->integer('mes')->required();
-            $table->integer('anio')->required();
+            $table->date('gest')->required();
 
             $table->double('apor_a');
             $table->double('apor_fr_a');

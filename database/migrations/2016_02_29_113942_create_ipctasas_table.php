@@ -19,8 +19,7 @@ class CreateIpctasasTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
 
-            $table->integer('mes')->required();
-            $table->integer('anio')->required();
+            $table->date('gest')->required();
 
             $table->double('ipc');
             

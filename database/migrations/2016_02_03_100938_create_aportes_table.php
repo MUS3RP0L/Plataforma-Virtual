@@ -75,8 +75,7 @@ class CreateAportesTable extends Migration
             $table->UnsignedBigInteger('aporte_type_id');
             $table->UnsignedBigInteger('pago_id')->nullable();
 
-            $table->integer('mes')->required();
-            $table->integer('anio')->required();
+            $table->date('gest')->required();
 
             $table->bigInteger('desg');
 
