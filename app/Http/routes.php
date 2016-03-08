@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('getSueldoTer', array('as'=>'getSueldoTer', 'uses'=>'SueldoController@sueldoTerData'));
 	Route::get('getSueldoCua', array('as'=>'getSueldoCua', 'uses'=>'SueldoController@sueldoCuaData'));
 
-	// Route::get('totales/{m}/{a}', 'ReporteController@GenerateReportAporte');
+	//  Totales
 	Route::get('totales', 'ReporteController@ReportAporte');
 	Route::post('ir_totales', 'ReporteController@GenerateReportAporte');
 

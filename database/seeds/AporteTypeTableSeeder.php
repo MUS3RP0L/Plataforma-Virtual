@@ -22,7 +22,8 @@ class AporteTypeTableSeeder extends Seeder
     {
         $statuses = [
             ['id' => '1', 'name' => 'Comando'],
-            ['id' => '2', 'name' => 'Voluntario']
+            ['id' => '2', 'name' => 'Voluntario'],
+            ['id' => '3', 'name' => 'Voluntario Interior']
         ];
 
         foreach ($statuses as $status) {

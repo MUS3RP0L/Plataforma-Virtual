@@ -23,9 +23,9 @@ class PagoTypesTableSeeder extends Seeder
         $statuses = [
             ['id' => '1', 'name' => 'Cheque'],
             ['id' => '2', 'name' => 'Contabilidad'],
-            ['id' => '2', 'name' => 'Efectivo'],
-            ['id' => '2', 'name' => 'Efectivo Deposito'],
-            ['id' => '2', 'name' => 'Deposito en Cuenta']
+            ['id' => '3', 'name' => 'Efectivo'],
+            ['id' => '4', 'name' => 'Efectivo Deposito'],
+            ['id' => '5', 'name' => 'Deposito en Cuenta']
         ];
 
         foreach ($statuses as $status) {

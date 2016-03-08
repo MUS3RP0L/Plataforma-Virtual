@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AporTasasTableSeeder::class);
         $this->call(SueldosTableSeeder::class);
         $this->call(CategoriasTableSeeder::class);
+        $this->call(AporteTypeTableSeeder::class);
+        $this->call(PagoTypesTableSeeder::class);
 
         Model::reguard();
     }

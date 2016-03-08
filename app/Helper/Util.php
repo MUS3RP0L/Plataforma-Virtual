@@ -29,12 +29,12 @@ class Util
 
 	public static function calcCat($b_ant, $sue)
 	{
-		if ($b_ant == 00000000.00 || $sue == 00000000.00) {
-			return '';
+		if ($b_ant == 0 || $sue == 0) {
+			return 0;
 		}
 		else
 		{
-			return $cat = $b_ant/$sue;
+			return number_format($b_ant/$sue, 2, '.', ',');
 		}
 
 	}
