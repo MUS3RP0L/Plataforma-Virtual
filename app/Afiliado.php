@@ -4,6 +4,7 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Afiliado extends Model
 {
@@ -102,9 +103,14 @@ class Afiliado extends Model
 
     public function getFullDateNac()
     {	
-		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		$meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
 		return date("d", strtotime($this->fech_nac))." ".$meses[date("n", strtotime($this->fech_nac))-1]. " ".date("Y", strtotime($this->fech_nac));
  
+    }
+
+    public function getHowOld()
+    {
+    	return Carbon::parse($this->fech_nac)->age . " Años";
     }
 	
 	public function getCivil()
@@ -112,35 +118,35 @@ class Afiliado extends Model
 	    if ($this->est_civ == 'S') {
 	        
 	        if ($this->sex == 'M') {
-	        	return "SOLTERO";
+	        	return "Soltero";
 	    	}
 	    	else{
-	    		return "SOLTERA";
+	    		return "Soltera";
 	    	}
 	        
 	    } 
 	    else if ($this->est_civ == 'C'){
 	        if ($this->sex == 'M') {
-	        	return "CASADO";
+	        	return "Casado";
 	    	}
 	    	else{
-	    		return "CASADA";
+	    		return "Casada";
 	    	}
 	    }
 	    else if ($this->est_civ == 'V'){
 	        if ($this->sex == 'M') {
-	        	return "VIUDO";
+	        	return "Viudo";
 	    	}
 	    	else{
-	    		return "VIUDA";
+	    		return "Viuda";
 	    	}
 	    }
 	    else if ($this->est_civ == 'D'){
 	        if ($this->sex == 'M') {
-	        	return "DIVIRCIADO";
+	        	return "Divorciado";
 	    	}
 	    	else{
-	    		return "DIVIRCIADA";
+	    		return "Divorciada";
 	    	}
 	    }
 	}
@@ -148,16 +154,16 @@ class Afiliado extends Model
 	public function getSex()
 	{
 	    if ($this->sex == 'M') {
-	        return "MASCULINO";
+	        return "Masculino";
 	    } 
 	    else if ($this->sex == 'F'){
-	        return "FEMENINO";
+	        return "femenino";
 	    }
 	}
 
 	public function getFullDateIng()
     {	
-		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		$meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
 		return date("d", strtotime($this->fech_ing))." ".$meses[date("n", strtotime($this->fech_ing))-1]. " ".date("Y", strtotime($this->fech_ing));
  
     }

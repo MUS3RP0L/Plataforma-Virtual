@@ -78,21 +78,19 @@ class AfiliadoController extends Controller
     {
         $afiliado = Afiliado::idIs($id)->orderBy('id', 'desc')->firstOrFail();
 
-        $firstAporte = Aporte::afiliadoId($afiliado->id)->orderBy('anio', 'asc')->orderBy('mes', 'asc')->firstOrFail();
+        $firstAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'asc')->firstOrFail();
+        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->firstOrFail();
 
-        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-
-        $firstAporte->desde = $meses[$firstAporte->mes-1] .' - '.  $firstAporte->anio;
-
-        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('anio', 'desc')->orderBy('mes', 'desc')->firstOrFail();
-
-        $lastAporte->hasta = $meses[$lastAporte->mes-1] .' - '.  $lastAporte->anio;
+        $firstAporte->desde = Util::getMes(Carbon::parse($firstAporte->gest)->month) . " de " . Carbon::parse($firstAporte->gest)->year;
+        
+        $lastAporte->hasta = Util::getMes(Carbon::parse($lastAporte->gest)->month) . " de " . Carbon::parse($lastAporte->gest)->year;
 
         $totalGanado = DB::table('afiliados')
                 ->select(DB::raw('SUM(aportes.gan) as ganado'))
                 ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
                 ->where('afiliados.id', '=', $afiliado->id)
                 ->get();
+
         foreach ($totalGanado as $item) {
             $ganado = $item->ganado;
         }
@@ -102,6 +100,7 @@ class AfiliadoController extends Controller
                 ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
                 ->where('afiliados.id', '=', $afiliado->id)
                 ->get();
+
         foreach ($totalSegCiu as $item) {
             $SegCiu = $item->SegCiu;
         }
@@ -124,7 +123,6 @@ class AfiliadoController extends Controller
             $muserpol = $item->muserpol;
         }
 
-        //add item 0 +
         $cotizablefinal = $cotizable;
 
         $Fon = Util::calcFon($muserpol);
