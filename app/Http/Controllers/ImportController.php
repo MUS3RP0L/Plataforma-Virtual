@@ -65,7 +65,7 @@ class ImportController extends Controller
 						'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
 
 
-     	Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load($filename,$reader)->chunk(50, function($results) {
+     	Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load($filename,$reader)->chunk(500, function($results) {
 
      		global $countAfi, $countApor;
 
