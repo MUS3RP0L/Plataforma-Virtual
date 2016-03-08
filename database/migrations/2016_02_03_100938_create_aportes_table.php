@@ -84,7 +84,6 @@ class CreateAportesTable extends Migration
 
             $table->string('cat');
             
-            $table->boolean('is_rein')->default(0);
             $table->double('sue');
             $table->double('b_ant');
             $table->double('b_est');
