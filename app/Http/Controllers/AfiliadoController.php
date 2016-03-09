@@ -16,6 +16,7 @@ use Muserpol\AfiState;
 use Datatables;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 
 class AfiliadoController extends Controller
@@ -52,19 +53,18 @@ class AfiliadoController extends Controller
     {   
         $afiliado = Afiliado::idIs($request->id)->firstOrFail();
 
-        
+        $gestiones = new Collection;
 
         $from = Carbon::parse($afiliado->fech_ing);
 
         $to = Carbon::now();
         
         $to->diffInHours($from);
-        
-        // $k = 0;
 
         for ($i=$from->year; $i <= $to->year ; $i++) { 
             
             $base = array();
+            $mes = array();
 
             for ($j=1; $j <= 12; $j++) { 
 
@@ -74,33 +74,31 @@ class AfiliadoController extends Controller
                                     ->first();   
      
                 if ($aportes) {
-                   $mes = array($j => 0);
+                    $mes["m".$j] = 1;
                 }else{
-                   $mes = array('b' => 1);
+                   $mes["m".$j] = 0;
                 }
                 $base = array_merge($base, $mes);
             }
             $year = array('year'=> $i);
 
-           $gestiones[] = array_merge($year, $base);
+            $gestiones->push([
+                'year'         => $year,
+            ]);
+           // $gestiones[] = array_merge($year, $base);
 
         }
 
-        return json_encode($gestiones);
-
-
+        // return $gestiones;
+        return Datatables::of($gestiones)->make(true);
         // return  $to->diffInYears($from);
 
-        // return $now->diffInYears(Carbon::parse($gestion));
-
-        // return Datatables::of($aportes)
-        //                 ->editColumn('anio', function ($aportes) { return $aportes->mes . "-" . $aportes->anio; })
-        //                 ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
-        //                 ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
-        //                 ->editColumn('mus', function ($aportes) { return Util::formatMoney($aportes->mus); })
-        //                 ->make(true);
-
-        // return Carbon::parse($gestion);
+        // return Datatables::of($gestiones)
+                        // ->editColumn('anio', function ($aportes) { return $aportes->mes . "-" . $aportes->anio; })
+                        // ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
+                        // ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
+                        // ->editColumn('mus', function ($aportes) { return Util::formatMoney($aportes->mus); })
+                        // ->make(true);
 
     }
 

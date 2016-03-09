@@ -375,7 +375,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 
 				<div class="col-md-6">
@@ -473,7 +473,7 @@
 								<div class="col-md-12">
 									
 
-									<table class="table table-striped table-hover" id="afiliados-table">
+									{{-- <table class="table table-striped table-hover" id="afiliados-table">
 				                        <thead>
 				                            <tr class="success">
 				                                <th>MM AA</th>
@@ -499,7 +499,7 @@
 												<th>S.V.</th> 
 				                            </tr>
 				                        </thead>
-				                    </table>
+				                    </table> --}}
 								</div>
 							</div>						
 						</div>
@@ -557,5 +557,9 @@ $(document).ready(function(){
 	//         ]
 	//     });
 	// });
+
+
+
+
 </script>
 @endpush
