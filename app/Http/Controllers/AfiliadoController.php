@@ -50,10 +50,48 @@ class AfiliadoController extends Controller
 
     public function RegPagoData(Request $request)
     {   
+        $afiliado = Afiliado::idIs($request->id)->firstOrFail();
 
-        $aportes = Aporte::select(['gest'])->where('afiliado_id', $request->id)->get();
+        
 
-        $data = Carbon::now();
+        $from = Carbon::parse($afiliado->fech_ing);
+
+        $to = Carbon::now();
+        
+        $to->diffInHours($from);
+        
+        // $k = 0;
+
+        for ($i=$from->year; $i <= $to->year ; $i++) { 
+            
+            $base = array();
+
+            for ($j=1; $j <= 12; $j++) { 
+
+                $aportes = Aporte::select(['gest'])
+                                    ->where('afiliado_id', $request->id)
+                                    ->where('gest', '=',Carbon::createFromDate($i, $j, 1)->toDateString())
+                                    ->first();   
+     
+                if ($aportes) {
+                   $mes = array($j => 0);
+                }else{
+                   $mes = array('b' => 1);
+                }
+                $base = array_merge($base, $mes);
+            }
+            $year = array('year'=> $i);
+
+           $gestiones[] = array_merge($year, $base);
+
+        }
+
+        return json_encode($gestiones);
+
+
+        // return  $to->diffInYears($from);
+
+        // return $now->diffInYears(Carbon::parse($gestion));
 
         // return Datatables::of($aportes)
         //                 ->editColumn('anio', function ($aportes) { return $aportes->mes . "-" . $aportes->anio; })
@@ -62,7 +100,7 @@ class AfiliadoController extends Controller
         //                 ->editColumn('mus', function ($aportes) { return Util::formatMoney($aportes->mus); })
         //                 ->make(true);
 
-        return $data;
+        // return Carbon::parse($gestion);
 
     }
 
@@ -95,7 +133,7 @@ class AfiliadoController extends Controller
      */
     public function show($id)
     {
-        $afiliado = Afiliado::idIs($id)->orderBy('id', 'desc')->firstOrFail();
+        $afiliado = Afiliado::idIs($id)->firstOrFail();
 
         $firstAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'asc')->firstOrFail();
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->firstOrFail();
