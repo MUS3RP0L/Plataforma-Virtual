@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('afiliadoreporte/{id}', 'AfiliadoController@afiliadoReporte');
 	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
 
+	//view Registros
 	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AfiliadoController@RegPagoData'));
 
 	//Aportes

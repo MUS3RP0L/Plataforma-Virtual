@@ -82,15 +82,19 @@ class AfiliadoController extends Controller
             }
             $year = array('year'=> $i);
 
-            $gestiones->push([
-                'year'         => $year,
-            ]);
+            $gestiones->push(
+               array_merge($year, $base)
+            );
            // $gestiones[] = array_merge($year, $base);
 
         }
 
         // return $gestiones;
-        return Datatables::of($gestiones)->make(true);
+        return Datatables::of($gestiones)
+                ->addColumn('action', function ($afiliado) { 
+                    return  '
+                            <a href="afiliado" ><i class="glyphicon glyphicon-zoom-in"></i></a>';})
+                ->make(true);
         // return  $to->diffInYears($from);
 
         // return Datatables::of($gestiones)
