@@ -13,6 +13,8 @@ use Muserpol\Afiliado;
 use Muserpol\Aporte;
 use Datatables;
 use Muserpol\Helper\Util;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 class AporteController extends Controller
 {
@@ -23,9 +25,17 @@ class AporteController extends Controller
      */
     public function index()
     {
-        return view('aportes.index');
+        //
     }
 
+    public function RegAporteGest($afid)
+    {
+        $data = array(
+            'afid' => $afid,
+        );
+
+        return view('aportes.index', $data);
+    }
 
     public function RegPagoData(Request $request)
     {   
@@ -43,44 +53,54 @@ class AporteController extends Controller
             
             $base = array();
             $mes = array();
-
+            $all = 0;
+ 
             for ($j=1; $j <= 12; $j++) { 
 
-                $aportes = Aporte::select(['gest'])
-                                    ->where('afiliado_id', $request->id)
-                                    ->where('gest', '=',Carbon::createFromDate($i, $j, 1)->toDateString())
-                                    ->first();   
+                $aportes = Aporte::select(['gest'])->where('afiliado_id', $request->id)->where('gest', '=',Carbon::createFromDate($i, $j, 1)->toDateString())->first();   
      
                 if ($aportes) {
                     $mes["m".$j] = 1;
+                    $all++;
                 }else{
                    $mes["m".$j] = 0;
                 }
+
+                if ($i == $from->year) {
+                    if($j < $from->month){
+                        $mes["m".$j] = -1;
+                    }
+                }
+
+                if ($i == $to->year) {
+                    if($j > $to->month){
+                        $mes["m".$j] = -1;
+                    }
+                }
+
                 $base = array_merge($base, $mes);
             }
+
             $year = array('year'=> $i);
-
-            $gestiones->push(
-               array_merge($year, $base)
-            );
-           // $gestiones[] = array_merge($year, $base);
-
+            $gestiones->push(array_merge($year, $base));
         }
 
-        // return $gestiones;
         return Datatables::of($gestiones)
-                ->addColumn('action', function ($afiliado) { 
-                    return  '
-                            <a href="afiliado" ><i class="glyphicon glyphicon-zoom-in"></i></a>';})
+                ->editColumn('m1', '<?php if($m1 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m1 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m1 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m2', '<?php if($m2 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m2 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m2 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m3', '<?php if($m3 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m3 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m3 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m4', '<?php if($m4 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m4 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m4 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m5', '<?php if($m5 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m5 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m5 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m6', '<?php if($m6 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m6 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m6 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m7', '<?php if($m7 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m7 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m7 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m8', '<?php if($m8 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m8 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m8 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m9', '<?php if($m9 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m9 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m9 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m10', '<?php if($m10 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m10 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m10 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m11', '<?php if($m11 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m11 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m11 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m12', '<?php if($m12 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m12 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m12 === -1){ ?>&nbsp;<?php } ?>')
+                
+                ->addColumn('action','<div class="row text-center"><a href="afiliado/{{$year}}/edit" ><i class="glyphicon glyphicon-floppy-disk"></i> Registrar Aporte</a></div>')
                 ->make(true);
-        // return  $to->diffInYears($from);
-
-        // return Datatables::of($gestiones)
-                        // ->editColumn('anio', function ($aportes) { return $aportes->mes . "-" . $aportes->anio; })
-                        // ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
-                        // ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
-                        // ->editColumn('mus', function ($aportes) { return Util::formatMoney($aportes->mus); })
-                        // ->make(true);
 
     }
 

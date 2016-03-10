@@ -49,8 +49,10 @@ Route::group(['middleware' => 'auth'], function() {
 
 	//view Registros Aportes
 	// Route::resource('aportes', 'AporteController');
-	Route::get('regaportegest/{afid}', 'AporteController@regaportegest');
-	Route::get('getRegPago/{afid}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
+	Route::get('regaportegest/{afid}', 'AporteController@RegAporteGest');
+
+	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
+	
 	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
 
 	// AporTasa
