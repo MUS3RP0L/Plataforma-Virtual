@@ -23,7 +23,65 @@ class AporteController extends Controller
      */
     public function index()
     {
-        //->addColumn('nivgra', '{{$niv}}-{{$gra}}')
+        return view('aportes.index');
+    }
+
+
+    public function RegPagoData(Request $request)
+    {   
+        $afiliado = Afiliado::idIs($request->id)->firstOrFail();
+
+        $gestiones = new Collection;
+
+        $from = Carbon::parse($afiliado->fech_ing);
+
+        $to = Carbon::now();
+        
+        $to->diffInHours($from);
+
+        for ($i=$from->year; $i <= $to->year ; $i++) { 
+            
+            $base = array();
+            $mes = array();
+
+            for ($j=1; $j <= 12; $j++) { 
+
+                $aportes = Aporte::select(['gest'])
+                                    ->where('afiliado_id', $request->id)
+                                    ->where('gest', '=',Carbon::createFromDate($i, $j, 1)->toDateString())
+                                    ->first();   
+     
+                if ($aportes) {
+                    $mes["m".$j] = 1;
+                }else{
+                   $mes["m".$j] = 0;
+                }
+                $base = array_merge($base, $mes);
+            }
+            $year = array('year'=> $i);
+
+            $gestiones->push(
+               array_merge($year, $base)
+            );
+           // $gestiones[] = array_merge($year, $base);
+
+        }
+
+        // return $gestiones;
+        return Datatables::of($gestiones)
+                ->addColumn('action', function ($afiliado) { 
+                    return  '
+                            <a href="afiliado" ><i class="glyphicon glyphicon-zoom-in"></i></a>';})
+                ->make(true);
+        // return  $to->diffInYears($from);
+
+        // return Datatables::of($gestiones)
+                        // ->editColumn('anio', function ($aportes) { return $aportes->mes . "-" . $aportes->anio; })
+                        // ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
+                        // ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
+                        // ->editColumn('mus', function ($aportes) { return Util::formatMoney($aportes->mus); })
+                        // ->make(true);
+
     }
 
     public function aportesData(Request $request)

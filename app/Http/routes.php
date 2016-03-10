@@ -26,10 +26,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/unblock/{id}', 'UsuarioController@unBlock');
 	Route::get('getUsuario', array('as'=>'getUsuario', 'uses'=>'UsuarioController@UsuariosData'));
 
-	// Registration routes...
-	// Route::get('register', 'Auth\AuthController@getRegister');
-	// Route::post('register', 'Auth\AuthController@postRegister');
-
 	// Password reset link request routes...
 	Route::get('password/email', 'Auth\PasswordController@getEmail');
 	Route::post('password/email', 'Auth\PasswordController@postEmail');
@@ -51,11 +47,11 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('afiliadoreporte/{id}', 'AfiliadoController@afiliadoReporte');
 	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
 
-	//view Registros
-	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AfiliadoController@RegPagoData'));
-
-	//Aportes
-	Route::get('getAporte/{id}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
+	//view Registros Aportes
+	// Route::resource('aportes', 'AporteController');
+	Route::get('regaportegest/{afid}', 'AporteController@regaportegest');
+	Route::get('getRegPago/{afid}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
+	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
 
 	// AporTasa
 	Route::resource('tasa', 'TasaController');
