@@ -119,8 +119,8 @@ $(function() {
         order: [0, "desc"],
         columns: [
             { data: 'gest', name: 'gest', sWidth: '10%' },
-            { data: 'mes', name: 'mes', "sClass": "text-center", sWidth: '45%' },
-            { data: 'ipc', name: 'ipc', "sClass": "text-center", sWidth: '45%' }
+            { data: 'mes', name: 'mes', "sClass": "text-center", sWidth: '45%', bSortable: false },
+            { data: 'ipc', name: 'ipc', "sClass": "text-center", sWidth: '45%', bSortable: false }
         ]
     });
 });
