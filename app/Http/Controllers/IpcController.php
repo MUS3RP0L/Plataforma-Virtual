@@ -23,7 +23,7 @@ class IpcController extends Controller
      */
     public function index()
     {
-        $now = Carbon::now();
+        $now = Carbon::now()->subMonth();
 
         $y = $now->year;
 
@@ -35,7 +35,7 @@ class IpcController extends Controller
 
         $ipcTasa->year = Carbon::parse($ipcTasa->gest)->year;
 
-        $ipcTasa->month = Carbon::parse($ipcTasa->gest)->subMonth()->month;
+        $ipcTasa->month = Carbon::parse($ipcTasa->gest)->month;
 
         $data = array(
 
@@ -80,6 +80,11 @@ class IpcController extends Controller
         //
     }
 
+    // public function save($request, $id = false)
+    // {
+    //     return $request->now;
+    //     }
+
     public function save($request, $id = false)
     {
         $rules = [
@@ -116,17 +121,6 @@ class IpcController extends Controller
             $ipcTasa->ipc = trim($request->ipc);
 
             $ipcTasa->save();
-
-            if ($request->now) {
-                $ipcTasaAdd = IpcTasa::where('gest', '=', Carbon::createFromDate($request->year, $request->month, 1)->addMonth()->toDateString())->firstOrFail();
-
-                $ipcTasaAdd->user_id = Auth::user()->id;
-                $ipcTasaAdd->ipc = trim($request->ipc);
-
-                $ipcTasaAdd->save();
-
-            }
-
 
             $message = "Índice de Precios al Consumidor actualizado con éxito";
 

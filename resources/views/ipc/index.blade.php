@@ -69,15 +69,6 @@
                                             <span class="help-block">Monto de IPC</span>
                                         </div>
                                     </div>
-                                    <div class="form-group form-group-lg">
-                                        <div class="col-md-offset-4 col-md-10">
-                                            <div class="togglebutton">
-                                              <label>
-                                                <input type="checkbox" name="now" checked=""> Repetir al Mes de {!! $month !!} 
-                                              </label>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="row text-center">
