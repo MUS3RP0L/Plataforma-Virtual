@@ -29,21 +29,21 @@
 											{!! Form::label('apor_a', 'APORTE MUSERPOL', ['class' => 'col-md-5 control-label']) !!}
 										<div class="col-md-4">
 											{!! Form::text('apor_a', $aporTasa->apor_a, ['class'=> 'form-control', 'required' => 'required']) !!}
-											<span class="help-block">Apellido paterno y apellido materno</span>
+											<span class="help-block">Nuevo Aporte Muserpol </span>
 										</div>
 									</div>
 									<div class="form-group form-group-lg">
 											{!! Form::label('apor_fr_a', 'FONDO DE RETIRO', ['class' => 'col-md-5 control-label']) !!}
 										<div class="col-md-4">
 											{!! Form::text('apor_fr_a', $aporTasa->apor_fr_a, ['class'=> 'form-control', 'required' => 'required']) !!}
-											<span class="help-block">Primer y segundo nombre</span>
+											<span class="help-block">Nuevo Aporte de Fondo de Retiro</span>
 										</div>
 									</div>
 									<div class="form-group form-group-lg">
 											{!! Form::label('apor_sv_a', 'SEGURO DE VIDA', ['class' => 'col-md-5 control-label']) !!}
 										<div class="col-md-4">
 											{!! Form::text('apor_sv_a', $aporTasa->apor_sv_a, ['class'=> 'form-control', 'required' => 'required']) !!}
-											<span class="help-block">Teléfono celular</span>
+											<span class="help-block">Nuevo Aporte de Seguro de Vida</span>
 										</div>
 									</div>
 								</div>
@@ -66,21 +66,21 @@
 											{!! Form::label('apor_p', 'APORTE MUSERPOL', ['class' => 'col-md-5 control-label']) !!}
 										<div class="col-md-4">
 											{!! Form::text('apor_p', $aporTasa->apor_p, ['class'=> 'form-control', 'required' => 'required']) !!}
-											<span class="help-block">Número de Carnet</span>
+											<span class="help-block">Nuevo Aporte Muserpol</span>
 										</div>
 									</div>
 									<div class="form-group form-group-lg">
 											{!! Form::label('apor_fr_p', 'FONDO DE RETIRO', ['class' => 'col-md-5 control-label']) !!}
 										<div class="col-md-4">
 											{!! Form::text('apor_fr_p', $aporTasa->apor_fr_p, ['class'=> 'form-control', 'required' => 'required']) !!}
-											<span class="help-block">Número de Carnet</span>
+											<span class="help-block">Nuevo Aporte de Fondo de Retiro</span>
 										</div>
 									</div>
 									<div class="form-group form-group-lg">
 											{!! Form::label('apor_sv_p', 'SEGURO DE VIDA', ['class' => 'col-md-5 control-label']) !!}
 										<div class="col-md-4">
 											{!! Form::text('apor_sv_p', $aporTasa->apor_sv_p, ['class'=> 'form-control', 'required' => 'required']) !!}
-											<span class="help-block">Número de Carnet</span>
+											<span class="help-block">Nuevo Aporte de Seguro de Vida</span>
 										</div>
 									</div>
 								</div>
