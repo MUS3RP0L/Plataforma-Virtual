@@ -30,16 +30,37 @@ class AporteController extends Controller
 
     public function RegAporteGest($afid)
     {
+
+        $afiliado = Afiliado::idIs($afid)->firstOrFail();
+
         $data = array(
-            'afid' => $afid,
+            'afiliado' => $afiliado,
+            'afid' => $afid
         );
 
         return view('aportes.index', $data);
     }
 
+    public function CalcAporteGest($afid, $gesid)
+    {
+        $afiliado = Afiliado::idIs($afid)->firstOrFail();
+
+        $data = array(
+            'afiliado' => $afiliado,
+            'afid' => $afid,
+            'gesid' => $gesid
+        );
+
+
+        return view('aportes.calc', $data);
+    }
+
+
     public function RegPagoData(Request $request)
     {   
         $afiliado = Afiliado::idIs($request->id)->firstOrFail();
+
+        $afi["afi_id"] = $afiliado->id;
 
         $gestiones = new Collection;
 
@@ -77,6 +98,7 @@ class AporteController extends Controller
                 }
 
                 $base = array_merge($base, $mes);
+                $base = array_merge($base, $afi);
             }
 
             $year = array('year'=> $i);
@@ -84,20 +106,21 @@ class AporteController extends Controller
         }
 
         return Datatables::of($gestiones)
-                ->editColumn('m1', '<?php if($m1 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m1 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m1 === -1){ ?>&nbsp;<?php } ?>')
-                ->editColumn('m2', '<?php if($m2 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m2 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m2 === -1){ ?>&nbsp;<?php } ?>')
-                ->editColumn('m3', '<?php if($m3 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m3 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m3 === -1){ ?>&nbsp;<?php } ?>')
-                ->editColumn('m4', '<?php if($m4 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m4 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m4 === -1){ ?>&nbsp;<?php } ?>')
-                ->editColumn('m5', '<?php if($m5 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m5 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m5 === -1){ ?>&nbsp;<?php } ?>')
-                ->editColumn('m6', '<?php if($m6 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m6 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m6 === -1){ ?>&nbsp;<?php } ?>')
-                ->editColumn('m7', '<?php if($m7 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m7 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m7 === -1){ ?>&nbsp;<?php } ?>')
-                ->editColumn('m8', '<?php if($m8 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m8 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m8 === -1){ ?>&nbsp;<?php } ?>')
-                ->editColumn('m9', '<?php if($m9 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m9 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m9 === -1){ ?>&nbsp;<?php } ?>')
-                ->editColumn('m10', '<?php if($m10 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m10 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m10 === -1){ ?>&nbsp;<?php } ?>')
-                ->editColumn('m11', '<?php if($m11 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m11 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m11 === -1){ ?>&nbsp;<?php } ?>')
-                ->editColumn('m12', '<?php if($m12 === 1){ ?><i class="glyphicon glyphicon-ok"></i><?php } if($m12 === 0){?><i class="glyphicon glyphicon-minus"></i><?php } if($m12 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m1', '<?php if($m1 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m1 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m1 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m2', '<?php if($m2 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m2 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m2 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m3', '<?php if($m3 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m3 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m3 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m4', '<?php if($m4 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m4 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m4 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m5', '<?php if($m5 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m5 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m5 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m6', '<?php if($m6 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m6 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m6 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m7', '<?php if($m7 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m7 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m7 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m8', '<?php if($m8 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m8 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m8 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m9', '<?php if($m9 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m9 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m9 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m10', '<?php if($m10 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m10 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m10 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m11', '<?php if($m11 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m11 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m11 === -1){ ?>&nbsp;<?php } ?>')
+                ->editColumn('m12', '<?php if($m12 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m12 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m12 === -1){ ?>&nbsp;<?php } ?>')
                 
-                ->addColumn('action','<div class="row text-center"><a href="afiliado/{{$year}}/edit" ><i class="glyphicon glyphicon-floppy-disk"></i> Registrar Aporte</a></div>')
+                // ->addColumn('action','<div class="row text-center"><a href="calcaportegest/{{$afi_id}}/{{$year}}" ><i class="glyphicon glyphicon-pencil"></i></a></div>')
+                ->addColumn('action','<div class="row text-center"><a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}" ><i class="glyphicon glyphicon-pencil"></i></a></div>')
                 ->make(true);
 
     }

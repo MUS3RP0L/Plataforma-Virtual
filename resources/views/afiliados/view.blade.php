@@ -17,6 +17,8 @@
 						        <span class="caret"></span>
 						    </a>
 						    <ul class="dropdown-menu">
+						    	<li class="dropdown-header">Registro</li>
+						        <li><a href="{!! url('regaportegest/' . $afiliado->id) !!}">Registrar Aportes</a></li>
 						    	<li class="dropdown-header">Edición</li>
 						        <li><a href="{!! url('afiliado/' . $afiliado->id . '/edit') !!}">Editar Afiliado</a></li>
 						        <li class="dropdown-header">Reportes</li>
@@ -441,53 +443,11 @@
 						</div>
 					</div>
 
-
-					<div class="panel panel-primary">
-						<div class="panel-heading">						
-							<div class="row">
-								<div class="col-md-6">
-									<h3 class="panel-title">Aportes</h3>
-								</div>
-							</div>
-						</div>
-						<div class="panel-body">
-
-							<div class="row">
-								<div class="col-md-12">
-									<table class="table table-striped table-hover" id="regapor-table">
-				                        <thead>
-				                            <tr class="success">
-				                                <th>.</th>
-				                                <th>G</th>
-				                                <th>E</th>
-				                                <th>F</th>
-				                                <th>M</th>
-				                                <th>A</th>
-				                                <th>M</th>
-				                                <th>J</th>
-				                                <th>J</th>
-				                                <th>A</th>
-				                                <th>S</th>
-				                                <th>O</th>
-				                                <th>N</th>
-				                                <th>D</th>
-				                                
-				                            </tr>
-				                        </thead>
-				                    </table>
-
-								</div>
-
-							</div>
-							
-						</div>
-					</div>
-
 				</div>
 			</div>
 
 
-			<div class="row">
+			{{-- <div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
@@ -549,7 +509,7 @@
 						</div>
 					</div>
 				</div>
-			</div>					
+			</div> --}}					
 		</div>
 	</div>
 </div>

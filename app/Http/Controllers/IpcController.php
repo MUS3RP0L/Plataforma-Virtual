@@ -115,16 +115,24 @@ class IpcController extends Controller
         }
         else{
 
-            $ipcTasa = IpcTasa::where('gest', '=', Carbon::createFromDate($request->year, $request->month, 1)->toDateString())->firstOrFail();
+            $ipcTasa = IpcTasa::where('gest', '=', Carbon::createFromDate($request->year, $request->month, 1)->toDateString())->first();
 
-            $ipcTasa->user_id = Auth::user()->id;
-            $ipcTasa->ipc = trim($request->ipc);
+            if ($ipcTasa) {
+                $ipcTasa->user_id = Auth::user()->id;
+                $ipcTasa->ipc = trim($request->ipc);
 
-            $ipcTasa->save();
+                $ipcTasa->save();
 
-            $message = "Índice de Precios al Consumidor actualizado con éxito";
+                $message = "Índice de Precios al Consumidor actualizado con éxito";
 
-            Session::flash('message', $message);
+                Session::flash('message', $message);
+            }
+            else
+            {
+                $message = "Fecha no disponible";
+                Session::flash('message', $message);
+            }
+
         }
         
         return redirect('ipc');

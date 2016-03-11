@@ -6,7 +6,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel-heading">
-                <h4 ><b>Aportes por Gestión</b></h4>
+                <div class="row">  
+                    <div class="col-md-8">
+                        <h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
+                        <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
+                    </div>
+                </div>
             </div>
 
             <div class="panel panel-primary">

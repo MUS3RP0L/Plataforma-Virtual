@@ -51,8 +51,12 @@ Route::group(['middleware' => 'auth'], function() {
 	// Route::resource('aportes', 'AporteController');
 	Route::get('regaportegest/{afid}', 'AporteController@RegAporteGest');
 
+	Route::get('calcaportegest/{afid}/{gesid}', 'AporteController@CalcAporteGest');
+
 	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
 	
+
+
 	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
 
 	// AporTasa
