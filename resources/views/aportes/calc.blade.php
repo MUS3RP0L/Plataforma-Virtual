@@ -23,28 +23,68 @@
                         <div class="col-md-12">
                             
 
-                            <form action='/someServerSideHandler'>
-                                <p>You have asked for <span data-bind='text: gifts().length'>&nbsp;</span> gift(s)</p>
-                                <table data-bind='visible: gifts().length > 0'>
-                                    <thead>
-                                        <tr>
-                                            <th>Gift name</th>
-                                            <th>Price</th>
-                                            <th />
-                                        </tr>
-                                    </thead>
-                                    <tbody data-bind='foreach: gifts'>
-                                        <tr>
-                                            <td><input class='required' data-bind='value: name, uniqueName: true' /></td>
-                                            <td><input class='required number' data-bind='value: price, uniqueName: true' /></td>
-                                            <td><a href='#' data-bind='click: $root.removeGift'>Delete</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                             
-                                <button data-bind='click: addGift'>Add Gift</button>
-                                <button data-bind='enable: gifts().length > 0' type='submit'>Submit</button>
-                            </form>
+
+                        {{-- <h2><span data-bind="text: seats().length"></span> Meses</h2> --}}
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="success">
+                                    <th>Mes</th>
+                                    <th>Haber Basico</th>
+                                    <th>Categoría</th>
+                                    <th>Antigüedad</th>
+                                    <th>Bono Estudio</th>
+                                    <th>Bono Cargo</th>
+                                    <th>Bono Frontera</th>
+                                    <th>Bono Oriente</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: seats">
+                                <tr>
+                                    <td>
+                                        <input data-bind="value: mes, valueUpdate: 'afterkeydown'" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input data-bind="value: haber, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
+                                    </td>
+                                    <td>
+                                        <select data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'" class="form-control"  style="text-align: right">
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <span data-bind="text: ant" class="form-control"  style="text-align: right"/>
+                                    </td>
+
+                                    <td>
+                                        <input data-bind="value: est, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
+                                    </td>
+                                    <td>
+                                        {{-- <input data-bind="value: car, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/> --}}
+                                    </td>
+                                    <td>
+                                        {{-- <input data-bind="value: fro, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/> --}}
+                                    </td>
+                                    <td>
+                                        {{-- <input data-bind="value: ori, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/> --}}
+                                    </td>
+                                    <td>
+                                        <span data-bind="text: atotal" class="form-control"  style="text-align: right"/>
+                                    </td>
+
+
+                                    <td><a href="#" data-bind="click: $root.removeSeat">Quitar</a></td>
+                                </tr>    
+                            </tbody>
+                        </table>
+
+                        <button data-bind="click: addSeat, enable: seats().length < 12">Adicionar</button>
+
+                        <h3 data-bind="visible: totalSurcharge() > 0">
+                            Total <span data-bind="text: totalSurcharge()"></span>
+                        </h3>
+
 
 
                         </div>
@@ -59,38 +99,65 @@
 
 @push('scripts')
 <script>
+    $(document).ready(function(){
+        $('.combobox').combobox();
+    });
+
+    function SeatReservation(mes, haber, initialMeal,est) {
+
+        var self = this;
+        self.mes = mes;
+        self.haber = ko.observable(haber);
+        self.meal = ko.observable(initialMeal);
+        self.est = ko.observable(est);
+
+        self.ant = ko.computed(function() {
+
+            var price = self.meal().price*self.haber();
+            return price ? price : "";       
+        });  
+
+        self.atotal = ko.computed(function() {
+
+            var atotal = self.meal().price*self.haber() + self.haber();
+            return atotal ? atotal : "";       
+        });   
+    }
 
 
+    function ReservationsViewModel() {
+        var self = this;
+
+        self.availableMeals = [
+            { mealName: "100%", price: 1 },
+            { mealName: "85%", price: 0.85 },
+            { mealName: "75%", price: 0.75 }
+        ];    
+
+        self.seats = ko.observableArray([
+            new SeatReservation("Enero", '' , self.availableMeals[0], ''),
+            new SeatReservation("Febrero", '', self.availableMeals[0], '')
+        ]);
+
+        
+        self.totalSurcharge = ko.computed(function() {
+           var total = 0;
+           for (var i = 0; i < self.seats().length; i++)
+               total += self.seats()[i].haber();
+           return total;
+        });    
+
+        // Operations
+
+        self.addSeat = function() {
+            self.seats.push(new SeatReservation("", 0,self.availableMeals[0]));
+        }
+
+        self.removeSeat = function(seat) { self.seats.remove(seat) }
+    }
+
+    ko.applyBindings(new ReservationsViewModel());
 
 
-var GiftModel = function(gifts) {
-    var self = this;
-    self.gifts = ko.observableArray(gifts);
- 
-    self.addGift = function() {
-        self.gifts.push({
-            name: "",
-            price: ""
-        });
-    };
- 
-    self.removeGift = function(gift) {
-        self.gifts.remove(gift);
-    };
- 
-    self.save = function(form) {
-        alert("Could now transmit to server: " + ko.utils.stringifyJson(self.gifts));
-        // To actually transmit to server as a regular form post, write this: ko.utils.postJson($("form")[0], self.gifts);
-    };
-};
- 
-var viewModel = new GiftModel([
-    { name: "Tall Hat", price: "39.95"},
-    { name: "Long Cloak", price: "120.00"}
-]);
-ko.applyBindings(viewModel);
- 
-// Activate jQuery Validation
-$("form").validate({ submitHandler: viewModel.save });
 </script>
 @endpush
