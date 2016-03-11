@@ -159,8 +159,10 @@ class TasaController extends Controller
     public function edit($id)
     {
         $now = Carbon::now();
+
         $y = $now->year;
         $m = $now->month;
+        
         $nowlast = Carbon::createFromDate($y, $m, 1)->toDateString();
 
         $aporTasa = AporTasa::where('gest', '=', $nowlast)->firstOrFail();

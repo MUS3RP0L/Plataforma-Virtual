@@ -25,14 +25,25 @@ class IpcController extends Controller
     {
         $now = Carbon::now();
 
-        $ipcTasa = IpcTasa::where('mes', '=', $now->subMonth()->format('m'))
-                               ->where('anio', '=', $now->format('Y'))->firstOrFail();
+        $y = $now->year;
+
+        $m = $now->month;
+
+        $nowlast = Carbon::createFromDate($y, $m, 1)->toDateString();
+
+        $ipcTasa = IpcTasa::where('gest', '=', $nowlast)->firstOrFail();
+
+        $ipcTasa->year = Carbon::parse($ipcTasa->gest)->year;
+
+        $ipcTasa->month = Carbon::parse($ipcTasa->gest)->subMonth()->month;
 
         $data = array(
+
             'subMonth' => Util::getMes($now->format('m')),
             'ipcTasa' => $ipcTasa,
-            'month' => Util::getMes($now->addMonth()->format('m')),
+            'month' => Util::getMes($now->format('m')),
             'meses' => Util::getAllMeses()
+
         );
 
         return view('ipc.index', $data);
@@ -40,10 +51,11 @@ class IpcController extends Controller
 
     public function ipctasasData()
     {
-        $ipcs = IpcTasa::select(['mes', 'anio', 'ipc']);
+        $ipcs = IpcTasa::select(['gest', 'ipc']);
 
         return Datatables::of($ipcs)
-                ->editColumn('mes', function ($ipc) { return Util::getMes($ipc->mes); })
+                ->editColumn('gest', function ($ipc) { return Carbon::parse($ipc->gest)->year; })
+                ->addColumn('mes', function ($ipc) { return Util::getMes(Carbon::parse($ipc->gest)->month); })
                 ->editColumn('ipc', function ($ipc) { return Util::formatMoney($ipc->ipc); })
                 ->make(true);
     }
@@ -71,18 +83,18 @@ class IpcController extends Controller
     public function save($request, $id = false)
     {
         $rules = [
-            'anio' => 'required|numeric',
-            'mes' => 'required|numeric',
+            'year' => 'required|numeric',
+            'month' => 'required|numeric',
             'ipc' => 'required|numeric'
         ];
 
         $messages = [
 
-            'anio.required' => 'El campo Año no puede ser vacío', 
-            'anio.numeric' => 'El campo Año sólo se aceptan números',
+            'year.required' => 'El campo Año no puede ser vacío', 
+            'year.numeric' => 'El campo Año sólo se aceptan números',
 
-            'mes.required' => 'El campo Mes no puede ser vacío', 
-            'mes.numeric' => 'El campo Mes sólo se aceptan números',
+            'month.required' => 'El campo Mes no puede ser vacío', 
+            'month.numeric' => 'El campo Mes sólo se aceptan números',
 
             'ipc.required' => 'El campo IPC no puede ser vacío', 
             'ipc.numeric' => 'El campo IPC sólo se aceptan números'
@@ -98,19 +110,20 @@ class IpcController extends Controller
         }
         else{
 
-            $ipcTasa = IpcTasa::where('anio', '=', $request->anio)->where('mes', '=', $request->mes)->firstOrFail();
+            $ipcTasa = IpcTasa::where('gest', '=', Carbon::createFromDate($request->year, $request->month, 1)->toDateString())->firstOrFail();
 
             $ipcTasa->user_id = Auth::user()->id;
             $ipcTasa->ipc = trim($request->ipc);
 
             $ipcTasa->save();
+
             if ($request->now) {
-                $ipcTasa = IpcTasa::where('anio', '=', $request->anio)->where('mes', '=', Carbon::now()->format('m'))->firstOrFail();
+                $ipcTasaAdd = IpcTasa::where('gest', '=', Carbon::createFromDate($request->year, $request->month, 1)->addMonth()->toDateString())->firstOrFail();
 
-                $ipcTasa->user_id = Auth::user()->id;
-                $ipcTasa->ipc = trim($request->ipc);
+                $ipcTasaAdd->user_id = Auth::user()->id;
+                $ipcTasaAdd->ipc = trim($request->ipc);
 
-                $ipcTasa->save();
+                $ipcTasaAdd->save();
 
             }
 

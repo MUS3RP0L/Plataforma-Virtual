@@ -42,24 +42,24 @@
                 <div class="col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Actualizar Aportes de {!! $subMonth ." " . $ipcTasa->anio !!}</h3>
+                            <h3 class="panel-title">Actualizar Aportes de {!! $subMonth ." " . $ipcTasa->year !!}</h3>
                         </div>
                         <div class="panel-body" style="font-size: 14px">
 
                             <div class="row">
                                 <div class="col-md-12">     
                                     <div class="form-group form-group-lg">
-                                            {!! Form::label('anio', 'AÑO', ['class' => 'col-md-5 control-label']) !!}
+                                            {!! Form::label('year', 'AÑO', ['class' => 'col-md-5 control-label']) !!}
                                         <div class="col-md-4">
-                                            {!! Form::text('anio', $ipcTasa->anio, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                            <span class="help-block">año</span>
+                                            {!! Form::text('year', $ipcTasa->year, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                            <span class="help-block">Seleccione el año</span>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-lg">
-                                            {!! Form::label('mes', 'MES', ['class' => 'col-md-5 control-label']) !!}
+                                            {!! Form::label('month', 'MES', ['class' => 'col-md-5 control-label']) !!}
                                         <div class="col-md-4">
-                                            {!! Form::select('mes', $meses, $ipcTasa->mes,['class' => 'combobox form-control', 'required' => 'required']) !!}
-                                            <span class="help-block">Selecione el mes</span>
+                                            {!! Form::select('month', $meses, $ipcTasa->month,['class' => 'combobox form-control', 'required' => 'required']) !!}
+                                            <span class="help-block">Seleccione el mes</span>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-lg">
@@ -113,15 +113,12 @@ $(function() {
         "dom": '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
-        bFilter: false, 
-        bInfo: false,
         pageLength: 10,
         "scrollX": true,
         ajax: '{!! route('getIpc') !!}',
-        order: [[0, "desc"], [1, "desc"]],
-
+        order: [0, "desc"],
         columns: [
-            { data: 'anio', name: 'anio', sWidth: '10%' },
+            { data: 'gest', name: 'gest', sWidth: '10%' },
             { data: 'mes', name: 'mes', "sClass": "text-center", sWidth: '45%' },
             { data: 'ipc', name: 'ipc', "sClass": "text-center", sWidth: '45%' }
         ]
