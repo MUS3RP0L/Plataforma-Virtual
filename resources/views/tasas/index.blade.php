@@ -31,8 +31,8 @@
                                     <tr class="success">
                                         <th rowspan="2">Año</th>
                                         <th rowspan="2">Mes</th>
-                                        <th colspan="3">Sector Activo</th>
-                                        <th colspan="4">Sector Pasivo</th>
+                                        <th style="text-align:center;" colspan="3">Sector Activo</th>
+                                        <th style="text-align:center;" colspan="4">Sector Pasivo</th>
                                     </tr>
                                     <tr class="success">
                                         <th>Aporte Muserpol</th>
@@ -58,19 +58,22 @@
 <script>
 $(function() {
     $('#afiliados-table').DataTable({
+        dom: '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
+        scrollX: true,
+        pageLength: 30,
         ajax: '{!! route('getTasa') !!}',
-        order: [[0, "desc"], [1, "desc"]],
+        order: [0, "desc"],
         columns: [
-            { data: 'anio', name: 'anio', sWidth: '6%' },
-            { data: 'mes', name: 'mes', sWidth: '10%' },
-            { data: 'apor_a', name: 'apor_a', sWidth: '12%' },
-            { data: 'apor_fr_a', name: 'apor_fr_a', sWidth: '12%' },
-            { data: 'apor_sv_a', name: 'apor_sv_a', sWidth: '12%' },
-            { data: 'apor_p', name: 'apor_p', sWidth: '12%' },
-            { data: 'apor_fr_p', name: 'apor_fr_p', sWidth: '12%' },
-            { data: 'apor_sv_p', name: 'apor_sv_p', sWidth: '12%' },
+            { data: 'gest', sWidth: '6%' },
+            { data: 'mes', sWidth: '10%', bSortable: false },
+            { data: 'apor_a', name: 'apor_a', sWidth: '12%', sClass: "text-center", bSortable: false },
+            { data: 'apor_fr_a', sWidth: '12%', sClass: "text-center", bSortable: false },
+            { data: 'apor_sv_a', sWidth: '12%', sClass: "text-center", bSortable: false },
+            { data: 'apor_p', sWidth: '12%', sClass: "text-center", bSortable: false },
+            { data: 'apor_fr_p', sWidth: '12%', sClass: "text-center", bSortable: false },
+            { data: 'apor_sv_p', sWidth: '12%', sClass: "text-center", bSortable: false },
         ]
     });
 });

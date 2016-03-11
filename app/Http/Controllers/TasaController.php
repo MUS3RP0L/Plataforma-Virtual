@@ -38,10 +38,11 @@ class TasaController extends Controller
 
     public function tasasData()
     {
-        $tasas = AporTasa::select(['mes', 'anio', 'apor_a', 'apor_fr_a', 'apor_sv_a', 'apor_p', 'apor_fr_p', 'apor_sv_p']);
+        $tasas = AporTasa::select(['gest', 'apor_a', 'apor_fr_a', 'apor_sv_a', 'apor_p', 'apor_fr_p', 'apor_sv_p']);
 
         return Datatables::of($tasas)
-                ->editColumn('mes', function ($tasa) { return Util::getMes($tasa->mes); })
+                ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
+                ->addColumn('mes', function ($tasa) { return Util::getMes(Carbon::parse($tasa->gest)->month); })
                 ->editColumn('apor_a', function ($tasa) { return Util::formatMoney($tasa->apor_a); })
                 ->editColumn('apor_fr_a', function ($tasa) { return Util::formatMoney($tasa->apor_fr_a); })
                 ->editColumn('apor_sv_a', function ($tasa) { return Util::formatMoney($tasa->apor_sv_a); })
@@ -158,9 +159,11 @@ class TasaController extends Controller
     public function edit($id)
     {
         $now = Carbon::now();
+        $y = $now->year;
+        $m = $now->month;
+        $nowlast = Carbon::createFromDate($y, $m, 1)->toDateString();
 
-        $aporTasa = AporTasa::where('mes', '=', $now->format('m'))
-                               ->where('anio', '=', $now->format('Y'))->firstOrFail();
+        $aporTasa = AporTasa::where('gest', '=', $nowlast)->firstOrFail();
 
         $data = [
             'date' => $now->format('m-Y'),

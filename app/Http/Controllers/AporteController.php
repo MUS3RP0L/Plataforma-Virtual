@@ -53,7 +53,6 @@ class AporteController extends Controller
             
             $base = array();
             $mes = array();
-            $all = 0;
  
             for ($j=1; $j <= 12; $j++) { 
 
@@ -61,7 +60,6 @@ class AporteController extends Controller
      
                 if ($aportes) {
                     $mes["m".$j] = 1;
-                    $all++;
                 }else{
                    $mes["m".$j] = 0;
                 }
