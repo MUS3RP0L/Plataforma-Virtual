@@ -11,6 +11,9 @@
                         <h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
                         <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
                     </div>
+                    <div class="col-md-4 text-right"> 
+                        {!! link_to(URL::previous(), 'volver', ['class' => 'btn btn-raised btn-warning']) !!}
+                    </div>
                 </div>
             </div>
 

@@ -32,10 +32,17 @@ class AfiliadoController extends Controller
 
     }
 
-    public function afiliadosData()
+    public function afiliadosData(Request $request)
     {
-        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri', 'afi_state_id'])->get();
-
+        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri', 'afi_state_id']);
+        
+        if ($request->has('name'))
+        {
+            $afiliados->where(function($afiliados) use ($request)
+            {
+                $afiliados->where('pat', 'like', "%{$request->get('name')}%");
+            });
+        }
         return Datatables::of($afiliados)
                 // ->addColumn('gra', function ($afiliado) { return Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->first()->grado->abre; })
                 ->addColumn('mons', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })

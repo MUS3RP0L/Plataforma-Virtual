@@ -157,7 +157,7 @@ class AporteController extends Controller
                              'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'cot', 'mus' ])->where('afiliado_id', $request->id);
 
         return Datatables::of($aportes)
-                        ->editColumn('gest', function ($aportes) { return Carbon::parse($aportes->gest)->year. "-" . Carbon::parse($aportes->gest)->month; })
+                        ->editColumn('gest', function ($aportes) { return Carbon::parse($aportes->gest)->month . "-" . Carbon::parse($aportes->gest)->year ; })
                         ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
                         ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
                         ->editColumn('sue', function ($aportes) { return Util::formatMoney($aportes->sue); })

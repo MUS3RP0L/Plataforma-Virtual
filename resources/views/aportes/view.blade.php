@@ -10,7 +10,9 @@
 	                    <h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
 	                    <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
 	                </div>
-	                
+	                <div class="col-md-4 text-right"> 
+						{!! link_to(URL::previous(), 'volver', ['class' => 'btn btn-raised btn-warning']) !!}
+	                </div>
             	</div>
         	</div>
 
@@ -48,7 +50,7 @@
 									<table class="table table-striped table-hover" id="afiliados-table">
 				                        <thead>
 				                            <tr class="success">
-				                                <th>MM AA</th>
+				                                <th>Gest</th>
 				                                <th>Niv Gra</th>
 				                                <th>Uni</th>
 				                                <th>Ite</th>
@@ -94,7 +96,7 @@
 	$(function() {
 	    $('#afiliados-table').DataTable({
 	    	"dom": '<"top"l>t<"bottom"ip>',
-	    	"order": [[ 0, "asc" ]],
+	    	"order": [[ 0, "desc" ]],
 	    	"scrollX": true,
 	        processing: true,
 	        serverSide: true,

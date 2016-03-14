@@ -8,6 +8,19 @@
             <div class="panel-heading">
                 <h4 ><b>Afiliados</b></h4>
             </div>
+        
+        <form method="POST" id="search-form" class="form-inline" role="form">
+                        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+
+            <div class="form-group">
+                <label for="name">APELLIDO PATERNO</label>
+                <input class="form-control" name="name" id="name" placeholder="paterno" type="text">
+            </div>
+
+            <button type="submit" class="btn btn-primary">buscar</button>
+        </form>
+
+
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -42,11 +55,19 @@
 
 @push('scripts')
 <script>
-$(function() {
-    $('#afiliados-table').DataTable({
+
+        var oTable = $('#afiliados-table').DataTable({
+        // $('#afiliados-table').DataTable({
+        "dom": '<"top"l>t<"bottom"ip>',   
         processing: true,
         serverSide: true,
-        ajax: '{!! route('getAfiliado') !!}',
+        ajax: {
+            url: '{!! route('getAfiliado') !!}',
+            data: function (d) {
+                d.name = $('input[name=name]').val();
+                d.post = $('input[name=post]').val();
+            }
+        },
         columns: [
             { data: 'matri', name: 'matri', sWidth: '8%' },
             { data: 'est', name: 'est', sWidth: '8%' },
@@ -59,6 +80,11 @@ $(function() {
             { data: 'action', name: 'action', sWidth: '10%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
         ]
     });
-});
+
+    $('#search-form').on('submit', function(e) {
+        oTable.draw();
+        e.preventDefault();
+    });
+
 </script>
 @endpush
