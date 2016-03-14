@@ -19,6 +19,7 @@ class CreateCategoriasTable extends Migration
             $table->bigIncrements('id');
             $table->double('por');
             $table->integer('from');
+            $table->integer('name');
             $table->integer('to');
             $table->timestamps();
         });

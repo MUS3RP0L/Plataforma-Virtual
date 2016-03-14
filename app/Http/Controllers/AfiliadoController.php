@@ -37,7 +37,7 @@ class AfiliadoController extends Controller
         $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri', 'afi_state_id'])->get();
 
         return Datatables::of($afiliados)
-                ->addColumn('gra', function ($afiliado) { return Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->first()->grado->abre; })
+                // ->addColumn('gra', function ($afiliado) { return Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->first()->grado->abre; })
                 ->addColumn('mons', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
                 ->addColumn('action', function ($afiliado) { 
                     return  '<div class="row text-center">
@@ -79,12 +79,11 @@ class AfiliadoController extends Controller
     {
         $afiliado = Afiliado::idIs($id)->firstOrFail();
 
-        $firstAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'asc')->firstOrFail();
-        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->firstOrFail();
+        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
 
-        $firstAporte->desde = Util::getMes(Carbon::parse($firstAporte->gest)->month) . " de " . Carbon::parse($firstAporte->gest)->year;
-        
-        $lastAporte->hasta = Util::getMes(Carbon::parse($lastAporte->gest)->month) . " de " . Carbon::parse($lastAporte->gest)->year;
+        if ($lastAporte) {
+            $afiliado->item = $lastAporte->item;
+        }
 
         $totalGanado = DB::table('afiliados')
                 ->select(DB::raw('SUM(aportes.gan) as ganado'))
@@ -133,7 +132,6 @@ class AfiliadoController extends Controller
         $data = array(
             'afiliado' => $afiliado,
             'lastAporte' => $lastAporte,
-            'firstAporte' => $firstAporte,
             'totalGanado' => Util::formatMoney($ganado),
             'totalSegCiu' => Util::formatMoney($SegCiu),
             'totalCotizable' => Util::formatMoney($cotizable),

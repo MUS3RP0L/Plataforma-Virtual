@@ -11,6 +11,7 @@ use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
+use Muserpol\Categoria;
 use Datatables;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
@@ -26,6 +27,27 @@ class AporteController extends Controller
     public function index()
     {
         //
+    }
+
+    public function ViewAporte($afid)
+    {
+
+        $afiliado = Afiliado::idIs($afid)->firstOrFail();
+
+        $firstAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'asc')->first();
+        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
+
+        $firstAporte->desde = Util::getMes(Carbon::parse($firstAporte->gest)->month) . " de " . Carbon::parse($firstAporte->gest)->year;
+        $lastAporte->hasta = Util::getMes(Carbon::parse($lastAporte->gest)->month) . " de " . Carbon::parse($lastAporte->gest)->year;
+
+
+        $data = array(
+            'afiliado' => $afiliado,
+            'lastAporte' => $lastAporte,
+            'firstAporte' => $firstAporte,
+        );
+
+        return view('aportes.view', $data);
     }
 
     public function RegAporteGest($afid)
@@ -44,13 +66,15 @@ class AporteController extends Controller
     public function CalcAporteGest($afid, $gesid)
     {
         $afiliado = Afiliado::idIs($afid)->firstOrFail();
+        $categorias = Categoria::select(['por'])->get();
+
 
         $data = array(
             'afiliado' => $afiliado,
             'afid' => $afid,
-            'gesid' => $gesid
+            'gesid' => $gesid,
+            'categorias' => Categoria::orderBy('id')->get(array('por'))
         );
-
 
         return view('aportes.calc', $data);
     }
@@ -128,12 +152,12 @@ class AporteController extends Controller
     public function aportesData(Request $request)
     {   
 
-        $aportes = Aporte::select(['id', 'mes', 'anio', 'grado_id', 'unidad_id', 'item', 'sue',
+        $aportes = Aporte::select(['id', 'gest', 'grado_id', 'unidad_id', 'item', 'sue',
                              'b_ant', 'b_est', 'b_car', 'b_fro', 'b_ori', 'b_seg',
                              'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'cot', 'mus' ])->where('afiliado_id', $request->id);
 
         return Datatables::of($aportes)
-                        ->editColumn('anio', function ($aportes) { return $aportes->mes . "-" . $aportes->anio; })
+                        ->editColumn('gest', function ($aportes) { return Carbon::parse($aportes->gest)->year. "-" . Carbon::parse($aportes->gest)->month; })
                         ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
                         ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
                         ->editColumn('sue', function ($aportes) { return Util::formatMoney($aportes->sue); })

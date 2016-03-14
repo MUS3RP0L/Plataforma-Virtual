@@ -22,7 +22,7 @@
                                         <th>Matrícula</th>
                                         <th>Estado</th>
                                         <th>Núm. Carnet</th>
-                                        <th>Grado</th>
+                                        {{-- <th>Grado</th> --}}
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
                                         <th>Nombres</th>     
@@ -51,7 +51,7 @@ $(function() {
             { data: 'matri', name: 'matri', sWidth: '8%' },
             { data: 'est', name: 'est', sWidth: '8%' },
             { data: 'ci', name: 'ci', sWidth: '10%' },
-            { data: 'gra', name: 'gra', sWidth: '10%' },
+            // { data: 'gra', name: 'gra', sWidth: '10%' },
             { data: 'pat', name: 'pat', sWidth: '15%' },
             { data: 'mat', name: 'mat', sWidth: '15%' },
             { data: 'mons', name: 'mons', sWidth: '15%' },

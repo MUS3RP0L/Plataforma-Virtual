@@ -39,8 +39,8 @@ class AfiTypeTableSeeder extends Seeder
     private function createAfiState()
     {
         $statuses = [
-            ['id' => '1', 'afi_type_id' => '1', 'name' => 'Servicio'],
-            ['id' => '2', 'afi_type_id' => '1', 'name' => 'Comisión'],
+            ['id' => '1', 'afi_type_id' => '1', 'name' => 'Comisión'],
+            ['id' => '2', 'afi_type_id' => '1', 'name' => 'Servicio'],
             ['id' => '3', 'afi_type_id' => '2', 'name' => 'Fallecido'],
             ['id' => '4', 'afi_type_id' => '2', 'name' => 'Jubilado'],
             ['id' => '5', 'afi_type_id' => '2', 'name' => 'Jubilación por Invalidez'],

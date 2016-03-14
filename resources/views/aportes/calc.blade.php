@@ -24,27 +24,27 @@
                             
 
 
-                        {{-- <h2><span data-bind="text: seats().length"></span> Meses</h2> --}}
+                        {{-- <h2><span data-bind="text: aportes().length"></span> Meses</h2> --}}
 
                         <table class="table table-hover">
                             <thead>
                                 <tr class="success">
                                     <th>Mes</th>
-                                    <th>Haber Basico</th>
+                                    <th>Haber Básico</th>
                                     <th>Categoría</th>
                                     <th>Antigüedad</th>
                                     <th>Bono Estudio</th>
                                     <th>Bono Cargo</th>
                                     <th>Bono Frontera</th>
                                     <th>Bono Oriente</th>
-                                    <th></th>
+                                    <th>Cotizable</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody data-bind="foreach: seats">
+                            <tbody data-bind="foreach: aportes">
                                 <tr>
                                     <td>
-                                        <input data-bind="value: mes, valueUpdate: 'afterkeydown'" class="form-control"/>
+                                        <span data-bind="text: mes" class="form-control"/>
                                     </td>
                                     <td>
                                         <input data-bind="value: haber, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
@@ -61,29 +61,29 @@
                                         <input data-bind="value: est, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
                                     </td>
                                     <td>
-                                        {{-- <input data-bind="value: car, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/> --}}
+                                        <input data-bind="value: car, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
                                     </td>
                                     <td>
-                                        {{-- <input data-bind="value: fro, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/> --}}
+                                        <input data-bind="value: fro, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
                                     </td>
                                     <td>
-                                        {{-- <input data-bind="value: ori, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/> --}}
+                                        <input data-bind="value: ori, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
                                     </td>
                                     <td>
                                         <span data-bind="text: atotal" class="form-control"  style="text-align: right"/>
                                     </td>
 
 
-                                    <td><a href="#" data-bind="click: $root.removeSeat">Quitar</a></td>
+                                    <td><a href="#" data-bind="click: $root.removeAporte">Quitar</a></td>
                                 </tr>    
                             </tbody>
                         </table>
 
-                        <button data-bind="click: addSeat, enable: seats().length < 12">Adicionar</button>
+                        {{-- <button data-bind="click: addAporte, enable: aportes().length < 12">Adicionar</button> --}}
 
-                        <h3 data-bind="visible: totalSurcharge() > 0">
+{{--                         <h3 data-bind="visible: totalSurcharge() > 0">
                             Total <span data-bind="text: totalSurcharge()"></span>
-                        </h3>
+                        </h3> --}}
 
 
 
@@ -99,34 +99,44 @@
 
 @push('scripts')
 <script>
+
     $(document).ready(function(){
         $('.combobox').combobox();
     });
 
-    function SeatReservation(mes, haber, initialMeal,est) {
+    function CalcAporte(mes, haber, initialMeal, est, car, fro, ori) {
 
         var self = this;
         self.mes = mes;
         self.haber = ko.observable(haber);
         self.meal = ko.observable(initialMeal);
         self.est = ko.observable(est);
+        self.car = ko.observable(car);
+        self.fro = ko.observable(fro);
+        self.ori = ko.observable(ori);
 
         self.ant = ko.computed(function() {
 
-            var price = self.meal().price*self.haber();
-            return price ? price : "";       
+            var ant = self.meal().price*self.haber();
+            return ant ? ant : "";       
         });  
 
         self.atotal = ko.computed(function() {
 
-            var atotal = self.meal().price*self.haber() + self.haber();
-            return atotal ? atotal : "";       
+            var atotal = (parseFloat(self.meal().price) * parseFloat(self.haber())) 
+                            + parseFloat(self.haber()) 
+                            + parseFloat(self.est())
+                            + parseFloat(self.car())
+                            + parseFloat(self.fro())
+                            + parseFloat(self.ori());
+            return atotal ? atotal : 0;       
         });   
     }
 
-
-    function ReservationsViewModel() {
+    function CalcAporteysViewModel() {
         var self = this;
+
+        // self.availableMeals = categorias;
 
         self.availableMeals = [
             { mealName: "100%", price: 1 },
@@ -134,30 +144,33 @@
             { mealName: "75%", price: 0.75 }
         ];    
 
-        self.seats = ko.observableArray([
-            new SeatReservation("Enero", '' , self.availableMeals[0], ''),
-            new SeatReservation("Febrero", '', self.availableMeals[0], '')
+        self.aportes = ko.observableArray([
+            new CalcAporte("Enero", '', self.availableMeals[0],0,0,0,0,0),
+            new CalcAporte("Febrero", '', self.availableMeals[0],0,0,0,0,0),
+            new CalcAporte("Marzo", '', self.availableMeals[0],0,0,0,0,0),
+            new CalcAporte("Abril", '', self.availableMeals[0],0,0,0,0,0),
+            new CalcAporte("Mayo", '', self.availableMeals[0],0,0,0,0,0),
+            new CalcAporte("Junio", '', self.availableMeals[0],0,0,0,0,0),
+            new CalcAporte("Julio", '', self.availableMeals[0],0,0,0,0,0)
         ]);
 
         
         self.totalSurcharge = ko.computed(function() {
            var total = 0;
-           for (var i = 0; i < self.seats().length; i++)
-               total += self.seats()[i].haber();
+           for (var i = 0; i < self.aportes().length; i++)
+               total += self.aportes()[i].haber();
            return total;
         });    
 
-        // Operations
 
-        self.addSeat = function() {
-            self.seats.push(new SeatReservation("", 0,self.availableMeals[0]));
+        self.addAporte = function() {
+            self.aportes.push(new CalcAporte("", 0,self.availableMeals[0]));
         }
 
-        self.removeSeat = function(seat) { self.seats.remove(seat) }
+        self.removeAporte = function(aporte) { self.aportes.remove(aporte) }
     }
 
-    ko.applyBindings(new ReservationsViewModel());
-
+    ko.applyBindings(new CalcAporteysViewModel());
 
 </script>
 @endpush

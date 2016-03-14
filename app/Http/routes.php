@@ -49,6 +49,9 @@ Route::group(['middleware' => 'auth'], function() {
 
 	//view Registros Aportes
 	// Route::resource('aportes', 'AporteController');
+
+	Route::get('viewaporte/{afid}', 'AporteController@ViewAporte');
+
 	Route::get('regaportegest/{afid}', 'AporteController@RegAporteGest');
 
 	Route::get('calcaportegest/{afid}/{gesid}', 'AporteController@CalcAporteGest');
