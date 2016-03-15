@@ -30,11 +30,11 @@ class UsuarioController extends Controller
 
         return Datatables::of($users)->addColumn('action', function ($user) {
                 return $user->status == "Activo" ? 
-                        '<div class="row text-center"><a href="usuario/'.$user->id.'/edit" ><i class="glyphicon glyphicon-edit"></i> Editar</a>&nbsp;&nbsp;
-                        <a href="usuario/block/'.$user->id.'" ><i class="glyphicon glyphicon-ban-circle"></i> Bloquear </a>'
+                        '<div class="row text-center"><a href="usuario/'.$user->id.'/edit" >Editar <i class="glyphicon glyphicon-edit"></i> </a>&nbsp;&nbsp;
+                        <a href="usuario/block/'.$user->id.'" >Bloquear <i class="glyphicon glyphicon-ban-circle"></i>  </a>'
                         :
-                        '<a href="usuario/'.$user->id.'/edit" ><i class="glyphicon glyphicon-edit"></i> Editar</a>&nbsp;&nbsp;
-                        <a href="usuario/unblock/'.$user->id.'" ><i class="glyphicon glyphicon-ok-circle"></i> Desbloquear </a></div>';
+                        '<a href="usuario/'.$user->id.'/edit" >Editar <i class="glyphicon glyphicon-edit"></i> </a>&nbsp;&nbsp;
+                        <a href="usuario/unblock/'.$user->id.'" >Desbloquear <i class="glyphicon glyphicon-ok-circle"></i>  </a></div>';
             })
             ->editColumn('name', '{{$ape}} {{$nom}}')
             ->make(true);
@@ -47,8 +47,9 @@ class UsuarioController extends Controller
     public function create()
     {
         
-        $role = array('fondo_retiro' => 'Fondo de Retiro','complemento_economico' => 'Complemento Económico');
-        
+        $role = array('' => '', 'fondo_retiro' => 'Fondo de Retiro', 
+                        'complemento_economico' => 'Complemento Económico',
+                        'admin' => 'Administrador');        
         $data = array(
             'role' => $role,
         );

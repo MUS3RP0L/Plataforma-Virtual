@@ -43,6 +43,9 @@
 												<span class="help-block">Teléfono Celular</span>
 											</div>
 										</div>
+
+										<div class="form-group"><br><br></div>										
+
 									</div>
 								</div>							
 							</div>
@@ -51,7 +54,7 @@
 					<div class="col-md-6">
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-								<h3 class="panel-title">Datos Usuario</h3>
+								<h3 class="panel-title">Datos de Ingreso</h3>
 							</div>
 							<div class="panel-body">
 								<div class="row">
@@ -92,13 +95,13 @@
 						</div>
 					</div>
 				</div>
+				<br><br>
 
 				<div class="row text-center">
 		            <div class="form-group">
 						<div class="col-md-12">
-
 							<a href="{!!URL::previous()!!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
-							<button type="submit" class="btn btn-raised btn-primary">Guardar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+							&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
 						</div>
 		            </div>
 	        	</div>

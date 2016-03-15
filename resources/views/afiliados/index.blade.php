@@ -27,7 +27,7 @@
                     <h3 class="panel-title">Despliegue de Afiliados</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="row"><p>
+                    <div class="row">
                         <div class="col-md-12">
                             <table class="table table-striped table-hover" id="afiliados-table">
                                 <thead>
@@ -57,7 +57,6 @@
 <script>
 
         var oTable = $('#afiliados-table').DataTable({
-        // $('#afiliados-table').DataTable({
         "dom": '<"top"l>t<"bottom"ip>',   
         processing: true,
         serverSide: true,
