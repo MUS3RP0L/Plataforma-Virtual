@@ -75,7 +75,9 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        $role = array('fondo_retiro' => 'Fondo de Retiro','complemento_economico' => 'Complemento Económico');
+        $role = array('fondo_retiro' => 'Fondo de Retiro', 
+                        'complemento_economico' => 'Complemento Económico',
+                        'admin' => 'Administrador');
         
         $data = array(
             'role' => $role,
