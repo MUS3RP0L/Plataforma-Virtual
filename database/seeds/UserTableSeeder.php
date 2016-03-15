@@ -25,7 +25,7 @@ class UserTableSeeder extends Seeder
             'ape' => 'Guisbert',
             'nom' => 'Erick',
         	'tel' => '77551112',
-        	'username' => 'admin',
+        	'username' => '4771553',
         	'password' => bcrypt('admin'),
         	'role' => 'admin'
         ]);

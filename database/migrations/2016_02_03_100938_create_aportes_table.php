@@ -85,6 +85,7 @@ class CreateAportesTable extends Migration
             
             $table->double('sue');
             $table->double('b_ant');
+            $table->double('rent_dig');
             $table->double('b_est');
             $table->double('b_car');
             $table->double('b_fro');
