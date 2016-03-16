@@ -58,13 +58,18 @@ class ReporteController extends Controller
         }
 
         $totalRegistros = DB::table('aportes')
-                ->select(DB::raw('DISTINCT afiliado_id, COUNT(*) registros'))
+                ->select(DB::raw('COUNT(DISTINCT(afiliado_id)) registros'))
                                 ->where('aportes.grado_id', '=', $request->grado_id)
                                 ->whereYear('aportes.gest', '=', $yearl)  
                                 ->get();
         foreach ($totalRegistros as $item) {
             $registros = $item->registros;
         }
+
+
+
+
+
 
         $totalRegistros1 = DB::table('aportes')
                 ->select(DB::raw('AVG(aportes.mus) avg'))
