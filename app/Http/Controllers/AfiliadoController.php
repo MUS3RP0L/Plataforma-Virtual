@@ -36,13 +36,35 @@ class AfiliadoController extends Controller
     {
         $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri', 'afi_state_id']);
         
-        if ($request->has('name'))
+        if ($request->has('pat'))
         {
             $afiliados->where(function($afiliados) use ($request)
             {
-                $afiliados->where('pat', 'like', "%{$request->get('name')}%");
+                $afiliados->where('pat', 'like', "%{$request->get('pat')}%");
             });
         }
+        if ($request->has('mat'))
+        {
+            $afiliados->where(function($afiliados) use ($request)
+            {
+                $afiliados->where('mat', 'like', "%{$request->get('mat')}%");
+            });
+        }
+        if ($request->has('nom'))
+        {
+            $afiliados->where(function($afiliados) use ($request)
+            {
+                $afiliados->where('nom', 'like', "%{$request->get('nom')}%");
+            });
+        }
+        if ($request->has('nom2'))
+        {
+            $afiliados->where(function($afiliados) use ($request)
+            {
+                $afiliados->where('nom2', 'like', "%{$request->get('nom2')}%");
+            });
+        }
+
         return Datatables::of($afiliados)
                 // ->addColumn('gra', function ($afiliado) { return Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->first()->grado->abre; })
                 ->addColumn('mons', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
