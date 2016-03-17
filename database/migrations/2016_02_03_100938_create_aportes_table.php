@@ -42,6 +42,7 @@ class CreateAportesTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('pago_type_id');
             $table->UnsignedBigInteger('user_id');
+            $table->UnsignedBigInteger('depa_id');
             $table->date('fech_pag')->nullable();
             $table->string('titular');
             $table->string('grado');
@@ -60,8 +61,7 @@ class CreateAportesTable extends Migration
 
             $table->foreign('pago_type_id')->references('id')->on('pagos'); 
             $table->foreign('user_id')->references('id')->on('users'); 
-            
-
+            $table->foreign('depa_id')->references('id')->on('departamentos');
 
         });
 
