@@ -1,4 +1,4 @@
-<?php
+b<?php
 
 namespace Muserpol\Http\Controllers;
 
@@ -91,7 +91,7 @@ class ImportController extends Controller
 	        		$afiliado->nom2 = $result->nom2;
 	        		$afiliado->ap_esp = $result->apes;
 	        		$afiliado->est_civ = $result->eciv;
-
+					if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
 	        		$afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
 	        		$afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
 	        		$afiliado->afp = Util::getAfp($result->afp);
@@ -144,6 +144,7 @@ class ImportController extends Controller
 						$aporte->gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
 						$aporte->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
 						$aporte->desg = $result->desg;
+						if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
 						$aporte->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
 		        		$aporte->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
 
