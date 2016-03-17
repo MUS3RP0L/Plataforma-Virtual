@@ -1,4 +1,4 @@
-b<?php
+<?php
 
 namespace Muserpol\Http\Controllers;
 

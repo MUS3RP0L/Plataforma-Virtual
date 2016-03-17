@@ -102,14 +102,11 @@ class CreateAfiliadosTable extends Migration
             $table->boolean('afp')->nullable();
             $table->bigInteger('nua')->nullable();
 
-
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afi_state_id')->references('id')->on('afi_states');
-
-
 
             $table->foreign('depa_exp_id')->references('id')->on('departamentos');
             $table->foreign('depa_nat_id')->references('id')->on('departamentos');

@@ -115,6 +115,8 @@ class CreateAportesTable extends Migration
             $table->foreign('aporte_type_id')->references('id')->on('aporte_types');
             $table->foreign('pago_id')->references('id')->on('pagos');
 
+            $table->unique(array('afiliado_id','gest'));
+
         
         });
     }
