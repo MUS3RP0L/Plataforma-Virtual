@@ -22,6 +22,13 @@ class Util
 	return date($nac_year ."-". $nac_month ."-". $nac_day);
 	}
 
+	public static function datePick($date)
+	{
+		$newdate = explode("/", $date);
+
+	return date($newdate[2] ."-". $newdate[1] ."-". $newdate[0]);
+	}
+
 	public static function zero($string)
 	{
 		return preg_replace('/^0+/', '', $string);

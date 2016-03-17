@@ -113,7 +113,7 @@
 									</div>
 	
 									<div class="form-group">
-										{!! Form::label('fech_dece', 'ZONA', ['class' => 'col-md-3 control-label']) !!}
+										{!! Form::label('fech_dece', 'FECHA DECESO', ['class' => 'col-md-3 control-label']) !!}
 			                            <div class="col-md-3">
 				                            <div class="input-group">
 				                                <input type="text" class="form-control datepicker" name="fech_dece">
@@ -228,13 +228,15 @@
 @push('scripts')
 <script type="text/javascript">
 
-	  $(document).ready(function(){
-	    $('.combobox').combobox();
-	  });
+	$(document).ready(function(){
+		$('.combobox').combobox();
+	});
 
 	$('.datepicker').datepicker({
     format: "dd/mm/yyyy",
     language: "es",
+    orientation: "bottom right",
+    daysOfWeekDisabled: "0,6",
     autoclose: true
 });
 

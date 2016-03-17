@@ -357,6 +357,8 @@ class AfiliadoController extends Controller
             $afiliado->ap_esp = trim($request->ap_esp); 
 
             $afiliado->afi_state_id = $request->afi_state_id; 
+
+            $afiliado->fech_dece = Util::datePick($request->fech_dece); 
             $afiliado->unidad_id = $request->unidad_id; 
             $afiliado->grado_id = $request->grado_id;
 
