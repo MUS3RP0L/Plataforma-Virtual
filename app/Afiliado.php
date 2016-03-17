@@ -110,7 +110,13 @@ class Afiliado extends Model
 
     public function getHowOld()
     {
-    	return Carbon::parse($this->fech_nac)->age . " Años";
+    	if ($this->fech_dece) {
+    		return "-";
+    	}
+    	else{
+    		return Carbon::parse($this->fech_nac)->age . " Años";
+    	}
+    	
     }
 	
 	public function getCivil()
