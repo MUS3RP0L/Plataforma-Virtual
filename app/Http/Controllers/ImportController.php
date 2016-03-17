@@ -118,6 +118,7 @@ class ImportController extends Controller
 	        		$afiliado->sex = $result->sex;
 					
 	        		$afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
+	        		if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
 	        		$afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
 	        		$afiliado->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
 	        		$afiliado->afp = Util::getAfp($result->afp);

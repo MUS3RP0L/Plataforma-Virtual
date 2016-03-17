@@ -57,8 +57,7 @@ class GradoTableSeeder extends Seeder
             ['id' => '31', 'niv' => '04', 'grad' => '12', 'lit' => 'SARGENTO PRIMERO ADMINISTRATIVO', 'abre' => 'SGTO. 1RO. ADM.'],
             ['id' => '32', 'niv' => '04', 'grad' => '13', 'lit' => 'SARGENTO SEGUNDO ADMINISTRATIVO', 'abre' => 'SGTO. 2DO. ADM.'],
             ['id' => '33', 'niv' => '04', 'grad' => '14', 'lit' => 'CABO ADMINISTRATIVO', 'abre' => 'CBO. ADM.'],
-            ['id' => '34', 'niv' => '04', 'grad' => '16', 'lit' => 'POLICIA ADMINISTRATIVO', 'abre' => 'POL. ADM.'],
-            ['id' => '35', 'niv' => '04', 'grad' => '15', 'lit' => 'POLICIA', 'abre' => 'POL.']
+            ['id' => '34', 'niv' => '04', 'grad' => '16', 'lit' => 'POLICIA ADMINISTRATIVO', 'abre' => 'POL. ADM.']
         ];
 
         foreach ($statuses as $status) {
