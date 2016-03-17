@@ -107,9 +107,16 @@
 									<div class="form-group">
 											{!! Form::label('afi_state_id', 'ESTADO', ['class' => 'col-md-3 control-label']) !!}
 										<div class="col-md-9">
-						              		{!! Form::select('afi_state_id', $list_afi_states, $afiliado->afi_state_id,['class' => 'combobox form-control']) !!}
+						              		{{-- {!! Form::select('afi_state_id', $list_afi_states, $afiliado->afi_state_id,['class' => 'combobox form-control']) !!} --}}
+						                	<input type="text" class="form-control datepicker" name="date">
 						                	<span class="help-block"></span>
 						              	</div>
+									</div>
+									<div class="form-group">
+											{!! Form::label('fech_dece', 'ZONA', ['class' => 'col-md-4 control-label']) !!}
+										<div class="col-md-8">
+											{!! Form::text('fech_dece', $afiliado->zona, ['class'=> 'form-control']) !!}
+										</div>
 									</div>
 								</div>
 							</div>
