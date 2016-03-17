@@ -20,7 +20,7 @@ class CreateSueldosTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('grado_id');
 
-            $table->date('gest')->required();
+            $table->date('gest')->unique()->required();
 
             $table->double('sue');
        
