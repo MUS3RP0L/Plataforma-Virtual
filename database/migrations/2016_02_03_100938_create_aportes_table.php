@@ -44,6 +44,7 @@ class CreateAportesTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('depa_id');
             $table->date('fech_pag')->nullable();
+            $table->string('reci');
             $table->string('titular');
             $table->string('grado');
             $table->string('matri');
