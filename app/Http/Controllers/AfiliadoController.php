@@ -14,6 +14,7 @@ use Muserpol\Grado;
 use Muserpol\Unidad;
 use Muserpol\AfiState;
 use Muserpol\Departamento;
+use Muserpol\Municipio;
 use Datatables;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
@@ -117,7 +118,7 @@ class AfiliadoController extends Controller
         $afi_states = AfiState::all();
 
         foreach ($afi_states as $item) {
-             $list_afi_states[$item->id]=$item->name;
+             $list_afi_states[$item->id]=$item->afi_type->name . " - " . $item->name;
         }
 
         $unidades = Unidad::all();
@@ -136,6 +137,11 @@ class AfiliadoController extends Controller
         foreach ($depa as $item) {
              $list_depas[$item->id]=$item->name;
         }
+        $muni = Municipio::all();
+
+        foreach ($muni as $item) {
+             $list_munis[$item->id]=$item->name;
+        }
 
         if ($afiliado->depa_nat_id) {
             $afiliado->depa_nat = Departamento::select('name')->where('id', '=', $afiliado->depa_nat_id)->firstOrFail()->name;
@@ -145,10 +151,17 @@ class AfiliadoController extends Controller
         }
 
         if ($afiliado->depa_vec_id) {
-            $afiliado->depa_vec_id = Departamento::select('name')->where('id', '=', $afiliado->depa_vec_id)->firstOrFail()->name;
+            $afiliado->depa_vec = Departamento::select('name')->where('id', '=', $afiliado->depa_vec_id)->firstOrFail()->name;
         }else
         {
-            $afiliado->depa_vec_id = ""; 
+            $afiliado->depa_vec = ""; 
+        }
+
+        if ($afiliado->muni_id) {
+            $afiliado->muni = Municipio::select('name')->where('id', '=', $afiliado->muni_id)->firstOrFail()->name;
+        }else
+        {
+            $afiliado->muni = ""; 
         }
 
 
@@ -210,6 +223,7 @@ class AfiliadoController extends Controller
             'list_unidades' => $list_unidades,
             'list_grados' => $list_grados,
             'list_depas' => $list_depas,
+            'list_munis' => $list_munis,
             'lastAporte' => $lastAporte,
             'totalGanado' => Util::formatMoney($ganado),
             'totalSegCiu' => Util::formatMoney($SegCiu),
@@ -407,8 +421,9 @@ class AfiliadoController extends Controller
             $afiliado->ap_esp = trim($request->ap_esp); 
 
             $afiliado->afi_state_id = $request->afi_state_id; 
-
-            $afiliado->fech_dece = Util::datePick($request->fech_dece); 
+            if ($request->fech_dece || $request->afi_state_id == 3) {
+                $afiliado->fech_dece = Util::datePick($request->fech_dece); 
+            }
             $afiliado->unidad_id = $request->unidad_id; 
             $afiliado->grado_id = $request->grado_id;
 

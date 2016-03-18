@@ -47,7 +47,6 @@
 					            		<span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
 					            </div>
 					    	</div>
-							
 						</div>
 						<div class="panel-body" style="font-size: 14px">
 							<div class="row">
@@ -206,10 +205,17 @@
 
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">Información de Domicilio</h3>
+							<div class="row">  
+					         	<div class="col-md-10">
+					         		<h3 class="panel-title">Información de Domicilio</h3>
+					            </div>
+					            <div class="col-md-2 text-right" data-toggle="modal" data-target="#myModal-domicilio"> 
+					            		<span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+					            </div>
+					    	</div>
 						</div>
 						<div class="panel-body" style="font-size: 14px">
-							<div class="row">
+							<div class="row" style="margin-bottom:16px;">
 
 								<div class="col-md-6">
 
@@ -221,7 +227,7 @@
 														Departamento
 													</div>
 													<div class="col-md-6">
-														{!! $afiliado->depa_vec_id !!}
+														{!! $afiliado->depa_vec !!}
 													</div>
 												</div>
 											</td>
@@ -275,6 +281,18 @@
 											<td>
 												<div class="row">
 													<div class="col-md-6">
+														Municipio
+													</div>
+													<div class="col-md-6">
+														{!! $afiliado->muni !!}
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="row">
+													<div class="col-md-6">
 														Teléfono
 													</div>
 													<div class="col-md-6">
@@ -320,7 +338,15 @@
 				<div class="col-md-6">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">Información Policial Actual</h3>
+							<div class="row">  
+					         	<div class="col-md-10">
+					         		<h3 class="panel-title">Información Policial</h3>
+					            </div>
+					            <div class="col-md-2 text-right" data-toggle="modal" data-target="#myModal-policial"> 
+					            		<span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+					            </div>
+					    	</div>
+							
 						</div>
 						<div class="panel-body" style="font-size: 14px">
 							<div class="row">
@@ -331,9 +357,10 @@
 											<td>
 												<div class="row">
 													<div class="col-md-6">
-														Grado
+														Estado
 													</div>
-													<div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->grado->lit !!}"> {!! $afiliado->grado->abre !!}
+													<div class="col-md-6">
+														 {!! $afiliado->afi_state->afi_type->name ." - ". $afiliado->afi_state->name !!}
 													</div>
 												</div>
 											</td>
@@ -342,10 +369,9 @@
 											<td>
 												<div class="row">
 													<div class="col-md-6">
-														Estado
+														Grado
 													</div>
-													<div class="col-md-6">
-														 {!! $afiliado->afi_state->name !!}
+													<div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->grado->lit !!}"> {!! $afiliado->grado->abre !!}
 													</div>
 												</div>
 											</td>
@@ -431,7 +457,7 @@
 
 							<div class="row">
 								<div class="col-md-12">
-									<table class="table" style="width:100%;font-size: 14px">
+									<table class="table table-hover" style="width:100%;font-size: 14px">
 										<tr>
 											<td>Total Ganado</td>
 											<td style="text-align: right">{{ $totalGanado }}</td>
@@ -440,17 +466,13 @@
 											<td>Total Bono de Seguridad Ciudadana</td>
 											<td style="text-align: right">{{ $totalSegCiu }}</td>
 										</tr>
-										<tr>
-											<td>SubTotal Cotizable</td>
-											<td style="text-align: right">{{ $totalCotizable }}</td>
-										</tr>
-										<tr>
+										<tr class="active">
 											<td>Total Cotizable</td>
 											<td style="text-align: right">{{ $totalCotizableAd }}</td>
 										</tr>
 									</table>
 
-									<table class="table" style="width:100%;font-size: 14px">
+									<table class="table table-hover" style="width:100%;font-size: 14px">
 										<tr>
 											<td>Total Aporte Fondo de Retiro</td>
 											<td style="text-align: right">{{ $totalFon }}</td>
@@ -459,7 +481,7 @@
 											<td>Total Aporte Seguro de Vida</td>
 											<td style="text-align: right">{{ $totalSegVid }}</td>
 										</tr>
-										<tr>
+										<tr class="active">
 											<td>Total Aporte Muserpol</td>
 											<td style="text-align: right">{{ $totalMuserpol }}</td>
 										</tr>
@@ -568,10 +590,151 @@
 
 				<div class="row text-center">
 		            <div class="form-group">
-		              <div class="col-md-12">
-		              	<a href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning">Cancelar</a>
-		                <button type="submit" class="btn btn-raised btn-primary">Guardar</button>
-		              </div>
+						<div class="col-md-12">
+							<a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+							&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+						</div>
+		            </div>
+	        	</div>
+			{!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal-domicilio" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Información Domicilio</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+									{!! Form::label('depa_vec', 'DEPARTA MENTO', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+			              		{!! Form::select('depa_vec', $list_depas, $afiliado->depa_vec_id, ['class' => 'combobox form-control']) !!}
+			                	<span class="help-block">Selecione el estado civil</span>
+			              	</div>
+						</div>
+						<div class="form-group">
+								{!! Form::label('zona', 'ZONA', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('zona', $afiliado->zona, ['class'=> 'form-control']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+								{!! Form::label('calle', 'CALLE', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('calle', $afiliado->calle, ['class'=> 'form-control']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+								{!! Form::label('num_domi', 'NÚMERO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('num_domi', $afiliado->num_domi, ['class'=> 'form-control']) !!}
+								<span class="help-block">Apellido paterno</span>
+							</div>
+						</div>									
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+									{!! Form::label('muni', 'MUNICIPIO', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+			              		{!! Form::select('muni', $list_munis, $afiliado->depa_muni_id, ['class' => 'combobox form-control']) !!}
+			                	<span class="help-block">Selecione el estado civil</span>
+			              	</div>
+						</div>
+						<div class="form-group">
+								{!! Form::label('tele', 'TELÉFONO', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('tele', $afiliado->tele, ['class'=> 'form-control']) !!}
+								<span class="help-block">Apellido Materno</span>
+							</div>
+						</div>
+						<div class="form-group">
+								{!! Form::label('celu', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('celu', $afiliado->celu, ['class'=> 'form-control']) !!}
+								<span class="help-block">Segundo nombre</span>
+							</div>
+						</div>
+						<div class="form-group">
+								{!! Form::label('email', 'CORREO ELECTRÓNICO', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('email', $afiliado->email, ['class'=> 'form-control']) !!}
+								<span class="help-block">Primer nombre</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row text-center">
+		            <div class="form-group">
+						<div class="col-md-12">
+							<a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+							&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+						</div>
+		            </div>
+	        	</div>
+			{!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="myModal-policial" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Información Policial</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+								{!! Form::label('afi_state_id', 'ESTADO', ['class' => 'col-md-3 control-label']) !!}
+							<div class="col-md-9">
+			              		{!! Form::select('afi_state_id', $list_afi_states, $afiliado->afi_state_id,['class' => 'combobox form-control']) !!}
+			                	<span class="help-block"></span>
+			              	</div>
+						</div>
+						<div class="form-group">
+								{!! Form::label('grado_id', 'GRADO', ['class' => 'col-md-3 control-label']) !!}
+							<div class="col-md-9">
+			              		{!! Form::select('grado_id', $list_grados, $afiliado->grado_id,['class' => 'combobox form-control']) !!}
+			                	<span class="help-block"></span>
+			                </div>
+						</div>	
+						<div class="form-group">
+								{!! Form::label('unidad_id', 'UNIDAD', ['class' => 'col-md-3 control-label']) !!}
+							<div class="col-md-9">
+			              		{!! Form::select('unidad_id', $list_unidades, $afiliado->unidad_id,['class' => 'combobox form-control']) !!}
+			                	<span class="help-block"></span>
+			                </div>
+						</div>								
+					</div>
+
+				</div>
+
+	        	<div class="row text-center">
+		            <div class="form-group">
+						<div class="col-md-12">
+							<a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+							&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+						</div>
 		            </div>
 	        	</div>
 			{!! Form::close() !!}
