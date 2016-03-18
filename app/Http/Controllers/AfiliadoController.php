@@ -412,33 +412,48 @@ class AfiliadoController extends Controller
         else{
 
             $afiliado = Afiliado::where('id', '=', $id)->firstOrFail();
-                
-            $afiliado->pat = trim($request->pat);
-            $afiliado->mat = trim($request->mat);
-            $afiliado->nom = trim($request->nom);
-            $afiliado->nom2 = trim($request->nom2);
-            $afiliado->est_civ = trim($request->est_civ); 
-            $afiliado->ap_esp = trim($request->ap_esp); 
 
-            $afiliado->afi_state_id = $request->afi_state_id; 
-            if ($request->fech_dece || $request->afi_state_id == 3) {
-                $afiliado->fech_dece = Util::datePick($request->fech_dece); 
+            switch ($request->type) {
+                case 'per':
+                    $afiliado->ci = trim($request->ci);
+                    $afiliado->pat = trim($request->pat);
+                    $afiliado->mat = trim($request->mat);
+                    $afiliado->nom = trim($request->nom);
+                    $afiliado->nom2 = trim($request->nom2);
+                    $afiliado->est_civ = trim($request->est_civ); 
+                    if ($request->ap_esp) {$afiliado->ap_esp = trim($request->ap_esp);}
+                    $message = "Información personal de afiliado actualizado con éxito";
+                    break;
+                case 'dom':
+                    echo "i es igual a 1";
+                    break;
+                case 'pol':
+                    echo "i es igual a 2";
+                    break;
             }
-            $afiliado->unidad_id = $request->unidad_id; 
-            $afiliado->grado_id = $request->grado_id;
-
-            $afiliado->zona = trim($request->zona);
-            $afiliado->num_domi = trim($request->num_domi);
-            $afiliado->email = trim($request->email);
-            $afiliado->calle = trim($request->calle);
-            $afiliado->tele = trim($request->tele);
-            $afiliado->celu = trim($request->celu);
-
-            $afiliado->save();
-
-            $message = "Afiliado Actualizado con éxito";
-
             Session::flash('message', $message);
+
+            // $afiliado = Afiliado::where('id', '=', $id)->firstOrFail();
+                
+            // $afiliado->afi_state_id = $request->afi_state_id; 
+            // if ($request->fech_dece || $request->afi_state_id == 3) {
+            //     $afiliado->fech_dece = Util::datePick($request->fech_dece); 
+            // }
+            // $afiliado->unidad_id = $request->unidad_id; 
+            // $afiliado->grado_id = $request->grado_id;
+
+            // $afiliado->zona = trim($request->zona);
+            // $afiliado->num_domi = trim($request->num_domi);
+            // $afiliado->email = trim($request->email);
+            // $afiliado->calle = trim($request->calle);
+            // $afiliado->tele = trim($request->tele);
+            // $afiliado->celu = trim($request->celu);
+
+            // $afiliado->save();
+
+            // $message = "Afiliado Actualizado con éxito";
+
+            // Session::flash('message', $message);
         }
         
         return redirect('afiliado/'.$id);

@@ -510,7 +510,8 @@
             <div class="modal-body">
 
                 {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
-
+				<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+				<input type="hidden" name="type" value="per"/>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
@@ -613,7 +614,8 @@
             <div class="modal-body">
 
                 {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
-
+				<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+				<input type="hidden" name="type" value="dom"/>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
@@ -701,7 +703,8 @@
             <div class="modal-body">
 
                 {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
-
+				<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+				<input type="hidden" name="type" value="pol"/>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
