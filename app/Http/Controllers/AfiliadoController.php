@@ -13,6 +13,7 @@ use Muserpol\Aporte;
 use Muserpol\Grado;
 use Muserpol\Unidad;
 use Muserpol\AfiState;
+use Muserpol\Departamento;
 use Datatables;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
@@ -70,7 +71,7 @@ class AfiliadoController extends Controller
                 ->addColumn('mons', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
                 ->addColumn('action', function ($afiliado) { 
                     return  '<div class="row text-center">
-                            <a href="afiliado/'.$afiliado->id.'" ><i class="glyphicon glyphicon-zoom-in"></i></a>';})
+                            <a href="afiliado/'.$afiliado->id.'" ><div class="col-md-12"><i class="glyphicon glyphicon-eye-open"></i></div></a>';})
 
                 ->addColumn('est', function ($afiliado) { return $afiliado->afi_state->name; })
                 ->make(true);
@@ -130,6 +131,25 @@ class AfiliadoController extends Controller
         foreach ($grados as $item) {
              $list_grados[$item->id]=$item->niv. "-" .$item->grad . " | " . $item->lit;
         } 
+        $depa = Departamento::all();
+
+        foreach ($depa as $item) {
+             $list_depas[$item->id]=$item->name;
+        }
+
+        if ($afiliado->depa_nat_id) {
+            $afiliado->depa_nat = Departamento::select('name')->where('id', '=', $afiliado->depa_nat_id)->firstOrFail()->name;
+        }else
+        {
+            $afiliado->depa_nat = ""; 
+        }
+
+        if ($afiliado->depa_vec_id) {
+            $afiliado->depa_vec_id = Departamento::select('name')->where('id', '=', $afiliado->depa_vec_id)->firstOrFail()->name;
+        }else
+        {
+            $afiliado->depa_vec_id = ""; 
+        }
 
 
 
@@ -189,6 +209,7 @@ class AfiliadoController extends Controller
             'list_afi_states' => $list_afi_states,
             'list_unidades' => $list_unidades,
             'list_grados' => $list_grados,
+            'list_depas' => $list_depas,
             'lastAporte' => $lastAporte,
             'totalGanado' => Util::formatMoney($ganado),
             'totalSegCiu' => Util::formatMoney($SegCiu),

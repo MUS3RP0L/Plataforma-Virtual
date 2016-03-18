@@ -62,7 +62,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <button type="reset" class="btn btn-raised btn-warning">Limpiar&nbsp;&nbsp;<span class="glyphicon glyphicon-erase"></span></button>
-                                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;Buscar&nbsp;&nbsp;<span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>&nbsp;&nbsp;</button>
+                                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;Buscar&nbsp;&nbsp;<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>&nbsp;&nbsp;</button>
                                         </div>
                                     </div>
                                 </div>

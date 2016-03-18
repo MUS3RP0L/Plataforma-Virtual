@@ -73,6 +73,7 @@ class CreateAfiliadosTable extends Migration
 
             $table->UnsignedBigInteger('depa_exp_id')->nullable();
             $table->UnsignedBigInteger('depa_nat_id')->nullable();
+            $table->UnsignedBigInteger('depa_vec_id')->nullable();
             $table->UnsignedBigInteger('muni_id')->nullable();
 
             $table->string('ci')->unique()->required();
@@ -110,6 +111,7 @@ class CreateAfiliadosTable extends Migration
 
             $table->foreign('depa_exp_id')->references('id')->on('departamentos');
             $table->foreign('depa_nat_id')->references('id')->on('departamentos');
+            $table->foreign('depa_vec_id')->references('id')->on('departamentos');
             $table->foreign('muni_id')->references('id')->on('municipios');
 
         });

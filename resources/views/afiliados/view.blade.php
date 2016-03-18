@@ -58,6 +58,18 @@
 											<td>
 												<div class="row">
 													<div class="col-md-6">
+														Carnet Identidad
+													</div>
+													<div class="col-md-6">
+														 {!! $afiliado->ci !!}
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="row">
+													<div class="col-md-6">
 														Apellido Paterno
 													</div>
 													<div class="col-md-6">
@@ -127,18 +139,6 @@
 											<td>
 												<div class="row">
 													<div class="col-md-6">
-														Carnet Identidad
-													</div>
-													<div class="col-md-6">
-														 {!! $afiliado->ci !!}
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="row">
-													<div class="col-md-6">
 														Fecha Nacimiento
 													</div>
 													<div class="col-md-6">
@@ -183,6 +183,18 @@
 												</div>
 											</td>
 										</tr>
+										<tr>
+											<td>
+												<div class="row">
+													<div class="col-md-6">
+														Lugar Nacimiento
+													</div>
+													<div class="col-md-6">
+														 {!! $afiliado->depa_nat !!}
+													</div>
+												</div>
+											</td>
+										</tr>
 
 									</table>
 
@@ -192,6 +204,120 @@
 						</div>
 					</div>
 
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Información de Domicilio</h3>
+						</div>
+						<div class="panel-body" style="font-size: 14px">
+							<div class="row">
+
+								<div class="col-md-6">
+
+									<table class="table" style="width:100%;">
+										<tr>
+											<td>
+												<div class="row">
+													<div class="col-md-6">
+														Departamento
+													</div>
+													<div class="col-md-6">
+														{!! $afiliado->depa_vec_id !!}
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="row">
+													<div class="col-md-6">
+														Zona
+													</div>
+													<div class="col-md-6">
+														{!! $afiliado->zona !!}
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="row">
+													<div class="col-md-6">
+														Calle
+													</div>
+													<div class="col-md-6">
+														{!! $afiliado->calle !!}
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="row">
+													<div class="col-md-6">
+														Núm Domicilio
+													</div>
+													<div class="col-md-6">
+														{!! $afiliado->num_domi !!}
+													</div>
+												</div>
+											</td>
+										</tr>
+
+									</table>
+
+
+								</div>
+
+								<div class="col-md-6">
+
+									<table class="table" style="width:100%;">
+										<tr>
+											<td>
+												<div class="row">
+													<div class="col-md-6">
+														Teléfono
+													</div>
+													<div class="col-md-6">
+														{!! $afiliado->tele !!}
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="row">
+													<div class="col-md-6">
+														Celular
+													</div>
+													<div class="col-md-6">
+														{!! $afiliado->celu !!}
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="row">
+													<div class="col-md-6">
+														Correo Electrónico
+													</div>
+													<div class="col-md-6">
+														{!! $afiliado->email !!}
+													</div>
+												</div>
+											</td>
+										</tr>
+
+									</table>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-md-6">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h3 class="panel-title">Información Policial Actual</h3>
@@ -291,108 +417,6 @@
 						</div>
 					</div>
 					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h3 class="panel-title">Información de Domicilio</h3>
-						</div>
-						<div class="panel-body" style="font-size: 14px">
-							<div class="row">
-
-								<div class="col-md-6">
-
-									<table class="table" style="width:100%;">
-										<tr>
-											<td>
-												<div class="row">
-													<div class="col-md-6">
-														Zona
-													</div>
-													<div class="col-md-6">
-														{!! $afiliado->zona !!}
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="row">
-													<div class="col-md-6">
-														Calle
-													</div>
-													<div class="col-md-6">
-														{!! $afiliado->calle !!}
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="row">
-													<div class="col-md-6">
-														Núm Domicilio
-													</div>
-													<div class="col-md-6">
-														{!! $afiliado->num_domi !!}
-													</div>
-												</div>
-											</td>
-										</tr>
-
-									</table>
-
-
-								</div>
-
-								<div class="col-md-6">
-
-									<table class="table" style="width:100%;">
-										<tr>
-											<td>
-												<div class="row">
-													<div class="col-md-6">
-														Teléfono
-													</div>
-													<div class="col-md-6">
-														{!! $afiliado->tele !!}
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="row">
-													<div class="col-md-6">
-														Celular
-													</div>
-													<div class="col-md-6">
-														{!! $afiliado->celu !!}
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="row">
-													<div class="col-md-6">
-														Correo Electrónico
-													</div>
-													<div class="col-md-6">
-														{!! $afiliado->email !!}
-													</div>
-												</div>
-											</td>
-										</tr>
-
-									</table>
-
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="col-md-6">
-					<div class="panel panel-primary">
 						<div class="panel-heading">						
 							<div class="row">
 								<div class="col-md-6">
@@ -425,8 +449,6 @@
 											<td style="text-align: right">{{ $totalCotizableAd }}</td>
 										</tr>
 									</table>
-									
-									<br/>
 
 									<table class="table" style="width:100%;font-size: 14px">
 										<tr>
@@ -457,7 +479,7 @@
 </div>
 
 <div id="myModal-personal" class="modal fade" role="dialog">
-    <div class="modal-dialog ">
+    <div class="modal-dialog">
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -472,7 +494,7 @@
 						<div class="form-group">
 								{!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-8">
-								{!! Form::text('ci', $afiliado->ci, ['class'=> 'form-control', 'disabled' => '']) !!}
+								{!! Form::text('ci', $afiliado->ci, ['class'=> 'form-control']) !!}
 							</div>
 						</div>
 						<div class="form-group">
@@ -481,7 +503,14 @@
 								{!! Form::text('pat', $afiliado->pat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
 								<span class="help-block">Apellido paterno</span>
 							</div>
-						</div>									
+						</div>	
+						<div class="form-group">
+								{!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('mat', $afiliado->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+								<span class="help-block">Apellido Materno</span>
+							</div>
+						</div>								
 						<div class="form-group">
 								{!! Form::label('nom', 'PRIMER NOMBRE', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-8">
@@ -490,11 +519,11 @@
 							</div>
 						</div>
 						<div class="form-group">
-									{!! Form::label('est_civ', 'ESTADO CIVIL', ['class' => 'col-md-4 control-label']) !!}
-								<div class="col-md-8">
-				              		{!! Form::select('est_civ', $list_est_civ, $afiliado->est_civ,['class' => 'combobox form-control']) !!}
-				                	<span class="help-block">Selecione el estado civil</span>
-				              	</div>
+								{!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('nom2', $afiliado->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+								<span class="help-block">Segundo nombre</span>
+							</div>
 						</div>
 						@if ($afiliado->sex == 'F')
 							<div class="form-group">
@@ -510,31 +539,30 @@
 						<div class="form-group">
 								{!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-8">
-								{!! Form::text('fech_nac', $afiliado->getFullDateNac(), ['class'=> 'form-control', 'disabled' => '']) !!}
-							</div>
-						</div>
-						<div class="form-group">
-								{!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
-							<div class="col-md-8">
-								{!! Form::text('mat', $afiliado->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-								<span class="help-block">Apellido Materno</span>
-							</div>
-						</div>
-						<div class="form-group">
-								{!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
-							<div class="col-md-8">
-								{!! Form::text('nom2', $afiliado->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-								<span class="help-block">Segundo nombre</span>
+								{!! Form::text('fech_nac', $afiliado->getFullDateNac(), ['class'=> 'form-control']) !!}
 							</div>
 						</div>
 						<div class="form-group">
 								{!! Form::label('sex', 'SEXO', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-8">
-								{!! Form::text('sex', $afiliado->getSex(), ['class'=> 'form-control', 'disabled' => 'disabled']) !!}
+								{!! Form::text('sex', $afiliado->getSex(), ['class'=> 'form-control']) !!}
 								<span class="help-block">Sexo</span>
 							</div>
 						</div>
-
+						<div class="form-group">
+									{!! Form::label('est_civ', 'ESTADO CIVIL', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+			              		{!! Form::select('est_civ', $list_est_civ, $afiliado->est_civ, ['class' => 'combobox form-control']) !!}
+			                	<span class="help-block">Selecione el estado civil</span>
+			              	</div>
+						</div>
+						<div class="form-group">
+									{!! Form::label('depa_nat', 'LUGAR NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+			              		{!! Form::select('depa_nat', $list_depas, $afiliado->depa_nat_id, ['class' => 'combobox form-control']) !!}
+			                	<span class="help-block">Selecione el estado civil</span>
+			              	</div>
+						</div>
 					</div>
 				</div>
 
