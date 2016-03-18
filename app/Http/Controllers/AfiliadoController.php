@@ -70,8 +70,7 @@ class AfiliadoController extends Controller
                 ->addColumn('mons', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
                 ->addColumn('action', function ($afiliado) { 
                     return  '<div class="row text-center">
-                            <a href="afiliado/'.$afiliado->id.'" ><i class="glyphicon glyphicon-zoom-in"></i> Ver </a>&nbsp;|&nbsp;
-                            <a href="afiliado/'.$afiliado->id. '/edit" ><i class="glyphicon glyphicon-pencil"></i> Editar </a></div>';})
+                            <a href="afiliado/'.$afiliado->id.'" ><i class="glyphicon glyphicon-zoom-in"></i></a>';})
 
                 ->addColumn('est', function ($afiliado) { return $afiliado->afi_state->name; })
                 ->make(true);
@@ -107,6 +106,32 @@ class AfiliadoController extends Controller
     public function show($id)
     {
         $afiliado = Afiliado::idIs($id)->firstOrFail();
+
+        if ($afiliado->sex == 'M') {
+            $list_est_civ = array('' => '','C' => 'CASADO','S' => 'SOLTERO','V' => 'VIUDO','D' => 'DIVIRCIADO');
+        }elseif ($afiliado->sex == 'F') {
+            $list_est_civ = array('' => '','C' => 'CASADA','S' => 'SOLTERA','V' => 'VIDUA','D' => 'DIVIRCIADA');
+        }
+
+        $afi_states = AfiState::all();
+
+        foreach ($afi_states as $item) {
+             $list_afi_states[$item->id]=$item->name;
+        }
+
+        $unidades = Unidad::all();
+
+        foreach ($unidades as $item) {
+             $list_unidades[$item->id]=$item->cod . " | " . $item->lit;
+        }
+
+        $grados = Grado::all();
+
+        foreach ($grados as $item) {
+             $list_grados[$item->id]=$item->niv. "-" .$item->grad . " | " . $item->lit;
+        } 
+
+
 
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
 
@@ -160,6 +185,10 @@ class AfiliadoController extends Controller
 
         $data = array(
             'afiliado' => $afiliado,
+            'list_est_civ' => $list_est_civ,
+            'list_afi_states' => $list_afi_states,
+            'list_unidades' => $list_unidades,
+            'list_grados' => $list_grados,
             'lastAporte' => $lastAporte,
             'totalGanado' => Util::formatMoney($ganado),
             'totalSegCiu' => Util::formatMoney($SegCiu),

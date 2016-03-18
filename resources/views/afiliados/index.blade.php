@@ -52,7 +52,7 @@
                                                 {!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
                                             <div class="col-md-8">
                                                 {!! Form::text('nom2', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                                <span class="help-block">Segundo nombre</span>
+                                                <span class="help-block">Segundo Nombre</span>
                                             </div>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@
             { data: 'mat', name: 'mat', sWidth: '15%' },
             { data: 'mons', name: 'mons', sWidth: '15%' },
             
-            { data: 'action', name: 'action', sWidth: '10%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
+            { data: 'action', name: 'action', sWidth: '10%', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
         ]
     });
 

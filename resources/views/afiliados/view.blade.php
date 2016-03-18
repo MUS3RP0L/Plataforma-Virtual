@@ -39,7 +39,15 @@
 
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">Información Personal</h3>
+							<div class="row">  
+					         	<div class="col-md-10">
+					         		<h3 class="panel-title">Información Personal</h3>
+					            </div>
+					            <div class="col-md-2 text-right" data-toggle="modal" data-target="#myModal-personal"> 
+					            		<span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+					            </div>
+					    	</div>
+							
 						</div>
 						<div class="panel-body" style="font-size: 14px">
 							<div class="row">
@@ -434,7 +442,6 @@
 											<td style="text-align: right">{{ $totalMuserpol }}</td>
 										</tr>
 									</table>
-
 								</div>
 
 							</div>
@@ -448,13 +455,120 @@
 		</div>
 	</div>
 </div>
+
+<div id="myModal-personal" class="modal fade" role="dialog">
+    <div class="modal-dialog ">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Información Personal</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+								{!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('ci', $afiliado->ci, ['class'=> 'form-control', 'disabled' => '']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+								{!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('pat', $afiliado->pat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+								<span class="help-block">Apellido paterno</span>
+							</div>
+						</div>									
+						<div class="form-group">
+								{!! Form::label('nom', 'PRIMER NOMBRE', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('nom', $afiliado->nom, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+								<span class="help-block">Primer nombre</span>
+							</div>
+						</div>
+						<div class="form-group">
+									{!! Form::label('est_civ', 'ESTADO CIVIL', ['class' => 'col-md-4 control-label']) !!}
+								<div class="col-md-8">
+				              		{!! Form::select('est_civ', $list_est_civ, $afiliado->est_civ,['class' => 'combobox form-control']) !!}
+				                	<span class="help-block">Selecione el estado civil</span>
+				              	</div>
+						</div>
+						@if ($afiliado->sex == 'F')
+							<div class="form-group">
+									{!! Form::label('ap_esp', 'APELLIDO ESPOSO', ['class' => 'col-md-4 control-label']) !!}
+								<div class="col-md-8">
+									{!! Form::text('ap_esp', $afiliado->ap_esp, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+									<span class="help-block">Apellido esposo (Opcional)</span>
+								</div>
+							</div>
+						@endif
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+								{!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('fech_nac', $afiliado->getFullDateNac(), ['class'=> 'form-control', 'disabled' => '']) !!}
+							</div>
+						</div>
+						<div class="form-group">
+								{!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('mat', $afiliado->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+								<span class="help-block">Apellido Materno</span>
+							</div>
+						</div>
+						<div class="form-group">
+								{!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('nom2', $afiliado->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+								<span class="help-block">Segundo nombre</span>
+							</div>
+						</div>
+						<div class="form-group">
+								{!! Form::label('sex', 'SEXO', ['class' => 'col-md-4 control-label']) !!}
+							<div class="col-md-8">
+								{!! Form::text('sex', $afiliado->getSex(), ['class'=> 'form-control', 'disabled' => 'disabled']) !!}
+								<span class="help-block">Sexo</span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="row text-center">
+		            <div class="form-group">
+		              <div class="col-md-12">
+		              	<a href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning">Cancelar</a>
+		                <button type="submit" class="btn btn-raised btn-primary">Guardar</button>
+		              </div>
+		            </div>
+	        	</div>
+			{!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
-<script>
+<script type="text/javascript">
 
 	$(document).ready(function(){
-	    $('[data-toggle="tooltip"]').tooltip(); 
+		$('.combobox').combobox();
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+
+	$('.datepicker').datepicker({
+	    format: "dd/mm/yyyy",
+	    language: "es",
+	    orientation: "bottom right",
+	    daysOfWeekDisabled: "0,6",
+	    autoclose: true
 	});
 
 </script>
