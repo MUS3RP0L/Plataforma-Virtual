@@ -173,4 +173,16 @@ class Afiliado extends Model
 		return date("d", strtotime($this->fech_ing))." ".$meses[date("n", strtotime($this->fech_ing))-1]. " ".date("Y", strtotime($this->fech_ing));
  
     }
+
+	public function getFullName()
+    {
+        return $this->grado->lit . ' ' . $this->pat . ' ' . $this->mat. ' ' . $this->nom;
+    }
+
 }
+
+
+Afiliado::updating(function($afiliado)
+{
+	Activity::updateAfiliado($afiliado);
+});
