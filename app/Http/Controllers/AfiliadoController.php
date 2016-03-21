@@ -183,9 +183,6 @@ class AfiliadoController extends Controller
 
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
 
-        if ($lastAporte) {
-            $afiliado->item = $lastAporte->item;
-        }
 
         $totalGanado = DB::table('afiliados')
                 ->select(DB::raw('SUM(aportes.gan) as ganado'))

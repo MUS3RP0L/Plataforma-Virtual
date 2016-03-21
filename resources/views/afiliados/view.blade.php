@@ -5,57 +5,26 @@
     <div class="row">
         <div class="col-md-12">
 
-            	<div class="row">  
+            	<div class="row"> 
+            	 
 	             	<div class="col-md-6">
 	                    <h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
 	                    <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
 	                </div>
-	                {{-- <div class="col-md-4 text-right"> 
-						<div class="btn-group">
-						    <a href="bootstrap-elements.html" data-target="#" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown">
-						        Opciones
-						        <span class="caret"></span>
-						    </a>
-						    <ul class="dropdown-menu">
-						    	@if($lastAporte)
-						    		<li class="dropdown-header">Despliegue</li>
-						        	<li><a href="{!! url('viewaporte/' . $afiliado->id) !!}">Ver Aportes</a></li>
-						        @endif
-						    	<li class="dropdown-header">Registro</li>
-						        <li><a href="{!! url('regaportegest/' . $afiliado->id) !!}">Registrar Aportes</a></li>
-						    	<li class="dropdown-header">Edición</li>
-						        <li><a href="{!! url('afiliado/' . $afiliado->id . '/edit') !!}">Editar Afiliado</a></li>
-						        <li class="dropdown-header">Reportes</li>
-						        <li><a href="{!! url('afiliadoreporte/' . $afiliado->id) !!}">Reporte Prestamo</a></li>
-						    </ul>
-						</div>
-	                </div> --}}
-	                <div class="col-md-2">  
-					    <div class="panel panel-default">
-					      <div class="panel-body" style="background-color:#e37329">
-					        <div>
-					          <h2 class="panel-title"><a href="{!! url('viewaporte/' . $afiliado->id) !!}">Ver Aportes</a></li></h2>
-					        </div>
-					      </div>
-					    </div>
-					</div>
-					<div class="col-md-2">  
-					    <div class="panel panel-default">
-					      <div class="panel-body" style="background-color:#e37329">
-					        <div>
-					          in total revenue dfgdsg sdfg
-					        </div>
-					      </div>
-					    </div>
-					</div>
-					<div class="col-md-2">  
-					    <div class="panel panel-default">
-					      <div class="panel-body" style="background-color:#e37329">
-					        <div>
-					          in total revenue dfgdsg sdfg
-					        </div>
-					      </div>
-					    </div>
+
+					<div class="col-md-6 text-right">  
+						@if($lastAporte)
+							<a href="{!! url('viewaporte/' . $afiliado->id) !!}" class="btn btn-raised btn-success">
+							    	Mostrar Aportes&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-hamburger"  aria-hidden="true"></span>
+							</a>
+						@endif
+					 
+						<a href="{!! url('regaportegest/' . $afiliado->id) !!}" class="btn btn-raised btn-success">
+						    	Registrar Aporte&nbsp;&nbsp;<span class="glyphicon glyphicon-edit"  aria-hidden="true"></span>
+						</a>
+						{{-- <a href="{!! url('afiliadoreporte/' . $afiliado->id) !!}" class="btn btn-raised btn-success">
+						    	Reporte de prestamo&nbsp;&nbsp;<span class="glyphicon glyphicon-edit"  aria-hidden="true"></span>
+						</a> --}}
 					</div>
 
             	</div>
