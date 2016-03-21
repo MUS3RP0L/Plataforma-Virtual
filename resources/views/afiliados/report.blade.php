@@ -4,15 +4,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel-heading">
-            	<div class="row">  
-	             	<div class="col-md-8">
-	                    <h4><b>{!! $grado->lit !!}</b></h4><h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
-	                </div>
-	                <div class="col-md-4 text-right"> 
-						<a href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning">Volver</a>
-	                </div>
-            	</div>
+        	
+        	<div class="row">  
+             	<div class="col-md-8">
+                    <h4><b>{!! $grado->lit !!}</b></h4><h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
+                </div>
+                <div class="col-md-4 text-right"> 
+					<a href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning">Volver</a>
+                </div>
         	</div>
 
 		    <div class="row">

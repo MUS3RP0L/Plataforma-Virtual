@@ -4,37 +4,36 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel-heading">
-            	<div class="row">  
-	             	<div class="col-md-8">
-	                    <h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
-	                    <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
-	                </div>
-	                <div class="col-md-4 text-right"> 
-						{!! link_to(URL::previous(), 'volver', ['class' => 'btn btn-raised btn-warning']) !!}
-	                </div>
-            	</div>
+
+        	<div class="row">  
+             	<div class="col-md-8">
+                    <h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
+                    <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
+                </div>
+                <div class="col-md-4 text-right"> 
+					<a href="{!! URL::previous() !!}" class="btn btn-raised btn-warning">
+					   Regresar&nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i>
+					</a>
+                </div>
         	</div>
-
-
 
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">Planillas de Haberes</h3>
+							<h3 class="panel-title">Planillas de Aportes</h3>
 						</div>
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="row">
-										<div class="col-md-3">
+										<div class="col-md-2">
 											<b>Desde</b>
 										</div>
 										<div class="col-md-3">
 											 {!! $firstAporte->desde !!} 
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-2">
 											<b>hasta</b>
 										</div>
 										<div class="col-md-3">
@@ -95,7 +94,7 @@
 
 	$(function() {
 	    $('#afiliados-table').DataTable({
-	    	"dom": '<"top"l>t<"bottom"ip>',
+	    	"dom": '<"top">t<"bottom"lp>',
 	    	"order": [[ 0, "desc" ]],
 	    	"scrollX": true,
 	        processing: true,
