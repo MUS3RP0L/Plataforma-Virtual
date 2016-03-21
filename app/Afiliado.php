@@ -170,7 +170,13 @@ class Afiliado extends Model
 	public function getFullDateIng()
     {	
 		$meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
-		return date("d", strtotime($this->fech_ing))." ".$meses[date("n", strtotime($this->fech_ing))-1]. " ".date("Y", strtotime($this->fech_ing));
+		return date("d", strtotime($this->fech_ing))." ".$meses[date("m", strtotime($this->fech_ing))-1]. " ".date("Y", strtotime($this->fech_ing));
+ 
+    }
+
+    public function getDataEdit()
+    {	
+		return date("d", strtotime($this->fech_nac))."/".date("m", strtotime($this->fech_nac)). "/".date("Y", strtotime($this->fech_nac));
  
     }
 

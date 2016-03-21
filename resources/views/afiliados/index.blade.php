@@ -11,22 +11,22 @@
         
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Despliegue de Afiliados</h3>
+                    <h3 class="panel-title">Búsqueda de Afiliados</h3>
                 </div>
                 <div class="panel-body">
 
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
 
                             <form method="POST" id="search-form" role="form" class="form-inline">
                                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                                 {!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
                                             <div class="col-md-8">
                                                 {!! Form::text('pat', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                                <span class="help-block">Apellido Paterno</span>
+                                                <span class="help-block">Escriba el Apellido Paterno</span>
                                             </div>
                                         </div>
 
@@ -34,17 +34,17 @@
                                                 {!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
                                             <div class="col-md-8">
                                                 {!! Form::text('mat', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                                <span class="help-block">Apellido Materno</span>
+                                                <span class="help-block">Escriba el Apellido Materno</span>
                                             </div>
                                         </div>
                                     </div>
                                 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                                 {!! Form::label('nom', 'PRIMER NOMBRE', ['class' => 'col-md-4 control-label']) !!}
                                             <div class="col-md-8">
                                                 {!! Form::text('nom', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                                <span class="help-block">Primer Nombre</span>
+                                                <span class="help-block">Escriba el Primer Nombre</span>
                                             </div>
                                         </div>
 
@@ -52,7 +52,24 @@
                                                 {!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
                                             <div class="col-md-8">
                                                 {!! Form::text('nom2', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                                <span class="help-block">Segundo Nombre</span>
+                                                <span class="help-block">Escriba el Segundo Nombre</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                                {!! Form::label('mat', 'NÚM MATRÍCULA', ['class' => 'col-md-4 control-label']) !!}
+                                            <div class="col-md-8">
+                                                {!! Form::text('mat', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                                <span class="help-block">Escriba el Número de Matrícula</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                                {!! Form::label('car', 'NÚM CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
+                                            <div class="col-md-8">
+                                                {!! Form::text('car', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                                <span class="help-block">Escriba el Número de Carnet de Identidad</span>
                                             </div>
                                         </div>
                                     </div>
@@ -77,13 +94,13 @@
                                 <thead>
                                     <tr class="success">
                                         <th>Matrícula</th>
-                                        <th>Estado</th>
                                         <th>Núm. Carnet</th>
-                                        {{-- <th>Grado</th> --}}
+                                        <th>Grado</th>
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
-                                        <th>Nombres</th>     
-                                        <th>Opciones</th>
+                                        <th>Nombres</th> 
+                                        <th>Estado</th>    
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -101,7 +118,7 @@
 <script>
 
         var oTable = $('#afiliados-table').DataTable({
-        "dom": '<"top"l>t<"bottom"ip>',   
+        "dom": '<"top">t<"bottom"lp>',   
         processing: true,
         serverSide: true,
         ajax: {
@@ -111,19 +128,21 @@
                 d.mat = $('input[name=mat]').val();
                 d.nom = $('input[name=nom]').val();
                 d.nom2 = $('input[name=nom2]').val();
+                d.mat = $('input[name=mat]').val();
+                d.car = $('input[name=car]').val();
                 d.post = $('input[name=post]').val();
             }
         },
         columns: [
-            { data: 'matri', name: 'matri', sWidth: '8%' },
-            { data: 'est', name: 'est', sWidth: '8%' },
-            { data: 'ci', name: 'ci', sWidth: '10%' },
-            // { data: 'gra', name: 'gra', sWidth: '10%' },
-            { data: 'pat', name: 'pat', sWidth: '15%' },
-            { data: 'mat', name: 'mat', sWidth: '15%' },
-            { data: 'mons', name: 'mons', sWidth: '15%' },
+            { data: 'matri', name: 'matri', sWidth: '11%' },
+            { data: 'ci', name: 'ci', sWidth: '12%', bSortable: false },
+            { data: 'gra', name: 'gra', sWidth: '12%', bSortable: false },
+            { data: 'pat', name: 'pat', sWidth: '15%', bSortable: false },
+            { data: 'mat', name: 'mat', sWidth: '15%', bSortable: false },
+            { data: 'noms', name: 'noms', sWidth: '15%', bSortable: false },
+            { data: 'est', name: 'est', sWidth: '15%', bSortable: false },
             
-            { data: 'action', name: 'action', sWidth: '10%', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
+            { data: 'action', name: 'action', sWidth: '5%', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
         ]
     });
 

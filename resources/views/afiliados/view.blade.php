@@ -40,11 +40,13 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<div class="row">  
-					         	<div class="col-md-10">
+					         	<div class="col-md-11">
 					         		<h3 class="panel-title">Información Personal</h3>
 					            </div>
-					            <div class="col-md-2 text-right" data-toggle="modal" data-target="#myModal-personal"> 
+					            <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="left" data-original-title="Editar">
+					            	<div data-toggle="modal" data-target="#myModal-personal"> 
 					            		<span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+					            	</div>
 					            </div>
 					    	</div>
 						</div>
@@ -52,9 +54,9 @@
 							<div class="row">
 								<div class="col-md-6">
 									
-									<table class="table" style="width:100%;">
+									<table class="table table-responsive" style="width:100%;">
 										<tr>
-											<td>
+											<td style="border-top:0;">
 												<div class="row">
 													<div class="col-md-6">
 														Carnet Identidad
@@ -66,7 +68,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Apellido Paterno
@@ -78,7 +80,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Apellido Materno
@@ -90,7 +92,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Primer Nombre
@@ -102,7 +104,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Segundo Nombre
@@ -115,7 +117,7 @@
 										</tr>
 										@if ($afiliado->ap_esp)
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Apellido de Esposo
@@ -135,7 +137,7 @@
 
 									<table class="table" style="width:100%;">
 										<tr>
-											<td>
+											<td style="border-top:0;">
 												<div class="row">
 													<div class="col-md-6">
 														Fecha Nacimiento
@@ -147,7 +149,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Edad
@@ -159,7 +161,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Sexo
@@ -171,7 +173,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Estado Civil
@@ -183,7 +185,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Lugar Nacimiento
@@ -206,11 +208,13 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<div class="row">  
-					         	<div class="col-md-10">
+					         	<div class="col-md-11">
 					         		<h3 class="panel-title">Información de Domicilio</h3>
 					            </div>
-					            <div class="col-md-2 text-right" data-toggle="modal" data-target="#myModal-domicilio"> 
+					            <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="left" data-original-title="Editar">
+					            	<div data-toggle="modal" data-target="#myModal-domicilio"> 
 					            		<span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+					            	</div>
 					            </div>
 					    	</div>
 						</div>
@@ -221,7 +225,7 @@
 
 									<table class="table" style="width:100%;">
 										<tr>
-											<td>
+											<td style="border-top:0;">
 												<div class="row">
 													<div class="col-md-6">
 														Departamento
@@ -233,7 +237,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Zona
@@ -245,7 +249,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Calle
@@ -257,7 +261,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Núm Domicilio
@@ -278,7 +282,7 @@
 
 									<table class="table" style="width:100%;">
 										<tr>
-											<td>
+											<td style="border-top:0;">
 												<div class="row">
 													<div class="col-md-6">
 														Municipio
@@ -290,7 +294,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Teléfono
@@ -302,7 +306,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Celular
@@ -314,7 +318,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Correo Electrónico
@@ -339,11 +343,13 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<div class="row">  
-					         	<div class="col-md-10">
+					         	<div class="col-md-11">
 					         		<h3 class="panel-title">Información Policial</h3>
 					            </div>
-					            <div class="col-md-2 text-right" data-toggle="modal" data-target="#myModal-policial"> 
+					            <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="left" data-original-title="Editar">
+					            	<div  data-toggle="modal" data-target="#myModal-policial"> 
 					            		<span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+					            	</div>
 					            </div>
 					    	</div>
 							
@@ -354,7 +360,7 @@
 
 									<table class="table" style="width:100%;">
 										<tr>
-											<td>
+											<td style="border-top:0;">
 												<div class="row">
 													<div class="col-md-6">
 														Estado
@@ -366,7 +372,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Grado
@@ -377,7 +383,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Unidad
@@ -389,9 +395,7 @@
 											</td>
 										</tr>
 
-
 									</table>
-
 
 								</div>
 
@@ -399,7 +403,7 @@
 
 									<table class="table" style="width:100%;">
 										<tr>
-											<td>
+											<td style="border-top:0;">
 												<div class="row">
 													<div class="col-md-6">
 														Núm. de Matrícula
@@ -411,7 +415,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Núm. de Ítem
@@ -423,7 +427,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td style="border-top:1px solid #d4e4cd;">
 												<div class="row">
 													<div class="col-md-6">
 														Fecha de Ingreso
@@ -457,32 +461,32 @@
 
 							<div class="row">
 								<div class="col-md-12">
-									<table class="table table-hover" style="width:100%;font-size: 14px">
+									<table class="table table-bordered table-hover" style="width:100%;font-size: 14px">
 										<tr>
-											<td>Total Ganado</td>
+											<td>Ganado</td>
 											<td style="text-align: right">{{ $totalGanado }}</td>
 										</tr>
 										<tr>
-											<td>Total Bono de Seguridad Ciudadana</td>
+											<td>Bono de Seguridad Ciudadana</td>
 											<td style="text-align: right">{{ $totalSegCiu }}</td>
 										</tr>
 										<tr class="active">
-											<td>Total Cotizable</td>
+											<td>Cotizable</td>
 											<td style="text-align: right">{{ $totalCotizableAd }}</td>
 										</tr>
 									</table>
 
-									<table class="table table-hover" style="width:100%;font-size: 14px">
+									<table class="table table-bordered table-hover" style="width:100%;font-size: 14px">
 										<tr>
-											<td>Total Aporte Fondo de Retiro</td>
+											<td>Aporte Fondo de Retiro</td>
 											<td style="text-align: right">{{ $totalFon }}</td>
 										</tr>
 										<tr>
-											<td>Total Aporte Seguro de Vida</td>
+											<td>Aporte Seguro de Vida</td>
 											<td style="text-align: right">{{ $totalSegVid }}</td>
 										</tr>
 										<tr class="active">
-											<td>Total Aporte Muserpol</td>
+											<td>Aporte Muserpol</td>
 											<td style="text-align: right">{{ $totalMuserpol }}</td>
 										</tr>
 									</table>
@@ -562,13 +566,13 @@
 						<div class="form-group">
 								{!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-8">
-								{!! Form::text('fech_nac', $afiliado->getFullDateNac(), ['class'=> 'form-control']) !!}
+								{!! Form::text('fech_nac', $afiliado->getDataEdit(), ['class'=> 'form-control datepicker']) !!}
 							</div>
 						</div>
 						<div class="form-group">
 								{!! Form::label('sex', 'SEXO', ['class' => 'col-md-4 control-label']) !!}
 							<div class="col-md-8">
-								{!! Form::text('sex', $afiliado->getSex(), ['class'=> 'form-control']) !!}
+								{!! Form::text('sex', $afiliado->getSex(), ['class'=> 'form-control', 'disabled'=> '']) !!}
 								<span class="help-block">Sexo</span>
 							</div>
 						</div>
@@ -714,6 +718,17 @@
 			                	<span class="help-block"></span>
 			              	</div>
 						</div>
+						<div class="form-group">
+							{!! Form::label('fech_dece', 'FECHA DECESO', ['class' => 'col-md-3 control-label']) !!}
+                            <div class="col-md-6">
+	                            <div class="input-group">
+	                                <input type="text" class="form-control datepicker" name="fech_dece">
+	                                <div class="input-group-addon">
+	                                    <span class="glyphicon glyphicon-calendar"></span>
+	                                </div>
+	                            </div>
+	                        </div>
+                        </div>
 						<div class="form-group">
 								{!! Form::label('grado_id', 'GRADO', ['class' => 'col-md-3 control-label']) !!}
 							<div class="col-md-9">

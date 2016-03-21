@@ -36,7 +36,7 @@ class AfiliadoController extends Controller
 
     public function afiliadosData(Request $request)
     {
-        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri', 'afi_state_id']);
+        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri', 'afi_state_id', 'grado_id']);
         
         if ($request->has('pat'))
         {
@@ -66,10 +66,25 @@ class AfiliadoController extends Controller
                 $afiliados->where('nom2', 'like', "%{$request->get('nom2')}%");
             });
         }
+        if ($request->has('mat'))
+        {
+            $afiliados->where(function($afiliados) use ($request)
+            {
+                $afiliados->where('mat', 'like', "%{$request->get('mat')}%");
+            });
+        }
+        if ($request->has('car'))
+        {
+            $afiliados->where(function($afiliados) use ($request)
+            {
+                $afiliados->where('ci', 'like', "%{$request->get('car')}%");
+            });
+        }
+
 
         return Datatables::of($afiliados)
-                // ->addColumn('gra', function ($afiliado) { return Aporte::afiliadoId($afiliado->id)->orderBy('id', 'desc')->first()->grado->abre; })
-                ->addColumn('mons', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
+                ->addColumn('gra', function ($afiliado) { return $afiliado->grado->abre; })
+                ->addColumn('noms', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
                 ->addColumn('action', function ($afiliado) { 
                     return  '<div class="row text-center">
                             <a href="afiliado/'.$afiliado->id.'" ><div class="col-md-12"><i class="glyphicon glyphicon-eye-open"></i></div></a>';})
@@ -110,9 +125,9 @@ class AfiliadoController extends Controller
         $afiliado = Afiliado::idIs($id)->firstOrFail();
 
         if ($afiliado->sex == 'M') {
-            $list_est_civ = array('' => '','C' => 'CASADO','S' => 'SOLTERO','V' => 'VIUDO','D' => 'DIVIRCIADO');
+            $list_est_civ = array('' => '','C' => 'CASADO','S' => 'SOLTERO','V' => 'VIUDO','D' => 'DIVORCIADO');
         }elseif ($afiliado->sex == 'F') {
-            $list_est_civ = array('' => '','C' => 'CASADA','S' => 'SOLTERA','V' => 'VIDUA','D' => 'DIVIRCIADA');
+            $list_est_civ = array('' => '','C' => 'CASADA','S' => 'SOLTERA','V' => 'VIUDA','D' => 'DIVORCIADA');
         }
 
         $afi_states = AfiState::all();
@@ -328,9 +343,9 @@ class AfiliadoController extends Controller
         $afiliado = Afiliado::where('id', '=', $id)->firstOrFail();
 
         if ($afiliado->sex == 'M') {
-            $list_est_civ = array('' => '','C' => 'CASADO','S' => 'SOLTERO','V' => 'VIUDO','D' => 'DIVIRCIADO');
+            $list_est_civ = array('' => '','C' => 'CASADO','S' => 'SOLTERO','V' => 'VIUDO','D' => 'DIVORCIADO');
         }elseif ($afiliado->sex == 'F') {
-            $list_est_civ = array('' => '','C' => 'CASADA','S' => 'SOLTERA','V' => 'VIDUA','D' => 'DIVIRCIADA');
+            $list_est_civ = array('' => '','C' => 'CASADA','S' => 'SOLTERA','V' => 'VIUDA','D' => 'DIVORCIADA');
         }
 
         $afi_states = AfiState::all();
@@ -405,7 +420,7 @@ class AfiliadoController extends Controller
         $validator = Validator::make($request->all(), $rules, $messages);
         
         if ($validator->fails()){
-            return redirect('afiliado/'.$id.'/edit')
+            return redirect('afiliado/'.$id)
             ->withErrors($validator)
             ->withInput();
         }
@@ -415,45 +430,48 @@ class AfiliadoController extends Controller
 
             switch ($request->type) {
                 case 'per':
+
                     $afiliado->ci = trim($request->ci);
                     $afiliado->pat = trim($request->pat);
                     $afiliado->mat = trim($request->mat);
                     $afiliado->nom = trim($request->nom);
                     $afiliado->nom2 = trim($request->nom2);
-                    $afiliado->est_civ = trim($request->est_civ); 
                     if ($request->ap_esp) {$afiliado->ap_esp = trim($request->ap_esp);}
+                    $afiliado->fech_nac = Util::datePick($request->fech_nac); 
+                    $afiliado->est_civ = trim($request->est_civ); 
+                    $afiliado->depa_nat_id = trim($request->depa_nat); 
+                    $afiliado->save();
+                    
                     $message = "Información personal de afiliado actualizado con éxito";
                     break;
+
                 case 'dom':
-                    echo "i es igual a 1";
+                    
+                    $afiliado->depa_vec_id = trim($request->depa_vec);
+                    $afiliado->zona = trim($request->zona);
+                    $afiliado->calle = trim($request->calle);
+                    $afiliado->num_domi = trim($request->num_domi);
+                    $afiliado->muni_id = trim($request->muni);
+                    $afiliado->tele = trim($request->tele);
+                    $afiliado->celu = trim($request->celu); 
+                    $afiliado->email = trim($request->email); 
+                    $afiliado->save();
+                    
+                    $message = "Información de domicilio de afiliado actualizado con éxito";
+
                     break;
                 case 'pol':
-                    echo "i es igual a 2";
+
+                    $afiliado->afi_state_id = trim($request->afi_state_id);
+                    $afiliado->grado_id = trim($request->grado_id);
+                    $afiliado->unidad_id = trim($request->unidad_id);
+                    if ($request->fech_dece && $request->afi_state_id == 3) {$afiliado->fech_dece = Util::datePick($request->fech_dece);}
+                    $afiliado->save();
+                    
+                    $message = "Información de domicilio de afiliado actualizado con éxito";
                     break;
             }
             Session::flash('message', $message);
-
-            // $afiliado = Afiliado::where('id', '=', $id)->firstOrFail();
-                
-            // $afiliado->afi_state_id = $request->afi_state_id; 
-            // if ($request->fech_dece || $request->afi_state_id == 3) {
-            //     $afiliado->fech_dece = Util::datePick($request->fech_dece); 
-            // }
-            // $afiliado->unidad_id = $request->unidad_id; 
-            // $afiliado->grado_id = $request->grado_id;
-
-            // $afiliado->zona = trim($request->zona);
-            // $afiliado->num_domi = trim($request->num_domi);
-            // $afiliado->email = trim($request->email);
-            // $afiliado->calle = trim($request->calle);
-            // $afiliado->tele = trim($request->tele);
-            // $afiliado->celu = trim($request->celu);
-
-            // $afiliado->save();
-
-            // $message = "Afiliado Actualizado con éxito";
-
-            // Session::flash('message', $message);
         }
         
         return redirect('afiliado/'.$id);
