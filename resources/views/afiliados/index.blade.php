@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                                {!! Form::label('mat', 'NÚM MATRÍCULA', ['class' => 'col-md-4 control-label']) !!}
+                                                {!! Form::label('mat', 'NÚMERO MATRÍCULA', ['class' => 'col-md-4 control-label']) !!}
                                             <div class="col-md-8">
                                                 {!! Form::text('mat', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                                 <span class="help-block">Escriba el Número de Matrícula</span>
@@ -66,7 +66,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                                {!! Form::label('car', 'NÚM CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
+                                                {!! Form::label('car', 'NÚMERO CARNET', ['class' => 'col-md-4 control-label']) !!}
                                             <div class="col-md-8">
                                                 {!! Form::text('car', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                                 <span class="help-block">Escriba el Número de Carnet de Identidad</span>

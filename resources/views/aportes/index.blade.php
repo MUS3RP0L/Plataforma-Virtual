@@ -12,7 +12,7 @@
                     <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
                 </div>
                 <div class="col-md-4 text-right"> 
-                    <a href="{!! URL::previous() !!}" class="btn btn-raised btn-warning">
+                    <a href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning">
                        Regresar&nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i>
                     </a>
                 </div>
