@@ -51,6 +51,8 @@ class Import extends Command
 
             global $cAfiN, $cAfiU, $cApor, $progress;
 
+            $time_start = microtime(true); 
+
             $this->info("Importando registros...\n");
             $progress = $this->output->createProgressBar();
             $progress->setFormat("%current%/%max% [%bar%] %percent:3s%%");
@@ -92,10 +94,10 @@ class Import extends Command
 
                     ini_set('upload_max_filesize', '500M');
                     ini_set('post_max_size', '500M');
-                    ini_set('max_execution_time', 3600);
-                    ini_set('max_input_time', 3600);
+                    ini_set('max_execution_time', 36000);
+                    ini_set('max_input_time', 36000);
                     ini_set('memory_limit', '-1');
-                    set_time_limit(3600);
+                    set_time_limit(36000);
                     
                     $carnet = Util::zero($result->car);
                     $afiliado = Afiliado::where('ci', '=', $carnet)->first();
@@ -191,6 +193,10 @@ class Import extends Command
                 }
 
             });
+
+            $time_end = microtime(true);
+
+            $execution_time = ($time_end - $time_start)/60;
             
             $cAfiT = $cAfiN + $cAfiU;
             $cAfiN = $cAfiN ? $cAfiN : "0";
@@ -200,7 +206,12 @@ class Import extends Command
 
             $progress->finish();
         
-            $this->info("\n\nSe registraros:\n\n" . $cAfiN . " Afiliados Nuevos.\n" . $cAfiU . " Afiliados Actualizados.\n" . $cAfiT . " Afiliados en total.\n" . $cApor . " Aportes.\n");
+            $this->info("\n\nSe registraros:\n\n" . $cAfiN .
+             " Afiliados Nuevos.\n" . $cAfiU .
+             " Afiliados Actualizados.\n" . $cAfiT .
+             " Afiliados en total.\n" . $cApor . 
+             " Aportes.\n" . $execution_time . 
+             " [Seg] demorados en ejecutar de importación.\n");
 
         }
 
