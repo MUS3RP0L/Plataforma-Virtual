@@ -59,7 +59,7 @@ class Import extends Command
             ini_set('post_max_size', '999M');
             ini_set('max_execution_time', 36000);
             ini_set('max_input_time', 36000);
-            ini_set("memory_limit","999M");
+            ini_set('memory_limit', '-1');
             set_time_limit(36000);
 
             
@@ -94,7 +94,7 @@ class Import extends Command
                     ini_set('post_max_size', '500M');
                     ini_set('max_execution_time', 3600);
                     ini_set('max_input_time', 3600);
-                    ini_set("memory_limit","500M");
+                    ini_set('memory_limit', '-1');
                     set_time_limit(3600);
                     
                     $carnet = Util::zero($result->car);
