@@ -211,10 +211,8 @@ class Import extends Command
              " Afiliados Actualizados.\n" . $cAfiT .
              " Afiliados en total.\n" . $cApor . 
              " Aportes.\n" . $execution_time . 
-             " [Seg] demorados en ejecutar de importación.\n");
+             " [Min] demorados en ejecutar de importación.\n");
 
         }
-
-        // $this->comment(PHP_EOL.Inspiring::quote().PHP_EOL);
     }
 }
