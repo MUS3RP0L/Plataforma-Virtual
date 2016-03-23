@@ -62,6 +62,25 @@ class Import extends Command
             ini_set("memory_limit","999M");
             set_time_limit(36000);
 
+            
+            Excel::selectSheetsByIndex(0)->load('public/file_to_import/' . $name . '.xlsx', function($reader) {
+
+                $count = 0;
+                $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
+                            'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
+                $results = $reader->select($col)->first();
+                foreach ($results as $nombre => $valor) {
+                    if (in_array($nombre, $col)) {
+                        $count ++;
+                    }
+                }   
+                if ($count < count($col))
+                {
+                    $this->info("Falta Columnas, favor Verificar el Archivo");
+                    break;
+                }
+            });
+
             $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
                             'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
             
@@ -181,7 +200,7 @@ class Import extends Command
 
             $progress->finish();
         
-            $this->info("\n\nSe realizaron: " . $cAfiN . " registros de Afiliados Nuevos, " . $cAfiU . " registros de Afiliados Actualizados, total " . $cAfiT . " y " . $cApor . " de Planillas\n");
+            $this->info("\n\nSe registraros:\n\n" . $cAfiN . " Afiliados Nuevos.\n" . $cAfiU . " Afiliados Actualizados.\n" . $cAfiT . " Afiliados en total.\n" . $cApor . " Aportes.\n");
 
         }
 

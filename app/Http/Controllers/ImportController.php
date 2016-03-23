@@ -40,28 +40,28 @@ class ImportController extends Controller
     	$reader = $request->file('archive');
         $filename = $reader->getRealPath();
 
-  //       Excel::selectSheetsByIndex(0)->load($filename, function($reader) {
+        Excel::selectSheetsByIndex(0)->load($filename, function($reader) {
 
-		// 	$count = 0;
-		// 	$col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
-		// 				'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
+			$count = 0;
+			$col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
+						'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
 
-		//  	$results = $reader->select($col)->first();
+		 	$results = $reader->select($col)->first();
 			 
-		// 	foreach ($results as $nombre => $valor) {
-		// 		if (in_array($nombre, $col)) {
-		// 			$count ++;
-		// 		}
-		// 	}	
+			foreach ($results as $nombre => $valor) {
+				if (in_array($nombre, $col)) {
+					$count ++;
+				}
+			}	
 
-		// 	if ($count < count($col))
-		// 	{
-		// 		$message = "Falta Columnas, favor Verificar el Archivo";
-		// 		Session::flash('message', $message);
-		// 		return redirect('importar_archivo');
-		// 		break;
-		// 	}
-		// });
+			if ($count < count($col))
+			{
+				$message = "Falta Columnas, favor Verificar el Archivo";
+				Session::flash('message', $message);
+				return redirect('importar_archivo');
+				break;
+			}
+		});
 
 		$col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
 						'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
