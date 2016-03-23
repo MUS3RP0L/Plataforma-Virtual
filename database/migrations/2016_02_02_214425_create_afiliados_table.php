@@ -123,8 +123,11 @@ class CreateAfiliadosTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('afiliado_id');
-            $table->string('type');
-            $table->string('obs');
+            $table->UnsignedBigInteger('grado_id');
+            $table->UnsignedBigInteger('afi_state_id');
+            $table->date('fech');
+            $table->integer('type');
+            $table->string('message');
 
             $table->timestamps();
             $table->softDeletes();

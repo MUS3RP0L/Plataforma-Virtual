@@ -118,7 +118,7 @@
 <script>
 
         var oTable = $('#afiliados-table').DataTable({
-        "dom": '<"top">t<"bottom"lp>',   
+        "dom": '<"top">t<"bottom"p>',   
         processing: true,
         serverSide: true,
         ajax: {

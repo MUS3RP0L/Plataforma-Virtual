@@ -3,18 +3,28 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
+use Muserpol\Helper\Util;
+use Auth;
+
+define("NOTE_TYPE_UPDATE_GRAD", 1);
 
 class Note extends Model
 {
-    protected $table = 'notes';
+	public static function updateAfiliado($afiliado)
+	{		
+		if (Auth::user()) 
+		{
 
-	protected $fillable = [
-	
-		'afiliado_id',
-		'type',
-		'obs',
+			$note = new Note;
+			$note->user_id = Auth::user()->id;
+			$note->afiliado_id = $afiliado->id;
+			$note->grado_id = $afiliado->grado_id;
+			$note->afi_state_id = $afiliado->afi_state_id;
 
-	];
-
-	protected $guarded = ['id'];
+			$note->type = NOTE_TYPE_UPDATE_GRAD;
+			$action = 
+			$note->obs = Util::encodeActivity(Auth::user(), 'actualizó ',);
+			$note->save();
+		}		
+	}
 }

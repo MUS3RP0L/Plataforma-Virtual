@@ -187,7 +187,8 @@ class Afiliado extends Model
 
 }
 
-// Afiliado::updating(function($afiliado)
-// {
-// 	Activity::updateAfiliado($afiliado);
-// });
+Afiliado::updating(function($afiliado)
+{
+	Activity::updateAfiliado($afiliado);
+	Note::updateAfiliado($afiliado);
+});
