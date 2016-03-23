@@ -36,7 +36,7 @@ class Import extends Command
      *
      * @var string
      */
-    protected $description = 'Importacion de archivos';
+    protected $description = 'Importacion de Archivos';
 
     /**
      * Execute the console command.
@@ -45,17 +45,15 @@ class Import extends Command
      */
     public function handle()
     {
-        $name = $this->ask('Estimado Usuario cual es el archivo que desea importar?');
+        $name = $this->ask('Estimado Usuario escriba el nombre del archivo que desea importar, Gracias.');
 
-        if ($this->confirm('Esta seguro? [y|N]')) {
+        if ($this->confirm('Esta seguro de importar el archivo ' . $name . '.xlsx? [y|N]') && $name) {
 
-            global $countAfi, $countApor, $progress;
+            global $cAfiN, $cAfiU, $cApor, $progress;
 
             $this->info("Importando registros...\n");
-            $progress = $this->output->createProgressBar(100);
+            $progress = $this->output->createProgressBar();
             $progress->setFormat("%current%/%max% [%bar%] %percent:3s%%");
-
-            
 
             ini_set('upload_max_filesize', '999M');
             ini_set('post_max_size', '999M');
@@ -66,55 +64,46 @@ class Import extends Command
 
             $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
                             'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
+            
+            Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load('public/file_to_import/' . $name . '.xlsx')->chunk(500, function($results) {
 
-
-            Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load('public/import/1.xlsx')->chunk(500, function($results) {
-
-                global $countAfi, $countApor, $progress;
+                global $cAfiN, $cAfiU, $cApor, $progress;
 
                 foreach ($results as $result) {
-                    
-                    ini_set('upload_max_filesize', '999M');
-                    ini_set('post_max_size', '999M');
-                    ini_set('max_execution_time', 36000);
-                    ini_set('max_input_time', 36000);
-                    ini_set("memory_limit","999M");
-                    set_time_limit(36000);
 
+                    ini_set('upload_max_filesize', '500M');
+                    ini_set('post_max_size', '500M');
+                    ini_set('max_execution_time', 3600);
+                    ini_set('max_input_time', 3600);
+                    ini_set("memory_limit","500M");
+                    set_time_limit(3600);
+                    
                     $carnet = Util::zero($result->car);
+                    $afiliado = Afiliado::where('ci', '=', $carnet)->first();
 
-                    
-                    if (Afiliado::where('ci', '=', $carnet)->first()) {
-        
-                        $afiliado = Afiliado::where('ci', '=', $carnet)->first();
-                        $afiliado->user_id = 1;
+                    if ($afiliado) {
                         
-                        if(Util::decimal($result->sue)<> 0){$afiliado->afi_state_id = 2;}
-                        else{$afiliado->afi_state_id = 1;}
-                        
-                        $afiliado->pat = $result->pat;
-                        $afiliado->mat = $result->mat;
-                        $afiliado->nom = $result->nom;
-                        $afiliado->nom2 = $result->nom2;
+                        if(Util::decimal($result->sue)<> 0){$afiliado->afi_state_id = 1;}
+                        else{$afiliado->afi_state_id = 2;}
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
                         if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
                         $afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+                        $afiliado->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->afp = Util::getAfp($result->afp);
                         $afiliado->nua = $result->nua;
                         $afiliado->save();
+                        $cAfiU ++;
                         
                     }else{
 
                         $afiliado = new Afiliado;
                         $afiliado->user_id = 1;
                         
-                        if(Util::decimal($result->sue)<> 0){$afiliado->afi_state_id = 2;}
-                        else{$afiliado->afi_state_id = 1;}
-
+                        if(Util::decimal($result->sue)<> 0){$afiliado->afi_state_id = 1;}
+                        else{$afiliado->afi_state_id = 2;}
                         $afiliado->ci = $carnet;
-
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
                         $afiliado->nom = $result->nom;
@@ -122,7 +111,6 @@ class Import extends Command
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
                         $afiliado->sex = $result->sex;
-                        
                         $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
                         if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
@@ -134,7 +122,7 @@ class Import extends Command
                         $afiliado->nua = $result->nua;
                         
                         $afiliado->save();
-                        $countAfi ++;
+                        $cAfiN ++;
                     }
                     if (Util::decimal($result->sue)<> 0) {
 
@@ -153,7 +141,6 @@ class Import extends Command
                             if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                             $aporte->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
                             $aporte->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
-
                             $aporte->item = $result->item;
                             $aporte->sue = Util::decimal($result->sue);
                             $aporte->b_ant = Util::decimal($result->cat);
@@ -177,20 +164,24 @@ class Import extends Command
                                 $aporte->sv = $aporte->mus * $por_apor->apor_sv_a / $por_apor->apor_a;
                             }
                             $aporte->save();
-                            $countApor ++;
+                            $cApor ++;
                         }
                         
                     }
-
-                $progress->advance();
-
+                    $progress->advance();
                 }
 
             });
+            
+            $cAfiT = $cAfiN + $cAfiU;
+            $cAfiN = $cAfiN ? $cAfiN : "0";
+            $cAfiU = $cAfiU ? $cAfiU : "0";
+            $cAfiT = $cAfiT ? $cAfiT : "0";
+            $cApor = $cApor ? $cApor : "0";
 
             $progress->finish();
-
-            $this->info("Se realizaron " . $countAfi . " registros de Afiliados Nuevos y " . $countApor . " de Planillas");
+        
+            $this->info("\n\nSe realizaron: " . $cAfiN . " registros de Afiliados Nuevos, " . $cAfiU . " registros de Afiliados Actualizados, total " . $cAfiT . " y " . $cApor . " de Planillas\n");
 
         }
 
