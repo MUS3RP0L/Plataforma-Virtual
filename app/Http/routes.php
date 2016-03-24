@@ -57,10 +57,10 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('calcaportegest/{afid}/{gesid}', 'AporteController@CalcAporteGest');
 
 	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
-	
-
 
 	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
+
+	Route::get('getNote/{afid}', array('as'=>'getNote', 'uses'=>'NoteController@notesData'));
 
 	// AporTasa
 	Route::resource('tasa', 'TasaController');

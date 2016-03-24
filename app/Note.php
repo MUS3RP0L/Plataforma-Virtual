@@ -72,4 +72,11 @@ class Note extends Model
 			$note->save();
 		}		
 	}
+
+	public function getFullDate()
+    {	
+		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		return date("d", strtotime($this->fech))." de ".$meses[date("n", strtotime($this->fech))-1]. " de ".date("Y", strtotime($this->fech));
+ 
+    }
 }

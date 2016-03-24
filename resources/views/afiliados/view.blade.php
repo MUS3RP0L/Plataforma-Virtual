@@ -346,7 +346,7 @@
 					         		<h3 class="panel-title">Información Policial</h3>
 					            </div>
 					            <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Historial">
-					            	<div  data-toggle="modal" data-target="#myModal-policial"> 
+					            	<div  data-toggle="modal" data-target="#myModal-record"> 
 					            		<span class="glyphicon glyphicon-hourglass"  aria-hidden="true"></span>
 					            	</div>
 					            </div>
@@ -766,6 +766,28 @@
     </div>
 </div>
 
+<div id="myModal-record" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Historial</h4>
+            </div>
+            <div class="modal-body">
+
+				<table class="table table-striped table-hover" id="record-table">
+                    <thead>
+                        <tr class="success">
+                            <th>Fecha</th>
+                            <th>descripción</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
@@ -782,6 +804,27 @@
 	    orientation: "bottom right",
 	    daysOfWeekDisabled: "0,6",
 	    autoclose: true
+	});
+
+	$(function() {
+	    $('#record-table').DataTable({
+	    	"dom": '<"top">t<"bottom"p>',
+	    	"order": [[ 0, "desc" ]],
+	        processing: true,
+	        serverSide: true,
+	        pageLength: 10,
+	        bFilter: false,
+	        ajax: {
+	            url: '{!! route('getNote') !!}',
+	            data: function (d) {
+	                d.id = {{ $afiliado->id }};
+	            }
+	        },
+	        columns: [
+	            { data: 'fech', name: 'fech' },
+	            { data: 'message', name: 'message', bSortable: false }
+	        ]
+	    });
 	});
 
 </script>
