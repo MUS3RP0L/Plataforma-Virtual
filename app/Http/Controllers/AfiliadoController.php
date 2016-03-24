@@ -148,12 +148,12 @@ class AfiliadoController extends Controller
              $list_grados[$item->id]=$item->niv. "-" .$item->grad . " | " . $item->lit;
         } 
         $depa = Departamento::all();
-
+        $list_depas = array('' => '');
         foreach ($depa as $item) {
              $list_depas[$item->id]=$item->name;
         }
         $muni = Municipio::all();
-
+        $list_munis = array('' => '');
         foreach ($muni as $item) {
              $list_munis[$item->id]=$item->name;
         }
@@ -436,7 +436,7 @@ class AfiliadoController extends Controller
                     if ($request->ap_esp) {$afiliado->ap_esp = trim($request->ap_esp);}
                     $afiliado->fech_nac = Util::datePick($request->fech_nac); 
                     $afiliado->est_civ = trim($request->est_civ); 
-                    $afiliado->depa_nat_id = trim($request->depa_nat); 
+                    if ($afiliado->depa_nat_id <> trim($request->depa_nat_id)) {$afiliado->depa_nat_id = trim($request->depa_nat_id);}
                     $afiliado->save();
                     
                     $message = "Información personal de afiliado actualizado con éxito";
@@ -444,11 +444,12 @@ class AfiliadoController extends Controller
 
                 case 'dom':
                     
-                    $afiliado->depa_vec_id = trim($request->depa_vec);
+                    if ($afiliado->depa_vec_id <> trim($request->depa_vec_id)) {$afiliado->depa_vec_id = trim($request->depa_vec_id);}
+                    if ($afiliado->muni_id <> trim($request->muni)) {$afiliado->muni_id = trim($request->muni);}
                     $afiliado->zona = trim($request->zona);
                     $afiliado->calle = trim($request->calle);
                     $afiliado->num_domi = trim($request->num_domi);
-                    $afiliado->muni_id = trim($request->muni);
+                    
                     $afiliado->tele = trim($request->tele);
                     $afiliado->celu = trim($request->celu); 
                     $afiliado->email = trim($request->email); 
@@ -456,7 +457,7 @@ class AfiliadoController extends Controller
                     
                     $message = "Información de domicilio de afiliado actualizado con éxito";
                     break;
-                    
+
                 case 'pol':
 
                     if ($afiliado->afi_state_id <> trim($request->afi_state_id)) {$afiliado->afi_state_id = trim($request->afi_state_id);}
@@ -465,7 +466,7 @@ class AfiliadoController extends Controller
                     if ($request->fech_dece && $request->afi_state_id == 3) {$afiliado->fech_dece = Util::datePick($request->fech_dece);}
                     $afiliado->save();
                     
-                    $message = "Información de domicilio de afiliado actualizado con éxito";
+                    $message = "Información policial de afiliado actualizado con éxito";
                     break;
             }
             Session::flash('message', $message);
