@@ -13,15 +13,17 @@
 	                </div>
 
 					<div class="col-md-6 text-right">  
-						@if($lastAporte)
-							<a href="{!! url('viewaporte/' . $afiliado->id) !!}" class="btn btn-raised btn-success">
-							    	Mostrar Aportes&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-hamburger"  aria-hidden="true"></span>
+
+						<div class="btn-group">
+			              	<a href="javascript:void(0)" class="btn btn-raised btn-success">&nbsp;&nbsp;Aportes&nbsp;&nbsp;</span>
 							</a>
-						@endif
-					 
-						<a href="{!! url('regaportegest/' . $afiliado->id) !!}" class="btn btn-raised btn-success">
-						    	Registrar Aporte&nbsp;&nbsp;<span class="glyphicon glyphicon-edit"  aria-hidden="true"></span>
-						</a>
+			              	<a href="bootstrap-elements.html" data-target="#" class="btn btn-primary btn-raised btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+				            <ul class="dropdown-menu">
+				            	<li><a href="{!! url('viewaporte/' . $afiliado->id) !!}">Mostrar Aportes&nbsp;<span class="glyphicon glyphicon-menu-hamburger"  aria-hidden="true"></span></a></li>
+				                <li><a href="{!! url('regaportegest/' . $afiliado->id) !!}">Registrar Aporte&nbsp;<span class="glyphicon glyphicon-edit"  aria-hidden="true"></span></a></li>
+				            </ul>
+			            </div>
+
 						{{-- <a href="{!! url('afiliadoreporte/' . $afiliado->id) !!}" class="btn btn-raised btn-success">
 						    	Reporte de prestamo&nbsp;&nbsp;<span class="glyphicon glyphicon-edit"  aria-hidden="true"></span>
 						</a> --}}
@@ -40,7 +42,7 @@
 					         	<div class="col-md-11">
 					         		<h3 class="panel-title">Información Personal</h3>
 					            </div>
-					            <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="left" data-original-title="Editar">
+					            <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
 					            	<div data-toggle="modal" data-target="#myModal-personal"> 
 					            		<span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
 					            	</div>
@@ -208,7 +210,7 @@
 					         	<div class="col-md-11">
 					         		<h3 class="panel-title">Información de Domicilio</h3>
 					            </div>
-					            <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="left" data-original-title="Editar">
+					            <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
 					            	<div data-toggle="modal" data-target="#myModal-domicilio"> 
 					            		<span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
 					            	</div>
@@ -340,10 +342,15 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<div class="row">  
-					         	<div class="col-md-11">
+					         	<div class="col-md-10">
 					         		<h3 class="panel-title">Información Policial</h3>
 					            </div>
-					            <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="left" data-original-title="Editar">
+					            <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Historial">
+					            	<div  data-toggle="modal" data-target="#myModal-policial"> 
+					            		<span class="glyphicon glyphicon-hourglass"  aria-hidden="true"></span>
+					            	</div>
+					            </div>
+					            <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
 					            	<div  data-toggle="modal" data-target="#myModal-policial"> 
 					            		<span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
 					            	</div>

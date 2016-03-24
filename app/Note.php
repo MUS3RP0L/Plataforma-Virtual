@@ -68,7 +68,7 @@ class Note extends Model
 			$note->afi_state_id = $afiliado->afi_state_id;
 			$note->type = NOTE_TYPE_UPDATE_STATE;
 			$afi_state = AfiState::where('id', $afiliado->afi_state_id)->first();
-			$note->message = "Afiliado creado con estado de " . $afi_state->name;
+			$note->message = "Afiliado ingresó de " . $afi_state->name;
 			$note->save();
 		}		
 	}
