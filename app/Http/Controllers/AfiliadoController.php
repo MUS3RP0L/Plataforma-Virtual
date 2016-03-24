@@ -455,12 +455,12 @@ class AfiliadoController extends Controller
                     $afiliado->save();
                     
                     $message = "Información de domicilio de afiliado actualizado con éxito";
-
                     break;
+                    
                 case 'pol':
 
-                    $afiliado->afi_state_id = trim($request->afi_state_id);
-                    $afiliado->grado_id = trim($request->grado_id);
+                    if ($afiliado->afi_state_id <> trim($request->afi_state_id)) {$afiliado->afi_state_id = trim($request->afi_state_id);}
+                    if ($afiliado->grado_id <> trim($request->grado_id)) {$afiliado->grado_id = trim($request->grado_id);}
                     $afiliado->unidad_id = trim($request->unidad_id);
                     if ($request->fech_dece && $request->afi_state_id == 3) {$afiliado->fech_dece = Util::datePick($request->fech_dece);}
                     $afiliado->save();
