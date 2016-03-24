@@ -154,7 +154,7 @@ class Util
 		return trim("$person $action $entity");
 	}
 
-		public static function encodeNote($entity = null, $action, $person = null)
+	public static function encodeNote($type, $person = null)
 	{
 		$person = $person->getFullName();
 		$entity = $entity->getFullName();
