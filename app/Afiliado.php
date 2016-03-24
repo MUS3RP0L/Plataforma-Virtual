@@ -192,3 +192,8 @@ Afiliado::updating(function($afiliado)
 	Activity::updateAfiliado($afiliado);
 	Note::updateAfiliado($afiliado);
 });
+
+Afiliado::created(function($afiliado)
+{
+	Note::createAfiliado($afiliado);
+});

@@ -104,7 +104,7 @@ class Import extends Command
 
                     if ($afiliado) {
                         
-                        if (Util::decimal($result->sue) <> 0){if ($afiliado->afi_state_id <> 1) {$afiliado->afi_state_id = 1}$afiliado->afi_state_id = 1;}else{if ($afiliado->afi_state_id <> 2) {$afiliado->afi_state_id = 2}}
+                        if (Util::decimal($result->sue) <> 0){if ($afiliado->afi_state_id <> 1) {$afiliado->afi_state_id = 1;}$afiliado->afi_state_id = 1;}else{if ($afiliado->afi_state_id <> 2) {$afiliado->afi_state_id = 2;}}
                         if ($afiliado->ap_esp <> $result->apes) {$afiliado->ap_esp = $result->apes;}
                         if ($afiliado->est_civ <> $result->eciv) {$afiliado->est_civ = $result->eciv;} 
                         if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
@@ -123,8 +123,7 @@ class Import extends Command
                     }else{
 
                         $afiliado = new Afiliado;
-                        $afiliado->user_id = 1;
-                        
+                        $afiliado->user_id = 1;     
                         if(Util::decimal($result->sue)<> 0){$afiliado->afi_state_id = 1;}else{$afiliado->afi_state_id = 2;}
                         $afiliado->ci = $carnet;
                         $afiliado->pat = $result->pat;
@@ -143,7 +142,7 @@ class Import extends Command
                         $afiliado->fech_nac = Util::date($result->nac);
                         $afiliado->fech_ing = Util::date($result->ing);
                         $afiliado->nua = $result->nua;
-                        
+                        $afiliado->last = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
                         $afiliado->save();
                         $cAfiN ++;
                     }
