@@ -16,32 +16,33 @@ class Note extends Model
 		
 		$afiliadoL = Afiliado::where('id', '=', $afiliado->id)->firstOrFail();
 		
-		if ($afiliadoL->grado_id <> $afiliado->grado_id) {
-			$note = new Note;
-			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
-			$note->user_id = $user_id;
-			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->last;
-			$note->grado_id = $afiliado->grado_id;
-			$note->type = NOTE_TYPE_UPDATE_GRAD;
-        	$grado = Grado::where('id', $afiliado->grado_id)->first();
-			$note->message = "Afiliado cambio de grado a " . $grado->abre;
-			$note->save();
-
-		}
 		if ($afiliadoL->afi_state_id <> $afiliado->afi_state_id) {
 
 			$note = new Note;
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
 			$note->user_id = $user_id;
 			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->last;
+			$note->fech = $afiliado->fech_est;
 			$note->afi_state_id = $afiliado->afi_state_id;
 			$note->type = NOTE_TYPE_UPDATE_STATE;
 			$afi_state = AfiState::where('id', $afiliado->afi_state_id)->first();
 			$note->message = "Afiliado cambio de estado a " . $afi_state->name;
 			$note->save();
-		}		
+		}
+		
+		if ($afiliadoL->grado_id <> $afiliado->grado_id) {
+			$note = new Note;
+			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
+			$note->user_id = $user_id;
+			$note->afiliado_id = $afiliado->id;
+			$note->fech = $afiliado->fech_gra;
+			$note->grado_id = $afiliado->grado_id;
+			$note->type = NOTE_TYPE_UPDATE_GRAD;
+        	$grado = Grado::where('id', $afiliado->grado_id)->first();
+			$note->message = "Afiliado cambio de grado a " . $grado->abre;
+			$note->save();
+
+		}	
 	}
 
 	public static function createAfiliado($afiliado)
@@ -52,7 +53,7 @@ class Note extends Model
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
 			$note->user_id = $user_id;
 			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->last;
+			$note->fech = $afiliado->fech_est;
 			$note->grado_id = $afiliado->grado_id;
 			$note->type = NOTE_TYPE_UPDATE_GRAD;
         	$grado = Grado::where('id', $afiliado->grado_id)->first();
@@ -66,7 +67,7 @@ class Note extends Model
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
 			$note->user_id = $user_id;
 			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->last;
+			$note->fech = $afiliado->fech_est;
 			$note->afi_state_id = $afiliado->afi_state_id;
 			$note->type = NOTE_TYPE_UPDATE_STATE;
 			$afi_state = AfiState::where('id', $afiliado->afi_state_id)->first();

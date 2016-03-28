@@ -180,6 +180,12 @@ class Afiliado extends Model
  
     }
 
+    public function getDataEditEst()
+    {	
+		return date("d", strtotime($this->fech_est))."/".date("m", strtotime($this->fech_est)). "/".date("Y", strtotime($this->fech_est));
+ 
+    }
+
 	public function getFullName()
     {
         return $this->grado->lit . ' ' . $this->pat . ' ' . $this->mat. ' ' . $this->nom;

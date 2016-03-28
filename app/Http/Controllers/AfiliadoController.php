@@ -131,7 +131,7 @@ class AfiliadoController extends Controller
         }
 
         $afi_states = AfiState::all();
-
+        $list_afi_states = array('' => '');
         foreach ($afi_states as $item) {
              $list_afi_states[$item->id]=$item->afi_type->name . " - " . $item->name;
         }
@@ -460,7 +460,7 @@ class AfiliadoController extends Controller
 
                 case 'pol':
 
-                    if ($afiliado->afi_state_id <> trim($request->afi_state_id)) {$afiliado->afi_state_id = trim($request->afi_state_id);}
+                    if ($afiliado->afi_state_id <> trim($request->afi_state_id)) {$afiliado->afi_state_id = trim($request->afi_state_id);$afiliado->fech_est = Util::datePick($request->fech_est);}
                     if ($afiliado->grado_id <> trim($request->grado_id)) {$afiliado->grado_id = trim($request->grado_id);}
                     $afiliado->unidad_id = trim($request->unidad_id);
                     if ($request->fech_dece && $request->afi_state_id == 3) {$afiliado->fech_dece = Util::datePick($request->fech_dece);}

@@ -101,22 +101,23 @@ class Import extends Command
                     
                     $carnet = Util::zero($result->car);
                     $afiliado = Afiliado::where('ci', '=', $carnet)->first();
+                    $date = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
 
                     if ($afiliado) {
                         
-                        if (Util::decimal($result->sue) <> 0){if ($afiliado->afi_state_id <> 1) {$afiliado->afi_state_id = 1;}$afiliado->afi_state_id = 1;}else{if ($afiliado->afi_state_id <> 2) {$afiliado->afi_state_id = 2;}}
-                        if ($afiliado->ap_esp <> $result->apes) {$afiliado->ap_esp = $result->apes;}
-                        if ($afiliado->est_civ <> $result->eciv) {$afiliado->est_civ = $result->eciv;} 
+                        if (Util::decimal($result->sue) <> 0){if ($afiliado->afi_state_id <> 1){$afiliado->afi_state_id = 1;$afiliado->fech_est = $date;}}else{if ($afiliado->afi_state_id <> 2){$afiliado->afi_state_id = 2;$afiliado->fech_est = $date;}}
+                        $afiliado->ap_esp = $result->apes;
+                        $afiliado->est_civ = $result->eciv;
                         if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
                         if ($afiliado->unidad_id <> $unidad_id) {$afiliado->unidad_id = $unidad_id;}
                         $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
                         if ($afiliado->grado_id <> $grado_id) {$afiliado->grado_id = $grado_id;}
                         $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
-                        if ($afiliado->categoria_id <> $categoria_id) {$afiliado->categoria_id = $categoria_id;}
-                        if ($afiliado->afp <> Util::getAfp($result->afp)) {$afiliado->afp = Util::getAfp($result->afp);}
-                        if ($afiliado->nua <> Util::getAfp($result->nua)) {$afiliado->nua = Util::getAfp($result->nua);}
-                        $afiliado->last = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
+                        $afiliado->categoria_id = $categoria_id;
+                        $afiliado->afp = Util::getAfp($result->afp);
+                        $afiliado->nua = Util::getAfp($result->nua);
+                        
                         $afiliado->save();
                         $cAfiU ++;
                         
@@ -125,6 +126,7 @@ class Import extends Command
                         $afiliado = new Afiliado;
                         $afiliado->user_id = 1;     
                         if(Util::decimal($result->sue)<> 0){$afiliado->afi_state_id = 1;}else{$afiliado->afi_state_id = 2;}
+                        $afiliado->fech_est = $date;
                         $afiliado->ci = $carnet;
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
@@ -136,13 +138,14 @@ class Import extends Command
                         $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
                         if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+                        $afiliado->fech_gra = $date;
                         $afiliado->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->afp = Util::getAfp($result->afp);
                         $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
                         $afiliado->fech_nac = Util::date($result->nac);
                         $afiliado->fech_ing = Util::date($result->ing);
                         $afiliado->nua = $result->nua;
-                        $afiliado->last = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
+                        
                         $afiliado->save();
                         $cAfiN ++;
                     }
