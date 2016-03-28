@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@showIndex');
+Route::get('home', 'HomeController@showIndex');
 
 // Authentication routes...
 Route::get('login', 'Auth\AuthController@getLogin');
