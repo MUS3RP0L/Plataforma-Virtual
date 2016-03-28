@@ -13,8 +13,10 @@ class Note extends Model
 {
 	public static function updateAfiliado($afiliado)
 	{					
-		if ($afiliado->grado_id) {
-			
+		
+		$afiliadoL = Afiliado::where('id', '=', $afiliado->id)->firstOrFail();
+		
+		if ($afiliadoL->grado_id <> $afiliado->grado_id) {
 			$note = new Note;
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
 			$note->user_id = $user_id;
@@ -27,7 +29,7 @@ class Note extends Model
 			$note->save();
 
 		}
-		if ($afiliado->afi_state_id) {
+		if ($afiliadoL->afi_state_id <> $afiliado->afi_state_id) {
 
 			$note = new Note;
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}

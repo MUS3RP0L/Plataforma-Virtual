@@ -92,7 +92,10 @@ class CreateAfiliadosTable extends Migration
             $table->date('fech_nac')->nullable();
             $table->date('fech_ing')->nullable();
             $table->date('fech_dece')->nullable();
-            $table->date('last');
+
+            $table->date('fech_est')->nullable();
+            $table->date('fech_gra')->nullable();
+            $table->date('fech_uni')->nullable();
 
             $table->string('zona')->nullable();
             $table->string('calle')->nullable();
