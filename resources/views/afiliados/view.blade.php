@@ -525,7 +525,7 @@
                         <div class="form-group">
                                 {!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('ci', $afiliado->ci, ['class'=> 'form-control']) !!}
+                                {!! Form::text('ci', $afiliado->ci, ['class'=> 'form-control', 'required']) !!}
                                 <span class="help-block">Núm. Carnet de Identidad</span>
                             </div>
                         </div>
@@ -568,19 +568,6 @@
                         @endif
                     </div>
 
-								<div class="form-group" data-bind='visible: selectedOptionValueUni, valueUpdate: "afterkeydown"'>
-		                            {!! Form::label('fech_uni', 'FECHA DE CAMBIO', ['class' => 'col-md-4 control-label']) !!}
-		                            <div class="col-md-8">
-		                                <div class="input-group">
-		                                    <input type="text" class="form-control datepicker" name="fech_uni">
-		                                    <div class="input-group-addon">
-		                                        <span class="glyphicon glyphicon-calendar"></span>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                        </div>
-
-
                     <div class="col-md-6">
                         <div class="form-group">
                                 {!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
@@ -603,15 +590,15 @@
                         <div class="form-group">
                                     {!! Form::label('est_civ', 'ESTADO CIVIL', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::select('est_civ', $list_est_civ, $afiliado->est_civ, ['class' => 'combobox form-control']) !!}
-                                <span class="help-block">Selecione el estado civil</span>
+                                {!! Form::select('est_civ', $list_est_civ, $afiliado->est_civ, ['class' => 'combobox form-control', 'required']) !!}
+                                <span class="help-block">Seleccione el estado civil</span>
                             </div>
                         </div>
                         <div class="form-group">
                                     {!! Form::label('depa_nat', 'LUGAR NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::select('depa_nat', $list_depas, $afiliado->depa_nat_id, ['class' => 'combobox form-control']) !!}
-                                <span class="help-block">Departamento</span>
+                                <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
                     </div>
@@ -650,7 +637,7 @@
                                     {!! Form::label('muni', 'DEPARTAMENTO MUNICIPIO', ['class' => 'col-md-3 control-label']) !!}
                             <div class="col-md-9">
                                 {!! Form::select('muni', $list_munis, $afiliado->depa_muni_id, ['class' => 'combobox form-control']) !!}
-                                <span class="help-block">Selecione el estado civil</span>
+                                <span class="help-block">Seleccione Departamento y Municipio</span>
                             </div>
                         </div>
                     </div>
@@ -661,20 +648,22 @@
                         <div class="form-group">
                                 {!! Form::label('zona', 'ZONA', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('zona', $afiliado->zona, ['class'=> 'form-control']) !!}
+                                {!! Form::text('zona', $afiliado->zona, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Zona</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('calle', 'CALLE', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('calle', $afiliado->calle, ['class'=> 'form-control']) !!}
+                                {!! Form::text('calle', $afiliado->calle, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Calle</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('num_domi', 'NÚMERO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('num_domi', $afiliado->num_domi, ['class'=> 'form-control']) !!}
-                                <span class="help-block">Apellido paterno</span>
+                                {!! Form::text('num_domi', $afiliado->num_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Número de Domicilio</span>
                             </div>
                         </div>                                  
                     </div>
@@ -682,22 +671,22 @@
                         <div class="form-group">
                                 {!! Form::label('tele', 'TELÉFONO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('tele', $afiliado->tele, ['class'=> 'form-control']) !!}
-                                <span class="help-block">Apellido Materno</span>
+                                {!! Form::text('tele', $afiliado->tele, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Teléfono fijo</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('celu', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('celu', $afiliado->celu, ['class'=> 'form-control']) !!}
-                                <span class="help-block">Segundo nombre</span>
+                                {!! Form::text('celu', $afiliado->celu, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Teléfono Celular</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('email', 'CORREO ELECTRÓNICO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('email', $afiliado->email, ['class'=> 'form-control']) !!}
-                                <span class="help-block">Primer nombre</span>
+                                {!! Form::text('email', $afiliado->email, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toLowerCase()']) !!}
+                                <span class="help-block">Correo Electrónico</span>
                             </div>
                         </div>
                     </div>
@@ -741,9 +730,9 @@
                                             <td style="border-top:0;">
 					                        	<div class="row">
 					                                <div class="form-group">
-					                                    {!! Form::label('afi_state_date', 'ESTADO ACTUAL', ['class' => 'col-md-3 control-label']) !!}
+					                                    {!! Form::label('afi_state_date', 'ESTADO ACTUAL', ['class' => 'col-md-2 control-label']) !!}
 					                                
-						                                <div class="col-md-9">
+						                                <div class="col-md-10">
 						                                	{!! Form::text('afi_type_name', $afiliado->afi_state->afi_type->name ." - ". $afiliado->afi_state->name, ['class'=> 'form-control', 'disabled' => '']) !!}
 						                                </div>
 						                            </div>
@@ -769,8 +758,8 @@
                                             <td style="border-top:0;">
 					                        	<div class="row">
 					                                <div class="form-group">
-							                            {!! Form::label('afi_state_id', 'NUEVO ESTADO', ['class' => 'col-md-3 control-label']) !!}
-							                            <div class="col-md-9">
+							                            {!! Form::label('afi_state_id', 'NUEVO ESTADO', ['class' => 'col-md-2 control-label']) !!}
+							                            <div class="col-md-10">
 							                                {!! Form::select('afi_state_id', $list_afi_states, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValueEst']) !!}
 							                                <span class="help-block"></span>
 							                            </div>
@@ -814,9 +803,9 @@
                                             <td style="border-top:0;">
 					                        	<div class="row">
 					                                <div class="form-group">
-					                                    {!! Form::label('afi_state_date', 'GRADO ACTUAL', ['class' => 'col-md-3 control-label']) !!}
+					                                    {!! Form::label('afi_state_date', 'GRADO ACTUAL', ['class' => 'col-md-2 control-label']) !!}
 					                                
-						                                <div class="col-md-9">
+						                                <div class="col-md-10">
 						                                	{!! Form::text('grado_abre', $afiliado->grado->lit, ['class'=> 'form-control', 'disabled' => '']) !!}
 						                                </div>
 						                            </div>
@@ -842,8 +831,8 @@
                                             <td style="border-top:0;">
 					                        	<div class="row">
 					                                <div class="form-group">
-							                            {!! Form::label('afi_state_id', 'NUEVO GRADO', ['class' => 'col-md-3 control-label']) !!}
-							                            <div class="col-md-9">
+							                            {!! Form::label('afi_state_id', 'NUEVO GRADO', ['class' => 'col-md-2 control-label']) !!}
+							                            <div class="col-md-10">
 							                                {!! Form::select('afi_state_id', $list_grados, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValueGra']) !!}
 							                                <span class="help-block"></span>
 							                            </div>
@@ -876,9 +865,9 @@
                                             <td style="border-top:0;">
 					                        	<div class="row">
 					                                <div class="form-group">
-					                                    {!! Form::label('unidad_lit', 'UNIDAD ACTUAL', ['class' => 'col-md-3 control-label']) !!}
+					                                    {!! Form::label('unidad_lit', 'UNIDAD ACTUAL', ['class' => 'col-md-2 control-label']) !!}
 					                                
-						                                <div class="col-md-9">
+						                                <div class="col-md-10">
 						                                	{!! Form::text('unidad_lit', $afiliado->unidad->lit, ['class'=> 'form-control', 'disabled' => '']) !!}
 						                                </div>
 						                            </div>
@@ -904,8 +893,8 @@
                                             <td style="border-top:0;">
 					                        	<div class="row">
 					                                <div class="form-group">
-							                            {!! Form::label('unidad_id', 'NUEVA UNIDAD', ['class' => 'col-md-3 control-label']) !!}
-							                            <div class="col-md-9">
+							                            {!! Form::label('unidad_id', 'NUEVA UNIDAD', ['class' => 'col-md-2 control-label']) !!}
+							                            <div class="col-md-10">
 							                                {!! Form::select('unidad_id', $list_unidades, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValueUni']) !!}
 							                                <span class="help-block"></span>
 							                            </div>
