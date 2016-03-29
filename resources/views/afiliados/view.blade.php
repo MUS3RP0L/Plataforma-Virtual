@@ -230,7 +230,7 @@
                                                         Departamento
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->depa_vec !!}
+                                                        {!! $afiliado->depa_dom !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -831,9 +831,9 @@
                                             <td style="border-top:0;">
 					                        	<div class="row">
 					                                <div class="form-group">
-							                            {!! Form::label('afi_state_id', 'NUEVO GRADO', ['class' => 'col-md-2 control-label']) !!}
+							                            {!! Form::label('grado_id', 'NUEVO GRADO', ['class' => 'col-md-2 control-label']) !!}
 							                            <div class="col-md-10">
-							                                {!! Form::select('afi_state_id', $list_grados, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValueGra']) !!}
+							                                {!! Form::select('grado_id', $list_grados, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValueGra']) !!}
 							                                <span class="help-block"></span>
 							                            </div>
 							                        </div>
@@ -844,10 +844,10 @@
 	                       	</div>
                         	<div class="col-md-5">
 		                        <div class="form-group" data-bind='visible: selectedOptionValueGra, valueUpdate: "afterkeydown"'>
-		                            {!! Form::label('fech_est', 'FECHA DE CAMBIO', ['class' => 'col-md-4 control-label']) !!}
+		                            {!! Form::label('fech_gra', 'FECHA DE CAMBIO', ['class' => 'col-md-4 control-label']) !!}
 		                            <div class="col-md-8">
 		                                <div class="input-group">
-		                                    <input type="text" class="form-control datepicker" name="fech_est">
+		                                    <input type="text" class="form-control datepicker" name="fech_gra">
 		                                    <div class="input-group-addon">
 		                                        <span class="glyphicon glyphicon-calendar"></span>
 		                                    </div>

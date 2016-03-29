@@ -165,19 +165,16 @@ class AfiliadoController extends Controller
             $afiliado->depa_nat = ""; 
         }
 
-        if ($afiliado->depa_vec_id) {
-            $afiliado->depa_vec = Departamento::select('name')->where('id', '=', $afiliado->depa_vec_id)->firstOrFail()->name;
-        }else
-        {
-            $afiliado->depa_vec = ""; 
-        }
-
         if ($afiliado->muni_id) {
             $afiliado->muni = Municipio::select('name')->where('id', '=', $afiliado->muni_id)->firstOrFail()->name;
+            $departamento_id = Municipio::select('departamento_id')->where('id', '=', $afiliado->muni_id)->firstOrFail()->departamento_id;
+            $afiliado->depa_dom = Departamento::select('name')->where('id', '=', $departamento_id)->firstOrFail()->name;
         }else
         {
             $afiliado->muni = ""; 
+            $afiliado->depa_dom = ""; 
         }
+
 
 
 
@@ -439,12 +436,11 @@ class AfiliadoController extends Controller
                     if ($afiliado->depa_nat_id <> trim($request->depa_nat_id)) {$afiliado->depa_nat_id = trim($request->depa_nat_id);}
                     $afiliado->save();
                     
-                    $message = "Información personal de afiliado actualizado con éxito";
+                    $message = "Información personal de Afiliado actualizado con éxito";
                     break;
 
                 case 'dom':
                     
-                    if ($afiliado->depa_vec_id <> trim($request->depa_vec_id)) {$afiliado->depa_vec_id = trim($request->depa_vec_id);}
                     if ($afiliado->muni_id <> trim($request->muni)) {$afiliado->muni_id = trim($request->muni);}
                     $afiliado->zona = trim($request->zona);
                     $afiliado->calle = trim($request->calle);
@@ -461,9 +457,12 @@ class AfiliadoController extends Controller
                 case 'pol':
 
                     if ($afiliado->afi_state_id <> trim($request->afi_state_id)) {$afiliado->afi_state_id = trim($request->afi_state_id);$afiliado->fech_est = Util::datePick($request->fech_est);}
-                    if ($afiliado->grado_id <> trim($request->grado_id)) {$afiliado->grado_id = trim($request->grado_id);}
-                    $afiliado->unidad_id = trim($request->unidad_id);
-                    if ($request->fech_dece && $request->afi_state_id == 3) {$afiliado->fech_dece = Util::datePick($request->fech_dece);}
+                    
+                    // if ($afiliado->grado_id <> trim($request->grado_id)) {$afiliado->grado_id = trim($request->grado_id);$afiliado->fech_gra = Util::datePick($request->fech_gra);}
+                    
+                    // if ($afiliado->unidad_id <> trim($request->unidad_id)) {$afiliado->unidad_id = trim($request->unidad_id);$afiliado->fech_uni = Util::datePick($request->fech_uni);}
+                    
+                    // if ($request->fech_dece && $request->afi_state_id == 3) {$afiliado->fech_dece = Util::datePick($request->fech_dece);}
                     $afiliado->save();
                     
                     $message = "Información policial de afiliado actualizado con éxito";
