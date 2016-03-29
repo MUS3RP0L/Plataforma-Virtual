@@ -29,12 +29,12 @@ class CreateAfiliadosTable extends Migration
             $table->engine = 'InnoDB';    
             
             $table->bigIncrements('id');   
-            $table->UnsignedBigInteger('depa_id');
+            $table->UnsignedBigInteger('departamento_id');
             $table->string('name');
 
             $table->timestamps();
 
-            $table->foreign('depa_id')->references('id')->on('departamentos');
+            $table->foreign('departamento_id')->references('id')->on('departamentos');
 
         });
 

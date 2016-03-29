@@ -137,15 +137,15 @@ class AfiliadoController extends Controller
         }
 
         $unidades = Unidad::all();
-
+        $list_unidades = array('' => '');
         foreach ($unidades as $item) {
              $list_unidades[$item->id]=$item->cod . " | " . $item->lit;
         }
 
         $grados = Grado::all();
-
+        $list_grados = array('' => '');
         foreach ($grados as $item) {
-             $list_grados[$item->id]=$item->niv. "-" .$item->grad . " | " . $item->lit;
+             $list_grados[$item->id]=$item->niv . "-" . $item->grad . " | " . $item->lit;
         } 
         $depa = Departamento::all();
         $list_depas = array('' => '');
@@ -155,7 +155,7 @@ class AfiliadoController extends Controller
         $muni = Municipio::all();
         $list_munis = array('' => '');
         foreach ($muni as $item) {
-             $list_munis[$item->id]=$item->name;
+             $list_munis[$item->id]=$item->departamento->name . " | " . $item->name;
         }
 
         if ($afiliado->depa_nat_id) {

@@ -110,9 +110,9 @@ class Import extends Command
                         $afiliado->est_civ = $result->eciv;
                         if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
-                        if ($afiliado->unidad_id <> $unidad_id) {$afiliado->unidad_id = $unidad_id;}
+                        if ($afiliado->unidad_id <> $unidad_id) {$afiliado->unidad_id = $unidad_id;$afiliado->fech_uni = $date;}
                         $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
-                        if ($afiliado->grado_id <> $grado_id) {$afiliado->grado_id = $grado_id;}
+                        if ($afiliado->grado_id <> $grado_id) {$afiliado->grado_id = $grado_id;$afiliado->fech_gra = $date;}
                         $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->categoria_id = $categoria_id;
                         $afiliado->afp = Util::getAfp($result->afp);
@@ -136,6 +136,7 @@ class Import extends Command
                         $afiliado->est_civ = $result->eciv;
                         $afiliado->sex = $result->sex;
                         $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
+                        $afiliado->fech_uni = $date;
                         if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
                         $afiliado->fech_gra = $date;

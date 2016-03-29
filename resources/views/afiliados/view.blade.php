@@ -526,13 +526,14 @@
                                 {!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('ci', $afiliado->ci, ['class'=> 'form-control']) !!}
+                                <span class="help-block">Núm. Carnet de Identidad</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('pat', $afiliado->pat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Apellido paterno</span>
+                                <span class="help-block">Apellido Paterno</span>
                             </div>
                         </div>  
                         <div class="form-group">
@@ -546,14 +547,14 @@
                                 {!! Form::label('nom', 'PRIMER NOMBRE', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('nom', $afiliado->nom, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Primer nombre</span>
+                                <span class="help-block">Primer Nombre</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('nom2', $afiliado->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Segundo nombre</span>
+                                <span class="help-block">Segundo Nombre</span>
                             </div>
                         </div>
                         @if ($afiliado->sex == 'F')
@@ -561,16 +562,35 @@
                                     {!! Form::label('ap_esp', 'APELLIDO ESPOSO', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
                                     {!! Form::text('ap_esp', $afiliado->ap_esp, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                    <span class="help-block">Apellido esposo (Opcional)</span>
+                                    <span class="help-block">Apellido de Esposo (Opcional)</span>
                                 </div>
                             </div>
                         @endif
                     </div>
+
+								<div class="form-group" data-bind='visible: selectedOptionValueUni, valueUpdate: "afterkeydown"'>
+		                            {!! Form::label('fech_uni', 'FECHA DE CAMBIO', ['class' => 'col-md-4 control-label']) !!}
+		                            <div class="col-md-8">
+		                                <div class="input-group">
+		                                    <input type="text" class="form-control datepicker" name="fech_uni">
+		                                    <div class="input-group-addon">
+		                                        <span class="glyphicon glyphicon-calendar"></span>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+
+
                     <div class="col-md-6">
                         <div class="form-group">
                                 {!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('fech_nac', $afiliado->getDataEdit(), ['class'=> 'form-control datepicker']) !!}
+                    			<div class="input-group">
+                                    <input type="text" class="form-control datepicker" name="fech_nac" value="{!! $afiliado->getDataEdit() !!}">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -591,7 +611,7 @@
                                     {!! Form::label('depa_nat', 'LUGAR NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::select('depa_nat', $list_depas, $afiliado->depa_nat_id, ['class' => 'combobox form-control']) !!}
-                                <span class="help-block">Selecione el estado civil</span>
+                                <span class="help-block">Departamento</span>
                             </div>
                         </div>
                     </div>
@@ -625,14 +645,19 @@
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <input type="hidden" name="type" value="dom"/>
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                                    {!! Form::label('depa_vec', 'DEPARTA MENTO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::select('depa_vec', $list_depas, $afiliado->depa_vec_id, ['class' => 'combobox form-control']) !!}
+                    <div class="col-md-12">
+                    	<div class="form-group">
+                                    {!! Form::label('muni', 'DEPARTAMENTO MUNICIPIO', ['class' => 'col-md-3 control-label']) !!}
+                            <div class="col-md-9">
+                                {!! Form::select('muni', $list_munis, $afiliado->depa_muni_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Selecione el estado civil</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+
                         <div class="form-group">
                                 {!! Form::label('zona', 'ZONA', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
@@ -654,13 +679,6 @@
                         </div>                                  
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                                    {!! Form::label('muni', 'MUNICIPIO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::select('muni', $list_munis, $afiliado->depa_muni_id, ['class' => 'combobox form-control']) !!}
-                                <span class="help-block">Selecione el estado civil</span>
-                            </div>
-                        </div>
                         <div class="form-group">
                                 {!! Form::label('tele', 'TELÉFONO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
@@ -701,8 +719,8 @@
 </div>
 
 
-<div id="myModal-policial" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+<div id="myModal-policial" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -717,16 +735,16 @@
                     <div class="col-md-12">
                         
 						<div class="row">
-                        	<div class="col-md-6">
-                        		<table class="table" style="width:100%; margin-bottom:-10px;">
+                        	<div class="col-md-7">
+                        		<table class="table" style="width:100%; margin-bottom:-16px;">
                                         <tr>
                                             <td style="border-top:0;">
 					                        	<div class="row">
 					                                <div class="form-group">
-					                                    {!! Form::label('afi_state_date', 'ESTADO ACTUAL', ['class' => 'col-md-4 control-label']) !!}
+					                                    {!! Form::label('afi_state_date', 'ESTADO ACTUAL', ['class' => 'col-md-3 control-label']) !!}
 					                                
-						                                <div class="col-md-8">
-						                                	{!! Form::text('email', $afiliado->afi_state->afi_type->name ." - ". $afiliado->afi_state->name, ['class'=> 'form-control', 'disabled' => '']) !!}
+						                                <div class="col-md-9">
+						                                	{!! Form::text('afi_type_name', $afiliado->afi_state->afi_type->name ." - ". $afiliado->afi_state->name, ['class'=> 'form-control', 'disabled' => '']) !!}
 						                                </div>
 						                            </div>
 					                            </div>
@@ -734,29 +752,26 @@
 					                    </tr>
 					            </table>
 	                       	</div>
-                        	<div class="col-md-6">
+                        	<div class="col-md-5">
 		                        <div class="form-group">
 	                                {!! Form::label('afi_state_date', 'FECHA DE REGISTRO', ['class' => 'col-md-4 control-label']) !!}
 	                            
 	                                <div class="col-md-8">
-	                                	{!! Form::text('email', $afiliado->getDataEditEst(), ['class'=> 'form-control', 'disabled' => '']) !!}
+	                                	{!! Form::text('getDataEditEst', $afiliado->getDataEditEst(), ['class'=> 'form-control', 'disabled' => '']) !!}
 	                                </div>
 	                            </div>
 	                        </div>
 	                    </div>
-
-
-
                         <div class="row">
-                        	<div class="col-md-6">
+                        	<div class="col-md-7">
                         		<table class="table" style="width:100%;margin-bottom:-10px;">
                                         <tr>
                                             <td style="border-top:0;">
 					                        	<div class="row">
 					                                <div class="form-group">
-							                            {!! Form::label('afi_state_id', 'NUEVO ESTADO', ['class' => 'col-md-4 control-label']) !!}
-							                            <div class="col-md-8">
-							                                {!! Form::select('afi_state_id', $list_afi_states, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValue']) !!}
+							                            {!! Form::label('afi_state_id', 'NUEVO ESTADO', ['class' => 'col-md-3 control-label']) !!}
+							                            <div class="col-md-9">
+							                                {!! Form::select('afi_state_id', $list_afi_states, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValueEst']) !!}
 							                                <span class="help-block"></span>
 							                            </div>
 							                        </div>
@@ -765,8 +780,8 @@
 					                    </tr>
 					            </table>
 	                       	</div>
-                        	<div class="col-md-6">
-		                        <div class="form-group" data-bind='visible: selectedOptionValue, valueUpdate: "afterkeydown"'>
+                        	<div class="col-md-5">
+		                        <div class="form-group" data-bind='visible: selectedOptionValueEst, valueUpdate: "afterkeydown"'>
 		                            {!! Form::label('fech_est', 'FECHA DE CAMBIO', ['class' => 'col-md-4 control-label']) !!}
 		                            <div class="col-md-8">
 		                                <div class="input-group">
@@ -791,20 +806,129 @@
                                 </div>
                             </div>
                         </div> --}}
-                        <div class="form-group">
-                                {!! Form::label('grado_id', 'GRADO', ['class' => 'col-md-3 control-label']) !!}
-                            <div class="col-md-9">
-                                {!! Form::select('grado_id', $list_grados, $afiliado->grado_id,['class' => 'combobox form-control']) !!}
-                                <span class="help-block"></span>
-                            </div>
-                        </div>  
-                        <div class="form-group">
-                                {!! Form::label('unidad_id', 'UNIDAD', ['class' => 'col-md-3 control-label']) !!}
-                            <div class="col-md-9">
-                                {!! Form::select('unidad_id', $list_unidades, $afiliado->unidad_id,['class' => 'combobox form-control']) !!}
-                                <span class="help-block"></span>
-                            </div>
-                        </div>                              
+
+                        <div class="row">
+                        	<div class="col-md-7">
+                        		<table class="table" style="width:100%; margin-bottom:-16px;">
+                                        <tr>
+                                            <td style="border-top:0;">
+					                        	<div class="row">
+					                                <div class="form-group">
+					                                    {!! Form::label('afi_state_date', 'GRADO ACTUAL', ['class' => 'col-md-3 control-label']) !!}
+					                                
+						                                <div class="col-md-9">
+						                                	{!! Form::text('grado_abre', $afiliado->grado->lit, ['class'=> 'form-control', 'disabled' => '']) !!}
+						                                </div>
+						                            </div>
+					                            </div>
+					                        </td>
+					                    </tr>
+					            </table>
+	                       	</div>
+                        	<div class="col-md-5">
+		                        <div class="form-group">
+	                                {!! Form::label('afi_state_date', 'FECHA DE REGISTRO', ['class' => 'col-md-4 control-label']) !!}
+	                            
+	                                <div class="col-md-8">
+	                                	{!! Form::text('getDataEditGra', $afiliado->getDataEditGra(), ['class'=> 'form-control', 'disabled' => '']) !!}
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+                        <div class="row">
+                        	<div class="col-md-7">
+                        		<table class="table" style="width:100%;margin-bottom:-10px;">
+                                        <tr>
+                                            <td style="border-top:0;">
+					                        	<div class="row">
+					                                <div class="form-group">
+							                            {!! Form::label('afi_state_id', 'NUEVO GRADO', ['class' => 'col-md-3 control-label']) !!}
+							                            <div class="col-md-9">
+							                                {!! Form::select('afi_state_id', $list_grados, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValueGra']) !!}
+							                                <span class="help-block"></span>
+							                            </div>
+							                        </div>
+					                            </div>
+					                        </td>
+					                    </tr>
+					            </table>
+	                       	</div>
+                        	<div class="col-md-5">
+		                        <div class="form-group" data-bind='visible: selectedOptionValueGra, valueUpdate: "afterkeydown"'>
+		                            {!! Form::label('fech_est', 'FECHA DE CAMBIO', ['class' => 'col-md-4 control-label']) !!}
+		                            <div class="col-md-8">
+		                                <div class="input-group">
+		                                    <input type="text" class="form-control datepicker" name="fech_est">
+		                                    <div class="input-group-addon">
+		                                        <span class="glyphicon glyphicon-calendar"></span>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+	                        </div>
+	                    </div> 
+
+
+						<div class="row">
+                        	<div class="col-md-7">
+                        		<table class="table" style="width:100%; margin-bottom:-16px;">
+                                        <tr>
+                                            <td style="border-top:0;">
+					                        	<div class="row">
+					                                <div class="form-group">
+					                                    {!! Form::label('unidad_lit', 'UNIDAD ACTUAL', ['class' => 'col-md-3 control-label']) !!}
+					                                
+						                                <div class="col-md-9">
+						                                	{!! Form::text('unidad_lit', $afiliado->unidad->lit, ['class'=> 'form-control', 'disabled' => '']) !!}
+						                                </div>
+						                            </div>
+					                            </div>
+					                        </td>
+					                    </tr>
+					            </table>
+	                       	</div>
+                        	<div class="col-md-5">
+		                        <div class="form-group">
+	                                {!! Form::label('afi_state_date', 'FECHA DE REGISTRO', ['class' => 'col-md-4 control-label']) !!}
+	                            
+	                                <div class="col-md-8">
+	                                	{!! Form::text('getDataEditEst', $afiliado->getDataEditEst(), ['class'=> 'form-control', 'disabled' => '']) !!}
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+                        <div class="row">
+                        	<div class="col-md-7">
+                        		<table class="table" style="width:100%;margin-bottom:-10px;">
+                                        <tr>
+                                            <td style="border-top:0;">
+					                        	<div class="row">
+					                                <div class="form-group">
+							                            {!! Form::label('unidad_id', 'NUEVA UNIDAD', ['class' => 'col-md-3 control-label']) !!}
+							                            <div class="col-md-9">
+							                                {!! Form::select('unidad_id', $list_unidades, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValueUni']) !!}
+							                                <span class="help-block"></span>
+							                            </div>
+							                        </div>
+					                            </div>
+					                        </td>
+					                    </tr>
+					            </table>
+	                       	</div>
+                        	<div class="col-md-5">
+		                        <div class="form-group" data-bind='visible: selectedOptionValueUni, valueUpdate: "afterkeydown"'>
+		                            {!! Form::label('fech_uni', 'FECHA DE CAMBIO', ['class' => 'col-md-4 control-label']) !!}
+		                            <div class="col-md-8">
+		                                <div class="input-group">
+		                                    <input type="text" class="form-control datepicker" name="fech_uni">
+		                                    <div class="input-group-addon">
+		                                        <span class="glyphicon glyphicon-calendar"></span>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+	                        </div>
+	                    </div>                            
                     </div>
 
                 </div>
@@ -865,7 +989,9 @@
     });
 
     var viewModel = {
-        selectedOptionValue : ko.observable(),
+        selectedOptionValueEst : ko.observable(),
+        selectedOptionValueGra : ko.observable(),
+        selectedOptionValueUni : ko.observable()
     };
     ko.applyBindings(viewModel);
 

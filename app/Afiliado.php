@@ -103,7 +103,7 @@ class Afiliado extends Model
 
     public function getFullDateNac()
     {	
-		$meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
+		$meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
 		return date("d", strtotime($this->fech_nac))." ".$meses[date("n", strtotime($this->fech_nac))-1]. " ".date("Y", strtotime($this->fech_nac));
  
     }
@@ -114,7 +114,7 @@ class Afiliado extends Model
     		return "-";
     	}
     	else{
-    		return Carbon::parse($this->fech_nac)->age . " Años";
+    		return Carbon::parse($this->fech_nac)->age . " AÑOS";
     	}
     	
     }
@@ -124,35 +124,35 @@ class Afiliado extends Model
 	    if ($this->est_civ == 'S') {
 	        
 	        if ($this->sex == 'M') {
-	        	return "Soltero";
+	        	return "SOLTERO";
 	    	}
 	    	else{
-	    		return "Soltera";
+	    		return "SOLTERA";
 	    	}
 	        
 	    } 
 	    else if ($this->est_civ == 'C'){
 	        if ($this->sex == 'M') {
-	        	return "Casado";
+	        	return "CASADO";
 	    	}
 	    	else{
-	    		return "Casada";
+	    		return "CASADA";
 	    	}
 	    }
 	    else if ($this->est_civ == 'V'){
 	        if ($this->sex == 'M') {
-	        	return "Viudo";
+	        	return "VIUDO";
 	    	}
 	    	else{
-	    		return "Viuda";
+	    		return "VIUDA";
 	    	}
 	    }
 	    else if ($this->est_civ == 'D'){
 	        if ($this->sex == 'M') {
-	        	return "Divorciado";
+	        	return "DIVORCIADO";
 	    	}
 	    	else{
-	    		return "Divorciada";
+	    		return "DIVORCIADA";
 	    	}
 	    }
 	}
@@ -160,10 +160,10 @@ class Afiliado extends Model
 	public function getSex()
 	{
 	    if ($this->sex == 'M') {
-	        return "Masculino";
+	        return "MASCULINO";
 	    } 
 	    else if ($this->sex == 'F'){
-	        return "femenino";
+	        return "FEMENINO";
 	    }
 	}
 
@@ -183,6 +183,12 @@ class Afiliado extends Model
     public function getDataEditEst()
     {	
 		return date("d", strtotime($this->fech_est))."/".date("m", strtotime($this->fech_est)). "/".date("Y", strtotime($this->fech_est));
+ 
+    }
+
+    public function getDataEditGra()
+    {	
+		return date("d", strtotime($this->fech_gra))."/".date("m", strtotime($this->fech_gra)). "/".date("Y", strtotime($this->fech_gra));
  
     }
 
