@@ -4,7 +4,7 @@
 <div class="container-fluid">
 
   	<div class="row" style="margin: 2% 0 0 0;">
-		<div class="col-md-12">
+		<div class="col-md-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">Reporte</div>
 

@@ -126,6 +126,7 @@ class CreateAfiliadosTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('afiliado_id');
             $table->UnsignedBigInteger('grado_id');
+            $table->UnsignedBigInteger('unidad_id');
             $table->UnsignedBigInteger('afi_state_id');
             $table->date('fech');
             $table->integer('type');

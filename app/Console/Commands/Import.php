@@ -78,7 +78,7 @@ class Import extends Command
                 }   
                 if ($count < count($col))
                 {
-                    $this->info("Falta Columnas, favor Verificar el Archivo");
+                    $this->info("Falta Columnas, favor Verificar en el Archivo");
                     break;
                 }
             });
