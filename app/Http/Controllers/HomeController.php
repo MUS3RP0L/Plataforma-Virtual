@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
+use Muserpol\Activity;
 
 class HomeController extends Controller
 {
@@ -87,7 +88,14 @@ class HomeController extends Controller
   //       );
 
 		// return view('home', $data);
-        return view('home');
+
+    $activities = Activity::orderBy('created_at', 'desc')->take(10)->get();
+    
+    $data = [
+      'activities' => $activities,
+    ];
+
+    return view('home', $data);
 
 	}
 }
