@@ -23,15 +23,15 @@ class IpcController extends Controller
      */
     public function index()
     {
-        $now = Carbon::now()->subMonth();
+        $now = Carbon::now();
 
         $y = $now->year;
 
         $m = $now->month;
 
-        $nowlast = Carbon::createFromDate($y, $m, 1)->toDateString();
+        $nowlast = Carbon::createFromDate($y, $m, 1)->subMonth()->toDateString();
 
-        $ipcTasa = IpcTasa::where('gest', '=', $nowlast)->firstOrFail();
+        $ipcTasa = IpcTasa::where('gest', '=', $nowlast)->first();
 
         $ipcTasa->year = Carbon::parse($ipcTasa->gest)->year;
 
@@ -47,6 +47,7 @@ class IpcController extends Controller
         );
 
         return view('ipc.index', $data);
+
     }
 
     public function ipctasasData()
