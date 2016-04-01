@@ -81,6 +81,9 @@ Route::group(['middleware' => 'auth'], function() {
 	//  Totales
 	Route::get('totales', 'ReporteController@ReportAporte');
 	Route::post('ir_totales', 'ReporteController@GenerateReportAporte');
+	
+	Route::get('total_month', 'ReporteController@ReportAporteMonth');
+	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
 
 
 });
