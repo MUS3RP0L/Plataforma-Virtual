@@ -37,15 +37,22 @@ class HomeController extends Controller
 
 	public function showIndex()
 	{
-
-
-      $totalAfiServ = DB::table('afiliados')
-                    ->select(DB::raw('COUNT(*) totalAfiServ'))
+      $AfiServ = DB::table('afiliados')
+                    ->select(DB::raw('COUNT(*) totalAfiS'))
+                    ->where('afiliados.afi_state_id', '=', 1)
                     ->get();
 
-      foreach ($totalAfiServ as $item) {    
-      
-        $totalAfiServ = $item->totalAfiServ;
+      foreach ($AfiServ as $item) {        
+        $totalAfiServ = $item->totalAfiS;
+      }
+
+      $AfiComi = DB::table('afiliados')
+                    ->select(DB::raw('COUNT(*) totalAfiC'))
+                    ->where('afiliados.afi_state_id', '=', 2)
+                    ->get();
+
+      foreach ($AfiComi as $item) {        
+        $totalAfiComi = $item->totalAfiC;
       }
 
     $activities = Activity::orderBy('created_at', 'desc')->take(10)->get();
@@ -53,6 +60,7 @@ class HomeController extends Controller
     $data = [
       'activities' => $activities,
       'totalAfiServ' => $totalAfiServ,
+      'totalAfiComi' => $totalAfiComi,
       // 'totalSueldo' => Util::formatMoney($sueldo),
     ];
 
