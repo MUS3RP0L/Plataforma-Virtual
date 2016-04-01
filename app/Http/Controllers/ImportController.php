@@ -28,7 +28,7 @@ class ImportController extends Controller
 
     public function import(Request $request)
     {
-    	global $cAfiN, $cAfiU $cApor;
+    	global $cAfiN, $cAfiU, $cApor;
 
 		ini_set('upload_max_filesize', '999M');
 		ini_set('post_max_size', '999M');
@@ -68,7 +68,7 @@ class ImportController extends Controller
 
      	Excel::load($filename,$reader)->selectSheetsByIndex(0)->select($col)->filter('chunk')->chunk(500, function($results) {
 
-     		global $cAfiN, $cAfiU $cApor;
+     		global $cAfiN, $cAfiU, $cApor;
 
  			ini_set('upload_max_filesize', '500M');
 			ini_set('post_max_size', '500M');
