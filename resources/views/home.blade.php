@@ -16,8 +16,8 @@
 				<div class="panel panel-default">
 				  <div class="panel-body" style="font-size: 26px;">
 				    <div>
-         				Afiliados En servicio<br>
-         				
+         				Afiliados en Servicio<br>
+         				{!! $totalAfiServ !!}
         			</div>
 				  </div>
 				</div>
