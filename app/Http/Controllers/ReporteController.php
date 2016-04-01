@@ -25,18 +25,13 @@ class ReporteController extends Controller
     {
         $anios = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest ) gest'))->lists('gest');
 
-
-        foreach ($grados as $item) {
-             $list_grados[$item->id]=$item->niv. "-" .$item->grad . " | " . $item->lit;
-        } 
-
         $data = array(
             'anios' => $anios,
             'meses' => Util::getAllMeses(),
             'resultado' => 0,
 
         );
-        return view('reportes.view', $data);
+        return view('reportes.permonth.select', $data);
     }
 
     public function GenerateReportAporteMonth(Request $request)
@@ -113,7 +108,7 @@ class ReporteController extends Controller
         );
         return view('reportes.view', $data);
     }
-    
+
     public function GenerateReportAporte(Request $request)
     {
         
