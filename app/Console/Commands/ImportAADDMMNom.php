@@ -22,14 +22,14 @@ use Muserpol\Helper\Util;
 use Carbon\Carbon;
 
 
-class Import extends Command
+class ImportAADDMMNom extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'importar';
+    protected $signature = 'importarnombres';
 
     /**
      * The console command description.
@@ -109,8 +109,10 @@ class Import extends Command
                         
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
-                        $afiliado->nom = $result->nom;
-                        $afiliado->nom2 = $result->nom2;
+
+                        $afiliado->nom = Util::FirstName($result->nom);
+                        $afiliado->nom2 = Util::OtherName($result->nom2);
+
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
 
@@ -124,8 +126,8 @@ class Import extends Command
                         $afiliado->afp = Util::getAfp($result->afp);
                         $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 
-                        $afiliado->fech_nac = Util::date($result->nac);
-                        $afiliado->fech_ing = Util::date($result->ing);
+                        $afiliado->fech_nac = Util::dateAADDMM($result->nac);
+                        $afiliado->fech_ing = Util::dateAADDMM($result->ing);
 
                         $afiliado->nua = Util::getAfp($result->nua);
                         
@@ -142,8 +144,10 @@ class Import extends Command
 
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
-                        $afiliado->nom = $result->nom;
-                        $afiliado->nom2 = $result->nom2;
+
+                        $$afiliado->nom = Util::FirstName($result->nom);
+                        $afiliado->nom2 = Util::OtherName($result->nom2);
+
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
 
@@ -157,8 +161,8 @@ class Import extends Command
                         $afiliado->afp = Util::getAfp($result->afp);
                         $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
                         
-                        $afiliado->fech_nac = Util::date($result->nac);
-                        $afiliado->fech_ing = Util::date($result->ing);
+                        $afiliado->fech_nac = Util::dateAADDMM($result->nac);
+                        $afiliado->fech_ing = Util::dateAADDMM($result->ing);
 
                         $afiliado->nua = $result->nua;
                         

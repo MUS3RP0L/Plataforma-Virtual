@@ -22,14 +22,14 @@ use Muserpol\Helper\Util;
 use Carbon\Carbon;
 
 
-class ImportAAMMDDnom extends Command
+class ImportNom extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'importar';
+    protected $signature = 'importarnombres';
 
     /**
      * The console command description.
@@ -106,8 +106,16 @@ class ImportAAMMDDnom extends Command
                     if ($afiliado) {
                         
                         if (Util::decimal($result->sue) <> 0){if ($afiliado->afi_state_id <> 1){$afiliado->afi_state_id = 1;$afiliado->fech_est = $date;}}else{if ($afiliado->afi_state_id <> 2){$afiliado->afi_state_id = 2;$afiliado->fech_est = $date;}}
+                        
+                        $afiliado->pat = $result->pat;
+                        $afiliado->mat = $result->mat;
+
+                        $afiliado->nom = Util::FirstName($result->nom);
+                        $afiliado->nom2 = Util::OtherName($result->nom2);
+
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
+
                         if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
                         if ($afiliado->unidad_id <> $unidad_id) {$afiliado->unidad_id = $unidad_id;$afiliado->fech_uni = $date;}
@@ -116,6 +124,11 @@ class ImportAAMMDDnom extends Command
                         $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->categoria_id = $categoria_id;
                         $afiliado->afp = Util::getAfp($result->afp);
+                        $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
+
+                        $afiliado->fech_nac = Util::date($result->nac);
+                        $afiliado->fech_ing = Util::date($result->ing);
+
                         $afiliado->nua = Util::getAfp($result->nua);
                         
                         $afiliado->save();
@@ -128,12 +141,16 @@ class ImportAAMMDDnom extends Command
                         if(Util::decimal($result->sue)<> 0){$afiliado->afi_state_id = 1;}else{$afiliado->afi_state_id = 2;}
                         $afiliado->fech_est = $date;
                         $afiliado->ci = $carnet;
+
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
-                        $afiliado->nom = $result->nom;
-                        $afiliado->nom2 = $result->nom2;
+
+                        $$afiliado->nom = Util::FirstName($result->nom);
+                        $afiliado->nom2 = Util::OtherName($result->nom2);
+
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
+
                         $afiliado->sex = $result->sex;
                         $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
                         $afiliado->fech_uni = $date;
@@ -143,8 +160,10 @@ class ImportAAMMDDnom extends Command
                         $afiliado->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->afp = Util::getAfp($result->afp);
                         $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
+                        
                         $afiliado->fech_nac = Util::date($result->nac);
                         $afiliado->fech_ing = Util::date($result->ing);
+
                         $afiliado->nua = $result->nua;
                         
                         $afiliado->save();

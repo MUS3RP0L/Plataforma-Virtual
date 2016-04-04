@@ -17,9 +17,34 @@ class Util
 	{
 		$nac_day = substr($date, 0, 2);
 		$nac_month = substr($date, 2, 2);
-		$nac_year = substr($date, 4);
+		$nac_year = substr($date, 4, 4);
 
 	return date($nac_year ."-". $nac_month ."-". $nac_day);
+	}
+
+	public static function dateAADDMM($date)
+	{
+		$nac_year = substr($date, 0, 2);
+		$nac_day = substr($date, 2, 2);
+		$nac_month = substr($date, 4, 2);
+
+        $anios = array('9' => '19','0' => '20','1' => '20','2' => '20','3' => '20');
+        $a = substr($nac_year, 0, 1);
+
+	return date($anios[$a] . $anio ."-". $nac_month ."-". $nac_day);
+	}
+
+	public static function FirstName($nom)
+	{
+		$noms = explode(" ", $date);
+		return $noms[0];
+
+	}
+
+	public static function OtherName($nom)
+	{
+		$noms = explode(" ", $date);
+		return $noms[1];
 	}
 
 	public static function datePick($date)
