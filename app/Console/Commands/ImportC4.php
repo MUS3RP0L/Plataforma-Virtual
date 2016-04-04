@@ -22,14 +22,14 @@ use Muserpol\Helper\Util;
 use Carbon\Carbon;
 
 
-class ImportAAMMDDNom extends Command
+class ImportAAMMDD extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'importarAADDMMNom';
+    protected $signature = 'importarAAMMDD';
 
     /**
      * The console command description.
@@ -110,8 +110,8 @@ class ImportAAMMDDNom extends Command
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
 
-                        $afiliado->nom = Util::FirstName($result->nom);
-                        $afiliado->nom2 = Util::OtherName($result->nom2);
+                        $afiliado->nom = $result->nom;
+                        $afiliado->nom2 = $result->nom2;
 
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
@@ -145,8 +145,8 @@ class ImportAAMMDDNom extends Command
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
 
-                        $afiliado->nom = Util::FirstName($result->nom);
-                        $afiliado->nom2 = Util::OtherName($result->nom2);
+                        $afiliado->nom = $result->nom;
+                        $afiliado->nom2 = $result->nom2;
 
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;

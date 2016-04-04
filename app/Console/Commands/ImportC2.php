@@ -145,7 +145,7 @@ class ImportAADDMMNom extends Command
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
 
-                        $$afiliado->nom = Util::FirstName($result->nom);
+                        $afiliado->nom = Util::FirstName($result->nom);
                         $afiliado->nom2 = Util::OtherName($result->nom2);
 
                         $afiliado->ap_esp = $result->apes;

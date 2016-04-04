@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         \Muserpol\Console\Commands\ImportNom::class,
         \Muserpol\Console\Commands\ImportAADDMMNom::class,
         \Muserpol\Console\Commands\ImportAAMMDDNom::class,
+        \Muserpol\Console\Commands\ImportAAMMDD::class,
     ];
 
     /**
