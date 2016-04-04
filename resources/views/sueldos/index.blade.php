@@ -31,18 +31,18 @@
 
                                     <tr class="success">
                                         <th>AÑO</th>    
-                                        <th><div data-toggle="popover" data-placement="top" data-container="body" data-content="00 00 - COMANDANTE GRAL">CMTE GRAL</div></th>
-                                        <th><div data-toggle="popover" data-placement="bottom" data-container="body" data-content="00 01 - COMANDANTE GRAL">CMTE GRAL</div></th>
-                                        <th><div data-toggle="popover" data-placement="top" data-container="body" data-content="00 02 - SUBCOMANDANTE">SBCMTE GRAL</div></th>
-                                        <th>INSP GRAL</th>
-                                        <th>DIR GRAL</th>
-                                        <th>CNL</th>
-                                        <th>CNL</th>
-                                        <th>TCNL</th>
-                                        <th>MY</th>
-                                        <th>CAP</th>
-                                        <th>TTE</th>
-                                        <th>SBTTE</th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 00 - COMANDANTE GRAL">CMTE GRAL</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 01 - COMANDANTE GRAL">CMTE GRAL</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 02 - SUBCOMANDANTE">SBCMTE GRAL</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 03 - INSPECTOR GENERAL">INSP. GRAL.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 04 - DIRECTOR GENERAL">DIR. GRAL.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 01 - CORONEL CON SUELDO DE GENERAL">CNL.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 02 - CORONEL">CNL.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 03 - TENIENTE CORONEL">TCNL.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 04 - MAYOR">MY.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 05 - CAPITAN">CAP.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 06 - TENIENTE">TTE.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 07 - SUBTENIENTE">SBTTE.</div></th>
                                     </tr>
                                 </thead>
                             </table>
@@ -62,12 +62,12 @@
                                 <thead>
                                     <tr class="success">
                                         <th>AÑO</th>
-                                        <th>CNL. ADM.</th>
-                                        <th>TCNL. ADM.</th>
-                                        <th>MY. ADM.</th>
-                                        <th>CAP. ADM.</th>
-                                        <th>TTE. ADM.</th>
-                                        <th>SBTTE. ADM.</th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="02 02 - CORONEL ADMINISTRATIVO">CNL. ADM.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="02 03 - TENIENTE CORONEL ADMINISTRATIVO ">TCNL. ADM.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="02 04 - MAYOR ADMINISTRATIVO">MY. ADM.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="02 05 - CAPITAN ADMINISTRATIVO">CAP. ADM.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="02 06 - TENIENTE ADMINISTRATIVO">TTE. ADM.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="02 07 - SUBTENIENTE ADMINISTRATIVO">SBTTE. ADM.</div></th>  
                                     </tr>
                                 </thead>
                             </table>
@@ -87,14 +87,14 @@
                                 <thead>
                                     <tr class="success">
                                         <th>AÑO</th>
-                                        <th>SOF. SUP.</th>
-                                        <th>SOF. MY.</th>
-                                        <th>SOF. 1RO.</th>
-                                        <th>SOF. 2DO.</th>
-                                        <th>SGTO. 1RO.</th>
-                                        <th>SGTO. 2DO.</th>
-                                        <th>CBO.</th>
-                                        <th>POL.</th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="03 08 - SUBOFICIAL SUPERIOR">SOF. SUP.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="03 09 - SUBOFICIAL MAYOR ">SOF. MY.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="03 010 - SUBOFICIAL PRIMERO">SOF. 1RO.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="03 11 - SUBOFICIAL SEGUNDO">SOF. 2DO.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="03 12 - SARGENTO PRIMERO">SGTO. 1RO.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="03 13 - SARGENTO SEGUNDO">SGTO. 2DO.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="03 14 - CABO">CBO.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="03 15 - POLICIA">POL.</div></th>
                                     </tr>
                                 </thead>
                             </table>
@@ -114,14 +114,14 @@
                                 <thead>
                                     <tr class="success">
                                         <th>AÑO</th>
-                                        <th>SOF. SUP. ADM.</th>
-                                        <th>SOF. MY. ADM.</th>
-                                        <th>SOF. 1RO. ADM.</th>
-                                        <th>SOF. 2DO. ADM.</th>
-                                        <th>SGTO. 1RO. ADM.</th>
-                                        <th>SGTO. 2DO. ADM.</th>
-                                        <th>CBO. ADM.</th>
-                                        <th>POL. ADM.</th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="04 08 - SUBOFICIAL SUPERIOR ADMINISTRATIVO">SOF. SUP. ADM.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="04 09 - SUBOFICIAL MAYOR ADMINISTRATIVO ">SOF. MY. ADM.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="04 010 - SUBOFICIAL PRIMERO ADMINISTRATIVO">SOF. 1RO. ADM.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="04 11 - SUBOFICIAL SEGUNDO ADMINISTRATIVO">SOF. 2DO. ADM.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="04 12 - SARGENTO PRIMERO ADMINISTRATIVO">SGTO. 1RO. ADM.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="04 13 - SARGENTO SEGUNDO ADMINISTRATIVO">SGTO. 2DO. ADM.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="04 14 - CABO ADMINISTRATIVO">CBO.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="04 16 - POLICIA ADMINISTRATIVO">POL.</div></th>
                                     </tr>
                                 </thead>
                             </table>
