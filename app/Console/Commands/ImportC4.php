@@ -29,7 +29,7 @@ class ImportC4 extends Command
      *
      * @var string
      */
-    protected $signature = 'importarAAMMDD';
+    protected $signature = 'importarc4';
 
     /**
      * The console command description.

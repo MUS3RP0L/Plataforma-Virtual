@@ -29,7 +29,7 @@ class ImportC3 extends Command
      *
      * @var string
      */
-    protected $signature = 'importarAADDMMNom';
+    protected $signature = 'importarc3';
 
     /**
      * The console command description.

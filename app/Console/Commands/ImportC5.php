@@ -29,7 +29,7 @@ class ImportC5 extends Command
      *
      * @var string
      */
-    protected $signature = 'importarDDMMAA';
+    protected $signature = 'importarc5';
 
     /**
      * The console command description.

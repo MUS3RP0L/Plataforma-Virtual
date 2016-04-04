@@ -456,11 +456,29 @@ class AfiliadoController extends Controller
 
                 case 'pol':
 
-                    if ($afiliado->afi_state_id <> trim($request->afi_state_id)) {$afiliado->afi_state_id = trim($request->afi_state_id);$afiliado->fech_est = Util::datePick($request->fech_est);}
+                    if ($afiliado->afi_state_id <> $request->afi_state_id)
+                    {
+                        if (trim($request->afi_state_id) <> '' ) {
+                            $afiliado->afi_state_id = trim($request->afi_state_id);
+                            $afiliado->fech_est = Util::datePick($request->fech_est);
+                        }
+                    }
                     
-                    // if ($afiliado->grado_id <> trim($request->grado_id)) {$afiliado->grado_id = trim($request->grado_id);$afiliado->fech_gra = Util::datePick($request->fech_gra);}
+                    if ($afiliado->grado_id <> $request->grado_id) 
+                    {
+                        if (trim($request->grado_id) <> '' ) {
+                            $afiliado->grado_id = trim($request->grado_id);
+                            $afiliado->fech_gra = Util::datePick($request->fech_gra);
+                        }
+                    }
                     
-                    // if ($afiliado->unidad_id <> trim($request->unidad_id)) {$afiliado->unidad_id = trim($request->unidad_id);$afiliado->fech_uni = Util::datePick($request->fech_uni);}
+                    if ($afiliado->unidad_id <> trim($request->unidad_id)) 
+                    {
+                        if (trim($request->unidad_id) <> '' ) {
+                            $afiliado->unidad_id = trim($request->unidad_id);
+                            $afiliado->fech_uni = Util::datePick($request->fech_uni);
+                        }
+                    }
                     
                     // if ($request->fech_dece && $request->afi_state_id == 3) {$afiliado->fech_dece = Util::datePick($request->fech_dece);}
                     $afiliado->save();

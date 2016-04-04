@@ -29,7 +29,7 @@ class ImportC2 extends Command
      *
      * @var string
      */
-    protected $signature = 'importarAADDMMNom';
+    protected $signature = 'importarc2';
 
     /**
      * The console command description.

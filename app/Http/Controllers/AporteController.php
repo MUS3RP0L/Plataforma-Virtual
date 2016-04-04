@@ -37,17 +37,26 @@ class AporteController extends Controller
         $firstAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'asc')->first();
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
 
-        $firstAporte->desde = Util::getMes(Carbon::parse($firstAporte->gest)->month) . " de " . Carbon::parse($firstAporte->gest)->year;
-        $lastAporte->hasta = Util::getMes(Carbon::parse($lastAporte->gest)->month) . " de " . Carbon::parse($lastAporte->gest)->year;
+        
+        if ($firstAporte) {
+            
+            $firstAporte->desde = Util::getMes(Carbon::parse($firstAporte->gest)->month) . " de " . Carbon::parse($firstAporte->gest)->year;
+            $lastAporte->hasta = Util::getMes(Carbon::parse($lastAporte->gest)->month) . " de " . Carbon::parse($lastAporte->gest)->year;
 
+            $data = array(
+                'afiliado' => $afiliado,
+                'lastAporte' => $lastAporte,
+                'firstAporte' => $firstAporte,
+            );
 
-        $data = array(
-            'afiliado' => $afiliado,
-            'lastAporte' => $lastAporte,
-            'firstAporte' => $firstAporte,
-        );
-
-        return view('aportes.view', $data);
+            return view('aportes.view', $data);
+        }
+        else
+        {
+            $message = "No existe Registro de Aportes";
+            Session::flash('message', $message);
+            return redirect('afiliado/'.$afid);
+        }
     }
 
     public function RegAporteGest($afid)
