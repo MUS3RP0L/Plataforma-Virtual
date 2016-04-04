@@ -22,7 +22,7 @@ use Muserpol\Helper\Util;
 use Carbon\Carbon;
 
 
-class ImportAAMMDD extends Command
+class ImportC4 extends Command
 {
     /**
      * The name and signature of the console command.
@@ -65,23 +65,23 @@ class ImportAAMMDD extends Command
             set_time_limit(36000);
 
             
-            Excel::selectSheetsByIndex(0)->load('public/file_to_import/' . $name . '.xlsx', function($reader) {
+            // Excel::selectSheetsByIndex(0)->load('public/file_to_import/' . $name . '.xlsx', function($reader) {
 
-                $count = 0;
-                $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
-                            'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
-                $results = $reader->select($col)->first();
-                foreach ($results as $nombre => $valor) {
-                    if (in_array($nombre, $col)) {
-                        $count ++;
-                    }
-                }   
-                if ($count < count($col))
-                {
-                    $this->info("Falta Columnas, favor Verificar en el Archivo");
-                    break;
-                }
-            });
+            //     $count = 0;
+            //     $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
+            //                 'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
+            //     $results = $reader->select($col)->first();
+            //     foreach ($results as $nombre => $valor) {
+            //         if (in_array($nombre, $col)) {
+            //             $count ++;
+            //         }
+            //     }   
+            //     if ($count < count($col))
+            //     {
+            //         $this->info("Falta Columnas, favor Verificar en el Archivo");
+            //         break;
+            //     }
+            // });
 
             $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
                             'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');

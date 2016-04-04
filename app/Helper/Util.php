@@ -28,10 +28,10 @@ class Util
 		$nac_day = substr($date, 2, 2);
 		$nac_month = substr($date, 4, 2);
 
-        $anios = array('9' => '19','0' => '20','1' => '20','2' => '20','3' => '20');
+        $anios = array('2' => '19', '3' => '19', '4' => '19', '5' => '19', '6' => '19','7' => '19', '8' => '19', '9' => '19','0' => '20','1' => '20','2' => '20','3' => '20');
         $a = substr($nac_year, 0, 1);
 
-	return date($anios[$a] . $anio ."-". $nac_month ."-". $nac_day);
+	return date($anios[$a] . $nac_year ."-". $nac_month ."-". $nac_day);
 	}
 
 	public static function dateAAMMDD($date)
@@ -40,10 +40,10 @@ class Util
 		$nac_month = substr($date, 2, 2);
 		$nac_day = substr($date, 4, 2);
 
-        $anios = array('9' => '19','0' => '20','1' => '20','2' => '20','3' => '20');
+        $anios = array('2' => '19', '3' => '19', '4' => '19', '5' => '19', '6' => '19','7' => '19', '8' => '19', '9' => '19','0' => '20','1' => '20','2' => '20','3' => '20');
         $a = substr($nac_year, 0, 1);
 
-	return date($anios[$a] . $anio ."-". $nac_month ."-". $nac_day);
+		return date($anios[$a] . $nac_year ."-". $nac_month ."-". $nac_day);
 	}
 
 	public static function dateDDMMAA($date)
@@ -52,23 +52,35 @@ class Util
 		$nac_month = substr($date, 2, 2);
 		$nac_year = substr($date, 4, 2);
 
-        $anios = array('9' => '19','0' => '20','1' => '20','2' => '20','3' => '20');
+        $anios = array('2' => '19', '3' => '19', '4' => '19', '5' => '19', '6' => '19','7' => '19', '8' => '19', '9' => '19','0' => '20','1' => '20','2' => '20','3' => '20');
         $a = substr($nac_year, 0, 1);
 
-	return date($anios[$a] . $anio ."-". $nac_month ."-". $nac_day);
+		return date($anios[$a] . $nac_year ."-". $nac_month ."-". $nac_day);
 	}
 
 	public static function FirstName($nom)
 	{
-		$noms = explode(" ", $date);
-		return $noms[0];
+		$noms = explode(" ", $nom);
+		if (count($noms) > 0) {
+			return $noms[0];
+		}
+		else{
+			return '';
+		}
 
 	}
 
 	public static function OtherName($nom)
 	{
-		$noms = explode(" ", $date);
-		return $noms[1];
+		$noms = explode(" ", $nom);
+		if (count($noms) > 1) {
+			return $noms[1];
+		}
+		else{
+			return '';
+		}
+		
+		
 	}
 
 	public static function datePick($date)

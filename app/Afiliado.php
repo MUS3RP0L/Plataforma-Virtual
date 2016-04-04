@@ -207,5 +207,5 @@ Afiliado::updating(function($afiliado)
 
 Afiliado::created(function($afiliado)
 {
-	Note::createAfiliado($afiliado);
+	// Note::createAfiliado($afiliado);
 });

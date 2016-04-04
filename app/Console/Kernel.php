@@ -15,16 +15,16 @@ class Kernel extends ConsoleKernel
     protected $commands = [
 
         \Muserpol\Console\Commands\Import::class,
-        // case 1
-        \Muserpol\Console\Commands\ImportDDMMAANom::class,
-        // case 2
-        \Muserpol\Console\Commands\ImportAADDMMNom::class,
-        // case 3
-        \Muserpol\Console\Commands\ImportAAMMDDNom::class,
-        // case 4
-        \Muserpol\Console\Commands\ImportAAMMDD::class,
-        // case 5
-        \Muserpol\Console\Commands\ImportDDMMAA::class,
+        // case 1 ImportDDMMAANom
+        \Muserpol\Console\Commands\ImportC1::class,
+        // case 2 ImportC1
+        \Muserpol\Console\Commands\ImportC2::class,
+        // case 3 ImportAAMMDDNom
+        \Muserpol\Console\Commands\ImportC3::class,
+        // case 4 ImportAAMMDD
+        \Muserpol\Console\Commands\ImportC4::class,
+        // case 5 ImportDDMMAA
+        \Muserpol\Console\Commands\ImportC5::class,
     ];
 
     /**
