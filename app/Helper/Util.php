@@ -34,6 +34,18 @@ class Util
 	return date($anios[$a] . $anio ."-". $nac_month ."-". $nac_day);
 	}
 
+	public static function dateAAMMDD($date)
+	{
+		$nac_year = substr($date, 0, 2);
+		$nac_month = substr($date, 2, 2);
+		$nac_day = substr($date, 4, 2);
+
+        $anios = array('9' => '19','0' => '20','1' => '20','2' => '20','3' => '20');
+        $a = substr($nac_year, 0, 1);
+
+	return date($anios[$a] . $anio ."-". $nac_month ."-". $nac_day);
+	}
+
 	public static function FirstName($nom)
 	{
 		$noms = explode(" ", $date);

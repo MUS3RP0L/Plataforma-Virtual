@@ -29,7 +29,7 @@ class ImportAADDMMNom extends Command
      *
      * @var string
      */
-    protected $signature = 'importarnombres';
+    protected $signature = 'importarAADDMMNom';
 
     /**
      * The console command description.

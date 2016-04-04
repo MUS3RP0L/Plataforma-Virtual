@@ -22,14 +22,14 @@ use Muserpol\Helper\Util;
 use Carbon\Carbon;
 
 
-class ImportNom extends Command
+class ImportAAMMDDNom extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'importarnombres';
+    protected $signature = 'importarAADDMMNom';
 
     /**
      * The console command description.
@@ -126,8 +126,8 @@ class ImportNom extends Command
                         $afiliado->afp = Util::getAfp($result->afp);
                         $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 
-                        $afiliado->fech_nac = Util::date($result->nac);
-                        $afiliado->fech_ing = Util::date($result->ing);
+                        $afiliado->fech_nac = Util::dateAAMMDD($result->nac);
+                        $afiliado->fech_ing = Util::dateAAMMDD($result->ing);
 
                         $afiliado->nua = Util::getAfp($result->nua);
                         
@@ -161,8 +161,8 @@ class ImportNom extends Command
                         $afiliado->afp = Util::getAfp($result->afp);
                         $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
                         
-                        $afiliado->fech_nac = Util::date($result->nac);
-                        $afiliado->fech_ing = Util::date($result->ing);
+                        $afiliado->fech_nac = Util::dateAAMMDD($result->nac);
+                        $afiliado->fech_ing = Util::dateAAMMDD($result->ing);
 
                         $afiliado->nua = $result->nua;
                         
