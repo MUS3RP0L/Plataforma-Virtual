@@ -29,6 +29,8 @@ class ReporteController extends Controller
             'anios' => $anios,
             'meses' => Util::getAllMeses(),
             'resultado' => 0,
+            'anio' => '',
+            'mes' => '',
 
         );
         return view('reportes.permonth.select', $data);
@@ -37,56 +39,126 @@ class ReporteController extends Controller
     public function GenerateReportAporteMonth(Request $request)
     {
 
-        $anios = DB::table('aportes')->select(DB::raw('DISTINCT (aportes.anio ) anio'))->get();
-        $i=0; $a = $request->anio;
+        $anios = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest) year'))->get();
+        $i=0; $a = $request->year;
         foreach ($anios as $item) {
-            $anio = $item->anio;
+            $year = $item->year;
             if($i==$a)
             {break;}
             $i++;
         }
+        $date = Carbon::createFromDate($year, $request->mes, 1)->toDateString();
 
-        $totalRegistros = DB::table('aportes')
-                ->select(DB::raw('COUNT(*) registros, SUM(aportes.sue) sueldo, SUM(aportes.b_ant) anti,
+
+        $totalRegistrosC = DB::table('aportes')
+                ->select(DB::raw('SUM(aportes.sue) sueldo, SUM(aportes.b_ant) anti,
                                 SUM(aportes.b_est) b_est, SUM(aportes.b_car) b_car,
                                 SUM(aportes.b_fro) b_fro, SUM(aportes.b_ori) b_ori,
-                                SUM(aportes.b_seg) b_seg, SUM(aportes.gan) gan, SUM(aportes.mus) mus'))
-                                ->where('aportes.mes', '=', $request->mes)
-                                ->where('aportes.anio', '=', $anio)
-                                    ->get();
-        foreach ($totalRegistros as $item) {
-            $registros = $item->registros;
-            $sueldo = $item->sueldo;
-            $anti = $item->anti;
-            $b_est = $item->b_est;
-            $b_car = $item->b_car;
-            $b_fro = $item->b_fro;
-            $b_ori = $item->b_ori;
-            $b_seg = $item->b_seg;
-            $gan = $item->gan;
-            $mus = $item->mus;
+                                SUM(aportes.b_seg) b_seg, SUM(aportes.gan) gan, 
+                                SUM(aportes.cot) cot, SUM(aportes.mus) mus,
+                                SUM(aportes.fr) fr, SUM(aportes.sv) sv'))
+                                ->where('aportes.gest', '=', $date)
+                                ->where('aportes.desg', '<>', '5')
+                                ->get();
+        foreach ($totalRegistrosC as $item) {
+            $sueldoC = $item->sueldo;
+            $antiC = $item->anti;
+            $b_estC = $item->b_est;
+            $b_carC = $item->b_car;
+            $b_froC = $item->b_fro;
+            $b_oriC = $item->b_ori;
+            $b_segC = $item->b_seg;
+            $ganC = $item->gan;
+            $cotC = $item->cot;
+            $frC = $item->fr;
+            $svC = $item->sv;
+            $musC = $item->mus;
         }
+        $totalRegistrosB = DB::table('aportes')
+                ->select(DB::raw('SUM(aportes.sue) sueldo, SUM(aportes.b_ant) anti,
+                                SUM(aportes.b_est) b_est, SUM(aportes.b_car) b_car,
+                                SUM(aportes.b_fro) b_fro, SUM(aportes.b_ori) b_ori,
+                                SUM(aportes.b_seg) b_seg, SUM(aportes.gan) gan, 
+                                SUM(aportes.cot) cot, SUM(aportes.mus) mus,
+                                SUM(aportes.fr) fr, SUM(aportes.sv) sv'))
+                                ->where('aportes.gest', '=', $date)
+                                ->where('aportes.desg', '=', '5')
+                                ->get();
 
-        $anios = array('9' => '19','0' => '20','1' => '20','2' => '20','3' => '20');
-        $a = substr($anio, 0, 1);
-        $meses = array('01' => 'Enero','02' => 'Febrero','03' => 'Marzo','04' => 'Abril','05' => 'Mayo','06' => 'Junio','07' => 'Julio','08' => 'Agosto','09' => 'Septiembre','10' => 'Octubre','11' => 'Noviembre','12' => 'Diciembre');
-
+        foreach ($totalRegistrosB as $item) {
+            $sueldoB = $item->sueldo;
+            $antiB = $item->anti;
+            $b_estB = $item->b_est;
+            $b_carB = $item->b_car;
+            $b_froB = $item->b_fro;
+            $b_oriB = $item->b_ori;
+            $b_segB = $item->b_seg;
+            $ganB = $item->gan;
+            $cotB = $item->cot;
+            $frB = $item->fr;
+            $svB = $item->sv;
+            $musB = $item->mus;
+        }
+        $sueldo = $sueldoC + $sueldoB;
+        $anti = $antiC + $antiB;
+        $b_est = $b_estC + $b_estB;
+        $b_car = $b_carC + $b_carB;
+        $b_fro = $b_froC + $b_froB;
+        $b_ori = $b_oriC + $b_oriB;
+        $b_seg = $b_segC + $b_segB;
+        $gan = $ganC + $ganB;
+        $cot = $cotC + $cotB;
+        $fr = $frC + $frB;
+        $sv = $svC + $svB;
+        $mus = $musC + $musB;
+        
+        $anios = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest ) gest'))->lists('gest');
+        $meses = Util::getAllMeses();
         $data = array(
-            'totalRegistros' => $registros,
+            'totalSueldoC' => Util::formatMoney($sueldoC),
+            'totalSueldoB' => Util::formatMoney($sueldoB),
             'totalSueldo' => Util::formatMoney($sueldo),
+            'totalAntiC' => Util::formatMoney($antiC),
+            'totalAntiB' => Util::formatMoney($antiB),
             'totalAnti' => Util::formatMoney($anti),
+            'totalB_estC' => Util::formatMoney($b_estC),
+            'totalB_estB' => Util::formatMoney($b_estB),
             'totalB_est' => Util::formatMoney($b_est),
+            'totalB_carC' => Util::formatMoney($b_carC),
+            'totalB_carB' => Util::formatMoney($b_carB),
             'totalB_car' => Util::formatMoney($b_car),
+            'totalB_froC' => Util::formatMoney($b_froC),
+            'totalB_froB' => Util::formatMoney($b_froB),
             'totalB_fro' => Util::formatMoney($b_fro),
+            'totalB_oriC' => Util::formatMoney($b_oriC),
+            'totalB_oriB' => Util::formatMoney($b_oriB),
             'totalB_ori' => Util::formatMoney($b_ori),
+            'totalB_segC' => Util::formatMoney($b_segC),
+            'totalB_segB' => Util::formatMoney($b_segB),
             'totalB_seg' => Util::formatMoney($b_seg),
+            'totalGanadoC' => Util::formatMoney($ganC),
+            'totalGanadoB' => Util::formatMoney($ganB),
             'totalGanado' => Util::formatMoney($gan),
+            'totalCotiC' => Util::formatMoney($cotC),
+            'totalCotiB' => Util::formatMoney($cotB),
+            'totalCoti' => Util::formatMoney($cot),
+            'totalFrC' => Util::formatMoney($frC),
+            'totalFrB' => Util::formatMoney($frB),
+            'totalFr' => Util::formatMoney($fr),
+            'totalSvC' => Util::formatMoney($svC),
+            'totalSvB' => Util::formatMoney($svB),
+            'totalSv' => Util::formatMoney($sv),
+            'totalMuserpolC' => Util::formatMoney($musC),
+            'totalMuserpolB' => Util::formatMoney($musB),
             'totalMuserpol' => Util::formatMoney($mus),
-            'anio' => $anios[$a] . $anio,
-            'mes' => $meses[$request->mes]
+            'anio' => $request->year,
+            'mes' => $request->mes,
+            'anios' => $anios,
+            'meses' => $meses,
+            'resultado' => 1,
         );
 
-        return view('reportes.show', $data);
+        return view('reportes.permonth.select', $data);
     }
 
     public function ReportAporte()
