@@ -13,12 +13,18 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \Muserpol\Console\Commands\Inspire::class,
+
         \Muserpol\Console\Commands\Import::class,
-        \Muserpol\Console\Commands\ImportNom::class,
+        // case 1
+        \Muserpol\Console\Commands\ImportDDMMAANom::class,
+        // case 2
         \Muserpol\Console\Commands\ImportAADDMMNom::class,
+        // case 3
         \Muserpol\Console\Commands\ImportAAMMDDNom::class,
+        // case 4
         \Muserpol\Console\Commands\ImportAAMMDD::class,
+        // case 5
+        \Muserpol\Console\Commands\ImportDDMMAA::class,
     ];
 
     /**
