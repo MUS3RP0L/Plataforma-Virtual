@@ -82,15 +82,15 @@ class ImportC4 extends Command
             //         break;
             //     }
             // });
-
+       
+            // Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load('public/file_to_import/' . $name . '.xlsx')->chunk(10000, function($results) {
+            Excel::selectSheetsByIndex(0)->load('public/file_to_import/' . $name . '.xlsx', function($results) {
             $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
                             'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
-            
-            Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load('public/file_to_import/' . $name . '.xlsx')->chunk(10000, function($results) {
-
+ 
                 global $cAfiN, $cAfiU, $cApor, $progress;
 
-                foreach ($results as $result) {
+                foreach ($results->select($col)->get() as $result) {
 
                     ini_set('upload_max_filesize', '500M');
                     ini_set('post_max_size', '500M');
