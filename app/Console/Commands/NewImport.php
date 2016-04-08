@@ -22,14 +22,14 @@ use Muserpol\Helper\Util;
 use Carbon\Carbon;
 
 
-class ImportC1 extends Command
+class NewImport extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'importarc1';
+    protected $signature = 'importarcarpeta';
 
     /**
      * The console command description.
@@ -45,9 +45,9 @@ class ImportC1 extends Command
      */
     public function handle()
     {
-        $name = $this->ask('Estimado Usuario escriba el nombre del archivo que desea importar, Gracias.');
+        // $name = $this->ask('Estimado Usuario escriba el nombre del archivo que desea importar, Gracias.');
 
-        if ($this->confirm('Esta seguro de importar el archivo ' . $name . '.xlsx? [y|N]') && $name) {
+        // if ($this->confirm('Esta seguro de importar el archivo ' . $name . '.xlsx? [y|N]') && $name) {
 
             global $cAfiN, $cAfiU, $cApor, $progress;
 
@@ -65,7 +65,7 @@ class ImportC1 extends Command
             set_time_limit(36000);
 
             
-            // Excel::selectSheetsByIndex(0)->load('public/file_to_import/' . $name . '.xlsx', function($reader) {
+            // Excel::selectSheetsByIndex(0)->load('public/file_to_import/p' . $name . '.xlsx', function($reader) {
 
             //     $count = 0;
             //     $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
@@ -83,15 +83,20 @@ class ImportC1 extends Command
             //     }
             // });
 
-           
+            
             // Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load('public/file_to_import/' . $name . '.xlsx')->chunk(10000, function($results) {
-            Excel::selectSheetsByIndex(0)->load('public/file_to_import/' . $name . '.xlsx', function($results) {
+            // Excel::selectSheetsByIndex(0)->load('public/file_to_import/' . $name . '.xlsx', function($results) {
+            Excel::batch('public/file_to_import/p', function($rows, $file) {
+            
             $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
                             'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
- 
-                global $cAfiN, $cAfiU, $cApor, $progress;
 
-                foreach ($results->select($col)->get() as $result) {
+                
+
+                // foreach ($results->select($col)->get() as $result) {
+                $rows->each(function($result) {
+                    
+                    global $cAfiN, $cAfiU, $cApor, $progress;
 
                     ini_set('upload_max_filesize', '500M');
                     ini_set('post_max_size', '500M');
@@ -110,10 +115,8 @@ class ImportC1 extends Command
                         
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
-
-                        $afiliado->nom = Util::FirstName($result->nom);
-                        $afiliado->nom2 = Util::OtherName($result->nom2);
-
+                        $afiliado->nom = $result->nom;
+                        $afiliado->nom2 = $result->nom2;
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
 
@@ -125,11 +128,10 @@ class ImportC1 extends Command
                         $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->categoria_id = $categoria_id;
                         $afiliado->afp = Util::getAfp($result->afp);
+                        $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 
-                        $afiliado->fech_nac = Util::dateDDMMAA($result->nac);
-                        $afiliado->fech_ing = Util::dateDDMMAA($result->ing);
-                        
-                        $afiliado->matri = Util::calcMatri($afiliado->fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
+                        $afiliado->fech_nac = Util::date($result->nac);
+                        $afiliado->fech_ing = Util::date($result->ing);
 
                         $afiliado->nua = Util::getAfp($result->nua);
                         
@@ -146,10 +148,8 @@ class ImportC1 extends Command
 
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
-
-                        $afiliado->nom = Util::FirstName($result->nom);
-                        $afiliado->nom2 = Util::OtherName($result->nom2);
-
+                        $afiliado->nom = $result->nom;
+                        $afiliado->nom2 = $result->nom2;
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
 
@@ -161,11 +161,10 @@ class ImportC1 extends Command
                         $afiliado->fech_gra = $date;
                         $afiliado->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->afp = Util::getAfp($result->afp);
+                        $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
                         
-                        $afiliado->fech_nac = Util::dateDDMMAA($result->nac);
-                        $afiliado->fech_ing = Util::dateDDMMAA($result->ing);
-
-                        $afiliado->matri = Util::calcMatri($afiliado->fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
+                        $afiliado->fech_nac = Util::date($result->nac);
+                        $afiliado->fech_ing = Util::date($result->ing);
 
                         $afiliado->nua = $result->nua;
                         
@@ -217,7 +216,7 @@ class ImportC1 extends Command
                         
                     }
                     $progress->advance();
-                }
+                });
 
             });
 
@@ -240,6 +239,6 @@ class ImportC1 extends Command
              " Aportes.\n" . $execution_time . 
              " [Min] demorados en ejecutar de importación.\n");
 
-        }
+        // }
     }
 }

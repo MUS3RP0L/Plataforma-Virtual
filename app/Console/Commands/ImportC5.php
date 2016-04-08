@@ -125,10 +125,11 @@ class ImportC5 extends Command
                         $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->categoria_id = $categoria_id;
                         $afiliado->afp = Util::getAfp($result->afp);
-                        $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 
                         $afiliado->fech_nac = Util::dateDDMMAA($result->nac);
                         $afiliado->fech_ing = Util::dateDDMMAA($result->ing);
+
+                        $afiliado->matri = Util::calcMatri($afiliado->fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 
                         $afiliado->nua = Util::getAfp($result->nua);
                         
@@ -160,10 +161,11 @@ class ImportC5 extends Command
                         $afiliado->fech_gra = $date;
                         $afiliado->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->afp = Util::getAfp($result->afp);
-                        $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
                         
                         $afiliado->fech_nac = Util::dateDDMMAA($result->nac);
                         $afiliado->fech_ing = Util::dateDDMMAA($result->ing);
+
+                        $afiliado->matri = Util::calcMatri($afiliado->fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 
                         $afiliado->nua = $result->nua;
                         

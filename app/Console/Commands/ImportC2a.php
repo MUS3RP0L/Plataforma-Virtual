@@ -22,14 +22,14 @@ use Muserpol\Helper\Util;
 use Carbon\Carbon;
 
 
-class ImportC1 extends Command
+class ImportC2a extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'importarc1';
+    protected $signature = 'importarc2a';
 
     /**
      * The console command description.
@@ -82,7 +82,6 @@ class ImportC1 extends Command
             //         break;
             //     }
             // });
-
            
             // Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load('public/file_to_import/' . $name . '.xlsx')->chunk(10000, function($results) {
             Excel::selectSheetsByIndex(0)->load('public/file_to_import/' . $name . '.xlsx', function($results) {
@@ -117,18 +116,18 @@ class ImportC1 extends Command
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
 
-                        if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
+                        // if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
                         if ($afiliado->unidad_id <> $unidad_id) {$afiliado->unidad_id = $unidad_id;$afiliado->fech_uni = $date;}
-                        $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
-                        if ($afiliado->grado_id <> $grado_id) {$afiliado->grado_id = $grado_id;$afiliado->fech_gra = $date;}
+                        // $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+                        // if ($afiliado->grado_id <> $grado_id) {$afiliado->grado_id = $grado_id;$afiliado->fech_gra = $date;}
                         $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->categoria_id = $categoria_id;
                         $afiliado->afp = Util::getAfp($result->afp);
 
-                        $afiliado->fech_nac = Util::dateDDMMAA($result->nac);
-                        $afiliado->fech_ing = Util::dateDDMMAA($result->ing);
-                        
+                        $afiliado->fech_nac = Util::dateAADDMM($result->nac);
+                        $afiliado->fech_ing = Util::dateAADDMM($result->ing);
+
                         $afiliado->matri = Util::calcMatri($afiliado->fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 
                         $afiliado->nua = Util::getAfp($result->nua);
@@ -156,15 +155,15 @@ class ImportC1 extends Command
                         $afiliado->sex = $result->sex;
                         $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
                         $afiliado->fech_uni = $date;
-                        if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
-                        $afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
-                        $afiliado->fech_gra = $date;
+                        // if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
+                        // $afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+                        // $afiliado->fech_gra = $date;
                         $afiliado->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->afp = Util::getAfp($result->afp);
                         
-                        $afiliado->fech_nac = Util::dateDDMMAA($result->nac);
-                        $afiliado->fech_ing = Util::dateDDMMAA($result->ing);
-
+                        $afiliado->fech_nac = Util::dateAADDMM($result->nac);
+                        $afiliado->fech_ing = Util::dateAADDMM($result->ing);
+                       
                         $afiliado->matri = Util::calcMatri($afiliado->fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 
                         $afiliado->nua = $result->nua;
@@ -186,8 +185,8 @@ class ImportC1 extends Command
                             $aporte->gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
                             $aporte->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
                             $aporte->desg = $result->desg;
-                            if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
-                            $aporte->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+                            // if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
+                            // $aporte->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
                             $aporte->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                             $aporte->item = $result->item;
                             $aporte->sue = Util::decimal($result->sue);

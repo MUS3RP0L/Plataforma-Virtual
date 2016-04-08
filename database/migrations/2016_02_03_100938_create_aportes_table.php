@@ -80,7 +80,7 @@ class CreateAportesTable extends Migration
 
             $table->bigInteger('desg')->nullable();
 
-            $table->string('item');
+            $table->string('item')->nullable();
 
             $table->string('cat');
             
