@@ -93,9 +93,9 @@
                             <table class="table table-striped table-hover" id="afiliados-table">
                                 <thead>
                                     <tr class="success">
-                                        <th>Matrícula</th>
+                                        {{-- <th>Matrícula</th> --}}
                                         <th>Núm. Carnet</th>
-                                        <th>Grado</th>
+                                        {{-- <th>Grado</th> --}}
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
                                         <th>Nombres</th> 
@@ -134,9 +134,9 @@
             }
         },
         columns: [
-            { data: 'matri', name: 'matri', sWidth: '11%' },
+            // { data: 'matri', name: 'matri', sWidth: '11%' },
             { data: 'ci', name: 'ci', sWidth: '12%', bSortable: false },
-            { data: 'gra', name: 'gra', sWidth: '12%', bSortable: false },
+            // { data: 'gra', name: 'gra', sWidth: '12%', bSortable: false },
             { data: 'pat', name: 'pat', sWidth: '15%', bSortable: false },
             { data: 'mat', name: 'mat', sWidth: '15%', bSortable: false },
             { data: 'noms', name: 'noms', sWidth: '15%', bSortable: false },

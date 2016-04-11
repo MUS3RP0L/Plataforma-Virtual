@@ -167,7 +167,7 @@ class AporteController extends Controller
 
         return Datatables::of($aportes)
                         ->editColumn('gest', function ($aportes) { return Carbon::parse($aportes->gest)->month . "-" . Carbon::parse($aportes->gest)->year ; })
-                        ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
+                        // ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
                         ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
                         ->editColumn('sue', function ($aportes) { return Util::formatMoney($aportes->sue); })
                         ->editColumn('b_ant', function ($aportes) { return Util::formatMoney($aportes->b_ant); })

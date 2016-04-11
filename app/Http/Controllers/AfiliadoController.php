@@ -83,7 +83,7 @@ class AfiliadoController extends Controller
 
 
         return Datatables::of($afiliados)
-                ->addColumn('gra', function ($afiliado) { return $afiliado->grado->abre; })
+                // ->addColumn('gra', function ($afiliado) { return $afiliado->grado->abre; })
                 ->addColumn('noms', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
                 ->addColumn('action', function ($afiliado) { 
                     return  '<div class="row text-center">

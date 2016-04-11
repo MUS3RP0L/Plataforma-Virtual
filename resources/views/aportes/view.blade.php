@@ -50,7 +50,7 @@
 				                        <thead>
 				                            <tr class="success">
 				                                <th>Gest</th>
-				                                <th>Niv Gra</th>
+				                                {{-- <th>Niv Gra</th> --}}
 				                                <th>Uni</th>
 				                                <th>Ite</th>
 												<th>Sue</th>
@@ -108,7 +108,7 @@
 	        },
 	        columns: [
 	            { data: 'gest', name: 'gest' },
-	            { data: 'grado_id', name: 'grado_id' },
+	            // { data: 'grado_id', name: 'grado_id' },
 	            { data: 'unidad_id', name: 'unidad_id' },
 	            { data: 'item', name: 'item' },
 	            { data: 'sue', name: 'sue' },

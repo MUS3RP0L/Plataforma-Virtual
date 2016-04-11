@@ -86,7 +86,7 @@ class NewImport extends Command
             
             // Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load('public/file_to_import/' . $name . '.xlsx')->chunk(10000, function($results) {
             // Excel::selectSheetsByIndex(0)->load('public/file_to_import/' . $name . '.xlsx', function($results) {
-            Excel::batch('public/file_to_import/p', function($rows, $file) {
+            Excel::batch('public/file_to_import/2010', function($rows, $file) {
             
             $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
                             'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
@@ -128,10 +128,11 @@ class NewImport extends Command
                         $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->categoria_id = $categoria_id;
                         $afiliado->afp = Util::getAfp($result->afp);
-                        $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 
                         $afiliado->fech_nac = Util::date($result->nac);
                         $afiliado->fech_ing = Util::date($result->ing);
+
+                        $afiliado->matri = Util::calcMatri($afiliado->fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 
                         $afiliado->nua = Util::getAfp($result->nua);
                         
@@ -161,10 +162,11 @@ class NewImport extends Command
                         $afiliado->fech_gra = $date;
                         $afiliado->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $afiliado->afp = Util::getAfp($result->afp);
-                        $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
                         
                         $afiliado->fech_nac = Util::date($result->nac);
                         $afiliado->fech_ing = Util::date($result->ing);
+                        
+                        $afiliado->matri = Util::calcMatri($afiliado->fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);
 
                         $afiliado->nua = $result->nua;
                         
