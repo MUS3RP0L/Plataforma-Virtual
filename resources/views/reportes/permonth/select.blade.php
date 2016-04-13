@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-
+                    total de Registros: {{ $total }}
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <table class="table table-bordered table-hover" style="width:100%;font-size: 14px">

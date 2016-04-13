@@ -51,7 +51,7 @@ class ReporteController extends Controller
 
 
         $totalRegistrosC = DB::table('aportes')
-                ->select(DB::raw('SUM(aportes.sue) sueldo, SUM(aportes.b_ant) anti,
+                ->select(DB::raw('COUNT(DISTINCT(id)) total, SUM(aportes.sue) sueldo, SUM(aportes.b_ant) anti,
                                 SUM(aportes.b_est) b_est, SUM(aportes.b_car) b_car,
                                 SUM(aportes.b_fro) b_fro, SUM(aportes.b_ori) b_ori,
                                 SUM(aportes.b_seg) b_seg, SUM(aportes.gan) gan, 
@@ -61,6 +61,7 @@ class ReporteController extends Controller
                                 ->where('aportes.desg', '<>', '5')
                                 ->get();
         foreach ($totalRegistrosC as $item) {
+            $totalC = $item->total;
             $sueldoC = $item->sueldo;
             $antiC = $item->anti;
             $b_estC = $item->b_est;
@@ -75,7 +76,7 @@ class ReporteController extends Controller
             $musC = $item->mus;
         }
         $totalRegistrosB = DB::table('aportes')
-                ->select(DB::raw('SUM(aportes.sue) sueldo, SUM(aportes.b_ant) anti,
+                ->select(DB::raw('COUNT(DISTINCT(id)) total, SUM(aportes.sue) sueldo, SUM(aportes.b_ant) anti,
                                 SUM(aportes.b_est) b_est, SUM(aportes.b_car) b_car,
                                 SUM(aportes.b_fro) b_fro, SUM(aportes.b_ori) b_ori,
                                 SUM(aportes.b_seg) b_seg, SUM(aportes.gan) gan, 
@@ -86,6 +87,7 @@ class ReporteController extends Controller
                                 ->get();
 
         foreach ($totalRegistrosB as $item) {
+            $totalB = $item->total;
             $sueldoB = $item->sueldo;
             $antiB = $item->anti;
             $b_estB = $item->b_est;
@@ -99,6 +101,7 @@ class ReporteController extends Controller
             $svB = $item->sv;
             $musB = $item->mus;
         }
+        $total = $totalC + $totalB;
         $sueldo = $sueldoC + $sueldoB;
         $anti = $antiC + $antiB;
         $b_est = $b_estC + $b_estB;
@@ -115,6 +118,7 @@ class ReporteController extends Controller
         $anios = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest ) gest'))->lists('gest');
         $meses = Util::getAllMeses();
         $data = array(
+            'total' => Util::formatMoney($total),
             'totalSueldoC' => Util::formatMoney($sueldoC),
             'totalSueldoB' => Util::formatMoney($sueldoB),
             'totalSueldo' => Util::formatMoney($sueldo),

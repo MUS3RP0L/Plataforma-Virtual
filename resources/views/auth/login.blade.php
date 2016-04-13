@@ -19,7 +19,7 @@
         			<div class="panel-body">
 
 			        	{!! Form::open(['url' => 'login', 'role' => 'form', 'class' => 'form-horizontal'])!!}
-			        		<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+							<input name="_token" type="hidden" value="{!! csrf_token() !!}" />
 
 				            <div class="form-group form-group-lg">
 				              	{!! Form::label('usermane', 'USUARIO', ['class' => 'col-md-4 control-label']) !!}

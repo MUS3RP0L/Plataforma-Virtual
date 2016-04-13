@@ -86,7 +86,7 @@ class NewImport extends Command
             
             // Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load('public/file_to_import/' . $name . '.xlsx')->chunk(10000, function($results) {
             // Excel::selectSheetsByIndex(0)->load('public/file_to_import/' . $name . '.xlsx', function($results) {
-            Excel::batch('public/file_to_import/2010', function($rows, $file) {
+            Excel::batch('public/file_to_import/2015', function($rows, $file) {
             
             $col = array('car', 'pat', 'mat', 'nom', 'nom2', 'apes', 'eciv', 'sex', 'nac', 'ing', 'mes', 'a_o', 'uni', 'desg', 
                             'niv', 'gra', 'item', 'sue', 'cat', 'est', 'carg', 'fro', 'ori', 'bseg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'afp', 'pag', 'nua', 'mus');
