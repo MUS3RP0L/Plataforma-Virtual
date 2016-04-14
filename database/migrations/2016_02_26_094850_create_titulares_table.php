@@ -26,18 +26,18 @@ class CreateTitularesTable extends Migration
             $table->string('mat')->nullable();
             $table->string('nom')->nullable();
             $table->string('nom2')->nullable();
-            $table->string('ap_esp')->nullable();
 
-            $table->enum('sex', ['M', 'F'])->nullable();
+            $table->string('paren')->nullable();
 
-            $table->date('fech_nac')->nullable();
-
-            $table->string('zona')->nullable();
-            $table->string('calle')->nullable();
+            $table->string('zona_domi')->nullable();
+            $table->string('calle_domi')->nullable();
             $table->string('num_domi')->nullable();
-            $table->string('tele')->nullable();
-            $table->string('celu')->nullable();
-            $table->string('email')->nullable();
+            $table->string('tele_domi')->nullable();
+            $table->string('celu_domi')->nullable();
+
+            $table->string('zona_trab')->nullable();
+            $table->string('calle_trab')->nullable();
+            $table->string('num_trab')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
