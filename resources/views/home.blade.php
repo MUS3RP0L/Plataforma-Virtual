@@ -32,6 +32,16 @@
 				  </div>
 				</div>
 			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+				  <div class="panel-body" style="font-size: 26px;">
+				    <div>
+         				Total de Afiliados<br>
+         				{!! $totalAfi !!}
+        			</div>
+				  </div>
+				</div>
+			</div>
 		</div>
 
 	  	<div class="row">

@@ -31,7 +31,6 @@ class AfiliadoController extends Controller
     public function index()
     {
         return view('afiliados.index');
-
     }
 
     public function afiliadosData(Request $request)

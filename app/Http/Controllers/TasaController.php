@@ -163,15 +163,13 @@ class TasaController extends Controller
         $y = $now->year;
         $m = $now->month;
         
-        $nowlast = Carbon::createFromDate($y, $m, 1)->toDateString();
-
-        $aporTasa = AporTasa::where('gest', '=', $nowlast)->firstOrFail();
+        $aporTasa = AporTasa::whereYear('gest', '=', $now->year)
+                                ->whereMonth('gest', '=', $now->month)->first();
 
         $data = [
             'date' => $now->format('m-Y'),
             'aporTasa' => $aporTasa
         ];
-
         return View('tasas.edit', $data);
     }
 

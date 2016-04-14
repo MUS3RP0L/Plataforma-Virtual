@@ -56,12 +56,13 @@ class HomeController extends Controller
       }
 
     $activities = Activity::orderBy('created_at', 'desc')->take(10)->get();
-    
+    $totalAfi = $totalAfiServ + $totalAfiComi;
+
     $data = [
       'activities' => $activities,
       'totalAfiServ' => $totalAfiServ,
       'totalAfiComi' => $totalAfiComi,
-      // 'totalSueldo' => Util::formatMoney($sueldo),
+      'totalAfi' => $totalAfi,
     ];
 
     return view('home', $data);
