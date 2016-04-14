@@ -17,7 +17,8 @@ class AddQualificationAfi extends Migration
             $table->engine = 'InnoDB';    
             
             $table->bigIncrements('id');         
-            $table->string('cod');
+            $table->integer('cod');
+            $table->string('name')->nullable();
             
             $table->timestamps();
         });
