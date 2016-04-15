@@ -78,8 +78,6 @@ class CreateAportesTable extends Migration
 
             $table->date('gest')->required();
 
-            $table->bigInteger('desg')->nullable();
-
             $table->string('item')->nullable();
 
             $table->string('cat');

@@ -119,9 +119,12 @@ class Import extends Command
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
 
-                        if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
-                        $unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
+                        $afiliado->desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
+
+                        $unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $afiliado->desglose_id)->first()->id;
                         if ($afiliado->unidad_id <> $unidad_id) {$afiliado->unidad_id = $unidad_id;$afiliado->fech_uni = $date;}
+
+                        if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
                         if ($afiliado->grado_id <> $grado_id) {$afiliado->grado_id = $grado_id;$afiliado->fech_gra = $date;}
                         $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
@@ -155,8 +158,9 @@ class Import extends Command
                         $afiliado->est_civ = $result->eciv;
 
                         $afiliado->desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
+
                         $afiliado->sex = $result->sex;
-                        $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $result->desg)->first()->id;
+                        $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $afiliado->desglose_id)->first()->id;
                         $afiliado->fech_uni = $date;
                         if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
@@ -185,8 +189,8 @@ class Import extends Command
                             $aporte->aporte_type_id = 1;
                             $aporte->afiliado_id = $afiliado->id;
                             $aporte->gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
-                            $aporte->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
-                            $aporte->desg = $result->desg;
+                            $aporte->desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
+                            $aporte->unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $aporte->desglose_id)->first()->id;
                             if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                             $aporte->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
                             $aporte->categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;

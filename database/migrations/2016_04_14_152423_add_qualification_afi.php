@@ -25,7 +25,7 @@ class AddQualificationAfi extends Migration
 
         Schema::table('afiliados', function (Blueprint $table) {
             
-            $table->UnsignedBigInteger('desglose_id');
+            $table->UnsignedBigInteger('desglose_id')->nullable();
 
             $table->string('motivo_dece')->nullable();
 
@@ -44,6 +44,13 @@ class AddQualificationAfi extends Migration
             $table->date('fech_ini_reco')->nullable();
             $table->date('fech_fin_reco')->nullable();
 
+            $table->foreign('desglose_id')->references('id')->on('desgloses');
+
+        });
+
+        Schema::table('aportes', function (Blueprint $table) {
+            
+            $table->UnsignedBigInteger('desglose_id')->nullable();
             $table->foreign('desglose_id')->references('id')->on('desgloses');
 
         });
