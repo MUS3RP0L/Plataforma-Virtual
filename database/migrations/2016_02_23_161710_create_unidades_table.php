@@ -16,12 +16,16 @@ class CreateUnidadesTable extends Migration
         
             $table->engine = 'InnoDB';    
             
-            $table->bigIncrements('id');         
+            $table->bigIncrements('id'); 
+            $table->UnsignedBigInteger('desglose_id');
+
             $table->string('ciu');
             $table->string('cod');
             $table->string('lit');
             $table->string('abre');
             
+            $table->foreign('desglose_id')->references('id')->on('desgloses');
+
             $table->timestamps();
         });
 

@@ -21,10 +21,21 @@ class UnidadTableSeeder extends Seeder
     private function createUnidades()
     {
         $statuses = [
-	    	['id' => '1', 'ciu' => 'SUCRE', 'cod' => '10182', 'abre' => 'CDPN.', 'lit' => 'CMDO DPTAL SUCRE'],
-	    	['id' => '2', 'ciu' => 'SUCRE', 'cod' => '10194', 'abre' => 'DCSP.', 'lit' => 'NARCOTICOS SUCRE'],
-	    	['id' => '3', 'ciu' => 'LA PAZ', 'cod' => '20181', 'abre' => 'S.F.E.', 'lit' => 'SEGURIDAD FISICA ESTATAL'],
-	    	['id' => '4', 'ciu' => 'LA PAZ', 'cod' => '20182', 'abre' => 'CDPN.', 'lit' => 'CMDO DPTAL LA PAZ'],
+	    	['id' => '1', 'desglose_id' => '1', 'ciu' => 'CHUQUISACA', 'cod' => '10182', 'abre' => 'CD.PN.CH.', 'lit' => 'COMANDO DEPARTAMENTAL CHUQUISACA'],
+	    	['id' => '2', 'desglose_id' => '6', 'ciu' => 'CHUQUISACA', 'cod' => '10182', 'abre' => 'BAT.SEG.CH.', 'lit' => 'BAT. SEG. FISICA PRIVADA CH. (SERVICIOS)'],
+
+	    	['id' => '3', 'desglose_id' => '1', 'ciu' => 'CHUQUISACA', 'cod' => '10194', 'abre' => 'F.E.L.C.N.CH.', 'lit' => 'F.E.L.C.N. CHUQUISACA'],
+
+	    	['id' => '4', 'desglose_id' => '1', 'ciu' => 'LA PAZ', 'cod' => '20181', 'abre' => 'S.F.E.', 'lit' => 'SEGURIDAD FISICA ESTATAL'],
+	    	['id' => '5', 'desglose_id' => '4', 'ciu' => 'LA PAZ', 'cod' => '20181', 'abre' => 'S.F.E.IT.0', 'lit' => 'SEG. FIS. ESTATAL - IT. CERO'],
+
+	    	['id' => '6', 'desglose_id' => '1', 'ciu' => 'LA PAZ', 'cod' => '20182', 'abre' => 'CDPN.', 'lit' => 'CMDO DPTAL LA PAZ'],
+	    	['id' => '7', 'desglose_id' => '7', 'ciu' => 'LA PAZ', 'cod' => '20182', 'abre' => 'CDPN.', 'lit' => 'CMDO DPTAL LA PAZ'],
+	    	['id' => '8', 'desglose_id' => '9', 'ciu' => 'LA PAZ', 'cod' => '20182', 'abre' => 'CDPN.', 'lit' => 'CMDO DPTAL LA PAZ'],
+	    	['id' => '9', 'desglose_id' => '10', 'ciu' => 'LA PAZ', 'cod' => '20182', 'abre' => 'CDPN.', 'lit' => 'CMDO DPTAL LA PAZ'],
+	    	['id' => '10', 'desglose_id' => '6', 'ciu' => 'LA PAZ', 'cod' => '20182', 'abre' => 'CDPN.', 'lit' => 'CMDO DPTAL LA PAZ'],
+
+
 	    	['id' => '5', 'ciu' => 'LA PAZ', 'cod' => '20183', 'abre' => 'ANAPOL', 'lit' => 'ACADEMIA NAL DE POLICIA'],
 	    	['id' => '6', 'ciu' => 'LA PAZ', 'cod' => '20184', 'abre' => 'DP2', 'lit' => 'DISTRITO POLICIALNo 2'],
 	    	['id' => '7', 'ciu' => 'LA PAZ', 'cod' => '20185', 'abre' => 'DP5', 'lit' => 'DISTRITO POLICIALNo 5'],

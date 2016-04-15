@@ -46,10 +46,9 @@ class AddQualificationAfi extends Migration
 
             $table->foreign('desglose_id')->references('id')->on('desgloses');
 
-
         });
 
-        Schema::create('conyugues', function (Blueprint $table) {
+        Schema::create('conyuges', function (Blueprint $table) {
         
             $table->engine = 'InnoDB';
             
@@ -83,7 +82,7 @@ class AddQualificationAfi extends Migration
             $table->UnsignedBigInteger('user_id');
 
             $table->UnsignedBigInteger('afiliado_id');
-            $table->UnsignedBigInteger('conyugue_id');
+            $table->UnsignedBigInteger('conyuge_id');
             $table->UnsignedBigInteger('titular_id');
             $table->UnsignedBigInteger('departamento_id');
 
@@ -98,7 +97,7 @@ class AddQualificationAfi extends Migration
             $table->foreign('user_id')->references('id')->on('users'); 
 
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
-            $table->foreign('conyugue_id')->references('id')->on('conyugues');
+            $table->foreign('conyuge_id')->references('id')->on('conyuges');
             $table->foreign('titular_id')->references('id')->on('titulares');
             $table->foreign('departamento_id')->references('id')->on('departamentos');
 
