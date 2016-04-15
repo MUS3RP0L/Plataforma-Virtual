@@ -27,23 +27,6 @@ class AddQualificationAfi extends Migration
             
             $table->UnsignedBigInteger('desglose_id')->nullable();
 
-            $table->string('motivo_dece')->nullable();
-
-            $table->date('fech_baja')->nullable();
-            $table->string('motivo_baja')->nullable();
-
-            $table->date('fech_ini_apor')->nullable();
-            $table->date('fech_fin_apor')->nullable();
-
-            $table->date('fech_ini_serv')->nullable();
-            $table->date('fech_fin_serv')->nullable();
-
-            $table->date('fech_ini_anti')->nullable();
-            $table->date('fech_fin_anti')->nullable();
-
-            $table->date('fech_ini_reco')->nullable();
-            $table->date('fech_fin_reco')->nullable();
-
             $table->foreign('desglose_id')->references('id')->on('desgloses');
 
         });
@@ -102,6 +85,18 @@ class AddQualificationAfi extends Migration
             $table->UnsignedBigInteger('departamento_id');
 
             $table->date('fech_emi');
+
+            $table->date('fech_ini_apor')->nullable();
+            $table->date('fech_fin_apor')->nullable();
+
+            $table->date('fech_ini_serv')->nullable();
+            $table->date('fech_fin_serv')->nullable();
+
+            $table->date('fech_ini_anti')->nullable();
+            $table->date('fech_fin_anti')->nullable();
+
+            $table->date('fech_ini_reco')->nullable();
+            $table->date('fech_fin_reco')->nullable();
 
             $table->date('fech_ini_pcot')->nullable();
             $table->date('fech_fin_pcot')->nullable();

@@ -48,7 +48,9 @@ class AfiTypeTableSeeder extends Seeder
             ['id' => '7', 'afi_type_id' => '3', 'name' => 'Financiero'],
             ['id' => '8', 'afi_type_id' => '3', 'name' => 'Inversiones'],
             ['id' => '9', 'afi_type_id' => '4', 'name' => 'Forzosa'],
-            ['id' => '10', 'afi_type_id' => '4', 'name' => 'Voluntaria']
+            ['id' => '10', 'afi_type_id' => '4', 'name' => 'Voluntaria'],
+            ['id' => '11', 'afi_type_id' => '4', 'name' => 'Temporal']
+
 
         ];
 
