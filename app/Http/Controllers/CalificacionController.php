@@ -3,9 +3,17 @@
 namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
+use Validator;
+use Session;
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
+use Muserpol\Afiliado;
+use Muserpol\Calificacion;
+use Datatables;
+use Muserpol\Helper\Util;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 class CalificacionController extends Controller
 {
@@ -24,9 +32,23 @@ class CalificacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($afid)
     {
-        //
+        $afiliado = Afiliado::idIs($afid)->first();
+
+
+        $calificacion = Calificacion::where('afiliado_id', '=', $afid)->first();
+
+        if (!$calificacion) {
+            $calificacion = new Calificacion;
+        }
+
+        $data = array(
+            'afiliado' => $afiliado,
+            'calificacion' => $calificacion,
+        );
+
+        return view('aportes.index', $data);
     }
 
     /**

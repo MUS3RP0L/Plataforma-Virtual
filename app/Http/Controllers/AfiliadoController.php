@@ -175,6 +175,11 @@ class AfiliadoController extends Controller
         }
 
 
+        if ($afiliado->depa_dom || $afiliado->zona || $afiliado->calle || $afiliado->num_domi || $afiliado->muni || $afiliado->tele || $afiliado->celu || $afiliado->email) {
+            $info_dom = 1;
+        }else{
+            $info_dom = 0;
+        }
 
 
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
@@ -226,6 +231,7 @@ class AfiliadoController extends Controller
 
         $data = array(
             'afiliado' => $afiliado,
+            'info_dom' => $info_dom,
             'list_est_civ' => $list_est_civ,
             'list_afi_states' => $list_afi_states,
             'list_unidades' => $list_unidades,
