@@ -12,7 +12,7 @@ class Unidad extends Model
 	protected $fillable = [
 	
 	'cod',
-	'ciu',
+	'dist',
 	'lit',
 	'abre'
 

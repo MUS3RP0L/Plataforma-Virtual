@@ -19,7 +19,7 @@ class CreateUnidadesTable extends Migration
             $table->bigIncrements('id'); 
             $table->UnsignedBigInteger('desglose_id');
 
-            $table->string('ciu');
+            $table->string('dist');
             $table->string('cod');
             $table->string('lit');
             $table->string('abre');
