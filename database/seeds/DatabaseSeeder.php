@@ -15,8 +15,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call(UserTableSeeder::class);
-        $this->call(GradoTableSeeder::class);
-        $this->call(UnidadTableSeeder::class);
+        $this->call(GradoTableSeeder::class);   
         $this->call(DepartamentoTableSeeder::class);
         $this->call(AfiTypeTableSeeder::class);
         $this->call(MunicipiosTableSeeder::class);
@@ -27,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AporteTypeTableSeeder::class);
         $this->call(PagoTypesTableSeeder::class);
         $this->call(DesgloseTableSeeder::class);
+        $this->call(UnidadTableSeeder::class);
 
         Model::reguard();
     }

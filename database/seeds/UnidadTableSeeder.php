@@ -104,60 +104,70 @@ class UnidadTableSeeder extends Seeder
 
 	    	['id' => '48', 'desglose_id' => '1', 'dist' => 'POTOSI', 'cod' => '50194', 'abre' => 'F.E.L.C.N.PT.', 'lit' => 'F.E.L.C.N. POTOSÍ'],
 
-	    	['id' => '49', 'desglose_id' => '1', 'dist' => 'TUPIZA', 'cod' => '50882', 'abre' => 'J.F.PN.TU.', 'lit' => 'JEFATURA FRONTERIZA TUPIZA'],
-	    	['id' => '50', 'desglose_id' => '6', 'dist' => 'TUPIZA', 'cod' => '50882', 'abre' => 'BAT.SEG.FPF.TU.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. TUPIZA'],
+	    	['id' => '49', 'desglose_id' => '1', 'dist' => 'TUPIZA', 'cod' => '50882', 'abre' => 'J.F.PN.TZA.', 'lit' => 'JEFATURA FRONTERIZA TUPIZA'],
+	    	['id' => '50', 'desglose_id' => '6', 'dist' => 'TUPIZA', 'cod' => '50882', 'abre' => 'BAT.SEG.FPF.TZA.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. TUPIZA'],
 
-	    	['id' => '51', 'desglose_id' => '1', 'dist' => 'VILLAZON', 'cod' => '51582', 'abre' => 'J.F.PN.VIZN.', 'lit' => 'JEFATURA FRONTERIZA VILLAZON'],
-	    	['id' => '52', 'desglose_id' => '6', 'dist' => 'VILLAZON', 'cod' => '51582', 'abre' => 'BAT.SEG.FPF.VIZN.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. VILLAZON'],
+	    	/* BUSCAR */
+	    	['id' => '51', 'desglose_id' => '1', 'dist' => 'TUPIZA', 'cod' => '51194', 'abre' => 'F.E.L.C.N.TZA.', 'lit' => 'F.E.L.C.N. TUPIZA'],
+	    	/* BUSCAR */
 
-	    	['id' => '53', 'desglose_id' => '1', 'dist' => 'VILLAZON', 'cod' => '51594', 'abre' => 'F.E.L.C.N.VI.', 'lit' => 'F.E.L.C.N. VILLAZON'],
+	    	['id' => '52', 'desglose_id' => '1', 'dist' => 'VILLAZON', 'cod' => '51582', 'abre' => 'J.F.PN.VIZN.', 'lit' => 'JEFATURA FRONTERIZA VILLAZON'],
+	    	['id' => '53', 'desglose_id' => '6', 'dist' => 'VILLAZON', 'cod' => '51582', 'abre' => 'BAT.SEG.FPF.VIZN.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. VILLAZON'],
 
-	    	['id' => '54', 'desglose_id' => '1', 'dist' => 'TARIJA', 'cod' => '60182', 'abre' => 'C.D.PN.TJA.', 'lit' => 'COMANDO DEPARTAMENTAL TARIJA'],
-	    	['id' => '55', 'desglose_id' => '6', 'dist' => 'TARIJA', 'cod' => '60182', 'abre' => 'BAT.SEG.FP.TJA.', 'lit' => 'BAT. SEG. FISICA PRIVADA TJA. (SERVICIOS)'],
+	    	['id' => '54', 'desglose_id' => '1', 'dist' => 'VILLAZON', 'cod' => '51594', 'abre' => 'F.E.L.C.N.VI.', 'lit' => 'F.E.L.C.N. VILLAZON'],
 
-	    	['id' => '56', 'desglose_id' => '1', 'dist' => 'TARIJA', 'cod' => '60194', 'abre' => 'F.E.L.C.N.TJA.', 'lit' => 'F.E.L.C.N. TARIJA'],
+	    	['id' => '55', 'desglose_id' => '1', 'dist' => 'TARIJA', 'cod' => '60182', 'abre' => 'C.D.PN.TJA.', 'lit' => 'COMANDO DEPARTAMENTAL TARIJA'],
+	    	['id' => '56', 'desglose_id' => '6', 'dist' => 'TARIJA', 'cod' => '60182', 'abre' => 'BAT.SEG.FP.TJA.', 'lit' => 'BAT. SEG. FISICA PRIVADA TJA. (SERVICIOS)'],
 
-	    	['id' => '57', 'desglose_id' => '1', 'dist' => 'YACUIBA', 'cod' => '60294', 'abre' => 'F.E.L.C.N.YA.', 'lit' => 'F.E.L.C.N. YACUIBA'],
+	    	['id' => '57', 'desglose_id' => '1', 'dist' => 'TARIJA', 'cod' => '60194', 'abre' => 'F.E.L.C.N.TJA.', 'lit' => 'F.E.L.C.N. TARIJA'],
 
-	    	['id' => '58', 'desglose_id' => '1', 'dist' => 'YACUIBA', 'cod' => '60382', 'abre' => 'J.F.PN.YA.', 'lit' => 'JEFATURA FRONTERIZA YACUIBA'],
-	    	['id' => '59', 'desglose_id' => '6', 'dist' => 'YACUIBA', 'cod' => '60382', 'abre' => 'BAT.SEG.FP.YA.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. YACUIBA'],
+	    	['id' => '58', 'desglose_id' => '1', 'dist' => 'YACUIBA', 'cod' => '60294', 'abre' => 'F.E.L.C.N.YA.', 'lit' => 'F.E.L.C.N. YACUIBA'],
 
-	    	['id' => '60', 'desglose_id' => '1', 'dist' => 'VILLAMONTES', 'cod' => '60482', 'abre' => 'J.F.PN.VITS.', 'lit' => 'JEFATURA PROVINCIAL VILLAMONTES'],
-	    	['id' => '61', 'desglose_id' => '6', 'dist' => 'VILLAMONTES', 'cod' => '60482', 'abre' => 'BAT.SEG.FP.VITS.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. VILLAMONTES'],
+	    	['id' => '59', 'desglose_id' => '1', 'dist' => 'YACUIBA', 'cod' => '60382', 'abre' => 'J.F.PN.YA.', 'lit' => 'JEFATURA FRONTERIZA YACUIBA'],
+	    	['id' => '60', 'desglose_id' => '6', 'dist' => 'YACUIBA', 'cod' => '60382', 'abre' => 'BAT.SEG.FP.YA.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. YACUIBA'],
 
-	    	['id' => '62', 'desglose_id' => '1', 'dist' => 'BERMEJO', 'cod' => '60582', 'abre' => 'J.F.PN.BMJO.', 'lit' => 'JEFATURA FRONTERIZA BERMEJO'],
-	    	['id' => '63', 'desglose_id' => '6', 'dist' => 'BERMEJO', 'cod' => '60582', 'abre' => 'BAT.SEG.FP.BMJO.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. BERMEJO'],
+	    	['id' => '61', 'desglose_id' => '1', 'dist' => 'VILLAMONTES', 'cod' => '60482', 'abre' => 'J.F.PN.VITS.', 'lit' => 'JEFATURA PROVINCIAL VILLAMONTES'],
+	    	['id' => '62', 'desglose_id' => '6', 'dist' => 'VILLAMONTES', 'cod' => '60482', 'abre' => 'BAT.SEG.FP.VITS.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. VILLAMONTES'],
 
-	    	['id' => '64', 'desglose_id' => '1', 'dist' => 'SANTA CRUZ', 'cod' => '70182', 'abre' => 'C.D.PN.SC.', 'lit' => 'COMANDO DEPARTAMENTAL SANTA CRUZ'],
-	    	['id' => '65', 'desglose_id' => '4', 'dist' => 'SANTA CRUZ', 'cod' => '70182', 'abre' => 'C.D.PN.SC.IT.0', 'lit' => 'COMANDO DEPARTAMENTAL SANTA CRUZ - IT CERO '],
-	    	['id' => '66', 'desglose_id' => '6', 'dist' => 'SANTA CRUZ', 'cod' => '70182', 'abre' => 'BAT.SEG.FP.SC.', 'lit' => 'BAT. SEG. FISICA PRIVADA SC. (SERVICIOS)'],
+	    	['id' => '63', 'desglose_id' => '1', 'dist' => 'BERMEJO', 'cod' => '60582', 'abre' => 'J.F.PN.BMJO.', 'lit' => 'JEFATURA FRONTERIZA BERMEJO'],
+	    	['id' => '64', 'desglose_id' => '6', 'dist' => 'BERMEJO', 'cod' => '60582', 'abre' => 'BAT.SEG.FP.BMJO.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. BERMEJO'],
 
-	    	['id' => '67', 'desglose_id' => '1', 'dist' => 'SANTA CRUZ', 'cod' => '70194', 'abre' => 'F.E.L.C.N.SC.', 'lit' => 'F.E.L.C.N. SANTA CRUZ'],
+	    	['id' => '65', 'desglose_id' => '1', 'dist' => 'SANTA CRUZ', 'cod' => '70182', 'abre' => 'C.D.PN.SC.', 'lit' => 'COMANDO DEPARTAMENTAL SANTA CRUZ'],
+	    	['id' => '66', 'desglose_id' => '4', 'dist' => 'SANTA CRUZ', 'cod' => '70182', 'abre' => 'C.D.PN.SC.IT.0', 'lit' => 'COMANDO DEPARTAMENTAL SANTA CRUZ - IT CERO '],
+	    	['id' => '67', 'desglose_id' => '6', 'dist' => 'SANTA CRUZ', 'cod' => '70182', 'abre' => 'BAT.SEG.FP.SC.', 'lit' => 'BAT. SEG. FISICA PRIVADA SC. (SERVICIOS)'],
 
-	    	['id' => '68', 'desglose_id' => '1', 'dist' => 'SAN MATIAS', 'cod' => '70294', 'abre' => 'F.E.L.C.N.SM.', 'lit' => 'F.E.L.C.N. SAN MATIAS'],
+	    	['id' => '68', 'desglose_id' => '1', 'dist' => 'SANTA CRUZ', 'cod' => '70194', 'abre' => 'F.E.L.C.N.SC.', 'lit' => 'F.E.L.C.N. SANTA CRUZ'],
 
-	    	['id' => '69', 'desglose_id' => '1', 'dist' => 'S. I. VELASCO', 'cod' => '70382', 'abre' => 'J.F.PN.SAIGVE.', 'lit' => 'JEFATURA PROVINCIAL SAN IGNACIO DE VELASCO'],
+	    	['id' => '69', 'desglose_id' => '1', 'dist' => 'SAN MATIAS', 'cod' => '70294', 'abre' => 'F.E.L.C.N.SM.', 'lit' => 'F.E.L.C.N. SAN MATIAS'],
 
-	    	['id' => '70', 'desglose_id' => '1', 'dist' => 'S. I. VELASCO', 'cod' => '70394', 'abre' => 'F.E.L.C.N.SAIGVE.', 'lit' => 'F.E.L.C.N. SAN IGNACIO DE VELASCO'],
+	    	['id' => '70', 'desglose_id' => '1', 'dist' => 'S. I. VELASCO', 'cod' => '70382', 'abre' => 'J.F.PN.SAIGVE.', 'lit' => 'JEFATURA PROVINCIAL SAN IGNACIO DE VELASCO'],
 
-	    	['id' => '71', 'desglose_id' => '1', 'dist' => 'SAN MATIAS', 'cod' => '70482', 'abre' => 'J.F.PN.SAMA.', 'lit' => 'JEFATURA FRONTERIZA SAN MATIAS'],
+	    	['id' => '71', 'desglose_id' => '1', 'dist' => 'S. I. VELASCO', 'cod' => '70394', 'abre' => 'F.E.L.C.N.SAIGVE.', 'lit' => 'F.E.L.C.N. SAN IGNACIO DE VELASCO'],
 
-	    	['id' => '72', 'desglose_id' => '1', 'dist' => 'PTO. SUAREZ', 'cod' => '70582', 'abre' => 'J.F.PN.PTOSUA.', 'lit' => 'JEFATURA FRONTERIZA PUERTO SUAREZ'],
-	    	['id' => '73', 'desglose_id' => '6', 'dist' => 'PTO. SUAREZ', 'cod' => '70582', 'abre' => 'BAT.SEG.FP.PTOSUA.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. PUERTO SUAREZ'],
+	    	['id' => '72', 'desglose_id' => '1', 'dist' => 'SAN MATIAS', 'cod' => '70482', 'abre' => 'J.F.PN.SAMA.', 'lit' => 'JEFATURA FRONTERIZA SAN MATIAS'],
 
-	    	['id' => '74', 'desglose_id' => '1', 'dist' => 'BENI', 'cod' => '80182', 'abre' => 'C.D.PN.BN.', 'lit' => 'CCOMANDO DEPARTAMENTAL BENI'],
-	    	['id' => '75', 'desglose_id' => '6', 'dist' => 'BENI', 'cod' => '80182', 'abre' => 'BAT.SEG.FP.BN.', 'lit' => 'BAT. SEG. FISICA PRIVADA BN. (SERVICIOS)'],
+	    	['id' => '73', 'desglose_id' => '1', 'dist' => 'PTO. SUAREZ', 'cod' => '70582', 'abre' => 'J.F.PN.PTOSUA.', 'lit' => 'JEFATURA FRONTERIZA PUERTO SUAREZ'],
+	    	['id' => '74', 'desglose_id' => '6', 'dist' => 'PTO. SUAREZ', 'cod' => '70582', 'abre' => 'BAT.SEG.FP.PTOSUA.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. PUERTO SUAREZ'],
+	    	
+	    	/* BUSCAR */
+	    	['id' => '75', 'desglose_id' => '6', 'dist' => 'PTO. SUAREZ', 'cod' => '70594', 'abre' => 'F.E.L.C.N.PTOSUA.', 'lit' => 'F.E.L.C.N. PUERTO SUAREZ'],
+			/* BUSCAR */
 
-	    	['id' => '76', 'desglose_id' => '1', 'dist' => 'RIBERALTA', 'cod' => '80186', 'abre' => 'J.F.PN.RIBE.', 'lit' => 'JEFATURA PROVINCIAL RIBERALTA'],
-	    	['id' => '77', 'desglose_id' => '1', 'dist' => 'RIBERALTA', 'cod' => '80186', 'abre' => 'BAT.SEG.FP.RIBE.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. RIBERALTA'],
+	    	['id' => '76', 'desglose_id' => '1', 'dist' => 'BENI', 'cod' => '80182', 'abre' => 'C.D.PN.BN.', 'lit' => 'CCOMANDO DEPARTAMENTAL BENI'],
+	    	['id' => '77', 'desglose_id' => '6', 'dist' => 'BENI', 'cod' => '80182', 'abre' => 'BAT.SEG.FP.BN.', 'lit' => 'BAT. SEG. FISICA PRIVADA BN. (SERVICIOS)'],
 
-	    	['id' => '78', 'desglose_id' => '1', 'dist' => 'BENI', 'cod' => '80194', 'abre' => 'F.E.L.C.N.BN.', 'lit' => 'F.E.L.C.N. BENI'],
+	    	['id' => '78', 'desglose_id' => '1', 'dist' => 'RIBERALTA', 'cod' => '80186', 'abre' => 'J.F.PN.RIBE.', 'lit' => 'JEFATURA PROVINCIAL RIBERALTA'],
+	    	['id' => '79', 'desglose_id' => '6', 'dist' => 'RIBERALTA', 'cod' => '80186', 'abre' => 'BAT.SEG.FP.RIBE.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. RIBERALTA'],
 
-	    	['id' => '79', 'desglose_id' => '1', 'dist' => 'GUAYARAMERIN', 'cod' => '80282', 'abre' => 'J.F.PN.GUAY.', 'lit' => 'JEFATURA FRONTERIZA GUAYARAMERIN'],
-	    	['id' => '80', 'desglose_id' => '1', 'dist' => 'GUAYARAMERIN', 'cod' => '80282', 'abre' => 'BAT.SEG.FP.GUAY.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. GUAYARAMERIN'],
+	    	['id' => '80', 'desglose_id' => '1', 'dist' => 'BENI', 'cod' => '80194', 'abre' => 'F.E.L.C.N.BN.', 'lit' => 'F.E.L.C.N. BENI'],
 
-	    	['id' => '56', 'desglose_id' => '1', 'dist' => 'PANDO', 'cod' => '90182', 'abre' => 'CDPN.', 'lit' => 'CMDO. DPTAL. PANDO'],
-	    	['id' => '57', 'desglose_id' => '1', 'dist' => 'PANDO', 'cod' => '90194', 'abre' => 'DCSP.', 'lit' => 'NARCÓTICOS PANDO']  	
+	    	['id' => '81', 'desglose_id' => '1', 'dist' => 'GUAYARAMERIN', 'cod' => '80282', 'abre' => 'J.F.PN.GUAY.', 'lit' => 'JEFATURA FRONTERIZA GUAYARAMERIN'],
+	    	['id' => '82', 'desglose_id' => '6', 'dist' => 'GUAYARAMERIN', 'cod' => '80282', 'abre' => 'BAT.SEG.FP.GUAY.', 'lit' => 'BAT. SEG. FISICA PRIVADA FRONT. GUAYARAMERIN'],
+
+	    	['id' => '83', 'desglose_id' => '1', 'dist' => 'PANDO', 'cod' => '90182', 'abre' => 'C.D.PN.PD.', 'lit' => 'COMANDO DEPARTAMENTAL PANDO'],
+	    	['id' => '84', 'desglose_id' => '6', 'dist' => 'PANDO', 'cod' => '90182', 'abre' => 'BAT.SEG.FP.PD.', 'lit' => 'BAT. SEG. FISICA PRIVADA PDO. (SERVICIOS)'],
+
+	    	['id' => '85', 'desglose_id' => '1', 'dist' => 'PANDO', 'cod' => '90194', 'abre' => 'F.E.L.C.N.PD.', 'lit' => 'F.E.L.C.N. PANDO']  	
     	];
 
         foreach ($statuses as $status) {

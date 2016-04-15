@@ -74,6 +74,14 @@ class AddQualificationAfi extends Migration
 
         });
 
+        Schema::table('unidades', function (Blueprint $table) {
+            
+            $table->UnsignedBigInteger('desglose_id');
+
+            $table->foreign('desglose_id')->references('id')->on('desgloses');
+
+        });
+
         Schema::create('calificaciones', function(Blueprint $table){
             
             $table->engine = 'InnoDB';
