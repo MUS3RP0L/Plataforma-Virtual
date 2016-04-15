@@ -37,7 +37,7 @@ class DesgloseTableSeeder extends Seeder
 
         foreach ($statuses as $status) {
 
-                Muserpol\PagoType::create($status);
+                Muserpol\Desglose::create($status);
             
         }
     }
