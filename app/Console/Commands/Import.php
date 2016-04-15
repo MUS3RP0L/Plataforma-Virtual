@@ -17,6 +17,7 @@ use Muserpol\Aporte;
 use Muserpol\Grado;
 use Muserpol\Unidad;
 use Muserpol\AporTasa;
+use Muserpol\Desglose;
 use Muserpol\Categoria;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
@@ -108,7 +109,9 @@ class Import extends Command
                     if ($afiliado) {
                         
                         if (Util::decimal($result->sue) <> 0){if ($afiliado->afi_state_id <> 1){$afiliado->afi_state_id = 1;$afiliado->fech_est = $date;}}else{if ($afiliado->afi_state_id <> 2){$afiliado->afi_state_id = 2;$afiliado->fech_est = $date;}}
-                        
+                       
+                        $afiliado->fech_lastg = $date;
+
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
                         $afiliado->nom = $result->nom;
@@ -142,6 +145,8 @@ class Import extends Command
                         $afiliado->fech_est = $date;
                         $afiliado->ci = $carnet;
 
+                        $afiliado->fech_lastg = $date;
+
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
                         $afiliado->nom = $result->nom;
@@ -149,8 +154,9 @@ class Import extends Command
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
 
+                        $afiliado->desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
                         $afiliado->sex = $result->sex;
-                        $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
+                        $afiliado->unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $result->desg)->first()->id;
                         $afiliado->fech_uni = $date;
                         if($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $afiliado->grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
