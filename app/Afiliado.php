@@ -59,6 +59,11 @@ class Afiliado extends Model
         return $this->hasOne('Muserpol\Titular');
     }
 
+    public function conyuge()
+    {
+        return $this->hasOne('Muserpol\Conyuge');
+    }
+
     public function user()
     {
         return $this->belongsTo('Muserpol\User');

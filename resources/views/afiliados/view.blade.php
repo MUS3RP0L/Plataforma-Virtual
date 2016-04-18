@@ -103,7 +103,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="border-top:1px solid #d4e4cd;">
+                                            <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         Segundo Nombre
@@ -184,7 +184,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="border-top:1px solid #d4e4cd;">
+                                            <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         Lugar Nacimiento
@@ -262,7 +262,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Núm Domicilio
@@ -319,7 +319,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Correo Electrónico
@@ -357,7 +357,7 @@
                                     <h3 class="panel-title">Información de Conyuge</h3>
                                 </div>
                                 <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                    <div data-toggle="modal" data-target="#myModal-domicilio"> 
+                                    <div data-toggle="modal" data-target="#myModal-conyuge"> 
                                         <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
                                     </div>
                                 </div>
@@ -366,7 +366,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_dom == 1)
+                                @if($info_cony == 1)
 
                                     <div class="col-md-6">
 
@@ -375,22 +375,10 @@
                                                 <td style="border-top:0;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Departamento
+                                                            Carnet Identidad
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->depa_dom !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Zona
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->zona !!}
+                                                             {!! $conyuge->ci !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -399,22 +387,35 @@
                                                 <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Calle
+                                                            Apellido Paterno
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->calle !!}
+                                                             {!! $conyuge->pat !!}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Núm Domicilio
+                                                            Apellido Materno
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->num_domi !!}
+                                                             {!! $conyuge->mat !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Nombre(s)
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $conyuge->nom !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -428,50 +429,27 @@
                                     <div class="col-md-6">
 
                                         <table class="table" style="width:100%;">
+                                            
                                             <tr>
                                                 <td style="border-top:0;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Municipio
+                                                            Fecha Deceso
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->muni !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Teléfono
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->tele !!}
+                                                             {!! $conyuge->getFullDateNac() !!}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Celular
+                                                            Motivo Deceso
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->celu !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Correo Electrónico
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->email !!}
+                                                            {!! $conyuge->motivo_dece !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -483,7 +461,7 @@
                                     
                                 @else
                                     <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-domicilio"> 
+                                        <div data-toggle="modal" data-target="#myModal-conyuge"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Conyuge">
                                                 <img class="circle" src="{!! asset('images/people.png') !!}" width="45px" alt="icon">                                                                          
                                             </button>
@@ -995,6 +973,89 @@
                                 <span class="help-block">Correo Electrónico</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                </div>
+            {!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal-conyuge" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Información de Conyuge</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::model($conyuge, ['method' => 'PATCH', 'route' => ['conyuge.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <input type="hidden" name="type" value="cony"/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                {!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('ci', $conyuge->ci, ['class'=> 'form-control', 'required']) !!}
+                                <span class="help-block">Núm. Carnet de Identidad</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('pat', $conyuge->pat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Apellido Paterno</span>
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                                {!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('mat', $conyuge->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Apellido Materno</span>
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                                {!! Form::label('nom', 'NOMBRE(S)', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('nom', $conyuge->nom, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Nombre(s)</span>
+                            </div>
+                        </div>                            
+                    </div>
+
+                    <div class="col-md-6">
+                        
+                        <div class="form-group">
+                                {!! Form::label('fech_dece', 'FECHA FALLECIMIENTO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $conyuge->getDataEdit() !!}">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('motivo_dece', 'CAUSA FALLECIMIENTO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::textarea('motivo_dece', $conyuge->motivo_dece, ['class'=> 'form-control', 'cols' => '5', 'rows' => '5']) !!}
+                                <span class="help-block">Motivo de fallecimiento</span>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
 

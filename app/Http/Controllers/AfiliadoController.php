@@ -4,6 +4,7 @@ namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 use Validator;
 use Session;
 use Muserpol\Http\Requests;
@@ -125,6 +126,14 @@ class AfiliadoController extends Controller
     {
         $afiliado = Afiliado::idIs($id)->firstOrFail();
 
+        $conyuge = Conyuge::where('afiliado_id', '=', $id)->first();
+
+        if (!$conyuge) {
+                
+                $conyuge = new Conyuge;
+        }
+
+
         if ($afiliado->sex == 'M') {
             $list_est_civ = array('' => '','C' => 'CASADO','S' => 'SOLTERO','V' => 'VIUDO','D' => 'DIVORCIADO');
         }elseif ($afiliado->sex == 'F') {
@@ -183,6 +192,12 @@ class AfiliadoController extends Controller
             $info_dom = 0;
         }
 
+        if ($conyuge->ci || $conyuge->pat || $conyuge->mat || $conyuge->nom || $conyuge->nom2 || $conyuge->fech_dece || $conyuge->motivo_dece) {
+            $info_cony = 1;
+        }else{
+            $info_cony = 0;
+        }
+
 
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
 
@@ -233,7 +248,9 @@ class AfiliadoController extends Controller
 
         $data = array(
             'afiliado' => $afiliado,
+            'conyuge' => $conyuge,
             'info_dom' => $info_dom,
+            'info_cony' => $info_cony,
             'list_est_civ' => $list_est_civ,
             'list_afi_states' => $list_afi_states,
             'list_unidades' => $list_unidades,
@@ -429,6 +446,7 @@ class AfiliadoController extends Controller
 
             $afiliado = Afiliado::where('id', '=', $id)->firstOrFail();
 
+            $afiliado->user_id = Auth::user()->id;;
             switch ($request->type) {
                 case 'per':
 

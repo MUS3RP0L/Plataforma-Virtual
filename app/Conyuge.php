@@ -25,4 +25,19 @@ class Conyuge extends Model
     {
         return $this->belongsTo('App\Afiliado');
     }
+
+    public function getDataEdit()
+    {	
+		if ($this->fech_dece) {
+		return date("d", strtotime($this->fech_dece))."/".date("m", strtotime($this->fech_dece)). "/".date("Y", strtotime($this->fech_dece));
+ 		}
+    }
+
+    public function getFullDateNac()
+    {	
+		$meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+		if ($this->fech_dece) {
+			return date("d", strtotime($this->fech_dece))." ".$meses[date("n", strtotime($this->fech_dece))-1]. " ".date("Y", strtotime($this->fech_dece));
+		}
+    }
 }

@@ -85,9 +85,11 @@ class Util
 
 	public static function datePick($date)
 	{
-		$newdate = explode("/", $date);
-
-	return date($newdate[2] ."-". $newdate[1] ."-". $newdate[0]);
+		if ($date) {
+			$newdate = explode("/", $date);
+			return date($newdate[2] ."-". $newdate[1] ."-". $newdate[0]);
+		}
+		
 	}
 
 	public static function zero($string)
