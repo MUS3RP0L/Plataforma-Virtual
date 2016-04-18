@@ -16,10 +16,6 @@ class Titular extends Model
 		'mat',
 		'nom',
 		'nom2',
-		'ap_esp',
-		'est_civ',
-		'sex',
-		'matri',
 		'fech_nac'
 		
 	];

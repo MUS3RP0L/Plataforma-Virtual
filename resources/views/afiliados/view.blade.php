@@ -218,7 +218,7 @@
                             </div>
                         </div>
                         <div class="panel-body" style="font-size: 14px">
-                            <div class="row" style="margin-bottom:16px;">
+                            <div class="row" style="margin-bottom:0px;">
 
                                 @if($info_dom == 1)
 
@@ -335,7 +335,20 @@
 
                                     </div>
 
+                                @else
+                                    <div class="row text-center">
+                                        <div data-toggle="modal" data-target="#myModal-domicilio"> 
+                                    <button type="button" class="btn btn-default">
+
+                                    <div class="row-picture">
+
+                                          <img class="circle" src="{!! asset('images/home.png') !!}" width="35px" alt="icon">
+                                        </div>                                    
+                                    </button>
+                                        </div>
+                                    </div>
                                 @endif
+
                             </div>
                         </div>
                     </div>

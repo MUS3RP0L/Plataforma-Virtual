@@ -15,6 +15,8 @@ use Muserpol\Unidad;
 use Muserpol\AfiState;
 use Muserpol\Departamento;
 use Muserpol\Municipio;
+use Muserpol\Titular;
+use Muserpol\Conyuge;
 use Datatables;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
