@@ -25,7 +25,6 @@ class CreateTitularesTable extends Migration
             $table->string('pat')->nullable();
             $table->string('mat')->nullable();
             $table->string('nom')->nullable();
-            $table->string('nom2')->nullable();
 
             $table->string('paren')->nullable();
 

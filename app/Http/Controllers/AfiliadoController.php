@@ -132,6 +132,12 @@ class AfiliadoController extends Controller
                 
                 $conyuge = new Conyuge;
         }
+        $titular = Titular::where('afiliado_id', '=', $id)->first();
+
+        if (!$titular) {
+                
+                $titular = new Conyuge;
+        }
 
 
         if ($afiliado->sex == 'M') {
@@ -249,6 +255,7 @@ class AfiliadoController extends Controller
         $data = array(
             'afiliado' => $afiliado,
             'conyuge' => $conyuge,
+            'titular' => $titular,
             'info_dom' => $info_dom,
             'info_cony' => $info_cony,
             'list_est_civ' => $list_est_civ,

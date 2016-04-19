@@ -479,7 +479,7 @@
                                     <h3 class="panel-title">Información de Titular</h3>
                                 </div>
                                 <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                    <div data-toggle="modal" data-target="#myModal-domicilio"> 
+                                    <div data-toggle="modal" data-target="#myModal-titular"> 
                                         <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
                                     </div>
                                 </div>
@@ -497,22 +497,10 @@
                                                 <td style="border-top:0;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Departamento
+                                                            Carnet Identidad
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->depa_dom !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Zona
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->zona !!}
+                                                            {!! $titular->ci !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -521,10 +509,10 @@
                                                 <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Calle
+                                                            Paterno
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->calle !!}
+                                                            {!! $titular->pat !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -533,10 +521,34 @@
                                                 <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Núm Domicilio
+                                                            Materno
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->num_domi !!}
+                                                            {!! $titular->mat !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Nombre(s)
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $titular->nom !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Parentesco
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $titular->paren !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -554,22 +566,10 @@
                                                 <td style="border-top:0;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Municipio
+                                                            Zona Domicilio
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->muni !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Teléfono
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->tele !!}
+                                                            {!! $titular->zona_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -578,10 +578,10 @@
                                                 <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Celular
+                                                            Calle Domicilio
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->celu !!}
+                                                            {!! $titular->calle_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -590,10 +590,34 @@
                                                 <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Correo Electrónico
+                                                            Núm Domicilio
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->email !!}
+                                                            {!! $titular->num_domi !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Teléfono Domicilio
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $titular->tele_domi !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Celular Electrónico
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $titular->celu_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -1074,6 +1098,111 @@
     </div>
 </div>
 
+<div id="myModal-titular" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Información de Titular</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::model($titular, ['method' => 'PATCH', 'route' => ['titular.update', $titular->id], 'class' => 'form-horizontal']) !!}
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <input type="hidden" name="type" value="titu"/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                {!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('ci', $titular->ci, ['class'=> 'form-control', 'required']) !!}
+                                <span class="help-block">Núm. Carnet de Identidad</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('pat', $titular->pat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Apellido Paterno</span>
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                                {!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('mat', $titular->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Apellido Materno</span>
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                                {!! Form::label('nom', 'NOMBRE(S)', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('nom', $titular->nom, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Nombre(s)</span>
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                                {!! Form::label('titu', 'PARENTESCO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('titu', $titular->titu, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Parentesco</span>
+                            </div>
+                        </div>                           
+                    </div>
+
+                    <div class="col-md-6">
+                        
+                        <div class="form-group">
+                                {!! Form::label('zona', 'ZONA', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('zona', $titular->zona, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Zona</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('calle', 'CALLE', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('calle', $titular->calle, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Calle</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('num_domi', 'NÚMERO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('num_domi', $titular->num_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Número de Domicilio</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('tele', 'TELÉFONO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('tele', $titular->tele, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Teléfono fijo</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('celu', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('celu', $titular->celu, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Teléfono Celular</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                </div>
+            {!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="myModal-policial" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">

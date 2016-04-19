@@ -51,6 +51,9 @@ Route::group(['middleware' => 'auth'], function() {
 	//conyuge
 	Route::resource('conyuge', 'ConyugeController');
 
+	//titular
+	Route::resource('titular', 'TitularController');
+
 	//view Registros Aportes
 	// Route::resource('aportes', 'AporteController');
 

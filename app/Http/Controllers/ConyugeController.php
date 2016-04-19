@@ -127,7 +127,6 @@ class ConyugeController extends Controller
                     $conyuge->pat = trim($request->pat);
                     $conyuge->mat = trim($request->mat);
                     $conyuge->nom = trim($request->nom);
-                    $conyuge->nom2 = trim($request->nom2);
 
                     $conyuge->fech_dece = Util::datePick($request->fech_dece); 
                     $conyuge->motivo_dece = trim($request->motivo_dece);
