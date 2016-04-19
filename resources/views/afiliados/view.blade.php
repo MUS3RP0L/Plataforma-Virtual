@@ -381,9 +381,18 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                            
+
+                                        </table>
+
+
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        <table class="table" style="width:100%;">
                                             <tr>
-                                                
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                <td style="border-top:0;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Nombre(s)
@@ -394,18 +403,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
-                                        </table>
-
-
-                                    </div>
-
-                                    <div class="col-md-6">
-
-                                        <table class="table" style="width:100%;">
-                                            
                                             <tr>
-                                                <td style="border-top:0;">
+                                                <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Fecha Deceso
@@ -450,7 +449,7 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Información de Titular</h3>
+                                    <h3 class="panel-title">Información de Solicitante</h3>
                                 </div>
                                 <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                     <div data-toggle="modal" data-target="#myModal-titular"> 
@@ -613,11 +612,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
                 </div>
 
                 <div class="col-md-6">
@@ -1028,7 +1022,7 @@
                                 {!! Form::label('fech_dece', 'FECHA FALLECIMIENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $conyuge->getDataEdit() !!}">
+                                    <input type="text" class="form-control datepicker input-append" name="fech_dece" value="{!! $conyuge->getDataEdit() !!}">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </div>
@@ -1038,7 +1032,7 @@
                         <div class="form-group">
                                 {!! Form::label('motivo_dece', 'CAUSA FALLECIMIENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::textarea('motivo_dece', $conyuge->motivo_dece, ['class'=> 'form-control', 'cols' => '5', 'rows' => '5']) !!}
+                                {!! Form::textarea('motivo_dece', $conyuge->motivo_dece, ['class'=> 'form-control', 'cols' => '5', 'rows' => '4']) !!}
                                 <span class="help-block">Motivo de fallecimiento</span>
                             </div>
                         </div>
