@@ -180,6 +180,13 @@ class AfiliadoController extends Controller
         {
             $afiliado->depa_nat = ""; 
         }
+        
+        if ($afiliado->depa_dir_id) {
+            $afiliado->depa_dir = Departamento::select('name')->where('id', '=', $afiliado->depa_dir_id)->firstOrFail()->name;
+        }else
+        {
+            $afiliado->depa_dir = ""; 
+        }
 
         if ($afiliado->muni_id) {
             $afiliado->muni = Municipio::select('name')->where('id', '=', $afiliado->muni_id)->firstOrFail()->name;
@@ -466,6 +473,7 @@ class AfiliadoController extends Controller
                     $afiliado->fech_nac = Util::datePick($request->fech_nac); 
                     $afiliado->est_civ = trim($request->est_civ); 
                     if ($afiliado->depa_nat_id <> trim($request->depa_nat)) {$afiliado->depa_nat_id = trim($request->depa_nat);}
+                    
                     $afiliado->save();
                     
                     $message = "Información personal de Afiliado actualizado con éxito";
@@ -473,14 +481,14 @@ class AfiliadoController extends Controller
 
                 case 'dom':
                     
-                    if ($afiliado->muni_id <> trim($request->muni)) {$afiliado->muni_id = trim($request->muni);}
+                    if ($afiliado->depa_dir_id <> trim($request->depa_dir)) {$afiliado->depa_dir_id = trim($request->depa_dir);}
                     $afiliado->zona = trim($request->zona);
                     $afiliado->calle = trim($request->calle);
                     $afiliado->num_domi = trim($request->num_domi);
                     
                     $afiliado->tele = trim($request->tele);
                     $afiliado->celu = trim($request->celu); 
-                    $afiliado->email = trim($request->email); 
+
                     $afiliado->save();
                     
                     $message = "Información de domicilio de afiliado actualizado con éxito";

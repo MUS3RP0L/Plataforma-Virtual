@@ -232,7 +232,7 @@
                                                             Departamento
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->depa_dom !!}
+                                                            {!! $afiliado->depa_dir !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -919,7 +919,7 @@
                                     {!! Form::label('depa_dir', 'DEPARTA MENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::select('depa_dir', $list_depas, $afiliado->depa_dir_id, ['class' => 'combobox form-control']) !!}
-                                <span class="help-block">Seleccione Departamento y Municipio</span>
+                                <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -936,15 +936,16 @@
                                 <span class="help-block">Calle</span>
                             </div>
                         </div>
+                                                          
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                                 {!! Form::label('num_domi', 'NÚMERO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('num_domi', $afiliado->num_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Número de Domicilio</span>
                             </div>
-                        </div>                                  
-                    </div>
-                    <div class="col-md-6">
+                        </div>
                         <div class="form-group">
                                 {!! Form::label('tele', 'TELÉFONO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
@@ -957,13 +958,6 @@
                             <div class="col-md-8">
                                 {!! Form::text('celu', $afiliado->celu, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Teléfono Celular</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('email', 'CORREO ELECTRÓNICO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('email', $afiliado->email, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toLowerCase()']) !!}
-                                <span class="help-block">Correo Electrónico</span>
                             </div>
                         </div>
                     </div>
