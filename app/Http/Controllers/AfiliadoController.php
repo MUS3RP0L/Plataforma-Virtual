@@ -136,7 +136,7 @@ class AfiliadoController extends Controller
 
         if (!$titular) {
                 
-                $titular = new Conyuge;
+                $titular = new Titular;
         }
 
 
@@ -211,6 +211,12 @@ class AfiliadoController extends Controller
             $info_cony = 0;
         }
 
+        if ($titular->ci || $titular->pat || $titular->mat || $titular->nom || $titular->nom2) {
+            $info_titu = 1;
+        }else{
+            $info_titu = 0;
+        }
+
 
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
 
@@ -265,6 +271,7 @@ class AfiliadoController extends Controller
             'titular' => $titular,
             'info_dom' => $info_dom,
             'info_cony' => $info_cony,
+            'info_titu' => $info_titu,
             'list_est_civ' => $list_est_civ,
             'list_afi_states' => $list_afi_states,
             'list_unidades' => $list_unidades,

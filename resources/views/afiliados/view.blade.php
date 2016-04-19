@@ -461,7 +461,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_dom == 1)
+                                @if($info_titu == 1)
 
                                     <div class="col-md-6">
 
@@ -1022,7 +1022,7 @@
                                 {!! Form::label('fech_dece', 'FECHA FALLECIMIENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker input-append" name="fech_dece" value="{!! $conyuge->getDataEdit() !!}">
+                                    <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $conyuge->getDataEdit() !!}">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </div>
@@ -1060,11 +1060,11 @@
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Editar Información de Titular</h4>
+                <h4 class="modal-title">Editar Información de Soli</h4>
             </div>
             <div class="modal-body">
 
-                {!! Form::model($titular, ['method' => 'PATCH', 'route' => ['titular.update', $titular->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($titular, ['method' => 'PATCH', 'route' => ['titular.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <input type="hidden" name="type" value="titu"/>
                 <div class="row">
@@ -1103,7 +1103,7 @@
                                 {!! Form::text('titu', $titular->titu, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Parentesco</span>
                             </div>
-                        </div>                           
+                        </div>                            
                     </div>
 
                     <div class="col-md-6">
@@ -1143,6 +1143,8 @@
                                 <span class="help-block">Teléfono Celular</span>
                             </div>
                         </div>
+                    </div>
+                        
                     </div>
                 </div>
 

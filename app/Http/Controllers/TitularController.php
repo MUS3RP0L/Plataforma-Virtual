@@ -88,9 +88,7 @@ class TitularController extends Controller
     {
         $rules = [
             'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'mat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'ap_esp' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+
         ];
 
         $messages = [
@@ -98,14 +96,6 @@ class TitularController extends Controller
             'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
             'pat.regex' => 'Sólo se aceptan letras para apellido paterno',
 
-            'mat.min' => 'El mínimo de caracteres permitidos para apellido materno es 3',
-            'mat.regex' => 'Sólo se aceptan letras para apellido materno',
-
-            'nom.min' => 'El mínimo de caracteres permitidos para primer nombre es 3',
-            'nom.regex' => 'Sólo se aceptan letras para primer nombre',
-
-            'ap_esp.min' => 'El mínimo de caracteres permitidos para estado civil es 3',
-            'ap_esp.regex' => 'Sólo se aceptan letras para estado civil',
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);

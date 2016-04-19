@@ -79,7 +79,6 @@ class ConyugeController extends Controller
             'mat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom2' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'ap_esp' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
         ];
 
         $messages = [
@@ -95,9 +94,6 @@ class ConyugeController extends Controller
 
             'nom2.min' => 'El mínimo de caracteres permitidos para teléfono de usuario es 3',
             'nom2.regex' => 'Sólo se aceptan letras para segundo nombre',
-
-            'ap_esp.min' => 'El mínimo de caracteres permitidos para estado civil es 3',
-            'ap_esp.regex' => 'Sólo se aceptan letras para estado civil',
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -133,7 +129,7 @@ class ConyugeController extends Controller
 
                     $conyuge->save();
                     
-                    $message = "Información personal de Conyuge actualizado con éxito";
+                    $message = "Información de Conyuge actualizado con éxito";
                     break;
             }
             Session::flash('message', $message);
