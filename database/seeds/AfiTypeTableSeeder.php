@@ -22,10 +22,10 @@ class AfiTypeTableSeeder extends Seeder
     private function createAfiType()
     {
         $statuses = [
-            ['id' => '1', 'name' => 'Activo'],
-            ['id' => '2', 'name' => 'Pasivo'],
-            ['id' => '3', 'name' => 'Excluido'],
-            ['id' => '4', 'name' => 'Baja']
+            ['id' => '1', 'name' => 'ACTIVO'],
+            ['id' => '2', 'name' => 'PASIVO'],
+            ['id' => '3', 'name' => 'EXCLUIDO'],
+            ['id' => '4', 'name' => 'BAJA']
         ];
 
         foreach ($statuses as $status) {

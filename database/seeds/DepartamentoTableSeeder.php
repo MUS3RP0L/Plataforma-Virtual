@@ -22,15 +22,15 @@ class DepartamentoTableSeeder extends Seeder
     private function createDepartamentos()
     {
         $statuses = [
-            ['id' => '1', 'name' => 'Beni', 'cod' => 'BN'],
-            ['id' => '2', 'name' => 'Chuquisaca', 'cod' => 'CH'],
-            ['id' => '3', 'name' => 'Cochabamba', 'cod' => 'CBBA'],
-            ['id' => '4', 'name' => 'La Paz', 'cod' => 'LP'],
-            ['id' => '5', 'name' => 'Oruro', 'cod' => 'OR'],
-            ['id' => '6', 'name' => 'Pando', 'cod' => 'PN'],
-            ['id' => '7', 'name' => 'Potosí', 'cod' => 'PO'],
-            ['id' => '8', 'name' => 'Santa Cruz', 'cod' => 'SC'],
-            ['id' => '9', 'name' => 'Tarija', 'cod' => 'TJ']
+            ['id' => '1', 'name' => 'BENI', 'cod' => 'BN'],
+            ['id' => '2', 'name' => 'CHUQUISACA', 'cod' => 'CH'],
+            ['id' => '3', 'name' => 'COCHABAMBA', 'cod' => 'CBBA'],
+            ['id' => '4', 'name' => 'LA PAZ', 'cod' => 'LP'],
+            ['id' => '5', 'name' => 'ORURO', 'cod' => 'OR'],
+            ['id' => '6', 'name' => 'PANDO', 'cod' => 'PN'],
+            ['id' => '7', 'name' => 'POTOSÍ', 'cod' => 'PO'],
+            ['id' => '8', 'name' => 'SANTA CRUZ', 'cod' => 'SC'],
+            ['id' => '9', 'name' => 'TARIJA', 'cod' => 'TJ']
 
         ];
 

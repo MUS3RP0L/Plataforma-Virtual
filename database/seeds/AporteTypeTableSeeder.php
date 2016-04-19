@@ -21,9 +21,9 @@ class AporteTypeTableSeeder extends Seeder
     private function createAporteType()
     {
         $statuses = [
-            ['id' => '1', 'name' => 'Comando'],
-            ['id' => '2', 'name' => 'Voluntario'],
-            ['id' => '3', 'name' => 'Voluntario Interior']
+            ['id' => '1', 'name' => 'COMANDO'],
+            ['id' => '2', 'name' => 'VOLUNTARIO'],
+            ['id' => '3', 'name' => 'VOLUNTARIO INTERIOR']
         ];
 
         foreach ($statuses as $status) {
