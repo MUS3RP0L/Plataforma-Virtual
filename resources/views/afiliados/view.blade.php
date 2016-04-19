@@ -250,7 +250,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Calle
@@ -261,19 +261,6 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Núm Domicilio
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->num_domi !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
                                         </table>
 
 
@@ -286,10 +273,10 @@
                                                 <td style="border-top:0;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Municipio
+                                                            Núm Domicilio
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->muni !!}
+                                                            {!! $afiliado->num_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -307,7 +294,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Celular
@@ -318,19 +305,6 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Correo Electrónico
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->email !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
                                         </table>
 
                                     </div>
@@ -629,7 +603,7 @@
                                     
                                 @else
                                     <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-domicilio"> 
+                                        <div data-toggle="modal" data-target="#myModal-titular"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Titular">
                                                 <img class="circle" src="{!! asset('images/person.png') !!}" width="45px" alt="icon">                                                                          
                                             </button>
@@ -940,19 +914,14 @@
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <input type="hidden" name="type" value="dom"/>
                 <div class="row">
-                    <div class="col-md-12">
-                    	<div class="form-group">
-                                    {!! Form::label('muni', 'DEPARTAMENTO MUNICIPIO', ['class' => 'col-md-3 control-label']) !!}
-                            <div class="col-md-9">
-                                {!! Form::select('muni', $list_munis, $afiliado->depa_muni_id, ['class' => 'combobox form-control']) !!}
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                    {!! Form::label('depa_dir', 'DEPARTA MENTO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::select('depa_dir', $list_depas, $afiliado->depa_dir_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Seleccione Departamento y Municipio</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-
                         <div class="form-group">
                                 {!! Form::label('zona', 'ZONA', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">

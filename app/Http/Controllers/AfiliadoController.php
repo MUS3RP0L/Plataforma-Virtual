@@ -168,11 +168,11 @@ class AfiliadoController extends Controller
         foreach ($depa as $item) {
              $list_depas[$item->id]=$item->name;
         }
-        $muni = Municipio::all();
-        $list_munis = array('' => '');
-        foreach ($muni as $item) {
-             $list_munis[$item->id]=$item->departamento->name . " | " . $item->name;
-        }
+        // $muni = Municipio::all();
+        // $list_munis = array('' => '');
+        // foreach ($muni as $item) {
+        //      $list_munis[$item->id]=$item->departamento->name . " | " . $item->name;
+        // }
 
         if ($afiliado->depa_nat_id) {
             $afiliado->depa_nat = Departamento::select('name')->where('id', '=', $afiliado->depa_nat_id)->firstOrFail()->name;
@@ -263,7 +263,7 @@ class AfiliadoController extends Controller
             'list_unidades' => $list_unidades,
             'list_grados' => $list_grados,
             'list_depas' => $list_depas,
-            'list_munis' => $list_munis,
+            // 'list_munis' => $list_munis,
             'lastAporte' => $lastAporte,
             'totalGanado' => Util::formatMoney($ganado),
             'totalSegCiu' => Util::formatMoney($SegCiu),
@@ -465,7 +465,7 @@ class AfiliadoController extends Controller
                     if ($request->ap_esp) {$afiliado->ap_esp = trim($request->ap_esp);}
                     $afiliado->fech_nac = Util::datePick($request->fech_nac); 
                     $afiliado->est_civ = trim($request->est_civ); 
-                    if ($afiliado->depa_nat_id <> trim($request->depa_nat_id)) {$afiliado->depa_nat_id = trim($request->depa_nat_id);}
+                    if ($afiliado->depa_nat_id <> trim($request->depa_nat)) {$afiliado->depa_nat_id = trim($request->depa_nat);}
                     $afiliado->save();
                     
                     $message = "Información personal de Afiliado actualizado con éxito";
