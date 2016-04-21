@@ -1620,7 +1620,7 @@
 
                 {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <input type="hidden" name="type" value="period"/>
+                <input type="hidden" name="type" value="periods"/>
                 <div class="row">
                     <h5 class="modal-title">Años de Aportes</h5>
                     <div class="col-md-12">
@@ -1629,13 +1629,13 @@
                                 <div class="col-md-6">
                                     {!! Form::label('fech_ini_apor', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="start" name="fech_ini_apor" value="{!! $afiliado->fech_ini_apor !!}"/>
+                                        <input type="text" class="form-control" name="fech_ini_apor" value="{!! $afiliado->fech_ini_apor !!}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    {!! Form::label('fech_fin_apor', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    {!! Form::label('fech_fin_apor', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="end" name="fech_fin_apor" value="{!! $afiliado->fech_fin_apor !!}"/>
+                                        <input type="text" class="form-control" name="fech_fin_apor" value="{!! $afiliado->fech_fin_apor !!}"/>
                                     </div>
                                 </div>
                             </div>
@@ -1651,13 +1651,13 @@
                                 <div class="col-md-6">
                                     {!! Form::label('fech_ini_serv', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="start" name="fech_ini_serv" value="{!! $afiliado->fech_ini_apor !!}"/>
+                                        <input type="text" class="form-control" name="fech_ini_serv" value="{!! $afiliado->fech_ini_serv !!}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    {!! Form::label('fech_fin_serv', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    {!! Form::label('fech_fin_serv', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="end" name="fech_fin_serv" value="{!! $afiliado->fech_fin_apor !!}"/>
+                                        <input type="text" class="form-control" name="fech_fin_serv" value="{!! $afiliado->fech_fin_serv !!}"/>
                                     </div>
                                 </div>
                             </div>
@@ -1665,6 +1665,48 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <h5 class="modal-title">Periodo adicional en Caso de Anticipo</h5>
+                    <div class="col-md-12">
+                        <div class="form-group">                            
+                            <div class="input-daterange input-group" id="datepicker">
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_ini_anti', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_ini_anti" value="{!! $afiliado->fech_ini_anti !!}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_fin_anti', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_fin_anti" value="{!! $afiliado->fech_fin_anti !!}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                     
+                    </div>
+                </div>
+                <div class="row">
+                    <h5 class="modal-title">Periodo de Reconocimiento de Aportes</h5>
+                    <div class="col-md-12">
+                        <div class="form-group">                            
+                            <div class="input-daterange input-group" id="datepicker">
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_ini_reco', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_ini_reco" value="{!! $afiliado->fech_ini_reco !!}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_ini_pcot', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_ini_pcot" value="{!! $afiliado->fech_ini_pcot !!}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                     
+                    </div>
+                </div>
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">

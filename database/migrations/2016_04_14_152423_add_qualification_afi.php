@@ -103,6 +103,9 @@ class AddQualificationAfi extends Migration
 
             $table->date('fech_emi');
 
+            $table->date('fech_ini_pcot')->nullable();
+            $table->date('fech_fin_pcot')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
 
