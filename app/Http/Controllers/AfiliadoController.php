@@ -139,7 +139,6 @@ class AfiliadoController extends Controller
                 $titular = new Titular;
         }
 
-
         if ($afiliado->sex == 'M') {
             $list_est_civ = array('' => '','C' => 'CASADO','S' => 'SOLTERO','V' => 'VIUDO','D' => 'DIVORCIADO');
         }elseif ($afiliado->sex == 'F') {
