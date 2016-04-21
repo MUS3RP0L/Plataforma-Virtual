@@ -1106,19 +1106,19 @@
                           <div class="col-md-9">
                             <div class="radio radio-primary">
                               <label>
-                                <input type="radio" name="type_soli" value='1' data-bind='checked: typeToShow' id="optionsRadios1" value="option1" checked="">
+                                <input type="radio" name="type_soli" value='1' data-bind='checked: typeToShow'>
                                 Titutal
                               </label>
                             </div>
                             <div class="radio radio-primary">
                               <label>
-                                <input type="radio" name="type_soli" value='2' data-bind='checked: typeToShow' id="optionsRadios2" value="option2">
+                                <input type="radio" name="type_soli" value='2' data-bind='checked: typeToShow'>
                                 Conyuge
                               </label>
                             </div>
                             <div class="radio radio-primary">
                               <label>
-                                <input type="radio" name="type_soli" value='3' data-bind='checked: typeToShow' id="optionsRadios2" value="option2">
+                                <input type="radio" name="type_soli" value='3' data-bind='checked: typeToShow'>
                                 Otro
                               </label>
                             </div>
@@ -1519,7 +1519,7 @@
 
     var PlanetsModel = function() {
 
-        this.typeToShow = ko.observable();
+        this.typeToShow = ko.observable('' + solicitante.soli_type);
         this.parenShow = ko.observable(false);
         this.parenShow = ko.pureComputed(function() {
 
