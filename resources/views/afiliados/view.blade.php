@@ -769,11 +769,11 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Años de Aporte</h3>
+                                    <h3 class="panel-title">Periodo de Aportes</h3>
                                 </div>
                                 @if($info_dom == 1)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                        <div data-toggle="modal" data-target="#myModal-domicilio"> 
+                                        <div data-toggle="modal" data-target="#myModal-periodo-aportes"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
                                         </div>
                                     </div>
@@ -850,9 +850,9 @@
 
                                 @else
                                     <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-domicilio"> 
-                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Domicilio">
-                                                <img class="circle" src="{!! asset('images/home.png') !!}" width="40px" alt="icon">                                                                          
+                                        <div data-toggle="modal" data-target="#myModal-periodo-aportes"> 
+                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Periodo de Aportes">
+                                                <img class="circle" src="{!! asset('images/period.png') !!}" width="40px" alt="icon">                                                                          
                                             </button>
                                         </div>
                                     </div>
@@ -1609,6 +1609,82 @@
     </div>
 </div>
 
+<div id="myModal-periodo-aportes" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Periodo de Aportes</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <input type="hidden" name="type" value="dom"/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                    {!! Form::label('depa_dir', 'DEPARTA MENTO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::select('depa_dir', $list_depas, $afiliado->depa_dir_id, ['class' => 'combobox form-control']) !!}
+                                <span class="help-block">Seleccione Departamento</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('zona', 'ZONA', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('zona', $afiliado->zona, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Zona</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('calle', 'CALLE', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('calle', $afiliado->calle, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Calle</span>
+                            </div>
+                        </div>
+                                                          
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                {!! Form::label('num_domi', 'NÚMERO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('num_domi', $afiliado->num_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Número de Domicilio</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('tele', 'TELÉFONO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('tele', $afiliado->tele, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Teléfono fijo</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('celu', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('celu', $afiliado->celu, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Teléfono Celular</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                </div>
+            {!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts')
