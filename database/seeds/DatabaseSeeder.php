@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PagoTypesTableSeeder::class);
         $this->call(DesgloseTableSeeder::class);
         $this->call(UnidadTableSeeder::class);
+        $this->call(SoliTypeSeeder::class);
 
         Model::reguard();
     }

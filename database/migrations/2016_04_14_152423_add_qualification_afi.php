@@ -71,12 +71,24 @@ class AddQualificationAfi extends Migration
 
         });
 
+        Schema::create('soli_types', function(Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('id');
+            $table->string('name');
+
+            $table->timestamps();
+        });
+
         Schema::create('calificaciones', function(Blueprint $table){
             
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
+
+            $table->UnsignedBigInteger('soli_type');
 
             $table->UnsignedBigInteger('afiliado_id');
             $table->UnsignedBigInteger('conyuge_id');
@@ -105,6 +117,7 @@ class AddQualificationAfi extends Migration
 
             $table->foreign('user_id')->references('id')->on('users'); 
 
+            $table->foreign('soli_type')->references('id')->on('soli_types');
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->foreign('conyuge_id')->references('id')->on('conyuges');
             $table->foreign('titular_id')->references('id')->on('titulares');
