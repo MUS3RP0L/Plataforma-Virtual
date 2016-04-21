@@ -210,11 +210,13 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title">Información de Domicilio</h3>
                                 </div>
-                                <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                    <div data-toggle="modal" data-target="#myModal-domicilio"> 
-                                        <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                @if($info_dom == 1)
+                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                                        <div data-toggle="modal" data-target="#myModal-domicilio"> 
+                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="panel-body" style="font-size: 14px">
@@ -330,11 +332,13 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title">Información de Conyuge</h3>
                                 </div>
-                                <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                    <div data-toggle="modal" data-target="#myModal-conyuge"> 
-                                        <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                @if($info_cony == 1)
+                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                                        <div data-toggle="modal" data-target="#myModal-conyuge"> 
+                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="panel-body" style="font-size: 14px">
@@ -451,11 +455,13 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title">Información de Solicitante</h3>
                                 </div>
-                                <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                    <div data-toggle="modal" data-target="#myModal-titular"> 
-                                        <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                @if($info_titu == 1)
+                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                                        <div data-toggle="modal" data-target="#myModal-titular"> 
+                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="panel-body" style="font-size: 14px">
@@ -482,7 +488,7 @@
                                                 <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Paterno
+                                                            Apellido Paterno
                                                         </div>
                                                         <div class="col-md-6">
                                                             {!! $titular->pat !!}
@@ -491,52 +497,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Materno
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $titular->mat !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Nombre(s)
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $titular->nom !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Parentesco
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $titular->paren !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </table>
-
-
-                                    </div>
-
-                                    <div class="col-md-6">
-
-                                        <table class="table" style="width:100%;">
-                                            <tr>
-                                                <td style="border-top:0;">
+                                                <td style="border-top:1px solid #d4e4cd;"></br>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Zona Domicilio
@@ -560,7 +521,66 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td style="border-top:1px solid #d4e4cd;"></br>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Zona Trabajo
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $titular->zona_trab !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Calle Trabajo
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $titular->calle_trab !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+
+
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Apellido Materno
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $titular->mat !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td style="border-top:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Nombre(s)
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $titular->nom !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;"></br>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Núm Domicilio
@@ -584,10 +604,22 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td style="border-top:1px solid #d4e4cd;"></br>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Núm Trabajo
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $titular->num_trab !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Celular Electrónico
+                                                            Celular
                                                         </div>
                                                         <div class="col-md-6">
                                                             {!! $titular->celu_domi !!}
@@ -1055,12 +1087,12 @@
     </div>
 </div>
 
-<div id="myModal-titular" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+<div id="myModal-titular" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Editar Información de Soli</h4>
+                <h4 class="modal-title">Editar Información de Solicitante</h4>
             </div>
             <div class="modal-body">
 
@@ -1068,84 +1100,133 @@
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <input type="hidden" name="type" value="titu"/>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+
+                        <div class="form-group">
+                          <div class="col-md-9">
+                            <div class="radio radio-primary">
+                              <label>
+                                <input type="radio" name="type_soli" value='1' data-bind='checked: typeToShow' id="optionsRadios1" value="option1" checked="">
+                                Titutal
+                              </label>
+                            </div>
+                            <div class="radio radio-primary">
+                              <label>
+                                <input type="radio" name="type_soli" value='2' data-bind='checked: typeToShow' id="optionsRadios2" value="option2">
+                                Conyuge
+                              </label>
+                            </div>
+                            <div class="radio radio-primary">
+                              <label>
+                                <input type="radio" name="type_soli" value='3' data-bind='checked: typeToShow' id="optionsRadios2" value="option2">
+                                Otro
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                            <div class="form-group" data-bind='fadeVisible: parenShow'>
+                                    {!! Form::label('paren', 'PARENTESCO', ['class' => 'col-md-4 control-label']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text('paren', $titular->paren, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    <span class="help-block">Parentesco</span>
+                                </div>
+                            </div> 
+                       
+
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
                                 {!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('ci', $titular->ci, ['class'=> 'form-control', 'required']) !!}
+                                {!! Form::text('ci', '',['class'=> 'form-control', 'required', 'data-bind' => 'value: soli_ci']) !!}
                                 <span class="help-block">Núm. Carnet de Identidad</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('pat', $titular->pat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('pat', $titular->pat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
                                 <span class="help-block">Apellido Paterno</span>
                             </div>
-                        </div>  
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('zona_domi', 'ZONA DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('zona_domi', $titular->zona_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_zona_domi']) !!}
+                                <span class="help-block">Zona</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('calle_domi', 'CALLE DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('calle_domi', $titular->calle_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_calle_domi']) !!}
+                                <span class="help-block">Calle</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('zona_trab', 'ZONA TRABAJO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('zona_trab', $titular->zona_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Zona</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('calle_trab', 'CALLE TRABAJO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('calle_trab', $titular->calle_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Calle</span>
+                            </div>
+                        </div> 
+                         
+                                                   
+                    </div>
+
+                    <div class="col-md-4">
                         <div class="form-group">
                                 {!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('mat', $titular->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('mat', $titular->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mat']) !!}
                                 <span class="help-block">Apellido Materno</span>
                             </div>
                         </div>  
                         <div class="form-group">
                                 {!! Form::label('nom', 'NOMBRE(S)', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('nom', $titular->nom, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('nom', $titular->nom, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
                                 <span class="help-block">Nombre(s)</span>
-                            </div>
-                        </div> 
-                        <div class="form-group">
-                                {!! Form::label('titu', 'PARENTESCO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('titu', $titular->titu, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Parentesco</span>
-                            </div>
-                        </div>                            
-                    </div>
-
-                    <div class="col-md-6">
-                        
-                        <div class="form-group">
-                                {!! Form::label('zona', 'ZONA', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('zona', $titular->zona, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Zona</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('calle', 'CALLE', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('calle', $titular->calle, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Calle</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('num_domi', 'NÚMERO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('num_domi', $titular->num_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('num_domi', $titular->num_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_num_domi']) !!}
                                 <span class="help-block">Número de Domicilio</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('tele', 'TELÉFONO', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('tele_domi', 'TELÉFONO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('tele', $titular->tele, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('tele_domi', $titular->tele_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_tele_domi']) !!}
                                 <span class="help-block">Teléfono fijo</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('celu', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('num_trab', 'NÚMERO TRABAJO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('celu', $titular->celu, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('num_trab', $titular->num_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Número de Domicilio</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('celu_domi', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('celu_domi', $titular->celu_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Teléfono Celular</span>
                             </div>
                         </div>
                     </div>
-                        
-                    </div>
+
                 </div>
 
                 <div class="row text-center">
@@ -1432,12 +1513,173 @@
         autoclose: true
     });
 
-    var viewModel = {
-        selectedOptionValueEst : ko.observable(),
-        selectedOptionValueGra : ko.observable(),
-        selectedOptionValueUni : ko.observable()
+    var titular = {!! $afiliado !!};
+    var conyuge = {!! $conyuge !!};
+    var solicitante = {!! $titular !!};
+
+    var PlanetsModel = function() {
+
+        this.typeToShow = ko.observable();
+        this.parenShow = ko.observable(false);
+        this.parenShow = ko.pureComputed(function() {
+
+            var desiredType = this.typeToShow();
+            if (desiredType == '3') return true;
+
+        }, this);
+
+        this.soli_ci = ko.computed(function() {
+
+            var desiredType = this.typeToShow();
+            var titutal = this.titutal;
+            if (desiredType == '1'){
+                return titular.ci;
+            } 
+            if (desiredType == '2'){
+                return conyuge.ci;
+            } 
+            if (desiredType == '3'){
+                return solicitante.ci;
+            }
+
+        }, this);
+
+        this.soli_pat = ko.computed(function() {
+
+            var desiredType = this.typeToShow();
+            var titutal = this.titutal;
+            if (desiredType == '1'){
+                return titular.pat;
+            } 
+            if (desiredType == '2'){
+                return conyuge.pat;
+            } 
+            if (desiredType == '3'){
+                return solicitante.pat;
+            }
+
+        }, this);
+
+        this.soli_mat = ko.computed(function() {
+
+            var desiredType = this.typeToShow();
+            var titutal = this.titutal;
+            if (desiredType == '1'){
+                return titular.mat;
+            } 
+            if (desiredType == '2'){
+                return conyuge.mat;
+            } 
+            if (desiredType == '3'){
+                return solicitante.mat;
+            }
+
+        }, this);
+
+        this.soli_nom = ko.computed(function() {
+
+            var desiredType = this.typeToShow();
+            var titutal = this.titutal;
+            if (desiredType == '1'){
+                var nom2 = titular.nom2 ? titular.nom2 : '';
+                return titular.nom +" "+ nom2;
+            } 
+            if (desiredType == '2'){
+                return conyuge.nom;
+            } 
+            if (desiredType == '3'){
+                return solicitante.nom;
+            }
+
+        }, this);
+
+        this.soli_zona_domi = ko.computed(function() {
+
+            var desiredType = this.typeToShow();
+            var titutal = this.titutal;
+            if (desiredType == '1'){
+                return titular.zona;
+            } 
+            if (desiredType == '2'){
+                return solicitante.zona_domi;
+            } 
+            if (desiredType == '3'){
+                return solicitante.zona_domi;
+            }
+
+        }, this);
+
+        this.soli_calle_domi = ko.computed(function() {
+
+            var desiredType = this.typeToShow();
+            var titutal = this.titutal;
+            if (desiredType == '1'){
+                return titular.calle;
+            } 
+            if (desiredType == '2'){
+                return solicitante.calle_domi;
+            } 
+            if (desiredType == '3'){
+                return solicitante.calle_domi;
+            }
+
+        }, this);
+
+        this.soli_num_domi = ko.computed(function() {
+
+            var desiredType = this.typeToShow();
+            var titutal = this.titutal;
+            if (desiredType == '1'){
+                return titular.num_domi;
+            } 
+            if (desiredType == '2'){
+                return solicitante.num_domi;
+            } 
+            if (desiredType == '3'){
+                return solicitante.num_domi;
+            }
+
+        }, this);
+
+        this.soli_tele_domi = ko.computed(function() {
+
+            var desiredType = this.typeToShow();
+            var titutal = this.titutal;
+            if (desiredType == '1'){
+                return titular.tele;
+            } 
+            if (desiredType == '2'){
+                return solicitante.tele_domi;
+            } 
+            if (desiredType == '3'){
+                return solicitante.tele_domi;
+            }
+
+        }, this);
+
+
+
+
+
+        this.selectedOptionValueEst = ko.observable();
+        this.selectedOptionValueGra = ko.observable();
+        this.selectedOptionValueUni = ko.observable();
+        
     };
-    ko.applyBindings(viewModel);
+
+    ko.bindingHandlers.fadeVisible = {
+        init: function(element, valueAccessor) {
+            var value = valueAccessor();
+            $(element).toggle(ko.unwrap(value));
+        },
+        update: function(element, valueAccessor) {
+            var value = valueAccessor();
+            ko.unwrap(value) ? $(element).fadeIn() : $(element).fadeOut();
+        }
+    };
+
+    ko.applyBindings(new PlanetsModel());
+
 
     $(function() {
         $('#record-table').DataTable({

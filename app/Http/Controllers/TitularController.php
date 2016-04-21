@@ -12,6 +12,7 @@ use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 use Muserpol\Afiliado;
 use Muserpol\Titular;
+use Muserpol\SoliType;
 use Datatables;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
@@ -82,6 +83,7 @@ class TitularController extends Controller
     public function update(Request $request, $id)
     {
         return $this->save($request, $id);
+        // return $request;
     }
 
     public function save($request, $id = false)
@@ -118,6 +120,10 @@ class TitularController extends Controller
 
             switch ($request->type) {
                 case 'titu':
+
+                    
+                    $soliType = SoliType::where('id', '=', $request->type_soli)->first();
+                    $titular->soli_type = $soliType->id;
 
                     $titular->afiliado_id = $id;
 
