@@ -758,6 +758,120 @@
 
                         </div>
                     </div>
+
+
+
+
+
+
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">  
+                                <div class="col-md-11">
+                                    <h3 class="panel-title">Años de Aporte</h3>
+                                </div>
+                                @if($info_dom == 1)
+                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                                        <div data-toggle="modal" data-target="#myModal-domicilio"> 
+                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: 14px">
+                            <div class="row" style="margin-bottom:0px;">
+
+                                @if($info_dom == 1)
+
+                                    <div class="col-md-6">
+
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Desde
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $afiliado->depa_dir !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Años
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $afiliado->zona !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Hasta
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $afiliado->num_domi !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Meses
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $afiliado->tele !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+
+                                @else
+                                    <div class="row text-center">
+                                        <div data-toggle="modal" data-target="#myModal-domicilio"> 
+                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Domicilio">
+                                                <img class="circle" src="{!! asset('images/home.png') !!}" width="40px" alt="icon">                                                                          
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
                     <div class="panel panel-primary">
                         <div class="panel-heading">                     
                             <div class="row">
