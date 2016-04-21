@@ -1614,60 +1614,54 @@
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Editar Periodo de Aportes</h4>
+                <h4 class="modal-title">Editar Periodos</h4>
             </div>
             <div class="modal-body">
 
                 {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <input type="hidden" name="type" value="dom"/>
+                <input type="hidden" name="type" value="period"/>
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                                    {!! Form::label('depa_dir', 'DEPARTA MENTO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::select('depa_dir', $list_depas, $afiliado->depa_dir_id, ['class' => 'combobox form-control']) !!}
-                                <span class="help-block">Seleccione Departamento</span>
+                    <h5 class="modal-title">Años de Aportes</h5>
+                    <div class="col-md-12">
+                        <div class="form-group">                            
+                            <div class="input-daterange input-group" id="datepicker">
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_ini_apor', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="start" name="fech_ini_apor" value="{!! $afiliado->fech_ini_apor !!}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_fin_apor', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="end" name="fech_fin_apor" value="{!! $afiliado->fech_fin_apor !!}"/>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('zona', 'ZONA', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('zona', $afiliado->zona, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Zona</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('calle', 'CALLE', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('calle', $afiliado->calle, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Calle</span>
-                            </div>
-                        </div>
-                                                          
+                        </div>                                                     
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                                {!! Form::label('num_domi', 'NÚMERO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('num_domi', $afiliado->num_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Número de Domicilio</span>
+                </div>
+
+                <div class="row">
+                    <h5 class="modal-title">Años de Servicio</h5>
+                    <div class="col-md-12">
+                        <div class="form-group">                            
+                            <div class="input-daterange input-group" id="datepicker">
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_ini_serv', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="start" name="fech_ini_serv" value="{!! $afiliado->fech_ini_apor !!}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_fin_serv', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="end" name="fech_fin_serv" value="{!! $afiliado->fech_fin_apor !!}"/>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('tele', 'TELÉFONO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('tele', $afiliado->tele, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Teléfono fijo</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('celu', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('celu', $afiliado->celu, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Teléfono Celular</span>
-                            </div>
-                        </div>
+                        </div>                                                     
                     </div>
                 </div>
 
@@ -1696,6 +1690,14 @@
     });
 
     $('.datepicker').datepicker({
+        format: "dd/mm/yyyy",
+        language: "es",
+        orientation: "bottom right",
+        daysOfWeekDisabled: "0,6",
+        autoclose: true
+    });
+
+    $('.input-daterange').datepicker({
         format: "dd/mm/yyyy",
         language: "es",
         orientation: "bottom right",
