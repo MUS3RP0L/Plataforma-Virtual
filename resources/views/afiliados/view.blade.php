@@ -135,7 +135,7 @@
                                                             Fecha de Deceso
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->getData_fech_dece() !!}
+                                                            {!! $afiliado->getFull_fech_dece() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -643,7 +643,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Celular
@@ -820,7 +820,7 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title">Periodo de Aportes</h3>
                                 </div>
-                                @if($info_dom == 1)
+                                @if($info_peri == 1)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-periodo-aportes"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
@@ -832,7 +832,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_dom == 1)
+                                @if($info_peri == 1)
 
                                     <div class="col-md-6">
 

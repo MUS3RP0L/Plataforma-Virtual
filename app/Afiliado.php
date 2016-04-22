@@ -113,6 +113,20 @@ class Afiliado extends Model
  
     }
 
+    public function getFull_fech_dece()
+    {   
+        $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+        return date("d", strtotime($this->fech_dece))." ".$meses[date("n", strtotime($this->fech_dece))-1]. " ".date("Y", strtotime($this->fech_dece));
+ 
+    }
+
+    public function getFull_fech_ini_apor()
+    {   
+        $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+        return date("d", strtotime($this->fech_ini_apor))." ".$meses[date("n", strtotime($this->fech_ini_apor))-1]. " ".date("Y", strtotime($this->fech_ini_apor));
+ 
+    }
+
     public function getHowOld()
     {
     	if ($this->fech_dece) {
