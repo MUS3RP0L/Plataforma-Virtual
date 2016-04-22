@@ -108,24 +108,91 @@ class Afiliado extends Model
 
     public function getFullDateNac()
     {	
-		$meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
-		return date("d", strtotime($this->fech_nac))." ".$meses[date("n", strtotime($this->fech_nac))-1]. " ".date("Y", strtotime($this->fech_nac));
- 
+		if ($this->fech_nac) {
+            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+		  return date("d", strtotime($this->fech_nac))." ".$meses[date("n", strtotime($this->fech_nac))-1]. " ".date("Y", strtotime($this->fech_nac));
+        }
     }
 
     public function getFull_fech_dece()
     {   
-        $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
-        return date("d", strtotime($this->fech_dece))." ".$meses[date("n", strtotime($this->fech_dece))-1]. " ".date("Y", strtotime($this->fech_dece));
- 
+        if ($this->fech_dece) {
+            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+            return date("d", strtotime($this->fech_dece))." ".$meses[date("n", strtotime($this->fech_dece))-1]. " ".date("Y", strtotime($this->fech_dece)); 
+        }
     }
 
     public function getFull_fech_ini_apor()
     {   
-        $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
-        return date("d", strtotime($this->fech_ini_apor))." ".$meses[date("n", strtotime($this->fech_ini_apor))-1]. " ".date("Y", strtotime($this->fech_ini_apor));
- 
+        if ($this->fech_ini_apor) {
+            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+            return date("d", strtotime($this->fech_ini_apor))." ".$meses[date("n", strtotime($this->fech_ini_apor))-1]. " ".date("Y", strtotime($this->fech_ini_apor)); 
+        }
     }
+    public function getFull_fech_fin_apor()
+    {   
+        if ($this->fech_fin_apor) {
+            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+            return date("d", strtotime($this->fech_fin_apor))." ".$meses[date("n", strtotime($this->fech_fin_apor))-1]. " ".date("Y", strtotime($this->fech_fin_apor));
+        }
+    }
+    public function getYearsAndMonths_fech_ini_apor()
+    {
+        $fech_ini_apor = Carbon::create(date("Y", strtotime($this->fech_ini_apor)), date("m", strtotime($this->fech_ini_apor)), 1);
+        $fech_fin_apor = Carbon::create(date("Y", strtotime($this->fech_fin_apor)), date("m", strtotime($this->fech_fin_apor)), 1);
+        $years = $fech_ini_apor->diffInYears($fech_fin_apor);
+        $totalmonths = $years*12;
+        $months = $fech_ini_apor->diffInMonths($fech_fin_apor) - $totalmonths + 1;
+        return $years . " Años " . $months . " Meses";
+    }
+
+    public function getFull_fech_ini_serv()
+    {   
+        if ($this->fech_ini_serv) {
+            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+            return date("d", strtotime($this->fech_ini_serv))." ".$meses[date("n", strtotime($this->fech_ini_serv))-1]. " ".date("Y", strtotime($this->fech_ini_serv)); 
+        }
+    }
+    public function getFull_fech_fin_serv()
+    {   
+        if ($this->fech_fin_serv) {
+            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+            return date("d", strtotime($this->fech_fin_serv))." ".$meses[date("n", strtotime($this->fech_fin_serv))-1]. " ".date("Y", strtotime($this->fech_fin_serv));
+        }
+    }
+    public function getYearsAndMonths_fech_fin_serv()
+    {
+        $fech_ini_serv = Carbon::create(date("Y", strtotime($this->fech_ini_serv)), date("m", strtotime($this->fech_ini_serv)), 1);
+        $fech_fin_serv = Carbon::create(date("Y", strtotime($this->fech_fin_serv)), date("m", strtotime($this->fech_fin_serv)), 1);
+        $years = $fech_ini_serv->diffInYears($fech_fin_serv);
+        $totalmonths = $years*12;
+        $months = $fech_ini_serv->diffInMonths($fech_fin_serv) - $totalmonths + 1;
+        return $years . " Años " . $months . " Meses";
+    }
+    
+    // public function getFull_fech_ini_serv()
+    // {   
+    //     if ($this->fech_ini_serv) {
+    //         $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+    //         return date("d", strtotime($this->fech_ini_serv))." ".$meses[date("n", strtotime($this->fech_ini_serv))-1]. " ".date("Y", strtotime($this->fech_ini_serv)); 
+    //     }
+    // }
+    // public function getFull_fech_fin_serv()
+    // {   
+    //     if ($this->fech_fin_serv) {
+    //         $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+    //         return date("d", strtotime($this->fech_fin_serv))." ".$meses[date("n", strtotime($this->fech_fin_serv))-1]. " ".date("Y", strtotime($this->fech_fin_serv));
+    //     }
+    // }
+    // public function getYearsAndMonths_fech_fin_serv()
+    // {
+    //     $fech_ini_serv = Carbon::create(date("Y", strtotime($this->fech_ini_serv)), date("m", strtotime($this->fech_ini_serv)), 1);
+    //     $fech_fin_serv = Carbon::create(date("Y", strtotime($this->fech_fin_serv)), date("m", strtotime($this->fech_fin_serv)), 1);
+    //     $years = $fech_ini_serv->diffInYears($fech_fin_serv);
+    //     $totalmonths = $years*12;
+    //     $months = $fech_ini_serv->diffInMonths($fech_fin_serv) - $totalmonths + 1;
+    //     return $years . " Años " . $months . " Meses";
+    // }
 
     public function getHowOld()
     {
@@ -137,6 +204,12 @@ class Afiliado extends Model
     	}
     	
     }
+    
+
+
+
+
+
 	
 	public function getCivil()
 	{
@@ -188,18 +261,24 @@ class Afiliado extends Model
 
 	public function getFullDateIng()
     {	
-		$meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
-		return date("d", strtotime($this->fech_ing))." ".$meses[date("m", strtotime($this->fech_ing))-1]. " ".date("Y", strtotime($this->fech_ing));
+		if ($this->fech_nac) {
+            $meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
+            return date("d", strtotime($this->fech_ing))." ".$meses[date("m", strtotime($this->fech_ing))-1]. " ".date("Y", strtotime($this->fech_ing));
+        }
     }
 
     public function getDataEdit()
     {	
-		return date("d", strtotime($this->fech_nac))."/".date("m", strtotime($this->fech_nac)). "/".date("Y", strtotime($this->fech_nac));
+        if ($this->fech_nac) {
+		  return date("d", strtotime($this->fech_nac))."/".date("m", strtotime($this->fech_nac)). "/".date("Y", strtotime($this->fech_nac));
+        }
     }
 
     public function getDataEditEst()
     {	
-		return date("d", strtotime($this->fech_est))."/".date("m", strtotime($this->fech_est)). "/".date("Y", strtotime($this->fech_est));
+        if ($this->fech_est) {
+		  return date("d", strtotime($this->fech_est))."/".date("m", strtotime($this->fech_est)). "/".date("Y", strtotime($this->fech_est));
+        }
     }
 
     public function getData_fech_baja()

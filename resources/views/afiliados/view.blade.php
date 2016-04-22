@@ -830,74 +830,119 @@
                             </div>
                         </div>
                         <div class="panel-body" style="font-size: 14px">
-                            <div class="row" style="margin-bottom:0px;">
-
-                                @if($info_peri == 1)
-
-                                    <div class="col-md-6">
-
+                            @if($info_peri == 1)
+                                <div class="row"> 
+                                    <div class="col-md-12">
+                                        <h5 class="modal-title">Años de Aportes</h5>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0px;">                       
+                                    <div class="col-md-4">
                                         <table class="table" style="width:100%;">
                                             <tr>
-                                                <td style="border-top:0;">
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             Desde
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->depa_dir !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Años
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->zona !!}
+                                                        <div class="col-md-8">
+                                                            {!! $afiliado->getFull_fech_ini_apor() !!}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </table>
-
-
                                     </div>
-
-                                    <div class="col-md-6">
-
+                                    <div class="col-md-4">
                                         <table class="table" style="width:100%;">
                                             <tr>
-                                                <td style="border-top:0;">
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             Hasta
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->num_domi !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Meses
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->tele !!}
+                                                        <div class="col-md-8">
+                                                            {!! $afiliado->getFull_fech_fin_apor() !!}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </table>
-
                                     </div>
-
-                                @else
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            Total
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            {!! $afiliado->getYearsAndMonths_fech_ini_apor() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-md-12">
+                                        <h5 class="modal-title">Años de Servicio</h5>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0px;">                       
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            Desde
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            {!! $afiliado->getFull_fech_ini_serv() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            Hasta
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            {!! $afiliado->getFull_fech_fin_serv() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            Total
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            {!! $afiliado->getYearsAndMonths_fech_fin_serv() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="row" style="margin-bottom:0px;"> 
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-periodo-aportes"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Periodo de Aportes">
@@ -905,9 +950,10 @@
                                             </button>
                                         </div>
                                     </div>
-                                @endif
+                                </div>
+                            @endif
 
-                            </div>
+                            
                         </div>
                     </div>
 
