@@ -480,6 +480,9 @@ class AfiliadoController extends Controller
                     $afiliado->est_civ = trim($request->est_civ); 
                     if ($afiliado->depa_nat_id <> trim($request->depa_nat)) {$afiliado->depa_nat_id = trim($request->depa_nat);}
                     
+                    $afiliado->fech_dece = Util::datePick($request->fech_dece); 
+                    $afiliado->motivo_dece = trim($request->motivo_dece);
+
                     $afiliado->save();
                     
                     $message = "Información personal de Afiliado actualizado con éxito";

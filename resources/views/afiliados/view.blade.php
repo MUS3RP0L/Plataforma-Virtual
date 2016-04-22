@@ -127,6 +127,20 @@
                                             </td>
                                         </tr>
                                         @endif
+                                        @if($afiliado->fech_dece)
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Fecha de Deceso
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $afiliado->getData_fech_dece() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     </table>
 
                                 </div>
@@ -194,6 +208,20 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        @if($afiliado->motivo_dece)
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Motivo Deceso
+                                                        </div>
+                                                        <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->unidad->lit !!}">
+                                                            {!! $afiliado->motivo_dece !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
 
                                     </table>
 
@@ -763,7 +791,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        @if($afiliado->motivo_baja)
+                                        @if($afiliado->fech_baja)
                                             <tr>
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
@@ -1034,11 +1062,29 @@
                                 <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
+                        <div class="form-group">
+                                {!! Form::label('fech_dece', 'FECHA DECESO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $afiliado->getData_fech_dece() !!}">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('motivo_dece', 'CAUSA DECESO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::textarea('motivo_dece', $afiliado->motivo_dece, ['class'=> 'form-control', 'rows' => '2']) !!}
+                                <span class="help-block">Motivo de fallecimiento</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row text-center">
-                    <div class="form-group">
+                    <div class="form-group" style="padding-bottom:0px">
                         <div class="col-md-12">
                             <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
                             &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
