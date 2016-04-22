@@ -1629,13 +1629,13 @@
                                 <div class="col-md-6">
                                     {!! Form::label('fech_ini_apor', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_ini_apor" value="{!! $afiliado->fech_ini_apor !!}"/>
+                                        <input type="text" class="form-control" name="fech_ini_apor" value="{!! $afiliado->getData_fech_ini_apor() !!}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     {!! Form::label('fech_fin_apor', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_fin_apor" value="{!! $afiliado->fech_fin_apor !!}"/>
+                                        <input type="text" class="form-control" name="fech_fin_apor" value="{!! $afiliado->getData_fech_fin_apor() !!}"/>
                                     </div>
                                 </div>
                             </div>
@@ -1651,13 +1651,13 @@
                                 <div class="col-md-6">
                                     {!! Form::label('fech_ini_serv', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_ini_serv" value="{!! $afiliado->fech_ini_serv !!}"/>
+                                        <input type="text" class="form-control" name="fech_ini_serv" value="{!! $afiliado->getData_fech_ini_serv() !!}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     {!! Form::label('fech_fin_serv', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_fin_serv" value="{!! $afiliado->fech_fin_serv !!}"/>
+                                        <input type="text" class="form-control" name="fech_fin_serv" value="{!! $afiliado->getData_fech_fin_serv() !!}"/>
                                     </div>
                                 </div>
                             </div>
@@ -1698,9 +1698,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    {!! Form::label('fech_ini_pcot', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
+                                    {!! Form::label('fech_fin_reco', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_ini_pcot" value="{!! $afiliado->fech_ini_pcot !!}"/>
+                                        <input type="text" class="form-control" name="fech_fin_reco" value="{!! $afiliado->fech_fin_reco !!}"/>
                                     </div>
                                 </div>
                             </div>

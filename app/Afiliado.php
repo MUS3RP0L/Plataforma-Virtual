@@ -176,26 +176,73 @@ class Afiliado extends Model
     {	
 		$meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
 		return date("d", strtotime($this->fech_ing))." ".$meses[date("m", strtotime($this->fech_ing))-1]. " ".date("Y", strtotime($this->fech_ing));
- 
     }
 
     public function getDataEdit()
     {	
 		return date("d", strtotime($this->fech_nac))."/".date("m", strtotime($this->fech_nac)). "/".date("Y", strtotime($this->fech_nac));
- 
     }
 
     public function getDataEditEst()
     {	
 		return date("d", strtotime($this->fech_est))."/".date("m", strtotime($this->fech_est)). "/".date("Y", strtotime($this->fech_est));
- 
     }
 
     public function getDataEditGra()
     {	
-		return date("d", strtotime($this->fech_gra))."/".date("m", strtotime($this->fech_gra)). "/".date("Y", strtotime($this->fech_gra));
- 
+		return date("d", strtotime($this->fech_gra))."/".date("m", strtotime($this->fech_gra)). "/".date("Y", strtotime($this->fech_gra)); 
     }
+
+    public function getData_fech_ini_apor()
+    {	
+    	if ($this->fech_ini_apor) {
+    		return date("d", strtotime($this->fech_ini_apor))."/".date("m", strtotime($this->fech_ini_apor)). "/".date("Y", strtotime($this->fech_ini_apor));
+    	}
+    }
+    public function getData_fech_fin_apor()
+    {	if ($this->fech_fin_apor) {
+			return date("d", strtotime($this->fech_fin_apor))."/".date("m", strtotime($this->fech_fin_apor)). "/".date("Y", strtotime($this->fech_fin_apor));
+	    }
+	}
+
+    public function getData_fech_ini_serv()
+    {	
+    	if ($this->fech_ini_serv) {
+			return date("d", strtotime($this->fech_ini_serv))."/".date("m", strtotime($this->fech_ini_serv)). "/".date("Y", strtotime($this->fech_ini_serv));
+   		}
+   }
+    public function getData_fech_fin_serv()
+    {	if ($this->fech_fin_serv) {
+			return date("d", strtotime($this->fech_fin_serv))."/".date("m", strtotime($this->fech_fin_serv)). "/".date("Y", strtotime($this->fech_fin_serv));
+    	}
+    }
+
+    public function getData_fech_ini_anti()
+    {	
+    	if ($this->fech_ini_anti) {
+			return date("d", strtotime($this->fech_ini_anti))."/".date("m", strtotime($this->fech_ini_anti)). "/".date("Y", strtotime($this->fech_ini_anti));
+    	}
+    }
+    public function getData_fech_fin_anti()
+    {	
+    	if ($this->fech_fin_anti) {
+			return date("d", strtotime($this->fech_fin_anti))."/".date("m", strtotime($this->fech_fin_anti)). "/".date("Y", strtotime($this->fech_fin_anti));
+    	}
+    }
+
+    public function getData_fech_ini_reco()
+    {	
+    	if ($this->fech_ini_reco) {
+			return date("d", strtotime($this->fech_ini_reco))."/".date("m", strtotime($this->fech_ini_reco)). "/".date("Y", strtotime($this->fech_ini_reco));
+    	}
+    }
+    public function getData_fech_fin_reco()
+    {	
+    	if ($this->fech_fin_reco) {
+			return date("d", strtotime($this->fech_fin_reco))."/".date("m", strtotime($this->fech_fin_reco)). "/".date("Y", strtotime($this->fech_fin_reco));
+   		}
+   	}
+
 
 	public function getFullName()
     {
