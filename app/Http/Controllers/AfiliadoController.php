@@ -615,19 +615,21 @@ class AfiliadoController extends Controller
 
     }
 
-    public function getData() 
+    public function getData($id) 
     {
+        $afiliado = Afiliado::idIs($id)->firstOrFail();
+
         $data =  [
-            'quantity'      => '1' ,
+            'afiliado' => $afiliado->nom,
             'description'   => 'some ramdom text',
             'price'   => '500',
             'total'     => '500'
         ];
         return $data;
     }
-    public function calif() 
+    public function calif($id) 
     {
-        $data = $this->getData();
+        $data = $this->getData($id);
         $date = date('Y-m-d');
         $calif = "2222";
         $view =  \View::make('print.calif', compact('data', 'date', 'calif'))->render();

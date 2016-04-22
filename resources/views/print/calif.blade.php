@@ -25,7 +25,7 @@
         </thead>
         <tbody>
           <tr>
-            <td class="no">{{ $data['quantity'] }}</td>
+            <td class="no">{{ $data['afiliado'] }}</td>
             <td class="desc">{{ $data['description'] }}</td>
             <td class="unit">{{ $data['price'] }}</td>
             <td class="total">{{ $data['total'] }} </td>

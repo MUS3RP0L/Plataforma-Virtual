@@ -93,7 +93,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// print
 	
-	Route::get('print', 'AfiliadoController@calif');
+	Route::get('print/{afid}', 'AfiliadoController@calif');
 	
 });
 
