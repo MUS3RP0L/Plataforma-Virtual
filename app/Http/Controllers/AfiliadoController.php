@@ -518,14 +518,6 @@ class AfiliadoController extends Controller
                         }
                     }
                     
-                    if ($afiliado->unidad_id <> trim($request->unidad_id)) 
-                    {
-                        if (trim($request->unidad_id) <> '' ) {
-                            $afiliado->unidad_id = trim($request->unidad_id);
-                            $afiliado->fech_uni = Util::datePick($request->fech_uni);
-                        }
-                    }
-                    
                     // if ($request->fech_dece && $request->afi_state_id == 3) {$afiliado->fech_dece = Util::datePick($request->fech_dece);}
                     $afiliado->save();
                     

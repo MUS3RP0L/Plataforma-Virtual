@@ -1381,7 +1381,6 @@
 					                        	<div class="row">
 					                                <div class="form-group">
 					                                    {!! Form::label('afi_state_date', 'ESTADO ACTUAL', ['class' => 'col-md-2 control-label']) !!}
-					                                
 						                                <div class="col-md-10">
 						                                	{!! Form::text('afi_type_name', $afiliado->afi_state->afi_type->name ." - ". $afiliado->afi_state->name, ['class'=> 'form-control', 'disabled' => '']) !!}
 						                                </div>
@@ -1504,72 +1503,9 @@
 		                                </div>
 		                            </div>
 		                        </div>
-	                        </div>
-	                    </div> 
-
-
-						<div class="row">
-                        	<div class="col-md-7">
-                        		<table class="table" style="width:100%; margin-bottom:-16px;">
-                                        <tr>
-                                            <td style="border-top:0;">
-					                        	<div class="row">
-					                                <div class="form-group">
-					                                    {!! Form::label('unidad_lit', 'UNIDAD ACTUAL', ['class' => 'col-md-2 control-label']) !!}
-					                                
-						                                <div class="col-md-10">
-						                                	{!! Form::text('unidad_lit', $afiliado->unidad->lit, ['class'=> 'form-control', 'disabled' => '']) !!}
-						                                </div>
-						                            </div>
-					                            </div>
-					                        </td>
-					                    </tr>
-					            </table>
-	                       	</div>
-                        	<div class="col-md-5">
-		                        <div class="form-group">
-	                                {!! Form::label('afi_state_date', 'FECHA DE REGISTRO', ['class' => 'col-md-4 control-label']) !!}
-	                            
-	                                <div class="col-md-8">
-	                                	{!! Form::text('getDataEditEst', $afiliado->getDataEditEst(), ['class'=> 'form-control', 'disabled' => '']) !!}
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-                        <div class="row">
-                        	<div class="col-md-7">
-                        		<table class="table" style="width:100%;margin-bottom:-10px;">
-                                        <tr>
-                                            <td style="border-top:0;">
-					                        	<div class="row">
-					                                <div class="form-group">
-							                            {!! Form::label('unidad_id', 'NUEVA UNIDAD', ['class' => 'col-md-2 control-label']) !!}
-							                            <div class="col-md-10">
-							                                {!! Form::select('unidad_id', $list_unidades, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValueUni']) !!}
-							                                <span class="help-block"></span>
-							                            </div>
-							                        </div>
-					                            </div>
-					                        </td>
-					                    </tr>
-					            </table>
-	                       	</div>
-                        	<div class="col-md-5">
-		                        <div class="form-group" data-bind='visible: selectedOptionValueUni, valueUpdate: "afterkeydown"'>
-		                            {!! Form::label('fech_uni', 'FECHA DE CAMBIO', ['class' => 'col-md-4 control-label']) !!}
-		                            <div class="col-md-8">
-		                                <div class="input-group">
-		                                    <input type="text" class="form-control datepicker" name="fech_uni">
-		                                    <div class="input-group-addon">
-		                                        <span class="glyphicon glyphicon-calendar"></span>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                        </div>
-	                        </div>
-	                    </div>                            
+	                        </div>                                     
+	                    </div>		
                     </div>
-
                 </div>
 
                 <div class="row text-center">
@@ -1673,13 +1609,13 @@
                                 <div class="col-md-6">
                                     {!! Form::label('fech_ini_anti', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_ini_anti" value="{!! $afiliado->fech_ini_anti !!}"/>
+                                        <input type="text" class="form-control" name="fech_ini_anti" value="{!! $afiliado->getData_fech_ini_anti() !!}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     {!! Form::label('fech_fin_anti', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_fin_anti" value="{!! $afiliado->fech_fin_anti !!}"/>
+                                        <input type="text" class="form-control" name="fech_fin_anti" value="{!! $afiliado->getData_fech_fin_anti() !!}"/>
                                     </div>
                                 </div>
                             </div>
@@ -1694,13 +1630,13 @@
                                 <div class="col-md-6">
                                     {!! Form::label('fech_ini_reco', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_ini_reco" value="{!! $afiliado->fech_ini_reco !!}"/>
+                                        <input type="text" class="form-control" name="fech_ini_reco" value="{!! $afiliado->getData_fech_ini_reco() !!}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     {!! Form::label('fech_fin_reco', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_fin_reco" value="{!! $afiliado->fech_fin_reco !!}"/>
+                                        <input type="text" class="form-control" name="fech_fin_reco" value="{!! $afiliado->getData_fech_fin_reco() !!}"/>
                                     </div>
                                 </div>
                             </div>
@@ -1715,7 +1651,7 @@
                         </div>
                     </div>
                 </div>
-            {!! Form::close() !!}
+                {!! Form::close() !!}
 
             </div>
         </div>
