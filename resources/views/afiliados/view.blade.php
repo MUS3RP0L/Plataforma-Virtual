@@ -23,7 +23,6 @@
                                 <li><a href="{!! url('regaportegest/' . $afiliado->id) !!}">Registrar Aporte&nbsp;<span class="glyphicon glyphicon-edit"  aria-hidden="true"></span></a></li>
                             </ul>
                         </div>
-
                         {{-- <a href="{!! url('afiliadoreporte/' . $afiliado->id) !!}" class="btn btn-raised btn-success">
                                 Reporte de prestamo&nbsp;&nbsp;<span class="glyphicon glyphicon-edit"  aria-hidden="true"></span>
                         </a> --}}
@@ -695,7 +694,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="border-top:1px solid #d4e4cd;">
+                                            <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         Unidad
@@ -706,6 +705,20 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        @if($afiliado->motivo_baja)
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Motivo Baja
+                                                        </div>
+                                                        <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->unidad->lit !!}">
+                                                            {!! $afiliado->motivo_baja !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
 
                                     </table>
 
@@ -739,7 +752,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="border-top:1px solid #d4e4cd;">
+                                            <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         Fecha de Ingreso
@@ -750,6 +763,20 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        @if($afiliado->motivo_baja)
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Fecha de Baja
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $afiliado->getData_fech_baja() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
 
                                     </table>
 
@@ -758,12 +785,6 @@
 
                         </div>
                     </div>
-
-
-
-
-
-
 
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -861,16 +882,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
 
                     <div class="panel panel-primary">
                         <div class="panel-heading">                     
@@ -1178,7 +1189,7 @@
                         <div class="form-group">
                                 {!! Form::label('motivo_dece', 'CAUSA FALLECIMIENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::textarea('motivo_dece', $conyuge->motivo_dece, ['class'=> 'form-control', 'cols' => '5', 'rows' => '4']) !!}
+                                {!! Form::textarea('motivo_dece', $conyuge->motivo_dece, ['class'=> 'form-control', 'rows' => '2']) !!}
                                 <span class="help-block">Motivo de fallecimiento</span>
                             </div>
                         </div>
@@ -1511,7 +1522,7 @@
                                 <div class="form-group">
                                     {!! Form::label('motivo_baja', 'MOTIVO DE BAJA', ['class' => 'col-md-2 control-label']) !!}
                                     <div class="col-md-10">
-                                        {!! Form::textarea('motivo_baja', $afiliado->motivo_baja, ['class'=> 'form-control', 'cols' => '5', 'rows' => '4']) !!}
+                                        {!! Form::textarea('motivo_baja', $afiliado->motivo_baja, ['class'=> 'form-control', 'rows' => '2']) !!}
                                         <span class="help-block">Motivo de fallecimiento</span>
                                     </div>
                                 </div>
