@@ -9,9 +9,9 @@
 
     <main>
       <div id="details" class="clearfix">
-        <div id="invoice">
-          <h1>INVOICE {{ $invoice }}</h1>
-          <div class="date">Date of Invoice: {{ $date }}</div>
+        <div id="calif">
+          <h1>calif {{ $calif }}</h1>
+          <div class="date">Date of calif: {{ $date }}</div>
         </div>
       </div>
       <table border="0" cellspacing="0" cellpadding="0">

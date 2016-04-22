@@ -625,15 +625,15 @@ class AfiliadoController extends Controller
         ];
         return $data;
     }
-    public function invoice() 
+    public function calif() 
     {
         $data = $this->getData();
         $date = date('Y-m-d');
-        $invoice = "2222";
-        $view =  \View::make('pdf.invoice', compact('data', 'date', 'invoice'))->render();
+        $calif = "2222";
+        $view =  \View::make('print.calif', compact('data', 'date', 'calif'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
-        return $pdf->stream('invoice');
+        return $pdf->stream('calif');
     }
 
 

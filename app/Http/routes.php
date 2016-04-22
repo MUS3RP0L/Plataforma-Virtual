@@ -90,6 +90,10 @@ Route::group(['middleware' => 'auth'], function() {
 	
 	Route::get('total_month', 'ReporteController@ReportAporteMonth');
 	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
+
+	// print
+	
+	Route::get('print', 'AfiliadoController@calif');
 	
 });
 
