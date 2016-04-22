@@ -169,30 +169,54 @@ class Afiliado extends Model
         $months = $fech_ini_serv->diffInMonths($fech_fin_serv) - $totalmonths + 1;
         return $years . " Años " . $months . " Meses";
     }
-    
-    // public function getFull_fech_ini_serv()
-    // {   
-    //     if ($this->fech_ini_serv) {
-    //         $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
-    //         return date("d", strtotime($this->fech_ini_serv))." ".$meses[date("n", strtotime($this->fech_ini_serv))-1]. " ".date("Y", strtotime($this->fech_ini_serv)); 
-    //     }
-    // }
-    // public function getFull_fech_fin_serv()
-    // {   
-    //     if ($this->fech_fin_serv) {
-    //         $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
-    //         return date("d", strtotime($this->fech_fin_serv))." ".$meses[date("n", strtotime($this->fech_fin_serv))-1]. " ".date("Y", strtotime($this->fech_fin_serv));
-    //     }
-    // }
-    // public function getYearsAndMonths_fech_fin_serv()
-    // {
-    //     $fech_ini_serv = Carbon::create(date("Y", strtotime($this->fech_ini_serv)), date("m", strtotime($this->fech_ini_serv)), 1);
-    //     $fech_fin_serv = Carbon::create(date("Y", strtotime($this->fech_fin_serv)), date("m", strtotime($this->fech_fin_serv)), 1);
-    //     $years = $fech_ini_serv->diffInYears($fech_fin_serv);
-    //     $totalmonths = $years*12;
-    //     $months = $fech_ini_serv->diffInMonths($fech_fin_serv) - $totalmonths + 1;
-    //     return $years . " Años " . $months . " Meses";
-    // }
+
+    public function getFull_fech_ini_anti()
+    {   
+        if ($this->fech_ini_anti) {
+            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+            return date("d", strtotime($this->fech_ini_anti))." ".$meses[date("n", strtotime($this->fech_ini_anti))-1]. " ".date("Y", strtotime($this->fech_ini_anti)); 
+        }
+    }
+    public function getFull_fech_fin_anti()
+    {   
+        if ($this->fech_fin_anti) {
+            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+            return date("d", strtotime($this->fech_fin_anti))." ".$meses[date("n", strtotime($this->fech_fin_anti))-1]. " ".date("Y", strtotime($this->fech_fin_anti));
+        }
+    }
+    public function getYearsAndMonths_fech_ini_anti()
+    {
+        $fech_ini_anti = Carbon::create(date("Y", strtotime($this->fech_ini_anti)), date("m", strtotime($this->fech_ini_anti)), 1);
+        $fech_fin_anti = Carbon::create(date("Y", strtotime($this->fech_fin_anti)), date("m", strtotime($this->fech_fin_anti)), 1);
+        $years = $fech_ini_anti->diffInYears($fech_fin_anti);
+        $totalmonths = $years*12;
+        $months = $fech_ini_anti->diffInMonths($fech_fin_anti) - $totalmonths + 1;
+        return $years . " Años " . $months . " Meses";
+    }
+
+    public function getFull_fech_ini_reco()
+    {   
+        if ($this->fech_ini_reco) {
+            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+            return date("d", strtotime($this->fech_ini_reco))." ".$meses[date("n", strtotime($this->fech_ini_reco))-1]. " ".date("Y", strtotime($this->fech_ini_reco)); 
+        }
+    }
+    public function getFull_fech_fin_reco()
+    {   
+        if ($this->fech_fin_reco) {
+            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+            return date("d", strtotime($this->fech_fin_reco))." ".$meses[date("n", strtotime($this->fech_fin_reco))-1]. " ".date("Y", strtotime($this->fech_fin_reco));
+        }
+    }
+    public function getYearsAndMonths_fech_ini_reco()
+    {
+        $fech_ini_reco = Carbon::create(date("Y", strtotime($this->fech_ini_reco)), date("m", strtotime($this->fech_ini_reco)), 1);
+        $fech_fin_reco = Carbon::create(date("Y", strtotime($this->fech_fin_reco)), date("m", strtotime($this->fech_fin_reco)), 1);
+        $years = $fech_ini_reco->diffInYears($fech_fin_reco);
+        $totalmonths = $years*12;
+        $months = $fech_ini_reco->diffInMonths($fech_fin_reco) - $totalmonths + 1;
+        return $years . " Años " . $months . " Meses";
+    }
 
     public function getHowOld()
     {
