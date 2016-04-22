@@ -517,6 +517,9 @@ class AfiliadoController extends Controller
                             $afiliado->fech_gra = Util::datePick($request->fech_gra);
                         }
                     }
+
+                    $afiliado->fech_baja = Util::datePick($request->fech_baja); 
+                    $afiliado->motivo_baja = trim($request->motivo_baja);
                     
                     // if ($request->fech_dece && $request->afi_state_id == 3) {$afiliado->fech_dece = Util::datePick($request->fech_dece);}
                     $afiliado->save();

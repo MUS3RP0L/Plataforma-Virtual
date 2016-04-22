@@ -1504,7 +1504,35 @@
 		                            </div>
 		                        </div>
 	                        </div>                                     
-	                    </div>		
+	                    </div>	
+                        <div class="row">
+                            
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    {!! Form::label('motivo_baja', 'MOTIVO DE BAJA', ['class' => 'col-md-2 control-label']) !!}
+                                    <div class="col-md-10">
+                                        {!! Form::textarea('motivo_baja', $afiliado->motivo_baja, ['class'=> 'form-control', 'cols' => '5', 'rows' => '4']) !!}
+                                        <span class="help-block">Motivo de fallecimiento</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    {!! Form::label('fech_baja', 'FECHA DE BAJA', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control datepicker" name="fech_baja" value="{!! $afiliado->getData_fech_baja() !!}">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                            </div>                                     
+                        </div>  
+
+
                     </div>
                 </div>
 

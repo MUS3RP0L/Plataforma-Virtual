@@ -188,6 +188,13 @@ class Afiliado extends Model
 		return date("d", strtotime($this->fech_est))."/".date("m", strtotime($this->fech_est)). "/".date("Y", strtotime($this->fech_est));
     }
 
+    public function getData_fech_baja()
+    {   
+        if ($this->fech_baja) {
+            return date("d", strtotime($this->fech_baja))."/".date("m", strtotime($this->fech_baja)). "/".date("Y", strtotime($this->fech_baja));
+        }
+    }
+
     public function getDataEditGra()
     {	
 		return date("d", strtotime($this->fech_gra))."/".date("m", strtotime($this->fech_gra)). "/".date("Y", strtotime($this->fech_gra)); 
