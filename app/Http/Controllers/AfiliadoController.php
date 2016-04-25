@@ -615,26 +615,30 @@ class AfiliadoController extends Controller
 
     }
 
-    public function getData($id) 
+    public function calif($id) 
     {
         $afiliado = Afiliado::idIs($id)->firstOrFail();
 
-        $data =  [
-            'afiliado' => $afiliado->nom,
-            'description'   => 'some ramdom text',
-            'price'   => '500',
-            'total'     => '500'
-        ];
-        return $data;
-    }
-    public function calif($id) 
-    {
-        $data = $this->getData($id);
+        $conyuge = Conyuge::where('afiliado_id', '=', $id)->first();
+        if (!$conyuge) {  
+            $conyuge = new Conyuge;
+        }
+        $titular = Titular::where('afiliado_id', '=', $id)->first();
+
+        if (!$titular) {
+            $titular = new Titular;
+        }
+
+        if ($afiliado->depa_dir_id) {
+            $afiliado->depa_dir = Departamento::select('name')->where('id', '=', $afiliado->depa_dir_id)->firstOrFail()->name;
+        }else
+        {
+            $afiliado->depa_dir = ""; 
+        }
         $date = date('Y-m-d');
-        $calif = "2222";
-        $view =  \View::make('print.calif', compact('data', 'date', 'calif'))->render();
+        $view =  \View::make('print.calif', compact('afiliado','conyuge', 'titular', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($view);
+        $pdf->loadHTML($view)->setPaper('letter')->save('Calificacion.pdf');
         return $pdf->stream('calif');
     }
 
