@@ -342,7 +342,7 @@
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-domicilio"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Domicilio">
-                                                <img class="circle" src="{!! asset('images/home.png') !!}" width="40px" alt="icon">                                                                          
+                                                <img class="circle" src="{!! asset('assets/images/home.png') !!}" width="40px" alt="icon">                                                                          
                                             </button>
                                         </div>
                                     </div>
@@ -401,7 +401,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Apellido Materno
@@ -412,8 +412,18 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            
-
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Fecha Deceso
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                             {!! $conyuge->getFullDateDece() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         </table>
 
 
@@ -423,25 +433,37 @@
 
                                         <table class="table" style="width:100%;">
                                             <tr>
+                                                <td style="border-top:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Fecha Nacimiento
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                             {!! $conyuge->getFullDateNac() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td style="border-top:0;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Nombre(s)
+                                                            Primer Nombre
                                                         </div>
                                                         <div class="col-md-6">
                                                             {!! $conyuge->nom !!}
                                                         </div>
                                                     </div>
                                                 </td>
-                                            </tr>
                                             <tr>
+                                            </tr>
                                                 <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Fecha Deceso
+                                                            Segundo Nombre
                                                         </div>
                                                         <div class="col-md-6">
-                                                             {!! $conyuge->getFullDateNac() !!}
+                                                            {!! $conyuge->nom2 !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -467,7 +489,7 @@
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-conyuge"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Conyuge">
-                                                <img class="circle" src="{!! asset('images/people.png') !!}" width="45px" alt="icon">                                                                          
+                                                <img class="circle" src="{!! asset('assets/images/people.png') !!}" width="45px" alt="icon">                                                                          
                                             </button>
                                         </div>
                                     </div>
@@ -663,7 +685,7 @@
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-titular"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Titular">
-                                                <img class="circle" src="{!! asset('images/person.png') !!}" width="45px" alt="icon">                                                                          
+                                                <img class="circle" src="{!! asset('assets/images/person.png') !!}" width="45px" alt="icon">                                                                          
                                             </button>
                                         </div>
                                     </div>
@@ -1056,7 +1078,7 @@
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-periodo-aportes"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Periodo de Aportes">
-                                                <img class="circle" src="{!! asset('images/period.png') !!}" width="40px" alt="icon">                                                                          
+                                                <img class="circle" src="{!! asset('assets/images/period.png') !!}" width="40px" alt="icon">                                                                          
                                             </button>
                                         </div>
                                     </div>
@@ -1367,21 +1389,38 @@
                             </div>
                         </div>  
                         <div class="form-group">
-                                {!! Form::label('nom', 'NOMBRE(S)', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('nom', 'PRIMER NOMBRE', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('nom', $conyuge->nom, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Nombre(s)</span>
                             </div>
-                        </div>                            
+                        </div>  
+                        <div class="form-group">
+                                {!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('nom2', $conyuge->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Nombre(s)</span>
+                            </div>
+                        </div>                          
                     </div>
 
                     <div class="col-md-6">
-                        
+                        <div class="form-group">
+                                {!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control datepicker" name="fech_nac" value="{!! $conyuge->getDataEdit_fech_nac() !!}">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                                 {!! Form::label('fech_dece', 'FECHA FALLECIMIENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $conyuge->getDataEdit() !!}">
+                                    <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $conyuge->getDataEdit_fech_dece() !!}">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </div>

@@ -26,4 +26,25 @@ class Titular extends Model
     {
         return $this->belongsTo('App\Afiliado');
     }
+
+    public function getFullNametoPrint()
+    {
+        return $this->nom . ' ' . $this->pat. ' ' . $this->mat;
+    }
+
+    public function getFullDireccDomitoPrint()
+    {
+        return $this->calle_domi . ' ' . $this->num_domi . ' ' . $this->zona_domi;
+    }
+
+    public function getFullDireccTrabtoPrint()
+    {
+        return $this->calle_trab . ' ' . $this->num_trab . ' ' . $this->zona_trab;
+    }
+
+    public function getFullNumber()
+    {
+        return $this->tele_domi . ' ' . $this->celu_domi;
+    }
+
 }

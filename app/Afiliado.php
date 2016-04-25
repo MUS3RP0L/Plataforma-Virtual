@@ -228,12 +228,6 @@ class Afiliado extends Model
     	}
     	
     }
-    
-
-
-
-
-
 	
 	public function getCivil()
 	{
@@ -285,7 +279,7 @@ class Afiliado extends Model
 
 	public function getFullDateIng()
     {	
-		if ($this->fech_nac) {
+		if ($this->fech_ing) {
             $meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
             return date("d", strtotime($this->fech_ing))." ".$meses[date("m", strtotime($this->fech_ing))-1]. " ".date("Y", strtotime($this->fech_ing));
         }
@@ -378,6 +372,51 @@ class Afiliado extends Model
 	public function getFullName()
     {
         return $this->grado->lit . ' ' . $this->pat . ' ' . $this->mat. ' ' . $this->nom;
+    }
+
+    public function getFullNametoPrint()
+    {
+        return $this->nom . ' ' . $this->nom2 . ' ' . $this->pat. ' ' . $this->mat;
+    }
+
+    public function getFullDateNactoPrint()
+    {   
+        if ($this->fech_nac) {
+            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            return date("d", strtotime($this->fech_nac))." de ".$meses[date("m", strtotime($this->fech_nac))-1]. " de ".date("Y", strtotime($this->fech_nac));
+        }
+    }
+    public function getFullDirecctoPrint()
+    {
+        return $this->calle . ' ' . $this->num_domi . ' ' . $this->zona. ' ' . $this->depa_dir;
+    }
+    public function getFull_fech_decetoPrint()
+    {   
+        if ($this->fech_dece) {
+            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            return date("d", strtotime($this->fech_dece))." ".$meses[date("n", strtotime($this->fech_dece))-1]. " ".date("Y", strtotime($this->fech_dece)); 
+        }
+    }
+    public function getFullDateIngtoPrint()
+    {   
+        if ($this->fech_ing) {
+            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            return date("d", strtotime($this->fech_ing))." ".$meses[date("m", strtotime($this->fech_ing))-1]. " ".date("Y", strtotime($this->fech_ing));
+        }
+    }
+    public function getFull_fech_fin_aportoPrint()
+    {   
+        if ($this->fech_fin_apor) {
+            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            return date("d", strtotime($this->fech_fin_apor))." ".$meses[date("n", strtotime($this->fech_fin_apor))-1]. " ".date("Y", strtotime($this->fech_fin_apor));
+        }
+    }
+    public function getData_fech_bajatoPrint()
+    {   
+        if ($this->fech_baja) {
+            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            return date("d", strtotime($this->fech_baja))." ".$meses[date("n", strtotime($this->fech_baja))-1]. " ".date("Y", strtotime($this->fech_baja));
+        }
     }
 
 }
