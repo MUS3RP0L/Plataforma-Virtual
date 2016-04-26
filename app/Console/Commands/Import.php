@@ -105,29 +105,25 @@ class Import extends Command
                                 $nom2 = Util::OtherName($result->nom);
                                 $fech_nac = Util::date($result->nac);
                                 $fech_ing = Util::date($result->ing);  
-                                $grado_id = "";
-                                
+                                $grado_id = "";                               
                             break;
                             case 'c3':
                                 $nom = Util::FirstName($result->nom);
                                 $nom2 = Util::OtherName($result->nom);
                                 $fech_nac = Util::dateAAMMDD($result->nac);
                                 $fech_ing = Util::dateAAMMDD($result->ing);  
-                                
                             break;
                             case 'c4':
                                 $nom = $result->nom;
                                 $nom2 = $result->nom2;
                                 $fech_nac = Util::dateAAMMDD($result->nac);
-                                $fech_ing = Util::dateAAMMDD($result->ing);   
-                                
+                                $fech_ing = Util::dateAAMMDD($result->ing);                                 
                             break;
                             case 'c5':
                                 $nom = $result->nom;
                                 $nom2 = $result->nom2;
                                 $fech_nac = Util::dateDDMMAA($result->nac);
-                                $fech_ing = Util::dateDDMMAA($result->ing);  
-                                
+                                $fech_ing = Util::dateDDMMAA($result->ing);                                 
                             break;
                             default:
                                 $nom = $result->nom;
@@ -160,17 +156,14 @@ class Import extends Command
                                 $afiliado->afi_state_id = 4;
                                 if ($afiliado->afi_state_id <> 4){$afiliado->fech_est = $gest;}
                             break;
-
                             case '3'://Comisión
                                 $afiliado->afi_state_id = 3;
                                 if ($afiliado->afi_state_id <> 3){$afiliado->fech_est = $gest;}
                             break;
-
                             case '5'://Batallón
                                 $afiliado->afi_state_id = 2;
                                 if ($afiliado->afi_state_id <> 2){$afiliado->fech_est = $gest;}
                             break;
-
                             default://Comando
                                 $afiliado->afi_state_id = 1;
                                 if ($afiliado->afi_state_id <> 1){$afiliado->fech_est = $gest;}
@@ -267,9 +260,7 @@ class Import extends Command
                     $cAfiT Afiliados en total.\n 
                     $cApor Aportes.\n 
                     $execution_time [Min] demorados en ejecutar de importación.\n");
-
             }
-
         }
         else{
             $this->error('Contraseña incorrecta!');
