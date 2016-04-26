@@ -56,7 +56,8 @@ class Note extends Model
         	$unidad = Unidad::where('id', $afiliado->unidad_id)->first();
 			$note->message = "Afiliado cambio de unidad a " . $unidad->abre;
 			$note->save();
-		}	}
+		}	
+	}
 
 	public static function createAfiliado($afiliado)
 	{					

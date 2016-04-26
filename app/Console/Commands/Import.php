@@ -79,16 +79,68 @@ class Import extends Command
                         $gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
                         $desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
                         $unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $desglose_id)->first()->id;
+                        if($result->niv || $result->gra){
                         if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                         $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+                        }
                         $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         $por_apor = AporTasa::where('gest', '=', Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString())->first();
+
+                        switch ($name) {
+                            
+                            case 'c1':
+                                $nom = Util::FirstName($result->nom);
+                                $nom2 = Util::OtherName($result->nom);
+                                $fech_nac = Util::dateDDMMAA($result->nac);
+                                $fech_ing = Util::dateDDMMAA($result->ing);
+                            break;
+                            case 'c2':
+                                $nom = Util::FirstName($result->nom);
+                                $nom2 = Util::OtherName($result->nom);
+                                $fech_nac = Util::dateAADDMM($result->nac);
+                                $fech_ing = Util::dateAADDMM($result->ing);                                 
+                            break;
+                            case 'c2a':
+                                $nom = Util::FirstName($result->nom);
+                                $nom2 = Util::OtherName($result->nom);
+                                $fech_nac = Util::date($result->nac);
+                                $fech_ing = Util::date($result->ing);  
+                                $grado_id = "";
+                                
+                            break;
+                            case 'c3':
+                                $nom = Util::FirstName($result->nom);
+                                $nom2 = Util::OtherName($result->nom);
+                                $fech_nac = Util::dateAAMMDD($result->nac);
+                                $fech_ing = Util::dateAAMMDD($result->ing);  
+                                
+                            break;
+                            case 'c4':
+                                $nom = $result->nom;
+                                $nom2 = $result->nom2;
+                                $fech_nac = Util::dateAAMMDD($result->nac);
+                                $fech_ing = Util::dateAAMMDD($result->ing);   
+                                
+                            break;
+                            case 'c5':
+                                $nom = $result->nom;
+                                $nom2 = $result->nom2;
+                                $fech_nac = Util::dateDDMMAA($result->nac);
+                                $fech_ing = Util::dateDDMMAA($result->ing);  
+                                
+                            break;
+                            default:
+                                $nom = $result->nom;
+                                $nom2 = $result->nom2;
+                                $fech_nac = Util::date($result->nac);
+                                $fech_ing = Util::date($result->ing);    
+                        } 
 
                         if (!$afiliado) {
 
                             $afiliado = Afiliado::where('pat', '=', $result->pat)->where('mat', '=', $result->mat)
-                                                ->where('fech_nac', '=', Util::date($result->nac))
-                                                ->where('fech_ing', '=', Util::date($result->ing))->first();
+                                                ->where('fech_nac', '=', $fech_nac)
+                                                ->where('fech_ing', '=', $fech_ing)->first();
                             if (!$afiliado) {
 
                                 $afiliado = new Afiliado;
@@ -128,16 +180,17 @@ class Import extends Command
                         $afiliado->fech_lastg = $gest;
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
-                        $afiliado->nom = $result->nom;
-                        $afiliado->nom2 = $result->nom2;
+                        $afiliado->nom = $nom;
+                        $afiliado->nom2 = $nom2;
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
                         $afiliado->desglose_id = $desglose_id;                           
                         $afiliado->categoria_id = $categoria_id;
                         $afiliado->afp = Util::getAfp($result->afp);
-                        $afiliado->matri = Util::calcMatri($result->nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);                           
-                        $afiliado->fech_nac = Util::date($result->nac);
-                        $afiliado->fech_ing = Util::date($result->ing);
+                        $afiliado->fech_nac = $fech_nac;
+                        $afiliado->fech_ing = $fech_ing;
+                        $afiliado->matri = Util::calcMatri($fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);                           
+
                         $afiliado->nua = $result->nua;
                         if ($afiliado->unidad_id <> $unidad_id) {
                             $afiliado->fech_uni = $gest;
@@ -208,12 +261,12 @@ class Import extends Command
 
                 $progress->finish();
             
-                $this->info("\n\nEn la carpeta . $name . Se registraros:\n\n" . $cAfiN .
-                 " Afiliados Nuevos.\n" . $cAfiU .
-                 " Afiliados Actualizados.\n" . $cAfiT .
-                 " Afiliados en total.\n" . $cApor . 
-                 " Aportes.\n" . $execution_time . 
-                 " [Min] demorados en ejecutar de importación.\n");
+                $this->info("\n\nEn la carpeta $name Se registraros:\n\n
+                    $cAfiN Afiliados Nuevos.\n 
+                    $cAfiU Afiliados Actualizados.\n 
+                    $cAfiT Afiliados en total.\n 
+                    $cApor Aportes.\n 
+                    $execution_time [Min] demorados en ejecutar de importación.\n");
 
             }
 
