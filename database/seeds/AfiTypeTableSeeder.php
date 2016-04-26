@@ -44,12 +44,13 @@ class AfiTypeTableSeeder extends Seeder
             ['id' => '3', 'afi_type_id' => '2', 'name' => 'Fallecido'],
             ['id' => '4', 'afi_type_id' => '2', 'name' => 'Jubilado'],
             ['id' => '5', 'afi_type_id' => '2', 'name' => 'Jubilación por Invalidez'],
-            ['id' => '6', 'afi_type_id' => '3', 'name' => 'Juridico'],
-            ['id' => '7', 'afi_type_id' => '3', 'name' => 'Financiero'],
-            ['id' => '8', 'afi_type_id' => '3', 'name' => 'Inversiones'],
-            ['id' => '9', 'afi_type_id' => '4', 'name' => 'Forzosa'],
-            ['id' => '10', 'afi_type_id' => '4', 'name' => 'Voluntaria'],
-            ['id' => '11', 'afi_type_id' => '4', 'name' => 'Temporal']
+            ['id' => '6', 'afi_type_id' => '2', 'name' => ''],
+            ['id' => '7', 'afi_type_id' => '3', 'name' => 'Juridico'],
+            ['id' => '8', 'afi_type_id' => '3', 'name' => 'Financiero'],
+            ['id' => '9', 'afi_type_id' => '3', 'name' => 'Inversiones'],
+            ['id' => '10', 'afi_type_id' => '4', 'name' => 'Forzosa'],
+            ['id' => '11', 'afi_type_id' => '4', 'name' => 'Voluntaria'],
+            ['id' => '12', 'afi_type_id' => '4', 'name' => 'Temporal']
 
 
         ];
