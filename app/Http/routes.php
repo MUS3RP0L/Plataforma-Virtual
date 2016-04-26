@@ -19,6 +19,8 @@ Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('login', 'Auth\AuthController@postLogin');
 Route::get('logout', 'Auth\AuthController@getLogout');
 
+define('ACCESS', 'alerick');
+
 Route::group(['middleware' => 'auth'], function() {
 
 	// Gestion de Usuarios

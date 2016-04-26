@@ -99,7 +99,7 @@ table .desc {
 }
 
 table td {
-  padding: 20px;
+  padding: 10px;
   text-align: right;
   border: 1px solid #C1CED9;
 }
@@ -113,6 +113,7 @@ table td.unit,
 table td.qty,
 table td.total {
   font-size: 1.2em;
+  width: 40%;
 }
 
 table td.grand {

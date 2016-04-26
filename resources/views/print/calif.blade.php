@@ -37,7 +37,7 @@
         <div><span>PERIODO RECONOCIMIENTO DE APORTES</span>{!! "Desde " . $afiliado->getFull_fech_ini_reco() . " Hasta " . $afiliado->getFull_fech_fin_reco() . " Total " . $afiliado->getYearsAndMonths_fech_ini_reco() !!}</div>
       </div>
       <br>
-      {{-- <div class="title">C) DATOS DEL CONYUGE</div>
+      <div class="title">C) DATOS DEL CONYUGE</div>
       <div id="project">
         <div><span>NOMBRE DE CONYUGE</span>{!! $conyuge->getFullNametoPrint() !!}</div>
         <div><span>FECHA DE NACIMIENTO</span>{!! $conyuge->getFullDateNactoPrint() !!}</div>
@@ -46,7 +46,7 @@
         <div><span>CAUSA DE FALLECIMIENTO</span>{!! $conyuge->motivo_dece !!}</div>
       </div>
       <br>
-      <div class="title">D) SOLICITANTE</div>
+      {{-- <div class="title">D) SOLICITANTE</div>
       <div id="project">
         <div><span>NOMBRE DE SOLICITANTE</span>{!! $titular->getFullNametoPrint() !!}</div>
         <div><span>PARENTESCO CON TITULAR</span>{!! $titular->paren !!}</div>
@@ -58,40 +58,56 @@
     </header>
     <main>
       <table>
-        <thead>
+          <tr>
+            <th colspan="2" class="service">ESTADO DE LA CUENTA INDIVIDUAL</th>
+          </tr>
           <tr>
             <th class="service">PERIODO DE APORTES</th>
-            <th class="desc">DESCRIPTION</th>
-          </tr>
-        </thead>
-        <tbody>
+            <td class="total">{!! "Desde " . $afiliado->getFull_fech_ini_reco() . " Hasta " . $afiliado->getFull_fech_fin_reco() !!}</td>
+          </tr>       
           <tr>
-            <td class="service">Design</td>
-            <td class="service">Creating a recognizable design solution based on the company's existing visual identity</td>
-
+            <th class="service">TIEMPO DE COTIZACIÓN</th>
+            <td class="total">{!! " Total " . $afiliado->getYearsAndMonths_fech_ini_reco() !!}</td>
           </tr>
           <tr>
-            <td class="service">Development</td>
-            <td class="desc">Developing a Content Management System-based Website</td>
+            <th class="service">NÚMERO DE MESES COTIZABLES</th>
+            <td class="grand total">Developing</td>
           </tr>
-          {{-- <tr>
-            <td colspan="4">SUBTOTAL</td>
-            <td class="total">$5,200.00</td>
-          </tr>
-          <tr>
-            <td colspan="4">TAX 25%</td>
-            <td class="total">$1,300.00</td>
-          </tr>
-          <tr>
-            <td colspan="4" class="grand total">GRAND TOTAL</td>
-            <td class="grand total">$6,500.00</td>
-          </tr> --}}
-        </tbody>
       </table>
-      <div id="notices">
+
+      <table>
+          <tr>
+            <th colspan="2" class="service">DATOS ECONÓMICOS DEL AFILIADO</th>
+          </tr>
+          <tr>
+            <th class="service">TOTAL COTIZABLE</th>
+            <td class="total"></td>
+          </tr>
+          <tr>
+            <th class="service">TOTAL COTIZABLE ADICIONAL (ITEM "0")</th>
+            <td class="total"></td>
+          </tr>
+          <tr>
+            <th class="service">TOTAL GENERAL COTIZABLE</th>
+            <td class="grand total"></td>
+          </tr>
+          <tr>
+            <th class="service">TOTAL FONDO DE RETIRO (1,85%)</th>
+            <td class="total"></td>
+          </tr>
+          <tr>
+            <th class="service">RENDIMIENTO OBTENIDO</th>
+            <td class="total"></td>
+          </tr>
+          <tr>
+            <th class="service">TOTAL FONDO DE RETIRO</th>
+            <td class="grand"></td>
+          </tr>
+      </table>
+      {{-- <div id="notices">
         <div>NOTICE:</div>
         <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-      </div>
+      </div> --}}
     </main>
     <footer>
       MUTUAL DE SERVICIOS AL POLICIA "MUSERPOL"
