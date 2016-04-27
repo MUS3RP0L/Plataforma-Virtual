@@ -1,6 +1,7 @@
 <?php
 
 namespace Muserpol\Helper;
+use Carbon\Carbon;
 
 class Util
 {
@@ -111,9 +112,11 @@ class Util
 
 	public static function calcMatri($nac, $pat, $mat, $nom, $sex)
 	{
-		$nac_day = substr($nac, 0, 2);
-		$nac_month = substr($nac, 2, 2);
-		$nac_year = substr($nac, -2);
+
+		$newnac = explode("-", $nac);
+		$nac_day = $newnac[2];
+		$nac_month = $newnac[1];
+		$nac_year = substr($newnac[0], -2);
 
 		$month_first = substr($nac_month, 0, 1);
 		$month_second = substr($nac_month, 1, 1);

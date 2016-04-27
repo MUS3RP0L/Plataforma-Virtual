@@ -15,18 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
 
         \Muserpol\Console\Commands\Import::class,
-        // case 1 ImportDDMMAANom
-        \Muserpol\Console\Commands\ImportC1::class,
-        // case 2 ImportAADDMMNom
-        \Muserpol\Console\Commands\ImportC2::class,
-        // case 3 ImportAAMMDDNom
-        \Muserpol\Console\Commands\ImportC3::class,
-        // case 4 ImportAAMMDD
-        \Muserpol\Console\Commands\ImportC4::class,
-        // case 5 ImportDDMMAA
-        \Muserpol\Console\Commands\ImportC5::class,
         
-        \Muserpol\Console\Commands\NewImport::class,
     ];
 
     /**

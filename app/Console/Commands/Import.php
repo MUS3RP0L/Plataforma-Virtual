@@ -73,18 +73,6 @@ class Import extends Command
                         ini_set('max_input_time', 36000);
                         ini_set('memory_limit', '-1');
                         set_time_limit(36000);
-                        
-                        $afiliado = Afiliado::where('ci', '=', Util::zero($result->car))->first();
-                        
-                        $gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
-                        $desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
-                        $unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $desglose_id)->first()->id;
-                        if($result->niv || $result->gra){
-                        if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
-                        $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
-                        }
-                        $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
-                        $por_apor = AporTasa::where('gest', '=', Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString())->first();
 
                         switch ($name) {
                             
@@ -131,6 +119,18 @@ class Import extends Command
                                 $fech_nac = Util::date($result->nac);
                                 $fech_ing = Util::date($result->ing);    
                         } 
+                        
+                        $afiliado = Afiliado::where('ci', '=', Util::zero($result->car))->first();
+                        
+                        $gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
+                        $desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
+                        $unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $desglose_id)->first()->id;
+                        if($result->niv || $result->gra){
+                            if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
+                            $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
+                        }
+                        $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
+                        $por_apor = AporTasa::where('gest', '=', Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString())->first();
 
                         if (!$afiliado) {
 
