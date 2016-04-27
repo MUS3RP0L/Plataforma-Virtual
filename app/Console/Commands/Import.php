@@ -91,9 +91,8 @@ class Import extends Command
                             case 'c2a':
                                 $nom = Util::FirstName($result->nom);
                                 $nom2 = Util::OtherName($result->nom);
-                                $fech_nac = Util::date($result->nac);
-                                $fech_ing = Util::date($result->ing);  
-                                $grado_id = "";                               
+                                $fech_nac = Util::dateAADDMM($result->nac);
+                                $fech_ing = Util::dateAADDMM($result->ing);                                
                             break;
                             case 'c3':
                                 $nom = Util::FirstName($result->nom);
@@ -125,7 +124,7 @@ class Import extends Command
                         $gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
                         $desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
                         $unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $desglose_id)->first()->id;
-                        if($result->niv || $result->gra){
+                        if($result->niv && $result->gra){
                             if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                             $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
                         }
@@ -188,11 +187,15 @@ class Import extends Command
                         if ($afiliado->unidad_id <> $unidad_id) {
                             $afiliado->fech_uni = $gest;
                         }
-                        $afiliado->unidad_id = $unidad_id;              
-                        if ($afiliado->grado_id <> $grado_id) {
-                            $afiliado->fech_gra = $gest;
+                        if ($name <> 'c2a') {
+                            $afiliado->unidad_id = $unidad_id;              
+                            if ($afiliado->grado_id <> $grado_id) {
+                                $afiliado->fech_gra = $gest;
+                            }
+                            $afiliado->grado_id = $grado_id; 
                         }
-                        $afiliado->grado_id = $grado_id;                                                                           
+                        
+
                         $afiliado->save();
 
                         if (Util::decimal($result->sue)<> 0) {
