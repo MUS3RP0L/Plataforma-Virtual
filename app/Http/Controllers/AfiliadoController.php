@@ -619,6 +619,8 @@ class AfiliadoController extends Controller
     {
         $afiliado = Afiliado::idIs($id)->firstOrFail();
 
+        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
+
         $conyuge = Conyuge::where('afiliado_id', '=', $id)->first();
         if (!$conyuge) {  
             $conyuge = new Conyuge;
@@ -638,7 +640,7 @@ class AfiliadoController extends Controller
         $date = date('Y-m-d');
         $view =  \View::make('print.calif', compact('afiliado','conyuge', 'titular', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($view)->setPaper('letter')->save('Calificacion.pdf');
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/' . $name_input . '.pdf');
         return $pdf->stream('calif');
     }
 
