@@ -62,7 +62,15 @@ class Import extends Command
                 $progress = $this->output->createProgressBar();
                 $progress->setFormat("%current%/%max% [%bar%] %percent:3s%%");
 
-                Excel::batch('public/file_to_import/' . $name . '/', function($rows, $file) {   
+                global $cAfiN, $cAfiU, $cApor, $progress, $name;
+                        ini_set('upload_max_filesize', '9999M');
+                        ini_set('post_max_size', '9999M');
+                        ini_set('max_execution_time', 36000);
+                        ini_set('max_input_time', 36000);
+                        ini_set('memory_limit', '-1');
+                        set_time_limit(36000);
+
+                Excel::batch('public/file_to_import/error/' . $name . '/', function($rows, $file) {   
                 
                     $rows->each(function($result) {
 
@@ -121,14 +129,15 @@ class Import extends Command
                         
                         $afiliado = Afiliado::where('ci', '=', Util::zero($result->car))->first();
                         $gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
-                        if ($result->desg) {
-                            $desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
-                            $unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $desglose_id)->first()->id;
-                        }else{
-                            $unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
-
+                        if (is_null($result->desg)) {
+                            $result->desg = 0;
                         }
-                        
+                        $desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
+                        if ($desglose_id == 1) {
+                            $unidad_id = 20;
+                        }else{
+                            $unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $desglose_id)->first()->id;
+                        }
                         if($result->niv && $result->gra){
                             if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                             $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
@@ -181,9 +190,7 @@ class Import extends Command
                         $afiliado->nom2 = $nom2;
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
-                        if ($result->desg) {
-                            $afiliado->desglose_id = $desglose_id; 
-                        }                          
+                        $afiliado->desglose_id = $desglose_id;                           
                         $afiliado->categoria_id = $categoria_id;
                         $afiliado->afp = Util::getAfp($result->afp);
                         $afiliado->fech_nac = $fech_nac;

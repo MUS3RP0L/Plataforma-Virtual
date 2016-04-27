@@ -39,6 +39,9 @@ class DesgloseTableSeeder extends Seeder
 
             ['id' => '8', 'cod' => '0', 'name' => '']//Servicio
 
+            ['id' => '9', 'cod' => '4', 'name' => '']//Servicio
+            ['id' => '10', 'cod' => '7', 'name' => '']//Servicio
+
             
         ];
 

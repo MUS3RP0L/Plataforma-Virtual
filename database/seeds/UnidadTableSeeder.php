@@ -51,7 +51,9 @@ class UnidadTableSeeder extends Seeder
 	    	['id' => '18', 'desglose_id' => '8', 'dist' => 'ZONA SUR', 'cod' => '20189', 'abre' => 'D.P.4', 'lit' => 'DISTRITO POLICIAL Nº 4'],
 
 	    	['id' => '19', 'desglose_id' => '8', 'dist' => 'LA PAZ', 'cod' => '20190', 'abre' => 'C.G.PN.', 'lit' => 'COMANDO GENERAL'],
-	    	['id' => '20', 'desglose_id' => '1', 'dist' => 'LA PAZ', 'cod' => '20190', 'abre' => 'PA.LP.', 'lit' => 'PASIVOS LA PAZ'],
+
+	    	['id' => '20', 'desglose_id' => '1', 'dist' => 'LA PAZ', 'cod' => '20190', 'abre' => 'DISP.', 'lit' => 'DISPONIBILIDAD'],
+
 	    	['id' => '21', 'desglose_id' => '2', 'dist' => 'LA PAZ', 'cod' => '20190', 'abre' => 'DIR.NAL.POFOMA', 'lit' => 'DIRECCION NACIONAL POFOMA'],
 	    	['id' => '22', 'desglose_id' => '3', 'dist' => 'LA PAZ', 'cod' => '20190', 'abre' => 'COM.IT.0', 'lit' => 'COMISION ITEM CERO'],
 
