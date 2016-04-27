@@ -110,8 +110,7 @@ class Import extends Command
                                 $nom = $result->nom;
                                 $nom2 = $result->nom2;
                                 $fech_nac = Util::dateDDMMAA($result->nac);
-                                $fech_ing = Util::dateDDMMAA($result->ing);   
-                                $result->desg = 0;                              
+                                $fech_ing = Util::dateDDMMAA($result->ing);                                 
                             break;
                             default:
                                 $nom = $result->nom;
@@ -121,10 +120,15 @@ class Import extends Command
                         } 
                         
                         $afiliado = Afiliado::where('ci', '=', Util::zero($result->car))->first();
-                        
                         $gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
-                        $desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
-                        $unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $desglose_id)->first()->id;
+                        if ($result->desg) {
+                            $desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
+                            $unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $desglose_id)->first()->id;
+                        }else{
+                            $unidad_id = Unidad::select('id')->where('cod', $result->uni)->first()->id;
+
+                        }
+                        
                         if($result->niv && $result->gra){
                             if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                             $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
@@ -167,7 +171,7 @@ class Import extends Command
                             default://Comando
                                 $afiliado->afi_state_id = 1;
                                 if ($afiliado->afi_state_id <> 1){$afiliado->fech_est = $gest;}
-                        }                                                        
+                        }                                                      
                         
                         $afiliado->user_id = 1;
                         $afiliado->fech_lastg = $gest;
@@ -177,7 +181,9 @@ class Import extends Command
                         $afiliado->nom2 = $nom2;
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
-                        $afiliado->desglose_id = $desglose_id;                           
+                        if ($result->desg) {
+                            $afiliado->desglose_id = $desglose_id; 
+                        }                          
                         $afiliado->categoria_id = $categoria_id;
                         $afiliado->afp = Util::getAfp($result->afp);
                         $afiliado->fech_nac = $fech_nac;
@@ -185,17 +191,20 @@ class Import extends Command
                         $afiliado->matri = Util::calcMatri($fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);                           
 
                         $afiliado->nua = $result->nua;
-                        if ($afiliado->unidad_id <> $unidad_id) {
-                            $afiliado->fech_uni = $gest;
+                        $afiliado->item = $result->item;
+
+                        if ($result->uni) {
+                            if ($afiliado->unidad_id <> $unidad_id) {
+                                $afiliado->fech_uni = $gest;
+                            }
+                            $afiliado->unidad_id = $unidad_id; 
                         }
-                        if ($name <> 'c2a') {
-                            $afiliado->unidad_id = $unidad_id;              
+                        if ($result->gra) {              
                             if ($afiliado->grado_id <> $grado_id) {
                                 $afiliado->fech_gra = $gest;
                             }
-                            $afiliado->grado_id = $grado_id; 
+                            $afiliado->grado_id = $grado_id;
                         }
-                        
 
                         $afiliado->save();
 
@@ -210,11 +219,15 @@ class Import extends Command
                                 $aporte->aporte_type_id = 1;
                                 $aporte->afiliado_id = $afiliado->id;
                                 $aporte->gest = $gest;
-                                $aporte->desglose_id = $desglose_id;
-                                if ($name <> 'c2a') {
+                                if ($result->desg) {
+                                    $aporte->desglose_id = $desglose_id;
+                                }
+                                if ($result->uni) {
                                     $aporte->unidad_id = $unidad_id;
                                 }
-                                $aporte->grado_id = $grado_id;
+                                if ($result->gra) {
+                                    $aporte->grado_id = $grado_id;
+                                }
                                 $aporte->categoria_id = $categoria_id;
                                 $aporte->item = $result->item;
                                 $aporte->sue = Util::decimal($result->sue);
@@ -240,7 +253,6 @@ class Import extends Command
                                 $aporte->save();
                                 $cApor ++;
                             }
-                            
                         }
                         $progress->advance();
                     });
@@ -263,7 +275,7 @@ class Import extends Command
                     $cAfiN Afiliados Nuevos.\n 
                     $cAfiU Afiliados Actualizados.\n 
                     $cAfiT Afiliados en total.\n 
-                    $cApor Aportes.\n 
+                    $cApor Aportes ingresados.\n 
                     $execution_time [Min] demorados en ejecutar de importación.\n");
             }
         }

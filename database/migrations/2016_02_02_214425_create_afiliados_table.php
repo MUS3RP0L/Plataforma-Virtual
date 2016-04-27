@@ -69,7 +69,7 @@ class CreateAfiliadosTable extends Migration
             
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
-            $table->UnsignedBigInteger('afi_state_id');
+            $table->UnsignedBigInteger('afi_state_id')->nullable();
 
             $table->UnsignedBigInteger('depa_exp_id')->nullable();
             $table->UnsignedBigInteger('depa_nat_id')->nullable();
@@ -123,6 +123,7 @@ class CreateAfiliadosTable extends Migration
 
             $table->boolean('afp')->nullable();
             $table->bigInteger('nua')->nullable();
+            $table->bigInteger('item')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
