@@ -110,7 +110,8 @@ class Import extends Command
                                 $nom = $result->nom;
                                 $nom2 = $result->nom2;
                                 $fech_nac = Util::dateDDMMAA($result->nac);
-                                $fech_ing = Util::dateDDMMAA($result->ing);                                 
+                                $fech_ing = Util::dateDDMMAA($result->ing);   
+                                $result->desg = 0;                              
                             break;
                             default:
                                 $nom = $result->nom;
@@ -202,7 +203,6 @@ class Import extends Command
 
                             $aporte = Aporte::where('gest', '=', Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString())
                                                 ->where('afiliado_id', '=', $afiliado->id)->first();
-
                             if (!$aporte) {
 
                                 $aporte = new Aporte;
@@ -211,7 +211,9 @@ class Import extends Command
                                 $aporte->afiliado_id = $afiliado->id;
                                 $aporte->gest = $gest;
                                 $aporte->desglose_id = $desglose_id;
-                                $aporte->unidad_id = $unidad_id;
+                                if ($name <> 'c2a') {
+                                    $aporte->unidad_id = $unidad_id;
+                                }
                                 $aporte->grado_id = $grado_id;
                                 $aporte->categoria_id = $categoria_id;
                                 $aporte->item = $result->item;
