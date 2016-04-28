@@ -10,6 +10,9 @@ use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 use Muserpol\Afiliado;
 use Muserpol\Calificacion;
+use Muserpol\Municipio;
+use Muserpol\Titular;
+use Muserpol\Conyuge;
 use Datatables;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
@@ -32,10 +35,9 @@ class CalificacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($afid)
+    public function ViewCalif($afid)
     {
         $afiliado = Afiliado::idIs($afid)->first();
-
 
         $calificacion = Calificacion::where('afiliado_id', '=', $afid)->first();
 
@@ -43,12 +45,32 @@ class CalificacionController extends Controller
             $calificacion = new Calificacion;
         }
 
+        $conyuge = Conyuge::where('afiliado_id', '=', $afid)->first();
+        if (!$conyuge) {  
+            $conyuge = new Conyuge;
+        }
+        $titular = Titular::where('afiliado_id', '=', $afid)->first();
+
+        if (!$titular) {
+            $titular = new Titular;
+        }
+
+        if ($afiliado->depa_dir_id) {
+            $afiliado->depa_dir = Departamento::select('name')->where('id', '=', $afiliado->depa_dir_id)->firstOrFail()->name;
+        }else
+        {
+            $afiliado->depa_dir = ""; 
+        }
+
         $data = array(
             'afiliado' => $afiliado,
             'calificacion' => $calificacion,
+            'conyuge' => $conyuge,
+            'titular' => $titular,
+            'date' => date('Y-m-d')
         );
 
-        return view('aportes.index', $data);
+        return view('calificacion.view', $data);
     }
 
     /**

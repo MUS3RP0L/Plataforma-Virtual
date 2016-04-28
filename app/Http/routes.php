@@ -94,7 +94,9 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
 
 	// print
-	
+	Route::get('show_calif/{afid}', 'CalificacionController@ViewCalif');
+	Route::post('save_calif/{afid}', 'CalificacionController@RegCalif');
+
 	Route::get('print_calif/{afid}', 'AfiliadoController@calif');
 	
 });

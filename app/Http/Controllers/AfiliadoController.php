@@ -637,6 +637,7 @@ class AfiliadoController extends Controller
         {
             $afiliado->depa_dir = ""; 
         }
+        
         $date = date('Y-m-d');
         $view =  \View::make('print.calif', compact('afiliado','conyuge', 'titular', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
