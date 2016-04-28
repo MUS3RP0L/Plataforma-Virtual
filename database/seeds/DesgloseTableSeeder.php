@@ -37,10 +37,10 @@ class DesgloseTableSeeder extends Seeder
 
             ['id' => '7', 'cod' => '9', 'name' => 'DIR NAL SEG. PENITENCIARIA'],//Servicio
 
-            ['id' => '8', 'cod' => '0', 'name' => '']//Servicio
+            ['id' => '8', 'cod' => '0', 'name' => ''],//Servicio
 
-            ['id' => '9', 'cod' => '4', 'name' => '']//Servicio
-            ['id' => '10', 'cod' => '7', 'name' => '']//Servicio
+            ['id' => '9', 'cod' => '4', 'name' => ''],//
+            ['id' => '10', 'cod' => '7', 'name' => '']//
 
             
         ];
