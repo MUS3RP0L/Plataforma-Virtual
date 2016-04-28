@@ -136,7 +136,7 @@ class Import extends Command
                         if ($desglose_id == 1) {
                             $unidad_id = 20;
                         }else{
-                            $unidad_id = Unidad::select('id')->where('cod', $result->uni)->where('desglose_id', $desglose_id)->first()->id;
+                            $unidad_id = Unidad::select('id')->where('cod', $result->uni)->orwhere('desglose_id', $desglose_id)->first()->id;
                         }
                         if($result->niv && $result->gra){
                             if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
