@@ -35,12 +35,12 @@ class CalificacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function ViewCalif($afid)
-    {
+
+    public function getData($afid){
+
         $afiliado = Afiliado::idIs($afid)->first();
 
         $calificacion = Calificacion::where('afiliado_id', '=', $afid)->first();
-
         if (!$calificacion) {
             $calificacion = new Calificacion;
         }
@@ -49,8 +49,8 @@ class CalificacionController extends Controller
         if (!$conyuge) {  
             $conyuge = new Conyuge;
         }
-        $titular = Titular::where('afiliado_id', '=', $afid)->first();
 
+        $titular = Titular::where('afiliado_id', '=', $afid)->first();
         if (!$titular) {
             $titular = new Titular;
         }
@@ -69,8 +69,41 @@ class CalificacionController extends Controller
             'titular' => $titular,
             'date' => date('Y-m-d')
         );
+        return $data;
+    }
+    
+    public function ViewCalif($afid)
+    {
+        $data = $this->getData($afid);
+        $afiliado = $data['afiliado'];
+        $calificacion = $data['calificacion'];
+        $conyuge = $data['conyuge'];
+        $titular = $data['titular'];        
+
+        $data = array(
+            'afiliado' => $afiliado,
+            'calificacion' => $calificacion,
+            'conyuge' => $conyuge,
+            'titular' => $titular,
+            'date' => date('Y-m-d')
+        );
 
         return view('calificacion.view', $data);
+    }
+
+    public function calif($afid) 
+    {
+        $data = $this->getData($afid);
+        $afiliado = $data['afiliado'];
+        $conyuge = $data['conyuge'];
+        $titular = $data['titular'];
+
+        $date = date('Y-m-d');
+        $view =  \View::make('print.calif', compact('afiliado','conyuge', 'titular', 'date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/' . $name_input . '.pdf');
+        return $pdf->stream('calif');
     }
 
     /**

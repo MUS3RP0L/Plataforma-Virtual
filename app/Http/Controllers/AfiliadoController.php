@@ -615,35 +615,4 @@ class AfiliadoController extends Controller
 
     }
 
-    public function calif($id) 
-    {
-        $afiliado = Afiliado::idIs($id)->firstOrFail();
-
-        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
-
-        $conyuge = Conyuge::where('afiliado_id', '=', $id)->first();
-        if (!$conyuge) {  
-            $conyuge = new Conyuge;
-        }
-        $titular = Titular::where('afiliado_id', '=', $id)->first();
-
-        if (!$titular) {
-            $titular = new Titular;
-        }
-
-        if ($afiliado->depa_dir_id) {
-            $afiliado->depa_dir = Departamento::select('name')->where('id', '=', $afiliado->depa_dir_id)->firstOrFail()->name;
-        }else
-        {
-            $afiliado->depa_dir = ""; 
-        }
-        
-        $date = date('Y-m-d');
-        $view =  \View::make('print.calif', compact('afiliado','conyuge', 'titular', 'date'))->render();
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/' . $name_input . '.pdf');
-        return $pdf->stream('calif');
-    }
-
-
 }

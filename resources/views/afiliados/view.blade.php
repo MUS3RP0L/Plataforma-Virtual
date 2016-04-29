@@ -28,7 +28,7 @@
                             </a>
                             <a href="bootstrap-elements.html" data-target="#" class="btn btn-primary btn-raised btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{!! url('print_calif/' . $afiliado->id) !!}">Mostrar Calificación&nbsp;<span class="glyphicon glyphicon-menu-hamburger"  aria-hidden="true"></span></a></li>
+                                <li><a href="{!! url('show_calif/' . $afiliado->id) !!}">Mostrar Calificación&nbsp;<span class="glyphicon glyphicon-menu-hamburger"  aria-hidden="true"></span></a></li>
                             </ul>
                         </div>
                         {{-- <a href="{!! url('afiliadoreporte/' . $afiliado->id) !!}" class="btn btn-raised btn-success">
