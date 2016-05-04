@@ -1964,7 +1964,9 @@
     });
 
     $('.input-daterange').datepicker({
-        format: "dd/mm/yyyy",
+        format: "mm/yyyy",
+        viewMode: "months", 
+        minViewMode: "months",
         language: "es",
         orientation: "bottom right",
         daysOfWeekDisabled: "0,6",
@@ -2115,14 +2117,9 @@
 
         }, this);
 
-
-
-
-
         this.selectedOptionValueEst = ko.observable();
         this.selectedOptionValueGra = ko.observable();
-        this.selectedOptionValueUni = ko.observable();
-        
+        this.selectedOptionValueUni = ko.observable();     
     };
 
     ko.bindingHandlers.fadeVisible = {
@@ -2137,7 +2134,6 @@
     };
 
     ko.applyBindings(new PlanetsModel());
-
 
     $(function() {
         $('#record-table').DataTable({
