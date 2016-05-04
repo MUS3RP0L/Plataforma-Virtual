@@ -5,6 +5,7 @@ namespace Muserpol;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Muserpol\Helper\Util;
 
 class Afiliado extends Model
 {

@@ -227,7 +227,23 @@ class Util
 
 		return trim("$person $action $entity");
 	}
+
+
+	public static function getdateabre($date)
+	{
+		if ($date) {
+            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+		  return date("d", strtotime($this->date))." ".$meses[date("n", strtotime($this->date))-1]. " ".date("Y", strtotime($this->date));
+        }
+	}
 	
+	public static function getMonthMM($month)
+	{
+
+        $months = array('1' => '01', '2' => '02', '3' => '03', '4' => '04', '5' => '05','6' => '06', '7' => '07', '8' => '08', '9' => '09', '10' => '10', '11' => '11', '12' => '12');
+
+		return date($months[$month]);
+	}
 
 
 }

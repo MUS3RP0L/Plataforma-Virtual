@@ -13,6 +13,7 @@ use Muserpol\Calificacion;
 use Muserpol\Municipio;
 use Muserpol\Titular;
 use Muserpol\Conyuge;
+use Muserpol\Departamento;
 use Datatables;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;

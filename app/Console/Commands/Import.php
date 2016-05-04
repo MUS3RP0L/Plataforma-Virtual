@@ -70,7 +70,7 @@ class Import extends Command
                         ini_set('memory_limit', '-1');
                         set_time_limit(36000);
 
-                Excel::batch('public/file_to_import/error/' . $name . '/', function($rows, $file) {   
+                Excel::batch('public/file_to_import/' . $name . '/', function($rows, $file) {   
                 
                     $rows->each(function($result) {
 
