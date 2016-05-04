@@ -189,10 +189,35 @@ class Util
 	public static function getdateabre($date)
 	{
 		if ($date) {
-            $meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
-		  return date("d", strtotime($this->date))." ".$meses[date("n", strtotime($this->date))-1]. " ".date("Y", strtotime($this->date));
+        	$meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+			return date("d", strtotime($date))." ".$meses[date("n", strtotime($date))-1]. " ".date("Y", strtotime($date));
         }
 	}
+
+	public static function getfulldate($date)
+	{
+		if ($date) {
+            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+			return date("d", strtotime($date))." ".$meses[date("n", strtotime($date))-1]. " ".date("Y", strtotime($date));
+        }
+	}
+
+	public function getYearsAndMonths($fech_ini, $fech_fin)
+    {
+        $fech_ini_apor = Carbon::create(date("Y", strtotime($fech_ini)), date("m", strtotime($fech_ini)), 1);
+        $fech_fin_apor = Carbon::create(date("Y", strtotime($fech_fin)), date("m", strtotime($fech_fin)), 1);
+        $years = $fech_ini_apor->diffInYears($fech_fin_apor);
+        $totalmonths = $years*12;
+        $months = $fech_ini_apor->diffInMonths($fech_fin_apor) - $totalmonths + 1;
+        return $years . " Años " . $months . " Meses";
+    }
+
+	public static function getdateforEdit($date)
+    {	
+        if ($date) {
+		  return date("d", strtotime($date))."/".date("m", strtotime($date)). "/".date("Y", strtotime($date));
+        }
+    }
 	
 	public static function getMonthMM($month)
 	{
