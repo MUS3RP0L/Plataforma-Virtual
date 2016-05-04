@@ -3,15 +3,20 @@
 namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Validator;
-use Session;
+
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
+
+use DB;
+use Auth;
+use Validator;
+use Session;
+use Datatables;
+use Carbon\Carbon;
+use Muserpol\Helper\Util;
+
 use Muserpol\Aporte;
 use Muserpol\Grado;
-use Muserpol\Helper\Util;
-use Carbon\Carbon;
 
 class ReporteController extends Controller
 {

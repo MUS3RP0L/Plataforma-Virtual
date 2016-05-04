@@ -13,13 +13,13 @@ use Validator;
 use Session;
 use Datatables;
 use Carbon\Carbon;
+use Muserpol\Helper\Util;
 
 use Muserpol\Calificacion;
 use Muserpol\Afiliado;
 use Muserpol\Departamento;
 use Muserpol\Titular;
 use Muserpol\Conyuge;
-use Muserpol\Helper\Util;
 
 class CalificacionController extends Controller
 {

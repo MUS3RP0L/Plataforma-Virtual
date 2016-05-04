@@ -3,9 +3,12 @@
 namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
+
+use DB;
+
 use Muserpol\Activity;
 
 class HomeController extends Controller

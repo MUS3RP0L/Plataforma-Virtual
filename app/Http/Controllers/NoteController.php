@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
-use Muserpol\Note;
+
 use Datatables;
+
+use Muserpol\Note;
+
 
 class NoteController extends Controller
 {

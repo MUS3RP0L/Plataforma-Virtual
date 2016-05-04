@@ -4,19 +4,20 @@ namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Muserpol\Http\Requests;
+use Muserpol\Http\Controllers\Controller;
+
 use DB;
 use Auth;
 use Validator;
 use Session;
-use Muserpol\Http\Requests;
-use Muserpol\Http\Controllers\Controller;
+use Datatables;
+use Carbon\Carbon;
+use Muserpol\Helper\Util;
+
 use Muserpol\Afiliado;
 use Muserpol\Titular;
 use Muserpol\SoliType;
-use Datatables;
-use Muserpol\Helper\Util;
-use Carbon\Carbon;
-use Illuminate\Support\Collection;
 
 class TitularController extends Controller
 {

@@ -3,17 +3,20 @@
 namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Auth;
-use Session;
-use Validator;
+
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel;
-use Muserpol\Sueldo;
+
+use DB;
+use Auth;
+use Validator;
+use Session;
 use Datatables;
-use Muserpol\Helper\Util;
 use Carbon\Carbon;
+use Muserpol\Helper\Util;
+use Maatwebsite\Excel\Facades\Excel;
+
+use Muserpol\Sueldo;
 
 class SueldoController extends Controller
 {

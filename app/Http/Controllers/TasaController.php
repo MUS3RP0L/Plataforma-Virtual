@@ -3,16 +3,19 @@
 namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use Muserpol\Http\Requests;
+use Muserpol\Http\Controllers\Controller;
+
 use DB;
 use Auth;
 use Validator;
 use Session;
-use Muserpol\Http\Requests;
-use Muserpol\Http\Controllers\Controller;
-use Muserpol\AporTasa;
 use Datatables;
-use Muserpol\Helper\Util;
 use Carbon\Carbon;
+use Muserpol\Helper\Util;
+
+use Muserpol\AporTasa;
 
 class TasaController extends Controller
 {

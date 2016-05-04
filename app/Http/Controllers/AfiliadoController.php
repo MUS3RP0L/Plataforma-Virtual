@@ -13,6 +13,7 @@ use Validator;
 use Session;
 use Datatables;
 use Carbon\Carbon;
+use Muserpol\Helper\Util;
 
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
@@ -22,7 +23,7 @@ use Muserpol\AfiState;
 use Muserpol\Departamento;
 use Muserpol\Titular;
 use Muserpol\Conyuge;
-use Muserpol\Helper\Util;
+
 
 class AfiliadoController extends Controller
 {
