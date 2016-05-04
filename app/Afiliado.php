@@ -35,7 +35,6 @@ class Afiliado extends Model
     	'tele',
     	'celu',
     	'email'
-
 	];
 
 	protected $guarded = ['id'];

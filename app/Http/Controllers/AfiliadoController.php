@@ -91,6 +91,39 @@ class AfiliadoController extends Controller
                 ->make(true);
     }
 
+    public static function getViewModel()
+    {
+        $afi_states = AfiState::all();
+        $list_afi_states = array('' => '');
+        foreach ($afi_states as $item) {
+             $list_afi_states[$item->id]=$item->afi_type->name . " " . $item->name;
+        }
+
+        $unidades = Unidad::all();
+        $list_unidades = array('' => '');
+        foreach ($unidades as $item) {
+             $list_unidades[$item->id]=$item->cod . " " . $item->lit;
+        }
+
+        $grados = Grado::all();
+        $list_grados = array('' => '');
+        foreach ($grados as $item) {
+             $list_grados[$item->id]=$item->niv . "-" . $item->grad . " " . $item->lit;
+        } 
+        $depa = Departamento::all();
+        $list_depas = array('' => '');
+        foreach ($depa as $item) {
+             $list_depas[$item->id]=$item->name;
+        }
+
+        return [
+            'list_afi_states' => $list_afi_states,
+            'list_unidades' => $list_unidades,
+            'list_grados' => $list_grados,
+            'list_depas' => $list_depas,      
+        ];
+    }
+
     /**
      * Display the specified resource.
      *
@@ -99,7 +132,7 @@ class AfiliadoController extends Controller
      */
     public function show($id)
     {
-        $afiliado = Afiliado::idIs($id)->firstOrFail();
+        $afiliado = Afiliado::idIs($id)->first();
 
         $conyuge = Conyuge::where('afiliado_id', '=', $id)->first();
         if (!$conyuge) {
@@ -117,37 +150,14 @@ class AfiliadoController extends Controller
             $list_est_civ = array('' => '','C' => 'CASADA','S' => 'SOLTERA','V' => 'VIUDA','D' => 'DIVORCIADA');
         }
 
-        $afi_states = AfiState::all();
-        $list_afi_states = array('' => '');
-        foreach ($afi_states as $item) {
-             $list_afi_states[$item->id]=$item->afi_type->name . " - " . $item->name;
-        }
-
-        $unidades = Unidad::all();
-        $list_unidades = array('' => '');
-        foreach ($unidades as $item) {
-             $list_unidades[$item->id]=$item->cod . " | " . $item->lit;
-        }
-
-        $grados = Grado::all();
-        $list_grados = array('' => '');
-        foreach ($grados as $item) {
-             $list_grados[$item->id]=$item->niv . "-" . $item->grad . " | " . $item->lit;
-        } 
-        $depa = Departamento::all();
-        $list_depas = array('' => '');
-        foreach ($depa as $item) {
-             $list_depas[$item->id]=$item->name;
-        }
-
         if ($afiliado->depa_nat_id) {
-            $afiliado->depa_nat = Departamento::select('name')->where('id', '=', $afiliado->depa_nat_id)->firstOrFail()->name;
+            $afiliado->depa_nat = Departamento::select('name')->where('id', '=', $afiliado->depa_nat_id)->first()->name;
         }else{
             $afiliado->depa_nat = ""; 
         }
         
         if ($afiliado->depa_dir_id) {
-            $afiliado->depa_dir = Departamento::select('name')->where('id', '=', $afiliado->depa_dir_id)->firstOrFail()->name;
+            $afiliado->depa_dir = Departamento::select('name')->where('id', '=', $afiliado->depa_dir_id)->first()->name;
         }else{
             $afiliado->depa_dir = ""; 
         }
@@ -204,10 +214,6 @@ class AfiliadoController extends Controller
             'info_titu' => $info_titu,
             'info_peri' => $info_peri,
             'list_est_civ' => $list_est_civ,
-            'list_afi_states' => $list_afi_states,
-            'list_unidades' => $list_unidades,
-            'list_grados' => $list_grados,
-            'list_depas' => $list_depas,
             'lastAporte' => $lastAporte,
             'totalGanado' => Util::formatMoney($ganado),
             'totalSegCiu' => Util::formatMoney($SegCiu),
@@ -216,54 +222,10 @@ class AfiliadoController extends Controller
             'totalSegVid' => Util::formatMoney($SegVid),
             'totalMuserpol' => Util::formatMoney($muserpol)
         );
+        
+        $data = array_merge($data, self::getViewModel());
 
         return view('afiliados.view', $data);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $afiliado = Afiliado::where('id', '=', $id)->firstOrFail();
-
-        if ($afiliado->sex == 'M') {
-            $list_est_civ = array('' => '','C' => 'CASADO','S' => 'SOLTERO','V' => 'VIUDO','D' => 'DIVORCIADO');
-        }elseif ($afiliado->sex == 'F') {
-            $list_est_civ = array('' => '','C' => 'CASADA','S' => 'SOLTERA','V' => 'VIUDA','D' => 'DIVORCIADA');
-        }
-
-        $afi_states = AfiState::all();
-
-        foreach ($afi_states as $item) {
-             $list_afi_states[$item->id]=$item->name;
-        }
-
-        $unidades = Unidad::all();
-
-        foreach ($unidades as $item) {
-             $list_unidades[$item->id]=$item->cod . " | " . $item->lit;
-        }
-
-        $grados = Grado::all();
-
-        foreach ($grados as $item) {
-             $list_grados[$item->id]=$item->niv. "-" .$item->grad . " | " . $item->lit;
-        } 
-
-        $data = [
-            'afiliado' => $afiliado,
-            'list_est_civ' => $list_est_civ,
-            'list_afi_states' => $list_afi_states,
-            'list_unidades' => $list_unidades,
-            'list_grados' => $list_grados,
-        ];
-        
-        return View('afiliados.edit', $data);
     }
 
     /**
@@ -315,7 +277,7 @@ class AfiliadoController extends Controller
         }
         else{
 
-            $afiliado = Afiliado::where('id', '=', $id)->firstOrFail();
+            $afiliado = Afiliado::where('id', '=', $id)->first();
 
             $afiliado->user_id = Auth::user()->id;;
             switch ($request->type) {
