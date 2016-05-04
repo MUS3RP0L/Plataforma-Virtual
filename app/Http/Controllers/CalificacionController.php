@@ -3,20 +3,23 @@
 namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Validator;
-use Session;
+
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
-use Muserpol\Afiliado;
+
+use DB;
+use Auth;
+use Validator;
+use Session;
+use Datatables;
+use Carbon\Carbon;
+
 use Muserpol\Calificacion;
+use Muserpol\Afiliado;
+use Muserpol\Departamento;
 use Muserpol\Titular;
 use Muserpol\Conyuge;
-use Muserpol\Departamento;
-use Datatables;
 use Muserpol\Helper\Util;
-use Carbon\Carbon;
-use Illuminate\Support\Collection;
 
 class CalificacionController extends Controller
 {

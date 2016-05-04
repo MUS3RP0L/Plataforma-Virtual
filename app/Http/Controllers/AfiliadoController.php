@@ -2,10 +2,10 @@
 
 namespace Muserpol\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
-use Illuminate\Support\Collection;
-use Illuminate\Http\Request;
 
 use DB;
 use Auth;
@@ -23,9 +23,6 @@ use Muserpol\Departamento;
 use Muserpol\Titular;
 use Muserpol\Conyuge;
 use Muserpol\Helper\Util;
-
-
-
 
 class AfiliadoController extends Controller
 {
@@ -282,7 +279,7 @@ class AfiliadoController extends Controller
 
             $afiliado = Afiliado::where('id', '=', $id)->first();
 
-            $afiliado->user_id = Auth::user()->id;;
+            $afiliado->user_id = Auth::user()->id;
             switch ($request->type) {
                 case 'per':
 
