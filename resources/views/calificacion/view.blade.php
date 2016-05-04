@@ -24,9 +24,8 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-12">
-                                    <h3 class="panel-title">FICHA TÉCNICA DE CALIFICACIÓN</h3>
-                                </div>
-                               
+                                    <h3 class="panel-title">A) DATOS DEL TITULAR</h3>
+                                </div>      
                             </div>
                         </div>
                         <div class="panel-body" style="font-size: 14px">
@@ -35,93 +34,114 @@
                                     
                                     <table class="table table-responsive" style="width:100%;">
                                         <tr>
-                                            <td style="border-top:0;">
+                                            <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        Carnet Identidad
+                                                    <div class="col-md-4">
+                                                        NOMBRE DEL BENEFICIARIO
                                                     </div>
-                                                    <div class="col-md-6">
-                                                         {!! $afiliado->ci !!}
+                                                    <div class="col-md-8">
+                                                         {!! $afiliado->getFullNametoPrint() !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="border-top:1px solid #d4e4cd;">
+                                            <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        Apellido Paterno
+                                                    <div class="col-md-4">
+                                                        FECHA DE NACIMIENTO
                                                     </div>
-                                                    <div class="col-md-6">
-                                                         {!! $afiliado->pat !!}
+                                                    <div class="col-md-8">
+                                                         {!! $afiliado->getFullDateNactoPrint() !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="border-top:1px solid #d4e4cd;">
+                                            <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        Apellido Materno
+                                                    <div class="col-md-4">
+                                                        NÚMERO DE MATRÍCULA
                                                     </div>
-                                                    <div class="col-md-6">
-                                                         {!! $afiliado->mat !!}
+                                                    <div class="col-md-8">
+                                                         {!! $afiliado->matri !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="border-top:1px solid #d4e4cd;">
+                                            <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        Primer Nombre
+                                                    <div class="col-md-4">
+                                                        CARNET DE IDENTIDAD
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        {!! $afiliado->nom !!}
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->ci !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                            <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        Segundo Nombre
+                                                    <div class="col-md-4">
+                                                        ESTADO CIVIL
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        {!! $afiliado->nom2 !!}
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->getCivil() !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        @if ($afiliado->ap_esp)
                                         <tr>
-                                            <td style="border-top:1px solid #d4e4cd;">
+                                            <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        Apellido de Esposo
+                                                    <div class="col-md-4">
+                                                        EDAD
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        {!! $afiliado->ap_esp !!}
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->getHowOld() !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        @endif
-                                        @if($afiliado->fech_dece)
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Fecha de Deceso
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $afiliado->getFull_fech_dece() !!}
-                                                        </div>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        DIRECCIÓN DOMICILIO
                                                     </div>
-                                                </td>
-                                            </tr>
-                                        @endif
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->getFullDirecctoPrint() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        FECHA DE FALLECIMIENTO
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->getFull_fech_decetoPrint() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        CAUSA DE FALLECIMIENTO
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->motivo_dece !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
                                     </table>
 
                                 </div>
