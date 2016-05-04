@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
 
         \Muserpol\Console\Commands\Import::class,
-        
+        \Muserpol\Console\Commands\Export::class,    
+        \Muserpol\Console\Commands\Export2::class,    
     ];
 
     /**
