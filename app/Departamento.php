@@ -16,9 +16,4 @@ class Departamento extends Model
 	];
 
 	protected $guarded = ['id'];
-
-	public function municipios()
-    {
-        return $this->hasMany('Muserpol\Municipio');
-    }
 }

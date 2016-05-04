@@ -37,10 +37,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 	Route::post('password/reset', 'Auth\PasswordController@postReset');
 
-	//search
-	Route::get('buscar_afiliado', 'AfiliadoController@search');
-	Route::get('ir_afiliado', 'AfiliadoController@go_search');
-
 	// import
 	Route::get('importar_archivo', 'ImportController@importSelect');
 	Route::post('import', 'ImportController@import');

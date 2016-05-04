@@ -10,7 +10,6 @@ use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 use Muserpol\Afiliado;
 use Muserpol\Calificacion;
-use Muserpol\Municipio;
 use Muserpol\Titular;
 use Muserpol\Conyuge;
 use Muserpol\Departamento;

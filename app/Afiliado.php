@@ -84,11 +84,6 @@ class Afiliado extends Model
         return $this->belongsTo('Muserpol\AfiState');
     }
 
-    public function municipio()
-    {
-        return $this->belongsTo('Muserpol\Municipio');
-    }
-
     public function departamento()
     {
         return $this->belongsTo('Muserpol\Departamento');

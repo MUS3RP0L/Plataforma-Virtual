@@ -2,26 +2,29 @@
 
 namespace Muserpol\Http\Controllers;
 
+use Muserpol\Http\Requests;
+use Muserpol\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
+
 use DB;
 use Auth;
 use Validator;
 use Session;
-use Muserpol\Http\Requests;
-use Muserpol\Http\Controllers\Controller;
+use Datatables;
+use Carbon\Carbon;
+
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
 use Muserpol\Grado;
 use Muserpol\Unidad;
 use Muserpol\AfiState;
 use Muserpol\Departamento;
-use Muserpol\Municipio;
 use Muserpol\Titular;
 use Muserpol\Conyuge;
-use Datatables;
 use Muserpol\Helper\Util;
-use Carbon\Carbon;
-use Illuminate\Support\Collection;
+
+
 
 
 class AfiliadoController extends Controller
@@ -162,7 +165,7 @@ class AfiliadoController extends Controller
             $afiliado->depa_dir = ""; 
         }
 
-        if ($afiliado->depa_dir_id || $afiliado->zona || $afiliado->calle || $afiliado->num_domi || $afiliado->muni || $afiliado->tele || $afiliado->celu || $afiliado->email) {
+        if ($afiliado->depa_dir_id || $afiliado->zona || $afiliado->calle || $afiliado->num_domi || $afiliado->tele || $afiliado->celu || $afiliado->email) {
             $info_dom = 1;
         }else{
             $info_dom = 0;
@@ -337,7 +340,6 @@ class AfiliadoController extends Controller
                     $afiliado->fech_baja = Util::datePick($request->fech_baja); 
                     $afiliado->motivo_baja = trim($request->motivo_baja);
                     
-                    // if ($request->fech_dece && $request->afi_state_id == 3) {$afiliado->fech_dece = Util::datePick($request->fech_dece);}
                     $afiliado->save();
                     
                     $message = "Información policial de afiliado actualizado con éxito";
@@ -366,59 +368,6 @@ class AfiliadoController extends Controller
         }
         
         return redirect('afiliado/'.$id);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-
-    public function search()
-    {
-        return view('afiliados.search');
-    }
-
-    public function go_search(Request $request)
-    {
-        $rules = [
-            'search' => 'required',
-        ];
-        
-        $messages = [
-            'search.required' => 'El campo es requerido para realizar la búsqueda del Afiliado.',
-        ];
-        
-        $validator = Validator::make($request->all(), $rules, $messages);
-        
-        if ($validator->fails()){
-            return redirect("/")
-            ->withErrors($validator)
-            ->withInput();
-        }
-        else{
-
-        $afiliado = Afiliado::ciIs($request->search)->first();
-
-            if($afiliado){
-                return redirect("afiliado/{$afiliado->id}");
-            }
-            else{
-                    $message = "No logramos encontrar al Afiliado con Carnet: ".$request->search;
-
-                    Session::flash('message', $message);
-                
-                return redirect("/");
-            }
-
-        }
-
     }
 
 }
