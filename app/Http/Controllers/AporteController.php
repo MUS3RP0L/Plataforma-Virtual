@@ -179,8 +179,8 @@ class AporteController extends Controller
                         ->editColumn('gan', function ($aportes) { return Util::formatMoney($aportes->gan); })
                         ->editColumn('cot', function ($aportes) { return Util::formatMoney($aportes->cot); })
                         ->editColumn('mus', function ($aportes) { return Util::formatMoney($aportes->mus); })
-                        ->addColumn('fon', function ($aportes) { return Util::calcFon($aportes->mus); })
-                        ->addColumn('vid', function ($aportes) { return Util::calcVid($aportes->mus); })
+                        ->addColumn('fon', function ($aportes) { return Util::formatMoney($aportes->fr); })
+                        ->addColumn('vid', function ($aportes) { return Util::formatMoney($aportes->sv); })
                         ->make(true);
     }
 
