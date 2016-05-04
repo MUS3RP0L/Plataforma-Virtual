@@ -1123,7 +1123,7 @@
                                         </tr>
                                         <tr class="active">
                                             <td>Cotizable</td>
-                                            <td style="text-align: right">{{ $totalCotizableAd }}</td>
+                                            <td style="text-align: right">{{ $totalCotizable }}</td>
                                         </tr>
                                     </table>
 

@@ -20,7 +20,7 @@ class Util
 		$nac_month = substr($date, 2, 2);
 		$nac_year = substr($date, 4, 4);
 
-	return date($nac_year ."-". $nac_month ."-". $nac_day);
+		return date($nac_year ."-". $nac_month ."-". $nac_day);
 	}
 
 	public static function dateAADDMM($date)
@@ -68,7 +68,6 @@ class Util
 		else{
 			return '';
 		}
-
 	}
 
 	public static function OtherName($nom)
@@ -80,8 +79,6 @@ class Util
 		else{
 			return '';
 		}
-		
-		
 	}
 
 	public static function datePick($date)
@@ -90,7 +87,6 @@ class Util
 			$newdate = explode("/", $date);
 			return date($newdate[2] ."-". $newdate[1] ."-". $newdate[0]);
 		}
-		
 	}
 
 	public static function zero($string)
@@ -103,16 +99,13 @@ class Util
 		if ($b_ant == 0 || $sue == 0) {
 			return 0;
 		}
-		else
-		{
+		else{
 			return number_format($b_ant/$sue, 2, '.', ',');
 		}
-
 	}
 
 	public static function calcMatri($nac, $pat, $mat, $nom, $sex)
 	{
-
 		$newnac = explode("-", $nac);
 		$nac_day = $newnac[2];
 		$nac_month = $newnac[1];
@@ -151,28 +144,14 @@ class Util
 				$month_last = "6" . $month_second;
 			}
 			return $nac_year . $month_last . $nac_day . $pat_first . $mat_first . $nom_first;
-		}
-		
+		}	
 	}
 
 	public static function formatMoney($value){
 
 	    $value = number_format($value, 2, '.', ',');
-
         return $value;
     }
-
-    public static function calcFon($mus)
-	{
-		return number_format($mus*0.0185/0.025, 2, '.', ',');
-
-	}
-
-	public static function calcVid($mus)
-	{
-		return number_format($mus*0.0065/0.025, 2, '.', ',');
-
-	}
 
 	public static function formatYear($year)
 	{
@@ -181,12 +160,9 @@ class Util
 		if ($first == '9') {
 			return "19" . $year;
 		}
-		else
-		{
+		else{
 			return "20" . $year;
 		}
-
-
 	}
 
 	public static function getAfp($afp)
@@ -200,10 +176,8 @@ class Util
 	}
 
 	public static function getMes($mes)
-	{
-	    
+	{	    
 	    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-
         return $meses[$mes-1];
 	}
 
@@ -211,23 +185,6 @@ class Util
 	{    
 		return array('1' => 'Enero','2' => 'Febrero','3' => 'Marzo','4' => 'Abril','5' => 'Mayo','6' => 'Junio','7' => 'Julio','8' => 'Agosto','9' => 'Septiembre','10' => 'Octubre','11' => 'Noviembre','12' => 'Diciembre');
 	}
-
-	public static function encodeActivity($person = null, $action, $entity = null)
-	{
-		$person = $person->getFullName();
-		$entity = $entity->getFullName();
-
-		return trim("$person $action $entity");
-	}
-
-	public static function encodeNote($type, $person = null)
-	{
-		$person = $person->getFullName();
-		$entity = $entity->getFullName();
-
-		return trim("$person $action $entity");
-	}
-
 
 	public static function getdateabre($date)
 	{
@@ -239,11 +196,22 @@ class Util
 	
 	public static function getMonthMM($month)
 	{
-
         $months = array('1' => '01', '2' => '02', '3' => '03', '4' => '04', '5' => '05','6' => '06', '7' => '07', '8' => '08', '9' => '09', '10' => '10', '11' => '11', '12' => '12');
-
 		return date($months[$month]);
 	}
 
+ 	public static function encodeActivity($person = null, $action, $entity = null)
+	{
+		$person = $person->getFullName();
+		$entity = $entity->getFullName();
+		return trim("$person $action $entity");
+	}
+
+	public static function encodeNote($type, $person = null)
+	{
+		$person = $person->getFullName();
+		$entity = $entity->getFullName();
+		return trim("$person $action $entity");
+	}
 
 }

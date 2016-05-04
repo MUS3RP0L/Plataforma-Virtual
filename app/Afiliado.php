@@ -95,8 +95,6 @@ class Afiliado extends Model
         return $this->belongsTo('Muserpol\Departamento');
     }
 
-
-
 	public function scopeIdIs($query, $id)
     {
         return $query->where('id', $id);

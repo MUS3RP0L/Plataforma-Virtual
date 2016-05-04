@@ -83,37 +83,12 @@ class AfiliadoController extends Controller
             });
         }
 
-
         return Datatables::of($afiliados)
                 // ->addColumn('gra', function ($afiliado) { return $afiliado->grado->abre; })
                 ->addColumn('noms', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
-                ->addColumn('action', function ($afiliado) { 
-                    return  '<div class="row text-center">
-                            <a href="afiliado/'.$afiliado->id.'" ><div class="col-md-12"><i class="glyphicon glyphicon-eye-open"></i></div></a>';})
-
                 ->addColumn('est', function ($afiliado) { return $afiliado->afi_state->name; })
+                ->addColumn('action', function ($afiliado) { return  '<div class="row text-center"><a href="afiliado/'.$afiliado->id.'" ><div class="col-md-12"><i class="glyphicon glyphicon-eye-open"></i></div></a></div>';})
                 ->make(true);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        // 
     }
 
     /**
@@ -127,15 +102,12 @@ class AfiliadoController extends Controller
         $afiliado = Afiliado::idIs($id)->firstOrFail();
 
         $conyuge = Conyuge::where('afiliado_id', '=', $id)->first();
-
         if (!$conyuge) {
-                
-                $conyuge = new Conyuge;
+            $conyuge = new Conyuge;
         }
-        $titular = Titular::where('afiliado_id', '=', $id)->first();
 
+        $titular = Titular::where('afiliado_id', '=', $id)->first();
         if (!$titular) {
-                
                 $titular = new Titular;
         }
 
@@ -167,38 +139,20 @@ class AfiliadoController extends Controller
         foreach ($depa as $item) {
              $list_depas[$item->id]=$item->name;
         }
-        // $muni = Municipio::all();
-        // $list_munis = array('' => '');
-        // foreach ($muni as $item) {
-        //      $list_munis[$item->id]=$item->departamento->name . " | " . $item->name;
-        // }
 
         if ($afiliado->depa_nat_id) {
             $afiliado->depa_nat = Departamento::select('name')->where('id', '=', $afiliado->depa_nat_id)->firstOrFail()->name;
-        }else
-        {
+        }else{
             $afiliado->depa_nat = ""; 
         }
         
         if ($afiliado->depa_dir_id) {
             $afiliado->depa_dir = Departamento::select('name')->where('id', '=', $afiliado->depa_dir_id)->firstOrFail()->name;
-        }else
-        {
+        }else{
             $afiliado->depa_dir = ""; 
         }
 
-        if ($afiliado->muni_id) {
-            $afiliado->muni = Municipio::select('name')->where('id', '=', $afiliado->muni_id)->firstOrFail()->name;
-            $departamento_id = Municipio::select('departamento_id')->where('id', '=', $afiliado->muni_id)->firstOrFail()->departamento_id;
-            $afiliado->depa_dom = Departamento::select('name')->where('id', '=', $departamento_id)->firstOrFail()->name;
-        }else
-        {
-            $afiliado->muni = ""; 
-            $afiliado->depa_dom = ""; 
-        }
-
-
-        if ($afiliado->depa_dom || $afiliado->zona || $afiliado->calle || $afiliado->num_domi || $afiliado->muni || $afiliado->tele || $afiliado->celu || $afiliado->email) {
+        if ($afiliado->depa_dir_id || $afiliado->zona || $afiliado->calle || $afiliado->num_domi || $afiliado->muni || $afiliado->tele || $afiliado->celu || $afiliado->email) {
             $info_dom = 1;
         }else{
             $info_dom = 0;
@@ -222,53 +176,24 @@ class AfiliadoController extends Controller
             $info_peri = 0;
         }
 
-
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
 
-
-        $totalGanado = DB::table('afiliados')
-                ->select(DB::raw('SUM(aportes.gan) as ganado'))
+        $consulta = DB::table('afiliados')
+                ->select(DB::raw('SUM(aportes.gan) as ganado, SUM(aportes.b_seg) as SegCiu,
+                    SUM(aportes.cot) as cotizable, SUM(aportes.mus) as muserpol,
+                    SUM(aportes.fr) as fr, SUM(aportes.sv) as sv'))
                 ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
                 ->where('afiliados.id', '=', $afiliado->id)
                 ->get();
 
-        foreach ($totalGanado as $item) {
+        foreach ($consulta as $item) {
             $ganado = $item->ganado;
-        }
-
-        $totalSegCiu = DB::table('afiliados')
-                ->select(DB::raw('SUM(aportes.b_seg) as SegCiu'))
-                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
-                ->where('afiliados.id', '=', $afiliado->id)
-                ->get();
-
-        foreach ($totalSegCiu as $item) {
             $SegCiu = $item->SegCiu;
-        }
-
-        $totalCotizable = DB::table('afiliados')
-                ->select(DB::raw('SUM(aportes.cot) as cotizable'))
-                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
-                ->where('afiliados.id', '=', $afiliado->id)
-                ->get();
-        foreach ($totalCotizable as $item) {
             $cotizable = $item->cotizable;
-        }
-
-        $totalMuserpol = DB::table('afiliados')
-                ->select(DB::raw('SUM(aportes.mus) as muserpol'))
-                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
-                ->where('afiliados.id', '=', $afiliado->id)
-                ->get();
-        foreach ($totalMuserpol as $item) {
             $muserpol = $item->muserpol;
+            $Fon = $item->fr;
+            $SegVid = $item->sv;
         }
-
-        $cotizablefinal = $cotizable;
-
-        $Fon = Util::calcFon($muserpol);
-
-        $SegVid = Util::calcVid($muserpol);
 
         $data = array(
             'afiliado' => $afiliado,
@@ -283,97 +208,16 @@ class AfiliadoController extends Controller
             'list_unidades' => $list_unidades,
             'list_grados' => $list_grados,
             'list_depas' => $list_depas,
-            // 'list_munis' => $list_munis,
             'lastAporte' => $lastAporte,
             'totalGanado' => Util::formatMoney($ganado),
             'totalSegCiu' => Util::formatMoney($SegCiu),
             'totalCotizable' => Util::formatMoney($cotizable),
-            'totalCotizableAd' => Util::formatMoney($cotizablefinal),
-            'totalFon' => $Fon,
-            'totalSegVid' => $SegVid,
+            'totalFon' => Util::formatMoney($Fon),
+            'totalSegVid' => Util::formatMoney($SegVid),
             'totalMuserpol' => Util::formatMoney($muserpol)
         );
 
         return view('afiliados.view', $data);
-    }
-
-    public function afiliadoReporte($id)
-    {
-        $afiliado = Afiliado::idIs($id)->with('aportes')->orderBy('id', 'desc')->firstOrFail();
-
-        $firstAporte = Aporte::afiliadoId($afiliado->id)->orderBy('anio', 'asc')->orderBy('mes', 'asc')->firstOrFail();
-
-        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-
-        $firstAporte->desde = Util::getMes($firstAporte->mes) .' - '.  $firstAporte->anio;
-
-        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('anio', 'desc')->orderBy('mes', 'desc')->firstOrFail();
-
-        $lastAporte->hasta = Util::getMes($lastAporte->mes) .' - '.  $lastAporte->anio;
-
-        $grado = Grado::where('niv', $lastAporte->niv)->where('grad', $lastAporte->gra)->firstOrFail();
-        $unidad = Unidad::where('cod', $lastAporte->uni)->firstOrFail();
-
-
-        $totalGanado = DB::table('afiliados')
-                ->select(DB::raw('SUM(aportes.gan) as ganado'))
-                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
-                ->where('afiliados.id', '=', $afiliado->id)
-                ->get();
-        foreach ($totalGanado as $item) {
-            $ganado = $item->ganado;
-        }
-
-        $totalSegCiu = DB::table('afiliados')
-                ->select(DB::raw('SUM(aportes.b_seg) as SegCiu'))
-                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
-                ->where('afiliados.id', '=', $afiliado->id)
-                ->get();
-        foreach ($totalSegCiu as $item) {
-            $SegCiu = $item->SegCiu;
-        }
-
-        $totalCotizable = DB::table('afiliados')
-                ->select(DB::raw('SUM(aportes.cot) as cotizable'))
-                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
-                ->where('afiliados.id', '=', $afiliado->id)
-                ->get();
-        foreach ($totalCotizable as $item) {
-            $cotizable = $item->cotizable;
-        }
-
-        $totalMuserpol = DB::table('afiliados')
-                ->select(DB::raw('SUM(aportes.mus) as muserpol'))
-                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
-                ->where('afiliados.id', '=', $afiliado->id)
-                ->get();
-        foreach ($totalMuserpol as $item) {
-            $muserpol = $item->muserpol;
-        }
-
-        //add item 0 +
-        $cotizablefinal = $cotizable;
-
-        $Fon = Util::calcFon($muserpol);
-
-        $SegVid = Util::calcVid($muserpol);
-
-        $data = array(
-            'afiliado' => $afiliado,
-            'lastAporte' => $lastAporte,
-            'firstAporte' => $firstAporte,
-            'grado' => $grado,
-            'unidad' => $unidad,
-            'totalGanado' => Util::formatMoney($ganado),
-            'totalSegCiu' => Util::formatMoney($SegCiu),
-            'totalCotizable' => Util::formatMoney($cotizable),
-            'totalCotizableAd' => Util::formatMoney($cotizablefinal),
-            'totalFon' => $Fon,
-            'totalSegVid' => $SegVid,
-            'totalMuserpol' => Util::formatMoney($muserpol)
-        );
-
-        return view('afiliados.report', $data);
     }
 
     /**
