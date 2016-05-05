@@ -220,21 +220,25 @@ class Util
 
 	public static function getYearsAndMonths($fech_ini, $fech_fin)
     {
-        $fech_ini_apor = Carbon::create(date("Y", strtotime($fech_ini)), date("m", strtotime($fech_ini)), 1);
-        $fech_fin_apor = Carbon::create(date("Y", strtotime($fech_fin)), date("m", strtotime($fech_fin)), 1);
-        $years = $fech_ini_apor->diffInYears($fech_fin_apor);
-        $totalmonths = $years*12;
-        $months = $fech_ini_apor->diffInMonths($fech_fin_apor) - $totalmonths;
-        if($years){
-        	return $years . " Años " . $months . " Meses";
-        }else{
-        	if ($fech_ini_apor->diffInMonths($fech_fin_apor)) {
-        		return $months . " Meses";
-        	}else{
-        		return "";
-        	}
-        	
-        }
+    	if (!$fech_ini) {
+    		return "";
+    	}
+    	else{
+	        $fech_ini_apor = Carbon::create(date("Y", strtotime($fech_ini)), date("m", strtotime($fech_ini)), 1);
+	        $fech_fin_apor = Carbon::create(date("Y", strtotime($fech_fin)), date("m", strtotime($fech_fin)), 1)->addMonth();
+	        $years = $fech_ini_apor->diffInYears($fech_fin_apor);
+	        $totalmonths = $years*12;
+	        $months = $fech_ini_apor->diffInMonths($fech_fin_apor) - $totalmonths;
+
+	        if($years || $months){
+	        	$m = $months ? $months . " Meses" : '';
+	        	$y = $years ? $years . " Años " : '';
+	        	return $y . $m;
+	        }
+	        else{
+	        		return "";
+	        } 
+	    }   
     }
 
 	public static function getdateforEdit($date)
