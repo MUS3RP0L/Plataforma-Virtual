@@ -1969,7 +1969,6 @@
         minViewMode: "months",
         language: "es",
         orientation: "bottom right",
-        daysOfWeekDisabled: "0,6",
         autoclose: true
     });
 

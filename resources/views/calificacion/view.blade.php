@@ -233,10 +233,10 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        PERIODO DE APORTE (S/g Cta. Individual)
+                                                        PERIODO DE APORTE
                                                     </div>
                                                     <div class="col-md-8">
-                                                         {!! "Desde " . $afiliado->getFull_fech_ini_apor() . " Hasta " . $afiliado->getFull_fech_fin_apor() . " Total " . $afiliado->getYearsAndMonths_fech_ini_apor() !!}
+                                                         {!! $afiliado->fech_ini_apor ? "Desde " . $afiliado->getFull_fech_ini_apor() . " - Hasta " . $afiliado->getFull_fech_fin_apor() . "<br>Total " . $afiliado->getYearsAndMonths_fech_ini_apor() : '' !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -245,10 +245,10 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        ESTADO CIVIL
+                                                        PERIODO DE SERVICIO
                                                     </div>
                                                     <div class="col-md-8">
-                                                        {!! $afiliado->getCivil() !!}
+                                                        {!! $afiliado->fech_ini_serv ? "Desde " . $afiliado->getFull_fech_ini_serv() . " - Hasta " . $afiliado->getFull_fech_fin_serv() . "<br>Total " . $afiliado->getYearsAndMonths_fech_fin_serv() : '' !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -257,10 +257,10 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        EDAD
+                                                        PERIODO ADICIONAL
                                                     </div>
                                                     <div class="col-md-8">
-                                                        {!! $afiliado->getHowOld() !!}
+                                                        {!! $afiliado->fech_ini_anti ? "Desde " . $afiliado->getFull_fech_ini_anti() . " - Hasta " . $afiliado->getFull_fech_fin_anti() . "<br>Total " . $afiliado->getYearsAndMonths_fech_ini_anti() : '' !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -269,10 +269,10 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        DIRECCIÓN DOMICILIO
+                                                        PERIODO DE RECONOCIMIENTO
                                                     </div>
                                                     <div class="col-md-8">
-                                                        {!! $afiliado->getFullDirecctoPrint() !!}
+                                                        {!! $afiliado->fech_ini_reco ? "Desde " . $afiliado->getFull_fech_ini_reco() . " - Hasta " . $afiliado->getFull_fech_fin_reco() . "<br>Total " . $afiliado->getYearsAndMonths_fech_ini_reco() : '' !!}
                                                     </div>
                                                 </div>
                                             </td>

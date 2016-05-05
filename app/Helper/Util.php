@@ -202,6 +202,14 @@ class Util
         }
 	}
 
+	public static function getdateabreperiod($date)
+	{
+		if ($date) {
+        	$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMB","OCTUBRE","NOVIEMB","DICIEMB");
+			return $meses[date("n", strtotime($date))-1]. " ".date("Y", strtotime($date));
+        }
+	}
+
 	public static function getfulldate($date)
 	{
 		if ($date) {
@@ -216,14 +224,14 @@ class Util
         $fech_fin_apor = Carbon::create(date("Y", strtotime($fech_fin)), date("m", strtotime($fech_fin)), 1);
         $years = $fech_ini_apor->diffInYears($fech_fin_apor);
         $totalmonths = $years*12;
-        $months = $fech_ini_apor->diffInMonths($fech_fin_apor) - $totalmonths + 1;
+        $months = $fech_ini_apor->diffInMonths($fech_fin_apor) - $totalmonths;
         if($years){
         	return $years . " Años " . $months . " Meses";
         }else{
         	if ($fech_ini_apor->diffInMonths($fech_fin_apor)) {
         		return $months . " Meses";
         	}else{
-        		return "-";
+        		return "";
         	}
         	
         }
@@ -233,6 +241,13 @@ class Util
     {	
         if ($date) {
 		  return date("d", strtotime($date))."/".date("m", strtotime($date)). "/".date("Y", strtotime($date));
+        }
+    }
+
+    public static function getdateforEditPeriod($date)
+    {	
+        if ($date) {
+		  return date("m", strtotime($date)). "/".date("Y", strtotime($date));
         }
     }
 	

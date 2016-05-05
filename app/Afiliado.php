@@ -116,11 +116,11 @@ class Afiliado extends Model
 
     public function getFull_fech_ini_apor()
     {   
-        return Util::getdateabre($this->fech_ini_apor);
+        return Util::getdateabreperiod($this->fech_ini_apor);
     }
     public function getFull_fech_fin_apor()
     {   
-        return Util::getdateabre($this->fech_fin_apor);
+        return Util::getdateabreperiod($this->fech_fin_apor);
     }
     public function getYearsAndMonths_fech_ini_apor()
     {
@@ -129,11 +129,11 @@ class Afiliado extends Model
 
     public function getFull_fech_ini_serv()
     {   
-        return Util::getdateabre($this->fech_ini_serv);
+        return Util::getdateabreperiod($this->fech_ini_serv);
     }
     public function getFull_fech_fin_serv()
     {   
-        return Util::getdateabre($this->fech_fin_serv);
+        return Util::getdateabreperiod($this->fech_fin_serv);
     }
     public function getYearsAndMonths_fech_fin_serv()
     {
@@ -142,11 +142,11 @@ class Afiliado extends Model
 
     public function getFull_fech_ini_anti()
     {   
-        return Util::getdateabre($this->fech_ini_anti);
+        return Util::getdateabreperiod($this->fech_ini_anti);
     }
     public function getFull_fech_fin_anti()
     {   
-        return Util::getdateabre($this->fech_fin_anti);
+        return Util::getdateabreperiod($this->fech_fin_anti);
     }
     public function getYearsAndMonths_fech_ini_anti()
     {
@@ -155,11 +155,11 @@ class Afiliado extends Model
 
     public function getFull_fech_ini_reco()
     {   
-        return Util::getdateabre($this->fech_ini_reco);
+        return Util::getdateabreperiod($this->fech_ini_reco);
     }
     public function getFull_fech_fin_reco()
     {   
-        return Util::getdateabre($this->fech_fin_reco);
+        return Util::getdateabreperiod($this->fech_fin_reco);
     }
     public function getYearsAndMonths_fech_ini_reco()
     {
@@ -250,39 +250,39 @@ class Afiliado extends Model
 
     public function getData_fech_ini_apor()
     {	
-        return Util::getdateforEdit($this->fech_ini_apor);
+        return Util::getdateforEditPeriod($this->fech_ini_apor);
     }
     public function getData_fech_fin_apor()
     {	
-        return Util::getdateforEdit($this->fech_fin_apor);
+        return Util::getdateforEditPeriod($this->fech_fin_apor);
 	}
 
     public function getData_fech_ini_serv()
     {	
-        return Util::getdateforEdit($this->fech_ini_serv);
+        return Util::getdateforEditPeriod($this->fech_ini_serv);
     }
 
     public function getData_fech_fin_serv()
     {	
-        return Util::getdateforEdit($this->fech_fin_serv);
+        return Util::getdateforEditPeriod($this->fech_fin_serv);
     }
 
     public function getData_fech_ini_anti()
     {	
-    	return Util::getdateforEdit($this->fech_ini_anti);
+    	return Util::getdateforEditPeriod($this->fech_ini_anti);
     }
     public function getData_fech_fin_anti()
     {	
-        return Util::getdateforEdit($this->fech_fin_anti);
+        return Util::getdateforEditPeriod($this->fech_fin_anti);
     }
 
     public function getData_fech_ini_reco()
     {	
-    	return Util::getdateforEdit($this->fech_ini_reco);
+    	return Util::getdateforEditPeriod($this->fech_ini_reco);
     }
     public function getData_fech_fin_reco()
     {	
-    	return Util::getdateforEdit($this->fech_fin_reco);
+    	return Util::getdateforEditPeriod($this->fech_fin_reco);
    	}
 
 	public function getFullName()
