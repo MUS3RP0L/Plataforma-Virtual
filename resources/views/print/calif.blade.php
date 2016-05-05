@@ -46,7 +46,7 @@
         <div><span>CAUSA DE FALLECIMIENTO</span>{!! $conyuge->motivo_dece !!}</div>
       </div>
       <br>
-      {{-- <div class="title">D) SOLICITANTE</div>
+      <div class="title">D) SOLICITANTE</div>
       <div id="project">
         <div><span>NOMBRE DE SOLICITANTE</span>{!! $titular->getFullNametoPrint() !!}</div>
         <div><span>PARENTESCO CON TITULAR</span>{!! $titular->paren !!}</div>
@@ -54,7 +54,7 @@
         <div><span>DIRECCIÓN DE DOMICILIO</span>{!! $titular->getFullDireccDomitoPrint() !!}</div>
         <div><span>DIRECCIÓN DE TRABAJO</span>{!! $titular->getFullDireccTrabtoPrint() !!}</div>
         <div><span>TELEFONO CELULAR Y/O DOMICILIO</span>{!! $titular->getFullNumber() !!}</div>
-      </div> --}}
+      </div>
     </header>
     <main>
       <table>
@@ -66,11 +66,11 @@
             <td class="total">{!! "Desde " . $afiliado->getFull_fech_ini_reco() . " Hasta " . $afiliado->getFull_fech_fin_reco() !!}</td>
           </tr>       
           <tr>
-            <th class="service">TIEMPO DE COTIZACIÓN</th>
+            <th class="service">TOTAL COTIZABLE</th>
             <td class="total">{!! " Total " . $afiliado->getYearsAndMonths_fech_ini_reco() !!}</td>
           </tr>
           <tr>
-            <th class="service">NÚMERO DE MESES COTIZABLES</th>
+            <th class="service">TOTAL DE MESES COTIZABLES</th>
             <td class="grand total">Developing</td>
           </tr>
       </table>

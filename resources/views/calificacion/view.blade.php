@@ -276,6 +276,69 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                        </tr>                                     
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">  
+                                <div class="col-md-12">
+                                    <h3 class="panel-title">C) DATOS DE CONYUGE</h3>
+                                </div>      
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: 14px">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    
+                                    <table class="table table-responsive" style="width:100%;">
+                                        <tr>
+                                            <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        NOMBRE DE CONYUGE
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                         {!! $conyuge->getFullNametoPrint() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        FECHA DE NACIMIENTO
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        {!! $conyuge->getFullDateNactoPrint() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        CARNET DE IDENTIDAD
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                         {!! $conyuge->ci !!}
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td style="border-bottom:1px solid #d4e4cd;">
@@ -284,7 +347,7 @@
                                                         FECHA DE FALLECIMIENTO
                                                     </div>
                                                     <div class="col-md-8">
-                                                        {!! $afiliado->getFull_fech_decetoPrint() !!}
+                                                         {!! $conyuge->getFull_fech_decetoPrint() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -296,7 +359,7 @@
                                                         CAUSA DE FALLECIMIENTO
                                                     </div>
                                                     <div class="col-md-8">
-                                                        {!! $afiliado->motivo_dece !!}
+                                                         {!! $conyuge->motivo_dece !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -312,6 +375,149 @@
 
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">  
+                                <div class="col-md-12">
+                                    <h3 class="panel-title">D) DATOS DE SOLICITANTE</h3>
+                                </div>      
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: 14px">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    
+                                    <table class="table table-responsive" style="width:100%;">
+                                        <tr>
+                                            <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        NOMBRE DE SOLICITANTE
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                         {!! $titular->getFullNametoPrint() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        PARENTESCO CON TITULAR
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        {!! $titular->paren !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        CARNET DE IDENTIDAD
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                         {!! $titular->ci !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        DIRECCIÓN DE DOMICILIO
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                         {!! $titular->getFullDireccDomitoPrint() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        DIRECCIÓN DE TRABAJO
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                         {!! $titular->getFullDireccTrabtoPrint() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        TELEFONO CELULAR Y/O DOMICILIO
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                         {!! $titular->getFullNumber() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">                     
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <h3 class="panel-title">ESTADO DE CUENTA INDIVIDUAL<br>FONDO DE RETIRO POLICIAL</h3>
+                                </div>
+                                <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                                    <div data-toggle="modal" data-target="#myModal-periodo-aportes"> 
+                                        <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered table-hover" style="width:100%;font-size: 14px">
+                                        <tr>
+                                            <td>PERIODO DE APORTES</td>
+                                            <td style="text-align: right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TOTAL COTIZABLE</td>
+                                            <td style="text-align: right">10</td>
+                                        </tr>
+                                        <tr class="active">
+                                            <td>TOTAL DE MESES COTIZABLES</td>
+                                            <td style="text-align: right">10</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
