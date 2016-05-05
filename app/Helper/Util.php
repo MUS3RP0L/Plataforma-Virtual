@@ -89,6 +89,14 @@ class Util
 		}
 	}
 
+	public static function datePickPeriod($date)
+	{
+		if ($date) {
+			$newdate = explode("/", $date);
+			return date($newdate[1] ."-". $newdate[0] ."-1");
+		}
+	}
+
 	public static function zero($string)
 	{
 		return preg_replace('/^0+/', '', $string);
@@ -202,14 +210,23 @@ class Util
         }
 	}
 
-	public function getYearsAndMonths($fech_ini, $fech_fin)
+	public static function getYearsAndMonths($fech_ini, $fech_fin)
     {
         $fech_ini_apor = Carbon::create(date("Y", strtotime($fech_ini)), date("m", strtotime($fech_ini)), 1);
         $fech_fin_apor = Carbon::create(date("Y", strtotime($fech_fin)), date("m", strtotime($fech_fin)), 1);
         $years = $fech_ini_apor->diffInYears($fech_fin_apor);
         $totalmonths = $years*12;
         $months = $fech_ini_apor->diffInMonths($fech_fin_apor) - $totalmonths + 1;
-        return $years . " Años " . $months . " Meses";
+        if($years){
+        	return $years . " Años " . $months . " Meses";
+        }else{
+        	if ($fech_ini_apor->diffInMonths($fech_fin_apor)) {
+        		return $months . " Meses";
+        	}else{
+        		return "-";
+        	}
+        	
+        }
     }
 
 	public static function getdateforEdit($date)

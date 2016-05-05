@@ -345,17 +345,17 @@ class AfiliadoController extends Controller
 
                 case 'periods':
 
-                    $afiliado->fech_ini_apor = Util::datePick($request->fech_ini_apor);
-                    $afiliado->fech_fin_apor = Util::datePick($request->fech_fin_apor);
+                    $afiliado->fech_ini_apor = Util::datePickPeriod($request->fech_ini_apor);
+                    $afiliado->fech_fin_apor = Util::datePickPeriod($request->fech_fin_apor);
 
-                    $afiliado->fech_ini_serv = Util::datePick($request->fech_ini_serv);
-                    $afiliado->fech_fin_serv = Util::datePick($request->fech_fin_serv);
+                    $afiliado->fech_ini_serv = Util::datePickPeriod($request->fech_ini_serv);
+                    $afiliado->fech_fin_serv = Util::datePickPeriod($request->fech_fin_serv);
 
-                    $afiliado->fech_ini_anti = Util::datePick($request->fech_ini_anti);
-                    $afiliado->fech_fin_anti = Util::datePick($request->fech_fin_anti);
+                    $afiliado->fech_ini_anti = Util::datePickPeriod($request->fech_ini_anti);
+                    $afiliado->fech_fin_anti = Util::datePickPeriod($request->fech_fin_anti);
 
-                    $afiliado->fech_ini_reco = Util::datePick($request->fech_ini_reco);
-                    $afiliado->fech_fin_reco = Util::datePick($request->fech_fin_reco);
+                    $afiliado->fech_ini_reco = Util::datePickPeriod($request->fech_ini_reco);
+                    $afiliado->fech_fin_reco = Util::datePickPeriod($request->fech_fin_reco);
 
                     $afiliado->save();
                     
