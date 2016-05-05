@@ -64,7 +64,7 @@
                                                         FECHA DE NACIMIENTO
                                                     </div>
                                                     <div class="col-md-8">
-                                                         {!! $afiliado->getFullDateNactoPrint() !!}
+                                                        {!! $afiliado->getFullDateNactoPrint() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -76,7 +76,7 @@
                                                         NÚMERO DE MATRÍCULA
                                                     </div>
                                                     <div class="col-md-8">
-                                                         {!! $afiliado->matri !!}
+                                                        {!! $afiliado->matri !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -88,7 +88,7 @@
                                                         NÚMERO ÚNICO DE AFILIADO-AFP
                                                     </div>
                                                     <div class="col-md-8">
-                                                         {!! $afiliado->nua !!}
+                                                        {!! $afiliado->nua !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -485,7 +485,7 @@
                                     <h3 class="panel-title">ESTADO DE CUENTA INDIVIDUAL<br>FONDO DE RETIRO POLICIAL</h3>
                                 </div>
                                 <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                    <div data-toggle="modal" data-target="#myModal-periodo-aportes"> 
+                                    <div data-toggle="modal" data-target="#myModal-calificacion"> 
                                         <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
                                     </div>
                                 </div>
@@ -496,6 +496,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <table class="table table-bordered table-hover" style="width:100%;font-size: 14px">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2" class="service">PERIODO DE APORTES CONSIDERADOS</th>
+                                            </tr>
+                                        </thead>
                                         <tr>
                                             <td>PERIODO DE APORTES</td>
                                             <td style="text-align: right">10</td>
@@ -523,6 +528,118 @@
 </div>
 
 
+<div id="myModal-calificacion" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Periodos</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <input type="hidden" name="type" value="periods"/>
+                <div class="row">
+                    <h5 class="modal-title">Años de Aportes</h5>
+                    <div class="col-md-12">
+                        <div class="form-group">                            
+                            <div class="input-daterange input-group" id="datepicker">
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_ini_apor', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_ini_apor" value="{!! $afiliado->getData_fech_ini_apor() !!}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_fin_apor', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_fin_apor" value="{!! $afiliado->getData_fech_fin_apor() !!}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                     
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h5 class="modal-title">Años de Servicio</h5>
+                    <div class="col-md-12">
+                        <div class="form-group">                            
+                            <div class="input-daterange input-group" id="datepicker">
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_ini_serv', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_ini_serv" value="{!! $afiliado->getData_fech_ini_serv() !!}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_fin_serv', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_fin_serv" value="{!! $afiliado->getData_fech_fin_serv() !!}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                     
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h5 class="modal-title">Periodo adicional en Caso de Anticipo</h5>
+                    <div class="col-md-12">
+                        <div class="form-group">                            
+                            <div class="input-daterange input-group" id="datepicker">
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_ini_anti', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_ini_anti" value="{!! $afiliado->getData_fech_ini_anti() !!}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_fin_anti', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_fin_anti" value="{!! $afiliado->getData_fech_fin_anti() !!}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                     
+                    </div>
+                </div>
+                <div class="row">
+                    <h5 class="modal-title">Periodo de Reconocimiento de Aportes</h5>
+                    <div class="col-md-12">
+                        <div class="form-group">                            
+                            <div class="input-daterange input-group" id="datepicker">
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_ini_reco', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_ini_reco" value="{!! $afiliado->getData_fech_ini_reco() !!}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {!! Form::label('fech_fin_reco', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="fech_fin_reco" value="{!! $afiliado->getData_fech_fin_reco() !!}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                     
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                </div>
+                {!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 

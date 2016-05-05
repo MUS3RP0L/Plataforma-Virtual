@@ -8,21 +8,57 @@
   <body>
     <header class="clearfix">
       <div id="logo">
-        <img src="assets/images/logo.jpg">
+          <img src="assets/images/logo.jpg">
       </div>
       <h1>FICHA TÉCNICA DE CALIFICACIÓN<br>FONDO DE RETIRO POLICIAL INDIVIDUAL</h1>
-      <div class="title">A) DATOS DEL TITULAR</div>
+
+      <div class="title">I. INFORMACIÓN DE AFILIADO</div>
       <div id="project">
-        <div><span>NOMBRE DEL BENEFICIARIO</span>{!! $afiliado->getFullNametoPrint() !!}</div>
-        <div><span>FECHA DE NACIMIENTO</span>{!! $afiliado->getFullDateNactoPrint() !!}</div>
-        <div><span>NÚMERO DE MATRÍCULA</span>{!! $afiliado->matri !!}</div>
-        <div><span>NÚMERO ÚNICO DE AFILIADO-AFPs</span>{!! $afiliado->nua !!}</div>
-        <div><span>CARNET DE IDENTIDAD</span>{!! $afiliado->ci !!}</div>
-        <div><span>ESTADO CIVIL</span>{!! $afiliado->getCivil() !!}</div>
-        <div><span>EDAD</span>{!! $afiliado->getHowOld() !!}</div>
-        <div><span>DIRECCIÓN DOMICILIO</span>{!! $afiliado->getFullDirecctoPrint() !!}</div>
-        <div><span>FECHA DE FALLECIMIENTO</span>{!! $afiliado->getFull_fech_decetoPrint() !!}</div>
-        <div><span>CAUSA DE FALLECIMIENTO</span>{!! $afiliado->motivo_dece !!}</div>
+          <table>
+            <tr>
+              <th colspan="2" class="service">A) DATOS DEL TITULAR</th>
+            </tr>
+            <tr>
+              <th class="service">NOMBRE DEL BENEFICIARIO</th>
+              <td class="info">{!! $afiliado->getFullNametoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">CARNET DE IDENTIDAD</th>
+              <td class="info">{!! $afiliado->ci !!}</td>
+            </tr>
+            <tr>
+              <th class="service">FECHA DE NACIMIENTO</th>
+              <td class="info">{!! $afiliado->getFullDateNactoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">NÚMERO DE MATRÍCULA</th>
+              <td class="info">{!! $afiliado->matri !!}</td>
+            </tr>
+            <tr>
+              <th class="service">NÚMERO ÚNICO DE AFILIADO-AFP</th>
+              <td class="info">{!! $afiliado->nua !!}</td>
+            </tr>
+            <tr>
+              <th class="service">ESTADO CIVIL</th>
+              <td class="grand">{!! $afiliado->getCivil() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">EDAD</th>
+              <td class="grand">{!! $afiliado->getHowOld() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">DIRECCIÓN DOMICILIO</th>
+              <td class="grand">{!! $afiliado->getFullDirecctoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">FECHA DE FALLECIMIENTO</th>
+              <td class="grand">{!! $afiliado->getFull_fech_decetoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">CAUSA DE FALLECIMIENTO</th>
+              <td class="grand">{!! $afiliado->motivo_dece !!}</td>
+            </tr>
+          </table>
       </div>
       <br>
       <div class="title">B) DATOS INSTITUCIONALES</div>
@@ -47,17 +83,17 @@
       </div>
       <br>
       <div class="title">D) SOLICITANTE</div>
-      <div id="project">
+      {{-- <div id="project">
         <div><span>NOMBRE DE SOLICITANTE</span>{!! $titular->getFullNametoPrint() !!}</div>
         <div><span>PARENTESCO CON TITULAR</span>{!! $titular->paren !!}</div>
         <div><span>CARNET DE IDENTIDAD</span>{!! $titular->ci !!}</div>
         <div><span>DIRECCIÓN DE DOMICILIO</span>{!! $titular->getFullDireccDomitoPrint() !!}</div>
         <div><span>DIRECCIÓN DE TRABAJO</span>{!! $titular->getFullDireccTrabtoPrint() !!}</div>
         <div><span>TELEFONO CELULAR Y/O DOMICILIO</span>{!! $titular->getFullNumber() !!}</div>
-      </div>
+      </div> --}}
     </header>
     <main>
-      <table>
+      {{-- <table>
           <tr>
             <th colspan="2" class="service">ESTADO DE LA CUENTA INDIVIDUAL</th>
           </tr>
@@ -103,7 +139,7 @@
             <th class="service">TOTAL FONDO DE RETIRO</th>
             <td class="grand"></td>
           </tr>
-      </table>
+      </table> --}}
       {{-- <div id="notices">
         <div>NOTICE:</div>
         <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
