@@ -60,17 +60,44 @@
             </tr>
           </table>
       </div>
-      <br>
-      <div class="title">B) DATOS INSTITUCIONALES</div>
       <div id="project">
-        <div><span>GRADO</span>{!! $afiliado->grado->lit !!}</div>
-        <div><span>FECHA DE ALTA</span>{!! $afiliado->getFullDateIngtoPrint() !!}</div>
-        <div><span>FECHA DE BAJA</span>{!! $afiliado->getData_fech_bajatoPrint() !!}</div>
-        <div><span>MOTIVO DE BAJA</span>{!! $afiliado->motivo_baja !!}</div>
-        <div><span>PERIODO DE APORTE (S/g Cta. Individual)</span>{!! "Desde " . $afiliado->getFull_fech_ini_apor() . " Hasta " . $afiliado->getFull_fech_fin_apor() . " Total " . $afiliado->getYearsAndMonths_fech_ini_apor() !!}</div>
-        <div><span>PERIODO DE SERVICIO (S/g Cmdo.)</span>{!! "Desde " . $afiliado->getFull_fech_ini_serv() . " Hasta " . $afiliado->getFull_fech_fin_serv() . " Total " . $afiliado->getYearsAndMonths_fech_fin_serv() !!}</div>
-        <div><span>PERIODO ADICIONAL (En caso de anticipo)</span>{!! "Desde " . $afiliado->getFull_fech_ini_anti() . " Hasta " . $afiliado->getFull_fech_fin_anti() . " Total " . $afiliado->getYearsAndMonths_fech_ini_anti() !!}</div>
-        <div><span>PERIODO RECONOCIMIENTO DE APORTES</span>{!! "Desde " . $afiliado->getFull_fech_ini_reco() . " Hasta " . $afiliado->getFull_fech_fin_reco() . " Total " . $afiliado->getYearsAndMonths_fech_ini_reco() !!}</div>
+        <table>
+            <tr>
+              <th colspan="2" class="service">B) DATOS INSTITUCIONALES</th>
+            </tr>
+            <tr>
+              <th class="service">GRADO</th>
+              <td class="info">{!! $afiliado->grado->lit !!}</td>
+            </tr>
+            <tr>
+              <th class="service">FECHA DE ALTA</th>
+              <td class="info">{!! $afiliado->getFullDateIngtoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">FECHA DE BAJA</th>
+              <td class="info">{!! $afiliado->getData_fech_bajatoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">MOTIVO DE BAJA</th>
+              <td class="info">{!! $afiliado->motivo_baja !!}</td>
+            </tr>
+            <tr>
+              <th class="service">PERIODO DE APORTE</th>
+              <td class="info">{!! $afiliado->fech_ini_apor ? "DESDE " . $afiliado->getFull_fech_ini_apor() . " - HASTA " . $afiliado->getFull_fech_fin_apor() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_apor() : '' !!}</td>
+            </tr>
+            <tr>
+              <th class="service">PERIODO DE SERVICIO</th>
+              <td class="grand">{!! $afiliado->fech_ini_serv ? "DESDE " . $afiliado->getFull_fech_ini_serv() . " - HASTA " . $afiliado->getFull_fech_fin_serv() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_fin_serv() : '' !!}</td>
+            </tr>
+            <tr>
+              <th class="service">PERIODO ADICIONAL</th>
+              <td class="grand">{!! $afiliado->fech_ini_anti ? "DESDE " . $afiliado->getFull_fech_ini_anti() . " - HASTA " . $afiliado->getFull_fech_fin_anti() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_anti() : '' !!}</td>
+            </tr>
+            <tr>
+              <th class="service">PERIODO DE RECONOCIMIENTO</th>
+              <td class="grand">{!! $afiliado->fech_ini_reco ? "DESDE " . $afiliado->getFull_fech_ini_reco() . " - HASTA " . $afiliado->getFull_fech_fin_reco() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_reco() : '' !!}</td>
+            </tr>
+          </table>
       </div>
       <br>
       <div class="title">C) DATOS DEL CONYUGE</div>

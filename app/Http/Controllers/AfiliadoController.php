@@ -181,12 +181,6 @@ class AfiliadoController extends Controller
             $info_titu = 0;
         }
 
-        if ($afiliado->fech_ini_apor || $afiliado->fech_fin_apor || $afiliado->fech_ini_serv || $afiliado->fech_fin_serv || $afiliado->fech_ini_anti || $afiliado->fech_fin_anti || $afiliado->fech_ini_reco || $afiliado->fech_fin_reco) {
-            $info_peri = 1;
-        }else{
-            $info_peri = 0;
-        }
-
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
 
         $consulta = DB::table('afiliados')
@@ -213,7 +207,6 @@ class AfiliadoController extends Controller
             'info_dom' => $info_dom,
             'info_cony' => $info_cony,
             'info_titu' => $info_titu,
-            'info_peri' => $info_peri,
             'list_est_civ' => $list_est_civ,
             'lastAporte' => $lastAporte,
             'totalGanado' => Util::formatMoney($ganado),
