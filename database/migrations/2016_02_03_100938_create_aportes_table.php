@@ -79,8 +79,6 @@ class CreateAportesTable extends Migration
             $table->date('gest')->required();
 
             $table->string('item')->nullable();
-
-            $table->string('cat');
             
             $table->double('sue');
             $table->double('b_ant');
