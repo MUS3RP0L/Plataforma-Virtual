@@ -224,11 +224,11 @@ class Util
     		return "";
     	}
     	else{
-	        $fech_ini_apor = Carbon::create(date("Y", strtotime($fech_ini)), date("m", strtotime($fech_ini)), 1);
+	        $fech_ini_ap = Carbon::create(date("Y", strtotime($fech_ini)), date("m", strtotime($fech_ini)), 1);
 	        $fech_fin_apor = Carbon::create(date("Y", strtotime($fech_fin)), date("m", strtotime($fech_fin)), 1)->addMonth();
-	        $years = $fech_ini_apor->diffInYears($fech_fin_apor);
+	        $years = $fech_ini_ap->diffInYears($fech_fin_apor);
 	        $totalmonths = $years*12;
-	        $months = $fech_ini_apor->diffInMonths($fech_fin_apor) - $totalmonths;
+	        $months = $fech_ini_ap->diffInMonths($fech_fin_apor) - $totalmonths;
 
 	        if($years || $months){
 	        	$m = $months ? $months . " Meses" : '';

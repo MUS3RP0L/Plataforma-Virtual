@@ -182,6 +182,9 @@ class AfiliadoController extends Controller
         }
 
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
+        
+        $afiliado->fech_ini_apor = $afiliado->fech_ing;
+        $afiliado->fech_fin_apor = $lastAporte->gest;
 
         $consulta = DB::table('afiliados')
                 ->select(DB::raw('SUM(aportes.gan) as ganado, SUM(aportes.b_seg) as SegCiu,
@@ -208,7 +211,6 @@ class AfiliadoController extends Controller
             'info_cony' => $info_cony,
             'info_titu' => $info_titu,
             'list_est_civ' => $list_est_civ,
-            'lastAporte' => $lastAporte,
             'totalGanado' => Util::formatMoney($ganado),
             'totalSegCiu' => Util::formatMoney($SegCiu),
             'totalCotizable' => Util::formatMoney($cotizable),
