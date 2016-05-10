@@ -340,9 +340,6 @@ class AfiliadoController extends Controller
 
                 case 'periods':
 
-                    $afiliado->fech_ini_apor = Util::datePickPeriod($request->fech_ini_apor);
-                    $afiliado->fech_fin_apor = Util::datePickPeriod($request->fech_fin_apor);
-
                     $afiliado->fech_ini_serv = Util::datePickPeriod($request->fech_ini_serv);
                     $afiliado->fech_fin_serv = Util::datePickPeriod($request->fech_fin_serv);
 
