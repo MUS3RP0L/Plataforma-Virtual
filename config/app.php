@@ -153,6 +153,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
 
     ],
@@ -214,6 +215,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Datatables' => Yajra\Datatables\Datatables::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
 
     ],
 
