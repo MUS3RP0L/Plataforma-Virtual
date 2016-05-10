@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-
+{!! Breadcrumbs::render('home') !!}
 	<div class="col-md-10 col-md-offset-1">
 
 		<div class="row">  
