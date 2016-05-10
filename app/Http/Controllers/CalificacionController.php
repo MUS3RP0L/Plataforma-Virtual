@@ -102,7 +102,7 @@ class CalificacionController extends Controller
         $titular = $data['titular'];
 
         $date = date('Y-m-d');
-        $view =  \View::make('print.calif', compact('afiliado','conyuge', 'titular', 'date'))->render();
+        $view =  \View::make('print.calificacion.calif_fr', compact('afiliado','conyuge', 'titular', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/' . $name_input . '.pdf');

@@ -106,6 +106,8 @@ class AddQualificationAfi extends Migration
 
             $table->date('fech_emi');
 
+            $table->enum('type', ['fr', 'sv']);
+
             $table->date('fech_ini_pcot')->nullable();
             $table->date('fech_fin_pcot')->nullable();
 
