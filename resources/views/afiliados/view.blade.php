@@ -2,34 +2,42 @@
 
 @section('content')
 <div class="container-fluid">
+    {!! Breadcrumbs::render('show_afiliado', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
 
                 <div class="row"> 
                  
                     <div class="col-md-6">
-                        <h2>{!! $afiliado->getTittleName() !!}</h2>
+                        <h2 style="margin-top:-2px;">{!! $afiliado->getTittleName() !!}</h2>
                     </div>
 
                     <div class="col-md-6 text-right">  
+                        <div class="btn-group" style="margin:-6px 1px;">
 
-                        <div class="btn-group">
-                            <a href="javascript:void(0)" class="btn btn-raised btn-warning">&nbsp;&nbsp;Aportes&nbsp;&nbsp;</span>
-                            </a>
-                            <a href="bootstrap-elements.html" data-target="#" class="btn btn-primary btn-raised btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{!! url('viewaporte/' . $afiliado->id) !!}">Mostrar Aportes&nbsp;<span class="glyphicon glyphicon-menu-hamburger"  aria-hidden="true"></span></a></li>
-                                <li><a href="{!! url('regaportegest/' . $afiliado->id) !!}">Registrar Aporte&nbsp;<span class="glyphicon glyphicon-edit"  aria-hidden="true"></span></a></li>
-                            </ul>
+                            <div class="btn-group" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
+                              <a href="" data-target="#" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown">
+                                &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;&nbsp;
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="{!! url('viewaporte/' . $afiliado->id) !!}"> Mostrar Aportes</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{!! url('regaportegest/' . $afiliado->id) !!}"> Registrar Aportes</a></li>
+                              </ul>
+                            </div>
+
+                            <div class="btn-group" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
+                              <a href="" data-target="#" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown">
+                                &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="{!! url('show_calif_fr/' . $afiliado->id) !!}"> Calificar FR</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{!! url('save_calif_sv/' . $afiliado->id) !!}"> Calificar SV</a></li>
+                              </ul>
+                            </div>
                         </div>
-                        <div class="btn-group">
-                            <a href="javascript:void(0)" class="btn btn-raised btn-info">&nbsp;&nbsp;Calificación&nbsp;&nbsp;</span>
-                            </a>
-                            <a href="bootstrap-elements.html" data-target="#" class="btn btn-primary btn-raised btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{!! url('show_calif/' . $afiliado->id) !!}">Mostrar Calificación&nbsp;<span class="glyphicon glyphicon-menu-hamburger"  aria-hidden="true"></span></a></li>
-                            </ul>
-                        </div>
+
                         {{-- <a href="{!! url('afiliadoreporte/' . $afiliado->id) !!}" class="btn btn-raised btn-success">
                                 Reporte de prestamo&nbsp;&nbsp;<span class="glyphicon glyphicon-edit"  aria-hidden="true"></span>
                         </a> --}}
@@ -37,6 +45,7 @@
 
                 </div>
             
+
 
             <div class="row">
                 <div class="col-md-6">

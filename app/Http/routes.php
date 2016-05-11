@@ -86,11 +86,17 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('total_month', 'ReporteController@ReportAporteMonth');
 	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
 
-	// printpdf
-	Route::get('show_calif/{afid}', 'CalificacionController@ViewCalif');
-	Route::post('save_calif/{afid}', 'CalificacionController@RegCalif');
+	// Calificacion Fondo de Retiro
+	Route::get('show_calif_fr/{afid}', 'CalificacionController@ViewCalif_fr');
+	Route::post('save_calif_fr/{afid}', 'CalificacionController@RegCalif_fr');
 
-	Route::get('print_calif/{afid}', 'CalificacionController@calif');
+	Route::get('print_calif_fr/{afid}', 'CalificacionController@calif_fr');
+
+	// Calificacion Seguro de Vida
+	Route::get('show_calif_sv/{afid}', 'CalificacionController@ViewCalif_sv');
+	Route::post('save_calif_sv/{afid}', 'CalificacionController@RegCalif_sv');
+
+	Route::get('print_calif_sv/{afid}', 'CalificacionController@calif_sv');
 	
 });
 

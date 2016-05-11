@@ -2,23 +2,24 @@
 
 @section('content')
 <div class="container-fluid">
+    {!! Breadcrumbs::render('calif_sv_afiliado', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
     
             <div class="row">  
                 <div class="col-md-8">
-                    <h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
-                    <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
+                    <h2 style="margin-top:-2px;">{!! $afiliado->getTittleName() !!}</h2>
+
                 </div>
                 <div class="col-md-4 text-right"> 
-                    <a href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning">
-                       Regresar&nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i>
+                    <a  style="margin:-6px 1px;" href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning"  data-toggle="tooltip" data-placement="top" data-original-title="Volver">
+                       &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;&nbsp;
                     </a>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-6">
 
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -37,7 +38,7 @@
                                             <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        NOMBRE DEL BENEFICIARIO
+                                                        Nombre del Beneficiario
                                                     </div>
                                                     <div class="col-md-8">
                                                          {!! $afiliado->getFullNametoPrint() !!}
@@ -49,19 +50,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        CARNET DE IDENTIDAD
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        {!! $afiliado->ci !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-bottom:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        FECHA DE NACIMIENTO
+                                                        Fecha de Nacimiento
                                                     </div>
                                                     <div class="col-md-8">
                                                         {!! $afiliado->getFullDateNactoPrint() !!}
@@ -89,6 +78,18 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         {!! $afiliado->nua !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Carnet de Identidad
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->ci !!}
                                                     </div>
                                                 </div>
                                             </td>

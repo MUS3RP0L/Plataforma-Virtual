@@ -75,7 +75,7 @@ class CalificacionController extends Controller
         return $data;
     }
     
-    public function ViewCalif($afid)
+    public function ViewCalif_fr($afid)
     {
         $data = $this->getData($afid);
         $afiliado = $data['afiliado'];
