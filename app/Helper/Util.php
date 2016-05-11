@@ -5,6 +5,13 @@ use Carbon\Carbon;
 
 class Util
 {
+	public static function ucw($string)
+	{
+		if ($string) {
+			return ucwords(strtolower($string));
+		}
+	}
+
 	public static function decimal($number)
 	{
 		$sueMon = substr($number, 0, -2);

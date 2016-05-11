@@ -290,6 +290,11 @@ class Afiliado extends Model
         return $this->grado->lit . ' ' . $this->pat . ' ' . $this->mat. ' ' . $this->nom;
     }
 
+    public function getTittleName()
+    {
+        return Util::ucw($this->nom) . ' ' . Util::ucw($this->nom2)  . ' ' . Util::ucw($this->pat) . ' ' . Util::ucw($this->mat) . ' ' . Util::ucw($this->ap_esp);
+    }
+
     public function getFullNametoPrint()
     {
         return $this->nom . ' ' . $this->nom2 . ' ' . $this->pat. ' ' . $this->mat;

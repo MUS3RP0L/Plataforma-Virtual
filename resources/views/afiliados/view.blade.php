@@ -8,8 +8,7 @@
                 <div class="row"> 
                  
                     <div class="col-md-6">
-                        <h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
-                        <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
+                        <h2>{!! $afiliado->getTittleName() !!}</h2>
                     </div>
 
                     <div class="col-md-6 text-right">  
