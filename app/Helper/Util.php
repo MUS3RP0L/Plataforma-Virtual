@@ -248,6 +248,15 @@ class Util
 	    }   
     }
 
+    public static function getHowOldF($fech_ini, $fech_fin)
+    {
+
+        $fech_ini_f = Carbon::create(date("Y", strtotime($fech_ini)), date("m", strtotime($fech_ini)), 1);
+        $fech_fin_f = Carbon::create(date("Y", strtotime($fech_fin)), date("m", strtotime($fech_fin)), 1);
+        $years = $fech_ini_f->diffInYears($fech_fin_f);
+        return $years;
+    }
+
 	public static function getdateforEdit($date)
     {	
         if ($date) {
