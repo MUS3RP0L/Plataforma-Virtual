@@ -3,15 +3,14 @@
 @section('content')
 <div class="container-fluid">
 
+        {!! Breadcrumbs::render('afiliado') !!}
+
     <div class="row">
         <div class="col-md-12">
-            <div class="panel-heading">
-                <h4 ><b>Afiliados</b></h4>
-            </div>
         
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Búsqueda de Afiliados</h3>
+                    <h3 class="panel-title">Búsqueda</h3>
                 </div>
                 <div class="panel-body">
 
