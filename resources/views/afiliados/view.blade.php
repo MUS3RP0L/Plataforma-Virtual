@@ -13,34 +13,29 @@
                     </div>
 
                     <div class="col-md-6 text-right">  
-                        <div class="btn-group" style="margin:-6px 1px;">
 
-                            <div class="btn-group" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
-                              <a href="" data-target="#" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown">
-                                &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;&nbsp;
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="{!! url('viewaporte/' . $afiliado->id) !!}"> Mostrar Aportes</a></li>
-                                <li class="divider"></li>
-                                <li><a href="{!! url('regaportegest/' . $afiliado->id) !!}"> Registrar Aportes</a></li>
-                              </ul>
-                            </div>
-
-                            <div class="btn-group" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
-                              <a href="" data-target="#" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown">
-                                &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="{!! url('show_calif_fr/' . $afiliado->id) !!}"> Calificar FR</a></li>
-                                <li class="divider"></li>
-                                <li><a href="{!! url('save_calif_sv/' . $afiliado->id) !!}"> Calificar SV</a></li>
-                              </ul>
-                            </div>
+                        <div class="btn-group" style="margin:-6px 1px;" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
+                          <a href="" data-target="#" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown">
+                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;&nbsp;
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a href="{!! url('viewaporte/' . $afiliado->id) !!}"> Mostrar Aportes</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{!! url('regaportegest/' . $afiliado->id) !!}"> Registrar Aportes</a></li>
+                          </ul>
                         </div>
 
-                        {{-- <a href="{!! url('afiliadoreporte/' . $afiliado->id) !!}" class="btn btn-raised btn-success">
-                                Reporte de prestamo&nbsp;&nbsp;<span class="glyphicon glyphicon-edit"  aria-hidden="true"></span>
-                        </a> --}}
+                        <div class="btn-group" style="margin:-6px 1px;" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
+                          <a href="" data-target="#" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown">
+                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a href="{!! url('show_calif_fr/' . $afiliado->id) !!}"> Calificar FR</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{!! url('save_calif_sv/' . $afiliado->id) !!}"> Calificar SV</a></li>
+                          </ul>
+                        </div>
+                        
                     </div>
 
                 </div>
@@ -2021,7 +2016,7 @@
     var conyuge = {!! $conyuge !!};
     var solicitante = {!! $titular !!};
 
-    var PlanetsModel = function() {
+    var Model = function() {
 
         this.typeToShow = ko.observable('' + solicitante.soli_type);
         this.parenShow = ko.observable(false);
@@ -2178,7 +2173,7 @@
         }
     };
 
-    ko.applyBindings(new PlanetsModel());
+    ko.applyBindings(new Model());
 
     $(function() {
         $('#record-table').DataTable({

@@ -90,7 +90,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('show_calif_fr/{afid}', 'CalificacionController@ViewCalif_fr');
 	Route::post('save_calif_fr/{afid}', 'CalificacionController@RegCalif_fr');
 
-	Route::get('print_calif_fr/{afid}', 'CalificacionController@calif_fr');
+	Route::get('print_calif_fr/{afid}', 'CalificacionController@pdf_calif_fr');
 
 	// Calificacion Seguro de Vida
 	Route::get('show_calif_sv/{afid}', 'CalificacionController@ViewCalif_sv');

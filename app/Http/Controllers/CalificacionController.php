@@ -17,6 +17,7 @@ use Muserpol\Helper\Util;
 
 use Muserpol\Calificacion;
 use Muserpol\Afiliado;
+use Muserpol\Aporte;
 use Muserpol\Departamento;
 use Muserpol\Titular;
 use Muserpol\Conyuge;
@@ -65,6 +66,11 @@ class CalificacionController extends Controller
             $afiliado->depa_dir = ""; 
         }
 
+        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
+        
+        $afiliado->fech_ini_apor = $afiliado->fech_ing;
+        $afiliado->fech_fin_apor = $lastAporte->gest;
+
         $data = array(
             'afiliado' => $afiliado,
             'calificacion' => $calificacion,
@@ -91,10 +97,10 @@ class CalificacionController extends Controller
             'date' => date('Y-m-d')
         );
 
-        return view('calificacion.view', $data);
+        return view('calificacion.view_fr', $data);
     }
 
-    public function calif($afid) 
+    public function pdf_calif_fr($afid) 
     {
         $data = $this->getData($afid);
         $afiliado = $data['afiliado'];
