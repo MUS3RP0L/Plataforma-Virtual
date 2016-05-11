@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="container-fluid">
+	{!! Breadcrumbs::render('aportes_afiliado', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
 
         	<div class="row">  
              	<div class="col-md-8">
-                    <h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
-                    <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
+                    <h2 style="margin-top:-2px;">{!! $afiliado->getTittleName() !!}</h2>
                 </div>
                 <div class="col-md-4 text-right"> 
-					<a href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning">
+					<a style="margin:-6px 1px;" href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning">
 					   Regresar&nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i>
 					</a>
                 </div>
