@@ -190,7 +190,7 @@
                                             <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        NOMBRE DE CONYUGE
+                                                        Nombre de Conyuge
                                                     </div>
                                                     <div class="col-md-8">
                                                          {!! $conyuge->getFullNametoPrint() !!}
@@ -202,7 +202,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        FECHA DE NACIMIENTO
+                                                        Fecha de Nacimiento
                                                     </div>
                                                     <div class="col-md-8">
                                                         {!! $conyuge->getFullDateNactoPrint() !!}
@@ -214,7 +214,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        CARNET DE IDENTIDAD
+                                                        Carnet de Identidad
                                                     </div>
                                                     <div class="col-md-8">
                                                          {!! $conyuge->ci !!}
@@ -226,7 +226,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        FECHA DE FALLECIMIENTO
+                                                        Fecha de Fallecimiento
                                                     </div>
                                                     <div class="col-md-8">
                                                          {!! $conyuge->getFull_fech_decetoPrint() !!}
@@ -238,7 +238,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        CAUSA DE FALLECIMIENTO
+                                                        Causa de Fallecimiento
                                                     </div>
                                                     <div class="col-md-8">
                                                          {!! $conyuge->motivo_dece !!}
@@ -272,7 +272,7 @@
                                             <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        NOMBRE DE SOLICITANTE
+                                                        Nombre de Solicitante
                                                     </div>
                                                     <div class="col-md-8">
                                                          {!! $titular->getFullNametoPrint() !!}
@@ -284,7 +284,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        PARENTESCO CON TITULAR
+                                                        Parentesco con Titular
                                                     </div>
                                                     <div class="col-md-8">
                                                         {!! $titular->paren !!}
@@ -296,7 +296,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        CARNET DE IDENTIDAD
+                                                        Carnet de Identidad
                                                     </div>
                                                     <div class="col-md-8">
                                                          {!! $titular->ci !!}
@@ -308,7 +308,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        DIRECCIÓN DE DOMICILIO
+                                                        Dirección de Domicilio
                                                     </div>
                                                     <div class="col-md-8">
                                                          {!! $titular->getFullDireccDomitoPrint() !!}
@@ -320,7 +320,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        DIRECCIÓN DE TRABAJO
+                                                        Dirección de Trabajo
                                                     </div>
                                                     <div class="col-md-8">
                                                          {!! $titular->getFullDireccTrabtoPrint() !!}
@@ -332,7 +332,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        TELEFONO CELULAR Y/O DOMICILIO
+                                                        Teléfono y/o Celular
                                                     </div>
                                                     <div class="col-md-8">
                                                          {!! $titular->getFullNumber() !!}
@@ -490,7 +490,7 @@
                                         </thead>
                                         <tr>
                                             <td>PERIODO DE APORTES</td>
-                                            <td style="text-align: right">{!! $calificacion->fech_ini_pcot ? "Desde " . $calificacion->getFull_fech_ini_pcot() . " - Hasta " . $calificacion->getFull_fech_fin_pcot() : '' !!}</td>
+                                            <td style="text-align: right;width: 50%;">{!! $calificacion->fech_ini_pcot ? "Desde " . $calificacion->getFull_fech_ini_pcot() . " - Hasta " . $calificacion->getFull_fech_fin_pcot() : '' !!}</td>
                                         </tr>
                                         <tr>
                                             <td>TIEMPO COTIZABLE</td>
@@ -512,7 +512,7 @@
                                         </thead>
                                         <tr>
                                             <td>COTIZABLE</td>
-                                            <td style="text-align: right">{!! $cotizable !!}</td>
+                                            <td style="text-align: right;width: 50%;">{!! $cotizable !!}</td>
                                         </tr>
                                         <tr>
                                             <td>TOTAL COTIZABLE ADICIONAL</td>
@@ -527,7 +527,7 @@
                                     <table class="table table-bordered table-hover" style="width:100%;font-size: 14px">
                                         <tr>
                                             <td>SUBTOTAL FONDO DE RETIRO</td>
-                                            <td style="text-align: right">{!! $fon !!}</td>
+                                            <td style="text-align: right;width: 50%;">{!! $fon !!}</td>
                                         </tr>
                                         <tr>
                                             <td>RENDIMIENTO OBTENIDO</td>
@@ -560,7 +560,7 @@
                 <h4 class="modal-title">Calificación Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('print_calif_fr/' . $afiliado->id) !!}" width="100%" height="1250"></iframe>
+                <iframe src="{!! url('print_calif_fr/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>

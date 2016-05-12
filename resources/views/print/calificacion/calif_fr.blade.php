@@ -7,9 +7,29 @@
   </head>
   <body>
     <header class="clearfix">
-      <div id="logo">
+      {{-- <div id="logo">
           <img src="assets/images/logo.jpg">
-      </div>
+      </div> --}}
+      <table class="tableh">
+            <tr>
+              <th style="width: 25%;border: 0px;">
+                <div id="logo">
+                  <img src="assets/images/logo.jpg">
+                </div>
+              </th>
+              <th style="width: 50%;border: 0px">
+                <h3>MUTUAL DE SERVICIOS AL POLICÍA<br>
+                    DIRECCIÓN DE BENEFICIOS ECONÓMICOS<br>
+                    UNIDAD DE FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
+                    GESTIÓN 2016</h3>
+              </th>
+              <th style="width: 25%;border: 0px">
+                <div id="logo2">
+                  <img src="assets/images/escudo.png">
+                </div>
+              </th>
+            </tr>
+      </table>
       <h1>FICHA TÉCNICA DE CALIFICACIÓN<br>FONDO DE RETIRO POLICIAL INDIVIDUAL</h1>
 
       <div class="title">I. INFORMACIÓN DE AFILIADO</div>
