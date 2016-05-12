@@ -81,7 +81,7 @@ class CalificacionController extends Controller
         $afiliado->fech_fin_apor = $lastAporte->gest;
 
         $consulta = DB::table('afiliados')
-                ->select(DB::raw('SUM(aportes.cot) as cotizable, SUM(aportes.fr) as fr'))
+                ->select(DB::raw('SUM(aportes.cot) as cotizable, SUM(aportes.fr) as fr, SUM(aportes.sv) as sv'))
                 ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
                 ->where('afiliados.id', '=', $afiliado->id)
                 ->get();
@@ -89,6 +89,7 @@ class CalificacionController extends Controller
         foreach ($consulta as $item) {
             $cotizable = $item->cotizable;
             $fon = $item->fr;
+            $sv = $item->sv;
 
         }
 
@@ -99,6 +100,7 @@ class CalificacionController extends Controller
             'titular' => $titular,
             'cotizable' => $cotizable,
             'fon' => $fon,
+            'sv' => $sv,
             'date' => date('Y-m-d')
         );
         return $data;
@@ -106,25 +108,12 @@ class CalificacionController extends Controller
     
     public function ViewCalif_fr($afid)
     {
-        $data = $this->getData($afid);
-        $afiliado = $data['afiliado'];
-        $calificacion = $data['calificacion'];
-        $conyuge = $data['conyuge'];
-        $titular = $data['titular'];        
-        $cotizable = $data['cotizable'];        
-        $fon = $data['fon'];        
+        return view('calificacion.view_fr', self::getData($afid));
+    }
 
-        $data = array(
-            'afiliado' => $afiliado,
-            'calificacion' => $calificacion,
-            'conyuge' => $conyuge,
-            'titular' => $titular,
-            'cotizable' => $cotizable,
-            'fon' => $fon,
-            'date' => date('Y-m-d')
-        );
-
-        return view('calificacion.view_fr', $data);
+    public function ViewCalif_sv($afid)
+    {
+        return view('calificacion.view_sv', self::getData($afid));
     }
 
     public function pdf_calif_fr($afid) 
@@ -137,7 +126,7 @@ class CalificacionController extends Controller
         $cotizable = Util::formatMoney($data['cotizable']);        
         $fon = Util::formatMoney($data['fon']);
 
-        $date = date('Y-m-d');
+        $date = Util::getfulldate(date('Y-m-d'));
         $view =  \View::make('print.calificacion.calif_fr', compact('afiliado', 'calificacion', 'conyuge', 'titular', 'date', 'cotizable', 'fon'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
@@ -145,6 +134,23 @@ class CalificacionController extends Controller
         return $pdf->stream('calif');
     }
 
+    public function pdf_calif_sv($afid) 
+    {
+        $data = $this->getData($afid);
+        $afiliado = $data['afiliado'];
+        $calificacion = $data['calificacion'];
+        $conyuge = $data['conyuge'];
+        $titular = $data['titular'];
+        $cotizable = Util::formatMoney($data['cotizable']);        
+        $sv = Util::formatMoney($data['sv']);
+
+        $date = Util::getfulldate(date('Y-m-d'));
+        $view =  \View::make('print.calificacion.calif_sv', compact('afiliado', 'calificacion', 'conyuge', 'titular', 'date', 'cotizable', 'sv'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/' . $name_input . '.pdf');
+        return $pdf->stream('calif');
+    }
     /**
      * Store a newly created resource in storage.
      *

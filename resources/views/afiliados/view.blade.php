@@ -32,10 +32,10 @@
                           <ul class="dropdown-menu">
                             <li><a href="{!! url('show_calif_fr/' . $afiliado->id) !!}"> Calificar FR</a></li>
                             <li class="divider"></li>
-                            <li><a href="{!! url('save_calif_sv/' . $afiliado->id) !!}"> Calificar SV</a></li>
+                            <li><a href="{!! url('show_calif_sv/' . $afiliado->id) !!}"> Calificar SV</a></li>
                           </ul>
                         </div>
-                        
+
                     </div>
 
                 </div>

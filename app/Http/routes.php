@@ -88,15 +88,11 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// Calificacion Fondo de Retiro
 	Route::get('show_calif_fr/{afid}', 'CalificacionController@ViewCalif_fr');
-	Route::post('save_calif_fr/{afid}', 'CalificacionController@RegCalif_fr');
-
 	Route::get('print_calif_fr/{afid}', 'CalificacionController@pdf_calif_fr');
 
 	// Calificacion Seguro de Vida
 	Route::get('show_calif_sv/{afid}', 'CalificacionController@ViewCalif_sv');
-	Route::post('save_calif_sv/{afid}', 'CalificacionController@RegCalif_sv');
-
-	Route::get('print_calif_sv/{afid}', 'CalificacionController@calif_sv');
+	Route::get('print_calif_sv/{afid}', 'CalificacionController@pdf_calif_sv');
 	
 });
 

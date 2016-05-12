@@ -22,8 +22,14 @@ Breadcrumbs::register('aportes_afiliado', function($breadcrumbs, $afiliado) {
     $breadcrumbs->push('Aportes');
 });
 
-// Show Aportes Afiliado
-Breadcrumbs::register('calif_sv_afiliado', function($breadcrumbs, $afiliado) {
+// Show calificacion Fondo de retiro Afiliado
+Breadcrumbs::register('calif_fr_afiliado', function($breadcrumbs, $afiliado) {
     $breadcrumbs->parent('show_afiliado', $afiliado);
     $breadcrumbs->push('Calificación Fondo de Retiro');
+});
+
+// Show calificacion Seguro de vida Afiliado
+Breadcrumbs::register('calif_sv_afiliado', function($breadcrumbs, $afiliado) {
+    $breadcrumbs->parent('show_afiliado', $afiliado);
+    $breadcrumbs->push('Calificación Seguro de Vida');
 });
