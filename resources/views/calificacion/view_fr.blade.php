@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-    {!! Breadcrumbs::render('calif_sv_afiliado', $afiliado) !!}
+    {!! Breadcrumbs::render('calif_fr_afiliado', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
     

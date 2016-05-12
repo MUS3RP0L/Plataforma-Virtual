@@ -7,9 +7,6 @@
   </head>
   <body>
     <header class="clearfix">
-      {{-- <div id="logo">
-          <img src="assets/images/logo.jpg">
-      </div> --}}
       <table class="tableh">
             <tr>
               <th style="width: 25%;border: 0px;">
@@ -18,21 +15,30 @@
                 </div>
               </th>
               <th style="width: 50%;border: 0px">
-                <h3>MUTUAL DE SERVICIOS AL POLICÍA<br>
+                <h3><b>MUTUAL DE SERVICIOS AL POLICÍA<br>
                     DIRECCIÓN DE BENEFICIOS ECONÓMICOS<br>
                     UNIDAD DE FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
-                    GESTIÓN 2016</h3>
+                    GESTIÓN 2016</b></h3>
               </th>
               <th style="width: 25%;border: 0px">
                 <div id="logo2">
-                  <img src="assets/images/escudo.png">
+                  <img src="assets/images/escudo.jpg">
                 </div>
               </th>
             </tr>
       </table>
-      <h1>FICHA TÉCNICA DE CALIFICACIÓN<br>FONDO DE RETIRO POLICIAL INDIVIDUAL</h1>
-    
-      <div class="title">I. INFORMACIÓN DE AFILIADO</div>
+      <h1><b>FICHA TÉCNICA DE CALIFICACIÓN<br>FONDO DE RETIRO POLICIAL INDIVIDUAL</b></h1>
+      <table class="tablet">
+        <tr>
+          <td style="width: 60%;border: 0px;">
+            <div class="title"><b>I. INFORMACIÓN DE AFILIADO</b></div>
+          </td>
+          <td style="width: 40%;border: 0px;text-align:right;">
+            <div class="title">Fecha de Emisión: La Paz, {!! $date !!}</div>
+          </td>
+        </tr>
+      </table>
+
       <div id="project">
           <table>
             <tr>
@@ -177,23 +183,29 @@
             </tr>
           </table>
       </div>
-      
-      <div class="title">II. INFORMACIÓN TÉCNICA</div>
+      <table class="tablet">
+        <tr>
+          <td style="width: 60%;border: 0px;">
+            <div class="title"><b>II. INFORMACIÓN TÉCNICA</b></div>
+          </td>
+        </tr>
+      </table>
+
       <table>
           <tr>
             <th colspan="2" class="grand service">A) ESTADO DE LA CUENTA INDIVIDUAL</th>
           </tr>
           <tr>
             <th class="service">PERIODO DE APORTES</th>
-            <td class="info">{!! $calificacion->fech_ini_pcot ? "Desde " . $calificacion->getFull_fech_ini_pcot() . " - Hasta " . $calificacion->getFull_fech_fin_pcot() : '' !!}</td>
+            <td class="total">{!! $calificacion->fech_ini_pcot ? "Desde " . $calificacion->getFull_fech_ini_pcot() . " - Hasta " . $calificacion->getFull_fech_fin_pcot() : '' !!}</td>
           </tr>       
           <tr>
             <th class="service">TIEMPO COTIZABLE</th>
-            <td class="info">{!! $calificacion->fech_ini_pcot ? $calificacion->getYearsAndMonths_fech_pcot() : '' !!}</td>
+            <td class="total">{!! $calificacion->fech_ini_pcot ? $calificacion->getYearsAndMonths_fech_pcot() : '' !!}</td>
           </tr>
           <tr>
             <th class="service">TOTAL DE MESES COTIZABLES</th>
-            <td class="info">{!! $calificacion->fech_ini_pcot ? $calificacion->getMonths_fech_pcot() : '' !!}</td>
+            <td class="total">{!! $calificacion->fech_ini_pcot ? $calificacion->getMonths_fech_pcot() : '' !!}</td>
           </tr>
       </table>
 
