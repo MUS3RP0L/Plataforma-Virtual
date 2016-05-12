@@ -100,9 +100,7 @@ class AddQualificationAfi extends Migration
             $table->UnsignedBigInteger('user_id');
 
             $table->UnsignedBigInteger('afiliado_id');
-            $table->UnsignedBigInteger('conyuge_id');
-            $table->UnsignedBigInteger('titular_id');
-            $table->UnsignedBigInteger('departamento_id');
+            $table->UnsignedBigInteger('departamento_id')->nullable();
 
             $table->date('fech_emi');
 
@@ -117,8 +115,6 @@ class AddQualificationAfi extends Migration
             $table->foreign('user_id')->references('id')->on('users'); 
 
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
-            $table->foreign('conyuge_id')->references('id')->on('conyuges');
-            $table->foreign('titular_id')->references('id')->on('titulares');
             $table->foreign('departamento_id')->references('id')->on('departamentos');
 
         });

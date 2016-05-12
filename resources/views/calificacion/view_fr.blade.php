@@ -12,9 +12,19 @@
 
                 </div>
                 <div class="col-md-4 text-right"> 
-                    <a  style="margin:-6px 1px;" href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning"  data-toggle="tooltip" data-placement="top" data-original-title="Volver">
+
+                    <div class="btn-group" style="margin:-6px 1px;" data-toggle="tooltip" data-placement="top" data-original-title="Imprimir">
+                      <a href="" data-target="#myModal-print" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;&nbsp;
+                      </a>
+                    </div>
+
+                    <div class="btn-group" style="margin:-6px 1px;">
+                       <a href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning"  data-toggle="tooltip" data-placement="top" data-original-title="Volver">
                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;&nbsp;
-                    </a>
+                    </a> 
+                    </div>
+
                 </div>
             </div>
 
@@ -25,7 +35,7 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-12">
-                                    <h3 class="panel-title">A) DATOS DEL TITULAR</h3>
+                                    <h3 class="panel-title">Datos del Titular</h3>
                                 </div>      
                             </div>
                         </div>
@@ -62,7 +72,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        NÚMERO DE MATRÍCULA
+                                                        Número Matrícula
                                                     </div>
                                                     <div class="col-md-8">
                                                         {!! $afiliado->matri !!}
@@ -74,7 +84,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        NÚMERO ÚNICO DE AFILIADO-AFP
+                                                        Número Matrícula Seguro
                                                     </div>
                                                     <div class="col-md-8">
                                                         {!! $afiliado->nua !!}
@@ -98,7 +108,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        ESTADO CIVIL
+                                                        Estado Civil
                                                     </div>
                                                     <div class="col-md-8">
                                                         {!! $afiliado->getCivil() !!}
@@ -110,7 +120,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        EDAD
+                                                        Edad
                                                     </div>
                                                     <div class="col-md-8">
                                                         {!! $afiliado->getHowOld() !!}
@@ -122,7 +132,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        DIRECCIÓN DOMICILIO
+                                                        Dirección de Domicilio
                                                     </div>
                                                     <div class="col-md-8">
                                                         {!! $afiliado->getFullDirecctoPrint() !!}
@@ -134,7 +144,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        FECHA DE FALLECIMIENTO
+                                                        Fecha de Fallecimento
                                                     </div>
                                                     <div class="col-md-8">
                                                         {!! $afiliado->getFull_fech_decetoPrint() !!}
@@ -146,7 +156,7 @@
                                             <td style="border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        CAUSA DE FALLECIMIENTO
+                                                        Causa de Fallecimento
                                                     </div>
                                                     <div class="col-md-8">
                                                         {!! $afiliado->motivo_dece !!}
@@ -163,140 +173,11 @@
                         </div>
                     </div>
 
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-12">
-                                    <h3 class="panel-title">B) DATOS INSTITUCIONALES</h3>
-                                </div>      
-                            </div>
-                        </div>
-                        <div class="panel-body" style="font-size: 14px">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    
-                                    <table class="table table-responsive" style="width:100%;">
-                                        <tr>
-                                            <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        GRADO
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                         {!! $afiliado->grado->lit !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-bottom:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        FECHA DE ALTA 
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        {!! $afiliado->getFullDateIngtoPrint() !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-bottom:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        FECHA DE BAJA
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                         {!! $afiliado->getData_fech_bajatoPrint() !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-bottom:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        MOTIVO DE BAJA
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                         {!! $afiliado->motivo_baja !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-bottom:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        PERIODO DE APORTE
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                         {!! $afiliado->fech_ini_apor ? "Desde " . $afiliado->getFull_fech_ini_apor() . " - Hasta " . $afiliado->getFull_fech_fin_apor() . "<br>Total " . $afiliado->getYearsAndMonths_fech_ini_apor() : '' !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-bottom:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        PERIODO DE SERVICIO
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        {!! $afiliado->fech_ini_serv ? "Desde " . $afiliado->getFull_fech_ini_serv() . " - Hasta " . $afiliado->getFull_fech_fin_serv() . "<br>Total " . $afiliado->getYearsAndMonths_fech_fin_serv() : '' !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-bottom:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        PERIODO ADICIONAL
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        {!! $afiliado->fech_ini_anti ? "Desde " . $afiliado->getFull_fech_ini_anti() . " - Hasta " . $afiliado->getFull_fech_fin_anti() . "<br>Total " . $afiliado->getYearsAndMonths_fech_ini_anti() : '' !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-bottom:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        PERIODO DE RECONOCIMIENTO
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        {!! $afiliado->fech_ini_reco ? "Desde " . $afiliado->getFull_fech_ini_reco() . " - Hasta " . $afiliado->getFull_fech_fin_reco() . "<br>Total " . $afiliado->getYearsAndMonths_fech_ini_reco() : '' !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>                                     
-                                    </table>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">  
-                                <div class="col-md-12">
-                                    <h3 class="panel-title">C) DATOS DE CONYUGE</h3>
+                                    <h3 class="panel-title">Datos de Conyugue</h3>
                                 </div>      
                             </div>
                         </div>
@@ -374,17 +255,11 @@
                         </div>
                     </div>
 
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-12">
-                                    <h3 class="panel-title">D) DATOS DE SOLICITANTE</h3>
+                                    <h3 class="panel-title">Datos de Solicitante</h3>
                                 </div>      
                             </div>
                         </div>
@@ -475,15 +350,131 @@
                     </div>
 
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-6">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">  
+                                <div class="col-md-12">
+                                    <h3 class="panel-title">Datos Institucionales</h3>
+                                </div>      
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: 14px">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    
+                                    <table class="table table-responsive" style="width:100%;">
+                                        <tr>
+                                            <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Grado
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                         {!! $afiliado->grado->lit !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Fecha de Alta 
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->getFullDateIngtoPrint() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Fecha de Baja
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                         {!! $afiliado->getData_fech_bajatoPrint() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Motivo de Baja
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                         {!! $afiliado->motivo_baja !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Años de Aporte
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                         {!! $afiliado->fech_ini_apor ? "Desde " . $afiliado->getFull_fech_ini_apor() . " - Hasta " . $afiliado->getFull_fech_fin_apor() . "<br>Total " . $afiliado->getYearsAndMonths_fech_ini_apor() : '' !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Años de Servicio
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->fech_ini_serv ? "Desde " . $afiliado->getFull_fech_ini_serv() . " - Hasta " . $afiliado->getFull_fech_fin_serv() . "<br>Total " . $afiliado->getYearsAndMonths_fech_fin_serv() : '' !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Periodo Adicional
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->fech_ini_anti ? "Desde " . $afiliado->getFull_fech_ini_anti() . " - Hasta " . $afiliado->getFull_fech_fin_anti() . "<br>Total " . $afiliado->getYearsAndMonths_fech_ini_anti() : '' !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Años de Aportes Reconocidos
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->fech_ini_reco ? "Desde " . $afiliado->getFull_fech_ini_reco() . " - Hasta " . $afiliado->getFull_fech_fin_reco() . "<br>Total " . $afiliado->getYearsAndMonths_fech_ini_reco() : '' !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>                                     
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="panel panel-primary">
                         <div class="panel-heading">                     
                             <div class="row">  
                                 <div class="col-md-12">
-                                    <h3 class="panel-title">ESTADO DE CUENTA INDIVIDUAL<br>FONDO DE RETIRO POLICIAL</h3>
+                                    <h3 class="panel-title">Estado de Cuenta Individual Fondo de Retiro Policial</h3>
                                 </div>      
                             </div>
                         </div>
@@ -499,15 +490,52 @@
                                         </thead>
                                         <tr>
                                             <td>PERIODO DE APORTES</td>
-                                            <td style="text-align: right">10</td>
+                                            <td style="text-align: right">{!! $calificacion->fech_ini_pcot ? "Desde " . $calificacion->getFull_fech_ini_pcot() . " - Hasta " . $calificacion->getFull_fech_fin_pcot() : '' !!}</td>
                                         </tr>
                                         <tr>
-                                            <td>TOTAL COTIZABLE</td>
-                                            <td style="text-align: right">10</td>
+                                            <td>TIEMPO COTIZABLE</td>
+                                            <td style="text-align: right">{!! $calificacion->fech_ini_pcot ? $calificacion->getYearsAndMonths_fech_pcot() : '' !!}</td>
                                         </tr>
                                         <tr class="active">
                                             <td>TOTAL DE MESES COTIZABLES</td>
-                                            <td style="text-align: right">10</td>
+                                            <td style="text-align: right">{!! $calificacion->fech_ini_pcot ? $calificacion->getMonths_fech_pcot() : '' !!}</td>
+                                        </tr>
+                                    </table>
+
+                                    <br>
+                
+                                    <table class="table table-bordered table-hover" style="width:100%;font-size: 14px">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2" class="service">DATOS ECONÓMICOS DEL AFILIADO</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>COTIZABLE</td>
+                                            <td style="text-align: right">{!! $cotizable !!}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TOTAL COTIZABLE ADICIONAL</td>
+                                            <td style="text-align: right">0.00</td>
+                                        </tr>
+                                        <tr class="active">
+                                            <td>TOTAL GENERAL COTIZABLE</td>
+                                            <td style="text-align: right">{!! $cotizable !!}</td>
+                                        </tr>
+                                    </table>
+
+                                    <table class="table table-bordered table-hover" style="width:100%;font-size: 14px">
+                                        <tr>
+                                            <td>SUBTOTAL FONDO DE RETIRO</td>
+                                            <td style="text-align: right">{!! $fon !!}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>RENDIMIENTO OBTENIDO</td>
+                                            <td style="text-align: right">0.00</td>
+                                        </tr>
+                                        <tr class="active">
+                                            <td>TOTAL FONDO DE RETIRO</td>
+                                            <td style="text-align: right">{!! $fon !!}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -516,12 +544,29 @@
                             
                         </div>
                     </div>
+
                 </div>
             </div>
 
         </div>
     </div>
 </div>
+
+<div id="myModal-print" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Calificación Fondo de Retiro</h4>
+            </div>
+            <div class="modal-body">
+                <iframe src="{!! url('print_calif_fr/' . $afiliado->id) !!}" width="100%" height="1250"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 @endsection
 
