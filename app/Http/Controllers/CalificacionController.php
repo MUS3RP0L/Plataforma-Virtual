@@ -131,11 +131,14 @@ class CalificacionController extends Controller
     {
         $data = $this->getData($afid);
         $afiliado = $data['afiliado'];
+        $calificacion = $data['calificacion'];
         $conyuge = $data['conyuge'];
         $titular = $data['titular'];
+        $cotizable = Util::formatMoney($data['cotizable']);        
+        $fon = Util::formatMoney($data['fon']);
 
         $date = date('Y-m-d');
-        $view =  \View::make('print.calificacion.calif_fr', compact('afiliado','conyuge', 'titular', 'date'))->render();
+        $view =  \View::make('print.calificacion.calif_fr', compact('afiliado', 'calificacion', 'conyuge', 'titular', 'date', 'cotizable', 'fon'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/' . $name_input . '.pdf');

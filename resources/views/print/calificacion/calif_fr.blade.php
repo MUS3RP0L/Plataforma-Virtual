@@ -31,12 +31,12 @@
             </tr>
       </table>
       <h1>FICHA TÉCNICA DE CALIFICACIÓN<br>FONDO DE RETIRO POLICIAL INDIVIDUAL</h1>
-
+    
       <div class="title">I. INFORMACIÓN DE AFILIADO</div>
       <div id="project">
           <table>
             <tr>
-              <th colspan="2" class="service">A) DATOS DEL TITULAR</th>
+              <th colspan="2" class="grand service">A) DATOS DE TITULAR</th>
             </tr>
             <tr>
               <th class="service">NOMBRE DEL BENEFICIARIO</th>
@@ -60,30 +60,30 @@
             </tr>
             <tr>
               <th class="service">ESTADO CIVIL</th>
-              <td class="grand">{!! $afiliado->getCivil() !!}</td>
+              <td class="info">{!! $afiliado->getCivil() !!}</td>
             </tr>
             <tr>
               <th class="service">EDAD</th>
-              <td class="grand">{!! $afiliado->getHowOld() !!}</td>
+              <td class="info">{!! $afiliado->getHowOld() !!}</td>
             </tr>
             <tr>
               <th class="service">DIRECCIÓN DOMICILIO</th>
-              <td class="grand">{!! $afiliado->getFullDirecctoPrint() !!}</td>
+              <td class="info">{!! $afiliado->getFullDirecctoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">FECHA DE FALLECIMIENTO</th>
-              <td class="grand">{!! $afiliado->getFull_fech_decetoPrint() !!}</td>
+              <td class="info">{!! $afiliado->getFull_fech_decetoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">CAUSA DE FALLECIMIENTO</th>
-              <td class="grand">{!! $afiliado->motivo_dece !!}</td>
+              <td class="info">{!! $afiliado->motivo_dece !!}</td>
             </tr>
           </table>
       </div>
       <div id="project">
         <table>
             <tr>
-              <th colspan="2" class="service">B) DATOS INSTITUCIONALES</th>
+              <th colspan="2" class="grand service">B) DATOS INSTITUCIONALES</th>
             </tr>
             <tr>
               <th class="service">GRADO</th>
@@ -107,93 +107,132 @@
             </tr>
             <tr>
               <th class="service">PERIODO DE SERVICIO</th>
-              <td class="grand">{!! $afiliado->fech_ini_serv ? "DESDE " . $afiliado->getFull_fech_ini_serv() . " - HASTA " . $afiliado->getFull_fech_fin_serv() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_fin_serv() : '' !!}</td>
+              <td class="info">{!! $afiliado->fech_ini_serv ? "DESDE " . $afiliado->getFull_fech_ini_serv() . " - HASTA " . $afiliado->getFull_fech_fin_serv() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_fin_serv() : '' !!}</td>
             </tr>
             <tr>
               <th class="service">PERIODO ADICIONAL</th>
-              <td class="grand">{!! $afiliado->fech_ini_anti ? "DESDE " . $afiliado->getFull_fech_ini_anti() . " - HASTA " . $afiliado->getFull_fech_fin_anti() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_anti() : '' !!}</td>
+              <td class="info">{!! $afiliado->fech_ini_anti ? "DESDE " . $afiliado->getFull_fech_ini_anti() . " - HASTA " . $afiliado->getFull_fech_fin_anti() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_anti() : '' !!}</td>
             </tr>
             <tr>
               <th class="service">PERIODO DE RECONOCIMIENTO</th>
-              <td class="grand">{!! $afiliado->fech_ini_reco ? "DESDE " . $afiliado->getFull_fech_ini_reco() . " - HASTA " . $afiliado->getFull_fech_fin_reco() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_reco() : '' !!}</td>
+              <td class="info">{!! $afiliado->fech_ini_reco ? "DESDE " . $afiliado->getFull_fech_ini_reco() . " - HASTA " . $afiliado->getFull_fech_fin_reco() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_reco() : '' !!}</td>
             </tr>
           </table>
       </div>
-      <br>
-      <div class="title">C) DATOS DEL CONYUGE</div>
       <div id="project">
-        <div><span>NOMBRE DE CONYUGE</span>{!! $conyuge->getFullNametoPrint() !!}</div>
-        <div><span>FECHA DE NACIMIENTO</span>{!! $conyuge->getFullDateNactoPrint() !!}</div>
-        <div><span>CARNET DE IDENTIDAD</span>{!! $conyuge->ci !!}</div>
-        <div><span>FECHA DE FALLECIMIENTO</span>{!! $conyuge->getFull_fech_decetoPrint() !!}</div>
-        <div><span>CAUSA DE FALLECIMIENTO</span>{!! $conyuge->motivo_dece !!}</div>
+          <table>
+            <tr>
+              <th colspan="2" class="grand service">C) DATOS DE CONYUGE</th>
+            </tr>
+            <tr>
+              <th class="service">NOMBRE DE CONYUGE</th>
+              <td class="info">{!! $conyuge->getFullNametoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">FECHA DE NACIMIENTO</th>
+              <td class="info">{!! $conyuge->getFullDateNactoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">CARNET DE IDENTIDAD</th>
+              <td class="info">{!! $conyuge->ci !!}</td>
+            </tr>
+            <tr>
+              <th class="service">FECHA DE FALLECIMIENTO</th>
+              <td class="info">{!! $conyuge->getFull_fech_decetoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">CAUSA DE FALLECIMIENTO</th>
+              <td class="info">{!! $conyuge->motivo_dece !!}</td>
+            </tr>
+          </table>
       </div>
-      <br>
-      <div class="title">D) SOLICITANTE</div>
-      {{-- <div id="project">
-        <div><span>NOMBRE DE SOLICITANTE</span>{!! $titular->getFullNametoPrint() !!}</div>
-        <div><span>PARENTESCO CON TITULAR</span>{!! $titular->paren !!}</div>
-        <div><span>CARNET DE IDENTIDAD</span>{!! $titular->ci !!}</div>
-        <div><span>DIRECCIÓN DE DOMICILIO</span>{!! $titular->getFullDireccDomitoPrint() !!}</div>
-        <div><span>DIRECCIÓN DE TRABAJO</span>{!! $titular->getFullDireccTrabtoPrint() !!}</div>
-        <div><span>TELEFONO CELULAR Y/O DOMICILIO</span>{!! $titular->getFullNumber() !!}</div>
-      </div> --}}
-    </header>
-    <main>
-      {{-- <table>
+      <div id="project">
+          <table>
+            <tr>
+              <th colspan="2" class="grand service">D) DATOS DE SOLICITANTE</th>
+            </tr>
+            <tr>
+              <th class="service">NOMBRE DE SOLICITANTE</th>
+              <td class="info">{!! $titular->getFullNametoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">PARENTESCO CON TITULAR</th>
+              <td class="info">{!! $titular->paren !!}</td>
+            </tr>
+            <tr>
+              <th class="service">CARNET DE IDENTIDAD</th>
+              <td class="info">{!! $titular->ci !!}</td>
+            </tr>
+            <tr>
+              <th class="service">DIRECCIÓN DE DOMICILIO</th>
+              <td class="info">{!! $titular->getFullDireccDomitoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">DIRECCIÓN DE TRABAJO</th>
+              <td class="info">{!! $titular->getFullDireccTrabtoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">TELEFONO CELULAR Y/O DOMICILIO</th>
+              <td class="info">{!! $titular->getFullNumber() !!}</td>
+            </tr>
+          </table>
+      </div>
+      
+      <div class="title">II. INFORMACIÓN TÉCNICA</div>
+      <table>
           <tr>
-            <th colspan="2" class="service">ESTADO DE LA CUENTA INDIVIDUAL</th>
+            <th colspan="2" class="grand service">A) ESTADO DE LA CUENTA INDIVIDUAL</th>
           </tr>
           <tr>
             <th class="service">PERIODO DE APORTES</th>
-            <td class="total">{!! "Desde " . $afiliado->getFull_fech_ini_reco() . " Hasta " . $afiliado->getFull_fech_fin_reco() !!}</td>
+            <td class="info">{!! $calificacion->fech_ini_pcot ? "Desde " . $calificacion->getFull_fech_ini_pcot() . " - Hasta " . $calificacion->getFull_fech_fin_pcot() : '' !!}</td>
           </tr>       
           <tr>
-            <th class="service">TOTAL COTIZABLE</th>
-            <td class="total">{!! " Total " . $afiliado->getYearsAndMonths_fech_ini_reco() !!}</td>
+            <th class="service">TIEMPO COTIZABLE</th>
+            <td class="info">{!! $calificacion->fech_ini_pcot ? $calificacion->getYearsAndMonths_fech_pcot() : '' !!}</td>
           </tr>
           <tr>
             <th class="service">TOTAL DE MESES COTIZABLES</th>
-            <td class="grand total">Developing</td>
+            <td class="info">{!! $calificacion->fech_ini_pcot ? $calificacion->getMonths_fech_pcot() : '' !!}</td>
           </tr>
       </table>
 
       <table>
           <tr>
-            <th colspan="2" class="service">DATOS ECONÓMICOS DEL AFILIADO</th>
+            <th colspan="2" class="grand service">B) DATOS ECONÓMICOS DEL AFILIADO</th>
           </tr>
           <tr>
             <th class="service">TOTAL COTIZABLE</th>
-            <td class="total"></td>
+            <td class="total">{!! $cotizable !!}</td>
           </tr>
           <tr>
             <th class="service">TOTAL COTIZABLE ADICIONAL (ITEM "0")</th>
-            <td class="total"></td>
+            <td class="total">0.00</td>
           </tr>
           <tr>
             <th class="service">TOTAL GENERAL COTIZABLE</th>
-            <td class="grand total"></td>
+            <td class="grand total">{!! $cotizable !!}</td>
           </tr>
           <tr>
             <th class="service">TOTAL FONDO DE RETIRO (1,85%)</th>
-            <td class="total"></td>
+            <td class="total">{!! $fon !!}</td>
           </tr>
           <tr>
             <th class="service">RENDIMIENTO OBTENIDO</th>
-            <td class="total"></td>
+            <td class="total">0.00</td>
           </tr>
           <tr>
             <th class="service">TOTAL FONDO DE RETIRO</th>
-            <td class="grand"></td>
+            <td class="grand total">{!! $fon !!}</td>
           </tr>
-      </table> --}}
+      </table>
       {{-- <div id="notices">
         <div>NOTICE:</div>
         <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
       </div> --}}
-    </main>
+    </header>
     <footer>
-      MUTUAL DE SERVICIOS AL POLICIA "MUSERPOL"
+      MUTUAL DE SERVICIOS AL POLICIA
     </footer>
   </body>
 </html>
