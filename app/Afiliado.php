@@ -328,6 +328,24 @@ class Afiliado extends Model
         return Util::getfulldate($this->fech_baja);
     }
 
+    public function getData_fech_ini_Reco_print()
+    {   
+        if ($this->fech_ini_reco) {
+            return $this->fech_ini_reco;
+        }else{
+            return $this->fech_ing;
+        }
+    }
+    public function getData_fech_fin_Reco_print()
+    {   
+        if ($this->fech_fin_reco) {
+            return $this->fech_fin_reco;
+        }else{
+            $lastAporte = Aporte::afiliadoId($this->id)->orderBy('gest', 'desc')->first();
+            return $lastAporte->gest;
+        }
+    }
+
 }
 
 Afiliado::updating(function($afiliado)

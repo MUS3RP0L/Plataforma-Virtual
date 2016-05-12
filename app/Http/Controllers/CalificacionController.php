@@ -47,7 +47,16 @@ class CalificacionController extends Controller
         $calificacion = Calificacion::where('afiliado_id', '=', $afid)->first();
         if (!$calificacion) {
             $calificacion = new Calificacion;
+            $calificacion->type = "fr";
         }
+        $calificacion->user_id = Auth::user()->id;
+        $calificacion->afiliado_id = $afiliado->id;
+        $calificacion->fech_emi = Carbon::now();
+        $calificacion->fech_ini_pcot = $afiliado->getData_fech_ini_Reco_print();
+        $calificacion->fech_fin_pcot = $afiliado->getData_fech_fin_Reco_print();
+
+        $calificacion->save();
+        
 
         $conyuge = Conyuge::where('afiliado_id', '=', $afid)->first();
         if (!$conyuge) {  
@@ -71,11 +80,25 @@ class CalificacionController extends Controller
         $afiliado->fech_ini_apor = $afiliado->fech_ing;
         $afiliado->fech_fin_apor = $lastAporte->gest;
 
+        $consulta = DB::table('afiliados')
+                ->select(DB::raw('SUM(aportes.cot) as cotizable, SUM(aportes.fr) as fr'))
+                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                ->where('afiliados.id', '=', $afiliado->id)
+                ->get();
+
+        foreach ($consulta as $item) {
+            $cotizable = $item->cotizable;
+            $fon = $item->fr;
+
+        }
+
         $data = array(
             'afiliado' => $afiliado,
             'calificacion' => $calificacion,
             'conyuge' => $conyuge,
             'titular' => $titular,
+            'cotizable' => $cotizable,
+            'fon' => $fon,
             'date' => date('Y-m-d')
         );
         return $data;
@@ -88,12 +111,16 @@ class CalificacionController extends Controller
         $calificacion = $data['calificacion'];
         $conyuge = $data['conyuge'];
         $titular = $data['titular'];        
+        $cotizable = $data['cotizable'];        
+        $fon = $data['fon'];        
 
         $data = array(
             'afiliado' => $afiliado,
             'calificacion' => $calificacion,
             'conyuge' => $conyuge,
             'titular' => $titular,
+            'cotizable' => $cotizable,
+            'fon' => $fon,
             'date' => date('Y-m-d')
         );
 
