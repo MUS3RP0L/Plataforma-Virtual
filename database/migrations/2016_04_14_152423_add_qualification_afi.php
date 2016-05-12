@@ -46,7 +46,7 @@ class AddQualificationAfi extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('afiliado_id');
 
-            $table->string('ci')->unique()->required();
+            $table->string('ci')->required();
 
             $table->string('pat')->nullable();
             $table->string('mat')->nullable();
@@ -124,7 +124,7 @@ class AddQualificationAfi extends Migration
             $table->UnsignedBigInteger('departamento_id');
             $table->UnsignedBigInteger('fr_calificacion_id');
 
-            $table->string('ci')->unique()->required();
+            $table->string('ci')->required();
 
             $table->string('pat')->nullable();
             $table->string('mat')->nullable();
@@ -193,7 +193,7 @@ class AddQualificationAfi extends Migration
             $table->UnsignedBigInteger('departamento_id');
             $table->UnsignedBigInteger('sv_calificacion_id');
 
-            $table->string('ci')->unique()->required();
+            $table->string('ci')->required();
 
             $table->string('pat')->nullable();
             $table->string('mat')->nullable();
