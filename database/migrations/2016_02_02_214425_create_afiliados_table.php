@@ -57,9 +57,9 @@ class CreateAfiliadosTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('afi_state_id')->nullable();
 
-            $table->UnsignedBigInteger('depa_exp_id')->nullable();
-            $table->UnsignedBigInteger('depa_nat_id')->nullable();
-            $table->UnsignedBigInteger('depa_dir_id')->nullable();
+            $table->UnsignedBigInteger('departamento_exp_id')->nullable();
+            $table->UnsignedBigInteger('departamento_nat_id')->nullable();
+            $table->UnsignedBigInteger('departamento_dir_id')->nullable();
 
             $table->string('ci')->unique()->required();
             $table->string('matri')->required();
@@ -113,9 +113,9 @@ class CreateAfiliadosTable extends Migration
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afi_state_id')->references('id')->on('afi_states');
 
-            $table->foreign('depa_exp_id')->references('id')->on('departamentos');
-            $table->foreign('depa_nat_id')->references('id')->on('departamentos');
-            $table->foreign('depa_dir_id')->references('id')->on('departamentos');
+            $table->foreign('departamento_exp_id')->references('id')->on('departamentos');
+            $table->foreign('departamento_nat_id')->references('id')->on('departamentos');
+            $table->foreign('departamento_dir_id')->references('id')->on('departamentos');
         });
 
         Schema::create('notes', function(Blueprint $table)

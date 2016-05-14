@@ -54,11 +54,6 @@ class Afiliado extends Model
         return $this->hasMany('Muserpol\Note');
     }
 
-    public function titular()
-    {
-        return $this->hasOne('Muserpol\Titular');
-    }
-
     public function conyuge()
     {
         return $this->hasOne('Muserpol\Conyuge');
