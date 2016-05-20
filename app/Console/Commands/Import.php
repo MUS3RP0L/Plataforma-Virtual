@@ -183,7 +183,6 @@ class Import extends Command
                         }                                                      
                         
                         $afiliado->user_id = 1;
-                        $afiliado->fech_lastg = $gest;
                         $afiliado->pat = $result->pat;
                         $afiliado->mat = $result->mat;
                         $afiliado->nom = $nom;

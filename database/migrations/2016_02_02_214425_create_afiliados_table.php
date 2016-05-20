@@ -63,9 +63,7 @@ class CreateAfiliadosTable extends Migration
 
             $table->string('ci')->unique()->required();
             $table->string('matri')->required();
-
-            $table->date('fech_lastg')->nullable();
-
+            
             $table->string('pat')->nullable();
             $table->string('mat')->nullable();
             $table->string('nom')->nullable();
