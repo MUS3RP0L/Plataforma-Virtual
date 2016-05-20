@@ -7,3 +7,10 @@ Homestead.yaml
 Homestead.json
 .env
 .DS_Store
+.idea/blade.xml
+.idea/copyright/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/muserpol.iml
+.idea/vcs.xml
+.idea/workspace.xml
