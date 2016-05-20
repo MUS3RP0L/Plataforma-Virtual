@@ -60,7 +60,7 @@ class CreateAportesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('pago_type_id')->references('id')->on('pagos'); 
+            $table->foreign('pago_type_id')->references('id')->on('pago_types'); 
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('depa_id')->references('id')->on('departamentos');
 
