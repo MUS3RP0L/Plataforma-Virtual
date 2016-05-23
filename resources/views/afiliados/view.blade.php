@@ -539,7 +539,7 @@
                                                             Carnet Identidad
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->ci !!}
+                                                            {!! $solicitante->ci !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -551,7 +551,7 @@
                                                             Apellido Paterno
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->pat !!}
+                                                            {!! $solicitante->pat !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -563,7 +563,7 @@
                                                             Zona Domicilio
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->zona_domi !!}
+                                                            {!! $solicitante->zona_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -575,7 +575,7 @@
                                                             Calle Domicilio
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->calle_domi !!}
+                                                            {!! $solicitante->calle_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -587,7 +587,7 @@
                                                             Zona Trabajo
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->zona_trab !!}
+                                                            {!! $solicitante->zona_trab !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -599,7 +599,7 @@
                                                             Calle Trabajo
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->calle_trab !!}
+                                                            {!! $solicitante->calle_trab !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -620,7 +620,7 @@
                                                             Apellido Materno
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->mat !!}
+                                                            {!! $solicitante->mat !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -632,7 +632,7 @@
                                                             Nombre(s)
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->nom !!}
+                                                            {!! $solicitante->nom !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -646,7 +646,7 @@
                                                             Núm Domicilio
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->num_domi !!}
+                                                            {!! $solicitante->num_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -658,7 +658,7 @@
                                                             Teléfono Domicilio
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->tele_domi !!}
+                                                            {!! $solicitante->tele_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -670,7 +670,7 @@
                                                             Núm Trabajo
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->num_trab !!}
+                                                            {!! $solicitante->num_trab !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -682,7 +682,7 @@
                                                             Celular
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $titular->celu_domi !!}
+                                                            {!! $solicitante->celu_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -1468,7 +1468,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($titular, ['method' => 'PATCH', 'route' => ['titular.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($solicitante, ['method' => 'PATCH', 'route' => ['titular.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <input type="hidden" name="type" value="titu"/>
                 <div class="row">
@@ -1500,7 +1500,7 @@
                             <div class="form-group" data-bind='fadeVisible: parenShow'>
                                     {!! Form::label('paren', 'PARENTESCO', ['class' => 'col-md-4 control-label']) !!}
                                 <div class="col-md-8">
-                                    {!! Form::text('paren', $titular->paren, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    {!! Form::text('paren', $solicitante->paren, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                     <span class="help-block">Parentesco</span>
                                 </div>
                             </div> 
@@ -1518,35 +1518,35 @@
                         <div class="form-group">
                                 {!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('pat', $titular->pat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
+                                {!! Form::text('pat', $solicitante->pat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
                                 <span class="help-block">Apellido Paterno</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('zona_domi', 'ZONA DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('zona_domi', $titular->zona_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_zona_domi']) !!}
+                                {!! Form::text('zona_domi', $solicitante->zona_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_zona_domi']) !!}
                                 <span class="help-block">Zona</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('calle_domi', 'CALLE DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('calle_domi', $titular->calle_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_calle_domi']) !!}
+                                {!! Form::text('calle_domi', $solicitante->calle_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_calle_domi']) !!}
                                 <span class="help-block">Calle</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('zona_trab', 'ZONA TRABAJO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('zona_trab', $titular->zona_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('zona_trab', $solicitante->zona_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Zona</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('calle_trab', 'CALLE TRABAJO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('calle_trab', $titular->calle_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('calle_trab', $solicitante->calle_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Calle</span>
                             </div>
                         </div> 
@@ -1558,42 +1558,42 @@
                         <div class="form-group">
                                 {!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('mat', $titular->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mat']) !!}
+                                {!! Form::text('mat', $solicitante->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mat']) !!}
                                 <span class="help-block">Apellido Materno</span>
                             </div>
                         </div>  
                         <div class="form-group">
                                 {!! Form::label('nom', 'NOMBRE(S)', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('nom', $titular->nom, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
+                                {!! Form::text('nom', $solicitante->nom, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
                                 <span class="help-block">Nombre(s)</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('num_domi', 'NÚMERO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('num_domi', $titular->num_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_num_domi']) !!}
+                                {!! Form::text('num_domi', $solicitante->num_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_num_domi']) !!}
                                 <span class="help-block">Número de Domicilio</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('tele_domi', 'TELÉFONO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('tele_domi', $titular->tele_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_tele_domi']) !!}
+                                {!! Form::text('tele_domi', $solicitante->tele_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_tele_domi']) !!}
                                 <span class="help-block">Teléfono fijo</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('num_trab', 'NÚMERO TRABAJO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('num_trab', $titular->num_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('num_trab', $solicitante->num_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Número de Domicilio</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('celu_domi', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('celu_domi', $titular->celu_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('celu_domi', $solicitante->celu_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Teléfono Celular</span>
                             </div>
                         </div>
@@ -2014,7 +2014,7 @@
 
     var titular = {!! $afiliado !!};
     var conyuge = {!! $conyuge !!};
-    var solicitante = {!! $titular !!};
+    var solicitante = {!! $solicitante !!};
 
     var Model = function() {
 

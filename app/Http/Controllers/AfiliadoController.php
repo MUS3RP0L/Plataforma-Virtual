@@ -21,7 +21,7 @@ use Muserpol\Grado;
 use Muserpol\Unidad;
 use Muserpol\AfiState;
 use Muserpol\Departamento;
-use Muserpol\Titular;
+use Muserpol\Solicitante;
 use Muserpol\Conyuge;
 
 
@@ -140,9 +140,9 @@ class AfiliadoController extends Controller
             $conyuge = new Conyuge;
         }
 
-        $titular = Titular::where('afiliado_id', '=', $id)->first();
-        if (!$titular) {
-                $titular = new Titular;
+        $solicitante = Solicitante::where('afiliado_id', '=', $id)->first();
+        if (!$solicitante) {
+                $solicitante = new Solicitante;
         }
 
         if ($afiliado->sex == 'M') {
@@ -175,7 +175,7 @@ class AfiliadoController extends Controller
             $info_cony = 0;
         }
 
-        if ($titular->ci || $titular->pat || $titular->mat || $titular->nom || $titular->nom2) {
+        if ($solicitante->ci || $solicitante->pat || $solicitante->mat || $solicitante->nom || $solicitante->nom2) {
             $info_titu = 1;
         }else{
             $info_titu = 0;
@@ -206,7 +206,7 @@ class AfiliadoController extends Controller
         $data = array(
             'afiliado' => $afiliado,
             'conyuge' => $conyuge,
-            'titular' => $titular,
+            'solicitante' => $solicitante,
             'info_dom' => $info_dom,
             'info_cony' => $info_cony,
             'info_titu' => $info_titu,
