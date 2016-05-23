@@ -517,7 +517,7 @@
                                 </div>
                                 @if($info_titu == 1)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                        <div data-toggle="modal" data-target="#myModal-titular"> 
+                                        <div data-toggle="modal" data-target="#myModal-solicitante"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
                                         </div>
                                     </div>
@@ -694,8 +694,8 @@
                                     
                                 @else
                                     <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-titular"> 
-                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Titular">
+                                        <div data-toggle="modal" data-target="#myModal-solicitante"> 
+                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante">
                                                 <img class="circle" src="{!! asset('assets/images/person.png') !!}" width="45px" alt="icon">                                                                          
                                             </button>
                                         </div>
@@ -1459,7 +1459,7 @@
     </div>
 </div>
 
-<div id="myModal-titular" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="myModal-solicitante" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -1468,7 +1468,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($solicitante, ['method' => 'PATCH', 'route' => ['titular.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($solicitante, ['method' => 'PATCH', 'route' => ['solicitante.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <input type="hidden" name="type" value="titu"/>
                 <div class="row">
@@ -2021,16 +2021,13 @@
         this.typeToShow = ko.observable('' + solicitante.soli_type);
         this.parenShow = ko.observable(false);
         this.parenShow = ko.pureComputed(function() {
-
             var desiredType = this.typeToShow();
             if (desiredType == '3') return true;
 
         }, this);
 
         this.soli_ci = ko.computed(function() {
-
             var desiredType = this.typeToShow();
-            var titutal = this.titutal;
             if (desiredType == '1'){
                 return titular.ci;
             } 
@@ -2040,13 +2037,10 @@
             if (desiredType == '3'){
                 return solicitante.ci;
             }
-
         }, this);
 
         this.soli_pat = ko.computed(function() {
-
             var desiredType = this.typeToShow();
-            var titutal = this.titutal;
             if (desiredType == '1'){
                 return titular.pat;
             } 
@@ -2056,13 +2050,10 @@
             if (desiredType == '3'){
                 return solicitante.pat;
             }
-
         }, this);
 
         this.soli_mat = ko.computed(function() {
-
             var desiredType = this.typeToShow();
-            var titutal = this.titutal;
             if (desiredType == '1'){
                 return titular.mat;
             } 
@@ -2072,13 +2063,10 @@
             if (desiredType == '3'){
                 return solicitante.mat;
             }
-
         }, this);
 
         this.soli_nom = ko.computed(function() {
-
             var desiredType = this.typeToShow();
-            var titutal = this.titutal;
             if (desiredType == '1'){
                 var nom2 = titular.nom2 ? titular.nom2 : '';
                 return titular.nom +" "+ nom2;
@@ -2089,13 +2077,10 @@
             if (desiredType == '3'){
                 return solicitante.nom;
             }
-
         }, this);
 
         this.soli_zona_domi = ko.computed(function() {
-
             var desiredType = this.typeToShow();
-            var titutal = this.titutal;
             if (desiredType == '1'){
                 return titular.zona;
             } 
@@ -2109,9 +2094,7 @@
         }, this);
 
         this.soli_calle_domi = ko.computed(function() {
-
             var desiredType = this.typeToShow();
-            var titutal = this.titutal;
             if (desiredType == '1'){
                 return titular.calle;
             } 
@@ -2121,13 +2104,10 @@
             if (desiredType == '3'){
                 return solicitante.calle_domi;
             }
-
         }, this);
 
         this.soli_num_domi = ko.computed(function() {
-
             var desiredType = this.typeToShow();
-            var titutal = this.titutal;
             if (desiredType == '1'){
                 return titular.num_domi;
             } 
@@ -2137,13 +2117,10 @@
             if (desiredType == '3'){
                 return solicitante.num_domi;
             }
-
         }, this);
 
         this.soli_tele_domi = ko.computed(function() {
-
             var desiredType = this.typeToShow();
-            var titutal = this.titutal;
             if (desiredType == '1'){
                 return titular.tele;
             } 
@@ -2153,7 +2130,6 @@
             if (desiredType == '3'){
                 return solicitante.tele_domi;
             }
-
         }, this);
 
         this.selectedOptionValueEst = ko.observable();
