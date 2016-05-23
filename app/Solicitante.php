@@ -24,7 +24,7 @@ class Solicitante extends Model
 
 	public function afiliado()
     {
-        return $this->belongsTo('Muserpol\FrCalificacion');
+        return $this->belongsTo('Muserpol\Afiliado');
     }
 
     public function getFullNametoPrint()

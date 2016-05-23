@@ -16,10 +16,10 @@ use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
 use Muserpol\Afiliado;
-use Muserpol\Titular;
+use Muserpol\Solicitante;
 use Muserpol\SoliType;
 
-class TitularController extends Controller
+class SolicitanteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -110,43 +110,43 @@ class TitularController extends Controller
         }
         else{
 
-            $titular = Titular::where('afiliado_id', '=', $id)->first();
+            $solicitante = Solicitante::where('afiliado_id', '=', $id)->first();
 
-            if (!$titular) {
+            if (!$solicitante) {
                 
-                $titular = new Titular;
+                $solicitante = new Solicitante;
             }
 
-            $titular->user_id = Auth::user()->id;
+            $solicitante->user_id = Auth::user()->id;
 
             switch ($request->type) {
                 case 'titu':
 
                     
                     $soliType = SoliType::where('id', '=', $request->type_soli)->first();
-                    $titular->soli_type = $soliType->id;
+                    $solicitante->soli_type = $soliType->id;
 
-                    $titular->afiliado_id = $id;
+                    $solicitante->afiliado_id = $id;
 
-                    $titular->ci = trim($request->ci);
-                    $titular->pat = trim($request->pat);
-                    $titular->mat = trim($request->mat);
-                    $titular->nom = trim($request->nom);
+                    $solicitante->ci = trim($request->ci);
+                    $solicitante->pat = trim($request->pat);
+                    $solicitante->mat = trim($request->mat);
+                    $solicitante->nom = trim($request->nom);
 
-                    $titular->paren = trim($request->paren);
+                    $solicitante->paren = trim($request->paren);
 
-                    $titular->zona_domi = trim($request->zona_domi);
-                    $titular->calle_domi = trim($request->calle_domi);
-                    $titular->num_domi = trim($request->num_domi);
+                    $solicitante->zona_domi = trim($request->zona_domi);
+                    $solicitante->calle_domi = trim($request->calle_domi);
+                    $solicitante->num_domi = trim($request->num_domi);
                     
-                    $titular->tele_domi = trim($request->tele_domi);
-                    $titular->celu_domi = trim($request->celu_domi);
+                    $solicitante->tele_domi = trim($request->tele_domi);
+                    $solicitante->celu_domi = trim($request->celu_domi);
                     
-                    $titular->zona_trab = trim($request->zona_trab);
-                    $titular->calle_trab = trim($request->calle_trab);
-                    $titular->num_trab = trim($request->num_trab);
+                    $solicitante->zona_trab = trim($request->zona_trab);
+                    $solicitante->calle_trab = trim($request->calle_trab);
+                    $solicitante->num_trab = trim($request->num_trab);
 
-                    $titular->save();
+                    $solicitante->save();
                     
                     $message = "Información personal de Titular actualizado con éxito";
                     break;

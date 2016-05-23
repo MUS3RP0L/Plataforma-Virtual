@@ -24,7 +24,6 @@ class CreateActivitiesTable extends Migration
             $table->UnsignedBigInteger('aporte_id');
             $table->UnsignedBigInteger('pago_id');
             $table->UnsignedBigInteger('note_id');
-            $table->UnsignedBigInteger('titular_id');
             $table->UnsignedBigInteger('ipc_tasa_id');
             $table->UnsignedBigInteger('apor_tasa_id');
             $table->UnsignedBigInteger('sueldo_id');

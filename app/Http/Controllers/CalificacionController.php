@@ -19,7 +19,7 @@ use Muserpol\Calificacion;
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
 use Muserpol\Departamento;
-use Muserpol\Titular;
+use Muserpol\Solicitante;
 use Muserpol\Conyuge;
 
 class CalificacionController extends Controller
