@@ -16,4 +16,9 @@ class Departamento extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function scopeIdIs($query, $id)
+    {
+        return $query->where('id', $id);
+    }
 }

@@ -151,14 +151,14 @@ class AfiliadoController extends Controller
             $list_est_civ = array('' => '','C' => 'CASADA','S' => 'SOLTERA','V' => 'VIUDA','D' => 'DIVORCIADA');
         }
 
-        if ($afiliado->depa_nat_id) {
-            $afiliado->depa_nat = Departamento::select('name')->where('id', '=', $afiliado->depa_nat_id)->first()->name;
+        if ($afiliado->departamento_nat_id) {
+            $afiliado->depa_nat = Departamento::idIs($afiliado->departamento_nat_id)->first()->name;
         }else{
             $afiliado->depa_nat = ""; 
         }
         
-        if ($afiliado->depa_dir_id) {
-            $afiliado->depa_dir = Departamento::select('name')->where('id', '=', $afiliado->depa_dir_id)->first()->name;
+        if ($afiliado->departamento_dir_id) {
+            $afiliado->depa_dir = Departamento::idIs($afiliado->departamento_dir_id)->first()->name;
         }else{
             $afiliado->depa_dir = ""; 
         }
@@ -311,7 +311,7 @@ class AfiliadoController extends Controller
 
                 case 'dom':
                     
-                    if ($afiliado->depa_dir_id <> trim($request->depa_dir)) {$afiliado->depa_dir_id = trim($request->depa_dir);}
+                    if ($afiliado->departamento_dir_id <> trim($request->depa_dir)) {$afiliado->departamento_dir_id = trim($request->depa_dir);}
                     $afiliado->zona = trim($request->zona);
                     $afiliado->calle = trim($request->calle);
                     $afiliado->num_domi = trim($request->num_domi);
