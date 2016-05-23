@@ -1242,7 +1242,7 @@
                         <div class="form-group">
                                     {!! Form::label('depa_nat', 'LUGAR NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::select('depa_nat', $list_depas, $afiliado->depa_nat_id, ['class' => 'combobox form-control']) !!}
+                                {!! Form::select('depa_nat', $list_depas, $afiliado->departamento_nat_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
@@ -1299,7 +1299,7 @@
                         <div class="form-group">
                                     {!! Form::label('depa_dir', 'DEPARTA MENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::select('depa_dir', $list_depas, $afiliado->depa_dir_id, ['class' => 'combobox form-control']) !!}
+                                {!! Form::select('depa_dir', $list_depas, $afiliado->departamento_dir_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
