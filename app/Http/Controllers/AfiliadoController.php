@@ -239,15 +239,21 @@ class AfiliadoController extends Controller
     public function save($request, $id = false)
     {
         $rules = [
+           
             'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'mat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom2' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'ap_esp' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+                        
+            'tele' =>'numeric',
+            'celu' =>'numeric',
+
         ];
 
         $messages = [
 
+            
             'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
             'pat.regex' => 'Sólo se aceptan letras para apellido paterno',
 
@@ -262,6 +268,12 @@ class AfiliadoController extends Controller
 
             'ap_esp.min' => 'El mínimo de caracteres permitidos para estado civil es 3',
             'ap_esp.regex' => 'Sólo se aceptan letras para estado civil',
+
+           
+            'tele.numeric' => 'Sólo se aceptan números para teléfono',
+
+            'celu.numeric' => 'Sólo se aceptan números para celular',
+
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -287,7 +299,7 @@ class AfiliadoController extends Controller
                     if ($request->ap_esp) {$afiliado->ap_esp = trim($request->ap_esp);}
                     $afiliado->fech_nac = Util::datePick($request->fech_nac); 
                     $afiliado->est_civ = trim($request->est_civ); 
-                    if ($afiliado->depa_nat_id <> trim($request->depa_nat)) {$afiliado->depa_nat_id = trim($request->depa_nat);}
+                    if ($afiliado->departamento_nat_id <> trim($request->depa_nat)) {$afiliado->departamento_nat_id = trim($request->depa_nat);}
                     
                     $afiliado->fech_dece = Util::datePick($request->fech_dece); 
                     $afiliado->motivo_dece = trim($request->motivo_dece);
