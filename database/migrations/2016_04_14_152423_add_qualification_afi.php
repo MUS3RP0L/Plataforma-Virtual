@@ -152,74 +152,74 @@ class AddQualificationAfi extends Migration
             $table->foreign('fr_calificacion_id')->references('id')->on('fr_calificaciones');
         });
 
-        Schema::create('sv_calificaciones', function(Blueprint $table){
+        // Schema::create('sv_calificaciones', function(Blueprint $table){
             
-            $table->engine = 'InnoDB';
+        //     $table->engine = 'InnoDB';
 
-            $table->bigIncrements('id');
-            $table->UnsignedBigInteger('user_id');
+        //     $table->bigIncrements('id');
+        //     $table->UnsignedBigInteger('user_id');
 
-            $table->UnsignedBigInteger('afiliado_id');
-            $table->UnsignedBigInteger('departamento_id')->nullable();
+        //     $table->UnsignedBigInteger('afiliado_id');
+        //     $table->UnsignedBigInteger('departamento_id')->nullable();
 
-            $table->date('fech_emi');
+        //     $table->date('fech_emi');
 
-            $table->string('documento');
+        //     $table->string('documento');
 
-            $table->date('fech_ini_pcot')->nullable();
-            $table->date('fech_fin_pcot')->nullable();
+        //     $table->date('fech_ini_pcot')->nullable();
+        //     $table->date('fech_fin_pcot')->nullable();
 
-            $table->double('total_cot');
-            $table->double('total_cot_adi');
-            $table->double('subtotal_sv');
+        //     $table->double('total_cot');
+        //     $table->double('total_cot_adi');
+        //     $table->double('subtotal_sv');
 
-            $table->timestamps();
-            $table->softDeletes();
+        //     $table->timestamps();
+        //     $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users'); 
+        //     $table->foreign('user_id')->references('id')->on('users'); 
 
-            $table->foreign('afiliado_id')->references('id')->on('afiliados');
-            $table->foreign('departamento_id')->references('id')->on('departamentos');
-        });
+        //     $table->foreign('afiliado_id')->references('id')->on('afiliados');
+        //     $table->foreign('departamento_id')->references('id')->on('departamentos');
+        // });
 
-        Schema::create('beneficiarios', function (Blueprint $table)
-        {
-            $table->engine = 'InnoDB';
+        // Schema::create('beneficiarios', function (Blueprint $table)
+        // {
+        //     $table->engine = 'InnoDB';
             
-            $table->bigIncrements('id');
-            $table->UnsignedBigInteger('user_id');
-            $table->UnsignedBigInteger('afiliado_id');
-            $table->UnsignedBigInteger('soli_type');
-            $table->UnsignedBigInteger('departamento_id');
-            $table->UnsignedBigInteger('sv_calificacion_id');
+        //     $table->bigIncrements('id');
+        //     $table->UnsignedBigInteger('user_id');
+        //     $table->UnsignedBigInteger('afiliado_id');
+        //     $table->UnsignedBigInteger('soli_type');
+        //     $table->UnsignedBigInteger('departamento_id');
+        //     $table->UnsignedBigInteger('sv_calificacion_id');
 
-            $table->string('ci')->required();
+        //     $table->string('ci')->required();
 
-            $table->string('pat')->nullable();
-            $table->string('mat')->nullable();
-            $table->string('nom')->nullable();
+        //     $table->string('pat')->nullable();
+        //     $table->string('mat')->nullable();
+        //     $table->string('nom')->nullable();
 
-            $table->string('paren')->nullable();
+        //     $table->string('paren')->nullable();
 
-            $table->string('zona_domi')->nullable();
-            $table->string('calle_domi')->nullable();
-            $table->string('num_domi')->nullable();
-            $table->string('tele_domi')->nullable();
-            $table->string('celu_domi')->nullable();
+        //     $table->string('zona_domi')->nullable();
+        //     $table->string('calle_domi')->nullable();
+        //     $table->string('num_domi')->nullable();
+        //     $table->string('tele_domi')->nullable();
+        //     $table->string('celu_domi')->nullable();
 
-            $table->string('zona_trab')->nullable();
-            $table->string('calle_trab')->nullable();
-            $table->string('num_trab')->nullable();
+        //     $table->string('zona_trab')->nullable();
+        //     $table->string('calle_trab')->nullable();
+        //     $table->string('num_trab')->nullable();
 
-            $table->timestamps();
-            $table->softDeletes();
+        //     $table->timestamps();
+        //     $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users'); 
-            $table->foreign('afiliado_id')->references('id')->on('afiliados');
-            $table->foreign('soli_type')->references('id')->on('soli_types');
-            $table->foreign('departamento_id')->references('id')->on('departamentos');
-            $table->foreign('sv_calificacion_id')->references('id')->on('sv_calificaciones');
-        });
+        //     $table->foreign('user_id')->references('id')->on('users'); 
+        //     $table->foreign('afiliado_id')->references('id')->on('afiliados');
+        //     $table->foreign('soli_type')->references('id')->on('soli_types');
+        //     $table->foreign('departamento_id')->references('id')->on('departamentos');
+        //     $table->foreign('sv_calificacion_id')->references('id')->on('sv_calificaciones');
+        // });
     }
 
     /**
