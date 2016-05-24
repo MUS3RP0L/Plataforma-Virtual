@@ -148,7 +148,7 @@ class SolicitanteController extends Controller
 
                     $solicitante->save();
                     
-                    $message = "Información personal de Titular actualizado con éxito";
+                    $message = "Información de Solicitante actualizada con éxito";
                     break;
             }
             Session::flash('message', $message);
