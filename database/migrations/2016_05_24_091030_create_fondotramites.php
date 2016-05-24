@@ -57,7 +57,8 @@ class CreateFondotramites extends Migration
             
             $table->bigIncrements('id'); 
             $table->UnsignedBigInteger('requisito_id');
-            
+            $table->UnsignedBigInteger('fondo_tramite_id');
+
             $table->date('fech_pres');
             $table->enum('est_civ', ['P', 'O', 'R']);
             $table->string('obs')->nullable();
@@ -65,6 +66,7 @@ class CreateFondotramites extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
             $table->foreign('requisito_id')->references('id')->on('requisitos');        
 
         });
@@ -85,6 +87,37 @@ class CreateFondotramites extends Migration
 
             $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
 
+        });
+
+        Schema::create('solicitantes', function (Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
+            
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('fondo_tramite_id');
+
+            $table->string('ci')->required();
+
+            $table->string('pat')->nullable();
+            $table->string('mat')->nullable();
+            $table->string('nom')->nullable();
+
+            $table->string('paren')->nullable();
+
+            $table->string('zona_domi')->nullable();
+            $table->string('calle_domi')->nullable();
+            $table->string('num_domi')->nullable();
+            $table->string('tele_domi')->nullable();
+            $table->string('celu_domi')->nullable();
+
+            $table->string('zona_trab')->nullable();
+            $table->string('calle_trab')->nullable();
+            $table->string('num_trab')->nullable();
+
+            $table->timestamps();
+            $table->softDeletes(); 
+
+            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
         });
 
     }
