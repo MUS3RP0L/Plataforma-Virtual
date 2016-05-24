@@ -22,6 +22,20 @@ Breadcrumbs::register('aportes_afiliado', function($breadcrumbs, $afiliado) {
     $breadcrumbs->push('Aportes');
 });
 
+// Show Fondo de Retiro
+Breadcrumbs::register('fondo_tramite', function($breadcrumbs, $afiliado) {
+    $breadcrumbs->parent('show_afiliado', $afiliado);
+    $breadcrumbs->push('Trámite de Fondo de Retiro');
+});
+
+
+// Show ventanilla
+Breadcrumbs::register('ventanilla_fondo_tramite', function($breadcrumbs, $afiliado) {
+    $breadcrumbs->parent('fondo_tramite', $afiliado);
+    $breadcrumbs->push('Ventanilla');
+});
+
+
 // Show calificacion Fondo de retiro Afiliado
 Breadcrumbs::register('calif_fr_afiliado', function($breadcrumbs, $afiliado) {
     $breadcrumbs->parent('show_afiliado', $afiliado);
