@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DesgloseTableSeeder::class);
         $this->call(UnidadTableSeeder::class);
         $this->call(SoliTypeSeeder::class);
+        $this->call(ModalidadesSeeder::class);
+        $this->call(RequisitosSeeder::class);
 
         Model::reguard();
     }
