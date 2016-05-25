@@ -64,16 +64,24 @@ class FondoTramiteController extends Controller
         if (!$solicitante) {$solicitante = new Solicitante;}
 
         if ($solicitante->ci || $solicitante->pat || $solicitante->mat || $solicitante->nom || $solicitante->nom2) {
-            $info_titu = 1;
+            $info_soli = 1;
         }else{
-            $info_titu = 0;
+            $info_soli = 0;
+        }
+
+        if ($fondoTramite->modalidad_id) {
+            $info_moda = 1;
+        }else{
+            $info_moda = 0;
         }
 
         $data = array(
             'afiliado' => $afiliado,
             'conyuge' => $conyuge,
+            'fondoTramite' => $fondoTramite,
             'solicitante' => $solicitante,
-            'info_titu' => $info_titu,
+            'info_soli' => $info_soli,
+            'info_moda' => $info_moda,
 
         );
 

@@ -45,9 +45,62 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
+                                    <h3 class="panel-title">Modalidad de Retiro</h3>
+                                </div>
+                                @if($info_moda == 1)
+                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                                        <div data-toggle="modal" data-target="#myModal-modalidad"> 
+                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: 14px">
+                            <div class="row" style="margin-bottom:0px;">
+
+                                @if($info_moda == 1)
+
+                                    <div class="col-md-6">
+
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Carnet Identidad
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $solicitante->ci !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+
+                                    </div>
+
+                                @else
+                                    <div class="row text-center">
+                                        <div data-toggle="modal" data-target="#myModal-modalidad"> 
+                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Seleccionar Modalidad">
+                                                <img class="circle" src="{!! asset('assets/images/modalidad.png') !!}" width="45px" alt="icon">                                                                          
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">  
+                                <div class="col-md-11">
                                     <h3 class="panel-title">Información de Solicitante</h3>
                                 </div>
-                                @if($info_titu == 1)
+                                @if($info_soli == 1)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-solicitante"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
@@ -59,7 +112,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_titu == 1)
+                                @if($info_soli == 1)
 
                                     <div class="col-md-6">
 
@@ -236,11 +289,10 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="col-md-6">
-
-
 
                 </div>
             </div>
@@ -249,6 +301,47 @@
     </div>
 </div>
 
+<div id="myModal-modalidad" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Modalidad de Retiro</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::model($fondoTramite, ['method' => 'PATCH', 'route' => ['fondoTramite.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <input type="hidden" name="type" value="moda"/>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="form-group">
+                                    {!! Form::label('modalidad', 'MODALIDAD', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::select('modalidad', $list_modalidades, $fondoTramite->modalidad_id, ['class' => 'combobox form-control']) !!}
+                                <span class="help-block">Seleccione la Modalidad</span>
+                            </div>
+                        </div>
+                   
+                    </div>
+
+                </div>
+
+                <div class="row text-center">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                </div>
+            {!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="myModal-solicitante" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
@@ -406,7 +499,7 @@
     </div>
 </div>
 
-<div id="myModal-periodo-aportes" class="modal fade" role="dialog">
+<!-- <div id="myModal-periodo-aportes" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -559,7 +652,8 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
 @endsection
 
 @push('scripts')
