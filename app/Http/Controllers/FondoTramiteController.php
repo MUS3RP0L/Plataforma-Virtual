@@ -30,7 +30,7 @@ class FondoTramiteController extends Controller
     {
         $modalidades = Modalidad::all();
         $list_modalidades = array('' => '');
-        
+
         foreach ($modalidades as $item) {
              $list_modalidades[$item->id]=$item->name;
         }
@@ -51,11 +51,29 @@ class FondoTramiteController extends Controller
 
         $afiliado = Afiliado::idIs($afid)->first();
 
+        $conyuge = Conyuge::where('afiliado_id', '=', $afid)->first();
+        if (!$conyuge) {
+            $conyuge = new Conyuge;
+        }
+
         $solicitante = Solicitante::where('afiliado_id', '=', $afid)->first();
+
+        if (!$solicitante) {
+                $solicitante = new Solicitante;
+        }
+
+        if ($solicitante->ci || $solicitante->pat || $solicitante->mat || $solicitante->nom || $solicitante->nom2) {
+            $info_titu = 1;
+        }else{
+            $info_titu = 0;
+        }
 
         $data = array(
             'afiliado' => $afiliado,
-            'solicitante' => $solicitante
+            'conyuge' => $conyuge,
+            'solicitante' => $solicitante,
+            'info_titu' => $info_titu,
+
         );
 
         $data = array_merge($data, self::getViewModel());
@@ -64,7 +82,7 @@ class FondoTramiteController extends Controller
 
     }
 
-    public function create($afid)
+    public function show($afid)
     {
         return view('fondotramite.create', self::getData($afid));
     }

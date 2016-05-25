@@ -120,20 +120,6 @@ class CreateFondotramites extends Migration
             $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
         });
 
-        Schema::create('certificaciones', function (Blueprint $table)
-        {
-            $table->engine = 'InnoDB';
-
-            $table->bigIncrements('id');
-            $table->UnsignedBigInteger('fondo_tramite_id');
-
-            $table->date('fecha')->nullable();
-            $table->timestamps();
-            $table->softDeletes(); 
-
-            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
-        });
-
         Schema::create('prest_types', function (Blueprint $table)
         {
             $table->engine = 'InnoDB';
@@ -164,9 +150,19 @@ class CreateFondotramites extends Migration
             $table->foreign('prest_type_id')->references('id')->on('prest_types');               
          });
 
+        Schema::create('certificaciones', function (Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
 
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('fondo_tramite_id');
 
+            $table->date('fecha')->nullable();
+            $table->timestamps();
+            $table->softDeletes(); 
 
+            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
+        });
 
     }
 
