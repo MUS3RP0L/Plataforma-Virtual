@@ -44,17 +44,6 @@ class FondoTramiteController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     public static function getViewModel()
     {
         $modalidades = Modalidad::all();
@@ -135,17 +124,6 @@ class FondoTramiteController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -154,17 +132,50 @@ class FondoTramiteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->save($request, $id);
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function save($request, $id = false)
+    {       
+        $rules = [
+            
+            'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            
+        ];
+
+        $messages = [
+            
+            'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
+
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()){
+            return redirect('tramite_fondo_retiro/'.$id)
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
+
+            $afiliado = Afiliado::where('id', '=', $id)->first();
+            $fondoTramite = FondoTramite::where('afiliado_id', '=', $afiliado->id)->first();
+
+            switch ($request->type) {
+                case 'moda':
+
+                    $fondoTramite->modalidad_id = trim($request->modalidad);
+
+                    $fondoTramite->save();
+                    
+                    $message = "Información de modalidad de Fondo de Retiro actualizado con éxito";
+                    break;
+
+            }
+            Session::flash('message', $message);
+        }
+        
+        return redirect('tramite_fondo_retiro/'.$id);
     }
 }

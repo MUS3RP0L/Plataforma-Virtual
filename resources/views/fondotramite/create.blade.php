@@ -68,10 +68,10 @@
                                                 <td style="border-top:0;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Carnet Identidad
+                                                            Modalidad
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->ci !!}
+                                                            {!! $fondoTramite->modalidad->name !!}
                                                         </div>
                                                     </div>
                                                 </td>
