@@ -593,7 +593,7 @@
 
     var Model = function() {
 
-        this.typeToShow = ko.observable('' + solicitante.soli_type);
+        this.typeToShow = ko.observable('' + solicitante.soli_type_id);
         this.parenShow = ko.observable(false);
         this.parenShow = ko.pureComputed(function() {
             var desiredType = this.typeToShow();
