@@ -14,34 +14,18 @@
 
                     <div class="col-md-6 text-right">  
 
-                        <div class="btn-group" style="margin:-6px 1px;" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
-                          <a href="" data-target="#" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown">
+                        <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
                             &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;&nbsp;
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a href="{!! url('viewaporte/' . $afiliado->id) !!}"> Mostrar Aportes</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{!! url('regaportegest/' . $afiliado->id) !!}"> Registrar Aportes</a></li>
-                          </ul>
-                        </div>
+                        </a>
 
-                        <div class="btn-group" style="margin:-6px 1px;" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
-                          <a href="" data-target="#" class="btn btn-raised btn-success dropdown-toggle" data-toggle="dropdown">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a href="{!! url('show_calif_fr/' . $afiliado->id) !!}"> Calificar FR</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{!! url('show_calif_sv/' . $afiliado->id) !!}"> Calificar SV</a></li>
-                          </ul>
-                        </div>
+                        <a href="{!! url('viewaporte/' . $afiliado->id) !!}" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
+                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;&nbsp;
+                        </a>
 
                     </div>
 
                 </div>
             
-
-
             <div class="row">
                 <div class="col-md-6">
 
@@ -226,7 +210,7 @@
                                                         <div class="col-md-6">
                                                             Motivo Deceso
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->unidad->lit !!}">
                                                             {!! $afiliado->motivo_dece !!}
                                                         </div>
                                                     </div>
@@ -509,201 +493,6 @@
                         </div>
                     </div>
 
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">  
-                                <div class="col-md-11">
-                                    <h3 class="panel-title">Información de Solicitante</h3>
-                                </div>
-                                @if($info_titu == 1)
-                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                        <div data-toggle="modal" data-target="#myModal-solicitante"> 
-                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="panel-body" style="font-size: 14px">
-                            <div class="row" style="margin-bottom:0px;">
-
-                                @if($info_titu == 1)
-
-                                    <div class="col-md-6">
-
-                                        <table class="table" style="width:100%;">
-                                            <tr>
-                                                <td style="border-top:0;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Carnet Identidad
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->ci !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Apellido Paterno
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->pat !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;"></br>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Zona Domicilio
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->zona_domi !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Calle Domicilio
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->calle_domi !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;"></br>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Zona Trabajo
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->zona_trab !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Calle Trabajo
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->calle_trab !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </table>
-
-
-                                    </div>
-
-                                    <div class="col-md-6">
-
-                                        <table class="table" style="width:100%;">
-                                            <tr>
-                                                <td style="border-top:0;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Apellido Materno
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->mat !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Nombre(s)
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->nom !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            
-                                            
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;"></br>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Núm Domicilio
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->num_domi !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Teléfono Domicilio
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->tele_domi !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;"></br>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Núm Trabajo
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->num_trab !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Celular
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->celu_domi !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </table>
-
-                                    </div>
-                                    
-                                @else
-                                    <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-solicitante"> 
-                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante">
-                                                <img class="circle" src="{!! asset('assets/images/person.png') !!}" width="45px" alt="icon">                                                                          
-                                            </button>
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="col-md-6">
@@ -1299,7 +1088,7 @@
                         <div class="form-group">
                                     {!! Form::label('depa_dir', 'DEPARTA MENTO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::select('depa_dir', $list_depas, $afiliado->departamento_dir_id, ['class' => 'combobox form-control', 'required']) !!}
+                                {!! Form::select('depa_dir', $list_depas, $afiliado->departamento_dir_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
@@ -1398,14 +1187,14 @@
                                 {!! Form::label('nom', 'PRIMER NOMBRE', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('nom', $conyuge->nom, ['class'=> 'form-control', 'required','onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Primer Nombre</span>
+                                <span class="help-block">Nombre(s)</span>
                             </div>
                         </div>  
                         <div class="form-group">
                                 {!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('nom2', $conyuge->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Segundo Nombre</span>
+                                <span class="help-block">Nombre(s)</span>
                             </div>
                         </div>                          
                     </div>
@@ -1442,163 +1231,6 @@
                         </div>
                         
                     </div>
-                </div>
-
-                <div class="row text-center">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
-                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-            {!! Form::close() !!}
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="myModal-solicitante" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content panel-warning">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Editar Información de Solicitante</h4>
-            </div>
-            <div class="modal-body">
-
-                {!! Form::model($solicitante, ['method' => 'PATCH', 'route' => ['solicitante.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
-                <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <input type="hidden" name="type" value="titu"/>
-                <div class="row">
-                    <div class="col-md-4">
-
-                        <div class="form-group">
-                          <div class="col-md-9">
-                            <div class="radio radio-primary">
-                              <label>
-                                <input type="radio" name="type_soli" value='1' data-bind='checked: typeToShow'>
-                                Titutal
-                              </label>
-                            </div>
-                            <div class="radio radio-primary">
-                              <label>
-                                <input type="radio" name="type_soli" value='2' data-bind='checked: typeToShow'>
-                                Conyuge
-                              </label>
-                            </div>
-                            <div class="radio radio-primary">
-                              <label>
-                                <input type="radio" name="type_soli" value='3' data-bind='checked: typeToShow'>
-                                Otro
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-
-                            <div class="form-group" data-bind='fadeVisible: parenShow'>
-                                    {!! Form::label('paren', 'PARENTESCO', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-8">
-                                    {!! Form::text('paren', $solicitante->paren, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                    <span class="help-block">Parentesco</span>
-                                </div>
-                            </div> 
-                       
-
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                                {!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('ci', '',['class'=> 'form-control', 'required', 'data-bind' => 'value: soli_ci']) !!}
-                                <span class="help-block">Núm. Carnet de Identidad</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('pat', $solicitante->pat, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
-                                <span class="help-block">Apellido Paterno</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('zona_domi', 'ZONA DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('zona_domi', $solicitante->zona_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_zona_domi']) !!}
-                                <span class="help-block">Zona Domicilio</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('calle_domi', 'CALLE DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('calle_domi', $solicitante->calle_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_calle_domi']) !!}
-                                <span class="help-block">Calle Domicilio</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('zona_trab', 'ZONA TRABAJO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('zona_trab', $solicitante->zona_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Zona Trabajo</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('calle_trab', 'CALLE TRABAJO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('calle_trab', $solicitante->calle_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Calle Trabajo</span>
-                            </div>
-                        </div> 
-                         
-                                                   
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                                {!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('mat', $solicitante->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mat']) !!}
-                                <span class="help-block">Apellido Materno</span>
-                            </div>
-                        </div>  
-                        <div class="form-group">
-                                {!! Form::label('nom', 'NOMBRE(S)', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('nom', $solicitante->nom, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
-                                <span class="help-block">Nombre(s)</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('num_domi', 'NÚMERO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('num_domi', $solicitante->num_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_num_domi']) !!}
-                                <span class="help-block">Número Domicilio</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('tele_domi', 'TELÉFONO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('tele_domi', $solicitante->tele_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_tele_domi']) !!}
-                                <span class="help-block">Teléfono fijo</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('num_trab', 'NÚMERO TRABAJO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('num_trab', $solicitante->num_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Número Trabajo</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('celu_domi', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('celu_domi', $solicitante->celu_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Teléfono Celular</span>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
                 <div class="row text-center">
@@ -2013,124 +1645,8 @@
     });
 
     var titular = {!! $afiliado !!};
-    var conyuge = {!! $conyuge !!};
-    var solicitante = {!! $solicitante !!};
 
     var Model = function() {
-
-        this.typeToShow = ko.observable('' + solicitante.soli_type);
-        this.parenShow = ko.observable(false);
-        this.parenShow = ko.pureComputed(function() {
-            var desiredType = this.typeToShow();
-            if (desiredType == '3') return true;
-
-        }, this);
-
-        this.soli_ci = ko.computed(function() {
-            var desiredType = this.typeToShow();
-            if (desiredType == '1'){
-                return titular.ci;
-            } 
-            if (desiredType == '2'){
-                return conyuge.ci;
-            } 
-            if (desiredType == '3'){
-                return solicitante.ci;
-            }
-        }, this);
-
-        this.soli_pat = ko.computed(function() {
-            var desiredType = this.typeToShow();
-            if (desiredType == '1'){
-                return titular.pat;
-            } 
-            if (desiredType == '2'){
-                return conyuge.pat;
-            } 
-            if (desiredType == '3'){
-                return solicitante.pat;
-            }
-        }, this);
-
-        this.soli_mat = ko.computed(function() {
-            var desiredType = this.typeToShow();
-            if (desiredType == '1'){
-                return titular.mat;
-            } 
-            if (desiredType == '2'){
-                return conyuge.mat;
-            } 
-            if (desiredType == '3'){
-                return solicitante.mat;
-            }
-        }, this);
-
-        this.soli_nom = ko.computed(function() {
-            var desiredType = this.typeToShow();
-            if (desiredType == '1'){
-                var nom2 = titular.nom2 ? titular.nom2 : '';
-                return titular.nom +" "+ nom2;
-            } 
-            if (desiredType == '2'){
-                return conyuge.nom;
-            } 
-            if (desiredType == '3'){
-                return solicitante.nom;
-            }
-        }, this);
-
-        this.soli_zona_domi = ko.computed(function() {
-            var desiredType = this.typeToShow();
-            if (desiredType == '1'){
-                return titular.zona;
-            } 
-            if (desiredType == '2'){
-                return solicitante.zona_domi;
-            } 
-            if (desiredType == '3'){
-                return solicitante.zona_domi;
-            }
-
-        }, this);
-
-        this.soli_calle_domi = ko.computed(function() {
-            var desiredType = this.typeToShow();
-            if (desiredType == '1'){
-                return titular.calle;
-            } 
-            if (desiredType == '2'){
-                return solicitante.calle_domi;
-            } 
-            if (desiredType == '3'){
-                return solicitante.calle_domi;
-            }
-        }, this);
-
-        this.soli_num_domi = ko.computed(function() {
-            var desiredType = this.typeToShow();
-            if (desiredType == '1'){
-                return titular.num_domi;
-            } 
-            if (desiredType == '2'){
-                return solicitante.num_domi;
-            } 
-            if (desiredType == '3'){
-                return solicitante.num_domi;
-            }
-        }, this);
-
-        this.soli_tele_domi = ko.computed(function() {
-            var desiredType = this.typeToShow();
-            if (desiredType == '1'){
-                return titular.tele;
-            } 
-            if (desiredType == '2'){
-                return solicitante.tele_domi;
-            } 
-            if (desiredType == '3'){
-                return solicitante.tele_domi;
-            }
-        }, this);
 
         this.selectedOptionValueEst = ko.observable();
         this.selectedOptionValueGra = ko.observable();

@@ -140,11 +140,6 @@ class AfiliadoController extends Controller
             $conyuge = new Conyuge;
         }
 
-        $solicitante = Solicitante::where('afiliado_id', '=', $id)->first();
-        if (!$solicitante) {
-                $solicitante = new Solicitante;
-        }
-
         if ($afiliado->sex == 'M') {
             $list_est_civ = array('' => '','C' => 'CASADO','S' => 'SOLTERO','V' => 'VIUDO','D' => 'DIVORCIADO');
         }elseif ($afiliado->sex == 'F') {
@@ -175,12 +170,6 @@ class AfiliadoController extends Controller
             $info_cony = 0;
         }
 
-        if ($solicitante->ci || $solicitante->pat || $solicitante->mat || $solicitante->nom || $solicitante->nom2) {
-            $info_titu = 1;
-        }else{
-            $info_titu = 0;
-        }
-
         $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
         
         $afiliado->fech_ini_apor = $afiliado->fech_ing;
@@ -206,10 +195,8 @@ class AfiliadoController extends Controller
         $data = array(
             'afiliado' => $afiliado,
             'conyuge' => $conyuge,
-            'solicitante' => $solicitante,
             'info_dom' => $info_dom,
             'info_cony' => $info_cony,
-            'info_titu' => $info_titu,
             'list_est_civ' => $list_est_civ,
             'totalGanado' => Util::formatMoney($ganado),
             'totalSegCiu' => Util::formatMoney($SegCiu),
