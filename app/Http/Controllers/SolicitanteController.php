@@ -90,7 +90,11 @@ class SolicitanteController extends Controller
     public function save($request, $id = false)
     {
         $rules = [
+
             'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'tele_domi' =>'numeric',
+            'celu_domi' =>'numeric',
 
         ];
 
@@ -98,6 +102,12 @@ class SolicitanteController extends Controller
 
             'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
             'pat.regex' => 'Sólo se aceptan letras para apellido paterno',
+
+            'nom.min' => 'El mínimo de caracteres permitidos para nombres es 3',
+            'nom.regex' => 'Sólo se aceptan letras para primer nombre',
+            'tele_domi.numeric' => 'Sólo se aceptan números para teléfono',
+            'celu_domi.numeric' => 'Sólo se aceptan números para celular',
+
 
         ];
         

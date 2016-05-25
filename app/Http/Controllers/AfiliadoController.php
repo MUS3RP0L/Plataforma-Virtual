@@ -237,18 +237,18 @@ class AfiliadoController extends Controller
     }
 
     public function save($request, $id = false)
-    {
+    {       
         $rules = [
-           
+            
             'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'mat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom2' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'ap_esp' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-                        
+            
             'tele' =>'numeric',
             'celu' =>'numeric',
-
+            
         ];
 
         $messages = [
@@ -269,10 +269,10 @@ class AfiliadoController extends Controller
             'ap_esp.min' => 'El mínimo de caracteres permitidos para estado civil es 3',
             'ap_esp.regex' => 'Sólo se aceptan letras para estado civil',
 
-           
             'tele.numeric' => 'Sólo se aceptan números para teléfono',
 
             'celu.numeric' => 'Sólo se aceptan números para celular',
+
 
         ];
         
@@ -371,5 +371,7 @@ class AfiliadoController extends Controller
         
         return redirect('afiliado/'.$id);
     }
+
+   
 
 }

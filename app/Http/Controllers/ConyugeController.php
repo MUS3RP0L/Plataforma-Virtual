@@ -80,6 +80,7 @@ class ConyugeController extends Controller
             'mat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom2' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            
         ];
 
         $messages = [
@@ -95,8 +96,9 @@ class ConyugeController extends Controller
 
             'nom2.min' => 'El mínimo de caracteres permitidos para teléfono de usuario es 3',
             'nom2.regex' => 'Sólo se aceptan letras para segundo nombre',
+
         ];
-        
+
         $validator = Validator::make($request->all(), $rules, $messages);
         
         if ($validator->fails()){
@@ -164,4 +166,5 @@ class ConyugeController extends Controller
     {
         //
     }
+
 }
