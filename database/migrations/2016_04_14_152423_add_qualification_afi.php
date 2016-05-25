@@ -74,16 +74,6 @@ class AddQualificationAfi extends Migration
 
         });
 
-        Schema::create('soli_types', function(Blueprint $table)
-        {
-            $table->engine = 'InnoDB';
-
-            $table->bigIncrements('id');
-            $table->string('name');
-
-            $table->timestamps();
-        });
-
         Schema::create('fr_calificaciones', function(Blueprint $table){
             
             $table->engine = 'InnoDB';

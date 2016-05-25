@@ -18,6 +18,7 @@ use Muserpol\Helper\Util;
 use Muserpol\Afiliado;
 use Muserpol\Solicitante;
 use Muserpol\SoliType;
+use Muserpol\FondoTramite;
 
 class SolicitanteController extends Controller
 {
@@ -120,14 +121,14 @@ class SolicitanteController extends Controller
         }
         else{
 
-            $solicitante = Solicitante::where('afiliado_id', '=', $id)->first();
+            $fondoTramite = FondoTramite::where('afiliado_id', '=', $id)->first();
+
+            $solicitante = Solicitante::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
 
             if (!$solicitante) {
                 
                 $solicitante = new Solicitante;
             }
-
-            $solicitante->user_id = Auth::user()->id;
 
             switch ($request->type) {
                 case 'titu':

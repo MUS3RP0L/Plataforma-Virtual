@@ -88,12 +88,23 @@ class CreateFondotramites extends Migration
 
         });
 
+        Schema::create('soli_types', function(Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('id');
+            $table->string('name');
+
+            $table->timestamps();
+        });
+
         Schema::create('solicitantes', function (Blueprint $table)
         {
             $table->engine = 'InnoDB';
             
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('fondo_tramite_id');
+            $table->UnsignedBigInteger('soli_type_id');
 
             $table->string('ci')->required();
 
@@ -117,6 +128,7 @@ class CreateFondotramites extends Migration
             $table->softDeletes(); 
 
             $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
+            $table->foreign('soli_type_id')->references('id')->on('soli_types');        
         });
 
         Schema::create('prest_types', function (Blueprint $table)

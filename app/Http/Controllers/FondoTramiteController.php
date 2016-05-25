@@ -56,9 +56,9 @@ class FondoTramiteController extends Controller
         if (!$fondoTramite) {
             $fondoTramite = new FondoTramite;
             $fondoTramite->afiliado_id = $afid;
+            $fondoTramite->save();
         }
-        $fondoTramite->save(); 
-
+         
         $solicitante = Solicitante::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
 
         if (!$solicitante) {$solicitante = new Solicitante;}
