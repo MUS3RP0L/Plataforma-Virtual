@@ -128,35 +128,41 @@ class CreateFondotramites extends Migration
             $table->UnsignedBigInteger('fondo_tramite_id');
 
             $table->date('fecha')->nullable();
+            $table->timestamps();
+            $table->softDeletes(); 
 
             $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
-        }
+        });
 
         Schema::create('prest_types', function (Blueprint $table)
         {
-            $table->engine;
+            $table->engine = 'InnoDB';
 
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('sigla')->nullable();
+            $table->timestamps();
+            $table->softDeletes(); 
 
-        }
+         });
 
         Schema::create('antecedentes', function (Blueprint $table)
         {
             $table->engine ='InnoDB';
 
             $table->bigIncrements('id');
-            $table->UnsignedBigInteger('certificaciones_id');
-            $table->UnsignedBigInteger('prest_types_id');
+            $table->UnsignedBigInteger('certificacion_id');
+            $table->UnsignedBigInteger('prest_type_id');
 
             $table->boolean('estado')->default(0);
             $table->date('fecha');
             $table->string('nro_comp');
+            $table->timestamps();
+            $table->softDeletes(); 
 
-            $table->foreign('calificaciones_id')->references('id')->on('certificaciones'); 
-            $table->foreign('prest_types_id')->references('id')->on('prest_types');               
-        }
+            $table->foreign('certificacion_id')->references('id')->on('certificaciones'); 
+            $table->foreign('prest_type_id')->references('id')->on('prest_types');               
+         });
 
 
 
