@@ -310,7 +310,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($fondoTramite, ['method' => 'PATCH', 'route' => ['fondoTramite.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($fondoTramite, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <input type="hidden" name="type" value="moda"/>
                 <div class="row">

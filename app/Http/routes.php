@@ -87,8 +87,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
 
 	// Tramite Fondo de Retiro
-	Route::get('tramite_fondo_retiro/{afid}', 'FondoTramiteController@show');
-	// Route::get('tramite_fondo_retiro/{afid}', 'FondoTramiteController@save');
+	Route::resource('tramite_fondo_retiro', 'FondoTramiteController');
 
 	// Calificacion Fondo de Retiro
 	Route::get('show_calif_fr/{afid}', 'CalificacionController@ViewCalif_fr');
