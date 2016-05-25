@@ -123,6 +123,20 @@ class FondoTramiteController extends Controller
         return view('fondotramite.create', self::getData($id));
     }
 
+    public function print_ventanilla($afid) 
+    {
+        $data = $this->getData($afid);
+        $afiliado = $data['afiliado'];
+        $conyuge = $data['conyuge'];
+
+        $date = Util::getfulldate(date('Y-m-d'));
+        $view =  \View::make('print.ventanilla.show', compact('afiliado', 'conyuge', 'date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/' . $name_input . '.pdf');
+        return $pdf->stream('calif');
+    }
+
     /**
      * Update the specified resource in storage.
      *
