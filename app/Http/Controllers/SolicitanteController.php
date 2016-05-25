@@ -91,7 +91,7 @@ class SolicitanteController extends Controller
     public function save($request, $id = false)
     {
         $rules = [
-
+            'ci' => 'min:4',
             'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'tele_domi' =>'numeric',
@@ -100,7 +100,7 @@ class SolicitanteController extends Controller
         ];
 
         $messages = [
-
+            'ci.min' => 'El mínimo de caracteres permitidos para Carnet de Identidad es 4',
             'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
             'pat.regex' => 'Sólo se aceptan letras para apellido paterno',
 

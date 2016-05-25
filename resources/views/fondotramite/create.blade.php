@@ -401,7 +401,7 @@
                         <div class="form-group">
                                 {!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('pat', $solicitante->pat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
+                                {!! Form::text('pat', $solicitante->pat, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
                                 <span class="help-block">Apellido Paterno</span>
                             </div>
                         </div>
@@ -409,28 +409,28 @@
                                 {!! Form::label('zona_domi', 'ZONA DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('zona_domi', $solicitante->zona_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_zona_domi']) !!}
-                                <span class="help-block">Zona</span>
+                                <span class="help-block">Zona Domicilio</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('calle_domi', 'CALLE DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('calle_domi', $solicitante->calle_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_calle_domi']) !!}
-                                <span class="help-block">Calle</span>
+                                <span class="help-block">Calle Domicilio</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('zona_trab', 'ZONA TRABAJO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('zona_trab', $solicitante->zona_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Zona</span>
+                                <span class="help-block">Zona Trabajo</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('calle_trab', 'CALLE TRABAJO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('calle_trab', $solicitante->calle_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Calle</span>
+                                <span class="help-block">Calle Trabajo</span>
                             </div>
                         </div> 
                          
@@ -448,7 +448,7 @@
                         <div class="form-group">
                                 {!! Form::label('nom', 'NOMBRE(S)', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::text('nom', $solicitante->nom, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
+                                {!! Form::text('nom', $solicitante->nom, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
                                 <span class="help-block">Nombre(s)</span>
                             </div>
                         </div>
@@ -470,7 +470,7 @@
                                 {!! Form::label('num_trab', 'NÚMERO TRABAJO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('num_trab', $solicitante->num_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Número de Domicilio</span>
+                                <span class="help-block">Número de Trabajo</span>
                             </div>
                         </div>
                         <div class="form-group">
