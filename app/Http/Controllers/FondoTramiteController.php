@@ -15,14 +15,12 @@ use Datatables;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
-use Muserpol\Calificacion;
 use Muserpol\Afiliado;
-use Muserpol\Aporte;
-use Muserpol\Departamento;
 use Muserpol\Conyuge;
 use Muserpol\Solicitante;
 use Muserpol\Modalidad;
 use Muserpol\Requisito;
+use Muserpol\FondoTramite;
 
 class FondoTramiteController extends Controller
 {
@@ -52,15 +50,18 @@ class FondoTramiteController extends Controller
         $afiliado = Afiliado::idIs($afid)->first();
 
         $conyuge = Conyuge::where('afiliado_id', '=', $afid)->first();
-        if (!$conyuge) {
-            $conyuge = new Conyuge;
-        }
+        if (!$conyuge) {$conyuge = new Conyuge;}
 
-        $solicitante = Solicitante::where('afiliado_id', '=', $afid)->first();
-
-        if (!$solicitante) {
-                $solicitante = new Solicitante;
+        $fondoTramite = FondoTramite::where('afiliado_id', '=', $afid)->first();
+        if (!$fondoTramite) {
+            $fondoTramite = new FondoTramite;
+            $fondoTramite->afiliado_id = $afid;
         }
+        $fondoTramite->save(); 
+
+        $solicitante = Solicitante::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
+
+        if (!$solicitante) {$solicitante = new Solicitante;}
 
         if ($solicitante->ci || $solicitante->pat || $solicitante->mat || $solicitante->nom || $solicitante->nom2) {
             $info_titu = 1;

@@ -29,9 +29,8 @@ class CreateFondotramites extends Migration
             
             $table->bigIncrements('id');   
             $table->UnsignedBigInteger('afiliado_id');
-            $table->UnsignedBigInteger('modalidad_id');
+            $table->UnsignedBigInteger('modalidad_id')->nullable();
       
-            $table->string('name');
             
             $table->timestamps();
             $table->softDeletes();
@@ -51,26 +50,6 @@ class CreateFondotramites extends Migration
             $table->timestamps();
         });
 
-        Schema::create('documentos', function (Blueprint $table) {
-        
-            $table->engine = 'InnoDB';    
-            
-            $table->bigIncrements('id'); 
-            $table->UnsignedBigInteger('requisito_id');
-            $table->UnsignedBigInteger('fondo_tramite_id');
-
-            $table->date('fech_pres');
-            $table->enum('est_civ', ['P', 'O', 'R']);
-            $table->string('obs')->nullable();
-
-            $table->timestamps();
-            $table->softDeletes();
-
-            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
-            $table->foreign('requisito_id')->references('id')->on('requisitos');        
-
-        });
-
         Schema::create('recepciones', function (Blueprint $table) {
         
             $table->engine = 'InnoDB';    
@@ -86,6 +65,26 @@ class CreateFondotramites extends Migration
             $table->softDeletes();
 
             $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
+
+        });
+
+        Schema::create('documentos', function (Blueprint $table) {
+        
+            $table->engine = 'InnoDB';    
+            
+            $table->bigIncrements('id'); 
+            $table->UnsignedBigInteger('requisito_id');
+            $table->UnsignedBigInteger('recepcion_id');
+
+            $table->date('fech_pres');
+            $table->enum('est_civ', ['P', 'O', 'R']);
+            $table->string('obs')->nullable();
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('recepcion_id')->references('id')->on('recepciones');        
+            $table->foreign('requisito_id')->references('id')->on('requisitos');        
 
         });
 
@@ -132,6 +131,20 @@ class CreateFondotramites extends Migration
 
          });
 
+        Schema::create('certificaciones', function (Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('fondo_tramite_id');
+
+            $table->date('fecha')->nullable();
+            $table->timestamps();
+            $table->softDeletes(); 
+
+            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
+        });
+
         Schema::create('antecedentes', function (Blueprint $table)
         {
             $table->engine ='InnoDB';
@@ -149,20 +162,6 @@ class CreateFondotramites extends Migration
             $table->foreign('certificacion_id')->references('id')->on('certificaciones'); 
             $table->foreign('prest_type_id')->references('id')->on('prest_types');               
          });
-
-        Schema::create('certificaciones', function (Blueprint $table)
-        {
-            $table->engine = 'InnoDB';
-
-            $table->bigIncrements('id');
-            $table->UnsignedBigInteger('fondo_tramite_id');
-
-            $table->date('fecha')->nullable();
-            $table->timestamps();
-            $table->softDeletes(); 
-
-            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
-        });
 
     }
 
