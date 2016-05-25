@@ -135,9 +135,9 @@ class SolicitanteController extends Controller
 
                     
                     $soliType = SoliType::where('id', '=', $request->type_soli)->first();
-                    $solicitante->soli_type = $soliType->id;
+                    $solicitante->soli_type_id = $soliType->id;
 
-                    $solicitante->afiliado_id = $id;
+                    $solicitante->fondo_tramite_id = $fondoTramite->id;
 
                     $solicitante->ci = trim($request->ci);
                     $solicitante->pat = trim($request->pat);
