@@ -46,7 +46,7 @@ class CreateFondotramites extends Migration
             
             $table->bigIncrements('id'); 
             $table->UnsignedBigInteger('modalidad_id');        
-            $table->string('name');
+            $table->text('name');
             
             $table->timestamps();
 
@@ -80,7 +80,7 @@ class CreateFondotramites extends Migration
             $table->UnsignedBigInteger('recepcion_id');
 
             $table->date('fech_pres');
-            $table->enum('est_civ', ['P', 'O', 'R']);
+            $table->enum('est', ['P', 'O']);
             $table->string('obs')->nullable();
 
             $table->timestamps();
@@ -139,7 +139,7 @@ class CreateFondotramites extends Migration
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id');
-            $table->string('name')->nullable();
+            $table->text('name')->nullable();
             $table->string('sigla')->nullable();
             $table->timestamps();
             $table->softDeletes(); 
