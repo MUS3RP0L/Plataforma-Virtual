@@ -319,7 +319,7 @@
                         <div class="form-group">
                                     {!! Form::label('modalidad', 'MODALIDAD', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::select('modalidad', $list_modalidades, $fondoTramite->modalidad_id, ['class' => 'combobox form-control']) !!}
+                                {!! Form::select('modalidad', $list_modalidades, $fondoTramite->modalidad_id, ['class' => 'combobox form-control', 'required' ]) !!}
                                 <span class="help-block">Seleccione la Modalidad</span>
                             </div>
                         </div>

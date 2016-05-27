@@ -140,13 +140,15 @@ class FondoTramiteController extends Controller
     {       
         $rules = [
             
-            'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'afiliado_id' => 'numeric',
+            'modalidad_id' => 'numeric',
             
         ];
 
         $messages = [
             
-            'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
+            'afiliado_id.numeric' => 'Solo se aceptan números para id afiliado', 
+            'modalidad_id.numeric' => 'Solo se aceptan números para id modalidad'
 
         ];
         
