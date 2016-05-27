@@ -25,6 +25,7 @@ class ModalidadesSeeder extends Seeder
             ['id' => '2', 'name' => 'Retiro por Baja Voluntaria'],
             ['id' => '3', 'name' => 'Retiro por Jubilación'],
             ['id' => '4', 'name' => 'Retiro por fallecimiento'],
+            ['id' => '5', 'name' => 'Devolución de Descuentos Efectuados al Garante']
         ];
 
         foreach ($statuses as $status) {
