@@ -88,6 +88,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// Tramite Fondo de Retiro
 	Route::resource('tramite_fondo_retiro', 'FondoTramiteController');
+	Route::get('tramite_fondo_retiro_ventanilla/{afid}', 'FondoTramiteController@print_ventanilla');
+
 
 	// Calificacion Fondo de Retiro
 	Route::get('show_calif_fr/{afid}', 'CalificacionController@ViewCalif_fr');
