@@ -21,6 +21,8 @@ use Muserpol\Solicitante;
 use Muserpol\Modalidad;
 use Muserpol\Requisito;
 use Muserpol\FondoTramite;
+use Muserpol\Recepcion;
+use Muserpol\Documento;
 
 class FondoTramiteController extends Controller
 {
@@ -77,6 +79,10 @@ class FondoTramiteController extends Controller
             $fondoTramite = new FondoTramite;
             $fondoTramite->afiliado_id = $afid;
             $fondoTramite->save();
+
+            $recepcion = new Recepcion;
+            $recepcion->fondo_tramite_id = $fondoTramite->id;
+            $recepcion->save();
         }
          
         $solicitante = Solicitante::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
@@ -95,6 +101,15 @@ class FondoTramiteController extends Controller
             $info_moda = 0;
         }
 
+        $recepcion = Recepcion::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
+        $documentos = Documento::where('recepcion_id', '=', $recepcion->id)->first();
+
+        if ($documentos) {
+            $info_requi = 1;
+        }else{
+            $info_requi = 0;
+        }
+
         $data = array(
             'afiliado' => $afiliado,
             'conyuge' => $conyuge,
@@ -102,6 +117,7 @@ class FondoTramiteController extends Controller
             'solicitante' => $solicitante,
             'info_soli' => $info_soli,
             'info_moda' => $info_moda,
+            'info_requi' => $info_requi,
 
         );
 
@@ -147,6 +163,7 @@ class FondoTramiteController extends Controller
     public function update(Request $request, $id)
     {
         return $this->save($request, $id);
+        // return $request;
 
     }
 
@@ -186,7 +203,43 @@ class FondoTramiteController extends Controller
                     $fondoTramite->save();
                     
                     $message = "Información de modalidad de Fondo de Retiro actualizado con éxito";
-                    break;
+                break;
+
+                case 'requi':
+
+                    $recepcion = Recepcion::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
+
+                    $r = array('1' => $request->r1, '2' => $request->r2, '3' => $request->r3, '4' => $request->r4, '5' => $request->r5,
+                               '6' => $request->r6, '7' => $request->r7, '8' => $request->r8, '9' => $request->r9, '10' => $request->r10,
+                               '11' => $request->r11, '12' => $request->r12);
+
+                    if($fondoTramite->modalidad_id == 4){
+                        $h = 12;
+                    }else{
+                        $h = 8;
+                    }
+                    
+                    for ($i=1; $i <= $h; $i++) { 
+                        $rn = $i;
+                        
+                        $Documento = Documento::where('recepcion_id', '=', $recepcion->id)->where('requisito_id', '=', $i)->first();
+                        if (!$Documento) {
+                            $Documento = new Documento;
+                        }
+                        $Documento->requisito_id = $i;
+                        $Documento->recepcion_id = $recepcion->id;
+                        $Documento->fech_pres = date('Y-m-d');
+                        if ($r[$rn] == "on") {
+                            $Documento->est = 'P';
+                        }else{
+                            $Documento->est = 'O';
+                        }
+                        $Documento->save();
+                    }
+
+
+                    $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
+                break;
 
             }
             Session::flash('message', $message);

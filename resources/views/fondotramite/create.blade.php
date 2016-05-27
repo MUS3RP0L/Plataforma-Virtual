@@ -283,7 +283,7 @@
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-solicitante"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante">
-                                                <img class="circle" src="{!! asset('assets/images/person.png') !!}" width="45px" alt="icon">                                                                          
+                                                <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">                                                                          
                                             </button>
                                         </div>
                                     </div>
@@ -295,6 +295,59 @@
                 </div>
 
                 <div class="col-md-6">
+
+                     <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">  
+                                <div class="col-md-11">
+                                    <h3 class="panel-title">Requisitos Presentados</h3>
+                                </div>
+                                @if($info_requi == 1)
+                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                                        <div data-toggle="modal" data-target="#myModal-requisitos"> 
+                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: 14px">
+                            <div class="row" style="margin-bottom:0px;">
+
+                                @if($info_requi == 1)
+
+                                    <div class="col-md-6">
+
+                                        <!-- <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Modalidad
+                                                        </div>
+                                                        <div class="col-md-6">
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </table> -->
+
+                                    </div>
+
+                                @else
+                                    <div class="row text-center">
+                                        <div data-toggle="modal" data-target="#myModal-requisitos"> 
+                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos">
+                                                <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">                                                                          
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -500,6 +553,163 @@
         </div>
     </div>
 </div>
+
+
+
+
+<div id="myModal-requisitos" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Requisitos</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::model($list_requisitos, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <input type="hidden" name="type" value="requi"/>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <table class="table table-striped table-hover" style="width:100%;font-size: 14px">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Requisitos</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>R1</td>
+                                    <td>{!! $list_requisitos[1] !!}</td>
+                                    <td> 
+                                        <div class="row text-center">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                  <label><input type="checkbox" name="r1"></label>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>R2</td>
+                                    <td>{!! $list_requisitos[2] !!}</td>
+                                    <td>
+                                        <div class="row text-center">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                  <label><input type="checkbox" name="r2"></label>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>R3</td>
+                                    <td>{!! $list_requisitos[3] !!}</td>
+                                    <td>
+                                        <div class="row text-center">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                  <label><input type="checkbox" name="r3"></label>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>R4</td>
+                                    <td>{!! $list_requisitos[4] !!}</td>
+                                    <td>
+                                        <div class="row text-center">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                  <label><input type="checkbox" name="r4"></label>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>R5</td>
+                                    <td>{!! $list_requisitos[5] !!}</td>
+                                    <td>
+                                        <div class="row text-center">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                  <label><input type="checkbox" name="r5"></label>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>R6</td>
+                                    <td>{!! $list_requisitos[6] !!}</td>
+                                    <td>
+                                        <div class="row text-center">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                  <label><input type="checkbox" name="r6"></label>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>R7</td>
+                                    <td>{!! $list_requisitos[7] !!}</td>
+                                    <td>
+                                        <div class="row text-center">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                  <label><input type="checkbox" name="r7"></label>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>R8</td>
+                                    <td>{!! $list_requisitos[8] !!}</td>
+                                    <td>
+                                        <div class="row text-center">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                  <label><input type="checkbox" name="r8"></label>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                   
+                    </div>
+
+                </div>
+
+                <div class="row text-center">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                </div>
+            {!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <div id="myModal-print" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
