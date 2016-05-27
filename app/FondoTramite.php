@@ -38,4 +38,9 @@ class FondoTramite extends Model
         return $this->hasMany('Muserpol\Recepcion');
     }
 
+    public function dictamen_legales(){
+
+        return $this->hasMany('Muserpol\DictamenLegal');
+    }
+
 }

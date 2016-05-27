@@ -188,6 +188,8 @@ class CreateFondotramites extends Migration
             $table->date('fecha');
             $table->string('cite');
             $table->string('obs');
+            $table->timestamps();
+            $table->softDeletes(); 
 
             $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');
         });
