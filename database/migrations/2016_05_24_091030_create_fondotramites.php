@@ -84,7 +84,6 @@ class CreateFondotramites extends Migration
             $table->string('obs')->nullable();
 
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('recepcion_id')->references('id')->on('recepciones');        
             $table->foreign('requisito_id')->references('id')->on('requisitos');        

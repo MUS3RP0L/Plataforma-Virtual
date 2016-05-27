@@ -206,39 +206,48 @@ class FondoTramiteController extends Controller
                 break;
 
                 case 'requi':
+                    if($fondoTramite->modalidad_id)
+                    {
+                        $recepcion = Recepcion::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
 
-                    $recepcion = Recepcion::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
+                        $r = array('1' => $request->r1, '2' => $request->r2, '3' => $request->r3, '4' => $request->r4, '5' => $request->r5,
+                                   '6' => $request->r6, '7' => $request->r7, '8' => $request->r8, '9' => $request->r9, '10' => $request->r10,
+                                   '11' => $request->r11, '12' => $request->r12);
 
-                    $r = array('1' => $request->r1, '2' => $request->r2, '3' => $request->r3, '4' => $request->r4, '5' => $request->r5,
-                               '6' => $request->r6, '7' => $request->r7, '8' => $request->r8, '9' => $request->r9, '10' => $request->r10,
-                               '11' => $request->r11, '12' => $request->r12);
-
-                    if($fondoTramite->modalidad_id == 4){
-                        $h = 12;
+                        if($fondoTramite->modalidad_id == 4){
+                            $h = 12;
+                        }else{
+                            $h = 8;
+                        }
+                        $req = Requisito::where('modalidad_id', '=', $fondoTramite->modalidad_id)->first()->id;
+                        
+                        for ($i=1; $i <= $h; $i++) { 
+                            $rn = $i;
+                            
+                            $Documento = Documento::where('recepcion_id', '=', $recepcion->id)->where('requisito_id', '=', $req)->first();
+                            
+                            if (!$Documento) {
+                                $Documento = new Documento;
+                            }
+                            $Documento->requisito_id = $req;
+                            $Documento->recepcion_id = $recepcion->id;
+                            $Documento->fech_pres = date('Y-m-d');
+                            $req++;
+                            if ($r[$rn] == "on") {
+                                $Documento->est = 'P';
+                            }else{
+                                $Documento->est = 'O';
+                            }
+                            $Documento->save();
+                        }
+                        $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
                     }else{
-                        $h = 8;
+                        $message = "Seleccione la modalidad";
                     }
                     
-                    for ($i=1; $i <= $h; $i++) { 
-                        $rn = $i;
-                        
-                        $Documento = Documento::where('recepcion_id', '=', $recepcion->id)->where('requisito_id', '=', $i)->first();
-                        if (!$Documento) {
-                            $Documento = new Documento;
-                        }
-                        $Documento->requisito_id = $i;
-                        $Documento->recepcion_id = $recepcion->id;
-                        $Documento->fech_pres = date('Y-m-d');
-                        if ($r[$rn] == "on") {
-                            $Documento->est = 'P';
-                        }else{
-                            $Documento->est = 'O';
-                        }
-                        $Documento->save();
-                    }
 
 
-                    $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
+                    
                 break;
 
             }
