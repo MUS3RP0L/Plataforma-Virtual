@@ -209,6 +209,7 @@ class AfiliadoController extends Controller
         $data = array_merge($data, self::getViewModel());
 
         return view('afiliados.view', $data);
+        
     }
 
     /**

@@ -1650,7 +1650,7 @@
 
         this.selectedOptionValueEst = ko.observable();
         this.selectedOptionValueGra = ko.observable();
-        this.selectedOptionValueUni = ko.observable();  
+        this.selectedOptionValueUni = ko.observable(); 
         this.periodoValue = ko.observable(titular.fech_ini_reco ? true : false);     
     };
 

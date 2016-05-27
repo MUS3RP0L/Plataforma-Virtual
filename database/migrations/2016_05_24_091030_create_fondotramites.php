@@ -44,10 +44,13 @@ class CreateFondotramites extends Migration
         
             $table->engine = 'InnoDB';    
             
-            $table->bigIncrements('id');         
+            $table->bigIncrements('id'); 
+            $table->UnsignedBigInteger('modalidad_id');        
             $table->string('name');
             
             $table->timestamps();
+
+            $table->foreign('modalidad_id')->references('id')->on('modalidades');
         });
 
         Schema::create('recepciones', function (Blueprint $table) {
@@ -175,6 +178,19 @@ class CreateFondotramites extends Migration
             $table->foreign('prest_type_id')->references('id')->on('prest_types');               
          });
 
+        Schema::create('dictamen_legales', function (Blueprint $table)
+        {
+            $table->engine ='InnoDB';
+
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('fondo_tramite_id');
+            $table->string('nro_resol');
+            $table->date('fecha');
+            $table->string('cite');
+            $table->string('obs');
+
+            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');
+        });
     }
 
     /**

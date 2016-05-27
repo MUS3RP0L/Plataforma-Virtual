@@ -14,4 +14,9 @@ class Modalidad extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function requisitos()
+    {
+        return $this->hasMany('Muserpol\Requisito');
+    }
 }

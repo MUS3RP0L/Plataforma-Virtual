@@ -14,4 +14,9 @@ class Requisito extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function modalidad()
+    {
+        return $this->belongsTo('Muserpol\Modalidad');
+    }
 }
