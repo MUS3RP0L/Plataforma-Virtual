@@ -80,7 +80,7 @@ class CreateFondotramites extends Migration
             $table->UnsignedBigInteger('recepcion_id');
 
             $table->date('fech_pres');
-            $table->enum('est', ['P', 'O']);
+            $table->boolean('est')->default(0);
             $table->string('obs')->nullable();
 
             $table->timestamps();
@@ -167,7 +167,7 @@ class CreateFondotramites extends Migration
             $table->UnsignedBigInteger('certificacion_id');
             $table->UnsignedBigInteger('prest_type_id');
 
-            $table->boolean('estado')->default(0);
+            $table->boolean('est')->default(0);
             $table->date('fecha');
             $table->string('nro_comp');
             $table->timestamps();

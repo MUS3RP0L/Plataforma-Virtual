@@ -302,7 +302,7 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title">Requisitos Presentados</h3>
                                 </div>
-                                @if($info_requi == 1)
+                                @if($info_requi)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-requisitos"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
@@ -314,25 +314,42 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_requi == 1)
+                                @if($info_requi)
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
 
-                                        <!-- <table class="table" style="width:100%;">
-                                            <tr>
-                                                <td style="border-top:0;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Modalidad
-                                                        </div>
-                                                        <div class="col-md-6">
-
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </table> -->
+                                        <table class="table table-striped table-hover" style="width:100%;font-size: 14px">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre de Documento Presentado</th>
+                                                    <th>Estado</th>
+                                                    <th> Fecha </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                @foreach ($documentos as $item)
+                                                    <tr>
+                                                        <td>{!! $item->requisito->name !!}</td>
+                                                        <td> 
+                                                            <div class="row text-center">
+                                                                @if($item->est)
+                                                                <span class="glyphicon glyphicon-ok"></span>
+                                                                @endif
+                                                            </div>
+                                                        </td>
+                                                        <td> 
+                                                            <div class="row text-center">
+                                                                @if($item->est)
+                                                                    {!! $item->fech_pres !!}
+                                                                @endif
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                
+                                            </tbody>
+                                        </table>
 
                                     </div>
 
@@ -355,6 +372,7 @@
         </div>
     </div>
 </div>
+
 
 <div id="myModal-modalidad" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog">
@@ -570,116 +588,22 @@
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <input type="hidden" name="type" value="requi"/>
                 <div class="row">
-                    <div class="col-md-12">
-
+                    <div class="col-md-12" data-bind="event: { mouseover: enableDetails, mouseout: disableDetails }">
                         <table class="table table-striped table-hover" style="width:100%;font-size: 14px">
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>Requisitos</th>
                                     <th>Estado</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody data-bind="foreach: requisitos">
                                 <tr>
-                                    <td>R1</td>
-                                    <td>{!! $list_requisitos[1] !!}</td>
+                                    <td data-bind='text: requiname'></td>
                                     <td> 
                                         <div class="row text-center">
                                             <div class="form-group">
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" name="r1"></label>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>R2</td>
-                                    <td>{!! $list_requisitos[2] !!}</td>
-                                    <td>
-                                        <div class="row text-center">
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                  <label><input type="checkbox" name="r2"></label>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>R3</td>
-                                    <td>{!! $list_requisitos[3] !!}</td>
-                                    <td>
-                                        <div class="row text-center">
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                  <label><input type="checkbox" name="r3"></label>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>R4</td>
-                                    <td>{!! $list_requisitos[4] !!}</td>
-                                    <td>
-                                        <div class="row text-center">
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                  <label><input type="checkbox" name="r4"></label>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>R5</td>
-                                    <td>{!! $list_requisitos[5] !!}</td>
-                                    <td>
-                                        <div class="row text-center">
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                  <label><input type="checkbox" name="r5"></label>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>R6</td>
-                                    <td>{!! $list_requisitos[6] !!}</td>
-                                    <td>
-                                        <div class="row text-center">
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                  <label><input type="checkbox" name="r6"></label>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>R7</td>
-                                    <td>{!! $list_requisitos[7] !!}</td>
-                                    <td>
-                                        <div class="row text-center">
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                  <label><input type="checkbox" name="r7"></label>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>R8</td>
-                                    <td>{!! $list_requisitos[8] !!}</td>
-                                    <td>
-                                        <div class="row text-center">
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                  <label><input type="checkbox" name="r8"></label>
+                                                  <label><input type="checkbox" data-bind="checked: booleanValue"></label>
                                               </div>
                                             </div>
                                         </div>
@@ -687,16 +611,15 @@
                                 </tr>
                             </tbody>
                         </table>
-                        
-                   
                     </div>
-
                 </div>
+ 
+                <input type="hidden" name="data" data-bind="value: lastSavedJson"/>
 
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
                             &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
                         </div>
                     </div>
@@ -708,9 +631,6 @@
     </div>
 </div>
 
-
-
-
 <div id="myModal-print" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
@@ -719,7 +639,7 @@
                 <h4 class="modal-title">Ventanilla Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro_ventanilla/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
@@ -907,11 +827,31 @@
         autoclose: true
     });
 
+
     var titular = {!! $afiliado !!};
     var conyuge = {!! $conyuge !!};
     var solicitante = {!! $solicitante !!};
 
-    var Model = function() {
+    var Model = function(requisitos) {
+        @if ($info_requi)
+            this.requisitos = ko.observableArray(ko.utils.arrayMap(requisitos, function(documento) {
+            return { requisito_id: documento.requisito_id, requiname: documento.requisito.name, booleanValue: documento.est };
+            }));
+        @else
+            this.requisitos = ko.observableArray(ko.utils.arrayMap(requisitos, function(documento) {
+            return { requisito_id: documento.id, requiname: documento.name, booleanValue: false };
+            }));
+        @endif
+
+        this.detailsEnabled = ko.observable(false);
+        this.enableDetails = function() {
+            this.lastSavedJson(JSON.stringify(ko.toJS(this.requisitos), null, 2));
+        };
+        this.disableDetails = function() {
+            this.lastSavedJson(JSON.stringify(ko.toJS(this.requisitos), null, 2));
+        };
+     
+        this.lastSavedJson = ko.observable("");
 
         this.typeToShow = ko.observable('' + solicitante.soli_type_id);
         this.parenShow = ko.observable(false);
@@ -1040,8 +980,12 @@
             ko.unwrap(value) ? $(element).fadeIn() : $(element).fadeOut();
         }
     };
-
-    ko.applyBindings(new Model());
+    
+    @if ($info_requi)
+        ko.applyBindings(new Model({!! $documentos !!}));
+    @else
+        ko.applyBindings(new Model({!! $requisitos !!}));
+    @endif
 
 </script>
 @endpush
