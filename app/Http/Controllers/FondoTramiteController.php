@@ -159,13 +159,13 @@ class FondoTramiteController extends Controller
         $data = $this->getData($afid);
         $afiliado = $data['afiliado'];
         $conyuge = $data['conyuge'];
-
         $date = Util::getfulldate(date('Y-m-d'));
-        $view =  \View::make('print.ventanilla.show', compact('afiliado', 'conyuge', 'date'))->render();
+
+        $view = \View::make('print.ventanilla.show', compact('afiliado', 'conyuge', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/' . $name_input . '.pdf');
-        return $pdf->stream('calif');
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
+        return $pdf->stream();
     }
 
     public function print_dictamenlegal($afid)
@@ -177,7 +177,7 @@ class FondoTramiteController extends Controller
         $view =  \View::make('print.dictamenlegal.show', compact('afiliado', 'conyuge', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/' . $name_input . '.pdf');
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/dictamen_legal/' . $name_input . '.pdf');
         return $pdf->stream('calif');
 
     }
@@ -192,8 +192,6 @@ class FondoTramiteController extends Controller
     public function update(Request $request, $id)
     {
         return $this->save($request, $id);
-        // return $request;
-        // return $request->data;
 
     }
 
@@ -240,7 +238,6 @@ class FondoTramiteController extends Controller
                     {
                         $recepcion = Recepcion::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
 
-                        $req = Requisito::where('modalidad_id', '=', $fondoTramite->modalidad_id)->first()->id;
                         foreach (json_decode($request->data) as $item)
                           {   
                             $Documento = Documento::where('recepcion_id', '=', $recepcion->id)->where('requisito_id', '=', $item->requisito_id)->first();

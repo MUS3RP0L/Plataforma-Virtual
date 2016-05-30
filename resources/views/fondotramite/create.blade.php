@@ -759,7 +759,7 @@
                 <h4 class="modal-title">Ventanilla Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('tramite_fondo_retiro_ventanilla/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
