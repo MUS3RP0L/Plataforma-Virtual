@@ -28,9 +28,11 @@
                             &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
                         </a>
 
-                        <a href="" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
+                        <div class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
+                            <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                             &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
                         </a>
+                        </div>
                         &nbsp;
                         <a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px;"  class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Volver">
                             &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;&nbsp;
@@ -367,6 +369,75 @@
                     </div>
 
                 </div>
+
+
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">  
+                                <div class="col-md-11">
+                                    <h3 class="panel-title">Dictamen Legal</h3>
+                                </div>
+                                @if($info_dict == 1)
+                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                                        <div data-toggle="modal" data-target="#myModal-dictamenlegal"> 
+                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: 14px">
+                            <div class="row" style="margin-bottom:0px;">
+
+                                @if($info_dict == 1)
+
+                                    <div class="col-md-6">
+
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Cite
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $dictamenlegal->cite !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Observación
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $dictamenlegal->obs !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+
+                                @else
+                                    <div class="row text-center">
+                                        <div data-toggle="modal" data-target="#myModal-dictamenlegal"> 
+                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Dictamen Legal">
+                                                <img class="circle" src="{!! asset('assets/images/modalidad.png') !!}" width="45px" alt="icon">                                                                          
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
         </div>
@@ -631,6 +702,55 @@
     </div>
 </div>
 
+<div id="myModal-dictamenlegal" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Dictamen Legal</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::model($dictamenlegal, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <input type="hidden" name="type" value="dictamen"/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                {!! Form::label('cite', 'CITE', ['class' => 'col-md-6 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::text('cite', $dictamenlegal->cite, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Cite</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                                {!! Form::label('obs', 'OBSERVACIÓN', ['class' => 'col-md-6 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::text('obs', $dictamenlegal->obs, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Observación</span>
+                            </div>
+                        </div>
+                   
+                    </div>
+
+                </div>
+
+                <div class="row text-center">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                </div>
+                {!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="myModal-print" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
@@ -640,6 +760,20 @@
             </div>
             <div class="modal-body">
                 <iframe src="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal-printdictamen" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Dictamen Legal</h4>
+            </div>
+            <div class="modal-body">
+                <iframe src="{!! url('tramite_fondo_retiro_dictamenlegal/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>

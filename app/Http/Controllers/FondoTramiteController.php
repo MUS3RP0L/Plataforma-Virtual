@@ -23,6 +23,7 @@ use Muserpol\Requisito;
 use Muserpol\FondoTramite;
 use Muserpol\Recepcion;
 use Muserpol\Documento;
+use Muserpol\DictamenLegal;
 
 class FondoTramiteController extends Controller
 {
@@ -112,6 +113,15 @@ class FondoTramiteController extends Controller
         }
             $requisitos = Requisito::where('modalidad_id', '=', $fondoTramite->modalidad_id)->get();
 
+        $dictamenlegal = DictamenLegal::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
+        if($dictamenlegal){
+            $info_dict = 1;
+        }
+        else{
+            $info_dict = 0;
+            $dictamenlegal = new DictamenLegal;
+        }
+
         $data = array(
             'afiliado' => $afiliado,
             'conyuge' => $conyuge,
@@ -121,7 +131,9 @@ class FondoTramiteController extends Controller
             'requisitos' => $requisitos,
             'info_soli' => $info_soli,
             'info_moda' => $info_moda,
-            'info_requi' => $info_requi
+            'info_requi' => $info_requi,
+            'dictamenlegal' => $dictamenlegal,
+            'info_dict' => $info_dict
         );
 
         $data = array_merge($data, self::getViewModel());
@@ -154,6 +166,20 @@ class FondoTramiteController extends Controller
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/' . $name_input . '.pdf');
         return $pdf->stream('calif');
+    }
+
+    public function print_dictamenlegal($afid)
+    {
+        $data = $this->getData($afid);
+        $afiliado = $data['afiliado'];
+        $conyuge = $data['conyuge'];
+        $date = Util::getfulldate(date('Y-m-d'));
+        $view =  \View::make('print.dictamenlegal.show', compact('afiliado', 'conyuge', 'date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/' . $name_input . '.pdf');
+        return $pdf->stream('calif');
+
     }
 
     /**
@@ -235,9 +261,22 @@ class FondoTramiteController extends Controller
                         $message = "Seleccione la modalidad";
                     }
                     
+                
+                break;
 
+                case 'dictamen':
+                  
+                        $dictamenlegal = DictamenLegal::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
+                              if(!$dictamenlegal){
+                            $dictamenlegal = new DictamenLegal;
+                        }
+                        $dictamenlegal->fondo_tramite_id = $fondoTramite->id;
+                        $dictamenlegal->cite = trim($request->cite);
+                        $dictamenlegal->obs = trim($request->obs);
 
-                    
+                        $dictamenlegal->save();
+                        $message = "Información de Dictamen Legal actualizado con éxito";
+                        
                 break;
 
             }

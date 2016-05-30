@@ -11,8 +11,6 @@ class DictamenLegal extends Model
 	protected $fillable = [
 		
 		'fondo_tramite_id',
-		'nro_resol',
-		'fecha',
 		'cite',
 		'obs',
 		
