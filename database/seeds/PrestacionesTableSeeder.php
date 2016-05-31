@@ -2,24 +2,23 @@
 
 use Illuminate\Database\Seeder;
 
-class PrestTypeTableSeeder extends Seeder
+class PrestacionesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-
     public function run()
     {
         Eloquent::unguard();
 
-        $this->createPrestType();
+        $this->createPrestaciones();
 
         Eloquent::reguard();
     }
-    
-    private function createPrestType()
+
+    private function createPrestacion()
     {
         $statuses = [
             ['id' => '1', 'name' => 'ANTICIPO FONDO DE RETIRO POLICIAL(LETRA"A"/LETRA"C")','sigla' =>'FRP-ANT'],
@@ -39,9 +38,8 @@ class PrestTypeTableSeeder extends Seeder
 
         foreach ($statuses as $status) {
          
-            Muserpol\PrestType::create($status);
+            Muserpol\Prestacion::create($status);
             
         }
     }
-
 }

@@ -10,22 +10,22 @@ class Antecedente extends Model
 
     protected $fillable = [
 
-    	'certificacion_id',
-    	'prest_type_id',
-    	'estado',
+    	'prestacion_id',
+    	'fondo_tramite_id',
+    	'est',
     	'fecha',
     	'nro_comp'
     ];
 
     protected $guarded = ['id'];
 
-    public function certificacion(){
+    public function fondo_tramite(){
 
-        return $this->belongsTo('Muserpol\Certificacion');
+        return $this->belongsTo('Muserpol\FondoTramite');
     }
 
-    public function prest_type(){
+    public function prestacion(){
 
-        return $this->belongsTo('Muserpol\PrestType');
+        return $this->belongsTo('Muserpol\Prestacion');
     }
 }

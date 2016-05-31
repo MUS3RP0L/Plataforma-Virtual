@@ -41,9 +41,57 @@
       </table>
 
       <div id="project">
-
+          <table>
+            <tr>
+              <th colspan="2" class="grand service">A) DATOS DEL SOLICITANTE</th>
+            </tr>
+            <tr>
+              <th class="service">NOMBRE DEL BENEFICIARIO</th>
+              <td class="info">{!! $solicitante->getFullNametoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">CARNET DE IDENTIDAD</th>
+              <td class="info">{!! $solicitante->ci !!}</td>
+            </tr>
+          </table>
       </div>
 
+      <div id="project">
+        <table>
+            <tr>
+              <th colspan="2" class="grand service">B) DATOS DICTAMEN LEGAL</th>
+            </tr>
+            <tr>
+              <th class="service">CITE</th>
+              <td class="info">{!! $dictamenlegal->cite !!}</td>
+            </tr>
+            
+        </table>
+      </div>
+                                            
+      <div id="project">
+          <table>
+            <tr>
+              <th colspan="2" class="grand service">C)DOCUMENTACIÓN PRESENTADA</th>
+            </tr>
+            <?php $i=1; ?>
+             @foreach ($documentos as $item)
+            <tr>
+              <td class="info">{!! $i !!}</td>  
+              <td class="info">{!! $item->requisito->name !!}</td>
+           
+            </tr>
+            <?php $i++; ?>
+            @endforeach
+
+            <tr>
+              <th class="service">OBSERVACIÓN</th>
+              <td class="info">{!! $dictamenlegal->obs !!}</td>
+            </tr>
+          </table>
+      </div>
+
+      
 
     </header>
     <footer>

@@ -82,6 +82,43 @@
           </table>
       </div>
 
+     <table class="tablet">
+        <tr>
+          <td style="width: 60%;border: 0px;">
+            <div class="title"><b>II. REQUISITOS PRESENTADOS</b></div>
+          </td>
+         
+        </tr>
+      </table>
+
+      <div id="project">
+          <table>
+           <tr>
+              <th class="grand service">NRO</th>
+              <th class="grand service">REQUISITO</th>
+              <th class="grand service">PRESENTADO</th>
+              <th class="grand service">FECHA DE PRESENTACIÓN</th>
+            </tr>
+            <?php $i=1; ?>
+             @foreach ($documentos as $item)
+            <tr>
+              <td class="info">{!! $i !!}</td>  
+              <td class="info">{!! $item->requisito->name !!}</td>
+               @if ($item->est == 1)
+                  <td class="info">a{!! Form::checkbox('name', 'value', true) !!}
+
+               @else
+                  <td class="info">{!! Form::checkbox('name', 'value', false) !!}
+               @endif
+              <td class="info">{!! $item->fech_pres !!}
+           
+            </tr>
+            <?php $i++; ?>
+            @endforeach
+            
+          </table>
+      </div>
+
 
     </header>
     <footer>

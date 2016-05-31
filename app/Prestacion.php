@@ -4,9 +4,9 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PrestType extends Model
+class Prestacion extends Model
 {
-    protected $table = 'prest_types';
+    protected $table = 'prestaciones';
 
 	protected $fillable = [
 	
