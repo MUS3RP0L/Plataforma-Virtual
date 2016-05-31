@@ -108,8 +108,8 @@ class CreateFondotramites extends Migration
 
 
             $table->boolean('est')->default(0);
-            $table->date('fecha');
-            $table->string('nro_comp');
+            $table->date('fecha')->nullable();
+            $table->string('nro_comp')->nullable();
             $table->timestamps();
 
             $table->foreign('prestacion_id')->references('id')->on('prestaciones');      

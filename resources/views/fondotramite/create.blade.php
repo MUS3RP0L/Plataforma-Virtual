@@ -762,18 +762,20 @@
 
                 {!! Form::model($prestaciones, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <input type="hidden" name="type" value="docu"/>
+                <input type="hidden" name="type" value="antec"/>
                 <div class="row">
                     <div class="col-md-12" data-bind="event: { mouseover: enableDetails2, mouseout: disableDetails2 }">
                         <table class="table table-striped table-hover" style="width:100%;font-size: 14px">
                             <thead>
                                 <tr>
-                                    <th>Requisitos</th>
-                                    <th>Estado</th>
+                                    <th class="text-center">Sigla</th>
+                                    <th>Tipo de Prestación</th>
+                                    <th class="text-center">Estado</th>
                                 </tr>
                             </thead>
                             <tbody data-bind="foreach: prestaciones">
                                 <tr>
+                                    <td data-bind='text: sigla'></td>
                                     <td data-bind='text: prestaname'></td>
                                     <td> 
                                         <div class="row text-center">
@@ -1048,7 +1050,7 @@
             }));
         @else
             this.prestaciones = ko.observableArray(ko.utils.arrayMap(prestaciones, function(documento) {
-            return { prestacion_id: documento.id, prestaname: documento.name, booleanValue: false };
+            return { prestacion_id: documento.id, sigla: documento.sigla, prestaname: documento.name, booleanValue: false };
             }));
         @endif
 
@@ -1200,9 +1202,17 @@
     };
     
     @if ($info_docu)
+        @if ($info_antec)
         ko.applyBindings(new Model({!! $documentos !!}, {!! $antecedentes !!}));
+        @else
+        ko.applyBindings(new Model({!! $documentos !!}, {!! $prestaciones !!}));
+        @endif
     @else
+        @if ($info_antec)
+        ko.applyBindings(new Model({!! $requisitos !!}, {!! $antecedentes !!}));
+        @else
         ko.applyBindings(new Model({!! $requisitos !!}, {!! $prestaciones !!}));
+        @endif
     @endif
 
 </script>

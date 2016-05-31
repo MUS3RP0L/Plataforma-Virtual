@@ -262,6 +262,27 @@ class FondoTramiteController extends Controller
                     }                
                 break;
 
+                case 'antec':
+
+                    foreach (json_decode($request->data) as $item)
+                    {   
+                        $antecedente = Antecedente::where('fondo_tramite_id', '=', $fondoTramite->id)
+                                        ->where('prestacion_id', '=', $item->prestacion_id)->first();
+                        
+                        if (!$antecedente) {
+                            $antecedente = new Antecedente;
+                            $antecedente->fondo_tramite_id = $fondoTramite->id;
+                            $antecedente->prestacion_id = $item->prestacion_id;
+                        }
+                        $antecedente->fech_pres = date('Y-m-d');
+                        $antecedente->est = $item->booleanValue;
+                        $antecedente->save();
+                    }
+
+                    $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
+               
+                break;
+
             }
             Session::flash('message', $message);
         }
