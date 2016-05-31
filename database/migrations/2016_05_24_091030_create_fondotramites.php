@@ -55,8 +55,6 @@ class CreateFondotramites extends Migration
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->foreign('modalidad_id')->references('id')->on('modalidades');
             $table->foreign('departamento_id')->references('id')->on('departamentos');
-
-
         });
 
         Schema::create('requisitos', function (Blueprint $table) {
@@ -88,7 +86,6 @@ class CreateFondotramites extends Migration
 
             $table->foreign('recepcion_id')->references('id')->on('recepciones');        
             $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
-
         });
 
         Schema::create('prestaciones', function (Blueprint $table)
@@ -99,8 +96,6 @@ class CreateFondotramites extends Migration
             $table->text('name')->nullable();
             $table->string('sigla')->nullable();
             $table->timestamps();
-            $table->softDeletes(); 
-
          });
 
         Schema::create('antecedentes', function (Blueprint $table)
@@ -116,7 +111,6 @@ class CreateFondotramites extends Migration
             $table->date('fecha');
             $table->string('nro_comp');
             $table->timestamps();
-            $table->softDeletes(); 
 
             $table->foreign('prestacion_id')->references('id')->on('prestaciones');      
             $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
