@@ -132,7 +132,6 @@ class SolicitanteController extends Controller
 
             switch ($request->type) {
                 case 'titu':
-
                     
                     $soliType = SoliType::where('id', '=', $request->type_soli)->first();
                     $solicitante->soli_type_id = $soliType->id;

@@ -321,7 +321,7 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Requisitos Presentados</h3>
+                                    <h3 class="panel-title">Documentos Presentados</h3>
                                 </div>
                                 @if($info_docu)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
@@ -342,7 +342,7 @@
                                         <table class="table table-striped table-hover" style="width:100%;font-size: 14px">
                                             <thead>
                                                 <tr>
-                                                    <th>Nombre de Documento Presentado</th>
+                                                    <th>Nombre de Documento</th>
                                                     <th class="text-center">Estado</th>
                                                     <th class="text-center"> Fecha </th>
                                                 </tr>
@@ -696,13 +696,13 @@
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Editar Requisitos</h4>
+                <h4 class="modal-title">Editar Documentos</h4>
             </div>
             <div class="modal-body">
 
                 {!! Form::model($requisitos, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <input type="hidden" name="type" value="requi"/>
+                <input type="hidden" name="type" value="docu"/>
                 <div class="row">
                     <div class="col-md-12" data-bind="event: { mouseover: enableDetails, mouseout: disableDetails }">
                         <table class="table table-striped table-hover" style="width:100%;font-size: 14px">

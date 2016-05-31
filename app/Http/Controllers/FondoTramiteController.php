@@ -224,7 +224,7 @@ class FondoTramiteController extends Controller
                     $message = "Información de modalidad de Fondo de Retiro actualizado con éxito";
                 break;
 
-                case 'requi':
+                case 'docu':
                     if($fondoTramite->modalidad_id)
                     {
 
@@ -236,7 +236,7 @@ class FondoTramiteController extends Controller
                                 $Documento = new Documento;
                             }
                             $Documento->requisito_id = $item->requisito_id;
-                            $Documento->recepcion_id = $fondoTramite->id;
+                            $Documento->fondo_tramite_id = $fondoTramite->id;
                             $Documento->fech_pres = date('Y-m-d');
                             $Documento->est = $item->booleanValue;
                             $Documento->save();
