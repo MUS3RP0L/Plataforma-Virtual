@@ -34,4 +34,9 @@ class Documento extends Model
     {   
         return Util::getdateabre($this->fech_pres);
     }
+
+    public function scopeFonTraIs($query, $id)
+    {
+        return $query->where('fondo_tramite_id', $id);
+    }
 }
