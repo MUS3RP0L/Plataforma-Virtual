@@ -3,6 +3,7 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
+use Muserpol\Helper\Util;
 
 class Antecedente extends Model
 {

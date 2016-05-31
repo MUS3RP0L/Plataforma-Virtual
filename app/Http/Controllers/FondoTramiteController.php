@@ -131,6 +131,7 @@ class FondoTramiteController extends Controller
             'requisitos' => $requisitos,
             'prestaciones' => $prestaciones,
             'antecedentes' => $antecedentes,
+            'antecedentes2' => $antecedentes,
             'info_gen' => $info_gen,
             'info_soli' => $info_soli,
             'info_docu' => $info_docu,
@@ -274,7 +275,6 @@ class FondoTramiteController extends Controller
                             $antecedente->fondo_tramite_id = $fondoTramite->id;
                             $antecedente->prestacion_id = $item->prestacion_id;
                         }
-                        $antecedente->fech_pres = date('Y-m-d');
                         $antecedente->est = $item->booleanValue;
                         $antecedente->save();
                     }

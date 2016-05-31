@@ -414,27 +414,19 @@
                                                 <tr>
                                                     <th class="text-center">Sigla</th>
                                                     <th>Tipo de Prestación</th>
-                                                    <th class="text-center">Estado</th>
-                                                    <th class="text-center">Número</th>
-                                                    <th class="text-center">Fecha</th>
+                                                    <th>Estado</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 
                                                 @foreach ($antecedentes as $item)
                                                     <tr>
-                                                        <td>{!! $item->prestacion->name !!}</td>
+                                                        <td>{!! $item->prestacion->sigla !!}</td>
+                                                        <td>{!! $item->prestacion->name !!}</td>    
                                                         <td> 
                                                             <div class="text-center">
                                                                 @if($item->est)
                                                                 <span class="glyphicon glyphicon-ok"></span>
-                                                                @endif
-                                                            </div>
-                                                        </td>
-                                                        <td style="width: 12%;"> 
-                                                            <div class="text-center">
-                                                                @if($item->est)
-                                                                    {!! $item->getData_fech_requi() !!}
                                                                 @endif
                                                             </div>
                                                         </td>
@@ -1046,7 +1038,7 @@
 
         @if ($info_antec)
             this.prestaciones = ko.observableArray(ko.utils.arrayMap(prestaciones, function(documento) {
-            return { prestacion_id: documento.prestacion_id, requiname: documento.requisito.name, booleanValue: documento.est };
+            return { prestacion_id: documento.prestacion_id, sigla: documento.prestacion.sigla, prestaname: documento.prestacion.name, booleanValue: documento.est };
             }));
         @else
             this.prestaciones = ko.observableArray(ko.utils.arrayMap(prestaciones, function(documento) {
