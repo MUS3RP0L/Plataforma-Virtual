@@ -128,6 +128,7 @@ class FondoTramiteController extends Controller
         return view('fondotramite.create', self::getData($id));
     }
 
+
     public function print_ventanilla($afid) 
     {
         $data = $this->getData($afid);
@@ -176,14 +177,12 @@ class FondoTramiteController extends Controller
             
             'afiliado_id' => 'numeric',
             'modalidad_id' => 'numeric',
-            
         ];
 
         $messages = [
             
             'afiliado_id.numeric' => 'Solo se aceptan números para id afiliado', 
             'modalidad_id.numeric' => 'Solo se aceptan números para id modalidad'
-
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);

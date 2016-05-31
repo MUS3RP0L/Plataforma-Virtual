@@ -1,46 +1,47 @@
 @extends('layout')
 
 @section('content')
+
 <div class="container-fluid">
     {!! Breadcrumbs::render('fondo_tramite', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
 
-                <div class="row"> 
-                 
-                    <div class="col-md-6">
-                        <h2 style="margin-top:-2px;">{!! $afiliado->getTittleName() !!}</h2>
+            <div class="row"> 
+             
+                <div class="col-md-6">
+                    <h2 style="margin-top:-2px;">{!! $afiliado->getTittleName() !!}</h2>
+                </div>
+
+                <div class="col-md-6 text-right">  
+
+                     <div class="btn-group" style="margin:-6px 1px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
+                        <a href="" data-target="#myModal-print" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;&nbsp;
+                        </a>
                     </div>
 
-                    <div class="col-md-6 text-right">  
+                    <a href="" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;
+                    </a>
 
-                         <div class="btn-group" style="margin:-6px 1px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
-                            <a href="" data-target="#myModal-print" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                                &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;&nbsp;
-                            </a>
-                        </div>
+                    <a href="" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
+                    </a>
 
-                        <a href="" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;
-                        </a>
-
-                        <a href="" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
-                        </a>
-
-                        <div class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
-                            <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
-                        </a>
-                        </div>
-                        &nbsp;
-                        <a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px;"  class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Volver">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;&nbsp;
-                        </a>
-
+                    <div class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
+                        <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
+                    </a>
                     </div>
+                    &nbsp;
+                    <a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px;"  class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Volver">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;&nbsp;
+                    </a>
 
                 </div>
+
+            </div>
             
             <div class="row">
                 <div class="col-md-6">    
@@ -51,8 +52,8 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title">Modalidad de Retiro</h3>
                                 </div>
-                                @if($info_moda == 1)
-                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                                @if($info_moda)
+                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar Datos Generales">
                                         <div data-toggle="modal" data-target="#myModal-modalidad"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
                                         </div>
@@ -62,11 +63,8 @@
                         </div>
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
-
-                                @if($info_moda == 1)
-
+                                @if($info_moda)
                                     <div class="col-md-6">
-
                                         <table class="table" style="width:100%;">
                                             <tr>
                                                 <td style="border-top:0;">
@@ -82,13 +80,11 @@
                                             </tr>
 
                                         </table>
-
                                     </div>
-
                                 @else
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-modalidad"> 
-                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Seleccionar Modalidad">
+                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar Datos Generales">
                                                 <img class="circle" src="{!! asset('assets/images/modalidad.png') !!}" width="45px" alt="icon">                                                                          
                                             </button>
                                         </div>
