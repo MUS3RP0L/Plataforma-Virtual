@@ -30,6 +30,11 @@ class CreateFondotramites extends Migration
             $table->UnsignedBigInteger('afiliado_id');
             $table->UnsignedBigInteger('modalidad_id')->nullable();
             $table->UnsignedBigInteger('departamento_id')->nullable();
+
+            $table->date('fech_ven')->nullable();
+            $table->date('fech_arc')->nullable();
+            $table->date('fech_cal')->nullable();
+            $table->date('fech_dic')->nullable();
             
             $table->date('fech_ini_anti')->nullable();
             $table->date('fech_fin_anti')->nullable();
