@@ -50,9 +50,9 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Modalidad de Retiro</h3>
+                                    <h3 class="panel-title">Informacion General</h3>
                                 </div>
-                                @if($info_moda)
+                                @if($info_gen)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar Datos Generales">
                                         <div data-toggle="modal" data-target="#myModal-modalidad"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
@@ -63,11 +63,11 @@
                         </div>
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
-                                @if($info_moda)
-                                    <div class="col-md-6">
-                                        <table class="table" style="width:100%;">
+                                @if($info_gen)
+                                    <div class="col-md-12">
+                                        <table class="table table-responsive" style="width:100%;">
                                             <tr>
-                                                <td style="border-top:0;">
+                                                <td style="border-top:0px;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Modalidad
@@ -78,7 +78,30 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
+                                            <tr>
+                                                <td style="border-top:0px;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Ciudad
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $fondoTramite->departamento->name !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:0px;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Observaciones
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $fondoTramite->obs !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         </table>
                                     </div>
                                 @else
@@ -441,21 +464,27 @@
 </div>
 
 
+
+
+
+
+
+
+
 <div id="myModal-modalidad" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog">
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Editar Modalidad de Retiro</h4>
+                <h4 class="modal-title">Editar Información General</h4>
             </div>
             <div class="modal-body">
 
                 {!! Form::model($fondoTramite, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <input type="hidden" name="type" value="moda"/>
+                <input type="hidden" name="type" value="gene"/>
                 <div class="row">
                     <div class="col-md-12">
-
                         <div class="form-group">
                                     {!! Form::label('modalidad', 'MODALIDAD', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
@@ -463,9 +492,29 @@
                                 <span class="help-block">Seleccione la Modalidad</span>
                             </div>
                         </div>
-                   
                     </div>
-
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                                    {!! Form::label('departamento', 'CIUDAD', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::select('departamento', $list_departamentos, $fondoTramite->departamento_id, ['class' => 'combobox form-control', 'required' ]) !!}
+                                <span class="help-block">Seleccione el departamento</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                                {!! Form::label('observaciones', 'OBSERVACIONES', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::textarea('observaciones', $fondoTramite->obs, ['class'=> 'form-control', 'rows' => '2']) !!}
+                                <span class="help-block">Observaciones</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row text-center">

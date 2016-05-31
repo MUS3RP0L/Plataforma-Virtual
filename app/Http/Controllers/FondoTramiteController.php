@@ -19,6 +19,7 @@ use Muserpol\Afiliado;
 use Muserpol\Conyuge;
 use Muserpol\Solicitante;
 use Muserpol\Modalidad;
+use Muserpol\Departamento;
 use Muserpol\Requisito;
 use Muserpol\FondoTramite;
 use Muserpol\Documento;
@@ -54,8 +55,15 @@ class FondoTramiteController extends Controller
              $list_modalidades[$item->id]=$item->name;
         }
 
+        $departamentos = Departamento::all();
+        $list_departamentos = array('' => '');
+        foreach ($departamentos as $item) {
+             $list_departamentos[$item->id]=$item->name;
+        }
+
         return [
-            'list_modalidades' => $list_modalidades  
+            'list_modalidades' => $list_modalidades,
+            'list_departamentos' => $list_departamentos  
         ];
     }
 
@@ -74,9 +82,9 @@ class FondoTramiteController extends Controller
         }
 
         if ($fondoTramite->modalidad_id) {
-            $info_moda = TRUE;
+            $info_gen = TRUE;
         }else{
-            $info_moda = FALSE;
+            $info_gen = FALSE;
         }
 
         if ($fondoTramite->obs) {
@@ -94,6 +102,8 @@ class FondoTramiteController extends Controller
             $info_soli = FALSE;
         }
 
+        $requisitos = Requisito::modalidadIs($fondoTramite->modalidad_id)->get();
+
         $documentos = Documento::fonTraIs($fondoTramite->id)->get();
 
         if (Documento::fonTraIs($fondoTramite->id)->first()) {
@@ -102,8 +112,6 @@ class FondoTramiteController extends Controller
             $info_docu = FALSE;
         }
         
-        $requisitos = Requisito::where('modalidad_id', '=', $fondoTramite->modalidad_id)->get();
-
         $data = array(
             'afiliado' => $afiliado,
             'conyuge' => $conyuge,
@@ -111,7 +119,7 @@ class FondoTramiteController extends Controller
             'solicitante' => $solicitante,
             'documentos' => $documentos,
             'requisitos' => $requisitos,
-            'info_moda' => $info_moda,
+            'info_gen' => $info_gen,
             'info_soli' => $info_soli,
             'info_docu' => $info_docu,
             'info_obs' => $info_obs
@@ -205,9 +213,11 @@ class FondoTramiteController extends Controller
             $fondoTramite = FondoTramite::where('afiliado_id', '=', $afiliado->id)->first();
 
             switch ($request->type) {
-                case 'moda':
+                case 'gene':
 
                     $fondoTramite->modalidad_id = trim($request->modalidad);
+                    $fondoTramite->departamento_id = trim($request->departamento);
+                    $fondoTramite->obs = trim($request->observaciones);
 
                     $fondoTramite->save();
                     

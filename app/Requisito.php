@@ -24,4 +24,9 @@ class Requisito extends Model
     {
         return $this->hasMany('Muserpol\Documento');
     }
+
+    public function scopeModalidadIs($query, $id)
+    {
+        return $query->where('modalidad_id', $id);
+    }
 }

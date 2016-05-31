@@ -41,6 +41,11 @@ class FondoTramite extends Model
         return $this->belongsTo('Muserpol\Modalidad');
     }
 
+    public function departamento(){
+
+        return $this->belongsTo('Muserpol\Departamento');
+    }
+
     public function documentos(){
 
         return $this->hasMany('Muserpol\Documento');
