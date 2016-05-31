@@ -21,9 +21,8 @@ use Muserpol\Solicitante;
 use Muserpol\Modalidad;
 use Muserpol\Requisito;
 use Muserpol\FondoTramite;
-use Muserpol\Recepcion;
 use Muserpol\Documento;
-use Muserpol\DictamenLegal;
+
 
 class FondoTramiteController extends Controller
 {
@@ -51,20 +50,12 @@ class FondoTramiteController extends Controller
     {
         $modalidades = Modalidad::all();
         $list_modalidades = array('' => '');
-
         foreach ($modalidades as $item) {
              $list_modalidades[$item->id]=$item->name;
         }
 
-        $requisitos = Requisito::all();
-        $list_requisitos = array('' => '');
-        foreach ($requisitos as $item) {
-             $list_requisitos[$item->id]=$item->name;
-        }
-
         return [
-            'list_modalidades' => $list_modalidades,
-            'list_requisitos' => $list_requisitos     
+            'list_modalidades' => $list_modalidades  
         ];
     }
 
@@ -72,55 +63,40 @@ class FondoTramiteController extends Controller
 
         $afiliado = Afiliado::idIs($afid)->first();
 
-        $conyuge = Conyuge::where('afiliado_id', '=', $afid)->first();
+        $conyuge = Conyuge::afiIs($afid)->first();
         if (!$conyuge) {$conyuge = new Conyuge;}
 
-        $fondoTramite = FondoTramite::where('afiliado_id', '=', $afid)->first();
+        $fondoTramite = FondoTramite::afiIs($afid)->first();
         if (!$fondoTramite) {
             $fondoTramite = new FondoTramite;
             $fondoTramite->afiliado_id = $afid;
             $fondoTramite->save();
-
-            $recepcion = new Recepcion;
-            $recepcion->fondo_tramite_id = $fondoTramite->id;
-            $recepcion->save();
-        }
-         
-        $solicitante = Solicitante::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
-
-        if (!$solicitante) {$solicitante = new Solicitante;}
-
-        if ($solicitante->ci || $solicitante->pat || $solicitante->mat || $solicitante->nom || $solicitante->nom2) {
-            $info_soli = 1;
-        }else{
-            $info_soli = 0;
         }
 
         if ($fondoTramite->modalidad_id) {
-            $info_moda = 1;
+            $info_moda = TRUE;
         }else{
-            $info_moda = 0;
+            $info_moda = FALSE;
+        }
+         
+        $solicitante = Solicitante::fonTraIs($fondoTramite->id)->first();
+        if (!$solicitante) {$solicitante = new Solicitante;}
+
+        if ($solicitante->ci) {
+            $info_soli = TRUE;
+        }else{
+            $info_soli = FALSE;
         }
 
-        $recepcion = Recepcion::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
-        $documentos = Documento::where('recepcion_id', '=', $recepcion->id)->get();
+        $documentos = Documento::fonTraIs($fondoTramite->id)->get();
 
         if (Documento::where('recepcion_id', '=', $recepcion->id)->first()) {
-            $info_requi = TRUE;
-            
+            $info_docu = TRUE;
         }else{
-            $info_requi = FALSE;
+            $info_docu = FALSE;
         }
-            $requisitos = Requisito::where('modalidad_id', '=', $fondoTramite->modalidad_id)->get();
-
-        $dictamenlegal = DictamenLegal::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
-        if($dictamenlegal){
-            $info_dict = 1;
-        }
-        else{
-            $info_dict = 0;
-            $dictamenlegal = new DictamenLegal;
-        }
+        
+        $requisitos = Requisito::where('modalidad_id', '=', $fondoTramite->modalidad_id)->get();
 
         $data = array(
             'afiliado' => $afiliado,
@@ -129,11 +105,9 @@ class FondoTramiteController extends Controller
             'solicitante' => $solicitante,
             'documentos' => $documentos,
             'requisitos' => $requisitos,
-            'info_soli' => $info_soli,
             'info_moda' => $info_moda,
-            'info_requi' => $info_requi,
-            'dictamenlegal' => $dictamenlegal,
-            'info_dict' => $info_dict
+            'info_soli' => $info_soli,
+            'info_docu' => $info_docu
         );
 
         $data = array_merge($data, self::getViewModel());
@@ -153,6 +127,7 @@ class FondoTramiteController extends Controller
     {
         return view('fondotramite.create', self::getData($id));
     }
+
 
     public function print_ventanilla($afid) 
     {
@@ -202,14 +177,12 @@ class FondoTramiteController extends Controller
             
             'afiliado_id' => 'numeric',
             'modalidad_id' => 'numeric',
-            
         ];
 
         $messages = [
             
             'afiliado_id.numeric' => 'Solo se aceptan números para id afiliado', 
             'modalidad_id.numeric' => 'Solo se aceptan números para id modalidad'
-
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);

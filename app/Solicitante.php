@@ -33,6 +33,11 @@ class Solicitante extends Model
         return $this->belongsTo('Muserpol\SoliType');
     }
 
+    public function scopeFonTraIs($query, $id)
+    {
+        return $query->where('fondo_tramite_id', $id);
+    }
+
     public function getFullNametoPrint()
     {
         return $this->nom . ' ' . $this->pat. ' ' . $this->mat;

@@ -84,7 +84,7 @@ class CreateFondotramites extends Migration
 
             $table->timestamps();
 
-            $table->foreign('recepcion_id')->references('id')->on('recepciones');        
+            $table->foreign('requisito_id')->references('id')->on('requisitos');        
             $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
         });
 

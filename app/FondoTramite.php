@@ -43,4 +43,9 @@ class FondoTramite extends Model
         return $this->hasMany('Muserpol\DictamenLegal');
     }
 
+    public function scopeAfiIs($query, $id)
+    {
+        return $query->where('afiliado_id', $id);
+    }
+
 }

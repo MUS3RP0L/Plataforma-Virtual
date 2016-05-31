@@ -26,6 +26,11 @@ class Conyuge extends Model
         return $this->belongsTo('Muserpol\Afiliado');
     }
 
+    public function scopeAfiIs($query, $id)
+    {
+        return $query->where('afiliado_id', $id);
+    }
+
     public function getDataEdit_fech_nac()
     {	
 		if ($this->fech_nac) {
