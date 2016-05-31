@@ -165,7 +165,7 @@ class SolicitanteController extends Controller
             Session::flash('message', $message);
         }
         
-        return redirect('afiliado/'.$id);
+        return redirect('tramite_fondo_retiro/'.$id);
     }
 
     /**
