@@ -11,26 +11,35 @@ class Solicitante extends Model
     protected $table = 'solicitantes';
 
 	protected $fillable = [
-	
+	    'fondo_tramite_id',
+        'soli_type_id',
 		'ci',
 		'pat',
 		'mat',
 		'nom',
-		'nom2',
-		'fech_nac'
+		'paren',
+		'zona_domi',
+        'calle_domi',
+        'num_domi',
+        'tele_domi',
+        'celu_domi',
+        'zona_trab',
+        'calle_trab',
+        'num_trab',
 		
 	];
 
 	protected $guarded = ['id'];
 
-	public function afiliado()
-    {
-        return $this->belongsTo('Muserpol\Afiliado');
-    }
-
+	
     public function soliType()
     {
         return $this->belongsTo('Muserpol\SoliType');
+    }
+
+    public function fondo_tramite()
+    {
+        return $this->belongsTo('Muserpol\FondoTramite');
     }
 
     public function scopeFonTraIs($query, $id)

@@ -12,7 +12,20 @@ class FondoTramite extends Model
 		
 		'afiliado_id',
 		'modalidad_id',
-		'name',
+		'departamento_id',
+        'fech_ven',
+        'fech_arc',
+        'fech_cal',
+        'fech_dic',
+        'fech_ini_anti',
+        'fech_fin_anti',
+        'fech_ini_reco',
+        'fech_fin_reco',
+        'total_cot',
+        'total_cot_adi',
+        'subtotal',
+        'rendimiento',
+        'obs'
 		
 	];
 
@@ -33,14 +46,14 @@ class FondoTramite extends Model
         return $this->hasMany('Muserpol\Documento');
     }
 
-    public function recepciones(){
+    public function antecedentes(){
 
-        return $this->hasMany('Muserpol\Recepcion');
+        return $this->hasMany('Muserpol\Antecedente');
     }
 
-    public function dictamen_legales(){
-
-        return $this->hasMany('Muserpol\DictamenLegal');
+    public function solicitantes()
+    {
+        return $this->hasMany('Muserpol\Solicitante');
     }
 
     public function scopeAfiIs($query, $id)

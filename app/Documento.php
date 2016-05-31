@@ -14,7 +14,7 @@ class Documento extends Model
     	'requisito_id',
     	'fondo_tramite_id',
     	'fech_pres',
-    	'est_civ',
+    	'est',
     	'obs'
     ];
 

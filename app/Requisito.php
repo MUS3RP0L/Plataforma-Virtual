@@ -9,7 +9,7 @@ class Requisito extends Model
     protected $table = 'requisitos';
 
 	protected $fillable = [
-	
+		'modalidad_id',
 		'name'
 	];
 
@@ -18,5 +18,10 @@ class Requisito extends Model
 	public function modalidad()
     {
         return $this->belongsTo('Muserpol\Modalidad');
+    }
+
+    public function documentos()
+    {
+        return $this->hasMany('Muserpol\Documento');
     }
 }

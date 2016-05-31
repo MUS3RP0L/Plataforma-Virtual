@@ -15,4 +15,9 @@ class Prestacion extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function antecedentes(){
+
+        return $this->hasMany('Muserpol\Antecedente');
+    }
 }
