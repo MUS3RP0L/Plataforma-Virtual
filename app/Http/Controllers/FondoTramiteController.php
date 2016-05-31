@@ -78,6 +78,12 @@ class FondoTramiteController extends Controller
         }else{
             $info_moda = FALSE;
         }
+
+        if ($fondoTramite->obs) {
+            $info_obs = TRUE;
+        }else{
+            $info_obs = FALSE;
+        }
          
         $solicitante = Solicitante::fonTraIs($fondoTramite->id)->first();
         if (!$solicitante) {$solicitante = new Solicitante;}
@@ -90,7 +96,7 @@ class FondoTramiteController extends Controller
 
         $documentos = Documento::fonTraIs($fondoTramite->id)->get();
 
-        if (Documento::where('recepcion_id', '=', $recepcion->id)->first()) {
+        if (Documento::fonTraIs($fondoTramite->id)->first()) {
             $info_docu = TRUE;
         }else{
             $info_docu = FALSE;
@@ -107,7 +113,8 @@ class FondoTramiteController extends Controller
             'requisitos' => $requisitos,
             'info_moda' => $info_moda,
             'info_soli' => $info_soli,
-            'info_docu' => $info_docu
+            'info_docu' => $info_docu,
+            'info_obs' => $info_obs
         );
 
         $data = array_merge($data, self::getViewModel());
@@ -210,17 +217,16 @@ class FondoTramiteController extends Controller
                 case 'requi':
                     if($fondoTramite->modalidad_id)
                     {
-                        $recepcion = Recepcion::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
 
                         foreach (json_decode($request->data) as $item)
                           {   
-                            $Documento = Documento::where('recepcion_id', '=', $recepcion->id)->where('requisito_id', '=', $item->requisito_id)->first();
+                            $Documento = Documento::where('fondo_tramite_id', '=', $fondoTramite->id)->where('requisito_id', '=', $item->requisito_id)->first();
                             
                             if (!$Documento) {
                                 $Documento = new Documento;
                             }
                             $Documento->requisito_id = $item->requisito_id;
-                            $Documento->recepcion_id = $recepcion->id;
+                            $Documento->recepcion_id = $fondoTramite->id;
                             $Documento->fech_pres = date('Y-m-d');
                             $Documento->est = $item->booleanValue;
                             $Documento->save();

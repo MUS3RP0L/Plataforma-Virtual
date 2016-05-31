@@ -300,7 +300,7 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title">Requisitos Presentados</h3>
                                 </div>
-                                @if($info_requi)
+                                @if($info_docu)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-requisitos"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
@@ -312,7 +312,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_requi)
+                                @if($info_docu)
 
                                     <div class="col-md-12">
 
@@ -374,9 +374,9 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title">Dictamen Legal</h3>
                                 </div>
-                                @if($info_dict == 1)
+                                @if($info_obs == 1)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                        <div data-toggle="modal" data-target="#myModal-dictamenlegal"> 
+                                        <div data-toggle="modal" data-target="#myModal-obs"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
                                         </div>
                                     </div>
@@ -386,7 +386,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_dict == 1)
+                                @if($info_obs == 1)
 
                                     <div class="col-md-6">
 
@@ -421,7 +421,7 @@
 
                                 @else
                                     <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-dictamenlegal"> 
+                                        <div data-toggle="modal" data-target="#myModal-obs"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Dictamen Legal">
                                                 <img class="circle" src="{!! asset('assets/images/modalidad.png') !!}" width="45px" alt="icon">                                                                          
                                             </button>
@@ -651,7 +651,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($list_requisitos, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($requisitos, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <input type="hidden" name="type" value="requi"/>
                 <div class="row">
@@ -698,7 +698,7 @@
     </div>
 </div>
 
-<div id="myModal-dictamenlegal" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="myModal-obs" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -707,23 +707,16 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($dictamenlegal, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($fondoTramite, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <input type="hidden" name="type" value="dictamen"/>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                                {!! Form::label('cite', 'CITE', ['class' => 'col-md-6 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('cite', $dictamenlegal->cite, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Cite</span>
-                            </div>
-                        </div>
 
                         <div class="form-group">
                                 {!! Form::label('obs', 'OBSERVACIÓN', ['class' => 'col-md-6 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('obs', $dictamenlegal->obs, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('obs', $fondoTramite->obs, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Observación</span>
                             </div>
                         </div>
@@ -963,7 +956,7 @@
     var solicitante = {!! $solicitante !!};
 
     var Model = function(requisitos) {
-        @if ($info_requi)
+        @if ($info_docu)
             this.requisitos = ko.observableArray(ko.utils.arrayMap(requisitos, function(documento) {
             return { requisito_id: documento.requisito_id, requiname: documento.requisito.name, booleanValue: documento.est };
             }));
@@ -1111,7 +1104,7 @@
         }
     };
     
-    @if ($info_requi)
+    @if ($info_docu)
         ko.applyBindings(new Model({!! $documentos !!}));
     @else
         ko.applyBindings(new Model({!! $requisitos !!}));
