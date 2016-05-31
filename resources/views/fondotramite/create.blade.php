@@ -317,7 +317,7 @@
 
                 <div class="col-md-6">
 
-                     <div class="panel panel-primary">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
@@ -387,19 +387,15 @@
                         </div>
                     </div>
 
-                </div>
-
-
-                <div class="col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Dictamen Legal</h3>
+                                    <h3 class="panel-title">Trámite Cancelados</h3>
                                 </div>
-                                @if($info_obs == 1)
+                                @if($info_antec)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                        <div data-toggle="modal" data-target="#myModal-obs"> 
+                                        <div data-toggle="modal" data-target="#myModal-antec"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
                                         </div>
                                     </div>
@@ -409,44 +405,52 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_obs == 1)
+                                @if($info_antec)
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
 
-                                        <table class="table" style="width:100%;">
-                                            <tr>
-                                                <td style="border-top:0;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Cite
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $dictamenlegal->cite !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Observación
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $dictamenlegal->obs !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <table class="table table-striped table-hover" style="width:100%;font-size: 14px">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Sigla</th>
+                                                    <th>Tipo de Prestación</th>
+                                                    <th class="text-center">Estado</th>
+                                                    <th class="text-center">Número</th>
+                                                    <th class="text-center">Fecha</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                @foreach ($antecedentes as $item)
+                                                    <tr>
+                                                        <td>{!! $item->prestacion->name !!}</td>
+                                                        <td> 
+                                                            <div class="text-center">
+                                                                @if($item->est)
+                                                                <span class="glyphicon glyphicon-ok"></span>
+                                                                @endif
+                                                            </div>
+                                                        </td>
+                                                        <td style="width: 12%;"> 
+                                                            <div class="text-center">
+                                                                @if($item->est)
+                                                                    {!! $item->getData_fech_requi() !!}
+                                                                @endif
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                
+                                            </tbody>
                                         </table>
 
                                     </div>
 
                                 @else
                                     <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-obs"> 
-                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Dictamen Legal">
-                                                <img class="circle" src="{!! asset('assets/images/modalidad.png') !!}" width="45px" alt="icon">                                                                          
+                                        <div data-toggle="modal" data-target="#myModal-antec"> 
+                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos">
+                                                <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">                                                                          
                                             </button>
                                         </div>
                                     </div>
@@ -454,8 +458,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
 
             </div>
 
@@ -747,32 +751,46 @@
     </div>
 </div>
 
-<div id="myModal-obs" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog">
+<div id="myModal-antec" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Editar Dictamen Legal</h4>
+                <h4 class="modal-title">Editar Antecedentes</h4>
             </div>
             <div class="modal-body">
 
-                {!! Form::model($fondoTramite, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($prestaciones, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <input type="hidden" name="type" value="dictamen"/>
+                <input type="hidden" name="type" value="docu"/>
                 <div class="row">
-                    <div class="col-md-6">
-
-                        <div class="form-group">
-                                {!! Form::label('obs', 'OBSERVACIÓN', ['class' => 'col-md-6 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('obs', $fondoTramite->obs, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Observación</span>
-                            </div>
-                        </div>
-                   
+                    <div class="col-md-12" data-bind="event: { mouseover: enableDetails2, mouseout: disableDetails2 }">
+                        <table class="table table-striped table-hover" style="width:100%;font-size: 14px">
+                            <thead>
+                                <tr>
+                                    <th>Requisitos</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: prestaciones">
+                                <tr>
+                                    <td data-bind='text: prestaname'></td>
+                                    <td> 
+                                        <div class="row text-center">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                  <label><input type="checkbox" data-bind="checked: booleanValue"></label>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
+ 
+                <input type="hidden" name="data" data-bind="value: lastSavedJson2"/>
 
                 <div class="row text-center">
                     <div class="form-group">
@@ -782,12 +800,21 @@
                         </div>
                     </div>
                 </div>
-                {!! Form::close() !!}
+            {!! Form::close() !!}
 
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
 
 <div id="myModal-print" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
@@ -1004,7 +1031,7 @@
     var conyuge = {!! $conyuge !!};
     var solicitante = {!! $solicitante !!};
 
-    var Model = function(requisitos) {
+    var Model = function(requisitos, prestaciones) {
         @if ($info_docu)
             this.requisitos = ko.observableArray(ko.utils.arrayMap(requisitos, function(documento) {
             return { requisito_id: documento.requisito_id, requiname: documento.requisito.name, booleanValue: documento.est };
@@ -1015,7 +1042,16 @@
             }));
         @endif
 
-        this.detailsEnabled = ko.observable(false);
+        @if ($info_antec)
+            this.prestaciones = ko.observableArray(ko.utils.arrayMap(prestaciones, function(documento) {
+            return { prestacion_id: documento.prestacion_id, requiname: documento.requisito.name, booleanValue: documento.est };
+            }));
+        @else
+            this.prestaciones = ko.observableArray(ko.utils.arrayMap(prestaciones, function(documento) {
+            return { prestacion_id: documento.id, prestaname: documento.name, booleanValue: false };
+            }));
+        @endif
+
         this.enableDetails = function() {
             this.lastSavedJson(JSON.stringify(ko.toJS(this.requisitos), null, 2));
         };
@@ -1024,6 +1060,16 @@
         };
      
         this.lastSavedJson = ko.observable("");
+
+
+        this.enableDetails2 = function() {
+            this.lastSavedJson2(JSON.stringify(ko.toJS(this.prestaciones), null, 2));
+        };
+        this.disableDetails2 = function() {
+            this.lastSavedJson2(JSON.stringify(ko.toJS(this.prestaciones), null, 2));
+        };
+     
+        this.lastSavedJson2 = ko.observable("");
 
         this.typeToShow = ko.observable('' + solicitante.soli_type_id);
         this.parenShow = ko.observable(false);
@@ -1154,9 +1200,9 @@
     };
     
     @if ($info_docu)
-        ko.applyBindings(new Model({!! $documentos !!}));
+        ko.applyBindings(new Model({!! $documentos !!}, {!! $antecedentes !!}));
     @else
-        ko.applyBindings(new Model({!! $requisitos !!}));
+        ko.applyBindings(new Model({!! $requisitos !!}, {!! $prestaciones !!}));
     @endif
 
 </script>

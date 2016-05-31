@@ -30,13 +30,13 @@ class Documento extends Model
         return $this->belongsTo('Muserpol\Requisito');
     }
 
-    public function getData_fech_requi()
-    {   
-        return Util::getdateabre($this->fech_pres);
-    }
-
     public function scopeFonTraIs($query, $id)
     {
         return $query->where('fondo_tramite_id', $id);
+    }
+
+    public function getData_fech_requi()
+    {   
+        return Util::getdateabre($this->fech_pres);
     }
 }

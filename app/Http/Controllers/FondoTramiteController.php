@@ -23,6 +23,8 @@ use Muserpol\Departamento;
 use Muserpol\Requisito;
 use Muserpol\FondoTramite;
 use Muserpol\Documento;
+use Muserpol\Prestacion;
+use Muserpol\Antecedente;
 
 
 class FondoTramiteController extends Controller
@@ -63,7 +65,7 @@ class FondoTramiteController extends Controller
 
         return [
             'list_modalidades' => $list_modalidades,
-            'list_departamentos' => $list_departamentos  
+            'list_departamentos' => $list_departamentos 
         ];
     }
 
@@ -105,11 +107,19 @@ class FondoTramiteController extends Controller
         $requisitos = Requisito::modalidadIs($fondoTramite->modalidad_id)->get();
 
         $documentos = Documento::fonTraIs($fondoTramite->id)->get();
-
         if (Documento::fonTraIs($fondoTramite->id)->first()) {
             $info_docu = TRUE;
         }else{
             $info_docu = FALSE;
+        }
+
+        $prestaciones = Prestacion::all();
+
+        $antecedentes = Antecedente::fonTraIs($fondoTramite->id)->get();
+        if (Antecedente::fonTraIs($fondoTramite->id)->first()) {
+            $info_antec = TRUE;
+        }else{
+            $info_antec = FALSE;
         }
         
         $data = array(
@@ -119,10 +129,13 @@ class FondoTramiteController extends Controller
             'solicitante' => $solicitante,
             'documentos' => $documentos,
             'requisitos' => $requisitos,
+            'prestaciones' => $prestaciones,
+            'antecedentes' => $antecedentes,
             'info_gen' => $info_gen,
             'info_soli' => $info_soli,
             'info_docu' => $info_docu,
-            'info_obs' => $info_obs
+            'info_obs' => $info_obs,
+            'info_antec' => $info_antec
         );
 
         $data = array_merge($data, self::getViewModel());
@@ -246,24 +259,7 @@ class FondoTramiteController extends Controller
                         $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
                     }else{
                         $message = "Seleccione la modalidad";
-                    }
-                    
-                
-                break;
-
-                case 'dictamen':
-                  
-                        $dictamenlegal = DictamenLegal::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
-                              if(!$dictamenlegal){
-                            $dictamenlegal = new DictamenLegal;
-                        }
-                        $dictamenlegal->fondo_tramite_id = $fondoTramite->id;
-                        $dictamenlegal->cite = trim($request->cite);
-                        $dictamenlegal->obs = trim($request->obs);
-
-                        $dictamenlegal->save();
-                        $message = "Información de Dictamen Legal actualizado con éxito";
-                        
+                    }                
                 break;
 
             }
