@@ -83,13 +83,7 @@ class CreateAfiliadosTable extends Migration
 
             $table->date('fech_ini_serv')->nullable();
             $table->date('fech_fin_serv')->nullable();
-
-            $table->date('fech_ini_anti')->nullable();
-            $table->date('fech_fin_anti')->nullable();
-
-            $table->date('fech_ini_reco')->nullable();
-            $table->date('fech_fin_reco')->nullable();
-
+            
             $table->date('fech_est')->nullable();
             $table->date('fech_gra')->nullable();
             $table->date('fech_uni')->nullable();

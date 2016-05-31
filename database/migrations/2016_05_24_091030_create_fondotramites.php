@@ -12,7 +12,6 @@ class CreateFondotramites extends Migration
      */
     public function up()
     {
-
         Schema::create('modalidades', function(Blueprint $table)
         {
             $table->engine = 'InnoDB';
@@ -30,13 +29,28 @@ class CreateFondotramites extends Migration
             $table->bigIncrements('id');   
             $table->UnsignedBigInteger('afiliado_id');
             $table->UnsignedBigInteger('modalidad_id')->nullable();
-      
+            $table->UnsignedBigInteger('departamento_id')->nullable();
             
+            $table->date('fech_ini_anti')->nullable();
+            $table->date('fech_fin_anti')->nullable();
+
+            $table->date('fech_ini_reco')->nullable();
+            $table->date('fech_fin_reco')->nullable();
+
+            $table->double('total_cot');
+            $table->double('total_cot_adi');
+            $table->double('subtotal');
+            $table->double('rendimiento');
+
+            $table->string('obs');
+
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->foreign('modalidad_id')->references('id')->on('modalidades');
+            $table->foreign('departamento_id')->references('id')->on('departamentos');
+
 
         });
 
@@ -53,31 +67,13 @@ class CreateFondotramites extends Migration
             $table->foreign('modalidad_id')->references('id')->on('modalidades');
         });
 
-        Schema::create('recepciones', function (Blueprint $table) {
-        
-            $table->engine = 'InnoDB';    
-            
-            $table->bigIncrements('id');  
-            $table->UnsignedBigInteger('fondo_tramite_id');
-       
-            $table->string('destino_id');
-
-            $table->date('fech_entrega');
-
-            $table->timestamps();
-            $table->softDeletes();
-
-            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
-
-        });
-
         Schema::create('documentos', function (Blueprint $table) {
         
             $table->engine = 'InnoDB';    
             
             $table->bigIncrements('id'); 
             $table->UnsignedBigInteger('requisito_id');
-            $table->UnsignedBigInteger('recepcion_id');
+            $table->UnsignedBigInteger('fondo_tramite_id');
 
             $table->date('fech_pres');
             $table->boolean('est')->default(0);
@@ -86,8 +82,39 @@ class CreateFondotramites extends Migration
             $table->timestamps();
 
             $table->foreign('recepcion_id')->references('id')->on('recepciones');        
-            $table->foreign('requisito_id')->references('id')->on('requisitos');        
+            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
 
+        });
+
+        Schema::create('prestaciones', function (Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('id');
+            $table->text('name')->nullable();
+            $table->string('sigla')->nullable();
+            $table->timestamps();
+            $table->softDeletes(); 
+
+         });
+
+        Schema::create('antecedentes', function (Blueprint $table)
+        {
+            $table->engine ='InnoDB';
+
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('prestacion_id');
+            $table->UnsignedBigInteger('fondo_tramite_id');
+
+
+            $table->boolean('est')->default(0);
+            $table->date('fecha');
+            $table->string('nro_comp');
+            $table->timestamps();
+            $table->softDeletes(); 
+
+            $table->foreign('prestacion_id')->references('id')->on('prestaciones');      
+            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
         });
 
         Schema::create('soli_types', function(Blueprint $table)
@@ -133,65 +160,8 @@ class CreateFondotramites extends Migration
             $table->foreign('soli_type_id')->references('id')->on('soli_types');        
         });
 
-        Schema::create('prest_types', function (Blueprint $table)
-        {
-            $table->engine = 'InnoDB';
+        
 
-            $table->bigIncrements('id');
-            $table->text('name')->nullable();
-            $table->string('sigla')->nullable();
-            $table->timestamps();
-            $table->softDeletes(); 
-
-         });
-
-        Schema::create('certificaciones', function (Blueprint $table)
-        {
-            $table->engine = 'InnoDB';
-
-            $table->bigIncrements('id');
-            $table->UnsignedBigInteger('fondo_tramite_id');
-
-            $table->date('fecha')->nullable();
-            $table->timestamps();
-            $table->softDeletes(); 
-
-            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
-        });
-
-        Schema::create('antecedentes', function (Blueprint $table)
-        {
-            $table->engine ='InnoDB';
-
-            $table->bigIncrements('id');
-            $table->UnsignedBigInteger('certificacion_id');
-            $table->UnsignedBigInteger('prest_type_id');
-
-            $table->boolean('est')->default(0);
-            $table->date('fecha');
-            $table->string('nro_comp');
-            $table->timestamps();
-            $table->softDeletes(); 
-
-            $table->foreign('certificacion_id')->references('id')->on('certificaciones'); 
-            $table->foreign('prest_type_id')->references('id')->on('prest_types');               
-         });
-
-        Schema::create('dictamen_legales', function (Blueprint $table)
-        {
-            $table->engine ='InnoDB';
-
-            $table->bigIncrements('id');
-            $table->UnsignedBigInteger('fondo_tramite_id');
-            $table->string('nro_resol');
-            $table->date('fecha');
-            $table->string('cite');
-            $table->string('obs');
-            $table->timestamps();
-            $table->softDeletes(); 
-
-            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');
-        });
     }
 
     /**
