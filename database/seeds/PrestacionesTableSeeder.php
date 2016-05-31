@@ -18,7 +18,7 @@ class PrestacionesTableSeeder extends Seeder
         Eloquent::reguard();
     }
 
-    private function createPrestacion()
+    private function createPrestaciones()
     {
         $statuses = [
             ['id' => '1', 'name' => 'ANTICIPO FONDO DE RETIRO POLICIAL(LETRA"A"/LETRA"C")','sigla' =>'FRP-ANT'],
