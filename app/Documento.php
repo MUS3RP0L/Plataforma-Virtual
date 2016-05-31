@@ -3,6 +3,7 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
+use Muserpol\Helper\Util;
 
 class Documento extends Model
 {
@@ -27,5 +28,10 @@ class Documento extends Model
     public function requisito(){
 
         return $this->belongsTo('Muserpol\Requisito');
+    }
+
+    public function getData_fech_requi()
+    {   
+        return Util::getdateabre($this->fech_pres);
     }
 }

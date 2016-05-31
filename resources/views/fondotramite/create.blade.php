@@ -324,8 +324,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>Nombre de Documento Presentado</th>
-                                                    <th>Estado</th>
-                                                    <th> Fecha </th>
+                                                    <th class="text-center">Estado</th>
+                                                    <th class="text-center"> Fecha </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -334,16 +334,16 @@
                                                     <tr>
                                                         <td>{!! $item->requisito->name !!}</td>
                                                         <td> 
-                                                            <div class="row text-center">
+                                                            <div class="text-center">
                                                                 @if($item->est)
                                                                 <span class="glyphicon glyphicon-ok"></span>
                                                                 @endif
                                                             </div>
                                                         </td>
-                                                        <td> 
-                                                            <div class="row text-center">
+                                                        <td style="width: 12%;"> 
+                                                            <div class="text-center">
                                                                 @if($item->est)
-                                                                    {!! $item->fech_pres !!}
+                                                                    {!! $item->getData_fech_requi() !!}
                                                                 @endif
                                                             </div>
                                                         </td>
@@ -631,7 +631,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
                             &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
                         </div>
                     </div>

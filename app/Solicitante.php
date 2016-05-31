@@ -4,6 +4,7 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Muserpol\Helper\Util;
 
 class Solicitante extends Model
 {
@@ -27,9 +28,28 @@ class Solicitante extends Model
         return $this->belongsTo('Muserpol\Afiliado');
     }
 
+    public function soliType()
+    {
+        return $this->belongsTo('Muserpol\SoliType');
+    }
+
     public function getFullNametoPrint()
     {
         return $this->nom . ' ' . $this->pat. ' ' . $this->mat;
+    }
+
+    public function getParentesco()
+    {
+        if ($this->soliType->id == 3) {
+            return $this->paren;
+        }else{
+            return $this->soliType->name;
+        }
+    }
+
+    public function getFullDateNactoPrint()
+    {   
+        return Util::getfulldate($this->fech_nac);
     }
 
     public function getFullDireccDomitoPrint()

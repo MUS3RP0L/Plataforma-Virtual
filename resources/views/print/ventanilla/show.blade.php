@@ -28,9 +28,58 @@
             </tr>
       </table>
 
+      <h1><b>VENTANILLA DE ATENCIÓN AL AFILIADO<br>FONDO DE RETIRO POLICIAL INDIVIDUAL</b></h1>
+      
+      <table class="tablet">
+        <tr>
+          <td style="width: 60%;border: 0px;">
+            <div class="title"><b>I. DATOS GENERALES</b></div>
+          </td>
+          <td style="width: 40%;border: 0px;text-align:right;">
+            <div class="title">Fecha de Emisión: La Paz, {!! $date !!}</div>
+          </td>
+        </tr>
+      </table>
 
       <div id="project">
-
+        <table>
+            <tr>
+              <th class="service">SOLICITANTE</th>
+              <td class="info">{!! $solicitante->getFullNametoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">TITULAR</th>
+              <td class="info">{!! $afiliado->getFullNametoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">PARENTESCO DEL TITULAR</th>
+              <td class="info">{!! $solicitante->getParentesco() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">CARNET DE IDENTIDAD</th>
+              <td class="info">{!! $solicitante->ci !!}</td>
+            </tr>
+            <tr>
+              <th class="service">FECHA DE NACIMIENTO</th>
+              <td class="info">{!! $solicitante->getFullDateNactoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">DIRECCIÓN DE DOMICILIO</th>
+              <td class="info">{!! $solicitante->getFullDireccDomitoPrint() !!}</td>
+            </tr>
+            <tr>
+              <th class="service">TELEFONO DOMICILIO</th>
+              <td class="info">{!! $solicitante->tele_domi !!}</td>
+            </tr>
+            <tr>
+              <th class="service">TELEFONO CELULAR</th>
+              <td class="info">{!! $solicitante->celu_domi !!}</td>
+            </tr>
+            <tr>
+              <th class="service">CIUDAD</th>
+              <td class="info"></td>
+            </tr>
+          </table>
       </div>
 
 
