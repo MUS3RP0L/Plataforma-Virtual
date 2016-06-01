@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
+	{!! Breadcrumbs::render('editar_usuario') !!}
     <div class="row">
         <div class="col-md-12">
             <div class="panel-heading">
@@ -23,21 +24,21 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-												{!! Form::label('ape', 'APELLIDOS', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('ape', 'Apellidos', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
-												{!! Form::text('ape', $user->ape, ['class'=> 'form-control', 'required' => 'required']) !!}
+												{!! Form::text('ape', $user->ape, ['class'=> 'form-control', 'required' => 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
 												<span class="help-block">Apellido Paterno y Apellido Materno</span>
 											</div>
 										</div>
 										<div class="form-group">
-												{!! Form::label('nom', 'NOMBRES', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('nom', 'Nombres', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
-												{!! Form::text('nom', $user->nom, ['class'=> 'form-control', 'required' => 'required']) !!}
+												{!! Form::text('nom', $user->nom, ['class'=> 'form-control', 'required' => 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
 												<span class="help-block">Primer y Segundo Nombre</span>
 											</div>
 										</div>									
 										<div class="form-group">
-												{!! Form::label('tel', 'TELÉFONO', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('tel', 'Núm de Teléfono', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
 												{!! Form::text('tel', $user->tel, ['class'=> 'form-control', 'required' => 'required']) !!}
 												<span class="help-block">Teléfono Celular</span>
