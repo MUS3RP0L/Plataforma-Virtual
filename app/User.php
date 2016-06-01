@@ -45,13 +45,20 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password'];
 
-    public function getFullName()
-    {
-        return $this->nom . ' ' . $this->ape;
+    public function rol(){
+
+        return $this->belongsTo('Muserpol\Rol');
     }
 
     public function scopeIdIs($query, $id)
     {
         return $query->where('id', $id);
     }
+
+    public function getFullName()
+    {
+        return $this->nom . ' ' . $this->ape;
+    }
+
+    
 }

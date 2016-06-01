@@ -10,6 +10,12 @@ Breadcrumbs::register('usuario', function($breadcrumbs) {
     $breadcrumbs->push('Usuarios', URL::to('usuario'));
 });
 
+// Usuario
+Breadcrumbs::register('crear_usuario', function($breadcrumbs) {
+    $breadcrumbs->parent('usuario');
+    $breadcrumbs->push('Nuevo Usuario');
+});
+
 // Afiliado Search
 Breadcrumbs::register('afiliado', function($breadcrumbs) {
     $breadcrumbs->push('Afiliados', URL::to('afiliado'));

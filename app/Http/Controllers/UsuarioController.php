@@ -33,7 +33,7 @@ class UsuarioController extends Controller
     public function UsuariosData()
     {
 
-        $users = User::select(['id','username', 'ape', 'nom', 'tel','role','status'])->where('id', '>', 1);
+        $users = User::select(['id','username', 'ape', 'nom', 'tel','rol_id','status'])->where('id', '>', 1);
 
         return Datatables::of($users)->addColumn('action', function ($user) {
                 return $user->status == "Activo" ? 
@@ -59,7 +59,6 @@ class UsuarioController extends Controller
         foreach ($roles as $item) {
              $list_roles[$item->id]=$item->name;
         }
-
         return [
             'list_roles' => $list_roles
         ];
@@ -90,12 +89,9 @@ class UsuarioController extends Controller
     public function edit($id)
     {   
         $user = User::idIs($id)->first();
-
         $data = [
-            'role' => $role,
             'user' => $user
         ];
-
         $data = array_merge($data, self::getViewModel());
 
         return View('usuarios.edit', $data);
@@ -119,21 +115,21 @@ class UsuarioController extends Controller
 
         if ($id) {
             $rules = [
-                'ape' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-                'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+                'ape' => 'required|min:3|regex:/^[A-ZÑa-záéíóúàèìòùäëïöüñ\s]+$/i',
+                'nom' => 'required|min:3|regex:/^[A-ZÑa-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'tel' => 'required|min:8|numeric',
                 'username' => 'required|unique:users,username,'.$id,
-                'role' => 'required'
+                'rol' => 'required'
             ];
         }
         else{ 
             $rules = [
-                'ape' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-                'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+                'ape' => 'required|min:3|regex:/^[A-ZÑa-záéíóúàèìòùäëïöüñ\s]+$/i',
+                'nom' => 'required|min:3|regex:/^[A-ZÑa-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'tel' => 'required|min:8|numeric',
                 'username' => 'required|unique:users,username',
                 'password' => 'required|min:6|confirmed',
-                'role' => 'required'
+                'rol' => 'required'
             ];
         } 
         
@@ -169,18 +165,17 @@ class UsuarioController extends Controller
         else{
 
             if ($id) {
-                $user = User::idIs($id)->firstOrFail();
+                $user = User::idIs($id)->first();
             } else {
                 $user = new User();
             }   
+
             $user->ape = trim($request->ape);
             $user->nom = trim($request->nom);
             $user->tel = trim($request->tel);
             $user->username = trim($request->username);
-            if($request->password){
-                $user->password = trim(bcrypt($request->password));
-            }
-            $user->role_id = trim($request->rol); 
+            if($request->password){$user->password = trim(bcrypt($request->password));}
+            $user->rol_id = trim($request->rol); 
             $user->save();
 
             if ($id) {
@@ -203,7 +198,7 @@ class UsuarioController extends Controller
      */
     public function block($id)
     {
-        $user = User::where('id', '=', $id)->firstOrFail();
+        $user = User::idIs($id)->first();
         $user->status = "Inactivo";
         $user->save();
 
@@ -214,7 +209,7 @@ class UsuarioController extends Controller
 
     public function unBlock($id)
     {
-        $user = User::where('id', '=', $id)->firstOrFail();
+        $user = User::idIs($id)->first();
         $user->status = "Activo";
         $user->save();
 

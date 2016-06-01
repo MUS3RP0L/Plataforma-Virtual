@@ -26,8 +26,8 @@
 
                                 <thead>
                                     <tr class="success">
-                                        <th>Usuario</th>
-                                        <th>Nombre</th>
+                                        <th>Número de Carnet</th>
+                                        <th>Nombres y Apellidos</th>
                                         <th>Teléfono</th>
                                         <th>Tipo</th>
                                         <th>Estado</th>
@@ -52,14 +52,14 @@ $(function() {
         "dom": '<"top">t<"bottom"ip>',   
         processing: true,
         serverSide: true,
-        pageLength: 10,
+        pageLength: 30,
         ajax: '{!! route('getUsuario') !!}',
 
         columns: [
             { data: 'username', name: 'username', sWidth: '20%' },
             { data: 'name', name: 'name', sWidth: '20%', bSortable: false },
             { data: 'tel', name: 'tel', sWidth: '10%', bSortable: false },
-            { data: 'role', name: 'role', sWidth: '15%', bSortable: false },
+            { data: 'rol_id', name: 'rol_id', sWidth: '15%', bSortable: false },
             { data: 'status', name: 'status', sWidth: '10%', bSortable: false },
             { data: 'action', name: 'action', sWidth: '20%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
         ]
