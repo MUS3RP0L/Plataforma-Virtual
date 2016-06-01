@@ -232,7 +232,6 @@ class FondoTramiteController extends Controller
                     $fondoTramite->modalidad_id = trim($request->modalidad);
                     $fondoTramite->departamento_id = trim($request->departamento);
                     $fondoTramite->obs = trim($request->observaciones);
-
                     $fondoTramite->save();
                     
                     $message = "Información de modalidad de Fondo de Retiro actualizado con éxito";
@@ -244,15 +243,16 @@ class FondoTramiteController extends Controller
 
                         foreach (json_decode($request->data) as $item)
                           {   
-                            $Documento = Documento::where('fondo_tramite_id', '=', $fondoTramite->id)->where('requisito_id', '=', $item->requisito_id)->first();
+                            $Documento = Documento::where('fondo_tramite_id', '=', $fondoTramite->id)
+                                            ->where('requisito_id', '=', $item->requisito_id)->first();
                             
                             if (!$Documento) {
                                 $Documento = new Documento;
+                                $Documento->fondo_tramite_id = $fondoTramite->id;
+                                $Documento->requisito_id = $item->requisito_id;
                             }
-                            $Documento->requisito_id = $item->requisito_id;
-                            $Documento->fondo_tramite_id = $fondoTramite->id;
-                            $Documento->fech_pres = date('Y-m-d');
                             $Documento->est = $item->booleanValue;
+                            $Documento->fech_pres = date('Y-m-d');
                             $Documento->save();
 
                         }
