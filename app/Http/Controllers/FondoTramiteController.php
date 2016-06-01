@@ -167,17 +167,37 @@ class FondoTramiteController extends Controller
     {
         $data = $this->getData($afid);
         $afiliado = $data['afiliado'];
-        $conyuge = $data['conyuge'];
+        $requisitos = $data['requisitos'];
         $solicitante = $data['solicitante'];
+        $documentos = $data['documentos'];
+        $fondoTramite = $data['fondoTramite'];
         $date = Util::getfulldate(date('Y-m-d'));
 
-        $view = \View::make('print.ventanilla.show', compact('afiliado', 'conyuge', 'solicitante', 'date'))->render();
+        $view = \View::make('print.ventanilla.show', compact('afiliado', 'requisitos', 'solicitante', 'fondoTramite', 'documentos', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
         return $pdf->stream();
     }
 
+    public function print_certificacion($afid) 
+    {
+        $data = $this->getData($afid);
+        $afiliado = $data['afiliado'];
+        $solicitante = $data['solicitante'];
+        $fondoTramite = $data['fondoTramite'];
+        $prestaciones = $data['prestaciones'];
+        $antecedentes = $data['antecedentes'];
+        
+        $date = Util::getfulldate(date('Y-m-d'));
+
+        $view = \View::make('print.certificacion.show', compact('afiliado', 'solicitante', 'fondoTramite', 'prestaciones', 'antecedentes', 'date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
+        return $pdf->stream();
+    }
+    
     public function print_dictamenlegal($afid)
     {
         $data = $this->getData($afid);

@@ -77,7 +77,7 @@
             </tr>
             <tr>
               <th class="service">CIUDAD</th>
-              <td class="info"></td>
+              <td class="info">{!! $fondoTramite->departamento->name !!}</td>
             </tr>
           </table>
       </div>
@@ -94,23 +94,24 @@
       <div id="project">
           <table>
            <tr>
-              <th class="grand service">NRO</th>
-              <th class="grand service">REQUISITO</th>
-              <th class="grand service">PRESENTADO</th>
-              <th class="grand service">FECHA DE PRESENTACIÓN</th>
+              <th class="grand service"><center>NRO</center></th>
+              <th class="grand service"><center>REQUISITO</center></th>
+              <th class="grand service"><center>PRESENTADO</center></th>
+              <th class="grand service"><center>FECHA</center></th>
             </tr>
             <?php $i=1; ?>
              @foreach ($documentos as $item)
             <tr>
-              <td class="info">{!! $i !!}</td>  
-              <td class="info">{!! $item->requisito->name !!}</td>
+              <td style="width: 5%";class="info">{!! $i !!}</td>  
+              <td style="width: 90%";class="info">{!! $item->requisito->name !!}</td>
                @if ($item->est == 1)
-                  <td class="info">a{!! Form::checkbox('name', 'value', true) !!}
+                  <td class="info"><center><img class="circle" src="{!! asset('assets/images/check.png') !!}"  alt="icon"></center></td>
+
 
                @else
-                  <td class="info">{!! Form::checkbox('name', 'value', false) !!}
+                  <td class="info"> </td>
                @endif
-              <td class="info">{!! $item->fech_pres !!}
+              <td style="width: 20%";class="info"><center>{!! $item->getDataEdit() !!}</center></td>
            
             </tr>
             <?php $i++; ?>
