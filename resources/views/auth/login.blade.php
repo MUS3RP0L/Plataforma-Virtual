@@ -15,35 +15,34 @@
   	<div class="row" style="margin: 6% 0 0 0;">
     	<div class="col-md-6 col-md-offset-3">
       		<div class="panel panel-primary">
-        		<div class="panel-heading"><h4 class="text-center">Plataforma Virtual Muserpol</h4></div>
+        		<div class="panel-heading"><h4 class="text-center">Plataforma Virtual - Mutual de Servicios al Policía</h4></div>
         			<div class="panel-body">
 
-			        	{!! Form::open(['url' => 'login', 'role' => 'form', 'class' => 'form-horizontal'])!!}
-							<input name="_token" type="hidden" value="{!! csrf_token() !!}" />
-
-				            <div class="form-group form-group-lg">
-				              	{!! Form::label('usermane', 'USUARIO', ['class' => 'col-md-4 control-label']) !!}
-				              	<div class="col-md-6">
+			        	{!! Form::open(['url' => 'login', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+				            
+				            <div class="form-group">
+				              	{!! Form::label('usermane', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
+				              	<div class="col-md-4">
 	                  				{!! Form::text('username', null, ['class' => 'form-control', 'required' => 'required']) !!}
 				                	<span class="help-block">Ingrese su Número de Carnet</span>
 				              	</div>
 				            </div>
 
-				            <div class="form-group form-group-lg">
-				                {!! Form::label('password', 'CONTRASEÑA', ['class' => 'col-md-4 control-label']) !!}
-				              	<div class="col-md-6">
+				            <div class="form-group">
+				                {!! Form::label('password', 'Contraseña', ['class' => 'col-md-5 control-label']) !!}
+				              	<div class="col-md-4">
 				                	{!! Form::password('password', ['class' => 'form-control', 'required' => 'required']) !!}
 				                	<span class="help-block">Ingrese su Contraseña</span>
 				              	</div>
 				            </div>
 
-							<div class="row text-center">
-					            <div class="form-group form-group-lg">
-					              <div class="col-md-12">
-					                <button type="submit" class="btn btn-raised btn-primary">Ingresar</button>
-					              </div>
-					            </div>
-					        </div>
+					        <div class="row text-center">
+			                    <div class="form-group">
+			                        <div class="col-md-12">
+			                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Ingresar&nbsp;&nbsp;<span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>
+			                        </div>
+			                    </div>
+			                </div>
 
 			          	{!! Form::close() !!}
 				</div>

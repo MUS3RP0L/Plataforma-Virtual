@@ -2,45 +2,40 @@
 
 @section('content')
 <div class="container-fluid">
-
+    {!! Breadcrumbs::render('usuario') !!}
     <div class="row">
         <div class="col-md-12">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h3>Usuarios</h3>
-                    </div>
-                    <div class="col-md-4">
-                            <p class="text-right">
-                                <a href="{!! url('usuario/create') !!}" class="btn btn-raised btn-success">Crear Usuario&nbsp;&nbsp;<span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                            </p>
-                    </div>
-                </div> 
-            </div>
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Gestión de Usuarios</h3>
+            <div class="row">
+                <div class="col-md-12 text-right">  
+                    <a href="{!! url('usuario/create') !!}"  style="margin:-6px 1px 12px;" class="btn btn-raised btn-success">Nuevo&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span></a>
                 </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-12">
+            </div> 
 
-					<table  class="table table-striped table-hover" id="users-table">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Listado</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
 
-                        <thead>
-                            <tr class="success">
-                                <th>Usuario</th>
-                                <th>Nombre</th>
-                                <th>Teléfono</th>
-                                <th>Tipo</th>
-                                <th>Estado</th>
-                                <th>Opciones</th>
-                            </tr>
-                        </thead>
-                    </table>
-			</div>
-                    </div>                      
+        					<table  class="table table-striped table-hover" id="users-table">
+
+                                <thead>
+                                    <tr class="success">
+                                        <th>Usuario</th>
+                                        <th>Nombre</th>
+                                        <th>Teléfono</th>
+                                        <th>Tipo</th>
+                                        <th>Estado</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                            </table>
+        			</div>
                 </div>
             </div>
         </div>
