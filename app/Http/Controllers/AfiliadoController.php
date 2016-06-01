@@ -121,7 +121,7 @@ class AfiliadoController extends Controller
             'list_afi_states' => $list_afi_states,
             'list_unidades' => $list_unidades,
             'list_grados' => $list_grados,
-            'list_depas' => $list_depas,      
+            'list_depas' => $list_depas
         ];
     }
 
@@ -135,7 +135,7 @@ class AfiliadoController extends Controller
     {
         $afiliado = Afiliado::idIs($id)->first();
 
-        $conyuge = Conyuge::where('afiliado_id', '=', $id)->first();
+        $conyuge = Conyuge::afiIs($id)->first();
         if (!$conyuge) {
             $conyuge = new Conyuge;
         }
@@ -158,19 +158,19 @@ class AfiliadoController extends Controller
             $afiliado->depa_dir = ""; 
         }
 
-        if ($afiliado->depa_dir_id || $afiliado->zona || $afiliado->calle || $afiliado->num_domi || $afiliado->tele || $afiliado->celu || $afiliado->email) {
-            $info_dom = 1;
+        if ($afiliado->depa_dir_id || $afiliado->zona || $afiliado->calle || $afiliado->num_domi || $afiliado->tele || $afiliado->celu) {
+            $info_dom = TRUE;
         }else{
-            $info_dom = 0;
+            $info_dom = FALSE;
         }
 
-        if ($conyuge->ci || $conyuge->pat || $conyuge->mat || $conyuge->nom || $conyuge->nom2 || $conyuge->fech_dece || $conyuge->motivo_dece) {
-            $info_cony = 1;
+        if ($conyuge->ci) {
+            $info_cony = TRUE;
         }else{
-            $info_cony = 0;
+            $info_cony = FALSE;
         }
 
-        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
+        $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
         
         $afiliado->fech_ini_apor = $afiliado->fech_ing;
         $afiliado->fech_fin_apor = $lastAporte->gest;

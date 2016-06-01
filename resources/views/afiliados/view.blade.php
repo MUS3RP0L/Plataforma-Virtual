@@ -232,7 +232,7 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title">Información de Domicilio</h3>
                                 </div>
-                                @if($info_dom == 1)
+                                @if($info_dom)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-domicilio"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
@@ -244,7 +244,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_dom == 1)
+                                @if($info_dom)
 
                                     <div class="col-md-6">
 
@@ -354,7 +354,7 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title">Información de Conyuge</h3>
                                 </div>
-                                @if($info_cony == 1)
+                                @if($info_cony)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-conyuge"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
@@ -366,7 +366,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_cony == 1)
+                                @if($info_cony)
 
                                     <div class="col-md-6">
 
