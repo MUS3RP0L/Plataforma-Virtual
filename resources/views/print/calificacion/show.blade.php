@@ -159,27 +159,27 @@
             </tr>
             <tr>
               <th class="service">NOMBRE DE SOLICITANTE</th>
-              <td class="info">{!! $titular->getFullNametoPrint() !!}</td>
+              <td class="info">{!! $solicitante->getFullNametoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">PARENTESCO CON TITULAR</th>
-              <td class="info">{!! $titular->paren !!}</td>
+              <td class="info">{!! $solicitante->paren !!}</td>
             </tr>
             <tr>
               <th class="service">CARNET DE IDENTIDAD</th>
-              <td class="info">{!! $titular->ci !!}</td>
+              <td class="info">{!! $solicitante->ci !!}</td>
             </tr>
             <tr>
               <th class="service">DIRECCIÓN DE DOMICILIO</th>
-              <td class="info">{!! $titular->getFullDireccDomitoPrint() !!}</td>
+              <td class="info">{!! $solicitante->getFullDireccDomitoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">DIRECCIÓN DE TRABAJO</th>
-              <td class="info">{!! $titular->getFullDireccTrabtoPrint() !!}</td>
+              <td class="info">{!! $solicitante->getFullDireccTrabtoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">TELEFONO CELULAR Y/O DOMICILIO</th>
-              <td class="info">{!! $titular->getFullNumber() !!}</td>
+              <td class="info">{!! $solicitante->getFullNumber() !!}</td>
             </tr>
           </table>
       </div>

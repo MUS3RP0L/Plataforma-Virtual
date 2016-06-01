@@ -204,14 +204,25 @@ class FondoTramiteController extends Controller
         $afiliado = $data['afiliado'];
         $conyuge = $data['conyuge'];
         $solicitante = $data['solicitante'];
-
         $date = Util::getfulldate(date('Y-m-d'));
         $view =  \View::make('print.calificacion.show', compact('afiliado', 'conyuge','solicitante', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/calificacion/' . $name_input . '.pdf');
         return $pdf->stream('calif');
+    }
 
+    public function print_dictamenlegal($afid)
+    {
+        $data = $this->getData($afid);
+        $afiliado = $data['afiliado'];
+        $conyuge = $data['conyuge'];
+        $date = Util::getfulldate(date('Y-m-d'));
+        $view =  \View::make('print.dictamenlegal.show', compact('afiliado', 'conyuge', 'date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/dictamen_legal/' . $name_input . '.pdf');
+        return $pdf->stream('calif');
     }
 
     /**
