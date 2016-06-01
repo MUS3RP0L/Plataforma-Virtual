@@ -3,13 +3,20 @@
 namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Validator;
-use Session;
+
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
-use Muserpol\User;
+
+use DB;
+use Auth;
+use Validator;
+use Session;
 use Datatables;
+use Carbon\Carbon;
+use Muserpol\Helper\Util;
+
+use Muserpol\Rol;
+use Muserpol\User;
 
 class UsuarioController extends Controller
 {
@@ -44,17 +51,23 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public static function getViewModel()
+    {
+        $roles = Rol::all();
+        $list_roles = array('' => '');
+        foreach ($roles as $item) {
+             $list_roles[$item->id]=$item->name;
+        }
+
+        return [
+            'list_roles' => $list_roles
+        ];
+    }
+
     public function create()
     {
-        
-        $role = array('' => '', 'fondo_retiro' => 'Fondo de Retiro', 
-                        'complemento_economico' => 'Complemento Económico',
-                        'admin' => 'Administrador');        
-        $data = array(
-            'role' => $role,
-        );
-
-        return view('usuarios.create', $data);
+        return view('usuarios.create', self::getViewModel());
     }
 
     /**
@@ -75,21 +88,15 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $role = array('fondo_retiro' => 'Fondo de Retiro', 
-                        'complemento_economico' => 'Complemento Económico',
-                        'admin' => 'Administrador');
-        
-        $data = array(
-            'role' => $role,
-        );
-
-        $user = User::where('id', '=', $id)->firstOrFail();
+    {   
+        $user = User::idIs($id)->first();
 
         $data = [
             'role' => $role,
             'user' => $user
         ];
+
+        $data = array_merge($data, self::getViewModel());
 
         return View('usuarios.edit', $data);
     }
@@ -162,11 +169,10 @@ class UsuarioController extends Controller
         else{
 
             if ($id) {
-                $user = User::where('id', '=', $id)->firstOrFail();
+                $user = User::idIs($id)->firstOrFail();
             } else {
                 $user = new User();
-            } 
-                
+            }   
             $user->ape = trim($request->ape);
             $user->nom = trim($request->nom);
             $user->tel = trim($request->tel);
@@ -174,8 +180,7 @@ class UsuarioController extends Controller
             if($request->password){
                 $user->password = trim(bcrypt($request->password));
             }
-            $user->role = trim($request->role); 
-
+            $user->role_id = trim($request->rol); 
             $user->save();
 
             if ($id) {
@@ -206,6 +211,7 @@ class UsuarioController extends Controller
         Session::flash('message', $message);
         return redirect('usuario');
     }
+
     public function unBlock($id)
     {
         $user = User::where('id', '=', $id)->firstOrFail();

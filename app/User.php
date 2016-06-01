@@ -49,4 +49,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->nom . ' ' . $this->ape;
     }
+
+    public function scopeIdIs($query, $id)
+    {
+        return $query->where('id', $id);
+    }
 }

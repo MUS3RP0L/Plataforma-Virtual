@@ -25,11 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(GateContract $gate)
     {
         parent::registerPolicies($gate);
-
-        
+ 
         $gate->define('view-admin', function($user){
-
-            return $user->role == 'admin';
+            return $user->rol_id == 1;
         });
     }
 }

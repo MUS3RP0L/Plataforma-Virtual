@@ -27,7 +27,7 @@ class UserTableSeeder extends Seeder
         	'tel' => '77551112',
         	'username' => '4771553',
         	'password' => bcrypt('admin'),
-        	'role' => 'admin'
+        	'rol_id' => '1'
         ]);
     }
 }

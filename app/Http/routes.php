@@ -10,35 +10,23 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
-Route::get('home', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
 
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('login', 'Auth\AuthController@postLogin');
 Route::get('logout', 'Auth\AuthController@getLogout');
 
-define('ACCESS', 'alerick');
-
 Route::group(['middleware' => 'auth'], function() {
+
+	//Inicio
+	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
+	Route::get('home', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
 
 	// Gestion de Usuarios
 	Route::resource('usuario', 'UsuarioController');
 	Route::get('usuario/block/{id}', 'UsuarioController@block');
 	Route::get('usuario/unblock/{id}', 'UsuarioController@unBlock');
 	Route::get('getUsuario', array('as'=>'getUsuario', 'uses'=>'UsuarioController@UsuariosData'));
-
-	// Password reset link request routes...
-	Route::get('password/email', 'Auth\PasswordController@getEmail');
-	Route::post('password/email', 'Auth\PasswordController@postEmail');
-
-	// Password reset routes...
-	Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-	Route::post('password/reset', 'Auth\PasswordController@postReset');
-
-	// import
-	Route::get('importar_archivo', 'ImportController@importSelect');
-	Route::post('import', 'ImportController@import');
-
+	
 	// Afiliados
 	Route::resource('afiliado', 'AfiliadoController');
 	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
@@ -53,22 +41,19 @@ Route::group(['middleware' => 'auth'], function() {
 	// Route::resource('aportes', 'AporteController');
 
 	Route::get('viewaporte/{afid}', 'AporteController@ViewAporte');
-
 	Route::get('regaportegest/{afid}', 'AporteController@RegAporteGest');
-
 	Route::get('calcaportegest/{afid}/{gesid}', 'AporteController@CalcAporteGest');
-
 	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
-
 	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
-
+	
+	//Notas
 	Route::get('getNote/{afid}', array('as'=>'getNote', 'uses'=>'NoteController@notesData'));
 
 	// AporTasa
 	Route::resource('tasa', 'TasaController');
 	Route::get('getTasa', array('as'=>'getTasa', 'uses'=>'TasaController@tasasData'));
 
-	// IPC
+	// IPCTasa
 	Route::resource('ipc', 'IpcController');
 	Route::get('getIpc', array('as'=>'getIpc', 'uses'=>'IpcController@ipctasasData'));
 
@@ -94,6 +79,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('tramite_fondo_retiro_dictamenlegal/{afid}', 'FondoTramiteController@print_dictamenlegal');
 
 });
+
+define('ACCESS', 'alerick');
 
 // //Permisos
 // Route::get('afiliadoo/{id}', function ($id){

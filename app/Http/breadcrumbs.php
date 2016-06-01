@@ -5,6 +5,11 @@ Breadcrumbs::register('home', function($breadcrumbs) {
     $breadcrumbs->push('Inicio', route('home'));
 });
 
+// Usuario
+Breadcrumbs::register('usuario', function($breadcrumbs) {
+    $breadcrumbs->push('Usuarios', URL::to('usuario'));
+});
+
 // Afiliado Search
 Breadcrumbs::register('afiliado', function($breadcrumbs) {
     $breadcrumbs->push('Afiliados', URL::to('afiliado'));
@@ -28,8 +33,6 @@ Breadcrumbs::register('fondo_tramite', function($breadcrumbs, $afiliado) {
     $breadcrumbs->push('Trámite de Fondo de Retiro', URL::to('tramite_fondo_retiro/'.$afiliado->id));
 
 });
-
-
 
 // Show ventanilla
 Breadcrumbs::register('ventanilla_fondo_tramite', function($breadcrumbs, $afiliado) {

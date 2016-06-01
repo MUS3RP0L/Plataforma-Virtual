@@ -24,7 +24,6 @@ use Muserpol\Departamento;
 use Muserpol\Solicitante;
 use Muserpol\Conyuge;
 
-
 class AfiliadoController extends Controller
 {
     /**

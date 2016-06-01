@@ -12,7 +12,7 @@
             	</div>
         	</div>
 			{!! Form::open(['method' => 'POST', 'route' => ['usuario.store'], 'class' => 'form-horizontal']) !!}
-			<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+			    
 			    <div class="row">
 			        <div class="col-md-6">
 						<div class="panel panel-primary">
@@ -23,21 +23,21 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-												{!! Form::label('ape', 'APELLIDOS', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('ape', 'Apellidos', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
 												{!! Form::text('ape', null, ['class'=> 'form-control', 'required' => 'required']) !!}
 												<span class="help-block">Apellido Paterno y Apellido Materno</span>
 											</div>
 										</div>
 										<div class="form-group">
-												{!! Form::label('nom', 'NOMBRES', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('nom', 'Nombres', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
 												{!! Form::text('nom', null, ['class'=> 'form-control', 'required' => 'required']) !!}
 												<span class="help-block">Primer y Segundo Nombre</span>
 											</div>
 										</div>									
 										<div class="form-group">
-												{!! Form::label('tel', 'TELÉFONO', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('tel', 'Número Teléfono', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
 												{!! Form::text('tel', null, ['class'=> 'form-control', 'required' => 'required']) !!}
 												<span class="help-block">Teléfono Celular</span>
@@ -58,7 +58,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-												{!! Form::label('username', 'NOMBRE USUARIO', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('username', 'Carnet de Indentidad', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
 												{!! Form
 													::text('username', null, ['class'=> 'form-control', 'required' => 'required']) !!}
@@ -66,24 +66,24 @@
 											</div>
 										</div>
 										<div class="form-group">
-												{!! Form::label('password', 'CONTRASEÑA', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('password', 'Contraseña', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
-												{!! Form::password('password', ['class' => 'form-control']) !!}
+												{!! Form::password('password', ['class' => 'form-control', 'required' => 'required']) !!}
 												<span class="help-block">Ingrese la Contraseña</span>
 											</div>
 										</div>
 										<div class="form-group">
-												{!! Form::label('confirm_password', 'CONFIRMAR', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('confirm_password', 'Repetir Contraseña', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
-												{!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+												{!! Form::password('password_confirmation', ['class' => 'form-control', 'required' => 'required']) !!}
 												<span class="help-block">Ingrese de nuevo la Contraseña</span>
 											</div>
 										</div>
 
 							            <div class="form-group">
-							              	{!! Form::label('role', 'TIPO', ['class' => 'col-md-4 control-label']) !!}
+							              	{!! Form::label('rol', 'Tipo de Usuario', ['class' => 'col-md-4 control-label']) !!}
 							              <div class="col-md-6">
-							              	{!! Form::select('role', $role, null, ['class' => 'combobox form-control']) !!}
+							              	{!! Form::select('rol', $list_roles, null, ['class' => 'combobox form-control', 'required' => 'required']) !!}
 						                	<span class="help-block">Selecione el Tipo de Usuario</span>							                
 							              </div>
 							            </div>								
