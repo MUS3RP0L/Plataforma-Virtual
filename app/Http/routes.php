@@ -89,17 +89,10 @@ Route::group(['middleware' => 'auth'], function() {
 	// Tramite Fondo de Retiro
 	Route::resource('tramite_fondo_retiro', 'FondoTramiteController');
 	Route::get('tramite_fondo_retiro_ventanilla/{afid}', 'FondoTramiteController@print_ventanilla');
+	Route::get('tramite_fondo_retiro_certificacion/{afid}', 'FondoTramiteController@print_certificacion');
+	Route::get('tramite_fondo_retiro_calificacion/{afid}', 'FondoTramiteController@print_calificacion');
 	Route::get('tramite_fondo_retiro_dictamenlegal/{afid}', 'FondoTramiteController@print_dictamenlegal');
 
-
-	// Calificacion Fondo de Retiro
-	Route::get('show_calif_fr/{afid}', 'CalificacionController@ViewCalif_fr');
-	Route::get('print_calif_fr/{afid}', 'CalificacionController@pdf_calif_fr');
-
-	// Calificacion Seguro de Vida
-	Route::get('show_calif_sv/{afid}', 'CalificacionController@ViewCalif_sv');
-	Route::get('print_calif_sv/{afid}', 'CalificacionController@pdf_calif_sv');
-	
 });
 
 // //Permisos
