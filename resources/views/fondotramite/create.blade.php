@@ -313,7 +313,7 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">  
@@ -409,7 +409,7 @@
                                                 <tr>
                                                     <th>Nombre de Documento</th>
                                                     <th class="text-center">Estado</th>
-                                                    <th class="text-center"> Fecha </th>
+                                                    <th class="text-center">Fecha</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -449,6 +449,254 @@
                                     </div>
                                 @endif
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">  
+                                <div class="col-md-11">
+                                    <h3 class="panel-title">Periodos de Aportes</h3>
+                                </div>
+                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                                        <div data-toggle="modal" data-target="#myModal-periodo-aportes"> 
+                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: 14px">
+                            <div class="row text-center">
+                                <div class="col-md-12">
+                                    <h5 class="modal-title">Años de Aportes</h5>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:0px;">                       
+                                <div class="col-md-4">
+                                    <table class="table" style="width:100%;">
+                                        <tr>
+                                            <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Desde
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->getFull_fech_ini_apor() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-4">
+                                    <table class="table" style="width:100%;">
+                                        <tr>
+                                            <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Hasta
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        {!! $afiliado->getFull_fech_fin_apor() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-4">
+                                    <table class="table" style="width:100%;">
+                                        <tr>
+                                            <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        Total
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        {!! $afiliado->getYearsAndMonths_fech_ini_apor() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            @if($afiliado->fech_ini_serv)
+                                <br>
+                                <div class="row text-center"> 
+                                    <div class="col-md-12">
+                                        <h5 class="modal-title">Años de Servicio</h5>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0px;">                       
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            Desde
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            {!! $afiliado->getFull_fech_ini_serv() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            Hasta
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            {!! $afiliado->getFull_fech_fin_serv() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            Total
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            {!! $afiliado->getYearsAndMonths_fech_fin_serv() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            @endif
+                            
+                            @if($fondoTramite->fech_ini_anti)
+                                <br>
+                                <div class="row text-center"> 
+                                    <div class="col-md-12">
+                                        <h5 class="modal-title">Periodo Adicional en Caso de Anticipo</h5>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0px;">                       
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            Desde
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            {!! $fondoTramite->getFull_fech_ini_anti() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            Hasta
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            {!! $fondoTramite->getFull_fech_fin_anti() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            Total
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            {!! $fondoTramite->getYearsAndMonths_fech_ini_anti() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if($fondoTramite->fech_ini_reco)
+                                <br>
+                                <div class="row text-center"> 
+                                    <div class="col-md-12">
+                                        <h5 class="modal-title">Periodo de Aportes Reconocidos</h5>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:0px;">                       
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            Desde
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            {!! $fondoTramite->getFull_fech_ini_reco() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            Hasta
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            {!! $fondoTramite->getFull_fech_fin_reco() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <table class="table" style="width:100%;">
+                                            <tr>
+                                                <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            Total
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            {!! $fondoTramite->getYearsAndMonths_fech_ini_reco() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>   
+                            @endif                      
                         </div>
                     </div>
 
@@ -802,44 +1050,7 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-<div id="myModal-print" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content panel-warning">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Ventanilla Fondo de Retiro</h4>
-            </div>
-            <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro_ventanilla/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="myModal-printdictamen" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content panel-warning">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Dictamen Legal</h4>
-            </div>
-            <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro_dictamenlegal/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- <div id="myModal-periodo-aportes" class="modal fade" role="dialog">
+<div id="myModal-periodo-aportes" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -848,7 +1059,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <input type="hidden" name="type" value="periods"/>
                 <div class="row">
@@ -982,7 +1193,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
                             &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
                         </div>
                     </div>
@@ -992,7 +1203,37 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
+
+
+
+<div id="myModal-print" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Ventanilla Fondo de Retiro</h4>
+            </div>
+            <div class="modal-body">
+                <iframe src="{!! url('tramite_fondo_retiro_ventanilla/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal-printdictamen" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Dictamen Legal</h4>
+            </div>
+            <div class="modal-body">
+                <iframe src="{!! url('tramite_fondo_retiro_dictamenlegal/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 

@@ -336,24 +336,9 @@ class AfiliadoController extends Controller
                     $afiliado->save();
                     
                     $message = "Información policial de afiliado actualizado con éxito";
-                    break;
-
-                case 'periods':
-
-                    $afiliado->fech_ini_serv = Util::datePickPeriod($request->fech_ini_serv);
-                    $afiliado->fech_fin_serv = Util::datePickPeriod($request->fech_fin_serv);
-
-                    $afiliado->fech_ini_anti = Util::datePickPeriod($request->fech_ini_anti);
-                    $afiliado->fech_fin_anti = Util::datePickPeriod($request->fech_fin_anti);
-
-                    $afiliado->fech_ini_reco = Util::datePickPeriod($request->fech_ini_reco);
-                    $afiliado->fech_fin_reco = Util::datePickPeriod($request->fech_fin_reco);
-
-                    $afiliado->save();
-                    
-                    $message = "Información de Periodos de  Afiliado actualizado con éxito";
-                    break;
+                    break;          
             }
+            
             Session::flash('message', $message);
         }
         

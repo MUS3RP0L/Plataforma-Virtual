@@ -513,7 +513,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row">

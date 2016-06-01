@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
 use Muserpol\Afiliado;
+use Muserpol\Aporte;
 use Muserpol\Conyuge;
 use Muserpol\Solicitante;
 use Muserpol\Modalidad;
@@ -121,7 +122,11 @@ class FondoTramiteController extends Controller
         }else{
             $info_antec = FALSE;
         }
-        
+
+        $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
+        $afiliado->fech_ini_apor = $afiliado->fech_ing;
+        $afiliado->fech_fin_apor = $lastAporte->gest;
+
         $data = array(
             'afiliado' => $afiliado,
             'conyuge' => $conyuge,
@@ -282,6 +287,23 @@ class FondoTramiteController extends Controller
                     $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
                
                 break;
+
+                case 'periods':
+
+                    $afiliado->fech_ini_serv = Util::datePickPeriod($request->fech_ini_serv);
+                    $afiliado->fech_fin_serv = Util::datePickPeriod($request->fech_fin_serv);
+                    $fondoTramite->save();
+                    
+                    $fondoTramite->fech_ini_anti = Util::datePickPeriod($request->fech_ini_anti);
+                    $fondoTramite->fech_fin_anti = Util::datePickPeriod($request->fech_fin_anti);
+
+                    $fondoTramite->fech_ini_reco = Util::datePickPeriod($request->fech_ini_reco);
+                    $fondoTramite->fech_fin_reco = Util::datePickPeriod($request->fech_fin_reco);
+
+                    $fondoTramite->save();
+                    
+                    $message = "Información de Periodos de Aporte actualizado con éxito";
+                    break;
 
             }
             Session::flash('message', $message);

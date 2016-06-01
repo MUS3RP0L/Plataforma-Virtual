@@ -145,32 +145,6 @@ class Afiliado extends Model
         return Util::getYearsAndMonths($this->fech_ini_serv, $this->fech_fin_serv);
     }
 
-    public function getFull_fech_ini_anti()
-    {   
-        return Util::getdateabreperiod($this->fech_ini_anti);
-    }
-    public function getFull_fech_fin_anti()
-    {   
-        return Util::getdateabreperiod($this->fech_fin_anti);
-    }
-    public function getYearsAndMonths_fech_ini_anti()
-    {
-        return Util::getYearsAndMonths($this->fech_ini_anti, $this->fech_fin_anti);
-    }
-
-    public function getFull_fech_ini_reco()
-    {   
-        return Util::getdateabreperiod($this->fech_ini_reco);
-    }
-    public function getFull_fech_fin_reco()
-    {   
-        return Util::getdateabreperiod($this->fech_fin_reco);
-    }
-    public function getYearsAndMonths_fech_ini_reco()
-    {
-        return Util::getYearsAndMonths($this->fech_ini_reco, $this->fech_fin_reco);
-    }
-
     public function getHowOld()
     {
     	if ($this->fech_dece) {
