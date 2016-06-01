@@ -56,18 +56,7 @@
           </table>
       </div>
 
-      <div id="project">
-        <table>
-            <tr>
-              <th colspan="2" class="grand service">B) DATOS DICTAMEN LEGAL</th>
-            </tr>
-            <tr>
-              <th class="service">CITE</th>
-              <td class="info">{!! $dictamenlegal->cite !!}</td>
-            </tr>
-            
-        </table>
-      </div>
+      
                                             
       <div id="project">
           <table>
@@ -84,10 +73,7 @@
             <?php $i++; ?>
             @endforeach
 
-            <tr>
-              <th class="service">OBSERVACIÓN</th>
-              <td class="info">{!! $dictamenlegal->obs !!}</td>
-            </tr>
+            
           </table>
       </div>
 
