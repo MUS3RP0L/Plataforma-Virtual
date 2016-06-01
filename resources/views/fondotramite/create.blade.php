@@ -21,11 +21,13 @@
                         </a>
                     </div>
 
-                    <a href="" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
+                    <a class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
+                        <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;
                     </a>
 
-                    <a href="" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
+                    <a class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
+                        <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
                     </a>
 
@@ -1216,6 +1218,34 @@
             </div>
             <div class="modal-body">
                 <iframe src="{!! url('tramite_fondo_retiro_ventanilla/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal-printcertificacion" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Certificación Fondo de Retiro</h4>
+            </div>
+            <div class="modal-body">
+                <iframe src="{!! url('tramite_fondo_retiro_certificacion/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal-printcalificacion" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Calificación de Fondo de Retiro</h4>
+            </div>
+            <div class="modal-body">
+                <iframe src="{!! url('tramite_fondo_retiro_calificacion/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>

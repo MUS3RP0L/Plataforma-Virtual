@@ -39,7 +39,7 @@ class Documento extends Model
     {   
         return Util::getdateabre($this->fech_pres);
     }
-     public function getDataEdit()
+    public function getDataEdit()
     {   
         return Util::getdateforEdit($this->fech_pres);
     }

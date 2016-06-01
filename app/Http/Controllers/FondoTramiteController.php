@@ -194,20 +194,22 @@ class FondoTramiteController extends Controller
         $view = \View::make('print.certificacion.show', compact('afiliado', 'solicitante', 'fondoTramite', 'prestaciones', 'antecedentes', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/certificacion/' . $name_input . '.pdf');
         return $pdf->stream();
     }
     
-    public function print_dictamenlegal($afid)
+    public function print_calificacion($afid)
     {
         $data = $this->getData($afid);
         $afiliado = $data['afiliado'];
         $conyuge = $data['conyuge'];
+        $solicitante = $data['solicitante'];
+
         $date = Util::getfulldate(date('Y-m-d'));
-        $view =  \View::make('print.dictamenlegal.show', compact('afiliado', 'conyuge', 'date'))->render();
+        $view =  \View::make('print.calificacion.show', compact('afiliado', 'conyuge','solicitante', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/dictamen_legal/' . $name_input . '.pdf');
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/calificacion/' . $name_input . '.pdf');
         return $pdf->stream('calif');
 
     }

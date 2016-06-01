@@ -202,6 +202,10 @@ class Afiliado extends Model
 	    }
 	}
 
+    public function getDataEdit_fech_ing()
+    {   
+        return Util::getdateforEdit($this->fech_ing);
+    }
     public function getDataEdit()
     {	
         return Util::getdateforEdit($this->fech_nac);

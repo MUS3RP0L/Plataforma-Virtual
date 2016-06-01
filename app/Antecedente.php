@@ -39,4 +39,5 @@ class Antecedente extends Model
     {   
         return Util::getdateabre($this->fech_pres);
     }
+
 }
