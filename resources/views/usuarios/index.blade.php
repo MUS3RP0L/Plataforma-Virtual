@@ -8,7 +8,7 @@
 
             <div class="row">
                 <div class="col-md-12 text-right">  
-                    <a href="{!! url('usuario/create') !!}"  style="margin:-6px 1px 12px;" class="btn btn-raised btn-success">Nuevo&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span></a>
+                    <a href="{!! url('usuario/create') !!}"  style="margin:-6px 1px 12px;" class="btn btn-raised btn-success">&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;</a>
                 </div>
             </div> 
 

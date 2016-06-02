@@ -35,7 +35,7 @@ class UsuarioController extends Controller
 
         $users = User::select(['id','username', 'ape', 'nom', 'tel','rol_id','status'])->where('id', '>', 1);
 
-        return Datatables::of($users)->editColumn('name', '{{$ape}} {{$nom}}')
+        return Datatables::of($users)->addColumn('name', '{{$ape}} {{$nom}}')
                 ->addColumn('type', function ($user) { return $user->rol->name; })
                 ->addColumn('action', function ($user) {
                 return $user->status == "Activo" ? 
