@@ -99,7 +99,7 @@
               <tr>
               
                 <td style="width: 80%";class="info">{!! $item->prestacion->name !!}</td>
-                <td style="width: 10%";class="info">{!! $item->prestacion->sigla !!}</td>
+                <td style="width: 20%";class="info">{!! $item->prestacion->sigla !!}</td>
                 @if ($item->est == 1)
                 <td class="info"><center><img class="circle" src="{!! asset('assets/images/check.png') !!}"  alt="icon"></center></td>
 
