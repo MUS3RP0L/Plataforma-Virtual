@@ -28,10 +28,6 @@ class AporteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
 
     public function ViewAporte($afid)
     {
@@ -80,7 +76,6 @@ class AporteController extends Controller
     {
         $afiliado = Afiliado::idIs($afid)->firstOrFail();
         $categorias = Categoria::select(['por'])->get();
-
 
         $data = array(
             'afiliado' => $afiliado,

@@ -17,9 +17,44 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => 'auth'], function() {
 
-	//Inicio
+	// Inicio
 	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
 	Route::get('home', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
+
+	// Afiliados
+	Route::resource('afiliado', 'AfiliadoController');
+	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
+
+	// Conyuge
+	Route::resource('conyuge', 'ConyugeController');
+
+	// Solicitante
+	Route::resource('solicitante', 'SolicitanteController');
+
+	// view Registros Aportes
+	// Route::resource('aportes', 'AporteController');
+	Route::get('viewaporte/{afid}', 'AporteController@ViewAporte');
+	Route::get('regaportegest/{afid}', 'AporteController@RegAporteGest');
+	Route::get('calcaportegest/{afid}/{gesid}', 'AporteController@CalcAporteGest');
+	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
+	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
+	
+	// Notas
+	Route::get('getNote/{afid}', array('as'=>'getNote', 'uses'=>'NoteController@notesData'));
+
+	// Totales
+	Route::get('totales', 'ReporteController@ReportAporte');
+	Route::post('ir_totales', 'ReporteController@GenerateReportAporte');
+	Route::get('total_month', 'ReporteController@ReportAporteMonth');
+	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
+
+	// Tramite Fondo de Retiro
+	Route::resource('tramite_fondo_retiro', 'FondoTramiteController');
+	Route::get('tramite_fondo_retiro_ventanilla/{afid}', 'FondoTramiteController@print_ventanilla');
+	Route::get('tramite_fondo_retiro_certificacion/{afid}', 'FondoTramiteController@print_certificacion');
+	Route::get('tramite_fondo_retiro_calificacion/{afid}', 'FondoTramiteController@print_calificacion');
+	Route::get('tramite_fondo_retiro_dictamenlegal/{afid}', 'FondoTramiteController@print_dictamenlegal');
+
 
 	// Gestion de Usuarios
 	Route::resource('usuario', 'UsuarioController');
@@ -27,28 +62,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('usuario/unblock/{id}', 'UsuarioController@unBlock');
 	Route::get('getUsuario', array('as'=>'getUsuario', 'uses'=>'UsuarioController@UsuariosData'));
 	
-	// Afiliados
-	Route::resource('afiliado', 'AfiliadoController');
-	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
-
-	//conyuge
-	Route::resource('conyuge', 'ConyugeController');
-
-	//solicitante
-	Route::resource('solicitante', 'SolicitanteController');
-
-	//view Registros Aportes
-	// Route::resource('aportes', 'AporteController');
-
-	Route::get('viewaporte/{afid}', 'AporteController@ViewAporte');
-	Route::get('regaportegest/{afid}', 'AporteController@RegAporteGest');
-	Route::get('calcaportegest/{afid}/{gesid}', 'AporteController@CalcAporteGest');
-	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
-	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
-	
-	//Notas
-	Route::get('getNote/{afid}', array('as'=>'getNote', 'uses'=>'NoteController@notesData'));
-
 	// AporTasa
 	Route::resource('tasa', 'TasaController');
 	Route::get('getTasa', array('as'=>'getTasa', 'uses'=>'TasaController@tasasData'));
@@ -64,35 +77,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('getSueldoTer', array('as'=>'getSueldoTer', 'uses'=>'SueldoController@sueldoTerData'));
 	Route::get('getSueldoCua', array('as'=>'getSueldoCua', 'uses'=>'SueldoController@sueldoCuaData'));
 
-	//  Totales
-	Route::get('totales', 'ReporteController@ReportAporte');
-	Route::post('ir_totales', 'ReporteController@GenerateReportAporte');
-	
-	Route::get('total_month', 'ReporteController@ReportAporteMonth');
-	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
-
-	// Tramite Fondo de Retiro
-	Route::resource('tramite_fondo_retiro', 'FondoTramiteController');
-	Route::get('tramite_fondo_retiro_ventanilla/{afid}', 'FondoTramiteController@print_ventanilla');
-	Route::get('tramite_fondo_retiro_certificacion/{afid}', 'FondoTramiteController@print_certificacion');
-	Route::get('tramite_fondo_retiro_calificacion/{afid}', 'FondoTramiteController@print_calificacion');
-	Route::get('tramite_fondo_retiro_dictamenlegal/{afid}', 'FondoTramiteController@print_dictamenlegal');
-
 });
 
 define('ACCESS', 'alerick');
-
-// //Permisos
-// Route::get('afiliadoo/{id}', function ($id){
-
-// 	$afil = Muserpol\Afiliado::findOrFail($id);
-// 		// allows
-// 	if (Gate::denies('view-afiliado', $afil)){
-		
-// 		return $afil;
-// 	}
-
-// 	return $afil->ci;
-// });
-
-

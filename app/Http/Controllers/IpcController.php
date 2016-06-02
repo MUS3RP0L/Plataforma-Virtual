@@ -29,7 +29,6 @@ class IpcController extends Controller
         $now = Carbon::now();
 
         $y = $now->year;
-
         $m = $now->month;
 
         $nowlast = Carbon::createFromDate($y, $m, 1)->subMonth()->toDateString();
@@ -83,11 +82,6 @@ class IpcController extends Controller
     {
         //
     }
-
-    // public function save($request, $id = false)
-    // {
-    //     return $request->now;
-    //     }
 
     public function save($request, $id = false)
     {
@@ -143,28 +137,6 @@ class IpcController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -176,14 +148,4 @@ class IpcController extends Controller
         return $this->save($request, $id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
