@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         parent::registerPolicies($gate);
  
-        $gate->define('view-admin', function($user){
+        $gate->define('admin', function($user){
             return $user->rol_id == 1;
         });
     }
