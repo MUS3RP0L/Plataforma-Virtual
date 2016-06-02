@@ -33,11 +33,19 @@
       <table class="tablet">
         <tr>
           <td style="width: 60%;border: 0px;">
-            <div class="title"></div>
+            <div class="title"><b>N° Tramite: {{ $fondoTramite->id }}</b></div>
           </td>
           <td style="width: 40%;border: 0px;text-align:right;">
             <div class="title">Fecha de Emisión: La Paz, {!! $date !!}</div>
           </td>
+        </tr>
+        <tr>
+            <td style="width: 60%;border: 0px;">
+             <div class="title"></div>
+            </td>
+            <td style="width: 40%;border: 0px;text-align:right;">
+             <div class="title"><b>Usuario: {{ Auth::user()->ape }} {{ Auth::user()->nom }}</b></div>
+            </td>
         </tr>
       </table><br>
 
