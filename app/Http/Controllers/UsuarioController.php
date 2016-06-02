@@ -27,7 +27,11 @@ class UsuarioController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->can('admin')) {
         return view('usuarios.index');
+        }else{
+            return redirect('/');
+        }
     }
 
     public function UsuariosData()
@@ -68,7 +72,11 @@ class UsuarioController extends Controller
 
     public function create()
     {
+        if (Auth::user()->can('admin')) {
         return view('usuarios.create', self::getViewModel());
+        }else{
+            return redirect('/');
+        }   
     }
 
     /**
