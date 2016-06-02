@@ -40,4 +40,9 @@ class Antecedente extends Model
         return Util::getdateabre($this->fech_pres);
     }
 
+    public function getDataEdit()
+    {   
+        return Util::getdateforEdit($this->fecha);
+    }
+
 }

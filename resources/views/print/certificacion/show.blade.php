@@ -94,9 +94,9 @@
               <th class="grand service"><center>EXISTE</center></th>
               
             </tr>
-            
-             @foreach ($antecedentes as $item)
-            <tr>
+              <?php $i=1; ?>
+              @foreach ($antecedentes as $item)
+              <tr>
               
               <td style="width: 90%";class="info">{!! $item->prestacion->name !!}</td>
               <td style="width: 90%";class="info">{!! $item->prestacion->sigla !!}</td>
@@ -107,11 +107,11 @@
                @else
                   <td class="info"> </td>
                @endif
-              <td style="width: 20%";class="info"><center>{!! $item->getDataEdit() !!}</center></td>
+               <td style="width: 20%";class="info"><center>{!! $item->getDataEdit() !!}</center></td>
            
-            </tr>
-            <?php $i++; ?>
-            @endforeach
+               </tr>
+                <?php $i++; ?>
+                @endforeach
             
           </table>
       </div><br>
