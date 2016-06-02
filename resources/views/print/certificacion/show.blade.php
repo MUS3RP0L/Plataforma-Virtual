@@ -88,33 +88,33 @@
 
       <div id="project">
           <table>
-           <tr>
+             <tr>
               <th class="grand service"><center>TIPO DE PRESTACIÓN</center></th>
               <th class="grand service"><center>SIGLA</center></th>
               <th class="grand service"><center>EXISTE</center></th>
               
-            </tr>
-              <?php $i=1; ?>
+             </tr>
+              
               @foreach ($antecedentes as $item)
               <tr>
               
-              <td style="width: 90%";class="info">{!! $item->prestacion->name !!}</td>
-              <td style="width: 90%";class="info">{!! $item->prestacion->sigla !!}</td>
-               @if ($item->est == 1)
-                  <td class="info"><center><img class="circle" src="{!! asset('assets/images/check.png') !!}"  alt="icon"></center></td>
+                <td style="width: 80%";class="info">{!! $item->prestacion->name !!}</td>
+                <td style="width: 10%";class="info">{!! $item->prestacion->sigla !!}</td>
+                @if ($item->est == 1)
+                <td class="info"><center><img class="circle" src="{!! asset('assets/images/check.png') !!}"  alt="icon"></center></td>
 
 
-               @else
-                  <td class="info"> </td>
-               @endif
-               <td style="width: 20%";class="info"><center>{!! $item->getDataEdit() !!}</center></td>
-           
-               </tr>
-                <?php $i++; ?>
-                @endforeach
+                @else
+                <td class="info"> </td>
+                @endif
+                
+              </tr>
+              
+              @endforeach
             
           </table>
-      </div><br>
+      </div>
+      <br>
       
       <div class="title"><b>II. CARPETA ACTUAL</b></div><br>
 
