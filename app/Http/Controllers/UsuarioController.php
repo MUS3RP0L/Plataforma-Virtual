@@ -35,15 +35,17 @@ class UsuarioController extends Controller
 
         $users = User::select(['id','username', 'ape', 'nom', 'tel','rol_id','status'])->where('id', '>', 1);
 
-        return Datatables::of($users)->addColumn('action', function ($user) {
+        return Datatables::of($users)->editColumn('name', '{{$ape}} {{$nom}}')
+                ->addColumn('type', function ($user) { return $user->rol->name; })
+                ->addColumn('action', function ($user) {
                 return $user->status == "Activo" ? 
-                        '<div class="row text-center"><a href="usuario/'.$user->id.'/edit" >Editar <i class="glyphicon glyphicon-edit"></i> </a>&nbsp;&nbsp;
-                        <a href="usuario/block/'.$user->id.'" >Bloquear <i class="glyphicon glyphicon-ban-circle"></i>  </a>'
+                        '<div class="text-center"><a href="usuario/'.$user->id.'/edit" > <i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        <a href="usuario/block/'.$user->id.'" > <i class="glyphicon glyphicon-ban-circle"></i></a></div>'
                         :
-                        '<a href="usuario/'.$user->id.'/edit" >Editar <i class="glyphicon glyphicon-edit"></i> </a>&nbsp;&nbsp;
-                        <a href="usuario/unblock/'.$user->id.'" >Desbloquear <i class="glyphicon glyphicon-ok-circle"></i>  </a></div>';
+                        '<div class="text-center"><a href="usuario/'.$user->id.'/edit" > <i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        <a href="usuario/unblock/'.$user->id.'" > <i class="glyphicon glyphicon-ok-circle"></i></a></div>';
             })
-            ->editColumn('name', '{{$ape}} {{$nom}}')
+            
             ->make(true);
     }
     /**
@@ -142,17 +144,19 @@ class UsuarioController extends Controller
             'nom.min' => 'El mínimo de caracteres permitidos para nombre es 3',
             'nom.regex' => 'Sólo se aceptan letras para nombre',
 
-            'username.required' => 'El campo nombre de usuario requerido',
-            'username.min' => 'El mínimo de caracteres permitidos para nombre de usuario es 5',
-            'username.unique' => 'El nombre de usuario ya existe',
-
             'tel.required' => 'El campo teléfono es requerido',
             'tel.min' => 'El mínimo de caracteres permitidos para teléfono de usuario es 8',
             'tel.numeric' => 'El campo teléfono tiene q ser númerico',
 
+            'username.required' => 'El campo nombre de usuario requerido',
+            'username.min' => 'El mínimo de caracteres permitidos para nombre de usuario es 5',
+            'username.unique' => 'El nombre de usuario ya existe',
+
             'password.required' => 'El campo contraseña es requerido',
             'password.min' => 'El mínimo de caracteres permitidos son 6',
             'password.confirmed' => 'Los passwords no coinciden',
+
+            'rol.required' => 'El campo contraseña es requerido'
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);

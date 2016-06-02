@@ -5,15 +5,9 @@
 	{!! Breadcrumbs::render('editar_usuario') !!}
     <div class="row">
         <div class="col-md-12">
-            <div class="panel-heading">
-            	<div class="row">  
-	             	<div class="col-md-8">
-	                    <h4><b>Editar Usuario</b></h4>
-	                </div>
-            	</div>
-        	</div>
+
 			{!! Form::model($user, ['method' => 'PATCH', 'route' => ['usuario.update', $user->id], 'class' => 'form-horizontal']) !!}
-			<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+
 			    <div class="row">
 			        <div class="col-md-6">
 						<div class="panel panel-primary">
@@ -61,7 +55,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-												{!! Form::label('username', 'NOMBRE USUARIO', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('username', 'Carnet de Indentidad', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
 												{!! Form
 													::text('username', $user->username, ['class'=> 'form-control', 'required' => 'required']) !!}
@@ -69,14 +63,14 @@
 											</div>
 										</div>
 										<div class="form-group">
-												{!! Form::label('password', 'CONTRASEÑA', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('password', 'Contraseña', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
 												{!! Form::password('password', ['class' => 'form-control']) !!}
 												<span class="help-block">Ingrese la Contraseña</span>
 											</div>
 										</div>
 										<div class="form-group">
-												{!! Form::label('confirm_password', 'CONFIRMAR', ['class' => 'col-md-4 control-label']) !!}
+												{!! Form::label('confirm_password', 'Repetir Contraseña', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
 												{!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
 												<span class="help-block">Ingrese de nuevo la Contraseña</span>
@@ -84,9 +78,9 @@
 										</div>
 
 							            <div class="form-group">
-							              	{!! Form::label('role', 'TIPO', ['class' => 'col-md-4 control-label']) !!}
+							              	{!! Form::label('rol', 'Tipo de Usuario', ['class' => 'col-md-4 control-label']) !!}
 							              <div class="col-md-6">
-							              	{!! Form::select('role', $role, $user->role, ['class' => 'combobox form-control']) !!}
+							              	{!! Form::select('rol', $list_roles, $user->rol_id, ['class' => 'combobox form-control']) !!}
 						                	<span class="help-block">Selecione el Tipo de Usuario</span>							                
 							              </div>
 							            </div>								
