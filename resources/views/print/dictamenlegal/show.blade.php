@@ -32,41 +32,40 @@
       <table class="tablet">
         <tr>
           <td style="width: 60%;border: 0px;">
-            <div class="title"><b>I. INFORMACIÓN DE AFILIADO</b></div>
+            <div class="title"><b> </b></div>
           </td>
           <td style="width: 40%;border: 0px;text-align:right;">
             <div class="title">Fecha de Emisión: La Paz, {!! $date !!}</div>
           </td>
         </tr>
-      </table>
+        <tr>
+          <td style="width: 60%;border: 0px;">
+            <div class="title"><b>REF: </b>FONDO DE RETIRO POLICIAL INDIVIDUAL</div>
+          </td>
+          <td style="width: 40%;border: 0px;text-align:right;">
+            <div class="title"><b>MODALIDAD: </b>{!! $fondoTramite->modalidad->name !!}</div>
+          </td>
+        </tr>
+      </table><br>
 
-      <div id="project">
-          <table>
-            <tr>
-              <th colspan="2" class="grand service">A) DATOS DEL SOLICITANTE</th>
-            </tr>
-            <tr>
-              <th class="service">NOMBRE DEL BENEFICIARIO</th>
-              <td class="info">{!! $solicitante->getFullNametoPrint() !!}</td>
-            </tr>
-            <tr>
-              <th class="service">CARNET DE IDENTIDAD</th>
-              <td class="info">{!! $solicitante->ci !!}</td>
-            </tr>
-          </table>
-      </div>
+      <p> En fecha {!! $date !!} mediante nota el Sr. {!! $solicitante->getFullNametoPrint() !!} 
+        con CI. {!! $solicitante->ci !!} en calidad de BENEFICIARIO solicita la declaración de Fondo
+        de Retiro policial {!! $fondoTramite->modalidad->name !!}, adjunto la documentación pertinente
+        cumpliendo con los requisitos exigidos:
+      </p>
 
       
                                             
       <div id="project">
           <table>
             <tr>
-              <th colspan="2" class="grand service">C)DOCUMENTACIÓN PRESENTADA</th>
+              <td style="width: 5%";class="info"><b>N°</b></td>
+              <td class="info"><center><b>DOCUMENTACIÓN PRESENTADA</b><center></td>
             </tr>
             <?php $i=1; ?>
              @foreach ($documentos as $item)
             <tr>
-              <td class="info">{!! $i !!}</td>  
+              <td style="width: 5%";class="info">{!! $i !!}</td>  
               <td class="info">{!! $item->requisito->name !!}</td>
            
             </tr>
@@ -75,9 +74,29 @@
 
             
           </table>
-      </div>
+      </div><br>
+      <p>
+        Que, de acuerdo a la hoja de liquidacion <b>Nª {!! $fondoTramite->id !!}</b> y liquidacion FRP-556 de la fecha 8 de abril de 2015,
+        correspondiente a abril de 1987 hasta marzo de 2013 años, realizado por el Calificador de la Direccion de
+        Beneficios Economicos, por el periodo de 26 años y o meses, que en fecha 18 de abril de 2015, la Unidad
+        de Recuperacion y Cobranza emite Certificacion de Prestamos con Garantia de Haberes, en el mismo certifica
+        que no tiene deuda con la institucion.
+      </p>
 
-      
+      <P>Reconociendoce el monto de TOTAL de Bs. ,a favor del beneficiario.</P>
+      <p><b>Observación:</b> {!! $fondoTramite->obs !!}</p><br>
+
+      <p>
+        Por lo que, Acesoria Legal de la Direccion de Beneficios Económicos DICTAMINA, de acuerdo a los Arts. 3,
+        5, 6, 19, 20, 21, 25, 30, y disposicion primera del Reglamento Fondo de Retiro Policial Individual de la 
+        Mutual de Servicios al Polcia " MUSERPOL", Resolucion del Directorio Nª 01/ 2014 de la fecha 12 de marzo 
+        de 2014, se reconosca los derechos y se otorgue el veneficio del Fondo de Retiro Policila Individual por 
+        Jubilacion a favor de :
+      </p>
+
+      <p>
+        <b>Sr. {!! $afiliado->getFullNametoPrint() !!}</b> con <b>CI. {!! $afiliado->ci !!}</b> en calidad de titular.
+      </p>
 
     </header>
     <footer>
