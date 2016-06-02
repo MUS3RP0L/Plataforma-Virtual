@@ -31,7 +31,7 @@
                                         <th>Teléfono</th>
                                         <th>Tipo</th>
                                         <th>Estado</th>
-                                        <th>Opciones</th>
+                                        <th class="text-center">Opciones</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -56,12 +56,12 @@ $(function() {
         ajax: '{!! route('getUsuario') !!}',
 
         columns: [
-            { data: 'username', name: 'username', sWidth: '20%' },
-            { data: 'name', name: 'name', sWidth: '20%', bSortable: false },
-            { data: 'tel', name: 'tel', sWidth: '10%', bSortable: false },
-            { data: 'rol_id', name: 'rol_id', sWidth: '15%', bSortable: false },
-            { data: 'status', name: 'status', sWidth: '10%', bSortable: false },
-            { data: 'action', name: 'action', sWidth: '20%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
+            { data: 'username', sWidth: '20%' },
+            { data: 'name', sWidth: '20%', bSortable: false },
+            { data: 'tel',sWidth: '15%', bSortable: false },
+            { data: 'type', sWidth: '20%', bSortable: false },
+            { data: 'status', sWidth: '10%', bSortable: false },
+            { data: 'action', sWidth: '15%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
         ]
     });
 });
