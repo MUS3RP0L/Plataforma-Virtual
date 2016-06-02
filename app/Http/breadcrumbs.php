@@ -22,6 +22,11 @@ Breadcrumbs::register('editar_usuario', function($breadcrumbs) {
     $breadcrumbs->push('Editar Usuario');
 });
 
+// Tasas de aporte
+Breadcrumbs::register('tasas_aporte', function($breadcrumbs) {
+    $breadcrumbs->push('Tasas de Aporte', URL::to('tasa'));
+});
+
 // Afiliado Search
 Breadcrumbs::register('afiliado', function($breadcrumbs) {
     $breadcrumbs->push('Afiliados', URL::to('afiliado'));

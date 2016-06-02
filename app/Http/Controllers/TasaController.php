@@ -26,14 +26,12 @@ class TasaController extends Controller
      */
     public function index()
     {
-        $aporTasa = AporTasa::orderBy('id', 'desc')->firstOrFail();
-
+        $aporTasaLast = AporTasa::orderBy('id', 'desc')->first();
         $date = Carbon::now();
 
         $data = array(
             'date' => $date->format('m-Y'),
-            'aporTasa' => $aporTasa
-
+            'aporTasaLast' => $aporTasaLast
         );
 
         return view('tasas.index', $data);

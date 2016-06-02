@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-md-4">
                         <p class="text-right">
-                            <a href="{!! url('tasa/' . $aporTasa->id . '/edit') !!}" class="btn btn-raised btn-success">Actualizar Aportes de {!! $date !!}</a>
+                            <a href="{!! url('tasa/' . $aporTasaLast->id . '/edit') !!}" class="btn btn-raised btn-success">Actualizar Aportes de {!! $date !!}</a>
                         </p>
                     </div>
                 </div> 
@@ -25,9 +25,8 @@
                 <div class="panel-body">
                     <div class="row"><p>
                         <div class="col-md-12">
-                            <table class="table table-striped table-hover" id="afiliados-table">
+                            <table class="table table-striped table-hover" id="tasas-table">
                                 <thead>
-
                                     <tr class="success">
                                         <th rowspan="2">Año</th>
                                         <th rowspan="2">Mes</th>
@@ -57,7 +56,7 @@
 @push('scripts')
 <script>
 $(function() {
-    $('#afiliados-table').DataTable({
+    $('#tasas-table').DataTable({
         dom: '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
@@ -66,14 +65,14 @@ $(function() {
         ajax: '{!! route('getTasa') !!}',
         order: [0, "desc"],
         columns: [
-            { data: 'gest', sWidth: '6%' },
+            { data: 'gest', sWidth: '10%' },
             { data: 'mes', sWidth: '10%', bSortable: false },
-            { data: 'apor_a', name: 'apor_a', sWidth: '12%', sClass: "text-center", bSortable: false },
-            { data: 'apor_fr_a', sWidth: '12%', sClass: "text-center", bSortable: false },
-            { data: 'apor_sv_a', sWidth: '12%', sClass: "text-center", bSortable: false },
-            { data: 'apor_p', sWidth: '12%', sClass: "text-center", bSortable: false },
-            { data: 'apor_fr_p', sWidth: '12%', sClass: "text-center", bSortable: false },
-            { data: 'apor_sv_p', sWidth: '12%', sClass: "text-center", bSortable: false },
+            { data: 'apor_a', sWidth: '14%', sClass: "text-center", bSortable: false },
+            { data: 'apor_fr_a', sWidth: '14%', sClass: "text-center", bSortable: false },
+            { data: 'apor_sv_a', sWidth: '14%', sClass: "text-center", bSortable: false },
+            { data: 'apor_p', sWidth: '14%', sClass: "text-center", bSortable: false },
+            { data: 'apor_fr_p', sWidth: '14%', sClass: "text-center", bSortable: false },
+            { data: 'apor_sv_p', sWidth: '14%', sClass: "text-center", bSortable: false },
         ]
     });
 });
