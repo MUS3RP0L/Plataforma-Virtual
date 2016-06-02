@@ -217,9 +217,10 @@ class FondoTramiteController extends Controller
         $data = $this->getData($afid);
         $afiliado = $data['afiliado'];
         $solicitante = $data['solicitante'];
+        $fondoTramite = $data['fondoTramite'];
         $documentos = $data['documentos'];
         $date = Util::getfulldate(date('Y-m-d'));
-        $view =  \View::make('print.dictamenlegal.show', compact('afiliado', 'solicitante','documentos', 'date'))->render();
+        $view =  \View::make('print.dictamenlegal.show', compact('afiliado', 'solicitante','documentos','fondoTramite', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/dictamen_legal/' . $name_input . '.pdf');
