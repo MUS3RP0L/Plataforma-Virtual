@@ -50,7 +50,7 @@
 
       <p align="justify"> En fecha {!! $date !!} mediante nota el Sr. {!! $solicitante->getFullNametoPrint() !!} 
         con CI. {!! $solicitante->ci !!} en calidad de BENEFICIARIO solicita la declaración de Fondo
-        de Retiro policial {!! $fondoTramite->modalidad->name !!}, adjunto la documentación pertinente
+        de Retiro policial <b>{!! $fondoTramite->modalidad->name !!}</b>, adjunto la documentación pertinente
         cumpliendo con los requisitos exigidos:
       </p>
 
