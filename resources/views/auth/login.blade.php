@@ -19,7 +19,7 @@
         			<div class="panel-body">
 
 			        	{!! Form::open(['url' => 'login', 'role' => 'form', 'class' => 'form-horizontal']) !!}
-				            
+				            <br>
 				            <div class="form-group">
 				              	{!! Form::label('usermane', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
 				              	<div class="col-md-4">
@@ -39,7 +39,7 @@
 					        <div class="row text-center">
 			                    <div class="form-group">
 			                        <div class="col-md-12">
-			                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Ingresar&nbsp;&nbsp;<span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>
+			                            <button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
 			                        </div>
 			                    </div>
 			                </div>

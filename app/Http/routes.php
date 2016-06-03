@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('tramite_fondo_retiro_dictamenlegal/{afid}', 'FondoTramiteController@print_dictamenlegal');
 
 
+
+
 	// Gestion de Usuarios
 	Route::resource('usuario', 'UsuarioController');
 	Route::get('usuario/block/{id}', 'UsuarioController@block');

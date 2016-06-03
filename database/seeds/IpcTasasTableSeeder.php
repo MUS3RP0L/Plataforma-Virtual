@@ -394,16 +394,17 @@ class IpcTasasTableSeeder extends Seeder
 			['gest' => '2015-10-1', 'ipc' =>  '160.0900', 'user_id' => '1'],
 			['gest' => '2015-11-1', 'ipc' =>  '160.1700', 'user_id' => '1'],
 			['gest' => '2015-12-1', 'ipc' =>  '160.4400', 'user_id' => '1'],
+			
 			['gest' => '2016-1-1',  'ipc' => '161.1000', 'user_id' => '1'],
 			['gest' => '2016-2-1',  'ipc' => '161.1000', 'user_id' => '1'],
-			['gest' => '2016-3-1',  'ipc' => '161.1000', 'user_id' => '1']
-
+			['gest' => '2016-3-1',  'ipc' => '161.1000', 'user_id' => '1'],
+			['gest' => '2016-4-1',  'ipc' => '161.1000', 'user_id' => '1'],
+			['gest' => '2016-5-1',  'ipc' => '161.1000', 'user_id' => '1'],
+			['gest' => '2016-6-1',  'ipc' => '161.1000', 'user_id' => '1']
         ];
 
         foreach ($statuses as $status) {
-
-                Muserpol\IpcTasa::create($status);
-            
+            Muserpol\IpcTasa::create($status);
         }
     }
 }
