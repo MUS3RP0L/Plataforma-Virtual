@@ -224,6 +224,13 @@ class Util
 			return date("d", strtotime($date))." ".$meses[date("n", strtotime($date))-1]. " ".date("Y", strtotime($date));
         }
 	}
+	public static function getfullmonthYear($date)
+	{
+		if ($date) {
+            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+			return $meses[date("n", strtotime($date))-1]. " ".date("Y", strtotime($date));
+        }
+	}
 
 	public static function getYearsAndMonths($fech_ini, $fech_fin)
     {
