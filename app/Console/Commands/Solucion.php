@@ -46,18 +46,17 @@ class Solucion extends Command
      */
     public function handle()
     {   
-        $password = $this->ask('Estimado Usuario: Escriba la contraseña para realizar la operacion, Gracias.');
+        // $password = $this->ask('Estimado Usuario: Escriba la contraseña para realizar la operacion, Gracias.');
         
-        if ($password == ACCESS) {
+        // if ($password == ACCESS) {
                 
-                global $progress, $ale;
+                global $progress, $i, $afi;
                 $time_start = microtime(true); 
 
                 $this->info("Resolviendo...\n");
                 $progress = $this->output->createProgressBar();
                 $progress->setFormat("%current%/%max% [%bar%] %percent:3s%%");
 
-                global $progress, $ale;
                 ini_set('upload_max_filesize', '9999M');
                 ini_set('post_max_size', '9999M');
                 ini_set('max_execution_time', 36000);
@@ -66,10 +65,12 @@ class Solucion extends Command
                 set_time_limit(36000);
 
                 Excel::batch('public/solicitud/', function($rows, $file) {   
-                
+                    global $progress, $i, $afi;
+                    $i = 0;
                     $rows->each(function($result) {
-
-                        global $progress, $ale;
+                        global $progress, $i, $afi;
+                        $i++;
+                        
                         ini_set('upload_max_filesize', '9999M');
                         ini_set('post_max_size', '9999M');
                         ini_set('max_execution_time', 36000);
@@ -78,13 +79,38 @@ class Solucion extends Command
                         set_time_limit(36000);
                         
                         $var = explode(" ", $result->name);
-                        
-                        $ale = $var[0];
-                        
+
+                        $afi[$i]=$var;
+
                         $progress->advance();
                     });
 
                 });
+
+                Excel::create('Datos', function($excel) {
+
+                    global $progress, $i, $afi;
+                    $i = 2;
+                    $excel->sheet('Afiliados', function($sheet) { 
+                        
+                        global $progress, $i, $afi;
+                        ini_set('upload_max_filesize', '9999M');
+                        ini_set('post_max_size', '9999M');
+                        ini_set('max_execution_time', 36000);
+                        ini_set('max_input_time', 36000);
+                        ini_set('memory_limit', '-1');
+                        set_time_limit(36000);
+
+                        $sheet->row(1, array('PRIMER NOMBRE', 'APELLIDO PATERNO', 'APELLIDO MATERNO'));
+                        
+                        foreach ($afi as $item) {
+                            $sheet->row($i, array($item[0], $item[1], $item[2]));
+                            $i++;
+                        }
+
+                    });
+
+                })->store('xlsx');      
 
                 $time_end = microtime(true);
 
@@ -93,11 +119,11 @@ class Solucion extends Command
 
                 $progress->finish();
             
-                $this->info("\n\n$execution_time [Min] demorados en ejecutar de importacion.\n". $ale);
+                $this->info("\n\n$execution_time [Min] demorados en ejecutar de importacion.\n");
             
-        }
-        else{
-            $this->error('Contraseña incorrecta!');
-        }
+        // }
+        // else{
+        //     $this->error('Contraseña incorrecta!');
+        // }
     }
 }
