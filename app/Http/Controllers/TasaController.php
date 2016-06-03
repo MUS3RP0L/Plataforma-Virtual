@@ -26,11 +26,9 @@ class TasaController extends Controller
      */
     public function index()
     {
-        $aporTasaLast = AporTasa::orderBy('id', 'desc')->first();
-        $date = Carbon::now();
+        $aporTasaLast = AporTasa::orderBy('gest', 'desc')->first();
 
         $data = array(
-            'date' => $date->format('m-Y'),
             'aporTasaLast' => $aporTasaLast
         );
 
@@ -51,27 +49,6 @@ class TasaController extends Controller
                 ->editColumn('apor_fr_p', function ($tasa) { return Util::formatMoney($tasa->apor_fr_p); })
                 ->editColumn('apor_sv_p', function ($tasa) { return Util::formatMoney($tasa->apor_sv_p); })
                 ->make(true);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        // 
     }
 
     public function save($request, $id = false)
@@ -117,38 +94,26 @@ class TasaController extends Controller
         }
         else{
 
-            $aporTasa = AporTasa::where('id', '=', $id)->firstOrFail();
+            $aporTasa = AporTasa::where('id', '=', $id)->first();
 
             $aporTasa->user_id = Auth::user()->id;
-                
-            $aporTasa->apor_a = trim($request->apor_a);
+                  
             $aporTasa->apor_fr_a = trim($request->apor_fr_a);
             $aporTasa->apor_sv_a = trim($request->apor_sv_a);
-
-            $aporTasa->apor_p = trim($request->apor_p); 
-            $aporTasa->apor_fr_a = trim($request->apor_fr_a);
+            $aporTasa->apor_a = trim($request->apor_a);
+            
+            $aporTasa->apor_fr_p = trim($request->apor_fr_p);
             $aporTasa->apor_sv_p = trim($request->apor_sv_p);
-
+            $aporTasa->apor_p = trim($request->apor_p);
 
             $aporTasa->save();
 
-            $message = "Tasas de Aporte Actualizado con éxito";
+            $message = "Tasa de Aporte Actualizado con éxito";
 
             Session::flash('message', $message);
         }
         
         return redirect('tasa');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -159,19 +124,18 @@ class TasaController extends Controller
      */
     public function edit($id)
     {
-        $now = Carbon::now();
+        if (Auth::user()->can('admin')) {
+            $aporTasaLast = AporTasa::orderBy('gest', 'desc')->first();
+            
+            $data = [
+                'aporTasaLast' => $aporTasaLast,
+                'gest' => Util::getfullmonthYear($aporTasaLast->gest)
+            ];
 
-        $y = $now->year;
-        $m = $now->month;
-        
-        $aporTasa = AporTasa::whereYear('gest', '=', $now->year)
-                                ->whereMonth('gest', '=', $now->month)->first();
-
-        $data = [
-            'date' => $now->format('m-Y'),
-            'aporTasa' => $aporTasa
-        ];
-        return View('tasas.edit', $data);
+            return View('tasas.edit', $data);
+        }else{
+            return redirect('/');
+        }
     }
 
     /**
@@ -183,17 +147,10 @@ class TasaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->save($request, $id);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        if (Auth::user()->can('admin')) {
+            return $this->save($request, $id);
+        }else{
+            return redirect('/');
+        }
     }
 }
