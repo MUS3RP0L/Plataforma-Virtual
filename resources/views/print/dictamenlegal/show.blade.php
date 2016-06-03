@@ -46,7 +46,7 @@
              <div class="title"><b>Usuario: {{ Auth::user()->ape }} {{ Auth::user()->nom }}</b></div>
             </td>
         </tr>
-        <tr></tr>
+        
         <tr>
           <td style="width: 60%;border: 0px;">
             <div class="title"><b>REF: </b>FONDO DE RETIRO POLICIAL INDIVIDUAL</div>

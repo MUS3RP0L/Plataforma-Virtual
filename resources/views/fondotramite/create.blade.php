@@ -14,28 +14,57 @@
                 </div>
 
                 <div class="col-md-6 text-right">  
-
+                    @if(($info_gen) && ($info_soli) && ($info_docu))
                      <div class="btn-group" style="margin:-6px 1px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
-                        <a href="" data-target="#myModal-print" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                        <a href="" data-target="#myModal-print" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
                             &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;&nbsp;
                         </a>
                     </div>
+                    @else
+                      <div class="btn-group" style="margin:-6px 1px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
+                        <a href="" data-target="#myModal-print" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
+                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;&nbsp;
+                        </a>
+                      </div>  
+                    @endif
 
+                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec))
                     <a class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
                         <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;
                     </a>
+                    @else
+                    <a class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
+                        <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;
+                    </a>
+                    @endif
 
+                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec) && ($afiliado->getYearsAndMonths_fech_ini_apor()))
                     <a class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
                         <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
                     </a>
+                    @else
+                    <a class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
+                        <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
+                    </a>
+                    @endif
 
+                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec) && ($afiliado->getYearsAndMonths_fech_ini_apor()))
                     <div class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
                         <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
                     </a>
                     </div>
+                    @else
+                     <div class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
+                        <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
+                    </a>
+                    </div>   
+                    @endif
                     &nbsp;
                     <a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px;"  class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Volver">
                         &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;&nbsp;
@@ -303,6 +332,7 @@
                                     </div>
                                     
                                 @else
+                                    @if($info_gen == 1)
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-solicitante"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante">
@@ -310,6 +340,14 @@
                                             </button>
                                         </div>
                                     </div>
+                                    @else
+                                    <div class="row text-center">
+                                       
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal-solicitante" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante" disabled="disabled">
+                                                <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">                                                                          
+                                            </button>
+                                    </div>
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -368,6 +406,7 @@
                                     </div>
 
                                 @else
+                                    @if($info_gen == 1 && $info_soli == 1 && $info_docu == 1)
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-antec"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos">
@@ -375,6 +414,13 @@
                                             </button>
                                         </div>
                                     </div>
+                                    @else
+                                        <div class="row text-center">
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal-antec" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos" disabled="disabled">
+                                                <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">                                                                          
+                                            </button>
+                                        </div>
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -442,6 +488,7 @@
                                     </div>
 
                                 @else
+                                    @if($info_gen == 1 && $info_soli == 1)
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-requisitos"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos">
@@ -449,6 +496,13 @@
                                             </button>
                                         </div>
                                     </div>
+                                    @else
+                                    <div class="row text-center">
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal-requisitos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos" disabled="disabled">
+                                                <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">                                                                          
+                                            </button>
+                                    </div>
+                                    @endif
                                 @endif
                             </div>
                         </div>
