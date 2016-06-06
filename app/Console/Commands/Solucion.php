@@ -86,6 +86,7 @@ class Solucion extends Command
                         $afi1->grado = $result->grado;
 
                         $datos = explode(" ", $afi1->nombres);
+                        $afiliado = "";
 
                         if (in_array("VDA.", $datos)) {
                             switch (count($datos)) {
@@ -101,7 +102,7 @@ class Solucion extends Command
                                     $am = $datos[2];
                                     // $ac = $datos[5];
                                     $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
-                                    if (!$afiliado) {
+                                    if ($afiliado <> "") {
                                         $n1 = $datos[0];
                                         $n2 = $datos[1];
                                         $ap = $datos[2];
@@ -120,9 +121,9 @@ class Solucion extends Command
 
                             }
                         }
-                        
-                        else if{
-                             if (in_array("la", $datos)) {
+                        else
+                        {   
+                            if (in_array("la", $datos)) {
                                 switch (count($datos)) {
                                     case '5':
                                         $n1 = $datos[0];
@@ -134,92 +135,95 @@ class Solucion extends Command
                                         $n1 = $datos[0];
                                         $ap = $datos[4];
                                         $am = $datos[5];
-
                                         $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
                                     break;
 
                                  }
 
                             }
-                        }
+                            else
+                            {   
+                                if(in_array("de", $datos)) {
+                                    switch (count($datos)) {
+                                        case '4':
+                                            $n1 = $datos[0];
+                                            $ap = $datos[1];
+                                            $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->get();
+                                        break;
 
-                        else if(in_array("de", $datos)) {
-                                switch (count($datos)) {
-                                    case '4':
-                                        $n1 = $datos[0];
-                                        $ap = $datos[1];
+                                        case '5':
+                                            $n1 = $datos[0];
+                                            $ap = $datos[1];
+                                            $am = $datos[2];
+                                            $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
+                                            if ($afiliado <> "") {
+                                                $n1 = $datos[0];
+                                                $n2 = $datos[1];
+                                                $ap = $datos[2];
+                                                $afiliado = Afiliado::where('nom', '=', $n1)->where('nom2', '=', $n2)->where('pat', '=', $ap)->get();
+                                            }
+                                        break;
+                                    }
+                                }
+                                else
+                                {   
+                                    switch (count($datos)) {
+                                        case '2':       
+                                            $n1 = $datos[0];
+                                            $ap = $datos[1];
+                                            $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->get();
+                                            if ($afiliado <> "") {
+                                                $ap = $datos[0];
+                                                $n1 = $datos[1];
+                                                $afiliado = Afiliado::where('pat', '=', $ap)->where('nom', '=', $n1)->get();
+                                            }
+                                        break;
 
-                                        $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->get();
-                                    break;
+                                        case '3':
+                                            $n1 = $datos[0];
+                                            $ap = $datos[1];
+                                            $am = $datos[2];
+                                            $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
+                                            if ($afiliado <> "") {
+                                                $ap = $datos[0];
+                                                $am = $datos[1];
+                                                $n1 = $datos[2];
+                                                $afiliado = Afiliado::where('pat', '=', $ap)->where('mat', '=', $am)->where('nom', '=', $n1)->get();
+                                            }
 
-                                    case '5':
-                                        $n1 = $datos[0];
-                                        $ap = $datos[1];
-                                        $am = $datos[2];
+                                        break;
 
-                                        $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
-                                        if (!$afiliado) {
+                                        case '4':
                                             $n1 = $datos[0];
                                             $n2 = $datos[1];
                                             $ap = $datos[2];
-                                            $afiliado = Afiliado::where('nom', '=', $n1)->where('nom2', '=', $n2)->where('pat', '=', $ap)->get();
-                                        }
-                                    break;
+                                            $am = $datos[3];
+                                            $afiliado = Afiliado::where('nom', '=', $n1)->where('nom2', '=', $n2)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
+                                            if ($afiliado <> "") {
+                                                $ap = $datos[0];
+                                                $am = $datos[1];
+                                                $n1 = $datos[2];
+                                                $n2 = $datos[3];
+                                                            
+                                                $afiliado = Afiliado::where('pat', '=', $ap)->where('mat', '=', $am)->where('nom', '=', $n1)->where('nom2', '=', $n2)->get();
+                                            }
+
+                                        break;
+                                    }
+
                                 }
-
-                            }
-                        }
-                        else{
-                             if (in_array($datos)) {
-                                switch (count($datos)) {
-                                    case '2':       
-                                        $n1 = $datos[0];
-                                        $ap = $datos[1];
-                                        $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->get();
-                                        if (!$afiliado) {
-                                            $ap = $datos[0];
-                                            $n1 = $datos[1];
-                                            $afiliado = Afiliado::where('pat', '=', $ap)->where('nom', '=', $n1)->get();
-                                        }
-                                    break;
-
-                                    case '3':
-                                        $n1 = $datos[0];
-                                        $ap = $datos[1];
-                                        $am = $datos[2];
-                                        $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
-                                        if (!$afiliado) {
-                                            $ap = $datos[0];
-                                            $am = $datos[1];
-                                            $n1 = $datos[2];
-                                            $afiliado = Afiliado::where('pat', '=', $ap)->where('mat', '=', $am)->where('nom', '=', $n1)->get();
-                                        }
-
-                                    break;
-
-                                    case '4':
-                                        $n1 = $datos[0];
-                                        $n2 = $datos[1];
-                                        $ap = $datos[2];
-                                        $am = $datos[3];
-                                        $afiliado = Afiliado::where('nom', '=', $n1)->where('nom2', '=', $n2)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
-                                        if (!$afiliado) {
-                                            $ap = $datos[0];
-                                            $am = $datos[1];
-                                            $n1 = $datos[2];
-                                            $n2 = $datos[3];
-                                                        
-                                            $afiliado = Afiliado::where('pat', '=', $ap)->where('mat', '=', $am)->where('nom', '=', $n1)->where('nom2', '=', $n2)->get();
-                                        }
-
-                                    break;
-                            
-                                }
-
                             }
                         }
 
-                        $afi[$i]=$afi1;
+                        if ($afiliado <> "") {
+                            foreach ($afiliado as $item) {
+                                if ($item) {
+                                    $i++;
+                                    $afi1->afiliado_id = $item->id;
+                                    $afi[$i]=$afi1;
+                                }
+                            }
+                        }
 
                         $progress->advance();
                     });
@@ -240,16 +244,48 @@ class Solucion extends Command
                         ini_set('memory_limit', '-1');
                         set_time_limit(36000);
 
-                        $sheet->row(1, array('Id', 'Carpeta', 'Nombres', 'APELLIDO PATERNO', 'APELLIDO MATERNO'));
-                        
+                        $sheet->row(1, array('Id', 'Carpeta', 'Nombres', 'AFP', 'NUA', 'CARNET IDENTIDAD', 'ITEM MUSERPOL', 'NOMBRES', 'APELLIDO PATERNO', 'APELLIDO MATERNO', 'FECHA NAC', 'SEXO', 'ESTADO CIVIL', 'FECHA INGRESO', 'ULT PERIODO COTIZADO', 'TOTAL GANADO', 'NIV', 'GRA', 'GRADO AFILIADO', 'PERIODO COTIZADO', 'SALDO CUENTA PREV BS'));
+
                         foreach ($afi as $item) {
-                            $sheet->row($i, array($item->id, $item->carpeta, $item->nombres));
+                            
+                            $afiliado = Afiliado::idIs($item->afiliado_id)->first();
+                            $lastAporte = Aporte::afiIs($item->afiliado_id)->orderBy('gest', 'desc')->first();
+                            
+                            if ($lastAporte) {
+                            
+                                $dateLA = Carbon::parse($lastAporte->gest)->year . Util::getMonthMM(Carbon::parse($lastAporte->gest)->month);
+                                
+                                $totalG = Util::formatMoney($lastAporte->cot);
+
+                                $periodosCoti = DB::table('aportes')
+                                ->leftJoin('afiliados', 'aportes.afiliado_id', '=', 'afiliados.id')
+                                ->where('afiliados.id', '=', $afiliado->id)->count();
+
+                                $totalMuserpol = DB::table('afiliados')
+                                ->select(DB::raw('SUM(aportes.mus) as muserpol'))
+                                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                                ->where('afiliados.id', '=', $afiliado->id)->first();
+                                $totalM = Util::formatMoney($totalMuserpol->muserpol);
+
+                                if(!$afiliado->grado_id){
+                                    $afiliado->niv = '';
+                                    $afiliado->grad = '';
+                                    $afiliado->lit = '';
+                                }else{
+                                    $afiliado->niv = $afiliado->grado->niv;
+                                    $afiliado->grad = $afiliado->grado->grad;
+                                    $afiliado->lit = $afiliado->grado->lit;
+                                }
+
+                                $sheet->row($i, array($item->id, $item->carpeta, $item->nombres, $afiliado->afp, $afiliado->nua, $afiliado->ci, $afiliado->afiliado_id, $afiliado->nom. " ". $afiliado->nom2, $afiliado->pat, $afiliado->mat, $afiliado->fech_nac, $afiliado->sex, $afiliado->est_civ, $afiliado->fech_ing, $dateLA, $totalG,$afiliado->niv, $afiliado->grad, $afiliado->lit, $periodosCoti, $totalM));
+                            }
+
                             $i++;
                         }
 
                     });
 
-                })->store('xlsx');      
+                })->store('xlsx');  
 
                 $time_end = microtime(true);
 
