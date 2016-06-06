@@ -12,5 +12,6 @@ class Afi extends Model
 		'carpeta',
 		'nombres',
 		'grado',
+		'afiliado_id',
 	];
 }

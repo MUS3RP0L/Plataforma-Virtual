@@ -228,7 +228,13 @@ class Solucion extends Command
                             }
                         }
 
-                        $afi[$i]=$afi1;
+                        foreach ($afiliado as $item) {
+                            if ($item) {
+                                $i++;
+                                $afi1->afiliado_id = $item->id;
+                                $afi[$i]=$afi1;
+                            }
+                        }
 
                         $progress->advance();
                     });
@@ -249,10 +255,42 @@ class Solucion extends Command
                         ini_set('memory_limit', '-1');
                         set_time_limit(36000);
 
-                        $sheet->row(1, array('Id', 'Carpeta', 'Nombres', 'APELLIDO PATERNO', 'APELLIDO MATERNO'));
-                        
+                        $sheet->row(1, array('Id', 'Carpeta', 'Nombres', 'AFP', 'NUA', 'CARNET IDENTIDAD', 'ITEM MUSERPOL', 'NOMBRES', 'APELLIDO PATERNO', 'APELLIDO MATERNO', 'FECHA NAC', 'SEXO', 'ESTADO CIVIL', 'FECHA INGRESO', 'ULT PERIODO COTIZADO', 'TOTAL GANADO', 'NIV', 'GRA', 'GRADO AFILIADO', 'PERIODO COTIZADO', 'SALDO CUENTA PREV BS'));
+
                         foreach ($afi as $item) {
-                            $sheet->row($i, array($item->id, $item->carpeta, $item->nombres));
+                            
+                            $afiliado = Afiliado::idIs($item->afiliado_id)->first();
+                            $lastAporte = Aporte::afiIs($item->afiliado_id)->orderBy('gest', 'desc')->first();
+                            
+                            if ($lastAporte) {
+                            
+                                $dateLA = Carbon::parse($lastAporte->gest)->year . Util::getMonthMM(Carbon::parse($lastAporte->gest)->month);
+                                
+                                $totalG = Util::formatMoney($lastAporte->cot);
+
+                                $periodosCoti = DB::table('aportes')
+                                ->leftJoin('afiliados', 'aportes.afiliado_id', '=', 'afiliados.id')
+                                ->where('afiliados.id', '=', $afiliado->id)->count();
+
+                                $totalMuserpol = DB::table('afiliados')
+                                ->select(DB::raw('SUM(aportes.mus) as muserpol'))
+                                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                                ->where('afiliados.id', '=', $afiliado->id)->first();
+                                $totalM = Util::formatMoney($totalMuserpol->muserpol);
+
+                                if(!$afiliado->grado_id){
+                                    $afiliado->niv = '';
+                                    $afiliado->grad = '';
+                                    $afiliado->lit = '';
+                                }else{
+                                    $afiliado->niv = $afiliado->grado->niv;
+                                    $afiliado->grad = $afiliado->grado->grad;
+                                    $afiliado->lit = $afiliado->grado->lit;
+                                }
+
+                                $sheet->row($i, array($item->id, $item->carpeta, $item->nombres, $afiliado->afp, $afiliado->nua, $afiliado->ci, $afiliado->afiliado_id, $afiliado->nom. " ". $afiliado->nom2, $afiliado->pat, $afiliado->mat, $afiliado->fech_nac, $afiliado->sex, $afiliado->est_civ, $afiliado->fech_ing, $dateLA, $totalG,$afiliado->niv, $afiliado->grad, $afiliado->lit, $periodosCoti, $totalM));
+                            }
+
                             $i++;
                         }
 
