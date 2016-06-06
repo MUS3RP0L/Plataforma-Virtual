@@ -66,12 +66,12 @@ $(function() {
         columns: [
             { data: 'gest', sWidth: '6%' },
             { data: 'mes', sWidth: '9%', bSortable: false },
-            { data: 'apor_a', sWidth: '15%', sClass: "text-center", bSortable: false },
+            { data: 'apor_a', sWidth: '14%', sClass: "text-center", bSortable: false },
             { data: 'apor_fr_a', sWidth: '15%', sClass: "text-center", bSortable: false },
             { data: 'apor_sv_a', sWidth: '15%', sClass: "text-center", bSortable: false },
             { data: 'apor_p', sWidth: '15%', sClass: "text-center", bSortable: false },
             { data: 'apor_fr_p', sWidth: '15%', sClass: "text-center", bSortable: false },
-            { data: 'apor_sv_p', sWidth: '15%', sClass: "text-center", bSortable: false },
+            { data: 'apor_sv_p', sWidth: '16%', sClass: "text-center", bSortable: false },
         ]
     });
 });

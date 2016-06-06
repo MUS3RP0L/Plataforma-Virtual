@@ -33,6 +33,12 @@ Breadcrumbs::register('editar_tasas_aporte', function($breadcrumbs, $mes) {
 });
 
 
+// Tasas de aporte
+Breadcrumbs::register('tasas_ipc', function($breadcrumbs) {
+    $breadcrumbs->push('Tasas de Índice de Precio al Consumidor', URL::to('ipc'));
+});
+
+
 // Afiliado Search
 Breadcrumbs::register('afiliado', function($breadcrumbs) {
     $breadcrumbs->push('Afiliados', URL::to('afiliado'));

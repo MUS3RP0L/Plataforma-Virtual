@@ -24,7 +24,7 @@
 				              	{!! Form::label('usermane', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
 				              	<div class="col-md-4">
 	                  				{!! Form::text('username', null, ['class' => 'form-control', 'required' => 'required']) !!}
-				                	<span class="help-block">Ingrese su Número de Carnet</span>
+				                	<span class="help-block">Ingrese su número de carnet</span>
 				              	</div>
 				            </div>
 
@@ -32,7 +32,7 @@
 				                {!! Form::label('password', 'Contraseña', ['class' => 'col-md-5 control-label']) !!}
 				              	<div class="col-md-4">
 				                	{!! Form::password('password', ['class' => 'form-control', 'required' => 'required']) !!}
-				                	<span class="help-block">Ingrese su Contraseña</span>
+				                	<span class="help-block">Ingrese su contraseña</span>
 				              	</div>
 				            </div>
 
