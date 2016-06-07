@@ -27,18 +27,7 @@ class SueldoController extends Controller
      */
     public function index()
     {
-        $Sueldo = Sueldo::orderBy('id', 'desc')->firstOrFail();
-
-        $date = Carbon::now();
-
-        $data = array(
-            'date' => $date->format('Y'),
-            'sueldo' => $Sueldo
-
-        );
-
-        return view('sueldos.index', $data);
-
+        return view('sueldos.index');
     }
 
     public function sueldoPriData()
@@ -225,17 +214,6 @@ class SueldoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -321,16 +299,4 @@ class SueldoController extends Controller
         return redirect('sueldo'); 
 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
 }

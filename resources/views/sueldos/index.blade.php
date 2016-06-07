@@ -2,33 +2,27 @@
 
 @section('content')
 <div class="container-fluid">
-
+    {!! Breadcrumbs::render('sueldos') !!}
     <div class="row">
         <div class="col-md-12">
-            <div class="panel-heading">
+
+            @can('admin')
                 <div class="row">
-                    <div class="col-md-8">
-                        <h3>SUELDOS DE PERSONAL DE LA POLICIA NACIONAL</h3>
+                    <div class="col-md-12 text-right">  
+                        <a href="{!! url('sueldo/create') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-import"></span>&nbsp;&nbsp;&nbsp;</a>
                     </div>
-                    <div class="col-md-4">
-                        <p class="text-right">
-                            <a href="{!! url('sueldo/create') !!}" class="btn btn-raised btn-success">Importar Sueldos de {!! $date !!}</a>
-                        </p>
-                    </div>
-                </div> 
-            </div>
+                </div>
+            @endcan
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">GENERALES, JEFES Y OFICIALES DE PRIMER NIVEL</h3>
+                    <h3 class="panel-title">Primer Nivel</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row"><p>
                         <div class="col-md-12">
                             <table class="table table-striped table-hover" id="sueldoPri-table">
                                 <thead>
-
-
                                     <tr class="success">
                                         <th>AÑO</th>    
                                         <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 00 - COMANDANTE GRAL">CMTE GRAL</div></th>
@@ -53,7 +47,7 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">JEFES Y OFICIALES ADMINISTRATIVOS SEGUNDO NIVEL</h3>
+                    <h3 class="panel-title">Segundo Nivel</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row"><p>
@@ -78,7 +72,7 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">SUBOFICIALES, CLASES Y POLICIAS DE LINEA TERCER NIVEL</h3>
+                    <h3 class="panel-title">Tercer Nivel</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row"><p>
@@ -105,7 +99,7 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">SUBOFICIALES, CLASES Y POLICIAS ADMINISTRATIVOS CUARTO NIVEL</h3>
+                    <h3 class="panel-title">Cuarto Nivel</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row"><p>
@@ -158,19 +152,19 @@ $(function() {
         ajax: '{!! route('getSueldoPri') !!}',
         order: [[0, "desc"]],
         columns: [
-            { data: 'gest', name: 'gest', "sClass": "text-center", sWidth: '4%' },
-            { data: 'c1', name: 'c1', "sClass": "text-right", sWidth: '10%', bSortable: false },
-            { data: 'c2', name: 'c2', "sClass": "text-right", sWidth: '10%', bSortable: false },
-            { data: 'c3', name: 'c3', "sClass": "text-right", sWidth: '11%', bSortable: false },
-            { data: 'c4', name: 'c4', "sClass": "text-right", sWidth: '10%', bSortable: false },
-            { data: 'c5', name: 'c5', "sClass": "text-right", sWidth: '10%', bSortable: false },
-            { data: 'c6', name: 'c6', "sClass": "text-right", sWidth: '6%', bSortable: false },
-            { data: 'c7', name: 'c7', "sClass": "text-right", sWidth: '6%', bSortable: false },
-            { data: 'c8', name: 'c8', "sClass": "text-right", sWidth: '6%', bSortable: false },
-            { data: 'c9', name: 'c9', "sClass": "text-right", sWidth: '6%', bSortable: false },
-            { data: 'c10', name: 'c10', "sClass": "text-right", sWidth: '7%', bSortable: false },
-            { data: 'c11', name: 'c11', "sClass": "text-right", sWidth: '7%', bSortable: false },
-            { data: 'c12', name: 'c12', "sClass": "text-right", sWidth: '7%', bSortable: false }
+            { data: 'gest', "sClass": "text-center", sWidth: '1%' },
+            { data: 'c1', "sClass": "text-right", sWidth: '9%', bSortable: false },
+            { data: 'c2', "sClass": "text-right", sWidth: '9%', bSortable: false },
+            { data: 'c3', "sClass": "text-right", sWidth: '9%', bSortable: false },
+            { data: 'c4', "sClass": "text-right", sWidth: '9%', bSortable: false },
+            { data: 'c5', "sClass": "text-right", sWidth: '9%', bSortable: false },
+            { data: 'c6', "sClass": "text-right", sWidth: '8%', bSortable: false },
+            { data: 'c7', "sClass": "text-right", sWidth: '8%', bSortable: false },
+            { data: 'c8', "sClass": "text-right", sWidth: '7%', bSortable: false },
+            { data: 'c9', "sClass": "text-right", sWidth: '7%', bSortable: false },
+            { data: 'c10', "sClass": "text-right", sWidth: '7%', bSortable: false },
+            { data: 'c11', "sClass": "text-right", sWidth: '7%', bSortable: false },
+            { data: 'c12', "sClass": "text-right", sWidth: '7%', bSortable: false }
         ]
     });
 
@@ -184,13 +178,13 @@ $(function() {
         ajax: '{!! route('getSueldoSeg') !!}',
         order: [[0, "desc"]],
         columns: [
-            { data: 'gest', name: 'gest', "sClass": "text-center" },
-            { data: 'c13', name: 'c13', "sClass": "text-right", sWidth: '16%', bSortable: false },
-            { data: 'c14', name: 'c14', "sClass": "text-right", sWidth: '16%', bSortable: false },
-            { data: 'c15', name: 'c15', "sClass": "text-right", sWidth: '16%', bSortable: false },
-            { data: 'c16', name: 'c16', "sClass": "text-right", sWidth: '16%', bSortable: false },
-            { data: 'c17', name: 'c17', "sClass": "text-right", sWidth: '16%', bSortable: false },
-            { data: 'c18', name: 'c18', "sClass": "text-right", sWidth: '16%', bSortable: false }
+            { data: 'gest', "sClass": "text-center", sWidth: '1%' },
+            { data: 'c13', "sClass": "text-right", sWidth: '16%', bSortable: false },
+            { data: 'c14', "sClass": "text-right", sWidth: '16%', bSortable: false },
+            { data: 'c15', "sClass": "text-right", sWidth: '16%', bSortable: false },
+            { data: 'c16', "sClass": "text-right", sWidth: '16%', bSortable: false },
+            { data: 'c17', "sClass": "text-right", sWidth: '16%', bSortable: false },
+            { data: 'c18', "sClass": "text-right", sWidth: '16%', bSortable: false }
         ]
     });
 
@@ -204,15 +198,15 @@ $(function() {
         ajax: '{!! route('getSueldoTer') !!}',
         order: [[0, "desc"]],
         columns: [
-            { data: 'gest', name: 'gest', "sClass": "text-center" },
-            { data: 'c19', name: 'c19', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c20', name: 'c20', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c21', name: 'c21', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c22', name: 'c22', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c23', name: 'c23', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c24', name: 'c24', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c25', name: 'c25', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c26', name: 'c26', "sClass": "text-right", sWidth: '12%', bSortable: false }
+            { data: 'gest', "sClass": "text-center", sWidth: '1%' },
+            { data: 'c19', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c20', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c21', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c22', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c23', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c24', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c25', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c26', "sClass": "text-right", sWidth: '12%', bSortable: false }
         ]
     });
 
@@ -226,15 +220,15 @@ $(function() {
         ajax: '{!! route('getSueldoCua') !!}',
         order: [[0, "desc"]],
         columns: [
-            { data: 'gest', name: 'gest', "sClass": "text-center" },
-            { data: 'c27', name: 'c27', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c28', name: 'c28', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c29', name: 'c29', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c30', name: 'c30', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c31', name: 'c31', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c32', name: 'c32', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c33', name: 'c33', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c34', name: 'c34', "sClass": "text-right", sWidth: '12%', bSortable: false }
+            { data: 'gest', "sClass": "text-center", sWidth: '1%' },
+            { data: 'c27', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c28', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c29', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c30', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c31', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c32', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c33', "sClass": "text-right", sWidth: '12%', bSortable: false },
+            { data: 'c34', "sClass": "text-right", sWidth: '12%', bSortable: false }
         ]
     });
 });

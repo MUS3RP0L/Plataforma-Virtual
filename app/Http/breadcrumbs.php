@@ -39,6 +39,12 @@ Breadcrumbs::register('tasas_ipc', function($breadcrumbs) {
 });
 
 
+// Sueldos
+Breadcrumbs::register('sueldos', function($breadcrumbs) {
+    $breadcrumbs->push('Sueldos de Personal de la Policía Nacional', URL::to('sueldo'));
+});
+
+
 // Afiliado Search
 Breadcrumbs::register('afiliado', function($breadcrumbs) {
     $breadcrumbs->push('Afiliados', URL::to('afiliado'));
@@ -52,26 +58,4 @@ Breadcrumbs::register('show_afiliado', function($breadcrumbs, $afiliado) {
 Breadcrumbs::register('aportes_afiliado', function($breadcrumbs, $afiliado) {
     $breadcrumbs->parent('show_afiliado', $afiliado);
     $breadcrumbs->push('Aportes');
-});
-
-// Show Fondo de Retiro
-Breadcrumbs::register('fondo_tramite', function($breadcrumbs, $afiliado) {
-    $breadcrumbs->parent('show_afiliado', $afiliado);
-    $breadcrumbs->push('Trámite de Fondo de Retiro', URL::to('tramite_fondo_retiro/'.$afiliado->id));
-
-});
-// Show ventanilla
-Breadcrumbs::register('ventanilla_fondo_tramite', function($breadcrumbs, $afiliado) {
-    $breadcrumbs->parent('fondo_tramite', $afiliado);
-    $breadcrumbs->push('Ventanilla');
-});
-// Show calificacion Fondo de retiro Afiliado
-Breadcrumbs::register('calif_fr_afiliado', function($breadcrumbs, $afiliado) {
-    $breadcrumbs->parent('show_afiliado', $afiliado);
-    $breadcrumbs->push('Calificación Fondo de Retiro');
-});
-// Show calificacion Seguro de vida Afiliado
-Breadcrumbs::register('calif_sv_afiliado', function($breadcrumbs, $afiliado) {
-    $breadcrumbs->parent('show_afiliado', $afiliado);
-    $breadcrumbs->push('Calificación Seguro de Vida');
 });
