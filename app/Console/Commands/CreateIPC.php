@@ -39,7 +39,6 @@ class CreateIPC extends Command
     public function handle()
     {   
         $ipcLast = IpcTasa::orderBy('gest', 'desc')->first();
-
         $newIpcTasa = new IpcTasa;
         $newIpcTasa->user_id = 1;
         $newIpcTasa->ipc = $ipcLast->ipc;

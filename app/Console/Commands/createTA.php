@@ -39,10 +39,7 @@ class CreateTA extends Command
     public function handle()
     {   
         $aporTasaLast = AporTasa::orderBy('gest', 'desc')->first();
-        $now = Carbon::now();
-
         $newAporTasa = new AporTasa;
-
         $newAporTasa->user_id = 1;
               
         $newAporTasa->apor_fr_a = $aporTasaLast->apor_fr_a;
@@ -52,11 +49,10 @@ class CreateTA extends Command
         $newAporTasa->apor_fr_p = $aporTasaLast->apor_fr_p;
         $newAporTasa->apor_sv_p = $aporTasaLast->apor_sv_p;
         $newAporTasa->apor_p = $aporTasaLast->apor_p;
-
-        $newAporTasa->gest = Carbon::createFromDate($now->year, $now->month, 1);
-
+        
+        $fecha = Carbon::parse($aporTasaLast->gest);
+        $newAporTasa->gest = $fecha->addMonth();
         $newAporTasa->save();
-
         $this->info("Tasa de Aporte Creado mes de: " . $newAporTasa->gest);
     }
 }
