@@ -15,7 +15,7 @@ use Muserpol\Helper\Util;
 use Muserpol\AporTasa;
 
 
-class createTA extends Command
+class CreateTA extends Command
 {
     /**
      * The name and signature of the console command.
