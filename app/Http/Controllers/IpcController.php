@@ -26,30 +26,16 @@ class IpcController extends Controller
      */
     public function index()
     {
-        $now = Carbon::now();
-
-        $y = $now->year;
-        $m = $now->month;
-
-        $nowlast = Carbon::createFromDate($y, $m, 1)->subMonth()->toDateString();
-
-        $ipcTasa = IpcTasa::where('gest', '=', $nowlast)->first();
-
-        $ipcTasa->year = Carbon::parse($ipcTasa->gest)->year;
-
-        $ipcTasa->month = Carbon::parse($ipcTasa->gest)->month;
+        $ipcTasaLast = IpcTasa::orderBy('gest', 'desc')->first();
+        $ipcTasaLast->year = Carbon::parse($ipcTasaLast->gest)->year;
+        $ipcTasaLast->month = Carbon::parse($ipcTasaLast->gest)->month;
 
         $data = array(
-
-            'subMonth' => Util::getMes($now->format('m')),
-            'ipcTasa' => $ipcTasa,
-            'month' => Util::getMes($now->format('m')),
+            'ipcTasaLast' => $ipcTasaLast,
             'meses' => Util::getAllMeses()
-
         );
 
         return view('ipc.index', $data);
-
     }
 
     public function ipctasasData()
@@ -61,26 +47,6 @@ class IpcController extends Controller
                 ->addColumn('mes', function ($ipc) { return Util::getMes(Carbon::parse($ipc->gest)->month); })
                 ->editColumn('ipc', function ($ipc) { return Util::formatMoney($ipc->ipc); })
                 ->make(true);
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     public function save($request, $id = false)
