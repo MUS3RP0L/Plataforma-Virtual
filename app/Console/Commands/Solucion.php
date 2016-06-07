@@ -102,7 +102,7 @@ class Solucion extends Command
                                     $am = $datos[2];
                                     // $ac = $datos[5];
                                     $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
-                                    if ($afiliado <> "") {
+                                    if ($afiliado == "") {
                                         $n1 = $datos[0];
                                         $n2 = $datos[1];
                                         $ap = $datos[2];
@@ -156,7 +156,7 @@ class Solucion extends Command
                                             $ap = $datos[1];
                                             $am = $datos[2];
                                             $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
-                                            if ($afiliado <> "") {
+                                            if ($afiliado == "") {
                                                 $n1 = $datos[0];
                                                 $n2 = $datos[1];
                                                 $ap = $datos[2];
@@ -172,7 +172,7 @@ class Solucion extends Command
                                             $n1 = $datos[0];
                                             $ap = $datos[1];
                                             $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->get();
-                                            if ($afiliado <> "") {
+                                            if ($afiliado == "") {
                                                 $ap = $datos[0];
                                                 $n1 = $datos[1];
                                                 $afiliado = Afiliado::where('pat', '=', $ap)->where('nom', '=', $n1)->get();
@@ -184,7 +184,7 @@ class Solucion extends Command
                                             $ap = $datos[1];
                                             $am = $datos[2];
                                             $afiliado = Afiliado::where('nom', '=', $n1)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
-                                            if ($afiliado <> "") {
+                                            if ($afiliado == "") {
                                                 $ap = $datos[0];
                                                 $am = $datos[1];
                                                 $n1 = $datos[2];
@@ -199,7 +199,7 @@ class Solucion extends Command
                                             $ap = $datos[2];
                                             $am = $datos[3];
                                             $afiliado = Afiliado::where('nom', '=', $n1)->where('nom2', '=', $n2)->where('pat', '=', $ap)->where('mat', '=', $am)->get();
-                                            if ($afiliado <> "") {
+                                            if ($afiliado == "") {
                                                 $ap = $datos[0];
                                                 $am = $datos[1];
                                                 $n1 = $datos[2];
@@ -217,11 +217,9 @@ class Solucion extends Command
 
                         if ($afiliado <> "") {
                             foreach ($afiliado as $item) {
-                                if ($item) {
-                                    $i++;
-                                    $afi1->afiliado_id = $item->id;
-                                    $afi[$i]=$afi1;
-                                }
+                                $afi1->afiliado_id = $item->id;
+                                $afi[$i]=$afi1;
+                                $i++;
                             }
                         }
 
@@ -244,41 +242,63 @@ class Solucion extends Command
                         ini_set('memory_limit', '-1');
                         set_time_limit(36000);
 
-                        $sheet->row(1, array('Id', 'Carpeta', 'Nombres', 'AFP', 'NUA', 'CARNET IDENTIDAD', 'ITEM MUSERPOL', 'NOMBRES', 'APELLIDO PATERNO', 'APELLIDO MATERNO', 'FECHA NAC', 'SEXO', 'ESTADO CIVIL', 'FECHA INGRESO', 'ULT PERIODO COTIZADO', 'TOTAL GANADO', 'NIV', 'GRA', 'GRADO AFILIADO', 'PERIODO COTIZADO', 'SALDO CUENTA PREV BS'));
+                        $sheet->row(1, array('Id', 'Carpeta', 'Nombres','ITEM MUSERPOL', 'CARNET IDENTIDAD', 'NOMBRES', 'APELLIDO PATERNO', 'APELLIDO MATERNO', 'FECHA NAC', 'SEXO', 'ESTADO CIVIL', 'FECHA INGRESO', 'ULT PERIODO COTIZADO', 'ULT TOTAL GANADO', 'NIV', 'GRA', 'GRADO AFILIADO', 'PERIODO COTIZADO', 'TOTAL COTIZABLE ULTIMOS 3 AÑOS','TOTAL COTIZABLE ULTIMOS 5 AÑOS','TOTAL COTIZABLE ULTIMOS 6 AÑOS'));
 
                         foreach ($afi as $item) {
                             
                             $afiliado = Afiliado::idIs($item->afiliado_id)->first();
                             $lastAporte = Aporte::afiIs($item->afiliado_id)->orderBy('gest', 'desc')->first();
+                                                 
+                            $dateLA = Carbon::parse($lastAporte->gest)->year ."/". Util::getMonthMM(Carbon::parse($lastAporte->gest)->month);
                             
-                            if ($lastAporte) {
-                            
-                                $dateLA = Carbon::parse($lastAporte->gest)->year . Util::getMonthMM(Carbon::parse($lastAporte->gest)->month);
-                                
-                                $totalG = Util::formatMoney($lastAporte->cot);
+                            $totalG = Util::formatMoney($lastAporte->cot);
 
-                                $periodosCoti = DB::table('aportes')
-                                ->leftJoin('afiliados', 'aportes.afiliado_id', '=', 'afiliados.id')
-                                ->where('afiliados.id', '=', $afiliado->id)->count();
+                            $periodosCoti = DB::table('aportes')
+                            ->leftJoin('afiliados', 'aportes.afiliado_id', '=', 'afiliados.id')
+                            ->where('afiliados.id', '=', $afiliado->id)
+                            ->count();
 
-                                $totalMuserpol = DB::table('afiliados')
-                                ->select(DB::raw('SUM(aportes.mus) as muserpol'))
-                                ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
-                                ->where('afiliados.id', '=', $afiliado->id)->first();
-                                $totalM = Util::formatMoney($totalMuserpol->muserpol);
+     
+                            $date3 = Carbon::parse($lastAporte->gest)->subYears(3);
+                            $date5 = Carbon::parse($lastAporte->gest)->subYears(5);
+                            $date6 = Carbon::parse($lastAporte->gest)->subYears(6);
 
-                                if(!$afiliado->grado_id){
-                                    $afiliado->niv = '';
-                                    $afiliado->grad = '';
-                                    $afiliado->lit = '';
-                                }else{
-                                    $afiliado->niv = $afiliado->grado->niv;
-                                    $afiliado->grad = $afiliado->grado->grad;
-                                    $afiliado->lit = $afiliado->grado->lit;
-                                }
+                            $coti3 = DB::table('afiliados')
+                            ->select(DB::raw('SUM(aportes.cot) as cot3'))
+                            ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                            ->where('afiliados.id', '=', $afiliado->id)
+                            ->where('aportes.gest', '>', $date3)
+                            ->first();
 
-                                $sheet->row($i, array($item->id, $item->carpeta, $item->nombres, $afiliado->afp, $afiliado->nua, $afiliado->ci, $afiliado->afiliado_id, $afiliado->nom. " ". $afiliado->nom2, $afiliado->pat, $afiliado->mat, $afiliado->fech_nac, $afiliado->sex, $afiliado->est_civ, $afiliado->fech_ing, $dateLA, $totalG,$afiliado->niv, $afiliado->grad, $afiliado->lit, $periodosCoti, $totalM));
+                            $coti5 = DB::table('afiliados')
+                            ->select(DB::raw('SUM(aportes.cot) as cot5'))
+                            ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                            ->where('afiliados.id', '=', $afiliado->id)
+                            ->where('aportes.gest', '>', $date5)
+                            ->first();
+
+                            $coti6 = DB::table('afiliados')
+                            ->select(DB::raw('SUM(aportes.cot) as cot6'))
+                            ->leftJoin('aportes', 'afiliados.id', '=', 'aportes.afiliado_id')
+                            ->where('afiliados.id', '=', $afiliado->id)
+                            ->where('aportes.gest', '>', $date6)
+                            ->first();
+
+                            $cot3 = Util::formatMoney($coti3->cot3);
+                            $cot5 = Util::formatMoney($coti5->cot5);
+                            $cot6 = Util::formatMoney($coti6->cot6);
+
+                            if(!$afiliado->grado_id){
+                                $afiliado->niv = '';
+                                $afiliado->grad = '';
+                                $afiliado->lit = '';
+                            }else{
+                                $afiliado->niv = $afiliado->grado->niv;
+                                $afiliado->grad = $afiliado->grado->grad;
+                                $afiliado->lit = $afiliado->grado->lit;
                             }
+
+                            $sheet->row($i, array($item->id, $item->carpeta, $item->nombres, $afiliado->id, $afiliado->ci,  $afiliado->nom. " ". $afiliado->nom2, $afiliado->pat, $afiliado->mat, $afiliado->fech_nac, $afiliado->sex, $afiliado->est_civ, $afiliado->fech_ing, $dateLA, $totalG, $afiliado->niv, $afiliado->grad, $afiliado->lit, $periodosCoti, $cot3, $cot5, $cot6));
 
                             $i++;
                         }
