@@ -60,7 +60,6 @@ $(function() {
         dom: '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
-        scrollX: true,
         pageLength: 30,
         ajax: '{!! route('getTasa') !!}',
         order: [0, "desc"],

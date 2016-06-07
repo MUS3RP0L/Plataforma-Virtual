@@ -127,10 +127,10 @@ class TasaController extends Controller
         if (Auth::user()->can('admin')) {
             $aporTasaLast = AporTasa::orderBy('gest', 'desc')->first();
             
-            $data = [
+            $data = array(
                 'aporTasaLast' => $aporTasaLast,
                 'gest' => Util::getfullmonthYear($aporTasaLast->gest)
-            ];
+            );
 
             return View('tasas.edit', $data);
         }else{
