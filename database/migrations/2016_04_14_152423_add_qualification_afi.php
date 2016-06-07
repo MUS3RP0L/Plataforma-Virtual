@@ -23,21 +23,6 @@ class AddQualificationAfi extends Migration
             $table->timestamps();
         });
 
-        Schema::table('afiliados', function (Blueprint $table) {
-            
-            $table->UnsignedBigInteger('desglose_id')->nullable();
-
-            $table->foreign('desglose_id')->references('id')->on('desgloses');
-
-        });
-
-        Schema::table('aportes', function (Blueprint $table) {
-            
-            $table->UnsignedBigInteger('desglose_id')->nullable();
-            $table->foreign('desglose_id')->references('id')->on('desgloses');
-
-        });
-
         Schema::create('conyuges', function (Blueprint $table) {
         
             $table->engine = 'InnoDB';
