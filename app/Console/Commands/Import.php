@@ -189,7 +189,6 @@ class Import extends Command
                         $afiliado->nom2 = $nom2;
                         $afiliado->ap_esp = $result->apes;
                         $afiliado->est_civ = $result->eciv;
-                        $afiliado->desglose_id = $desglose_id;                           
                         $afiliado->categoria_id = $categoria_id;
                         $afiliado->afp = Util::getAfp($result->afp);
                         $afiliado->fech_nac = $fech_nac;
@@ -198,19 +197,6 @@ class Import extends Command
 
                         $afiliado->nua = $result->nua;
                         $afiliado->item = $result->item;
-
-                        if ($result->uni) {
-                            if ($afiliado->unidad_id <> $unidad_id) {
-                                $afiliado->fech_uni = $gest;
-                            }
-                            $afiliado->unidad_id = $unidad_id; 
-                        }
-                        if ($result->gra) {              
-                            if ($afiliado->grado_id <> $grado_id) {
-                                $afiliado->fech_gra = $gest;
-                            }
-                            $afiliado->grado_id = $grado_id;
-                        }
 
                         $afiliado->save();
 
@@ -225,9 +211,6 @@ class Import extends Command
                                 $aporte->aporte_type_id = 1;
                                 $aporte->afiliado_id = $afiliado->id;
                                 $aporte->gest = $gest;
-                                if ($result->desg) {
-                                    $aporte->desglose_id = $desglose_id;
-                                }
                                 if ($result->uni) {
                                     $aporte->unidad_id = $unidad_id;
                                 }
