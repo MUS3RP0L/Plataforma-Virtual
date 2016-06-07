@@ -7,11 +7,15 @@
         <div class="col-md-12">
             
             @can('admin')
-                <div class="row">
-                    <div class="col-md-12 text-right">  
-                        <a href="{!! url('tasa/' . $aporTasaLast->id . '/edit') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;</a>
+            <div class="row">
+                <div class="col-md-12 text-right"> 
+                    <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                        <a href="" data-target="#myModal-edit" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
+                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;&nbsp;
+                        </a>
                     </div>
                 </div>
+            </div>
             @endcan
 
             <div class="row">
@@ -21,7 +25,7 @@
                             <h3 class="panel-title">Despliegue de Tasas de Aporte</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="row"><p>
+                            <div class="row">
                                 <div class="col-md-12">
                                     <table class="table table-striped table-hover" id="tasas-table">
                                         <thead>
@@ -49,8 +53,87 @@
             </div>
         </div>
     </div>
-
 </div>
+
+
+<div id="myModal-edit" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Ventanilla Fondo de Retiro</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::model($aporTasaLast, ['method' => 'PATCH', 'route' => ['tasa.update', $aporTasaLast->id], 'class' => 'form-horizontal']) !!}
+
+                <div class="row">           
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                {!! Form::label('apor_fr_a', 'Fondo de Retiro', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::text('apor_fr_a', $aporTasaLast->apor_fr_a, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                <span class="help-block">Nuevo Aporte de Fondo de Retiro</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('apor_sv_a', 'Seguro de Vida', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::text('apor_sv_a', $aporTasaLast->apor_sv_a, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                <span class="help-block">Nuevo Aporte de Seguro de Vida</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('apor_a', 'Total Aporte', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::text('apor_a', $aporTasaLast->apor_a, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                <span class="help-block">Nuevo Aporte Muserpol </span>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="col-md-6">                               
+                        <div class="form-group">
+                                {!! Form::label('apor_fr_p', 'Fondo de Retiro', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::text('apor_fr_p', $aporTasaLast->apor_fr_p, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                <span class="help-block">Nuevo Aporte de Fondo de Retiro</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('apor_sv_p', 'Seguro de Vida', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::text('apor_sv_p', $aporTasaLast->apor_sv_p, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                <span class="help-block">Nuevo Aporte de Seguro de Vida</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                {!! Form::label('apor_p', 'Total Aporte', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-6">
+                                {!! Form::text('apor_p', $aporTasaLast->apor_p, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                <span class="help-block">Nuevo Aporte Muserpol</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row text-center">
+                    <div class="form-group" style="padding-bottom:0px">
+                        <div class="col-md-12">
+                            <a href="{!! url('tasa') !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+                        </div>
+                    </div>
+                </div>
+
+            {!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection
 
 @push('scripts')
