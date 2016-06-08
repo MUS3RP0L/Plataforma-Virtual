@@ -8,8 +8,12 @@
 
             @can('admin')
                 <div class="row">
-                    <div class="col-md-12 text-right">  
-                        <a href="{!! url('sueldo/create') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-import"></span>&nbsp;&nbsp;&nbsp;</a>
+                    <div class="col-md-12 text-right"> 
+                        <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Importar">
+                            <a href="" data-target="#myModal-import" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                                &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-import"></span>&nbsp;&nbsp;&nbsp;
+                            </a>
+                        </div>
                     </div>
                 </div>
             @endcan
@@ -123,11 +127,49 @@
                     </div>                      
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
+
+<div id="myModal-import" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Importar Sueldos</h4>
+            </div>
+            <div class="modal-body">
+
+                {!! Form::open(['method' => 'POST', 'route' => ['sueldo.store'], 'class' => 'form-horizontal', 'files' => true ]) !!}
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">                         
+                            <div class="form-group">
+                                    {!! Form::label('archive', 'Sueldos', ['class' => 'col-md-4 control-label']) !!}
+                                <div class="col-md-8">
+                                    <input type="file" id="inputFile" name="archive">
+                                    <input type="text" readonly="" class="form-control " placeholder="Seleccione Archivo en Formato Excel de sueldos...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row text-center">
+                        <div class="form-group" style="padding-bottom:0px">
+                            <div class="col-md-12">
+                                <a href="{!! url('sueldo') !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                                &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+
+            {!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')

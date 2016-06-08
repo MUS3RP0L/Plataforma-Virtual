@@ -231,20 +231,9 @@ class SueldoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     public function save($request, $id = false)
     {
-
-        ini_set('upload_max_filesize', '700M');
-        ini_set('post_max_size', '700M');
-        ini_set('max_execution_time', 36000);
-        ini_set('max_input_time', 36000);
-        ini_set("memory_limit","700M");
-        set_time_limit(36000);
 
         $reader = $request->file('archive');
         $filename = $reader->getRealPath();
@@ -271,20 +260,15 @@ class SueldoController extends Controller
             }
         });
 
-            $col = array('codigo', 'nivel', 'grado', 'literal', 'sueldo');
-
-
         Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load($filename,$reader)->chunk(10, function($results) {
 
-            foreach ($results as $result) {
-                
-                set_time_limit(36000);           
+            foreach ($results as $result) {          
 
                 $sueldo = new sueldo;
                 $sueldo->user_id = Auth::user()->id;
                 
                 $sueldo->grado_id = $result->codigo;
-                $sueldo->anio = Carbon::now()->format('Y');
+                $sueldo->gest = Carbon::now();
                 $sueldo->sue = $result->sueldo;
                 
                 $sueldo->save();
