@@ -43,48 +43,54 @@ class AfiliadoController extends Controller
         if ($request->has('pat'))
         {
             $afiliados->where(function($afiliados) use ($request)
-            {
-                $afiliados->where('pat', 'like', "%{$request->get('pat')}%");
+            {   
+                $pat = trim($request->get('pat'));
+                $afiliados->where('pat', 'like', "%{$pat}%");
             });
         }
         if ($request->has('mat'))
         {
             $afiliados->where(function($afiliados) use ($request)
-            {
-                $afiliados->where('mat', 'like', "%{$request->get('mat')}%");
+            {   
+                $mat = trim($request->get('mat'));
+                $afiliados->where('mat', 'like', "%{$mat}%");
             });
         }
         if ($request->has('nom'))
         {
             $afiliados->where(function($afiliados) use ($request)
             {
-                $afiliados->where('nom', 'like', "%{$request->get('nom')}%");
+                $nom = trim($request->get('nom'));
+                $afiliados->where('nom', 'like', "%{$nom}%");
             });
         }
         if ($request->has('nom2'))
         {
             $afiliados->where(function($afiliados) use ($request)
             {
-                $afiliados->where('nom2', 'like', "%{$request->get('nom2')}%");
+                $nom2 = trim($request->get('nom2'));
+                $afiliados->where('nom2', 'like', "%{$nom2}%");
             });
         }
-        if ($request->has('mat'))
+        if ($request->has('matri'))
         {
             $afiliados->where(function($afiliados) use ($request)
             {
-                $afiliados->where('mat', 'like', "%{$request->get('mat')}%");
+                $matri = trim($request->get('matri'));
+                $afiliados->where('matri', 'like', "%{$matri}%");
             });
         }
         if ($request->has('car'))
         {
             $afiliados->where(function($afiliados) use ($request)
             {
-                $afiliados->where('ci', 'like', "%{$request->get('car')}%");
+                $car = trim($request->get('car'));
+                $afiliados->where('ci', 'like', "%{$car}%");
             });
         }
 
         return Datatables::of($afiliados)
-                // ->addColumn('gra', function ($afiliado) { return $afiliado->grado->abre; })
+                ->addColumn('gra', function ($afiliado) { return $afiliado->grado_id ? $afiliado->grado->abre : ' '; })
                 ->addColumn('noms', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
                 ->addColumn('est', function ($afiliado) { return $afiliado->afi_state->name; })
                 ->addColumn('action', function ($afiliado) { return  '<div class="row text-center"><a href="afiliado/'.$afiliado->id.'" ><div class="col-md-12"><i class="glyphicon glyphicon-eye-open"></i></div></a></div>';})
