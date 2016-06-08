@@ -11,7 +11,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Despliegue de IPC</h3>
+                            <h3 class="panel-title">Despliegue</h3>
                         </div>
                         <div class="panel-body">
                             <div class="row"><p>
@@ -36,7 +36,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Actualizar IPC</h3>
+                            <h3 class="panel-title">Actualizar</h3>
                         </div>
                         <div class="panel-body" style="font-size: 14px">
 
@@ -65,13 +65,24 @@
                                     </div>
                                 </div>
                             </div><br>
-                            <div class="row text-center">
-                                <div class="form-group form-group">
-                                  <div class="col-md-12">
-                                    <button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
-                                  </div>
-                                </div>
-                            </div>      
+
+                            @can('admin')
+                                <div class="row text-center">
+                                    <div class="form-group form-group">
+                                      <div class="col-md-12">
+                                        <button type="submit" style="margin:16px;" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
+                                      </div>
+                                    </div>
+                                </div> 
+                            @else
+                                <div class="row text-center">
+                                    <div class="form-group form-group">
+                                      <div class="col-md-12">
+                                        <a type="submit" style="margin:16px;" class="btn btn-raised btn-primary disabled">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</a>
+                                      </div>
+                                    </div>
+                                </div> 
+                            @endcan
 
                         </div>
                     </div>
