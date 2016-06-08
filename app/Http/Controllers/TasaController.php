@@ -29,7 +29,8 @@ class TasaController extends Controller
         $aporTasaLast = AporTasa::orderBy('gest', 'desc')->first();
 
         $data = array(
-            'aporTasaLast' => $aporTasaLast
+            'aporTasaLast' => $aporTasaLast,
+            'gest' => Util::getfullmonthYear($aporTasaLast->gest)
         );
 
         return view('tasas.index', $data);
@@ -114,28 +115,6 @@ class TasaController extends Controller
         }
         
         return redirect('tasa');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        if (Auth::user()->can('admin')) {
-            $aporTasaLast = AporTasa::orderBy('gest', 'desc')->first();
-            
-            $data = array(
-                'aporTasaLast' => $aporTasaLast,
-                'gest' => Util::getfullmonthYear($aporTasaLast->gest)
-            );
-
-            return View('tasas.edit', $data);
-        }else{
-            return redirect('/');
-        }
     }
 
     /**

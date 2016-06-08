@@ -7,22 +7,22 @@
         <div class="col-md-12">
             
             @can('admin')
-            <div class="row">
-                <div class="col-md-12 text-right"> 
-                    <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                        <a href="" data-target="#myModal-edit" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;&nbsp;
-                        </a>
+                <div class="row">
+                    <div class="col-md-12 text-right"> 
+                        <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Modificar">
+                            <a href="" data-target="#myModal-edit" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                                &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;&nbsp;
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endcan
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Despliegue de Tasas de Aporte</h3>
+                            <h3 class="panel-title">Despliegue</h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -61,7 +61,7 @@
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Ventanilla Fondo de Retiro</h4>
+                <h4 class="modal-title">Editar Tasas de Aporte - {!! $gest !!}</h4>
             </div>
             <div class="modal-body">
 
@@ -69,6 +69,7 @@
 
                 <div class="row">           
                     <div class="col-md-6">
+                        <h3 class="panel-title">Sector Activo</h3>
                         <div class="form-group">
                                 {!! Form::label('apor_fr_a', 'Fondo de Retiro', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
@@ -87,12 +88,13 @@
                                 {!! Form::label('apor_a', 'Total Aporte', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
                                 {!! Form::text('apor_a', $aporTasaLast->apor_a, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                <span class="help-block">Nuevo Aporte Muserpol </span>
+                                <span class="help-block">Total Aporte Sector Activo</span>
                             </div>
                         </div>
                     </div>
             
-                    <div class="col-md-6">                               
+                    <div class="col-md-6">
+                        <h3 class="panel-title">Sector Pasivo</h3>                            
                         <div class="form-group">
                                 {!! Form::label('apor_fr_p', 'Fondo de Retiro', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
@@ -111,7 +113,7 @@
                                 {!! Form::label('apor_p', 'Total Aporte', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
                                 {!! Form::text('apor_p', $aporTasaLast->apor_p, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                <span class="help-block">Nuevo Aporte Muserpol</span>
+                                <span class="help-block">Total Aporte Sector Pasivo</span>
                             </div>
                         </div>
                     </div>
@@ -144,6 +146,7 @@ $(function() {
         processing: true,
         serverSide: true,
         pageLength: 30,
+        "scrollX": true,
         ajax: '{!! route('getTasa') !!}',
         order: [0, "desc"],
         columns: [

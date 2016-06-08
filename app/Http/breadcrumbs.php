@@ -26,11 +26,6 @@ Breadcrumbs::register('editar_usuario', function($breadcrumbs) {
 Breadcrumbs::register('tasas_aporte', function($breadcrumbs) {
     $breadcrumbs->push('Tasas de Aporte', URL::to('tasa'));
 });
-// Editar Tasas de aporte
-Breadcrumbs::register('editar_tasas_aporte', function($breadcrumbs, $mes) {
-    $breadcrumbs->parent('tasas_aporte');
-    $breadcrumbs->push('Editar '.$mes);
-});
 
 
 // Tasas IPC
