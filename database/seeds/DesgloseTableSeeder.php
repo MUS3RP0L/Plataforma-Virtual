@@ -22,7 +22,7 @@ class DesgloseTableSeeder extends Seeder
     {
         $statuses = [
             
-            ['id' => '1', 'cod' => '1', 'name' => 'PASIVOS LA PAZ'],// Servicio Disponibilidad Comando *
+            ['id' => '1', 'cod' => '1', 'name' => 'DISPONIBILIDAD'],// Servicio Disponibilidad *
 
             ['id' => '2', 'cod' => '2', 'name' => 'DIR NAL POFOMA'],//Servicio 
 
