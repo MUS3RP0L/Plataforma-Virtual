@@ -32,6 +32,14 @@ class CreateUnidadesTable extends Migration
             $table->foreign('unidad_id')->references('id')->on('unidades');
 
         });
+
+         Schema::table('afiliados', function (Blueprint $table) {
+
+            $table->UnsignedBigInteger('unidad_id')->nullable();
+            $table->foreign('unidad_id')->references('id')->on('unidades');
+
+        });
+
     }
 
     /**

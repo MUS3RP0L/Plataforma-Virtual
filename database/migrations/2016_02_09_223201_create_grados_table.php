@@ -30,6 +30,13 @@ class CreateGradosTable extends Migration
             $table->UnsignedBigInteger('grado_id')->nullable();
             $table->foreign('grado_id')->references('id')->on('grados');
         });
+
+        Schema::table('afiliados', function (Blueprint $table) {
+            
+           $table->UnsignedBigInteger('grado_id')->nullable();
+           $table->foreign('grado_id')->references('id')->on('grados');
+       });
+
     }
 
     /**
