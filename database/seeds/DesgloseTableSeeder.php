@@ -22,7 +22,6 @@ class DesgloseTableSeeder extends Seeder
     {
         $statuses = [
             
-
             ['id' => '1', 'cod' => '1', 'name' => 'PASIVOS LA PAZ'],// Servicio Disponibilidad Comando *
 
             ['id' => '2', 'cod' => '2', 'name' => 'DIR NAL POFOMA'],//Servicio 
@@ -42,7 +41,6 @@ class DesgloseTableSeeder extends Seeder
             ['id' => '9', 'cod' => '4', 'name' => ''],//
             ['id' => '10', 'cod' => '7', 'name' => '']//
 
-            
         ];
 
         foreach ($statuses as $status) {
