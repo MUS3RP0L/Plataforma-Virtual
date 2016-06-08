@@ -37,7 +37,7 @@ class Import extends Command
      *
      * @var string
      */
-    protected $description = 'Importacion de Planillas de Haberes Comando Generel';
+    protected $description = 'Importacion de Planillas de Haberes Comando General';
 
     /**
      * Execute the console command.
@@ -63,24 +63,24 @@ class Import extends Command
                 $progress->setFormat("%current%/%max% [%bar%] %percent:3s%%");
 
                 global $cAfiN, $cAfiU, $cApor, $progress, $name;
-                ini_set('upload_max_filesize', '99999M');
-                ini_set('post_max_size', '99999M');
-                ini_set('max_execution_time', 360000);
-                ini_set('max_input_time', 360000);
-                ini_set('memory_limit', '-1');
-                set_time_limit(360000);
+                        ini_set('upload_max_filesize', '9999M');
+                        ini_set('post_max_size', '9999M');
+                        ini_set('max_execution_time', 36000);
+                        ini_set('max_input_time', 36000);
+                        ini_set('memory_limit', '-1');
+                        set_time_limit(36000);
 
                 Excel::batch('public/file_to_import/' . $name . '/', function($rows, $file) {   
                 
                     $rows->each(function($result) {
 
                         global $cAfiN, $cAfiU, $cApor, $progress, $name;
-                        ini_set('upload_max_filesize', '99999M');
-                        ini_set('post_max_size', '99999M');
-                        ini_set('max_execution_time', 360000);
-                        ini_set('max_input_time', 360000);
+                        ini_set('upload_max_filesize', '9999M');
+                        ini_set('post_max_size', '9999M');
+                        ini_set('max_execution_time', 36000);
+                        ini_set('max_input_time', 36000);
                         ini_set('memory_limit', '-1');
-                        set_time_limit(360000);
+                        set_time_limit(36000);
 
                         switch ($name) {
                             
@@ -126,9 +126,9 @@ class Import extends Command
                                 $fech_nac = Util::date($result->nac);
                                 $fech_ing = Util::date($result->ing);    
                         } 
-
-                        $gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
                         
+                        $afiliado = Afiliado::where('ci', '=', Util::zero($result->car))->first();
+                        $gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
                         if (is_null($result->desg)) {
                             $result->desg = 0;
                         }
@@ -138,57 +138,31 @@ class Import extends Command
                         }else{
                             $unidad_id = Unidad::select('id')->where('cod', $result->uni)->orwhere('desglose_id', $desglose_id)->first()->id;
                         }
-
                         if($result->niv && $result->gra){
                             if ($result->niv == '04' && $result->gra == '15'){$result->niv = '03';}
                             $grado_id = Grado::select('id')->where('niv', $result->niv)->where('grad', $result->gra)->first()->id;
                         }
-
                         $categoria_id = Categoria::select('id')->where('por', Util::calcCat(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
-                        
                         $por_apor = AporTasa::where('gest', '=', Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString())->first();
 
-                        $afiliado = Afiliado::where('ci', '=', Util::zero($result->car))->first();
-
                         if (!$afiliado) {
+
                             $afiliado = Afiliado::where('pat', '=', $result->pat)->where('mat', '=', $result->mat)
                                                 ->where('fech_ing', '=', $fech_ing)->first();
+                            
+                            if (!$afiliado) {
+
+                                $afiliado = new Afiliado;
+                                $afiliado->sex = $result->sex;
+                                $afiliado->fech_est = $gest;
+                                $cAfiN ++;
+
+                            }
+                            else{$cAfiU ++;}
+
                             $afiliado->ci = Util::zero($result->car);
                         }
-                        else
-                            
-                        if (!$afiliado && Carbon::parse($fech_ing)->age == Util::formatYear($result->a_o)) {
-
-                            $afiliado = new Afiliado;
-                            $afiliado->sex = $result->sex;                            
-
-                            if ($result->uni) {
-                                $afiliado->fech_uni = $gest;
-                                $afiliado->unidad_id = $unidad_id; 
-                            }
-                            if ($result->gra) {              
-                                $afiliado->fech_gra = $gest;
-                                $afiliado->grado_id = $grado_id;
-                            }
-                            $cAfiN ++;
-                        }
-                        else {
-
-                            if ($result->uni) {
-                                if (Util::formatYear($result->a_o) >= Carbon::parse($afiliado->fech_uni)->age) {
-                                    $afiliado->fech_uni = $gest;
-                                    $afiliado->unidad_id = $unidad_id;
-                                }
-                            }
-                            if ($result->gra) {   
-                                if (Util::formatYear($result->a_o) >= Carbon::parse($afiliado->grado_id)->age) {
-                                    $afiliado->fech_gra = $gest;
-                                    $afiliado->grado_id = $grado_id;
-                                }
-                            }
-
-                            $cAfiU ++;
-                        }
+                        else{$cAfiU ++;}
                         
                         switch ($result->desg) {
                             
@@ -207,7 +181,20 @@ class Import extends Command
                             default://Comando
                                 $afiliado->afi_state_id = 1;
                                 if ($afiliado->afi_state_id <> 1){$afiliado->fech_est = $gest;}
-                        }                                                      
+                        }      
+
+                        if ($result->uni) {
+                            if ($afiliado->unidad_id <> $unidad_id) {
+                                $afiliado->fech_uni = $gest;
+                            }
+                            $afiliado->unidad_id = $unidad_id; 
+                        }
+                        if ($result->gra) {              
+                            if ($afiliado->grado_id <> $grado_id) {
+                                $afiliado->fech_gra = $gest;
+                            }
+                            $afiliado->grado_id = $grado_id;
+                        }                
                         
                         $afiliado->user_id = 1;
                         $afiliado->pat = $result->pat;
@@ -222,8 +209,8 @@ class Import extends Command
                         $afiliado->item = $result->item;
                         $afiliado->fech_nac = $fech_nac;
                         $afiliado->fech_ing = $fech_ing;
-                        $afiliado->matri = Util::calcMatri($fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);                     
-                        
+                        $afiliado->matri = Util::calcMatri($fech_nac, $afiliado->pat, $afiliado->mat, $afiliado->nom, $afiliado->sex);                           
+
                         $afiliado->save();
 
                         if (Util::decimal($result->sue)<> 0) {
