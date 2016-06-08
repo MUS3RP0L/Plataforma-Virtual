@@ -7,19 +7,15 @@
         <div class="col-md-12">
 
                 <div class="row"> 
-                 
-                    <div class="col-md-6">
-                        <h2 style="margin-top:-2px;">{!! $afiliado->getTittleName() !!}</h2>
-                    </div>
 
-                    <div class="col-md-6 text-right">  
+                    <div class="col-md-12 text-right">  
 
-                        <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
+                        <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
                             &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;&nbsp;
                         </a>
 
-                        <a href="{!! url('viewaporte/' . $afiliado->id) !!}" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;&nbsp;
+                        <a href="{!! url('viewaporte/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
+                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;&nbsp;
                         </a>
 
                     </div>
@@ -51,7 +47,7 @@
                                         <tr>
                                             <td style="border-top:0;">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6 text-right">
                                                         Carnet Identidad
                                                     </div>
                                                     <div class="col-md-6">
@@ -63,7 +59,7 @@
                                         <tr>
                                             <td style="border-top:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6 text-right">
                                                         Apellido Paterno
                                                     </div>
                                                     <div class="col-md-6">
@@ -75,7 +71,7 @@
                                         <tr>
                                             <td style="border-top:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6 text-right">
                                                         Apellido Materno
                                                     </div>
                                                     <div class="col-md-6">
@@ -87,7 +83,7 @@
                                         <tr>
                                             <td style="border-top:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6 text-right">
                                                         Primer Nombre
                                                     </div>
                                                     <div class="col-md-6">
@@ -99,7 +95,7 @@
                                         <tr>
                                             <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6 text-right">
                                                         Segundo Nombre
                                                     </div>
                                                     <div class="col-md-6">
@@ -147,7 +143,7 @@
                                             <td style="border-top:0;">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        Fecha Nacimiento
+                                                        Fecha de Nacimiento
                                                     </div>
                                                     <div class="col-md-6">
                                                          {!! $afiliado->getFullDateNac() !!}
@@ -195,7 +191,7 @@
                                             <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        Lugar Nacimiento
+                                                        Lugar de Nacimiento
                                                     </div>
                                                     <div class="col-md-6">
                                                          {!! $afiliado->depa_nat !!}
@@ -941,9 +937,9 @@
     </div>
 </div>
 
-<div id="myModal-personal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content panel-warning">
+<div id="myModal-personal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Editar Información Personal</h4>
@@ -955,45 +951,45 @@
                 <input type="hidden" name="type" value="per"/>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                                {!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                        <div class="form-group"> 
+                                {!! Form::label('ci', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('ci', $afiliado->ci, ['class'=> 'form-control', 'required']) !!}
-                                <span class="help-block">Núm. Carnet de Identidad</span>
+                                <span class="help-block">Número de Carnet de Identidad</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('pat', $afiliado->pat, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Apellido Paterno</span>
+                                <span class="help-block">Apellido Paterno de Afiliado</span>
                             </div>
                         </div>  
                         <div class="form-group">
-                                {!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('mat', $afiliado->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Apellido Materno</span>
+                                <span class="help-block">Apellido Materno de Afiliado</span>
                             </div>
                         </div>                              
                         <div class="form-group">
-                                {!! Form::label('nom', 'PRIMER NOMBRE', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('nom', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('nom', $afiliado->nom, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Primer Nombre</span>
+                                <span class="help-block">Primer Nombre de Afiliado</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('nom2', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('nom2', $afiliado->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Segundo Nombre</span>
+                                <span class="help-block">Segundo Nombre de Afiliado</span>
                             </div>
                         </div>
                         @if ($afiliado->sex == 'F')
                             <div class="form-group">
-                                    {!! Form::label('ap_esp', 'APELLIDO ESPOSO', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-8">
+                                    {!! Form::label('ap_esp', 'Apellido de Esposo', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
                                     {!! Form::text('ap_esp', $afiliado->ap_esp, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                     <span class="help-block">Apellido de Esposo (Opcional)</span>
                                 </div>
@@ -1003,8 +999,8 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                                {!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('fech_nac', 'Fecha de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                     			<div class="input-group">
                                     <input type="text" class="form-control datepicker" name="fech_nac" value="{!! $afiliado->getDataEdit() !!}">
                                     <div class="input-group-addon">
@@ -1014,21 +1010,14 @@
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('sex', 'SEXO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('sex', $afiliado->getSex(), ['class'=> 'form-control', 'disabled'=> '']) !!}
-                                <span class="help-block">Sexo</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                    {!! Form::label('est_civ', 'ESTADO CIVIL', ['class' => 'col-md-4 control-label']) !!}
+                                    {!! Form::label('est_civ', 'Estado Civil', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::select('est_civ', $list_est_civ, $afiliado->est_civ, ['class' => 'combobox form-control', 'required']) !!}
-                                <span class="help-block">Seleccione el estado civil</span>
+                                <span class="help-block">Seleccione el Estado Civil</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                    {!! Form::label('depa_nat', 'LUGAR NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
+                                    {!! Form::label('depa_nat', 'Lugar de Nacimiento', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::select('depa_nat', $list_depas, $afiliado->departamento_nat_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Seleccione Departamento</span>
