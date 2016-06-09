@@ -24,7 +24,7 @@ class DepartamentoTableSeeder extends Seeder
         $statuses = [
             ['id' => '1', 'name' => 'BENI', 'cod' => 'BN'],
             ['id' => '2', 'name' => 'CHUQUISACA', 'cod' => 'CH'],
-            ['id' => '3', 'name' => 'COCHABAMBA', 'cod' => 'CBBA'],
+            ['id' => '3', 'name' => 'COCHABAMBA', 'cod' => 'CB'],
             ['id' => '4', 'name' => 'LA PAZ', 'cod' => 'LP'],
             ['id' => '5', 'name' => 'ORURO', 'cod' => 'OR'],
             ['id' => '6', 'name' => 'PANDO', 'cod' => 'PN'],

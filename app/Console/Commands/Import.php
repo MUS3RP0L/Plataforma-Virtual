@@ -45,7 +45,8 @@ class Import extends Command
      * @return mixed
      */
     public function handle()
-    {   global $name;
+    {   
+        global $name;
         $password = $this->ask('Estimado Usuario: Escriba la contraseña para realizar la operacion, Gracias.');
         
         if ($password == ACCESS) {
