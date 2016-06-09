@@ -963,28 +963,28 @@
                                 {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
                                 {!! Form::text('pat', $afiliado->pat, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Apellido Paterno de Afiliado</span>
+                                <span class="help-block">Escriba el Apellido Paterno</span>
                             </div>
                         </div>  
                         <div class="form-group">
                                 {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
                                 {!! Form::text('mat', $afiliado->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Apellido Materno de Afiliado</span>
+                                <span class="help-block">Escriba el Apellido Materno</span>
                             </div>
                         </div>                              
                         <div class="form-group">
                                 {!! Form::label('nom', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
                                 {!! Form::text('nom', $afiliado->nom, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Primer Nombre de Afiliado</span>
+                                <span class="help-block">Escriba el  Primer Nombre</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('nom2', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
                                 {!! Form::text('nom2', $afiliado->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Segundo Nombre de Afiliado</span>
+                                <span class="help-block">Escriba el Segundo Nombre</span>
                             </div>
                         </div>
                         @if ($afiliado->sex == 'F')
@@ -992,7 +992,7 @@
                                     {!! Form::label('ap_esp', 'Apellido de Esposo', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-7">
                                     {!! Form::text('ap_esp', $afiliado->ap_esp, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                    <span class="help-block">Apellido de Esposo (Opcional)</span>
+                                    <span class="help-block">Escriba el Apellido de Esposo (Opcional)</span>
                                 </div>
                             </div>
                         @endif
@@ -1040,8 +1040,8 @@
                         <div data-bind='fadeVisible: fallecidoValue, valueUpdate: "afterkeydown"'>
 
                             <div class="form-group">
-                                    {!! Form::label('fech_dece', 'FECHA DECESO', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-8">
+                                    {!! Form::label('fech_dece', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
                                     <div class="input-group">
                                         <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $afiliado->getData_fech_dece() !!}">
                                         <div class="input-group-addon">
@@ -1051,10 +1051,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                    {!! Form::label('motivo_dece', 'CAUSA DECESO', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-7">
+                                    {!! Form::label('motivo_dece', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-6">
                                     {!! Form::textarea('motivo_dece', $afiliado->motivo_dece, ['class'=> 'form-control', 'rows' => '2']) !!}
-                                    <span class="help-block">Motivo de fallecimiento</span>
+                                    <span class="help-block">Escriba el Motivo de fallecimiento</span>
                                 </div>
                             </div>
                         </div>
@@ -1155,8 +1155,8 @@
     </div>
 </div>
 
-<div id="myModal-conyuge" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+<div id="myModal-conyuge" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -1170,46 +1170,46 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                                {!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('ci', ' Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('ci', $conyuge->ci, ['class'=> 'form-control', 'required']) !!}
-                                <span class="help-block">Núm. Carnet de Identidad</span>
+                                <span class="help-block">Escriba el Carnet de Identidad</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('pat', $conyuge->pat, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Apellido Paterno</span>
+                                <span class="help-block">Escriba el Apellido Paterno</span>
                             </div>
                         </div>  
                         <div class="form-group">
-                                {!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('mat', $conyuge->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Apellido Materno</span>
+                                <span class="help-block">Escriba el  Apellido Materno</span>
                             </div>
                         </div>  
                         <div class="form-group">
-                                {!! Form::label('nom', 'PRIMER NOMBRE', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('nom', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('nom', $conyuge->nom, ['class'=> 'form-control', 'required','onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Nombre(s)</span>
+                                <span class="help-block">Escriba el Primer Nombre</span>
                             </div>
                         </div>  
                         <div class="form-group">
-                                {!! Form::label('nom2', 'SEGUNDO NOMBRE', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('nom2', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('nom2', $conyuge->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Nombre(s)</span>
+                                <span class="help-block">Escriba el Segundo Nombre</span>
                             </div>
                         </div>                          
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                                {!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 <div class="input-group">
                                     <input type="text" class="form-control datepicker" name="fech_nac" value="{!! $conyuge->getDataEdit_fech_nac() !!}">
                                     <div class="input-group-addon">
@@ -1218,22 +1218,38 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                                {!! Form::label('fech_dece', 'FECHA FALLECIMIENTO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                <div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $conyuge->getDataEdit_fech_dece() !!}">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-5 col-md-4">
+                                <div class="form-group">
+                                    <div class="togglebutton">
+                                      <label>
+                                        <input type="checkbox" data-bind="checked: fallecidoConyuValue" name="fallecidoConyuCheck"> Fallecido
+                                      </label>
+                                  </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                                {!! Form::label('motivo_dece', 'CAUSA FALLECIMIENTO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::textarea('motivo_dece', $conyuge->motivo_dece, ['class'=> 'form-control', 'rows' => '2']) !!}
-                                <span class="help-block">Motivo de fallecimiento</span>
+
+                        <div data-bind='fadeVisible: fallecidoConyuValue, valueUpdate: "afterkeydown"'>
+
+                            <div class="form-group">
+                                    {!! Form::label('fech_dece', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $conyuge->getDataEdit_fech_dece() !!}">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    {!! Form::label('motivo_dece', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-6">
+                                    {!! Form::textarea('motivo_dece', $conyuge->motivo_dece, ['class'=> 'form-control', 'rows' => '2']) !!}
+                                    <span class="help-block">Escriba el Motivo de fallecimiento</span>
+                                </div>
                             </div>
                         </div>
                         
@@ -1243,11 +1259,12 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
-                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
                 </div>
+
             {!! Form::close() !!}
 
             </div>
@@ -1652,6 +1669,7 @@
     });
 
     var titular = {!! $afiliado !!};
+    var conyuge = {!! $conyuge !!};
 
     var Model = function() {
 
@@ -1660,6 +1678,7 @@
         this.selectedOptionValueUni = ko.observable(); 
         this.periodoValue = ko.observable(titular.fech_ini_reco ? true : false);     
         this.fallecidoValue = ko.observable(titular.fech_dece ? true : false);     
+        this.fallecidoConyuValue = ko.observable(conyuge.fech_dece ? true : false);     
     };
 
     ko.bindingHandlers.fadeVisible = {
