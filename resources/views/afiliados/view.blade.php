@@ -45,9 +45,9 @@
                                     
                                     <table class="table table-responsive" style="width:100%;">
                                         <tr>
-                                            <td style="border-top:0;">
+                                            <td style="border-top:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6 text-right">
+                                                    <div class="col-md-6">
                                                         Carnet Identidad
                                                     </div>
                                                     <div class="col-md-6">
@@ -59,7 +59,7 @@
                                         <tr>
                                             <td style="border-top:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6 text-right">
+                                                    <div class="col-md-6">
                                                         Apellido Paterno
                                                     </div>
                                                     <div class="col-md-6">
@@ -71,7 +71,7 @@
                                         <tr>
                                             <td style="border-top:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6 text-right">
+                                                    <div class="col-md-6">
                                                         Apellido Materno
                                                     </div>
                                                     <div class="col-md-6">
@@ -83,7 +83,7 @@
                                         <tr>
                                             <td style="border-top:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6 text-right">
+                                                    <div class="col-md-6">
                                                         Primer Nombre
                                                     </div>
                                                     <div class="col-md-6">
@@ -95,7 +95,7 @@
                                         <tr>
                                             <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
-                                                    <div class="col-md-6 text-right">
+                                                    <div class="col-md-6">
                                                         Segundo Nombre
                                                     </div>
                                                     <div class="col-md-6">
@@ -140,10 +140,10 @@
 
                                     <table class="table" style="width:100%;">
                                         <tr>
-                                            <td style="border-top:0;">
+                                            <td style="border-top:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        Fecha de Nacimiento
+                                                        Fecha Nacimiento
                                                     </div>
                                                     <div class="col-md-6">
                                                          {!! $afiliado->getFullDateNac() !!}
@@ -191,7 +191,7 @@
                                             <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        Lugar de Nacimiento
+                                                        Lugar Nacimiento
                                                     </div>
                                                     <div class="col-md-6">
                                                          {!! $afiliado->depa_nat !!}
@@ -204,7 +204,7 @@
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Motivo Deceso
+                                                            Motivo de Deceso
                                                         </div>
                                                         <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->unidad->lit !!}">
                                                             {!! $afiliado->motivo_dece !!}
@@ -953,10 +953,11 @@
                     <div class="col-md-6">
                         <div class="form-group"> 
                                 {!! Form::label('ci', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
+                            <div class="col-md-5">
                                 {!! Form::text('ci', $afiliado->ci, ['class'=> 'form-control', 'required']) !!}
-                                <span class="help-block">Número de Carnet de Identidad</span>
+                                <span class="help-block">Número de CI</span>
                             </div>
+                                {!! Form::select('depa_nat', $list_depas_abre, $afiliado->departamento_exp_id, ['class' => 'col-md-2 combobox form-control']) !!}
                         </div>
                         <div class="form-group">
                                 {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
@@ -1010,15 +1011,15 @@
                             </div>
                         </div>
                         <div class="form-group">
-                                    {!! Form::label('est_civ', 'Estado Civil', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                    {!! Form::label('est_civ', 'Estado Civil', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::select('est_civ', $list_est_civ, $afiliado->est_civ, ['class' => 'combobox form-control', 'required']) !!}
                                 <span class="help-block">Seleccione el Estado Civil</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                    {!! Form::label('depa_nat', 'Lugar de Nacimiento', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                    {!! Form::label('depa_nat', 'Lugar de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::select('depa_nat', $list_depas, $afiliado->departamento_nat_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Seleccione Departamento</span>
                             </div>

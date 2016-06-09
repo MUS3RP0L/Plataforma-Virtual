@@ -122,11 +122,17 @@ class AfiliadoController extends Controller
              $list_depas[$item->id]=$item->name;
         }
 
+        $list_depas_abre = array('' => '');
+        foreach ($depa as $item) {
+             $list_depas_abre[$item->id]=$item->cod;
+        }
+
         return [
             'list_afi_states' => $list_afi_states,
             'list_unidades' => $list_unidades,
             'list_grados' => $list_grados,
-            'list_depas' => $list_depas
+            'list_depas' => $list_depas,
+            'list_depas_abre' => $list_depas_abre
         ];
     }
 
