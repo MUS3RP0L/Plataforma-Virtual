@@ -245,9 +245,9 @@ class AfiliadoController extends Controller
     {       
         $rules = [
             
-            'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'pat' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'mat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'nom' => 'required|min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'nom2' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'ap_esp' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             
@@ -258,13 +258,14 @@ class AfiliadoController extends Controller
 
         $messages = [
 
-            
+            'pat.required' => 'Apellido paterno es requerido',
             'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
             'pat.regex' => 'Sólo se aceptan letras para apellido paterno',
 
             'mat.min' => 'El mínimo de caracteres permitidos para apellido materno es 3',
             'mat.regex' => 'Sólo se aceptan letras para apellido materno',
 
+            'nom.required' => 'Nombre es requerido',
             'nom.min' => 'El mínimo de caracteres permitidos para primer nombre es 3',
             'nom.regex' => 'Sólo se aceptan letras para primer nombre',
 
@@ -297,7 +298,14 @@ class AfiliadoController extends Controller
                 case 'per':
 
                     $afiliado->ci = trim($request->ci);
-                    $afiliado->departamento_exp_id = trim($request->depa_exp);
+                    if (empty($request->depa_exp))
+                    {
+                        $afiliado->departamento_exp_id = null;
+                    }
+                    else
+                    {
+                        $afiliado->departamento_exp_id = $request->depa_exp;
+                    }
                     $afiliado->pat = trim($request->pat);
                     $afiliado->mat = trim($request->mat);
                     $afiliado->nom = trim($request->nom);
