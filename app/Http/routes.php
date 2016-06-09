@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// Afiliados
 	Route::resource('afiliado', 'AfiliadoController');
+	Route::get('ir_afiliado', 'AfiliadoController@go_search');
 	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
 
 	// Conyuge

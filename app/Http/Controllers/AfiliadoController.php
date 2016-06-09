@@ -375,6 +375,41 @@ class AfiliadoController extends Controller
         return redirect('afiliado/'.$id);
     }
 
+    public function go_search(Request $request)
+    {
+        $rules = [
+            'search' => 'required',
+        ];
+        
+        $messages = [
+            'search.required' => 'El campo es requerido para realizar la búsqueda del Afiliado.',
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()){
+            return redirect("/")
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
+
+        $afiliado = Afiliado::ciIs($request->search)->first();
+
+            if($afiliado){
+                return redirect("afiliado/{$afiliado->id}");
+            }
+            else{
+                    $message = "No logramos encontrar al Afiliado con Carnet: ".$request->search;
+
+                    Session::flash('message', $message);
+                
+                return redirect("/");
+            }
+
+        }
+    }
+
    
 
 }
