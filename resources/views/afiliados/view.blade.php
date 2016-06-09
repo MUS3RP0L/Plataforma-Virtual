@@ -368,7 +368,7 @@
 
                                         <table class="table" style="width:100%;">
                                             <tr>
-                                                <td style="border-top:0;">
+                                                <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Carnet Identidad
@@ -436,7 +436,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:0;">
+                                                <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Primer Nombre
@@ -521,8 +521,7 @@
                                                     <div class="col-md-6">
                                                         Estado
                                                     </div>
-                                                    <div class="col-md-6">
-                                                         {!! $afiliado->afi_state->afi_type->name ." - ". $afiliado->afi_state->name !!}
+                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->afi_state->afi_type->name !!}">{!! $afiliado->afi_state->name !!}
                                                     </div>
                                                 </div>
                                             </td>
