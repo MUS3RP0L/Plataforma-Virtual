@@ -146,13 +146,30 @@
                         <div class="col-md-12">                         
                             <div class="form-group">
                                     {!! Form::label('archive', 'Sueldos', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <input type="file" id="inputFile" name="archive">
                                     <input type="text" readonly="" class="form-control " placeholder="Seleccione Archivo en Formato Excel de sueldos...">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">                         
+                            <div class="form-group">
+                                    {!! Form::label('gest', 'Mes y Año', ['class' => 'col-md-4 control-label']) !!}
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control datepicker" name="gest" value="">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                     <div class="row text-center">
                         <div class="form-group" style="padding-bottom:0px">
@@ -175,104 +192,116 @@
 @push('scripts')
 <script>
 
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
-});
-
-$(document).ready(function(){
-    $('[data-toggle="popover"]').popover(); 
-});
-
-$(function() {
-    $('#sueldoPri-table').DataTable({
-        "dom": '<"top">t<"bottom"p>',
-        processing: true,
-        serverSide: true,
-        lengthMenu: false,
-        pageLength: 10,
-        "scrollX": true,
-        ajax: '{!! route('getSueldoPri') !!}',
-        order: [[0, "desc"]],
-        columns: [
-            { data: 'gest', "sClass": "text-center", sWidth: '1%' },
-            { data: 'c1', "sClass": "text-right", sWidth: '9%', bSortable: false },
-            { data: 'c2', "sClass": "text-right", sWidth: '9%', bSortable: false },
-            { data: 'c3', "sClass": "text-right", sWidth: '9%', bSortable: false },
-            { data: 'c4', "sClass": "text-right", sWidth: '9%', bSortable: false },
-            { data: 'c5', "sClass": "text-right", sWidth: '9%', bSortable: false },
-            { data: 'c6', "sClass": "text-right", sWidth: '8%', bSortable: false },
-            { data: 'c7', "sClass": "text-right", sWidth: '8%', bSortable: false },
-            { data: 'c8', "sClass": "text-right", sWidth: '7%', bSortable: false },
-            { data: 'c9', "sClass": "text-right", sWidth: '7%', bSortable: false },
-            { data: 'c10', "sClass": "text-right", sWidth: '7%', bSortable: false },
-            { data: 'c11', "sClass": "text-right", sWidth: '7%', bSortable: false },
-            { data: 'c12', "sClass": "text-right", sWidth: '7%', bSortable: false }
-        ]
+    $('.datepicker').datepicker({
+        format: "mm/yyyy",
+        viewMode: "months", 
+        minViewMode: "months",
+        language: "es",
+        orientation: "bottom right",
+        autoclose: true
     });
 
-    $('#sueldoSeg-table').DataTable({
-        "dom": '<"top">t<"bottom"p>',
-        processing: true,
-        serverSide: true,
-        lengthMenu: false,
-        pageLength: 10,
-        "scrollX": true,
-        ajax: '{!! route('getSueldoSeg') !!}',
-        order: [[0, "desc"]],
-        columns: [
-            { data: 'gest', "sClass": "text-center", sWidth: '1%' },
-            { data: 'c13', "sClass": "text-right", sWidth: '16%', bSortable: false },
-            { data: 'c14', "sClass": "text-right", sWidth: '16%', bSortable: false },
-            { data: 'c15', "sClass": "text-right", sWidth: '16%', bSortable: false },
-            { data: 'c16', "sClass": "text-right", sWidth: '16%', bSortable: false },
-            { data: 'c17', "sClass": "text-right", sWidth: '16%', bSortable: false },
-            { data: 'c18', "sClass": "text-right", sWidth: '16%', bSortable: false }
-        ]
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
     });
 
-    $('#sueldoTer-table').DataTable({
-        "dom": '<"top">t<"bottom"p>',
-        processing: true,
-        serverSide: true,
-        lengthMenu: false,
-        pageLength: 10,
-        "scrollX": true,
-        ajax: '{!! route('getSueldoTer') !!}',
-        order: [[0, "desc"]],
-        columns: [
-            { data: 'gest', "sClass": "text-center", sWidth: '1%' },
-            { data: 'c19', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c20', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c21', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c22', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c23', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c24', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c25', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c26', "sClass": "text-right", sWidth: '12%', bSortable: false }
-        ]
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover(); 
     });
 
-    $('#sueldoCua-table').DataTable({
-        "dom": '<"top">t<"bottom"p>',
-        processing: true,
-        serverSide: true,
-        lengthMenu: false,
-        pageLength: 10,
-        "scrollX": true,
-        ajax: '{!! route('getSueldoCua') !!}',
-        order: [[0, "desc"]],
-        columns: [
-            { data: 'gest', "sClass": "text-center", sWidth: '1%' },
-            { data: 'c27', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c28', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c29', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c30', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c31', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c32', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c33', "sClass": "text-right", sWidth: '12%', bSortable: false },
-            { data: 'c34', "sClass": "text-right", sWidth: '12%', bSortable: false }
-        ]
+    $(function() {
+        $('#sueldoPri-table').DataTable({
+            "dom": '<"top">t<"bottom"p>',
+            processing: true,
+            serverSide: true,
+            lengthMenu: false,
+            pageLength: 10,
+            "scrollX": true,
+            ajax: '{!! route('getSueldoPri') !!}',
+            order: [[0, "desc"]],
+            columns: [
+                { data: 'gest', "sClass": "text-center", sWidth: '1%' },
+                { data: 'c1', "sClass": "text-right", sWidth: '9%', bSortable: false },
+                { data: 'c2', "sClass": "text-right", sWidth: '9%', bSortable: false },
+                { data: 'c3', "sClass": "text-right", sWidth: '9%', bSortable: false },
+                { data: 'c4', "sClass": "text-right", sWidth: '9%', bSortable: false },
+                { data: 'c5', "sClass": "text-right", sWidth: '9%', bSortable: false },
+                { data: 'c6', "sClass": "text-right", sWidth: '8%', bSortable: false },
+                { data: 'c7', "sClass": "text-right", sWidth: '8%', bSortable: false },
+                { data: 'c8', "sClass": "text-right", sWidth: '7%', bSortable: false },
+                { data: 'c9', "sClass": "text-right", sWidth: '7%', bSortable: false },
+                { data: 'c10', "sClass": "text-right", sWidth: '7%', bSortable: false },
+                { data: 'c11', "sClass": "text-right", sWidth: '7%', bSortable: false },
+                { data: 'c12', "sClass": "text-right", sWidth: '7%', bSortable: false }
+            ]
+        });
+
+        $('#sueldoSeg-table').DataTable({
+            "dom": '<"top">t<"bottom"p>',
+            processing: true,
+            serverSide: true,
+            lengthMenu: false,
+            pageLength: 10,
+            "scrollX": true,
+            ajax: '{!! route('getSueldoSeg') !!}',
+            order: [[0, "desc"]],
+            columns: [
+                { data: 'gest', "sClass": "text-center", sWidth: '1%' },
+                { data: 'c13', "sClass": "text-right", sWidth: '16%', bSortable: false },
+                { data: 'c14', "sClass": "text-right", sWidth: '16%', bSortable: false },
+                { data: 'c15', "sClass": "text-right", sWidth: '16%', bSortable: false },
+                { data: 'c16', "sClass": "text-right", sWidth: '16%', bSortable: false },
+                { data: 'c17', "sClass": "text-right", sWidth: '16%', bSortable: false },
+                { data: 'c18', "sClass": "text-right", sWidth: '16%', bSortable: false }
+            ]
+        });
+
+        $('#sueldoTer-table').DataTable({
+            "dom": '<"top">t<"bottom"p>',
+            processing: true,
+            serverSide: true,
+            lengthMenu: false,
+            pageLength: 10,
+            "scrollX": true,
+            ajax: '{!! route('getSueldoTer') !!}',
+            order: [[0, "desc"]],
+            columns: [
+                { data: 'gest', "sClass": "text-center", sWidth: '1%' },
+                { data: 'c19', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c20', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c21', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c22', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c23', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c24', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c25', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c26', "sClass": "text-right", sWidth: '12%', bSortable: false }
+            ]
+        });
+
+        $('#sueldoCua-table').DataTable({
+            "dom": '<"top">t<"bottom"p>',
+            processing: true,
+            serverSide: true,
+            lengthMenu: false,
+            pageLength: 10,
+            "scrollX": true,
+            ajax: '{!! route('getSueldoCua') !!}',
+            order: [[0, "desc"]],
+            columns: [
+                { data: 'gest', "sClass": "text-center", sWidth: '1%' },
+                { data: 'c27', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c28', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c29', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c30', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c31', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c32', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c33', "sClass": "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c34', "sClass": "text-right", sWidth: '12%', bSortable: false }
+            ]
+        });
     });
-});
+
 </script>
 @endpush
+
+

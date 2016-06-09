@@ -32,13 +32,9 @@ class SueldoController extends Controller
 
     public function sueldoPriData()
     {
-        $select = DB::raw('sueldos.gest as gest, 
-            c1.sue as c1, c2.sue as c2, c3.sue as c3, c4.sue as c4, c5.sue as c5,
-            c6.sue as c6, c7.sue as c7, c8.sue as c8, c9.sue as c9, c10.sue as c10,
-            c11.sue as c11, c12.sue as c12');
+        $select = DB::raw('sueldos.gest as gest, c1.sue as c1, c2.sue as c2, c3.sue as c3, c4.sue as c4, c5.sue as c5, c6.sue as c6, c7.sue as c7, c8.sue as c8, c9.sue as c9, c10.sue as c10, c11.sue as c11, c12.sue as c12');
         
-        $results = DB::table('sueldos')
-        ->select($select)
+        $results = DB::table('sueldos')->select($select)
         ->leftJoin('sueldos as c1', 'c1.gest', '=', 'sueldos.gest')
         ->leftJoin('sueldos as c2', 'c2.gest', '=', 'sueldos.gest')
         ->leftJoin('sueldos as c3', 'c3.gest', '=', 'sueldos.gest')
@@ -66,29 +62,27 @@ class SueldoController extends Controller
         ->groupBy('sueldos.gest');
 
         return Datatables::of($results)
-                        ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
-                        ->editColumn('c1', function ($result) { return Util::formatMoney($result->c1); })
-                        ->editColumn('c2', function ($result) { return Util::formatMoney($result->c2); })
-                        ->editColumn('c3', function ($result) { return Util::formatMoney($result->c3); })
-                        ->editColumn('c4', function ($result) { return Util::formatMoney($result->c4); })
-                        ->editColumn('c5', function ($result) { return Util::formatMoney($result->c5); })
-                        ->editColumn('c6', function ($result) { return Util::formatMoney($result->c6); })
-                        ->editColumn('c7', function ($result) { return Util::formatMoney($result->c7); })
-                        ->editColumn('c8', function ($result) { return Util::formatMoney($result->c8); })
-                        ->editColumn('c9', function ($result) { return Util::formatMoney($result->c9); })
-                        ->editColumn('c10', function ($result) { return Util::formatMoney($result->c10); })
-                        ->editColumn('c11', function ($result) { return Util::formatMoney($result->c11); })
-                        ->editColumn('c12', function ($result) { return Util::formatMoney($result->c12); })
-                        ->make(true);
+        ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
+        ->editColumn('c1', function ($result) { return Util::formatMoney($result->c1); })
+        ->editColumn('c2', function ($result) { return Util::formatMoney($result->c2); })
+        ->editColumn('c3', function ($result) { return Util::formatMoney($result->c3); })
+        ->editColumn('c4', function ($result) { return Util::formatMoney($result->c4); })
+        ->editColumn('c5', function ($result) { return Util::formatMoney($result->c5); })
+        ->editColumn('c6', function ($result) { return Util::formatMoney($result->c6); })
+        ->editColumn('c7', function ($result) { return Util::formatMoney($result->c7); })
+        ->editColumn('c8', function ($result) { return Util::formatMoney($result->c8); })
+        ->editColumn('c9', function ($result) { return Util::formatMoney($result->c9); })
+        ->editColumn('c10', function ($result) { return Util::formatMoney($result->c10); })
+        ->editColumn('c11', function ($result) { return Util::formatMoney($result->c11); })
+        ->editColumn('c12', function ($result) { return Util::formatMoney($result->c12); })
+        ->make(true);
     }
 
     public function sueldoSegData()
     {
-        $select = DB::raw('sueldos.gest as gest, 
-            c13.sue as c13, c14.sue as c14, c15.sue as c15, c16.sue as c16, c17.sue as c17,c18.sue as c18');
+        $select = DB::raw('sueldos.gest as gest, c13.sue as c13, c14.sue as c14, c15.sue as c15, c16.sue as c16, c17.sue as c17,c18.sue as c18');
         
-        $result = DB::table('sueldos')
-        ->select($select)
+        $result = DB::table('sueldos')->select($select)
         ->leftJoin('sueldos as c13', 'c13.gest', '=', 'sueldos.gest')
         ->leftJoin('sueldos as c14', 'c14.gest', '=', 'sueldos.gest')
         ->leftJoin('sueldos as c15', 'c15.gest', '=', 'sueldos.gest')
@@ -104,24 +98,21 @@ class SueldoController extends Controller
         ->groupBy('sueldos.gest');
 
         return Datatables::of($result)
-                        ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
-                        ->editColumn('c13', function ($result) { return Util::formatMoney($result->c13); })
-                        ->editColumn('c14', function ($result) { return Util::formatMoney($result->c14); })
-                        ->editColumn('c15', function ($result) { return Util::formatMoney($result->c15); })
-                        ->editColumn('c16', function ($result) { return Util::formatMoney($result->c16); })
-                        ->editColumn('c17', function ($result) { return Util::formatMoney($result->c17); })
-                        ->editColumn('c18', function ($result) { return Util::formatMoney($result->c18); })
-                        ->make(true);
+        ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
+        ->editColumn('c13', function ($result) { return Util::formatMoney($result->c13); })
+        ->editColumn('c14', function ($result) { return Util::formatMoney($result->c14); })
+        ->editColumn('c15', function ($result) { return Util::formatMoney($result->c15); })
+        ->editColumn('c16', function ($result) { return Util::formatMoney($result->c16); })
+        ->editColumn('c17', function ($result) { return Util::formatMoney($result->c17); })
+        ->editColumn('c18', function ($result) { return Util::formatMoney($result->c18); })
+        ->make(true);
     }
 
     public function sueldoTerData()
     {
-        $select = DB::raw('sueldos.gest as gest, 
-            c19.sue as c19, c20.sue as c20, c21.sue as c21, c22.sue as c22, c23.sue as c23, c24.sue as c24,
-             c25.sue as c25, c26.sue as c26');
+        $select = DB::raw('sueldos.gest as gest, c19.sue as c19, c20.sue as c20, c21.sue as c21, c22.sue as c22, c23.sue as c23, c24.sue as c24, c25.sue as c25, c26.sue as c26');
         
-        $result = DB::table('sueldos')
-        ->select($select)
+        $result = DB::table('sueldos')->select($select)
         ->leftJoin('sueldos as c19', 'c19.gest', '=', 'sueldos.gest')
         ->leftJoin('sueldos as c20', 'c20.gest', '=', 'sueldos.gest')
         ->leftJoin('sueldos as c21', 'c21.gest', '=', 'sueldos.gest')
@@ -141,26 +132,23 @@ class SueldoController extends Controller
         ->groupBy('sueldos.gest');
 
         return Datatables::of($result)
-                        ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
-                        ->editColumn('c19', function ($result) { return Util::formatMoney($result->c19); })
-                        ->editColumn('c20', function ($result) { return Util::formatMoney($result->c20); })
-                        ->editColumn('c21', function ($result) { return Util::formatMoney($result->c21); })
-                        ->editColumn('c22', function ($result) { return Util::formatMoney($result->c22); })
-                        ->editColumn('c23', function ($result) { return Util::formatMoney($result->c23); })
-                        ->editColumn('c24', function ($result) { return Util::formatMoney($result->c24); })
-                        ->editColumn('c25', function ($result) { return Util::formatMoney($result->c25); })
-                        ->editColumn('c26', function ($result) { return Util::formatMoney($result->c26); })
-                        ->make(true);
+        ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
+        ->editColumn('c19', function ($result) { return Util::formatMoney($result->c19); })
+        ->editColumn('c20', function ($result) { return Util::formatMoney($result->c20); })
+        ->editColumn('c21', function ($result) { return Util::formatMoney($result->c21); })
+        ->editColumn('c22', function ($result) { return Util::formatMoney($result->c22); })
+        ->editColumn('c23', function ($result) { return Util::formatMoney($result->c23); })
+        ->editColumn('c24', function ($result) { return Util::formatMoney($result->c24); })
+        ->editColumn('c25', function ($result) { return Util::formatMoney($result->c25); })
+        ->editColumn('c26', function ($result) { return Util::formatMoney($result->c26); })
+        ->make(true);
     }
 
     public function sueldoCuaData()
     {
-        $select = DB::raw('sueldos.gest as gest, 
-            c27.sue as c27, c28.sue as c28, c29.sue as c29, c30.sue as c30, c31.sue as c31, c32.sue as c32,
-             c33.sue as c33, c34.sue as c34');
+        $select = DB::raw('sueldos.gest as gest, c27.sue as c27, c28.sue as c28, c29.sue as c29, c30.sue as c30, c31.sue as c31, c32.sue as c32, c33.sue as c33, c34.sue as c34');
         
-        $result = DB::table('sueldos')
-        ->select($select)
+        $result = DB::table('sueldos')->select($select)
         ->leftJoin('sueldos as c27', 'c27.gest', '=', 'sueldos.gest')
         ->leftJoin('sueldos as c28', 'c28.gest', '=', 'sueldos.gest')
         ->leftJoin('sueldos as c29', 'c29.gest', '=', 'sueldos.gest')
@@ -180,16 +168,16 @@ class SueldoController extends Controller
         ->groupBy('sueldos.gest');
 
         return Datatables::of($result)
-                        ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
-                        ->editColumn('c27', function ($result) { return Util::formatMoney($result->c27); })
-                        ->editColumn('c28', function ($result) { return Util::formatMoney($result->c28); })
-                        ->editColumn('c29', function ($result) { return Util::formatMoney($result->c29); })
-                        ->editColumn('c30', function ($result) { return Util::formatMoney($result->c30); })
-                        ->editColumn('c31', function ($result) { return Util::formatMoney($result->c31); })
-                        ->editColumn('c32', function ($result) { return Util::formatMoney($result->c32); })
-                        ->editColumn('c33', function ($result) { return Util::formatMoney($result->c33); })
-                        ->editColumn('c34', function ($result) { return Util::formatMoney($result->c34); })
-                        ->make(true);
+        ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
+        ->editColumn('c27', function ($result) { return Util::formatMoney($result->c27); })
+        ->editColumn('c28', function ($result) { return Util::formatMoney($result->c28); })
+        ->editColumn('c29', function ($result) { return Util::formatMoney($result->c29); })
+        ->editColumn('c30', function ($result) { return Util::formatMoney($result->c30); })
+        ->editColumn('c31', function ($result) { return Util::formatMoney($result->c31); })
+        ->editColumn('c32', function ($result) { return Util::formatMoney($result->c32); })
+        ->editColumn('c33', function ($result) { return Util::formatMoney($result->c33); })
+        ->editColumn('c34', function ($result) { return Util::formatMoney($result->c34); })
+        ->make(true);
     }
 
     /**
@@ -202,7 +190,7 @@ class SueldoController extends Controller
         return view('sueldos.import');
     }
 
-    /**
+        /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -213,62 +201,28 @@ class SueldoController extends Controller
         return $this->save($request);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
     public function save($request, $id = false)
     {
+        global $gest;
 
         $reader = $request->file('archive');
         $filename = $reader->getRealPath();
 
-        Excel::selectSheetsByIndex(0)->load($filename, function($reader) {
+        $gest = $request->gest;
 
-            $count = 0;
-            $col = array('codigo', 'nivel', 'grado', 'literal', 'sueldo');
+        $col = array('codigo', 'nivel', 'grado', 'literal', 'sueldo');
 
-            $results = $reader->select($col)->first();
-             
-            foreach ($results as $nombre => $valor) {
-                if (in_array($nombre, $col)) {
-                    $count ++;
-                }
-            }   
-
-            if ($count < count($col))
-            {
-                $message = "Falta Columnas, favor Verificar el Archivo";
-                Session::flash('message', $message);
-                return redirect('importar_archivo');
-                break;
-            }
-        });
 
         Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load($filename,$reader)->chunk(10, function($results) {
 
-            foreach ($results as $result) {          
+            foreach ($results as $result) {   
+
+            global $gest;       
 
                 $sueldo = new sueldo;
                 $sueldo->user_id = Auth::user()->id;
-                
                 $sueldo->grado_id = $result->codigo;
-                $sueldo->gest = Carbon::now();
+                $sueldo->gest = Util::datePickPeriod($gest);
                 $sueldo->sue = $result->sueldo;
                 
                 $sueldo->save();
@@ -280,7 +234,6 @@ class SueldoController extends Controller
 
         Session::flash('message', $message);
 
-        return redirect('sueldo'); 
-
+        return redirect('sueldo');
     }
 }
