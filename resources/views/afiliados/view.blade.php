@@ -51,7 +51,7 @@
                                                         Carnet Identidad
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $afiliado->ci !!}
+                                                         {!! $afiliado->ci !!} {!! $afiliado->depa_exp !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -957,7 +957,7 @@
                                 {!! Form::text('ci', $afiliado->ci, ['class'=> 'form-control', 'required']) !!}
                                 <span class="help-block">Número de CI</span>
                             </div>
-                                {!! Form::select('depa_nat', $list_depas_abre, $afiliado->departamento_exp_id, ['class' => 'col-md-2 combobox form-control']) !!}
+                                {!! Form::select('depa_exp', $list_depas_abre, $afiliado->departamento_exp_id, ['class' => 'col-md-2 combobox form-control']) !!}
                         </div>
                         <div class="form-group">
                                 {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
@@ -1024,22 +1024,38 @@
                                 <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
-                        <div class="form-group">
-                                {!! Form::label('fech_dece', 'FECHA DECESO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                <div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $afiliado->getData_fech_dece() !!}">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-5 col-md-4">
+                                <div class="form-group">
+                                    <div class="togglebutton">
+                                      <label>
+                                        <input type="checkbox" data-bind="checked: fallecidoValue" name="fallecidoCheck"> Fallecido
+                                      </label>
+                                  </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                                {!! Form::label('motivo_dece', 'CAUSA DECESO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::textarea('motivo_dece', $afiliado->motivo_dece, ['class'=> 'form-control', 'rows' => '2']) !!}
-                                <span class="help-block">Motivo de fallecimiento</span>
+
+                        <div data-bind='fadeVisible: fallecidoValue, valueUpdate: "afterkeydown"'>
+
+                            <div class="form-group">
+                                    {!! Form::label('fech_dece', 'FECHA DECESO', ['class' => 'col-md-4 control-label']) !!}
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $afiliado->getData_fech_dece() !!}">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    {!! Form::label('motivo_dece', 'CAUSA DECESO', ['class' => 'col-md-4 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::textarea('motivo_dece', $afiliado->motivo_dece, ['class'=> 'form-control', 'rows' => '2']) !!}
+                                    <span class="help-block">Motivo de fallecimiento</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1641,6 +1657,7 @@
         this.selectedOptionValueGra = ko.observable();
         this.selectedOptionValueUni = ko.observable(); 
         this.periodoValue = ko.observable(titular.fech_ini_reco ? true : false);     
+        this.fallecidoValue = ko.observable(titular.fech_dece ? true : false);     
     };
 
     ko.bindingHandlers.fadeVisible = {

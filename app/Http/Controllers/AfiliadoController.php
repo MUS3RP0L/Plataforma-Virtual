@@ -157,6 +157,12 @@ class AfiliadoController extends Controller
             $list_est_civ = array('' => '','C' => 'CASADA','S' => 'SOLTERA','V' => 'VIUDA','D' => 'DIVORCIADA');
         }
 
+        if ($afiliado->departamento_exp_id) {
+            $afiliado->depa_exp = Departamento::idIs($afiliado->departamento_exp_id)->first()->cod;
+        }else{
+            $afiliado->depa_exp = ""; 
+        }
+
         if ($afiliado->departamento_nat_id) {
             $afiliado->depa_nat = Departamento::idIs($afiliado->departamento_nat_id)->first()->name;
         }else{
@@ -291,21 +297,27 @@ class AfiliadoController extends Controller
                 case 'per':
 
                     $afiliado->ci = trim($request->ci);
+                    $afiliado->departamento_exp_id = trim($request->depa_exp);
                     $afiliado->pat = trim($request->pat);
                     $afiliado->mat = trim($request->mat);
                     $afiliado->nom = trim($request->nom);
                     $afiliado->nom2 = trim($request->nom2);
-                    if ($request->ap_esp) {$afiliado->ap_esp = trim($request->ap_esp);}
+                    $afiliado->ap_esp = trim($request->ap_esp);
                     $afiliado->fech_nac = Util::datePick($request->fech_nac); 
                     $afiliado->est_civ = trim($request->est_civ); 
                     if ($afiliado->departamento_nat_id <> trim($request->depa_nat)) {$afiliado->departamento_nat_id = trim($request->depa_nat);}
                     
-                    $afiliado->fech_dece = Util::datePick($request->fech_dece); 
-                    $afiliado->motivo_dece = trim($request->motivo_dece);
+                    if ($request->fallecidoCheck == "on") {
+                        $afiliado->fech_dece = Util::datePick($request->fech_dece); 
+                        $afiliado->motivo_dece = trim($request->motivo_dece);
+                    }else{
+                        $afiliado->fech_dece = null; 
+                        $afiliado->motivo_dece = null;
+                    }
 
                     $afiliado->save();
                     
-                    $message = "Información personal de Afiliado actualizado con éxito";
+                    $message = "Información personal de Afiliado actualizado con éxito". $request->fallecidoCheck;
                     break;
 
                 case 'dom':
