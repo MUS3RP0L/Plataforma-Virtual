@@ -246,7 +246,7 @@
 
                                         <table class="table" style="width:100%;">
                                             <tr>
-                                                <td style="border-top:0;">
+                                                <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Departamento
@@ -273,7 +273,7 @@
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Calle
+                                                            Calle, Avenida
                                                         </div>
                                                         <div class="col-md-6">
                                                             {!! $afiliado->calle !!}
@@ -290,7 +290,7 @@
 
                                         <table class="table" style="width:100%;">
                                             <tr>
-                                                <td style="border-top:0;">
+                                                <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Núm Domicilio
@@ -1062,13 +1062,14 @@
                 </div>
 
                 <div class="row text-center">
-                    <div class="form-group" style="padding-bottom:0px">
+                    <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
-                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
                 </div>
+
             {!! Form::close() !!}
 
             </div>
@@ -1076,8 +1077,8 @@
     </div>
 </div>
 
-<div id="myModal-domicilio" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+<div id="myModal-domicilio" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -1091,48 +1092,48 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                                    {!! Form::label('depa_dir', 'DEPARTA MENTO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                    {!! Form::label('depa_dir', 'Departamento', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::select('depa_dir', $list_depas, $afiliado->departamento_dir_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('zona', 'ZONA', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('zona', 'Zona', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('zona', $afiliado->zona, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Zona</span>
+                                <span class="help-block">Escriba la Zona</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('calle', 'CALLE', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('calle', 'Calle, Avenida', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('calle', $afiliado->calle, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Calle</span>
+                                <span class="help-block">Escriba la Calle y/o Avenida</span>
                             </div>
                         </div>
                                                           
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                                {!! Form::label('num_domi', 'NÚMERO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('num_domi', 'Número de Domicilio', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('num_domi', $afiliado->num_domi, ['class'=> 'form-control',  'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Número de Domicilio</span>
+                                <span class="help-block">Escriba el Número de Domicilio</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('tele', 'TELÉFONO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('tele', 'Teléfono fijo', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('tele', $afiliado->tele, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Teléfono fijo</span>
+                                <span class="help-block">Escriba el Teléfono fijo</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('celu', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('celu', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('celu', $afiliado->celu, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Teléfono Celular</span>
+                                <span class="help-block">Escriba el Teléfono Celular</span>
                             </div>
                         </div>
                     </div>
@@ -1141,11 +1142,12 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
-                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
                 </div>
+
             {!! Form::close() !!}
 
             </div>
