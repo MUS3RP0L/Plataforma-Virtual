@@ -168,21 +168,25 @@ class Import extends Command
                         switch ($result->desg) {
                             
                             case '1'://Disponibilidad
-                                $afiliado->afi_state_id = 4;
+                                $afiliado->afi_state_id = 3;
                                 if ($afiliado->afi_state_id <> 4){$afiliado->fech_est = $gest;}
                             break;
                             case '3'://Comisión
-                                $afiliado->afi_state_id = 3;
+                                $afiliado->afi_state_id = 2;
                                 if ($afiliado->afi_state_id <> 3){$afiliado->fech_est = $gest;}
                             break;
-                            case '5'://Batallón
-                                $afiliado->afi_state_id = 2;
-                                if ($afiliado->afi_state_id <> 2){$afiliado->fech_est = $gest;}
-                            break;
-                            default://Comando
+                            default://Servicio
                                 $afiliado->afi_state_id = 1;
                                 if ($afiliado->afi_state_id <> 1){$afiliado->fech_est = $gest;}
-                        }      
+                        }  
+
+                        switch ($result->desg) {
+                            case '5': //Batallón
+                                $afiliado->afi_type_id = 2;
+                            break;
+                            default://Servicio
+                                $afiliado->afi_type_id = 1;
+                        }     
 
                         if ($result->uni) {
                             if ($afiliado->unidad_id <> $unidad_id) {
