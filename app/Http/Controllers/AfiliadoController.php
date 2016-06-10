@@ -17,9 +17,6 @@ use Muserpol\Helper\Util;
 
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
-use Muserpol\Grado;
-use Muserpol\Unidad;
-use Muserpol\AfiState;
 use Muserpol\Departamento;
 use Muserpol\Solicitante;
 use Muserpol\Conyuge;
@@ -99,23 +96,7 @@ class AfiliadoController extends Controller
 
     public static function getViewModel()
     {
-        $afi_states = AfiState::all();
-        $list_afi_states = array('' => '');
-        foreach ($afi_states as $item) {
-             $list_afi_states[$item->id]=$item->state_type->name . " " . $item->name;
-        }
 
-        $unidades = Unidad::all();
-        $list_unidades = array('' => '');
-        foreach ($unidades as $item) {
-             $list_unidades[$item->id]=$item->cod . " " . $item->lit;
-        }
-
-        $grados = Grado::all();
-        $list_grados = array('' => '');
-        foreach ($grados as $item) {
-             $list_grados[$item->id]=$item->niv . "-" . $item->grad . " " . $item->lit;
-        } 
         $depa = Departamento::all();
         $list_depas = array('' => '');
         foreach ($depa as $item) {
@@ -128,9 +109,6 @@ class AfiliadoController extends Controller
         }
 
         return [
-            'list_afi_states' => $list_afi_states,
-            'list_unidades' => $list_unidades,
-            'list_grados' => $list_grados,
             'list_depas' => $list_depas,
             'list_depas_abre' => $list_depas_abre
         ];
