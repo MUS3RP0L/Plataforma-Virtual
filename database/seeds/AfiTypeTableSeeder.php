@@ -14,8 +14,8 @@ class AfiTypeTableSeeder extends Seeder
         Eloquent::unguard();
 
         $this->createAfiType();
-        $this->createAfiState();
         $this->createStateType();
+        $this->createAfiState();
 
         Eloquent::reguard();
     }
