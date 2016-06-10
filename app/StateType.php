@@ -7,18 +7,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AfiState extends Model
 {
-    protected $table = 'afi_states';
+    protected $table = 'state_types';
 
 	protected $fillable = [
 	
 		'name'
-	
 	];
 
 	protected $guarded = ['id'];
 
-	public function afiliados()
+	public function afi_states()
     {
-        return $this->hasMany('Muserpol\Afiliado');
-    }
+        return $this->hasMany('Muserpol\AfiState');
+    } 
 }
