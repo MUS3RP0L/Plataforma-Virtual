@@ -15,6 +15,7 @@ class AfiTypeTableSeeder extends Seeder
 
         $this->createAfiType();
         $this->createAfiState();
+        $this->createStateType();
 
         Eloquent::reguard();
     }
@@ -22,10 +23,8 @@ class AfiTypeTableSeeder extends Seeder
     private function createAfiType()
     {
         $statuses = [
-            ['id' => '1', 'name' => 'ACTIVO'],
-            ['id' => '2', 'name' => 'PASIVO'],
-            ['id' => '3', 'name' => 'EXCLUIDO'],
-            ['id' => '4', 'name' => 'BAJA']
+            ['id' => '1', 'name' => 'COMANDO'],
+            ['id' => '2', 'name' => 'BATALLÓN']
         ];
 
         foreach ($statuses as $status) {
@@ -33,27 +32,34 @@ class AfiTypeTableSeeder extends Seeder
             Muserpol\AfiType::create($status);    
         }
     }
+    private function createStateType()
+    {
+        $statuses = [
+            ['id' => '1', 'name' => 'ACTIVO'],
+            ['id' => '2', 'name' => 'PASIVO'],
+            ['id' => '3', 'name' => 'BAJA']
+        ];
+
+        foreach ($statuses as $status) {
+
+            Muserpol\StateType::create($status);    
+        }
+    }
 
     private function createAfiState()
     {
         $statuses = [
-            ['id' => '1', 'afi_type_id' => '1', 'name' => 'Servicio Cmdo.'],//Comando
-            ['id' => '2', 'afi_type_id' => '1', 'name' => 'Servicio batn.'],//Batallon
-            ['id' => '3', 'afi_type_id' => '1', 'name' => 'Comisión'],
-            ['id' => '4', 'afi_type_id' => '1', 'name' => 'Disponibilidad'],
+            ['id' => '1', 'afi_type_id' => '1', 'name' => 'Servicio'],
+            ['id' => '2', 'afi_type_id' => '1', 'name' => 'Comisión'],
+            ['id' => '3', 'afi_type_id' => '1', 'name' => 'Disponibilidad'],
 
-            ['id' => '5', 'afi_type_id' => '2', 'name' => 'Fallecido'],
-            ['id' => '6', 'afi_type_id' => '2', 'name' => 'Jubilado'],
-            ['id' => '7', 'afi_type_id' => '2', 'name' => 'Jubilación por Invalidez'],
+            ['id' => '4', 'afi_type_id' => '2', 'name' => 'Fallecido'],
+            ['id' => '5', 'afi_type_id' => '2', 'name' => 'Jubilado'],
+            ['id' => '6', 'afi_type_id' => '2', 'name' => 'Jubilación por Invalidez'],
 
-            ['id' => '8', 'afi_type_id' => '3', 'name' => 'Juridico'],
-            ['id' => '9', 'afi_type_id' => '3', 'name' => 'Financiero'],
-            ['id' => '10', 'afi_type_id' => '3', 'name' => 'Inversiones'],
-            ['id' => '12', 'afi_type_id' => '4', 'name' => 'Forzosa'],
-            ['id' => '13', 'afi_type_id' => '4', 'name' => 'Voluntaria'],
-            ['id' => '14', 'afi_type_id' => '4', 'name' => 'Temporal']
-
-
+            ['id' => '7', 'afi_type_id' => '3', 'name' => 'Forzosa'],
+            ['id' => '8', 'afi_type_id' => '3', 'name' => 'Voluntaria'],
+            ['id' => '9', 'afi_type_id' => '3', 'name' => 'Temporal']
         ];
 
         foreach ($statuses as $status) {
