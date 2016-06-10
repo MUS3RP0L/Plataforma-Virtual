@@ -102,7 +102,7 @@ class AfiliadoController extends Controller
         $afi_states = AfiState::all();
         $list_afi_states = array('' => '');
         foreach ($afi_states as $item) {
-             $list_afi_states[$item->id]=$item->afi_type->name . " " . $item->name;
+             $list_afi_states[$item->id]=$item->state_type->name . " " . $item->name;
         }
 
         $unidades = Unidad::all();

@@ -392,7 +392,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Apellido Materno
@@ -403,18 +403,20 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Fecha Deceso
+                                            @if($conyuge->motivo_dece)
+                                                <tr>
+                                                    <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                Fecha Deceso
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                 {!! $conyuge->getFullDateDece() !!}
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                             {!! $conyuge->getFullDateDece() !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         </table>
 
 
@@ -448,7 +450,7 @@
                                                 </td>
                                             <tr>
                                             </tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Segundo Nombre
@@ -459,19 +461,20 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Motivo Deceso
+                                            @if($conyuge->motivo_dece)
+                                                <tr>
+                                                    <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                Motivo Deceso
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                {!! $conyuge->motivo_dece !!}
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            {!! $conyuge->motivo_dece !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         </table>
 
                                     </div>
@@ -496,16 +499,11 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-10">
-                                    <h3 class="panel-title">Información Policial</h3>
+                                    <h3 class="panel-title">Información Policial Actual</h3>
                                 </div>
                                 <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Historial">
                                     <div  data-toggle="modal" data-target="#myModal-record"> 
                                         <span class="glyphicon glyphicon-hourglass"  aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                    <div  data-toggle="modal" data-target="#myModal-policial"> 
-                                        <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
                                     </div>
                                 </div>
                             </div>
@@ -516,12 +514,12 @@
 
                                     <table class="table" style="width:100%;">
                                         <tr>
-                                            <td style="border-top:0;">
+                                            <td style="border-top:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         Estado
                                                     </div>
-                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->afi_state->afi_type->name !!}">{!! $afiliado->afi_state->name !!}
+                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->afi_state->state_type->name !!}">{!! $afiliado->afi_state->name !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -549,64 +547,6 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        @if($afiliado->motivo_baja)
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Motivo Baja
-                                                        </div>
-                                                        <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->unidad->lit !!}">
-                                                            {!! $afiliado->motivo_baja !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endif
-
-                                    </table>
-
-                                </div>
-
-                                <div class="col-md-6">
-
-                                    <table class="table" style="width:100%;">
-                                        <tr>
-                                            <td style="border-top:0;">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        Núm. de Matrícula
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        {!! $afiliado->matri !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-top:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        Núm. de Ítem
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        {!! $afiliado->item !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        Fecha de Ingreso
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        {!! $afiliado->getFullDateIng() !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
                                         @if($afiliado->fech_baja)
                                             <tr>
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
@@ -621,7 +561,63 @@
                                                 </td>
                                             </tr>
                                         @endif
+                                    </table>
 
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <table class="table" style="width:100%;">
+                                        <tr>
+                                            <td style="border-top:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        Fecha de Ingreso
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        {!! $afiliado->getFullDateIng() !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-top:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        Núm. de Matrícula
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        {!! $afiliado->matri !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        Núm. de Ítem
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        {!! $afiliado->item !!}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @if($afiliado->motivo_baja)
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Motivo Baja
+                                                        </div>
+                                                        <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->unidad->lit !!}">
+                                                            {!! $afiliado->motivo_baja !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     </table>
 
                                 </div>
@@ -1271,199 +1267,6 @@
     </div>
 </div>
 
-<div id="myModal-policial" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content panel-warning">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Editar Información Policial</h4>
-            </div>
-            <div class="modal-body">
-
-                {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
-                <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <input type="hidden" name="type" value="pol"/>
-                <div class="row">
-                    <div class="col-md-12">
-                        
-						<div class="row">
-                        	<div class="col-md-7">
-                        		<table class="table" style="width:100%; margin-bottom:-16px;">
-                                        <tr>
-                                            <td style="border-top:0;">
-					                        	<div class="row">
-					                                <div class="form-group">
-					                                    {!! Form::label('afi_state_date', 'ESTADO ACTUAL', ['class' => 'col-md-2 control-label']) !!}
-						                                <div class="col-md-10">
-						                                	{!! Form::text('afi_type_name', $afiliado->afi_state->afi_type->name ." - ". $afiliado->afi_state->name, ['class'=> 'form-control', 'disabled' => '']) !!}
-						                                </div>
-						                            </div>
-					                            </div>
-					                        </td>
-					                    </tr>
-					            </table>
-	                       	</div>
-                        	<div class="col-md-5">
-		                        <div class="form-group">
-	                                {!! Form::label('afi_state_date', 'FECHA DE REGISTRO', ['class' => 'col-md-4 control-label']) !!}
-	                            
-	                                <div class="col-md-8">
-	                                	{!! Form::text('getDataEditEst', $afiliado->getDataEditEst(), ['class'=> 'form-control', 'disabled' => '']) !!}
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-                        <div class="row">
-                        	<div class="col-md-7">
-                        		<table class="table" style="width:100%;margin-bottom:-10px;">
-                                        <tr>
-                                            <td style="border-top:0;">
-					                        	<div class="row">
-					                                <div class="form-group">
-							                            {!! Form::label('afi_state_id', 'NUEVO ESTADO', ['class' => 'col-md-2 control-label']) !!}
-							                            <div class="col-md-10">
-							                                {!! Form::select('afi_state_id', $list_afi_states, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValueEst']) !!}
-							                                <span class="help-block"></span>
-							                            </div>
-							                        </div>
-					                            </div>
-					                        </td>
-					                    </tr>
-					            </table>
-	                       	</div>
-                        	<div class="col-md-5">
-		                        <div class="form-group" data-bind='visible: selectedOptionValueEst, valueUpdate: "afterkeydown"'>
-		                            {!! Form::label('fech_est', 'FECHA DE CAMBIO', ['class' => 'col-md-4 control-label']) !!}
-		                            <div class="col-md-8">
-		                                <div class="input-group">
-		                                    <input type="text" class="form-control datepicker" name="fech_est">
-		                                    <div class="input-group-addon">
-		                                        <span class="glyphicon glyphicon-calendar"></span>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                        </div>
-	                        </div>
-	                    </div>
-
-                        {{-- <div class="form-group">
-                            {!! Form::label('fech_dece', 'FECHA DECESO', ['class' => 'col-md-3 control-label']) !!}
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="fech_dece">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-
-                        <div class="row">
-                        	<div class="col-md-7">
-                        		<table class="table" style="width:100%; margin-bottom:-16px;">
-                                        <tr>
-                                            <td style="border-top:0;">
-					                        	<div class="row">
-					                                <div class="form-group">
-					                                    {!! Form::label('afi_state_date', 'GRADO ACTUAL', ['class' => 'col-md-2 control-label']) !!}
-					                                
-						                                <div class="col-md-10">
-						                                	{!! Form::text('grado_abre', $afiliado->grado->lit, ['class'=> 'form-control', 'disabled' => '']) !!}
-						                                </div>
-						                            </div>
-					                            </div>
-					                        </td>
-					                    </tr>
-					            </table>
-	                       	</div>
-                        	<div class="col-md-5">
-		                        <div class="form-group">
-	                                {!! Form::label('afi_state_date', 'FECHA DE REGISTRO', ['class' => 'col-md-4 control-label']) !!}
-	                            
-	                                <div class="col-md-8">
-	                                	{!! Form::text('getDataEditGra', $afiliado->getDataEditGra(), ['class'=> 'form-control', 'disabled' => '']) !!}
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-                        <div class="row">
-                        	<div class="col-md-7">
-                        		<table class="table" style="width:100%;margin-bottom:-10px;">
-                                        <tr>
-                                            <td style="border-top:0;">
-					                        	<div class="row">
-					                                <div class="form-group">
-							                            {!! Form::label('grado_id', 'NUEVO GRADO', ['class' => 'col-md-2 control-label']) !!}
-							                            <div class="col-md-10">
-							                                {!! Form::select('grado_id', $list_grados, '',['class' => 'combobox form-control', 'data-bind' => 'value: selectedOptionValueGra']) !!}
-							                                <span class="help-block"></span>
-							                            </div>
-							                        </div>
-					                            </div>
-					                        </td>
-					                    </tr>
-					            </table>
-	                       	</div>
-                        	<div class="col-md-5">
-		                        <div class="form-group" data-bind='visible: selectedOptionValueGra, valueUpdate: "afterkeydown"'>
-		                            {!! Form::label('fech_gra', 'FECHA DE CAMBIO', ['class' => 'col-md-4 control-label']) !!}
-		                            <div class="col-md-8">
-		                                <div class="input-group">
-		                                    <input type="text" class="form-control datepicker" name="fech_gra">
-		                                    <div class="input-group-addon">
-		                                        <span class="glyphicon glyphicon-calendar"></span>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                        </div>
-	                        </div>                                     
-	                    </div>	
-                        <div class="row">
-                            
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    {!! Form::label('motivo_baja', 'MOTIVO DE BAJA', ['class' => 'col-md-2 control-label']) !!}
-                                    <div class="col-md-10">
-                                        {!! Form::textarea('motivo_baja', $afiliado->motivo_baja, ['class'=> 'form-control', 'rows' => '2']) !!}
-                                        <span class="help-block">Motivo de fallecimiento</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    {!! Form::label('fech_baja', 'FECHA DE BAJA', ['class' => 'col-md-4 control-label']) !!}
-                                    <div class="col-md-8">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control datepicker" name="fech_baja" value="{!! $afiliado->getData_fech_baja() !!}">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-    
-                            </div>                                     
-                        </div>  
-
-
-                    </div>
-                </div>
-
-                <div class="row text-center">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
-                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-            {!! Form::close() !!}
-
-            </div>
-        </div>
-    </div>
-</div>
-
 <div id="myModal-record" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content panel-warning">
@@ -1472,8 +1275,7 @@
                 <h4 class="modal-title">Historial</h4>
             </div>
             <div class="modal-body">
-
-                <table class="table table-striped table-hover" id="record-table">
+                <table class="table table-striped table-hover" id="record-table" cellspacing="0" width="100%">
                     <thead>
                         <tr class="success">
                             <th>Fecha</th>
@@ -1671,10 +1473,7 @@
     var conyuge = {!! $conyuge !!};
 
     var Model = function() {
-
-        this.selectedOptionValueEst = ko.observable();
-        this.selectedOptionValueGra = ko.observable();
-        this.selectedOptionValueUni = ko.observable(); 
+ 
         this.periodoValue = ko.observable(titular.fech_ini_reco ? true : false);     
         this.fallecidoValue = ko.observable(titular.fech_dece ? true : false);     
         this.fallecidoConyuValue = ko.observable(conyuge.fech_dece ? true : false);     
@@ -1708,8 +1507,8 @@
                 }
             },
             columns: [
-                { data: 'fech', name: 'fech' },
-                { data: 'message', name: 'message', bSortable: false }
+                { data: 'fech' },
+                { data: 'message', bSortable: false }
             ]
         });
     });
