@@ -24,7 +24,7 @@ class CreateAfiliadosTable extends Migration
 
         });
 
-        Schema::create('afi_types', function(Blueprint $table)
+        Schema::create('state_types', function(Blueprint $table)
         {
             $table->engine = 'InnoDB';
 
@@ -39,14 +39,24 @@ class CreateAfiliadosTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id');
-            $table->UnsignedBigInteger('afi_type_id');
+            $table->UnsignedBigInteger('state_type_id');
             $table->string('name');
 
             $table->timestamps();
 
-            $table->foreign('afi_type_id')->references('id')->on('afi_types');
+            $table->foreign('state_type_id')->references('id')->on('state_types');
 
         }); 
+
+        Schema::create('afi_types', function(Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('id');
+            $table->string('name');
+
+            $table->timestamps();
+        });
 
         Schema::create('afiliados', function (Blueprint $table)
          {
@@ -55,6 +65,8 @@ class CreateAfiliadosTable extends Migration
             
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
+            
+            $table->UnsignedBigInteger('afi_type_id')->nullable();
             $table->UnsignedBigInteger('afi_state_id')->nullable();
 
             $table->UnsignedBigInteger('departamento_exp_id')->nullable();
@@ -103,6 +115,7 @@ class CreateAfiliadosTable extends Migration
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users'); 
+            $table->foreign('afi_type_id')->references('id')->on('afi_types');
             $table->foreign('afi_state_id')->references('id')->on('afi_states');
 
             $table->foreign('departamento_exp_id')->references('id')->on('departamentos');
