@@ -80,6 +80,14 @@ class FondoTramiteController extends Controller
         $fondoTramite = FondoTramite::afiIs($afid)->first();
         if (!$fondoTramite) {
             $fondoTramite = new FondoTramite;
+            $now = Carbon::now();
+            $last = FondoTramite::>whereYear('gest', '=', $now->year)->orderBy('id', 'desc')->first();
+            if ($last->id) {
+                $fondoTramite->codigo = $last->codigo + 1;
+            }else{
+
+                $fondoTramite->codigo = 1;
+            }
             $fondoTramite->afiliado_id = $afid;
             $fondoTramite->save();
         }

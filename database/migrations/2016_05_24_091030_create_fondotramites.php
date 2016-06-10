@@ -31,6 +31,8 @@ class CreateFondotramites extends Migration
             $table->UnsignedBigInteger('modalidad_id')->nullable();
             $table->UnsignedBigInteger('departamento_id')->nullable();
 
+            $table->string('codigo');
+
             $table->date('fech_ven')->nullable();
             $table->date('fech_arc')->nullable();
             $table->date('fech_cal')->nullable();
