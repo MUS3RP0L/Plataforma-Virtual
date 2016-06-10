@@ -49,17 +49,17 @@ class AfiTypeTableSeeder extends Seeder
     private function createAfiState()
     {
         $statuses = [
-            ['id' => '1', 'afi_type_id' => '1', 'name' => 'Servicio'],
-            ['id' => '2', 'afi_type_id' => '1', 'name' => 'Comisión'],
-            ['id' => '3', 'afi_type_id' => '1', 'name' => 'Disponibilidad'],
+            ['id' => '1', 'state_type_id' => '1', 'name' => 'Servicio'],
+            ['id' => '2', 'state_type_id' => '1', 'name' => 'Comisión'],
+            ['id' => '3', 'state_type_id' => '1', 'name' => 'Disponibilidad'],
 
-            ['id' => '4', 'afi_type_id' => '2', 'name' => 'Fallecido'],
-            ['id' => '5', 'afi_type_id' => '2', 'name' => 'Jubilado'],
-            ['id' => '6', 'afi_type_id' => '2', 'name' => 'Jubilación por Invalidez'],
+            ['id' => '4', 'state_type_id' => '2', 'name' => 'Fallecido'],
+            ['id' => '5', 'state_type_id' => '2', 'name' => 'Jubilado'],
+            ['id' => '6', 'state_type_id' => '2', 'name' => 'Jubilación por Invalidez'],
 
-            ['id' => '7', 'afi_type_id' => '3', 'name' => 'Forzosa'],
-            ['id' => '8', 'afi_type_id' => '3', 'name' => 'Voluntaria'],
-            ['id' => '9', 'afi_type_id' => '3', 'name' => 'Temporal']
+            ['id' => '7', 'state_type_id' => '3', 'name' => 'Forzosa'],
+            ['id' => '8', 'state_type_id' => '3', 'name' => 'Voluntaria'],
+            ['id' => '9', 'state_type_id' => '3', 'name' => 'Temporal']
         ];
 
         foreach ($statuses as $status) {
