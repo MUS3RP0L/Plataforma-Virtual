@@ -58,5 +58,5 @@ Breadcrumbs::register('aportes_afiliado', function($breadcrumbs, $afiliado) {
 // Fondo de Retiro
 Breadcrumbs::register('fondo_tramite', function($breadcrumbs, $afiliado) {
     $breadcrumbs->parent('show_afiliado', $afiliado);
-    $breadcrumbs->push('Fondo Tramite');
+    $breadcrumbs->push('Trámite de Fondo de Retiro');
 });
