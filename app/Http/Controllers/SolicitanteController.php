@@ -115,7 +115,7 @@ class SolicitanteController extends Controller
         $validator = Validator::make($request->all(), $rules, $messages);
         
         if ($validator->fails()){
-            return redirect('afiliado/'.$id)
+            return redirect('tramite_fondo_retiro/'.$id)
             ->withErrors($validator)
             ->withInput();
         }
