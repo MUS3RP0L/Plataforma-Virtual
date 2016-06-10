@@ -353,83 +353,6 @@
                         </div>
                     </div>
 
-
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">  
-                                <div class="col-md-11">
-                                    <h3 class="panel-title">Trámite Cancelados</h3>
-                                </div>
-                                @if($info_antec)
-                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                        <div data-toggle="modal" data-target="#myModal-antec"> 
-                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="panel-body" style="font-size: 14px">
-                            <div class="row" style="margin-bottom:0px;">
-
-                                @if($info_antec)
-
-                                    <div class="col-md-12">
-
-                                        <table class="table table-striped table-hover" style="width:100%;font-size: 14px">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-center">Sigla</th>
-                                                    <th>Tipo de Prestación</th>
-                                                    <th>Estado</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                
-                                                @foreach ($antecedentes as $item)
-                                                    <tr>
-                                                        <td>{!! $item->prestacion->sigla !!}</td>
-                                                        <td>{!! $item->prestacion->name !!}</td>    
-                                                        <td> 
-                                                            <div class="text-center">
-                                                                @if($item->est)
-                                                                <span class="glyphicon glyphicon-ok"></span>
-                                                                @endif
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                                
-                                            </tbody>
-                                        </table>
-
-                                    </div>
-
-                                @else
-                                    @if($info_gen == 1 && $info_soli == 1 && $info_docu == 1)
-                                    <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-antec"> 
-                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos">
-                                                <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">                                                                          
-                                            </button>
-                                        </div>
-                                    </div>
-                                    @else
-                                        <div class="row text-center">
-                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal-antec" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos" disabled="disabled">
-                                                <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">                                                                          
-                                            </button>
-                                        </div>
-                                    @endif
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-md-6">
-
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">  
@@ -502,6 +425,82 @@
                                                 <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">                                                                          
                                             </button>
                                     </div>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">  
+                                <div class="col-md-11">
+                                    <h3 class="panel-title">Trámite Cancelados</h3>
+                                </div>
+                                @if($info_antec)
+                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
+                                        <div data-toggle="modal" data-target="#myModal-antec"> 
+                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="panel-body" style="font-size: 14px">
+                            <div class="row" style="margin-bottom:0px;">
+
+                                @if($info_antec)
+
+                                    <div class="col-md-12">
+
+                                        <table class="table table-striped table-hover" style="width:100%;font-size: 14px">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Sigla</th>
+                                                    <th>Tipo de Prestación</th>
+                                                    <th>Estado</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                @foreach ($antecedentes as $item)
+                                                    <tr>
+                                                        <td>{!! $item->prestacion->sigla !!}</td>
+                                                        <td>{!! $item->prestacion->name !!}</td>    
+                                                        <td> 
+                                                            <div class="text-center">
+                                                                @if($item->est)
+                                                                <span class="glyphicon glyphicon-ok"></span>
+                                                                @endif
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                @else
+                                    @if($info_gen == 1 && $info_soli == 1 && $info_docu == 1)
+                                    <div class="row text-center">
+                                        <div data-toggle="modal" data-target="#myModal-antec"> 
+                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos">
+                                                <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">                                                                          
+                                            </button>
+                                        </div>
+                                    </div>
+                                    @else
+                                        <div class="row text-center">
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal-antec" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos" disabled="disabled">
+                                                <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">                                                                          
+                                            </button>
+                                        </div>
                                     @endif
                                 @endif
                             </div>

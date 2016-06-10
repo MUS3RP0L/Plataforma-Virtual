@@ -77,11 +77,11 @@ class FondoTramiteController extends Controller
         $conyuge = Conyuge::afiIs($afid)->first();
         if (!$conyuge) {$conyuge = new Conyuge;}
 
-        $fondoTramite = FondoTramite::afiIs($afid)->first();
+        $fondoTramite = FondoTramite::afiIs($afid)->where('deleted_at', '=', null)->first();
         if (!$fondoTramite) {
             
             $now = Carbon::now();
-            $last = FondoTramite::whereYear('created_at', '=', $now->year)->orderBy('id', 'desc')->first();
+            $last = FondoTramite::whereYear('created_at', '=', $now->year)->orderBy('id', 'desc')->where('deleted_at', '=', null)->first();
             $fondoTramite = new FondoTramite;
             if ($last) {
                 $fondoTramite->codigo = $last->codigo + 1;
@@ -272,7 +272,7 @@ class FondoTramiteController extends Controller
         else{
 
             $afiliado = Afiliado::where('id', '=', $id)->first();
-            $fondoTramite = FondoTramite::where('afiliado_id', '=', $afiliado->id)->first();
+            $fondoTramite = FondoTramite::where('afiliado_id', '=', $afiliado->id)->where('deleted_at', '=', null)->first();
 
             switch ($request->type) {
                 case 'gene':
