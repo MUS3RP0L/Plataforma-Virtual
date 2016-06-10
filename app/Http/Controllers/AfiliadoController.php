@@ -340,33 +340,7 @@ class AfiliadoController extends Controller
                     $afiliado->save();
                     
                     $message = "Información de domicilio de afiliado actualizado con éxito";
-                    break;
-
-                case 'pol':
-
-                    if ($afiliado->afi_state_id <> $request->afi_state_id)
-                    {
-                        if (trim($request->afi_state_id) <> '' ) {
-                            $afiliado->afi_state_id = trim($request->afi_state_id);
-                            $afiliado->fech_est = Util::datePick($request->fech_est);
-                        }
-                    }
-                    
-                    if ($afiliado->grado_id <> $request->grado_id) 
-                    {
-                        if (trim($request->grado_id) <> '' ) {
-                            $afiliado->grado_id = trim($request->grado_id);
-                            $afiliado->fech_gra = Util::datePick($request->fech_gra);
-                        }
-                    }
-
-                    $afiliado->fech_baja = Util::datePick($request->fech_baja); 
-                    $afiliado->motivo_baja = trim($request->motivo_baja);
-                    
-                    $afiliado->save();
-                    
-                    $message = "Información policial de afiliado actualizado con éxito";
-                    break;          
+                    break;         
             }
             
             Session::flash('message', $message);
@@ -404,7 +378,7 @@ class AfiliadoController extends Controller
 
                     Session::flash('message', $message);
                 
-                return redirect("/");
+                return redirect("afiliado");
             }
 
         }
