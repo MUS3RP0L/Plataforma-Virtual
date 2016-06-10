@@ -17,8 +17,8 @@ class AfiState extends Model
 
 	protected $guarded = ['id'];
 
-	public function afiliados()
+    public function state_type()
     {
-        return $this->hasMany('Muserpol\Afiliado');
+    	return $this->belongsTo('Muserpol\StateType');
     }
 }

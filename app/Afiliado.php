@@ -79,6 +79,11 @@ class Afiliado extends Model
         return $this->belongsTo('Muserpol\Unidad');
     }
 
+    public function afi_type()
+    {
+        return $this->belongsTo('Muserpol\AfiType');
+    }
+
     public function afi_state()
     {
         return $this->belongsTo('Muserpol\AfiState');
