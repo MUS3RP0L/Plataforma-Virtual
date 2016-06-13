@@ -58,6 +58,25 @@ class HomeController extends Controller
         $totalAfiComi = $item->totalAfiC;
       }
 
+      // graficas
+      $aficomando = DB::table('afiliados')
+                    ->select(DB::raw('COUNT(*) comando'))
+                    ->where('afiliados.afi_type_id', '=', 1)
+                    ->get();
+
+      foreach ($aficomando as $item) {        
+        $totalcomando = $item->comando;
+      }
+
+      $afibatallon = DB::table('afiliados')
+                    ->select(DB::raw('COUNT(*) batallon'))
+                    ->where('afiliados.afi_type_id', '=', 2)
+                    ->get();
+
+      foreach ($afibatallon as $item) {        
+        $totalbatallon = $item->batallon;
+      }
+
     $activities = Activity::orderBy('created_at', 'desc')->take(10)->get();
     $totalAfi = $totalAfiServ + $totalAfiComi;
 
@@ -66,6 +85,8 @@ class HomeController extends Controller
       'totalAfiServ' => $totalAfiServ,
       'totalAfiComi' => $totalAfiComi,
       'totalAfi' => $totalAfi,
+      'totalcomando' => $totalcomando,
+     'totalbatallon' => $totalbatallon
     ];
 
     return view('home', $data);
