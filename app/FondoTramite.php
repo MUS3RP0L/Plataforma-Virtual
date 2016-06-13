@@ -108,7 +108,7 @@ class FondoTramite extends Model
     public function getNumberTram()
     {
         if ($this->codigo) {
-            return $this->codigo . "/" . Carbon::parse($this->fech_nac)->year;
+            return $this->codigo . "/" . Carbon::parse($this->created_at)->year;
         }
     }
     
