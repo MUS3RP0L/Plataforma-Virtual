@@ -64,9 +64,13 @@ class FondoTramiteController extends Controller
              $list_departamentos[$item->id]=$item->name;
         }
 
+        $prestaciones = Prestacion::all();
+
+
         return [
             'list_modalidades' => $list_modalidades,
-            'list_departamentos' => $list_departamentos 
+            'list_departamentos' => $list_departamentos,
+            'prestaciones' => $prestaciones
         ];
     }
 
@@ -92,43 +96,41 @@ class FondoTramiteController extends Controller
             $fondoTramite->save();
         }
 
+        $solicitante = Solicitante::fonTraIs($fondoTramite->id)->first();
+        $documentos = Documento::fonTraIs($fondoTramite->id)->get();
+        $requisitos = Requisito::modalidadIs($fondoTramite->modalidad_id)->get();
+        $antecedentes = Antecedente::fonTraIs($fondoTramite->id)->get();
+
+        if (!$solicitante) {$solicitante = new Solicitante;}
+
         if ($fondoTramite->modalidad_id) {
             $info_gen = TRUE;
         }else{
             $info_gen = FALSE;
         }
 
-        if ($fondoTramite->obs) {
-            $info_obs = TRUE;
-        }else{
-            $info_obs = FALSE;
-        }
-         
-        $solicitante = Solicitante::fonTraIs($fondoTramite->id)->first();
-        if (!$solicitante) {$solicitante = new Solicitante;}
-
         if ($solicitante->ci) {
             $info_soli = TRUE;
         }else{
             $info_soli = FALSE;
         }
-
-        $requisitos = Requisito::modalidadIs($fondoTramite->modalidad_id)->get();
-
-        $documentos = Documento::fonTraIs($fondoTramite->id)->get();
+ 
         if (Documento::fonTraIs($fondoTramite->id)->first()) {
             $info_docu = TRUE;
         }else{
             $info_docu = FALSE;
         }
-
-        $prestaciones = Prestacion::all();
-
-        $antecedentes = Antecedente::fonTraIs($fondoTramite->id)->get();
+        
         if (Antecedente::fonTraIs($fondoTramite->id)->first()) {
             $info_antec = TRUE;
         }else{
             $info_antec = FALSE;
+        }
+
+        if ($fondoTramite->obs) {
+            $info_obs = TRUE;
+        }else{
+            $info_obs = FALSE;
         }
 
         $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
@@ -142,7 +144,6 @@ class FondoTramiteController extends Controller
             'solicitante' => $solicitante,
             'documentos' => $documentos,
             'requisitos' => $requisitos,
-            'prestaciones' => $prestaciones,
             'antecedentes' => $antecedentes,
             'antecedentes2' => $antecedentes,
             'info_gen' => $info_gen,
@@ -288,7 +289,6 @@ class FondoTramiteController extends Controller
                 case 'docu':
                     if($fondoTramite->modalidad_id)
                     {
-
                         foreach (json_decode($request->data) as $item)
                           {   
                             $Documento = Documento::where('fondo_tramite_id', '=', $fondoTramite->id)
@@ -303,6 +303,8 @@ class FondoTramiteController extends Controller
                             $Documento->fech_pres = date('Y-m-d');
                             $Documento->save();
 
+                            $fondoTramite->fech_ven = date('Y-m-d');
+                            $fondoTramite->save();
                         }
 
                         $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";

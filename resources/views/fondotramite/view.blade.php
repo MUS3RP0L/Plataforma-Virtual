@@ -120,13 +120,25 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Ciudad
                                                         </div>
                                                         <div class="col-md-6">
                                                             {!! $fondoTramite->departamento->name !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Observaciones
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $fondoTramite->obs !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -151,14 +163,15 @@
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Observaciones
+                                                            Estado
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $fondoTramite->obs !!}
+                                                            {!! $fondoTramite->getStatus() !!}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
+                                            
                                         </table>
                                     </div>
                                 @else
@@ -178,7 +191,7 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Información de Solicitante</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-inbox"></span> Información de Solicitante</h3>
                                 </div>
                                 @if($info_soli == 1)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
@@ -383,7 +396,7 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Documentos Presentados</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-inbox"></span> Documentos Presentados</h3>
                                 </div>
                                 @if($info_docu)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
@@ -868,7 +881,7 @@
             <div class="modal-body">
 
                 {!! Form::model($solicitante, ['method' => 'PATCH', 'route' => ['solicitante.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
-                <input type="hidden" name="type" value="titu"/>
+                <input type="hidden" name="type" value="soli"/>
                 <div class="row">
                     <div class="col-md-4">
 
