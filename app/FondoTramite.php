@@ -3,11 +3,16 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Muserpol\Helper\Util;
 
 class FondoTramite extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'fondo_tramites';
+
+    protected $dates = ['deleted_at'];
 
 	protected $fillable = [
 		
@@ -60,6 +65,11 @@ class FondoTramite extends Model
     public function solicitantes()
     {
         return $this->hasMany('Muserpol\Solicitante');
+    }
+
+    public function scopeIdIs($query, $id)
+    {
+        return $query->where('id', $id);
     }
 
     public function scopeAfiIs($query, $id)

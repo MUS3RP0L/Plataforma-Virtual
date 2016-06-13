@@ -354,4 +354,14 @@ class FondoTramiteController extends Controller
         
         return redirect('tramite_fondo_retiro/'.$id);
     }
+
+    public function destroy($afid)
+    {
+        $fondoTramite = FondoTramite::afiIs($afid)->where('deleted_at', '=', null)->first();
+        $fondoTramite->delete();
+
+        $message = "Trámite de Fondo de Retiro Eliminado";
+        Session::flash('message', $message);
+        return redirect('afiliado/'.$afid);
+    }
 }

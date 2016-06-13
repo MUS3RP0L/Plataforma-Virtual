@@ -1327,6 +1327,30 @@
     </div>
 </div>
 
+<div id="myModal-delete" class="modal fade">
+    <div class="modal-dialog">
+        <div class="alert alert-dismissible alert-danger">
+           {!! Form::model($afiliado, ['method' => 'DELETE', 'route' => ['tramite_fondo_retiro.destroy', $afiliado->id], 'class' => 'form-horizontal']) !!}
+
+                <div class="modal-body text-center">
+                    <p><br>
+                        <div><h4>¿Está seguro de eliminar el Trámite de Fondo de Retiro?</h4></div>
+                    </p>
+                </div>
+                <div class="row text-center">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-raised btn-default" data-dismiss="modal">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button type="submit" class="btn btn-raised btn-default">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;&nbsp;</button>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
