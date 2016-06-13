@@ -11,13 +11,13 @@
                     @if(($info_gen) && ($info_soli) && ($info_docu))
                      <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
                         <a href="" data-target="#myModal-print-ventanilla" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
+                            &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
                         </a>
                     </div>
                     @else
                       <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
                         <a href="" data-target="#myModal-print-ventanilla" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
+                            &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
                         </a>
                       </div>  
                     @endif
@@ -25,13 +25,13 @@
                     @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec))
                     <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
                         <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;
+                        &nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
                         </a>
                     </div>
                     @else
                     <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
                         <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;
+                            &nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
                         </a>
                     </div>
                     @endif
@@ -39,13 +39,13 @@
                     @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec) && ($afiliado->getYearsAndMonths_fech_ini_apor()))
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
                         <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
+                        &nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;
                         </a>
                     </div>
                     @else
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
                         <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
+                        &nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;
                         </a>
                     </div>
                     @endif
@@ -53,13 +53,13 @@
                     @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec) && ($afiliado->getYearsAndMonths_fech_ini_apor()))
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
                         <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
+                        &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
                         </a>
                     </div>
                     @else
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
                         <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
+                        &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
                         </a>
                     </div>   
                     @endif          
@@ -68,8 +68,7 @@
 
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Opciones">
                       <a href="" class="btn btn-primary btn-raised dropdown-toggle" data-toggle="dropdown">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-wrench"></span>&nbsp;
-                        <span class="caret"></span>&nbsp;&nbsp;
+                        <span class="glyphicon glyphicon-wrench"></span>&nbsp;
                       </a>
                       <ul class="dropdown-menu">
                         <li><a href="" data-target="#myModal-delete" data-toggle="modal" class="text-center">
@@ -80,7 +79,7 @@
                     </div>
 
                     <a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;&nbsp;
+                        &nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;
                     </a>
                 </div>
             </div>

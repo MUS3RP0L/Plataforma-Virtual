@@ -103,29 +103,30 @@ class FondoTramiteController extends Controller
 
         if (!$solicitante) {$solicitante = new Solicitante;}
 
+
         if ($fondoTramite->modalidad_id) {
             $info_gen = TRUE;
         }else{
             $info_gen = FALSE;
         }
-
         if ($solicitante->ci) {
             $info_soli = TRUE;
         }else{
             $info_soli = FALSE;
         }
- 
         if (Documento::fonTraIs($fondoTramite->id)->first()) {
             $info_docu = TRUE;
         }else{
             $info_docu = FALSE;
         }
+
         
         if (Antecedente::fonTraIs($fondoTramite->id)->first()) {
             $info_antec = TRUE;
         }else{
             $info_antec = FALSE;
         }
+
 
         if ($fondoTramite->obs) {
             $info_obs = TRUE;
