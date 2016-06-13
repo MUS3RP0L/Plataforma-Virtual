@@ -111,6 +111,21 @@ class FondoTramite extends Model
             return $this->codigo . "/" . Carbon::parse($this->created_at)->year;
         }
     }
+
+    public function getStatus()
+    {
+        if ($this->fech_ven && $this->fech_arc && $this->fech_cal && $this->fech_dic ) {
+            return "Trámite Finalizado";
+        }elseif ($this->fech_ven && $this->fech_arc && $this->fech_cal) {
+            return "en Dictamen legal";
+        }elseif ($this->fech_ven && $this->fech_arc) {
+            return "En Calificación";
+        }elseif ($this->fech_ven) {
+            return "En Archivo";
+        }else {
+            return "En Ventanilla";
+        }
+    }
     
 
 }
