@@ -81,7 +81,7 @@ class FondoTramiteController extends Controller
         if (!$fondoTramite) {
             
             $now = Carbon::now();
-            $last = FondoTramite::whereYear('created_at', '=', $now->year)->orderBy('id', 'desc')->where('deleted_at', '=', null)->first();
+            $last = FondoTramite::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             $fondoTramite = new FondoTramite;
             if ($last) {
                 $fondoTramite->codigo = $last->codigo + 1;
@@ -167,7 +167,7 @@ class FondoTramiteController extends Controller
      */
     public function show($id)
     {
-        return view('fondotramite.create', self::getData($id));
+        return view('fondotramite.view', self::getData($id));
     }
 
 

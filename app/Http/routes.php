@@ -26,10 +26,10 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('ir_afiliado', 'AfiliadoController@go_search');
 	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
 
-	// Conyuge
+	// Conyuges
 	Route::resource('conyuge', 'ConyugeController');
 
-	// Solicitante
+	// Solicitantes
 	Route::resource('solicitante', 'SolicitanteController');
 
 	// view Registros Aportes
