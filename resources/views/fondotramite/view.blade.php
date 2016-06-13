@@ -11,13 +11,13 @@
                     @if(($info_gen) && ($info_soli) && ($info_docu))
                      <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
                         <a href="" data-target="#myModal-print-ventanilla" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
                         </a>
                     </div>
                     @else
                       <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
                         <a href="" data-target="#myModal-print-ventanilla" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
                         </a>
                       </div>  
                     @endif
@@ -84,18 +84,19 @@
                     </a>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-6">    
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Informacion General</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-inbox"></span> Informacion General</h3>
                                 </div>
                                 @if($info_gen)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar Datos Generales">
                                         <div data-toggle="modal" data-target="#myModal-modalidad"> 
-                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                            <span class="glyphicon glyphicon-pencil"></span>
                                         </div>
                                     </div>
                                 @endif
@@ -104,10 +105,10 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
                                 @if($info_gen)
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <table class="table table-responsive" style="width:100%;">
                                             <tr>
-                                                <td style="border-top:0px;border-bottom:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Modalidad
@@ -119,7 +120,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:0px;border-bottom:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Ciudad
@@ -130,8 +131,24 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table table-responsive" style="width:100%;">
                                             <tr>
-                                                <td style="border-top:0px;border-bottom:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Número de Tramite
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {!! $fondoTramite->getNumberTram() !!}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Observaciones
@@ -166,7 +183,7 @@
                                 @if($info_soli == 1)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-solicitante"> 
-                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                            <span class="glyphicon glyphicon-pencil" ></span>
                                         </div>
                                     </div>
                                 @endif
@@ -371,7 +388,7 @@
                                 @if($info_docu)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-requisitos"> 
-                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                            <span class="glyphicon glyphicon-pencil" ></span>
                                         </div>
                                     </div>
                                 @endif
@@ -453,7 +470,7 @@
                                 @if($info_antec)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-antec"> 
-                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                            <span class="glyphicon glyphicon-pencil" ></span>
                                         </div>
                                     </div>
                                 @endif
@@ -524,7 +541,7 @@
                                 </div>
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-periodo-aportes"> 
-                                            <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
+                                            <span class="glyphicon glyphicon-pencil" ></span>
                                         </div>
                                     </div>
                             </div>
@@ -785,7 +802,7 @@
     <div class="modal-dialog">
         <div class="modal-content panel-warning">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Editar Información General</h4>
             </div>
             <div class="modal-body">
@@ -830,7 +847,7 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
                 </div>
@@ -845,7 +862,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Editar Información de Solicitante</h4>
             </div>
             <div class="modal-body">
@@ -985,7 +1002,7 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
-                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
                         </div>
                     </div>
                 </div>
@@ -1003,7 +1020,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Editar Documentos</h4>
             </div>
             <div class="modal-body">
@@ -1043,7 +1060,7 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
                 </div>
@@ -1058,7 +1075,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Editar Antecedentes</h4>
             </div>
             <div class="modal-body">
@@ -1100,7 +1117,7 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
-                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
                         </div>
                     </div>
                 </div>
@@ -1115,7 +1132,7 @@
     <div class="modal-dialog">
         <div class="modal-content panel-warning">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Editar Periodos</h4>
             </div>
             <div class="modal-body">
@@ -1254,7 +1271,7 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
-                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
                         </div>
                     </div>
                 </div>
@@ -1271,7 +1288,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Ventanilla Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
@@ -1285,7 +1302,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Certificación Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
@@ -1299,7 +1316,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Calificación de Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
@@ -1313,7 +1330,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Dictamen Legal</h4>
             </div>
             <div class="modal-body">
