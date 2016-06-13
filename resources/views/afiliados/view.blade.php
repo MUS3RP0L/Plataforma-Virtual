@@ -28,7 +28,7 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Información Personal</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Información Personal</h3>
                                 </div>
                                 <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                     <div data-toggle="modal" data-target="#myModal-personal"> 
@@ -224,7 +224,7 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Información de Domicilio</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-home"></span> Información de Domicilio</h3>
                                 </div>
                                 @if($info_dom)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
@@ -346,7 +346,7 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Información de Conyuge</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Información de Conyuge</h3>
                                 </div>
                                 @if($info_cony)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
@@ -497,7 +497,7 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Información Policial Actual</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-briefcase"></span> Información Policial Actual</h3>
                                 </div>
                                 <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Historial">
                                     <div  data-toggle="modal" data-target="#myModal-record"> 
@@ -639,7 +639,7 @@
                         <div class="panel-heading">                     
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h3 class="panel-title">Totales</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-usd"></span> Totales</h3>
                                 </div>
                                 <div class="col-md-6">
                                     <h3 class="panel-title"style="text-align: right">Bolivianos</h3>
