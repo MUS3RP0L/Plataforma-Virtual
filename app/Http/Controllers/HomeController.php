@@ -76,6 +76,7 @@ class HomeController extends Controller
       foreach ($afibatallon as $item) {        
         $totalbatallon = $item->batallon;
       }
+      
 
     $activities = Activity::orderBy('created_at', 'desc')->take(10)->get();
     $totalAfi = $totalAfiServ + $totalAfiComi;
