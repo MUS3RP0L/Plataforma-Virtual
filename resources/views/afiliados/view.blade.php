@@ -5,27 +5,25 @@
     {!! Breadcrumbs::render('show_afiliado', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
+            <div class="row"> 
+                <div class="col-md-4 col-md-offset-6"> 
+                    <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;&nbsp;
+                    </a>
 
-                <div class="row"> 
-
-                    <div class="col-md-12 text-right">  
-
-                        <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;&nbsp;
-                        </a>
-
-                        <a href="{!! url('viewaporte/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
-                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;&nbsp;
-                        </a>
-
-                    </div>
-
+                    <a href="{!! url('viewaporte/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;&nbsp;
+                    </a>
                 </div>
-            
+                <div class="col-md-2 text-right">
+                    <a href="{!! url('afiliado') !!}" style="margin:-6px 1px;"  class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
+                    &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;&nbsp;
+                    </a>
+                </div>
+            </div>
+        
             <div class="row">
                 <div class="col-md-6">
-
-
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">  

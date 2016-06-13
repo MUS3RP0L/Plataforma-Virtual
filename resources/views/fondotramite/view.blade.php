@@ -6,22 +6,16 @@
     {!! Breadcrumbs::render('fondo_tramite', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
-
             <div class="row"> 
-             
-                <div class="col-md-6">
-                    <h2 style="margin-top:-2px;">{!! $afiliado->getTittleName() !!}</h2>
-                </div>
-
-                <div class="col-md-6 text-right">  
+                <div class="col-md-4 col-md-offset-6">
                     @if(($info_gen) && ($info_soli) && ($info_docu))
-                     <div class="btn-group" style="margin:-6px 1px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
+                     <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
                         <a href="" data-target="#myModal-print" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
                             &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;&nbsp;
                         </a>
                     </div>
                     @else
-                      <div class="btn-group" style="margin:-6px 1px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
+                      <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
                         <a href="" data-target="#myModal-print" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
                             &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;&nbsp;
                         </a>
@@ -29,54 +23,69 @@
                     @endif
 
                     @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec))
-                    <a class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
+                    <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
                         <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;
-                    </a>
-                    @else
-                    <a class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
-                        <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;
-                    </a>
-                    @endif
-
-                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec) && ($afiliado->getYearsAndMonths_fech_ini_apor()))
-                    <a class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
-                        <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
-                    </a>
-                    @else
-                    <a class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
-                        <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
-                    </a>
-                    @endif
-
-                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec) && ($afiliado->getYearsAndMonths_fech_ini_apor()))
-                    <div class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
-                        <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
-                    </a>
+                        </a>
                     </div>
                     @else
-                     <div class="btn-group" style="margin:-6px 1px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
+                    <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
+                        <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
+                            &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;
+                        </a>
+                    </div>
+                    @endif
+
+                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec) && ($afiliado->getYearsAndMonths_fech_ini_apor()))
+                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
+                        <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
+                        </a>
+                    </div>
+                    @else
+                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
+                        <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;
+                        </a>
+                    </div>
+                    @endif
+
+                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec) && ($afiliado->getYearsAndMonths_fech_ini_apor()))
+                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
+                        <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
+                        </a>
+                    </div>
+                    @else
+                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
                         <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
                         &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;&nbsp;&nbsp;
-                    </a>
+                        </a>
                     </div>   
-                    @endif
-                    &nbsp;
-                    <a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px;"  class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Volver">
+                    @endif          
+                </div>
+                <div class="col-md-2 text-right">
+
+                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Opciones">
+                      <a href="bootstrap-elements.html" data-target="#" class="btn btn-primary btn-raised dropdown-toggle" data-toggle="dropdown">
+                        &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-wrench"></span>&nbsp;
+                        <span class="caret"></span>&nbsp;&nbsp;
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a href="" data-target="#myModal-delete" data-toggle="modal" class="text-center">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
                         &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;&nbsp;
                     </a>
-
                 </div>
-
             </div>
-            
             <div class="row">
                 <div class="col-md-6">    
-
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">  
