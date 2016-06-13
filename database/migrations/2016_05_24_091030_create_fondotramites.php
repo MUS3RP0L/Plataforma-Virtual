@@ -17,6 +17,7 @@ class CreateFondotramites extends Migration
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id');
+            $table->string('abre');
             $table->string('name');
 
             $table->timestamps();

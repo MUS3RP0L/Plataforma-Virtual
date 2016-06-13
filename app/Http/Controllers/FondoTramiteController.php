@@ -55,7 +55,7 @@ class FondoTramiteController extends Controller
         $modalidades = Modalidad::all();
         $list_modalidades = array('' => '');
         foreach ($modalidades as $item) {
-             $list_modalidades[$item->id]=$item->name;
+             $list_modalidades[$item->id]=$item->abre;
         }
 
         $departamentos = Departamento::all();
