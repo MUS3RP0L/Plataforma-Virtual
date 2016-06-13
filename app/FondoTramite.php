@@ -3,7 +3,9 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
 class FondoTramite extends Model
@@ -102,5 +104,13 @@ class FondoTramite extends Model
     {
         return Util::getYearsAndMonths($this->fech_ini_reco, $this->fech_fin_reco);
     }
+
+    public function getNumberTram()
+    {
+        if ($this->codigo) {
+            return $this->codigo . "/" . Carbon::parse($this->fech_nac)->year;
+        }
+    }
+    
 
 }
