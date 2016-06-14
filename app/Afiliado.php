@@ -127,6 +127,15 @@ class Afiliado extends Model
                     ->whereYear('afiliados.fech_ing', '=', $anio);        
     }
 
+    public function scopeAfiDistrito($query, $dist, $anio)
+    {
+       return $query = DB::table('afiliados')
+                    ->select(DB::raw('COUNT(*) distrito'))
+                    ->leftJoin('unidades', 'afiliados.unidad_id', '=', 'unidades.id')
+                    ->where('unidades.dist', '=', $dist)
+                    ->whereYear('afiliados.fech_ing', '=', $anio);        
+    }  
+
     public function getFullDateNac()
     {	
         return Util::getdateabre($this->fech_nac);
