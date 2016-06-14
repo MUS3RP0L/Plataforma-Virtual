@@ -71,7 +71,7 @@ class FondoTramite extends Model
 
     public function scopeIdIs($query, $id)
     {
-        return $query->where('id', $id);
+        return $query->where('id', $id)->where('deleted_at', '=', null)->orderBy('id', 'desc');
     }
 
     public function scopeAfiIs($query, $id)

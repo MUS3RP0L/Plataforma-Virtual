@@ -77,11 +77,11 @@ class FondoTramiteController extends Controller
     public function getData($afid){
 
         $afiliado = Afiliado::idIs($afid)->first();
-
+        
         $conyuge = Conyuge::afiIs($afid)->first();
         if (!$conyuge) {$conyuge = new Conyuge;}
-
-        $fondoTramite = FondoTramite::afiIs($afid)->where('deleted_at', '=', null)->first();
+        
+        $fondoTramite = FondoTramite::afiIs($afid)->first();
         if (!$fondoTramite) {
             
             $now = Carbon::now();
@@ -97,12 +97,11 @@ class FondoTramiteController extends Controller
         }
 
         $solicitante = Solicitante::fonTraIs($fondoTramite->id)->first();
-        $documentos = Documento::fonTraIs($fondoTramite->id)->get();
-        $requisitos = Requisito::modalidadIs($fondoTramite->modalidad_id)->get();
-        $antecedentes = Antecedente::fonTraIs($fondoTramite->id)->get();
-
         if (!$solicitante) {$solicitante = new Solicitante;}
-
+        
+        $requisitos = Requisito::modalidadIs($fondoTramite->modalidad_id)->get();
+        $documentos = Documento::fonTraIs($fondoTramite->id)->get();
+        $antecedentes = Antecedente::fonTraIs($fondoTramite->id)->get();
 
         if ($fondoTramite->modalidad_id) {
             $info_gen = TRUE;
@@ -120,13 +119,11 @@ class FondoTramiteController extends Controller
             $info_docu = FALSE;
         }
 
-        
         if (Antecedente::fonTraIs($fondoTramite->id)->first()) {
             $info_antec = TRUE;
         }else{
             $info_antec = FALSE;
         }
-
 
         if ($fondoTramite->obs) {
             $info_obs = TRUE;
@@ -273,20 +270,20 @@ class FondoTramiteController extends Controller
         }
         else{
 
-            $afiliado = Afiliado::where('id', '=', $id)->first();
-            $fondoTramite = FondoTramite::where('afiliado_id', '=', $afiliado->id)->where('deleted_at', '=', null)->first();
+            $fondoTramite = FondoTramite::afiIs($id)->first();
 
             switch ($request->type) {
                 case 'gene':
-                    if ($afiliado->modalidad_id <> trim($request->modalidad)) {$afiliado->modalidad_id = trim($request->modalidad);}
+
+                    if ($fondoTramite->modalidad_id <> trim($request->modalidad)) {$fondoTramite->modalidad_id = trim($request->modalidad);}
                     $fondoTramite->departamento_id = trim($request->departamento);
-                    
                     $fondoTramite->save();
                     
-                    $message = "Información de modalidad de Fondo de Retiro actualizado con éxito";
+                    $message = "Información General de Fondo de Retiro actualizado con éxito";
                 break;
 
                 case 'docu':
+
                     if($fondoTramite->modalidad_id)
                     {
                         foreach (json_decode($request->data) as $item)
@@ -309,7 +306,7 @@ class FondoTramiteController extends Controller
 
                         $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
                     }else{
-                        $message = "Seleccione la modalidad";
+                        $message = "Seleccione la modalidad y la ciudad";
                     }                
                 break;
 
@@ -335,9 +332,10 @@ class FondoTramiteController extends Controller
 
                 case 'periods':
 
+                    $afiliado = Afiliado::idIs($afid)->first();
                     $afiliado->fech_ini_serv = Util::datePickPeriod($request->fech_ini_serv);
                     $afiliado->fech_fin_serv = Util::datePickPeriod($request->fech_fin_serv);
-                    $fondoTramite->save();
+                    $afiliado->save();
                     
                     $fondoTramite->fech_ini_anti = Util::datePickPeriod($request->fech_ini_anti);
                     $fondoTramite->fech_fin_anti = Util::datePickPeriod($request->fech_fin_anti);
@@ -359,7 +357,7 @@ class FondoTramiteController extends Controller
 
     public function destroy($afid)
     {
-        $fondoTramite = FondoTramite::afiIs($afid)->where('deleted_at', '=', null)->first();
+        $fondoTramite = FondoTramite::afiIs($afid)->first();
         $fondoTramite->delete();
 
         $message = "Trámite de Fondo de Retiro Eliminado";
