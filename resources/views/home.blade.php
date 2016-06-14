@@ -186,13 +186,13 @@
 
 	var pieData = [
 				{
-					value: 10,
+					value: {!! json_encode($list_types[1]) !!},
 					color:"#F7464A",
 					highlight: "#FF5A5E",
 					label: "Comando"
 				},
 				{
-					value: 10,
+					value: {!! json_encode($list_types[2]) !!},
 					color: "#46BFBD",
 					highlight: "#5AD3D1",
 					label: "Batallon"
@@ -202,21 +202,15 @@
 
 	var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 	var barChartData = {
-		labels : ["January","February","March","April","May","June","July"],
+		labels : {!! json_encode($AporteGestion[0]) !!},
 		datasets : [
-			{
-				fillColor : "rgba(220,220,220,0.5)",
-				strokeColor : "rgba(220,220,220,0.8)",
-				highlightFill: "rgba(220,220,220,0.75)",
-				highlightStroke: "rgba(220,220,220,1)",
-				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-			},
+			
 			{
 				fillColor : "rgba(151,187,205,0.5)",
 				strokeColor : "rgba(151,187,205,0.8)",
 				highlightFill : "rgba(151,187,205,0.75)",
 				highlightStroke : "rgba(151,187,205,1)",
-				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				data : {!! json_encode($AporteGestion[1]) !!}
 			}
 		]
 
@@ -224,34 +218,130 @@
 
 	var pieDistrito = [
 				{
-					value: 300,
+					value: {!! json_encode($list_distrito["CHUQUISACA"]) !!},
 					color:"#F7464A",
 					highlight: "#FF5A5E",
-					label: "Red"
+					label: "Chuquisaca" //red
 				},
 				{
-					value: 50,
+					value: {!! json_encode($list_distrito["LA PAZ"]) !!},
 					color: "#46BFBD",
 					highlight: "#5AD3D1",
-					label: "Green"
+					label: "La Paz" //green
 				},
 				{
-					value: 100,
+					value: {!! json_encode($list_distrito["EL ALTO"]) !!},
 					color: "#FDB45C",
 					highlight: "#FFC870",
-					label: "Yellow"
+					label: "El Alto" //yellow
 				},
 				{
-					value: 40,
+					value: {!! json_encode($list_distrito["ZONA SUR"]) !!},
 					color: "#949FB1",
 					highlight: "#A8B3C5",
-					label: "Grey"
+					label: "Zona Sur" // grey
 				},
 				{
-					value: 120,
+					value: {!! json_encode($list_distrito["COCHABAMBA"]) !!},
+					color: "#4D5360",
+					highlight: "#616774",
+					label: "Cochabamba" //DarkGrey
+				},
+				{
+					value: {!! json_encode($list_distrito["ORURO"]) !!},
+					color: "#F0F8FF",
+					highlight: "#616774",
+					label: "Oruro" //AliceBlue
+				},
+				{
+					value: {!! json_encode($list_distrito["POTOSI"]) !!},
 					color: "#4D5360",
 					highlight: "#616774",
 					label: "Dark Grey"
+				},
+				{
+					value: {!! json_encode($list_distrito["TUPIZA"]) !!},
+					color: "#A52A2A",
+					highlight: "#616774",
+					label: "Tupiza" //Brown
+				},
+				{
+					value: {!! json_encode($list_distrito["VILLAZON"]) !!},
+					color: "#6495ED",
+					highlight: "#616774",
+					label: "Villazon" //CornFlowerBlue
+				},
+				{
+					value: {!! json_encode($list_distrito["TARIJA"]) !!},
+					color: "#DC143C",
+					highlight: "#616774",
+					label: "Tarija" //Crimson
+				},
+				{
+					value: {!! json_encode($list_distrito["YACUIBA"]) !!},
+					color: "#8B008B",
+					highlight: "#616774",
+					label: "Yacuiba" //DarkMagenta
+				},
+				{
+					value: {!! json_encode($list_distrito["VILLAMONTES"]) !!},
+					color: "#2F4F4F",
+					highlight: "#616774",
+					label: "Villamontes" //DarkSlateGray
+				},
+				{
+					value: {!! json_encode($list_distrito["BERMEJO"]) !!},
+					color: "#00BFFF",
+					highlight: "#616774",
+					label: "Bermejo" // DeepSkyBlue
+				},
+				{
+					value: {!! json_encode($list_distrito["SANTA CRUZ"]) !!},
+					color: "#1E90FF",
+					highlight: "#616774",
+					label: "Santa Cruz" //DodgerBlue
+				},
+				{
+					value: {!! json_encode($list_distrito["SAN MATIAS"]) !!},
+					color: "#4D5360",
+					highlight: "#616774",
+					label: "Dark Grey"
+				},
+				{
+					value: {!! json_encode($list_distrito["S. I. VELASCO"]) !!},
+					color: "#228B22",
+					highlight: "#616774",
+					label: "Velasco" //ForestGreen
+				},
+				{
+					value: {!! json_encode($list_distrito["PTO. SUAREZ"]) !!},
+					color: "#FFFAF0",
+					highlight: "#616774",
+					label: "Pto. Suarez" //FloralWhite
+				},
+				{
+					value: {!! json_encode($list_distrito["BENI"]) !!},
+					color: "#E9967A",
+					highlight: "#616774",
+					label: "Beni" //DarkSalmon
+				},
+				{
+					value: {!! json_encode($list_distrito["RIBERALTA"]) !!},
+					color: "#8FBC8F",
+					highlight: "#616774",
+					label: "Riberalta" //DarkSeaGreen
+				},
+				{
+					value: {!! json_encode($list_distrito["GUAYARAMERIN"]) !!},
+					color: "#F4A460",
+					highlight: "#616774",
+					label: "Guayaramerin" //SandyBrown
+				},
+				{
+					value: {!! json_encode($list_distrito["PANDO"]) !!},
+					color: "#4682B4",
+					highlight: "#616774",
+					label: "Pando" //SteelBlue
 				}
 
 			];

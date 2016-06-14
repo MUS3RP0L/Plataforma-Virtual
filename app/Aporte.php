@@ -4,6 +4,7 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class Aporte extends Model
 {
@@ -74,5 +75,12 @@ class Aporte extends Model
     public function scopeAfiIs($query, $id)
     {
         return $query->where('afiliado_id', $id);
+    }
+
+    public function scopeAfiAporte($query, $anio)
+    {
+        return $query = DB::table('aportes')
+                    ->select(DB::raw('SUM(aportes.mus) muserpol, year(aportes.gest) as gestion'))
+                    ->whereYear('aportes.gest', '=', $anio);
     }
 }
