@@ -85,7 +85,6 @@ class SolicitanteController extends Controller
     public function update(Request $request, $id)
     {
         return $this->save($request, $id);
-        // return $request;
     }
 
     public function save($request, $id = false)
@@ -121,12 +120,10 @@ class SolicitanteController extends Controller
         }
         else{
 
-            $fondoTramite = FondoTramite::where('afiliado_id', '=', $id)->first();
-
-            $solicitante = Solicitante::where('fondo_tramite_id', '=', $fondoTramite->id)->first();
+            $fondoTramite = FondoTramite::afiIs($id)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
+            $solicitante = Solicitante::fonTraIs($fondoTramite->id)->orderBy('id', 'asc')->first();
 
             if (!$solicitante) {
-                
                 $solicitante = new Solicitante;
             }
 
@@ -146,11 +143,11 @@ class SolicitanteController extends Controller
                     $solicitante->paren = trim($request->paren);
 
                     $solicitante->direc_domi = trim($request->direc_domi);
+                    $solicitante->tele_domi = trim($request->tele_domi);
                     $solicitante->celu_domi = trim($request->celu_domi);
                     
                     $solicitante->direc_trab = trim($request->direc_trab);
-                    $solicitante->tele_domi = trim($request->tele_domi);
-                    
+
                     $solicitante->save();
                     
                     $message = "Información de Solicitante actualizada con éxito";

@@ -93,7 +93,7 @@
                                     <h3 class="panel-title"><span class="glyphicon glyphicon-inbox"></span> Informacion General</h3>
                                 </div>
                                 @if($info_gen)
-                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar Datos Generales">
+                                    <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-modalidad"> 
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </div>
@@ -795,6 +795,13 @@
 
 
 
+
+
+
+
+
+
+
 <div id="myModal-modalidad" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog">
         <div class="modal-content panel-warning">
@@ -867,10 +874,10 @@
                 {!! Form::model($solicitante, ['method' => 'PATCH', 'route' => ['solicitante.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="soli"/>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-md-offset-3">
 
                         <div class="form-group">
-                          <div class="col-md-9">
+                          <div class="col-md-12">
                             <div class="radio radio-primary">
                               <label>
                                 <input type="radio" name="type_soli" value='1' data-bind='checked: typeToShow'>
@@ -891,78 +898,77 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="form-group label-floating" data-bind="fadeVisible: parenShow">
-                                <label class="control-label" for="focusedInput2">Parentesco</label>
-                                {!! Form::text('paren', $solicitante->paren, ['class'=> 'form-control', 'id'=> 'focusedInput2', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                            </div>                                 
                         </div>
-                   
+                    <div class="col-md-3">
+                        <div class="form-group label-floating" data-bind="fadeVisible: parenShow">
+                            <label class="control-label" for="focusedInput2">Parentesco</label>
+                            {!! Form::text('paren', $solicitante->paren, ['class'=> 'form-control', 'id'=> 'focusedInput2', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                        </div>                                 
                     </div>
-                    <div class="col-md-4">
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
                         <div class="form-group">
-                                {!! Form::label('ci', 'Carnet', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('ci', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('ci', '',['class'=> 'form-control', 'required', 'data-bind' => 'value: soli_ci']) !!}
                                 <span class="help-block">Núm. Carnet de Identidad</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('pat', $solicitante->pat, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
-                                <span class="help-block">Apellido Paterno</span>
+                                <span class="help-block">Escriba Apellido Paterno</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('zona_domi', 'DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('zona_domi', $solicitante->zona_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_zona_domi']) !!}
-                                <span class="help-block">Zona Domicilio</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                                {!! Form::label('zona_trab', 'DOMICILIO TRABAJO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('zona_trab', $solicitante->zona_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Zona Trabajo</span>
-                            </div>
-                        </div>
-                                                                            
-                    </div>
-
-                    <div class="col-md-5">
-                        <div class="form-group">
-                                {!! Form::label('mat', 'APELLIDO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('mat', $solicitante->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mat']) !!}
-                                <span class="help-block">Apellido Materno</span>
+                                <span class="help-block">Escriba Apellido Materno</span>
                             </div>
                         </div>  
                         <div class="form-group">
-                                {!! Form::label('nom', 'NOMBRE(S)', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('nom', 'Nombre(s)', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('nom', $solicitante->nom, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
-                                <span class="help-block">Nombre(s)</span>
+                                <span class="help-block">Escriba los Nombre(s)</span>
+                            </div>
+                        </div>                                                  
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="form-group">
+                                {!! Form::label('direc_domi', 'Domicilio  Actual', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
+                                {!! Form::text('direc_domi', $solicitante->direc_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_zona_domi']) !!}
+                                <span class="help-block">Escriba Domicilio Actual</span>
                             </div>
                         </div>
-
                         <div class="form-group">
-                                {!! Form::label('tele_domi', 'TELÉFONO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('tele_domi', 'Teléfono fijo', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('tele_domi', $solicitante->tele_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_tele_domi']) !!}
-                                <span class="help-block">Teléfono fijo</span>
+                                <span class="help-block">Escriba Número Teléfono fijo</span>
                             </div>
                         </div>
-
                         <div class="form-group">
-                                {!! Form::label('celu_domi', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('celu_domi', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
                                 {!! Form::text('celu_domi', $solicitante->celu_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Teléfono Celular</span>
+                                <span class="help-block">Escriba NúmeroTeléfono Celular</span>
                             </div>
                         </div>
+                        <div class="form-group">
+                                {!! Form::label('direc_trab', 'Domicilio Trabajo', ['class' => 'col-md-5 control-label']) !!}
+                            <div class="col-md-7">
+                                {!! Form::text('direc_trab', $solicitante->direc_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                <span class="help-block">Escriba Domicilio de Trabajo</span>
+                            </div>
+                        </div>
+                        
+                        
                     </div>
 
                 </div>
@@ -970,8 +976,8 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
-                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
+                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
                 </div>

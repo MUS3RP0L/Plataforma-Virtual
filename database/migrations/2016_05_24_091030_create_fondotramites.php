@@ -147,9 +147,9 @@ class CreateFondotramites extends Migration
 
             $table->string('direc_domi')->nullable();
             $table->string('celu_domi')->nullable();
+            $table->string('tele_domi')->nullable();
 
             $table->string('direc_trab')->nullable();
-            $table->string('tele_trab')->nullable();
 
             $table->timestamps();
             $table->softDeletes(); 

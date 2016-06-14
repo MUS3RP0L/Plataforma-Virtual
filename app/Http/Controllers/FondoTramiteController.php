@@ -154,7 +154,6 @@ class FondoTramiteController extends Controller
         $data = array_merge($data, self::getViewModel());
 
         return $data;
-
     }
 
 
