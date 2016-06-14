@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
+use DB;
 
 class Afiliado extends Model
 {
@@ -108,6 +109,22 @@ class Afiliado extends Model
     public function scopeCiIs($query, $ci)
     {
         return $query->where('ci', $ci);
+    }
+
+    public function scopeAfiEstado($query, $estado, $anio)
+    {
+       return $query = DB::table('afiliados')
+                    ->select(DB::raw('COUNT(*) total1'))
+                    ->where('afiliados.afi_state_id', '=', $estado)
+                    ->whereYear('afiliados.fech_ing', '=', $anio);      
+    }
+
+    public function scopeAfiType($query, $type, $anio)
+    {
+       return $query = DB::table('afiliados')
+                    ->select(DB::raw('COUNT(*) tipo'))
+                    ->where('afiliados.afi_type_id', '=', $type)
+                    ->whereYear('afiliados.fech_ing', '=', $anio);        
     }
 
     public function getFullDateNac()

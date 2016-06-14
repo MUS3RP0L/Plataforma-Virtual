@@ -128,47 +128,71 @@
 	
 	var doughnutData = [
 				{
-					value: {!! json_encode($totalcomando) !!},
+					value: {!! json_encode($list_estados[1]) !!},
 					color:"#F7464A",
 					highlight: "#FF5A5E",
-					label: "Red"
+					label: "Servicio" //rojo
 				},
 				{
-					value: {!! json_encode($totalbatallon) !!},
+					value: {!! json_encode($list_estados[2]) !!},
 					color: "#46BFBD",
 					highlight: "#5AD3D1",
-					label: "Green"
+					label: "Comision" //verde
 				},
 				{
-					value: 100,
+					value: {!! json_encode($list_estados[3]) !!},
 					color: "#FDB45C",
 					highlight: "#FFC870",
-					label: "Yellow"
+					label: "Disponibilidad" //amarillo
 				},
 				{
-					value: 40,
+					value: {!! json_encode($list_estados[4]) !!},
 					color: "#949FB1",
 					highlight: "#A8B3C5",
-					label: "Grey"
+					label: "Fallecido"  //grey
 				},
 				{
-					value: 120,
+					value: {!! json_encode($list_estados[5]) !!},
 					color: "#4D5360",
 					highlight: "#616774",
-					label: "Dark Grey"
+					label: "Jubilado"  //Dark Grey
+				},
+				{
+					value: {!! json_encode($list_estados[6]) !!},
+					color: "#FF8C00",
+					highlight: "#616774",
+					label: "Jublición por Invalidez"  //Dark Orange
+				},
+				{
+					value: {!! json_encode($list_estados[7]) !!},
+					color: "#8FBC8F",
+					highlight: "#616774",
+					label: "Forzosa" //Dark Sea Green
+				},
+				{
+					value: {!! json_encode($list_estados[8]) !!},
+					color: "#1E90FF",
+					highlight: "#FFC870",
+					label: "Voluntario" //DodgerBlue 
+				},
+				{
+					value: {!! json_encode($list_estados[9]) !!},
+					color:"#B0C4DE",
+					highlight: "#FF5A5E",
+					label: "Temporal" //LightSteelBlue 
 				}
 
 			];
 
 	var pieData = [
 				{
-					value: {!! json_encode($totalcomando) !!},
+					value: 10,
 					color:"#F7464A",
 					highlight: "#FF5A5E",
 					label: "Comando"
 				},
 				{
-					value: {!! json_encode($totalbatallon) !!},
+					value: 10,
 					color: "#46BFBD",
 					highlight: "#5AD3D1",
 					label: "Batallon"

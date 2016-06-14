@@ -8,8 +8,14 @@ use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 
 use DB;
+use Muserpol\Afiliado;
+use Muserpol\Helper\Util;
+use Carbon\Carbon;
 
 use Muserpol\Activity;
+use Muserpol\AfiState;
+use Muserpol\Afitype;
+use Session;
 
 class HomeController extends Controller
 {
@@ -58,25 +64,20 @@ class HomeController extends Controller
         $totalAfiComi = $item->totalAfiC;
       }
 
-      // graficas
-      $aficomando = DB::table('afiliados')
-                    ->select(DB::raw('COUNT(*) comando'))
-                    ->where('afiliados.afi_type_id', '=', 1)
-                    ->get();
-
-      foreach ($aficomando as $item) {        
-        $totalcomando = $item->comando;
-      }
-
-      $afibatallon = DB::table('afiliados')
-                    ->select(DB::raw('COUNT(*) batallon'))
-                    ->where('afiliados.afi_type_id', '=', 2)
-                    ->get();
-
-      foreach ($afibatallon as $item) {        
-        $totalbatallon = $item->batallon;
-      }
+      // gráficos por estados
+      $estados = AfiState::all();
+      $tipos = AfiType::all();
+      $anio = Carbon::now()->year;
       
+      foreach ($estados as $item) {
+        $afiestado = Afiliado::afiEstado($item->id,$anio)->first();
+        $list_estados[$item->id] = $afiestado->total1;
+      }
+
+      foreach ($tipos as $item) {
+        $Afitype = Afiliado::afiType($item->id,$anio)->first();
+        $list_types[$item->id] = $Afitype->tipo;
+      }  
 
     $activities = Activity::orderBy('created_at', 'desc')->take(10)->get();
     $totalAfi = $totalAfiServ + $totalAfiComi;
@@ -86,8 +87,8 @@ class HomeController extends Controller
       'totalAfiServ' => $totalAfiServ,
       'totalAfiComi' => $totalAfiComi,
       'totalAfi' => $totalAfi,
-      'totalcomando' => $totalcomando,
-     'totalbatallon' => $totalbatallon
+      'list_estados' => $list_estados,
+      'list_types' => $list_types
     ];
 
     return view('home', $data);
