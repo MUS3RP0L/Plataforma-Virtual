@@ -113,7 +113,7 @@
                                                             Modalidad
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $fondoTramite->modalidad->name !!}
+                                                            {!! $fondoTramite->modalidad->abre !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -269,10 +269,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
                                         </table>
-
-
                                     </div>
 
                                     <div class="col-md-6">
@@ -811,13 +808,24 @@
                 <input type="hidden" name="type" value="gene"/>
                 <div class="row">
                     <div class="col-md-12">
+
+                        @if(($info_gen))
                         <div class="form-group">
-                                    {!! Form::label('modalidad', 'Modalidad', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-4 text-right">
+                                Modalidad
+                            </div>
                             <div class="col-md-8">
-                                {!! Form::select('modalidad', $list_modalidades, $fondoTramite->modalidad_id, ['class' => 'combobox form-control', 'required' ]) !!}
-                                <span class="help-block">Seleccione la Modalidad</span>
+                                 {!! $fondoTramite->modalidad->name !!}
                             </div>
                         </div>
+                        @else
+                        <div class="form-group">
+                            {!! Form::label('modalidad', 'Modalidad', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-8">
+                                {!! Form::select('modalidad', $list_modalidades, $fondoTramite->modalidad_id, ['class' => 'combobox form-control ', 'required' ]) !!}
+                            </div>
+                        </div>
+                        @endif
                     </div>
                 </div>
                 <div class="row">
@@ -831,18 +839,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                                {!! Form::label('observaciones', 'Observaciones', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::textarea('observaciones', $fondoTramite->obs, ['class'=> 'form-control', 'rows' => '2']) !!}
-                                <span class="help-block">Escriba sus Observaciones</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">

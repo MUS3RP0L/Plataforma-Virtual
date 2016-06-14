@@ -55,7 +55,7 @@ class FondoTramiteController extends Controller
         $modalidades = Modalidad::all();
         $list_modalidades = array('' => '');
         foreach ($modalidades as $item) {
-             $list_modalidades[$item->id]=$item->abre;
+             $list_modalidades[$item->id]=$item->name;
         }
 
         $departamentos = Departamento::all();
@@ -278,10 +278,9 @@ class FondoTramiteController extends Controller
 
             switch ($request->type) {
                 case 'gene':
-
-                    $fondoTramite->modalidad_id = trim($request->modalidad);
+                    if ($afiliado->modalidad_id <> trim($request->modalidad)) {$afiliado->modalidad_id = trim($request->modalidad);}
                     $fondoTramite->departamento_id = trim($request->departamento);
-                    $fondoTramite->obs = trim($request->observaciones);
+                    
                     $fondoTramite->save();
                     
                     $message = "Información de modalidad de Fondo de Retiro actualizado con éxito";

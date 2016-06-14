@@ -145,17 +145,12 @@ class SolicitanteController extends Controller
 
                     $solicitante->paren = trim($request->paren);
 
-                    $solicitante->zona_domi = trim($request->zona_domi);
-                    $solicitante->calle_domi = trim($request->calle_domi);
-                    $solicitante->num_domi = trim($request->num_domi);
-                    
-                    $solicitante->tele_domi = trim($request->tele_domi);
+                    $solicitante->direc_domi = trim($request->direc_domi);
                     $solicitante->celu_domi = trim($request->celu_domi);
                     
-                    $solicitante->zona_trab = trim($request->zona_trab);
-                    $solicitante->calle_trab = trim($request->calle_trab);
-                    $solicitante->num_trab = trim($request->num_trab);
-
+                    $solicitante->direc_trab = trim($request->direc_trab);
+                    $solicitante->tele_domi = trim($request->tele_domi);
+                    
                     $solicitante->save();
                     
                     $message = "Información de Solicitante actualizada con éxito";
