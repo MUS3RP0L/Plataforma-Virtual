@@ -36,7 +36,7 @@
                     </div>
                     @endif
 
-                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec) && ($afiliado->getYearsAndMonths_fech_ini_apor()))
+                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec))
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
                         <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;
@@ -50,7 +50,7 @@
                     </div>
                     @endif
 
-                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec) && ($afiliado->getYearsAndMonths_fech_ini_apor()))
+                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec))
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
                         <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
@@ -119,7 +119,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Ciudad
@@ -129,19 +129,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Observaciones
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $fondoTramite->obs !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            </tr> 
                                         </table>
                                     </div>
                                     <div class="col-md-6">
@@ -150,7 +138,7 @@
                                                 <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Número de Tramite
+                                                            Número Tramite
                                                         </div>
                                                         <div class="col-md-6">
                                                             {!! $fondoTramite->getNumberTram() !!}
@@ -824,7 +812,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                                    {!! Form::label('modalidad', 'MODALIDAD', ['class' => 'col-md-4 control-label']) !!}
+                                    {!! Form::label('modalidad', 'Modalidad', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::select('modalidad', $list_modalidades, $fondoTramite->modalidad_id, ['class' => 'combobox form-control', 'required' ]) !!}
                                 <span class="help-block">Seleccione la Modalidad</span>
@@ -835,7 +823,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                                    {!! Form::label('departamento', 'CIUDAD', ['class' => 'col-md-4 control-label']) !!}
+                                    {!! Form::label('departamento', 'Ciudad', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::select('departamento', $list_departamentos, $fondoTramite->departamento_id, ['class' => 'combobox form-control', 'required' ]) !!}
                                 <span class="help-block">Seleccione el departamento</span>
@@ -846,10 +834,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                                {!! Form::label('observaciones', 'OBSERVACIONES', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
+                                {!! Form::label('observaciones', 'Observaciones', ['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-6">
                                 {!! Form::textarea('observaciones', $fondoTramite->obs, ['class'=> 'form-control', 'rows' => '2']) !!}
-                                <span class="help-block">Observaciones</span>
+                                <span class="help-block">Escriba sus Observaciones</span>
                             </div>
                         </div>
                     </div>
@@ -882,7 +870,7 @@
                 {!! Form::model($solicitante, ['method' => 'PATCH', 'route' => ['solicitante.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="soli"/>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
 
                         <div class="form-group">
                           <div class="col-md-9">
@@ -906,66 +894,50 @@
                             </div>
                           </div>
                         </div>
-
-                            <div class="form-group" data-bind='fadeVisible: parenShow'>
-                                    {!! Form::label('paren', 'PARENTESCO', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-8">
-                                    {!! Form::text('paren', $solicitante->paren, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                    <span class="help-block">Parentesco</span>
-                                </div>
-                            </div> 
+                        <div class="col-md-8">
+                            <div class="form-group label-floating" data-bind="fadeVisible: parenShow">
+                                <label class="control-label" for="focusedInput2">Parentesco</label>
+                                {!! Form::text('paren', $solicitante->paren, ['class'=> 'form-control', 'id'=> 'focusedInput2', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                            </div>                                 
+                        </div>
                    
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                                {!! Form::label('ci', 'CARNET IDENTIDAD', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('ci', 'Carnet', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('ci', '',['class'=> 'form-control', 'required', 'data-bind' => 'value: soli_ci']) !!}
                                 <span class="help-block">Núm. Carnet de Identidad</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('pat', 'APELLIDO PATERNO', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('pat', $solicitante->pat, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
                                 <span class="help-block">Apellido Paterno</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('zona_domi', 'ZONA DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('zona_domi', 'DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('zona_domi', $solicitante->zona_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_zona_domi']) !!}
                                 <span class="help-block">Zona Domicilio</span>
                             </div>
                         </div>
+
                         <div class="form-group">
-                                {!! Form::label('calle_domi', 'CALLE DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('calle_domi', $solicitante->calle_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_calle_domi']) !!}
-                                <span class="help-block">Calle Domicilio</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('zona_trab', 'ZONA TRABAJO', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('zona_trab', 'DOMICILIO TRABAJO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('zona_trab', $solicitante->zona_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Zona Trabajo</span>
                             </div>
                         </div>
-                        <div class="form-group">
-                                {!! Form::label('calle_trab', 'CALLE TRABAJO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('calle_trab', $solicitante->calle_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Calle Trabajo</span>
-                            </div>
-                        </div> 
-                         
-                                                   
+                                                                            
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div class="form-group">
-                                {!! Form::label('mat', 'APELLIDO MATERNO', ['class' => 'col-md-4 control-label']) !!}
+                                {!! Form::label('mat', 'APELLIDO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
                                 {!! Form::text('mat', $solicitante->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mat']) !!}
                                 <span class="help-block">Apellido Materno</span>
@@ -978,13 +950,7 @@
                                 <span class="help-block">Nombre(s)</span>
                             </div>
                         </div>
-                        <div class="form-group">
-                                {!! Form::label('num_domi', 'NÚMERO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('num_domi', $solicitante->num_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_num_domi']) !!}
-                                <span class="help-block">Número de Domicilio</span>
-                            </div>
-                        </div>
+
                         <div class="form-group">
                                 {!! Form::label('tele_domi', 'TELÉFONO DOMICILIO', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
@@ -992,13 +958,7 @@
                                 <span class="help-block">Teléfono fijo</span>
                             </div>
                         </div>
-                        <div class="form-group">
-                                {!! Form::label('num_trab', 'NÚMERO TRABAJO', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::text('num_trab', $solicitante->num_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Número de Trabajo</span>
-                            </div>
-                        </div>
+
                         <div class="form-group">
                                 {!! Form::label('celu_domi', 'CELULAR', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
@@ -1154,7 +1114,7 @@
                 <div class="row">
                     <h5 class="modal-title">Años de Aportes</h5>
                     <div class="row" style="margin-bottom:0px;">                       
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <table class="table" style="width:100%;">
                                 <tr>
                                     <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
@@ -1170,7 +1130,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <table class="table" style="width:100%;">
                                 <tr>
                                     <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
@@ -1186,22 +1146,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-md-4">
-                            <table class="table" style="width:100%;">
-                                <tr>
-                                    <td style="border-top:0;border-bottom:1px solid #d4e4cd;">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                Total
-                                            </div>
-                                            <div class="col-md-9">
-                                                {!! $afiliado->getYearsAndMonths_fech_ini_apor() !!}
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                        
                     </div>
                 </div>
                 <br>
