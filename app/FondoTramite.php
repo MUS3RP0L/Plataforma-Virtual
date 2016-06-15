@@ -115,15 +115,15 @@ class FondoTramite extends Model
     public function getStatus()
     {
         if ($this->fech_ven && $this->fech_arc && $this->fech_cal && $this->fech_dic ) {
-            return "Trámite Finalizado";
+            return "FINALIZADO";
         }elseif ($this->fech_ven && $this->fech_arc && $this->fech_cal) {
-            return "en Dictamen legal";
+            return "DICTAMEN LEGAL";
         }elseif ($this->fech_ven && $this->fech_arc) {
-            return "En Calificación";
+            return "CALIFICACIÓN";
         }elseif ($this->fech_ven) {
-            return "En Archivo";
+            return "ARCHIVO";
         }else {
-            return "En Ventanilla";
+            return "VENTANILLA";
         }
     }
     
