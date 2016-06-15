@@ -178,8 +178,9 @@ class FondoTramiteController extends Controller
         $documentos = $data['documentos'];
         $fondoTramite = $data['fondoTramite'];
         $date = Util::getfulldate(date('Y-m-d'));
+        $dateY = Util::getYear(date('Y-m-d'));
 
-        $view = \View::make('print.ventanilla.show', compact('afiliado', 'requisitos', 'solicitante', 'fondoTramite', 'documentos', 'date'))->render();
+        $view = \View::make('print.ventanilla.show', compact('afiliado', 'requisitos', 'solicitante', 'fondoTramite', 'documentos', 'date', 'dateY'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
