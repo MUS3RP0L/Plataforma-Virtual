@@ -217,6 +217,13 @@ class Util
         }
 	}
 
+	public static function getYear($date)
+	{
+		if ($date) {
+			return date("Y", strtotime($date));
+        }
+	}
+
 	public static function getfulldate($date)
 	{
 		if ($date) {
