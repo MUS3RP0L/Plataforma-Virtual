@@ -66,6 +66,7 @@ class CreateFondotramites extends Migration
             
             $table->bigIncrements('id'); 
             $table->UnsignedBigInteger('modalidad_id');        
+            $table->text('abre');
             $table->text('name');
             
             $table->timestamps();
@@ -146,8 +147,8 @@ class CreateFondotramites extends Migration
             $table->string('paren')->nullable();
 
             $table->string('direc_domi')->nullable();
-            $table->string('celu_domi')->nullable();
             $table->string('tele_domi')->nullable();
+            $table->string('celu_domi')->nullable();
 
             $table->string('direc_trab')->nullable();
 

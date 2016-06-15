@@ -198,7 +198,7 @@
 
                                         <table class="table" style="width:100%;">
                                             <tr>
-                                                <td style="border-top:0;">
+                                                <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Carnet Identidad
@@ -222,61 +222,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;"></br>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Zona Domicilio
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->zona_domi !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td style="border-top:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Calle Domicilio
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->calle_domi !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;"></br>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Zona Trabajo
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->zona_trab !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            Calle Trabajo
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            {!! $solicitante->calle_trab !!}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-
-                                    <div class="col-md-6">
-
-                                        <table class="table" style="width:100%;">
-                                            <tr>
-                                                <td style="border-top:0;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Apellido Materno
@@ -288,7 +234,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;">
+                                                <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Nombre(s)
@@ -299,16 +245,18 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            
-                                            
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table" style="width:100%;">
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;"></br>
+                                                <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Núm Domicilio
+                                                            Domicilio Actual
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->num_domi !!}
+                                                            {!! $solicitante->direc_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -317,7 +265,7 @@
                                                 <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Teléfono Domicilio
+                                                            Teléfono fijo
                                                         </div>
                                                         <div class="col-md-6">
                                                             {!! $solicitante->tele_domi !!}
@@ -326,13 +274,13 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border-top:1px solid #d4e4cd;"></br>
+                                                <td style="border-top:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Núm Trabajo
+                                                            Teléfono Celular
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->num_trab !!}
+                                                            {!! $solicitante->celu_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -341,17 +289,15 @@
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            Celular
+                                                            Domicilio Trabajo
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->celu_domi !!}
+                                                            {!! $solicitante->direc_trab !!}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-
                                         </table>
-
                                     </div>
                                     
                                 @else
@@ -410,7 +356,7 @@
                                                 
                                                 @foreach ($documentos as $item)
                                                     <tr>
-                                                        <td>{!! $item->requisito->name !!}</td>
+                                                        <td>{!! $item->requisito->abre !!}</td>
                                                         <td> 
                                                             <div class="text-center">
                                                                 @if($item->est)
@@ -418,7 +364,7 @@
                                                                 @endif
                                                             </div>
                                                         </td>
-                                                        <td style="width: 12%;"> 
+                                                        <td style="width: 20%;"> 
                                                             <div class="text-center">
                                                                 @if($item->est)
                                                                     {!! $item->getData_fech_requi() !!}
@@ -909,7 +855,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group">
-                                {!! Form::label('ci', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('ci', 'Carnet Identidad', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
                                 {!! Form::text('ci', '',['class'=> 'form-control', 'required', 'data-bind' => 'value: soli_ci']) !!}
                                 <span class="help-block">Núm. Carnet de Identidad</span>
@@ -942,7 +888,7 @@
                         <div class="form-group">
                                 {!! Form::label('direc_domi', 'Domicilio  Actual', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('direc_domi', $solicitante->direc_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_zona_domi']) !!}
+                                {!! Form::text('direc_domi', $solicitante->direc_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_direc_domi']) !!}
                                 <span class="help-block">Escriba Domicilio Actual</span>
                             </div>
                         </div>
@@ -956,7 +902,7 @@
                         <div class="form-group">
                                 {!! Form::label('celu_domi', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('celu_domi', $solicitante->celu_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('celu_domi', $solicitante->celu_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_celu']) !!}
                                 <span class="help-block">Escriba NúmeroTeléfono Celular</span>
                             </div>
                         </div>
@@ -1016,11 +962,11 @@
                                     <td data-bind='text: requiname'></td>
                                     <td> 
                                         <div class="row text-center">
-                                            <div class="form-group">
+                                            <!-- <div class="form-group"> -->
                                                 <div class="checkbox">
                                                   <label><input type="checkbox" data-bind="checked: booleanValue"></label>
                                               </div>
-                                            </div>
+                                            <!-- </div> -->
                                         </div>
                                     </td>
                                 </tr>
@@ -1457,44 +1403,21 @@
             }
         }, this);
 
-        this.soli_zona_domi = ko.computed(function() {
+        this.soli_direc_domi = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                return titular.zona;
+                var zona = titular.zona ? titular.zona : '';
+                var calle = titular.calle ? titular.calle : '';
+                var num_domi = titular.num_domi ? "N° " + titular.num_domi : '';
+                return zona + " " + calle + " " + num_domi;
             } 
             if (desiredType == '2'){
-                return solicitante.zona_domi;
+                return solicitante.direc_domi;
             } 
             if (desiredType == '3'){
-                return solicitante.zona_domi;
+                return solicitante.direc_domi;
             }
 
-        }, this);
-
-        this.soli_calle_domi = ko.computed(function() {
-            var desiredType = this.typeToShow();
-            if (desiredType == '1'){
-                return titular.calle;
-            } 
-            if (desiredType == '2'){
-                return solicitante.calle_domi;
-            } 
-            if (desiredType == '3'){
-                return solicitante.calle_domi;
-            }
-        }, this);
-
-        this.soli_num_domi = ko.computed(function() {
-            var desiredType = this.typeToShow();
-            if (desiredType == '1'){
-                return titular.num_domi;
-            } 
-            if (desiredType == '2'){
-                return solicitante.num_domi;
-            } 
-            if (desiredType == '3'){
-                return solicitante.num_domi;
-            }
         }, this);
 
         this.soli_tele_domi = ko.computed(function() {
@@ -1507,6 +1430,19 @@
             } 
             if (desiredType == '3'){
                 return solicitante.tele_domi;
+            }
+        }, this);
+
+        this.soli_celu = ko.computed(function() {
+            var desiredType = this.typeToShow();
+            if (desiredType == '1'){
+                return titular.celu;
+            } 
+            if (desiredType == '2'){
+                return solicitante.celu_domi;
+            } 
+            if (desiredType == '3'){
+                return solicitante.celu_domi;
             }
         }, this);
   
