@@ -270,15 +270,40 @@ class FondoTramiteController extends Controller
         else{
 
             $fondoTramite = FondoTramite::afiIs($id)->first();
+            $afiliado = Afiliado::idIs($id)->first();
 
             switch ($request->type) {
                 case 'gene':
 
-                    if ($fondoTramite->modalidad_id <> trim($request->modalidad)) {$fondoTramite->modalidad_id = trim($request->modalidad);}
-                    $fondoTramite->departamento_id = trim($request->departamento);
-                    $fondoTramite->save();
-                    
-                    $message = "Información General de Fondo de Retiro actualizado con éxito";
+                    if($request->modalidad == 4 && $afiliado->fech_dece == null)
+                    {
+                        $message = "Ingrese Fecha de deceso de Afiliado";
+                    }
+                    else{
+                        if ($fondoTramite->modalidad_id <> trim($request->modalidad)) {$fondoTramite->modalidad_id = trim($request->modalidad);}
+                        $fondoTramite->departamento_id = trim($request->departamento);
+                        $fondoTramite->save();
+
+                        switch ($request->modalidad) {
+                            case '1':
+                                $afiliado->afi_state_id = 8;
+                                $afiliado->save();
+                            break;
+                            case '2':
+                                $afiliado->afi_state_id = 7;
+                                $afiliado->save();
+                            break;
+                            case '3':
+                                $afiliado->afi_state_id = 5;
+                                $afiliado->save();
+                            break;
+                            case '4':
+                                $afiliado->afi_state_id = 4;
+                                $afiliado->save();
+                            break;
+                        }
+                        $message = "Información General de Fondo de Retiro actualizado con éxito";
+                    }     
                 break;
 
                 case 'docu':
@@ -330,8 +355,6 @@ class FondoTramiteController extends Controller
                 break;
 
                 case 'periods':
-
-                    $afiliado = Afiliado::idIs($afid)->first();
                     $afiliado->fech_ini_serv = Util::datePickPeriod($request->fech_ini_serv);
                     $afiliado->fech_fin_serv = Util::datePickPeriod($request->fech_fin_serv);
                     $afiliado->save();
