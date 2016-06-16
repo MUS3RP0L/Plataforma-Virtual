@@ -1,30 +1,22 @@
 @extends('print.layoutPrint')
-
 @section('content')
 
-      <h1><b>VENTANILLA DE ATENCIÓN AL AFILIADO<br>FONDO DE RETIRO POLICIAL INDIVIDUAL</b></h1>
+      <h1>
+        <b>
+          VENTANILLA DE ATENCIÓN AL AFILIADO<br>
+          FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
+          MODALIDAD: {!! $fondoTramite->modalidad->name !!}
+        </b>
+      </h1>
       
       <table class="tablet">
         <tr>
-          <td style="width: 60%;border: 0px;">
-            <div class="title"><b>N° Tramite: {{ $fondoTramite->id }}</b></div>
+          <td style="border: 0px;">
+            <div class="title"><b>N° de Tramite: {{ $fondoTramite->getNumberTram() }}</b></div>
           </td>
-
-          <td style="width: 40%;border: 0px;text-align:right;">
-            <div class="title">Fecha de Emisión: La Paz, {!! $date !!}</div>
+          <td style="border: 0px;text-align:right;">
+            <div class="title"><b>Fecha de Emisión: La Paz, {!! $date !!}</b></div>
           </td>
-        </tr>
-        <tr>
-            <td style="width: 60%;border: 0px;">
-             <div class="title"></div>
-            </td>
-            <td style="width: 40%;border: 0px;text-align:right;">
-             <div class="title"><b>Usuario: {{ Auth::user()->ape }} {{ Auth::user()->nom }}</b></div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="border: 0px;text-align:center;"><b>MODALIDAD:{!! $fondoTramite->modalidad->name !!}</td>
-            
         </tr>
       </table>
 
