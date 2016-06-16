@@ -21,11 +21,11 @@ class ModalidadesSeeder extends Seeder
     private function createModalidad()
     {
         $statuses = [
-            ['id' => '1', 'abre' => 'Baja Forzosa', 'name' => 'Retiro por Baja Forzosa'],
-            ['id' => '2', 'abre' => 'Baja Voluntaria', 'name' => 'Retiro por Baja Voluntaria'],
-            ['id' => '3', 'abre' => 'Jubilación', 'name' => 'Retiro por Jubilación'],
-            ['id' => '4', 'abre' => 'fallecimiento', 'name' => 'Retiro por fallecimiento'],
-            ['id' => '5', 'abre' => 'Devolución', 'name' => 'Devolución de Descuentos al Garante']
+            ['id' => '1', 'abre' => 'BAJA FORZOSA', 'name' => 'RETIRO POR BAJA FORZOSA'],
+            ['id' => '2', 'abre' => 'BAJA VOLUNTARIA', 'name' => 'RETIRO POR BAJA VOLUNTARIA'],
+            ['id' => '3', 'abre' => 'JUBILACIÓN', 'name' => 'RETIRO POR JUBILACIÓN'],
+            ['id' => '4', 'abre' => 'FALLECIMIENTO', 'name' => 'RETIRO POR FALLECIMIENTO'],
+            ['id' => '5', 'abre' => 'DEVOLUCIÓN', 'name' => 'DEVOLUCIÓN DE DESCUENTOS AL GARANTE']
         ];
 
         foreach ($statuses as $status) {
