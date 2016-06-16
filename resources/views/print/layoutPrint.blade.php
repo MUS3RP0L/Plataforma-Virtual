@@ -43,6 +43,13 @@
             </td>
         </tr>
       </table>
+      <h1>
+        <b>       
+          FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
+          MODALIDAD: {!! $fondoTramite->modalidad->name !!}
+        </b>
+      </h1>
+      <br>
 
       @yield('content')
 

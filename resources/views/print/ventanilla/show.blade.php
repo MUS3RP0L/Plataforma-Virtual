@@ -9,13 +9,6 @@
 @endsection
 
 @section('content')
-      <h1>
-        <b>       
-          FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
-          MODALIDAD: {!! $fondoTramite->modalidad->name !!}
-        </b>
-      </h1>
-      <br>
       <div id="project">
         <table>
             <tr>
