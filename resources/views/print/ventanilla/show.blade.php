@@ -1,34 +1,16 @@
 @extends('print.layoutPrint')
 
 @section('title')
-<h1>
+<h3>
   <b>
-  VENTANILLA DE ATENCIÓN AL AFILIADO<br>
+    VENTANILLA DE ATENCIÓN AL AFILIADO<br>
   </b>
-</h1>
+</h3>
 @endsection
 
 @section('content')
-      
-      <table class="tablet">
-        <tr>
-          <td style="border: 0px;">
-            <div class="title"><b>N° de Tramite: {{ $fondoTramite->getNumberTram() }}</b></div>
-          </td>
-          <td style="border: 0px;text-align:right;">
-            <div class="title"><b>Fecha de Emisión: La Paz, {!! $date !!}</b></div>
-          </td>
-        </tr>
-        <tr>
-            <td  colspan="2" style="border: 0px;text-align:right;">
-             <div class="title">Usuario: {{ Auth::user()->ape }} {{ Auth::user()->nom }}</div>
-            </td>
-        </tr>
-      </table>
-
       <h1>
-        <b>
-          
+        <b>       
           FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
           MODALIDAD: {!! $fondoTramite->modalidad->name !!}
         </b>
