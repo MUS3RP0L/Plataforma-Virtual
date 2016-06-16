@@ -16,6 +16,7 @@ use Muserpol\Activity;
 use Muserpol\AfiState;
 use Muserpol\Afitype;
 use Muserpol\Aporte;
+use Muserpol\FondoTramite;
 use Session;
 
 class HomeController extends Controller
@@ -71,9 +72,6 @@ class HomeController extends Controller
       $distritos = DB::table('unidades')->select(DB::raw('DISTINCT (unidades.dist) as dist'))->get(); 
       $anio = Carbon::now()->year;
      
-
-      
-      
       foreach ($estados as $item) {
         $afiestado = Afiliado::afiEstado($item->id,$anio)->first();
         $list_estados[$item->id] = $afiestado->total1;
@@ -106,7 +104,30 @@ class HomeController extends Controller
         $Afidistrito = Afiliado::afiDistrito($item->dist, $anio)->first();
         $list_distrito[$item->dist] = $Afidistrito->distrito;
         
-      }  
+      } 
+
+      //Nro. Tramites del ultimo semestre
+      $fechactual = Carbon::now();
+      $Fyear1 = Carbon::parse($fechactual)->year;
+
+      $fondotramite = DB::table('fondo_tramites')
+                            ->select(DB::raw('DISTINCT(month(fondo_tramites.fech_ven)) as mes'))
+                            ->whereYear('fondo_tramites.fech_ven', '=', $Fyear1)
+                            ->orderBy('fondo_tramites.fech_ven', 'asc')
+                            ->get();
+      if($fondotramite)
+      {
+        foreach ($fondotramite as $item) {
+          $totalTramites = FondoTramite::nroTramites($item->mes,$Fyear1)->first();
+          $list_ftgestion[] = Util::getMes($totalTramites->mes);
+          $list_ftramites[] = $totalTramites->total; 
+        }
+        
+      }
+      
+      $tramitesgestion = array($list_ftgestion, $list_ftramites); 
+
+      
       
 
     $activities = Activity::orderBy('created_at', 'desc')->take(10)->get();
@@ -120,10 +141,11 @@ class HomeController extends Controller
       'list_estados' => $list_estados,
       'list_types' => $list_types,
       'list_distrito' => $list_distrito,
-      'AporteGestion' => $AporteGestion
+      'AporteGestion' => $AporteGestion,
+      'tramitesgestion' => $tramitesgestion
     ];
 
-     return view('home', $data);  
+     return view('home', $data);    
 
 	}
 }

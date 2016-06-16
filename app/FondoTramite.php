@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
+use DB;
 
 class FondoTramite extends Model
 {
@@ -78,6 +79,13 @@ class FondoTramite extends Model
     {
         return $query->where('afiliado_id', $id);
     }
+    public function scopeNroTramites($query, $mes, $anio)
+    {
+       return $query = DB::table('fondo_tramites')
+                    ->select(DB::raw('COUNT(*) total, month(fondo_tramites.fech_ven) as mes'))
+                    ->whereMonth('fondo_tramites.fech_ven', '=', $mes)
+                    ->whereYear('fondo_tramites.fech_ven', '=', $anio);        
+    }  
 
     public function getFull_fech_ini_anti()
     {   

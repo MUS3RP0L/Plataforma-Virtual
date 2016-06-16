@@ -116,7 +116,7 @@ class Afiliado extends Model
        return $query = DB::table('afiliados')
                     ->select(DB::raw('COUNT(*) total1'))
                     ->where('afiliados.afi_state_id', '=', $estado)
-                    ->whereYear('afiliados.fech_ing', '=', $anio);      
+                    ->whereYear('afiliados.updated_at', '=', $anio);      
     }
 
     public function scopeAfiType($query, $type, $anio)
@@ -124,7 +124,7 @@ class Afiliado extends Model
        return $query = DB::table('afiliados')
                     ->select(DB::raw('COUNT(*) tipo'))
                     ->where('afiliados.afi_type_id', '=', $type)
-                    ->whereYear('afiliados.fech_ing', '=', $anio);        
+                    ->whereYear('afiliados.updated_at', '=', $anio);        
     }
 
     public function scopeAfiDistrito($query, $dist, $anio)
@@ -132,9 +132,11 @@ class Afiliado extends Model
        return $query = DB::table('afiliados')
                     ->select(DB::raw('COUNT(*) distrito'))
                     ->leftJoin('unidades', 'afiliados.unidad_id', '=', 'unidades.id')
+                    ->leftJoin('afi_states', 'afiliados.afi_state_id', '=', 'afi_states.id')
+                    ->leftJoin('state_types', 'afi_states.state_type_id', '=', 'state_types.id')
                     ->where('unidades.dist', '=', $dist)
-                    ->whereYear('afiliados.fech_ing', '=', $anio);        
-    }  
+                    ->whereYear('afiliados.updated_at', '=', $anio);        
+    }    
 
     public function getFullDateNac()
     {	
