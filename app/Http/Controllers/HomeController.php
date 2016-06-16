@@ -84,20 +84,28 @@ class HomeController extends Controller
       }  
 
       $ultimoAporte = DB::table('aportes')->orderBy('gest', 'desc')->first();
-      $Ayear = Carbon::parse($ultimoAporte->gest)->subYears(5);
-      $Ayear1 = Carbon::parse($Ayear)->year;
-      $gestAportes = DB::table('aportes')->select(DB::raw('DISTINCT(year(aportes.gest)) as anio'))
+      if($ultimoAporte)
+      {
+        $Ayear = Carbon::parse($ultimoAporte->gest)->subYears(5);
+        $Ayear1 = Carbon::parse($Ayear)->year;
+        $gestAportes = DB::table('aportes')->select(DB::raw('DISTINCT(year(aportes.gest)) as anio'))
                                     ->whereYear('aportes.gest', '>', $Ayear1)->orderBy('aportes.gest', 'asc')->get();
 
-      foreach ($gestAportes as $item) {
-
-        $monto = Aporte::afiAporte($item->anio)->first();
-        $list_aportes[] = $monto->muserpol;
-        $list_gestion[] = $monto->gestion;
+        foreach ($gestAportes as $item) {
+          $monto = Aporte::afiAporte($item->anio)->first();
+          $list_aportes[] = $monto->muserpol;
+          $list_gestion[] = $monto->gestion;
         
-      } 
-
-      $AporteGestion = array($list_gestion, $list_aportes ); 
+        }
+        $AporteGestion = array($list_gestion, $list_aportes ); 
+      }
+      else
+      {
+        $list_aportes[] = 0;
+        $list_gestion[] =0;
+        $AporteGestion = array($list_gestion, $list_aportes );
+      }
+       
      
       foreach ($distritos as $item) {
 
@@ -106,7 +114,7 @@ class HomeController extends Controller
         
       } 
 
-      //Nro. Tramites del ultimo semestre
+      //Nro. Tramites del ultimo año por mes
       $fechactual = Carbon::now();
       $Fyear1 = Carbon::parse($fechactual)->year;
 
@@ -122,12 +130,41 @@ class HomeController extends Controller
           $list_ftgestion[] = Util::getMes($totalTramites->mes);
           $list_ftramites[] = $totalTramites->total; 
         }
-        
+        $tramitesgestion = array($list_ftgestion, $list_ftramites); 
+      }
+      else
+      {
+        $list_ftgestion[] = 0;
+        $list_ftramites[] = 0;
+        $tramitesgestion = array($list_ftgestion, $list_ftramites); 
       }
       
-      $tramitesgestion = array($list_ftgestion, $list_ftramites); 
+      //aporte voluntario gestion actual
+      $fechactual = Carbon::now();
+      $Fyear1 = Carbon::parse($fechactual)->year;
 
-      
+      $aportemeses = DB::table('Aportes')
+                            ->select(DB::raw('DISTINCT(month(Aportes.gest)) as mes1'))
+                            ->where('aportes.aporte_type_id', '=', 2)
+                            ->whereYear('Aportes.gest', '=', $Fyear1)
+                            ->orderBy('Aportes.gest', 'asc')
+                            ->get();
+
+       if($aportemeses)
+      {
+        foreach ($aportemeses as $item) {
+            $totalav = Aporte::aporteVoluntario($item->mes1, $Fyear1)->first();
+            $list_avmeses[] = Util::getMes($totalav->mes);
+            $list_totalav[] = $totalav->total;         
+        }
+        $aportevoluntario = array($list_avmeses, $list_totalav); 
+      }
+      else
+      {
+        $list_avmeses[] = 0;
+        $list_totalav[] = 0;
+        $aportevoluntario = array($list_avmeses, $list_totalav); 
+      }
       
 
     $activities = Activity::orderBy('created_at', 'desc')->take(10)->get();
@@ -142,10 +179,12 @@ class HomeController extends Controller
       'list_types' => $list_types,
       'list_distrito' => $list_distrito,
       'AporteGestion' => $AporteGestion,
-      'tramitesgestion' => $tramitesgestion
+      'tramitesgestion' => $tramitesgestion,
+      'aportevoluntario' => $aportevoluntario,
+      'Fyear1' => $Fyear1
     ];
 
      return view('home', $data);    
-
+     // return response()->json($aportevoluntario);
 	}
 }

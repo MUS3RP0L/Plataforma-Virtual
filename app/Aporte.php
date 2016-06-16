@@ -83,4 +83,13 @@ class Aporte extends Model
                     ->select(DB::raw('SUM(aportes.mus) muserpol, year(aportes.gest) as gestion'))
                     ->whereYear('aportes.gest', '=', $anio);
     }
+
+    public function scopeAporteVoluntario($query, $mes, $anio)
+    {
+       return $query = DB::table('aportes')
+                    ->select(DB::raw('COUNT(*) total, month(aportes.gest) as mes'))
+                    ->where('aportes.aporte_type_id', '=', 2)
+                    ->whereMonth('aportes.gest', '=', $mes)
+                    ->whereYear('aportes.gest', '=', $anio);        
+    }  
 }

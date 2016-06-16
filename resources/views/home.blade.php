@@ -91,7 +91,7 @@
 		<div class="row">
 			<div class="col-md-4">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Total Afiliados por Distrito</div>
+						<div class="panel-heading">Total Afiliados por Distrito {!! $Fyear1 !!}</div>
 						<div class="panel-body" style="width: 100%"  >
 							<canvas id="pie-distrito" width="450" height="300"></canvas>
 						</div>
@@ -100,7 +100,7 @@
 
 			<div class="col-md-4">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Total Aportes Voluntarios por Gestión</div>
+						<div class="panel-heading">Total Aportes Voluntarios de la Gestión {!! $Fyear1 !!}</div>
 						<div class="panel-body" style="width: 100%" >
 							<canvas id="bar-AporteVoluntario" width="450" height="300"></canvas>
 						</div>
@@ -109,7 +109,7 @@
 
 			<div class="col-md-4">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Total Trámites del Ultimo Semestre</div>
+						<div class="panel-heading">Total Trámites de la Gestión {!! $Fyear1 !!}</div>
 						<div class="panel-body" style="width: 100%">
 							<canvas id="bar-tramites" height="300" width="450"></canvas>
 						</div>
@@ -349,21 +349,15 @@
 
 	var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 	var barAporteVoluntario = {
-		labels : ["January","February","March","April","May","June","July"],
+		labels : {!! json_encode($aportevoluntario[0]) !!},
 		datasets : [
-			{
-				fillColor : "rgba(220,220,220,0.5)",
-				strokeColor : "rgba(220,220,220,0.8)",
-				highlightFill: "rgba(220,220,220,0.75)",
-				highlightStroke: "rgba(220,220,220,1)",
-				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-			},
+			
 			{
 				fillColor : "rgba(151,187,205,0.5)",
 				strokeColor : "rgba(151,187,205,0.8)",
 				highlightFill : "rgba(151,187,205,0.75)",
 				highlightStroke : "rgba(151,187,205,1)",
-				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				data : {!! json_encode($aportevoluntario[1]) !!}
 			}
 		]
 
