@@ -53,18 +53,12 @@ class ReporteController extends Controller
             $i++;
         }
         $date = Carbon::createFromDate($year, $request->mes, 1)->toDateString();
+        $year1 = Carbon::parse($date)->year;
+        $month1 = Carbon::parse($date)->month;
 
 
-        $totalRegistrosC = DB::table('aportes')
-                ->select(DB::raw('COUNT(DISTINCT(id)) total, SUM(aportes.sue) sueldo, SUM(aportes.b_ant) anti,
-                                SUM(aportes.b_est) b_est, SUM(aportes.b_car) b_car,
-                                SUM(aportes.b_fro) b_fro, SUM(aportes.b_ori) b_ori,
-                                SUM(aportes.b_seg) b_seg, SUM(aportes.gan) gan, 
-                                SUM(aportes.cot) cot, SUM(aportes.mus) mus,
-                                SUM(aportes.fr) fr, SUM(aportes.sv) sv'))
-                                ->where('aportes.gest', '=', $date)
-                                ->where('aportes.desg', '<>', '5')
-                                ->get();
+        $totalRegistrosC = DB::select('call sumar_aportesC('.$month1.','.$year1.')');
+               
         foreach ($totalRegistrosC as $item) {
             $totalC = $item->total;
             $sueldoC = $item->sueldo;
@@ -80,16 +74,7 @@ class ReporteController extends Controller
             $svC = $item->sv;
             $musC = $item->mus;
         }
-        $totalRegistrosB = DB::table('aportes')
-                ->select(DB::raw('COUNT(DISTINCT(id)) total, SUM(aportes.sue) sueldo, SUM(aportes.b_ant) anti,
-                                SUM(aportes.b_est) b_est, SUM(aportes.b_car) b_car,
-                                SUM(aportes.b_fro) b_fro, SUM(aportes.b_ori) b_ori,
-                                SUM(aportes.b_seg) b_seg, SUM(aportes.gan) gan, 
-                                SUM(aportes.cot) cot, SUM(aportes.mus) mus,
-                                SUM(aportes.fr) fr, SUM(aportes.sv) sv'))
-                                ->where('aportes.gest', '=', $date)
-                                ->where('aportes.desg', '=', '5')
-                                ->get();
+        $totalRegistrosB = DB::select('call sumar_aportesB('.$month1.','.$year1.')');
 
         foreach ($totalRegistrosB as $item) {
             $totalB = $item->total;
