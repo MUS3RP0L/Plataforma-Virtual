@@ -408,7 +408,7 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-11">
-                                    <h3 class="panel-title">Trámite Cancelados</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-folder-open"></span> Trámite Cancelados</h3>
                                 </div>
                                 @if($info_antec)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
@@ -962,11 +962,9 @@
                                     <td data-bind='text: requiname'></td>
                                     <td> 
                                         <div class="row text-center">
-                                            <!-- <div class="form-group"> -->
-                                                <div class="checkbox">
-                                                  <label><input type="checkbox" data-bind="checked: booleanValue"></label>
-                                              </div>
-                                            <!-- </div> -->
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" data-bind="checked: booleanValue"></label>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -1019,10 +1017,8 @@
                                     <td data-bind='text: prestaname'></td>
                                     <td> 
                                         <div class="row text-center">
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                  <label><input type="checkbox" data-bind="checked: booleanValue"></label>
-                                              </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" data-bind="checked: booleanValue"></label>
                                             </div>
                                         </div>
                                     </td>
