@@ -178,9 +178,8 @@ class FondoTramiteController extends Controller
         $documentos = $data['documentos'];
         $fondoTramite = $data['fondoTramite'];
         $date = Util::getfulldate(date('Y-m-d'));
-        $dateY = Util::getYear(date('Y-m-d'));
 
-        $view = \View::make('print.ventanilla.show', compact('afiliado', 'requisitos', 'solicitante', 'fondoTramite', 'documentos', 'date', 'dateY'))->render();
+        $view = \View::make('print.ventanilla.show', compact('afiliado', 'requisitos', 'solicitante', 'fondoTramite', 'documentos', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
@@ -274,8 +273,8 @@ class FondoTramiteController extends Controller
             $afiliado = Afiliado::idIs($id)->first();
 
             switch ($request->type) {
-                case 'gene':
 
+                case 'gene':
                     if($request->modalidad == 4 && $afiliado->fech_dece == null)
                     {
                         $message = "Ingrese Fecha de deceso de Afiliado";
@@ -308,7 +307,6 @@ class FondoTramiteController extends Controller
                 break;
 
                 case 'docu':
-
                     if($fondoTramite->modalidad_id)
                     {
                         foreach (json_decode($request->data) as $item)
@@ -336,7 +334,6 @@ class FondoTramiteController extends Controller
                 break;
 
                 case 'antec':
-
                     foreach (json_decode($request->data) as $item)
                     {   
                         $antecedente = Antecedente::where('fondo_tramite_id', '=', $fondoTramite->id)
@@ -347,12 +344,15 @@ class FondoTramiteController extends Controller
                             $antecedente->fondo_tramite_id = $fondoTramite->id;
                             $antecedente->prestacion_id = $item->prestacion_id;
                         }
+
                         $antecedente->est = $item->booleanValue;
                         $antecedente->save();
                     }
 
+                    $fondoTramite->fech_arc = date('Y-m-d');
+                    $fondoTramite->save();
+
                     $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
-               
                 break;
 
                 case 'periods':
@@ -365,11 +365,13 @@ class FondoTramiteController extends Controller
 
                     $fondoTramite->fech_ini_reco = Util::datePickPeriod($request->fech_ini_reco);
                     $fondoTramite->fech_fin_reco = Util::datePickPeriod($request->fech_fin_reco);
+                    $fondoTramite->save();
 
+                    $fondoTramite->fech_cal = date('Y-m-d');
                     $fondoTramite->save();
                     
                     $message = "Información de Periodos de Aporte actualizado con éxito";
-                    break;
+                break;
 
             }
             Session::flash('message', $message);

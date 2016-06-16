@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <div class="row"> 
                 <div class="col-md-4 col-md-offset-6">
-                    @if(($info_gen) && ($info_soli) && ($info_docu))
+                    @if($fondoTramite->fech_ven)
                      <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
                         <a href="" data-target="#myModal-print-ventanilla" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
                             &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
@@ -22,7 +22,7 @@
                       </div>  
                     @endif
 
-                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec))
+                    @if(($fondoTramite->fech_ven) && ($fondoTramite->fech_arc))
                     <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
                         <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;

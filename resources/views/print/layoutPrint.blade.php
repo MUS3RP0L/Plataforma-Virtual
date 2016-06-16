@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Ventanilla</title>
+    <title>PLATAFORMA VIRTUAL - MUSERPOL</title>
     <link rel="stylesheet" href="assets/css/style.css" media="all" />
   </head>
   <body>
@@ -27,6 +27,21 @@
                 </div>
               </th>
             </tr>
+      </table>
+      <table class="tablet">
+        <tr>
+          <td style="border: 0px;">
+            <div class="title"><b>N° de Tramite: {{ $fondoTramite->getNumberTram() }}</b></div>
+          </td>
+          <td style="border: 0px;text-align:right;">
+            <div class="title"><b>Fecha de Emisión: La Paz, {!! $date !!}</b></div>
+          </td>
+        </tr>
+        <tr>
+            <td  colspan="2" style="border: 0px;text-align:right;">
+             <div class="title">Usuario: {{ Auth::user()->ape }} {{ Auth::user()->nom }}</div>
+            </td>
+        </tr>
       </table>
 
       @yield('content')
