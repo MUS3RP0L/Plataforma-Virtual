@@ -44,17 +44,17 @@ header {
 }
 
 h1 {
-  border-top: 1px solid  #5D6975;
-  border-bottom: 1px solid  #5D6975;
-  font-size: 1.2em;
+
+  font-size: 1.3em;
   line-height: 1.2em;
   font-weight: normal;
   text-align: center;
-  margin: 0 0 10px 0;
+  margin: 0 0 -5px 0;
+
 }
 h3 {
   color: #000;
-  font-size: 1.1em;
+  font-size: 1.0em;
   line-height: 1.2em;
   font-weight: normal;
   text-align: center;
@@ -94,16 +94,17 @@ table {
 .tableh {
   width: 100%;
   border-top: 1px solid  #5D6975;
+  border-bottom: 1px solid  #5D6975;
   border-collapse: collapse;
   border-spacing: 0;
-  margin-bottom: 0;
+  margin-bottom: 5px;
 }
 
 .tablet {
   width: 100%;
   border-spacing: 0;
-  margin-bottom: 0;
-  margin-top: -6px;
+  margin-top: -5px;
+  margin-bottom: -10px;
 }
 
 table tr:nth-child(2n-1) td {
@@ -116,8 +117,8 @@ table td {
 }
 
 table th {
-  padding: 3px 0 1px 12px;
-  color: #5D6975;
+  padding: 3px 3px 1px 6px;
+  color: #000;
   border: 1px solid #C1CED9;
   white-space: nowrap;        
   font-weight: normal;
@@ -129,7 +130,7 @@ table .desc {
 }
 
 table td {
-  padding: 3px 12px 1px 12px;
+  padding: 3px 6px 1px 6px;
   text-align: left;
   border: 1px solid #C1CED9;
 }
@@ -150,7 +151,7 @@ table td.total {
 
 table td.info {
   font-size: 1em;
-  width: 60%;
+  /*width: 60%;*/
 }
 
 table td.grand {
@@ -159,10 +160,11 @@ table td.grand {
 
 table th.grand {
   background: #F5F5F5;
+  text-align: center;
 }
 
 #notices .notice {
-  color: #5D6975;
+  color: #000;
   font-size: 1.2em;
 }
 
