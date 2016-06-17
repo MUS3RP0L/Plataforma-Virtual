@@ -206,3 +206,7 @@ footer {
   padding: 8px 0;
   text-align: center;
 }
+
+.page-break {
+    page-break-after: always;
+}
