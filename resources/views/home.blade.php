@@ -30,15 +30,15 @@
 			<div class="col-md-4">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Total Afiliados por Estado</div>
-					<div class="panel-body" style="width: 100%" align="center">
-						<canvas id="doughnu-estado" width="450" height="310"/>
+					<div class="panel-body" style="width: 92%">
+						<canvas id="doughnu-estado" width="450" height="320"/>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-8">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Total Aportes por Gestión</div>
-					<div class="panel-body">
+					<div class="panel-body" style="width: 95%">
 						<canvas id="bar-aportes" width="450px" height="150"></canvas>
 					</div>
 				</div>
@@ -48,8 +48,8 @@
 			<div class="col-md-4">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Total Afiliados por Tipo</div>
-					<div class="panel-body" style="width: 100%" align="center">
-						<canvas id="pie-tipo" width="450" height="310"/>
+					<div class="panel-body" style="width: 92%">
+						<canvas id="pie-tipo" width="450" height="320"/>
 					</div>
 				</div>
 			</div>
@@ -57,7 +57,7 @@
 			<div class="col-md-8">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Total Aportes Voluntarios de la Gestión {!! $Fyear1 !!}</div>
-					<div class="panel-body" style="width: 100%">
+					<div class="panel-body" style="width: 95%">
 						<canvas id="bar-AporteVoluntario" width="450" height="150"></canvas>
 					</div>
 				</div>
@@ -68,15 +68,15 @@
 			<div class="col-md-4">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Total Afiliados por Distrito {!! $Fyear1 !!}</div>
-					<div class="panel-body" style="width: 100%"  >
-						<canvas id="pie-distrito" width="450" height="310"></canvas>
+					<div class="panel-body" style="width: 92%"  >
+						<canvas id="pie-distrito" width="450" height="320"></canvas>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-8">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Total Trámites de la Gestión {!! $Fyear1 !!}</div>
-					<div class="panel-body" style="width: 100%">
+					<div class="panel-body" style="width: 95%">
 						<canvas id="bar-tramites" width="450" height="150"></canvas>
 					</div>
 				</div>
