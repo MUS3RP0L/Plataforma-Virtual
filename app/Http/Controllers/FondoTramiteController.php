@@ -194,7 +194,6 @@ class FondoTramiteController extends Controller
         $fondoTramite = $data['fondoTramite'];
         $prestaciones = $data['prestaciones'];
         $antecedentes = $data['antecedentes'];
-        
         $date = Util::getfulldate(date('Y-m-d'));
 
         $view = \View::make('print.certificacion.show', compact('afiliado', 'solicitante', 'fondoTramite', 'prestaciones', 'antecedentes', 'date'))->render();
@@ -210,8 +209,10 @@ class FondoTramiteController extends Controller
         $afiliado = $data['afiliado'];
         $conyuge = $data['conyuge'];
         $solicitante = $data['solicitante'];
+        $fondoTramite = $data['fondoTramite'];
         $date = Util::getfulldate(date('Y-m-d'));
-        $view =  \View::make('print.calificacion.show', compact('afiliado', 'conyuge','solicitante', 'date'))->render();
+
+        $view =  \View::make('print.calificacion.show', compact('afiliado', 'conyuge','solicitante', 'fondoTramite', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/calificacion/' . $name_input . '.pdf');
@@ -275,12 +276,16 @@ class FondoTramiteController extends Controller
             switch ($request->type) {
 
                 case 'gene':
+
                     if($request->modalidad == 4 && $afiliado->fech_dece == null)
                     {
                         $message = "Ingrese Fecha de deceso de Afiliado";
                     }
                     else{
-                        if ($fondoTramite->modalidad_id <> trim($request->modalidad)) {$fondoTramite->modalidad_id = trim($request->modalidad);}
+
+                        if ($request->modalidad) {
+                        $fondoTramite->modalidad_id = trim($request->modalidad);
+                        }
                         $fondoTramite->departamento_id = trim($request->departamento);
                         $fondoTramite->save();
 
