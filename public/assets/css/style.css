@@ -9,6 +9,10 @@ a {
   text-decoration: underline;
 }
 
+p {
+  font-size: 1.2em;
+}
+
 body {
   position: relative;
   width: 20cm;  
@@ -17,7 +21,7 @@ body {
   color: #001028;
   background: #FFFFFF; 
   font-family: Arial, sans-serif; 
-  font-size: 10px; 
+  font-size: 12px; 
   font-family: Arial;
 }
 
@@ -150,12 +154,31 @@ table td.total {
 }
 
 table td.info {
-  font-size: 1em;
-  /*width: 60%;*/
+  font-size: 1.2em;
+}
+
+table td.cert {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+table td.certitle {
+  font-weight: bold;
+  font-size: 0.8em;
+  text-align: center;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+}
+table td.certitle2 {
+  border-top: 0px;
+  border-bottom: 0px;
 }
 
 table td.grand {
   background: #F5F5F5;
+  font-weight: bold;
 }
 
 table th.grand {
@@ -170,6 +193,7 @@ table th.grand {
 
 .title {
   margin-bottom: 2px;
+  font-size: 1.2em;
 }
 
 footer {
