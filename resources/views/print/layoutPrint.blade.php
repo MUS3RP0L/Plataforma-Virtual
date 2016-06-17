@@ -46,7 +46,8 @@
       <h1>
         <b>       
           FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
-          MODALIDAD: {!! $fondoTramite->modalidad->name !!}
+          MODALIDAD: {!! $fondoTramite->modalidad->name !!}<br>
+          @yield('title2')
         </b>
       </h1>
       <br>

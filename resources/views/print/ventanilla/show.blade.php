@@ -1,18 +1,22 @@
 @extends('print.layoutPrint')
 
 @section('title')
-<h3>
-  <b>
-    VENTANILLA DE ATENCIÓN AL AFILIADO<br>
-  </b>
-</h3>
+
+  VENTANILLA DE ATENCIÓN AL AFILIADO
+
+@endsection
+
+@section('title2')
+
+  RECEPCIÓN
+
 @endsection
 
 @section('content')
       <div id="project">
         <table>
             <tr>
-                <td style="width: 60%;border: 0px;">
+                <td style="width: 30%;border: 0px;">
                 <div class="title"><b>I. DATOS GENERALES</b></div>
                 </td>
             </tr>
@@ -75,7 +79,7 @@
                @foreach ($documentos as $item)
               <tr>
                 <td style="width:1%" class="info">{!! $i !!}</td>  
-                <td style="width:80%" class="info">{!! $item->requisito->name !!}</td>
+                <td style="width:75%" class="info">{!! $item->requisito->name !!}</td>
                 @if ($item->est == 1)
                   <td class="info"><center><img class="circle" src="{!! asset('assets/images/check.png') !!}" style="width:70%" alt="icon"></center></td>
                 @else
