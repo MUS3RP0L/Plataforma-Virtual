@@ -5,117 +5,84 @@
 	
 	{!! Breadcrumbs::render('home') !!}
 
-	<div class="col-md-10 col-md-offset-1">
-
-		<div class="row">
-			<div class="col-md-4">
-				<div class="panel panel-default">
-				  <div class="panel-body" style="font-size: 26px;">
-				    <div>
-         				Afiliados en Servicio<br>
-         				{!! $totalAfiServ !!}
-        			</div>
-				  </div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="panel panel-default">
-				  <div class="panel-body" style="font-size: 26px;">
-				    <div>
-         				Afiliados en Comisión<br>
-         				{!! $totalAfiComi !!}
-        			</div>
-				  </div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="panel panel-default">
-				  <div class="panel-body" style="font-size: 26px;">
-				    <div>
-         				Total de Afiliados<br>
-         				{!! $totalAfi !!}
-        			</div>
-				  </div>
-				</div>
-			</div>
-		</div>
+	<div class="col-md-12">
 
 	  	<div class="row">
-			<div class="col-md-8">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Actividades</div>
+			<div class="col-md-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Actividades</div>
 
-						<div class="panel-body">
-							<ul class="panel-body list-group">
-						      @foreach ($activities as $activity)
-						        <li class="list-group-item">
-						          <span style="color:#888;font-style:italic">{!! $activity->created_at !!}:</span>
-						          {!! $activity->message !!}
-						        </li>
-						      @endforeach
-						      </ul>
-						</div>
+					<div class="panel-body">
+						<ul class="panel-body list-group">
+					      @foreach ($activities as $activity)
+					        <li class="list-group-item">
+					          <span style="color:#888;font-style:italic">{!! $activity->created_at !!}:</span>
+					          {!! $activity->message !!}
+					        </li>
+					      @endforeach
+					      </ul>
 					</div>
 				</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-4">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Total Afiliados por Estado</div>
-						<div class="panel-body" style="width: 100%" align="center">
-							<canvas id="doughnu-estado" width="450" height="300"/>
-						</div>
-					</div>
-			</div>
-
-			<div class="col-md-4">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Total Afiliados por Tipo</div>
-						<div class="panel-body" style="width: 100%" align="center">
-							<canvas id="pie-tipo" width="450" height="300"/>
-						</div>
-					</div>
-			</div>
-
-			<div class="col-md-4">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Total Aportes por Gestión</div>
-						<div class="panel-body" style="width: 100%">
-							<canvas id="bar-aportes" height="300" width="450"></canvas>
-						</div>
-					</div>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-md-4">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Total Afiliados por Distrito {!! $Fyear1 !!}</div>
-						<div class="panel-body" style="width: 100%"  >
-							<canvas id="pie-distrito" width="450" height="300"></canvas>
-						</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">Total Afiliados por Estado</div>
+					<div class="panel-body" style="width: 100%" align="center">
+						<canvas id="doughnu-estado" width="450" height="310"/>
 					</div>
+				</div>
 			</div>
-
-			<div class="col-md-4">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Total Aportes Voluntarios de la Gestión {!! $Fyear1 !!}</div>
-						<div class="panel-body" style="width: 100%" >
-							<canvas id="bar-AporteVoluntario" width="450" height="300"></canvas>
-						</div>
+			<div class="col-md-8">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Total Aportes por Gestión</div>
+					<div class="panel-body">
+						<canvas id="bar-aportes" width="450px" height="150"></canvas>
 					</div>
-			</div>
-
-			<div class="col-md-4">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Total Trámites de la Gestión {!! $Fyear1 !!}</div>
-						<div class="panel-body" style="width: 100%">
-							<canvas id="bar-tramites" height="300" width="450"></canvas>
-						</div>
-					</div>
+				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Total Afiliados por Tipo</div>
+					<div class="panel-body" style="width: 100%" align="center">
+						<canvas id="pie-tipo" width="450" height="268"/>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-8">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Total Aportes Voluntarios de la Gestión {!! $Fyear1 !!}</div>
+					<div class="panel-body" style="width: 100%">
+						<canvas id="bar-AporteVoluntario" width="450" height="150"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Total Afiliados por Distrito {!! $Fyear1 !!}</div>
+					<div class="panel-body" style="width: 100%"  >
+						<canvas id="pie-distrito" width="450" height="300"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Total Trámites de la Gestión {!! $Fyear1 !!}</div>
+					<div class="panel-body" style="width: 100%">
+						<canvas id="bar-tramites" width="450" height="170"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		
 
 
