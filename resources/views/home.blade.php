@@ -49,7 +49,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">Total Afiliados por Tipo</div>
 					<div class="panel-body" style="width: 100%" align="center">
-						<canvas id="pie-tipo" width="450" height="268"/>
+						<canvas id="pie-tipo" width="450" height="310"/>
 					</div>
 				</div>
 			</div>
@@ -69,7 +69,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">Total Afiliados por Distrito {!! $Fyear1 !!}</div>
 					<div class="panel-body" style="width: 100%"  >
-						<canvas id="pie-distrito" width="450" height="300"></canvas>
+						<canvas id="pie-distrito" width="450" height="310"></canvas>
 					</div>
 				</div>
 			</div>
@@ -77,7 +77,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">Total Trámites de la Gestión {!! $Fyear1 !!}</div>
 					<div class="panel-body" style="width: 100%">
-						<canvas id="bar-tramites" width="450" height="170"></canvas>
+						<canvas id="bar-tramites" width="450" height="150"></canvas>
 					</div>
 				</div>
 			</div>
@@ -350,28 +350,22 @@
 	window.onload = function(){
 
 		var ctx = document.getElementById("doughnu-estado").getContext("2d");
-				window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
+		window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
 
 		var ctx = document.getElementById("pie-tipo").getContext("2d");
-				window.myPie = new Chart(ctx).Pie(pieData);
+		window.myPie = new Chart(ctx).Pie(pieData, {responsive : true});
 
 		var ctx = document.getElementById("bar-aportes").getContext("2d");
-		window.myBar = new Chart(ctx).Bar(barChartData, {
-			responsive : true
-		});
+		window.myBar = new Chart(ctx).Bar(barChartData, {responsive : true});
 
 		var ctx = document.getElementById("pie-distrito").getContext("2d");
-				window.myPie = new Chart(ctx).Pie(pieDistrito);
+		window.myPie = new Chart(ctx).Pie(pieDistrito, {responsive : true});
 
 		var ctx = document.getElementById("bar-AporteVoluntario").getContext("2d");
-		window.myBar = new Chart(ctx).Bar(barAporteVoluntario, {
-			responsive : true
-		});
+		window.myBar = new Chart(ctx).Bar(barAporteVoluntario, {responsive : true});
 
 		var ctx = document.getElementById("bar-tramites").getContext("2d");
-		window.myBar = new Chart(ctx).Bar(barTramites, {
-			responsive : true
-		});
+		window.myBar = new Chart(ctx).Bar(barTramites, {responsive : true});
 
 		
 	}
