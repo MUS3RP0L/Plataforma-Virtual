@@ -11,7 +11,6 @@
 			<div class="col-md-12">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Actividades</div>
-
 					<div class="panel-body">
 						<ul class="panel-body list-group">
 					      @foreach ($activities as $activity)
