@@ -354,8 +354,8 @@ class FondoTramiteController extends Controller
                         $antecedente->save();
                     }
 
-                    $fondoTramite->fech_arc = date('Y-m-d');
-                    $fondoTramite->save();
+                     $fondoTramite->fech_arc = date('Y-m-d');
+                     $fondoTramite->save();
 
                     $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
                 break;

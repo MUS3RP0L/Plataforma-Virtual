@@ -78,4 +78,20 @@ class Conyuge extends Model
             return date("d", strtotime($this->fech_dece))." ".$meses[date("n", strtotime($this->fech_dece))-1]. " ".date("Y", strtotime($this->fech_dece)); 
         }
     }
+
+    public function getFullName()
+    {
+        return $this->pat . ' ' . $this->mat. ' ' . $this->nom. ' ' .$this->nom2;
+    }
 }
+
+Conyuge::created(function($conyuge)
+{
+    Activity::createdConyuge($conyuge);
+    
+});
+Conyuge::updating(function($conyuge)
+{
+    Activity::updateConyuge($conyuge);
+    
+});

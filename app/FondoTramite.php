@@ -137,3 +137,15 @@ class FondoTramite extends Model
     
 
 }
+
+FondoTramite::created(function($fondotramite)
+{
+    Activity::createdFondoRetiro($fondotramite);
+    
+});
+
+FondoTramite::updating(function($fondotramite)
+{
+    Activity::updateFondoRetiro($fondotramite);
+    
+});

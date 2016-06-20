@@ -44,3 +44,15 @@ class Documento extends Model
         return Util::getdateforEdit($this->fech_pres);
     }
 }
+
+Documento::created(function($documento)
+{
+    Activity::createdDocumento($documento);
+    
+});
+
+Documento::updating(function($documento)
+{
+    Activity::updateDocumento($documento);
+    
+});

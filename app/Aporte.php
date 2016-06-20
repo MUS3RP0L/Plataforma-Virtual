@@ -93,3 +93,9 @@ class Aporte extends Model
                     ->whereYear('aportes.gest', '=', $anio);        
     }  
 }
+
+Aporte::updating(function($aporte)
+{
+    Activity::updateAporte($aporte);
+    
+});

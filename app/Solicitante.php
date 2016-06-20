@@ -80,4 +80,22 @@ class Solicitante extends Model
     {
         return $this->tele_domi . ' ' . $this->celu_domi;
     }
+
+    public function getFullName()
+    {
+        return $this->pat . ' ' . $this->mat. ' ' . $this->nom;
+    }
 }
+
+Solicitante::created(function($solicitante)
+{   
+    Activity::createdSolicitante($solicitante);
+    
+});
+
+Solicitante::updating(function($solicitante)
+{   
+    Activity::updateSolicitante($solicitante);
+    
+});
+

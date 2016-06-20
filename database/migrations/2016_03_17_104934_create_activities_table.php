@@ -21,6 +21,11 @@ class CreateActivitiesTable extends Migration
             $table->UnsignedBigInteger('afiliado_id');
             $table->UnsignedBigInteger('user_id');
 
+            $table->UnsignedBigInteger('conyuge_id');
+            $table->UnsignedBigInteger('fondo_tramite_id');
+            $table->UnsignedBigInteger('solicitante_id');
+            $table->UnsignedBigInteger('documento_id');
+            $table->UnsignedBigInteger('antecedente_id');
             $table->UnsignedBigInteger('aporte_id');
             $table->UnsignedBigInteger('pago_id');
             $table->UnsignedBigInteger('note_id');
