@@ -34,8 +34,8 @@ class AporteController extends Controller
 
         $afiliado = Afiliado::idIs($afid)->firstOrFail();
 
-        $firstAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'asc')->first();
-        $lastAporte = Aporte::afiliadoId($afiliado->id)->orderBy('gest', 'desc')->first();
+        $firstAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'asc')->first();
+        $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
 
         
         if ($firstAporte) {
