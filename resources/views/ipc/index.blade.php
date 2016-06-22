@@ -70,7 +70,7 @@
                                 <div class="row text-center">
                                     <div class="form-group form-group">
                                       <div class="col-md-12">
-                                        <button type="submit" style="margin:16px;" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
+                                        <button type="submit" style="margin:16px;" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
                                       </div>
                                     </div>
                                 </div> 
@@ -78,7 +78,7 @@
                                 <div class="row text-center">
                                     <div class="form-group form-group">
                                       <div class="col-md-12">
-                                        <a type="submit" style="margin:16px;" class="btn btn-raised btn-primary disabled">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</a>
+                                        <a type="submit" style="margin:16px;" class="btn btn-raised btn-success disabled">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</a>
                                       </div>
                                     </div>
                                 </div> 

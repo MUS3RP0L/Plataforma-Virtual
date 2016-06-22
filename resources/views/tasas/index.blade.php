@@ -11,7 +11,7 @@
                     <div class="col-md-12 text-right"> 
                         <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Modificar">
                             <a href="" data-target="#myModal-edit" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                                &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;<span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;
                             </a>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                     <div class="form-group" style="padding-bottom:0px">
                         <div class="col-md-12">
                             <a href="{!! url('tasa') !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
-                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
                 </div>
@@ -145,19 +145,18 @@ $(function() {
         dom: '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
-        pageLength: 30,
-        "scrollX": true,
+        pageLength: 10,
         ajax: '{!! route('getTasa') !!}',
         order: [0, "desc"],
         columns: [
-            { data: 'gest', sWidth: '6%' },
-            { data: 'mes', sWidth: '9%', bSortable: false },
-            { data: 'apor_a', sWidth: '15%', sClass: "text-center", bSortable: false },
-            { data: 'apor_fr_a', sWidth: '15%', sClass: "text-center", bSortable: false },
-            { data: 'apor_sv_a', sWidth: '15%', sClass: "text-center", bSortable: false },
-            { data: 'apor_p', sWidth: '15%', sClass: "text-center", bSortable: false },
-            { data: 'apor_fr_p', sWidth: '15%', sClass: "text-center", bSortable: false },
-            { data: 'apor_sv_p', sWidth: '16%', sClass: "text-center", bSortable: false },
+            { data: 'gest' },
+            { data: 'mes', bSortable: false },
+            { data: 'apor_a', sClass: "text-center", bSortable: false },
+            { data: 'apor_fr_a', sClass: "text-center", bSortable: false },
+            { data: 'apor_sv_a', sClass: "text-center", bSortable: false },
+            { data: 'apor_p', sClass: "text-center", bSortable: false },
+            { data: 'apor_fr_p', sClass: "text-center", bSortable: false },
+            { data: 'apor_sv_p', sClass: "text-center", bSortable: false },
         ]
     });
 });
