@@ -114,11 +114,10 @@ class AporteController extends Controller
                 }
 
                 $base = array_merge($base, $mes);
-                $base = array_merge($base, $afi);
             }
 
             $year = array('year'=> $i);
-            $gestiones->push(array_merge($year, $base));
+            $gestiones->push(array_merge($afi, $year, $base));
         }
 
         return Datatables::of($gestiones)
