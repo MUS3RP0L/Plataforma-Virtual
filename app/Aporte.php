@@ -16,38 +16,40 @@ class Aporte extends Model
 
     protected $fillable = [
 
-	'afiliado_id',
+    	'afiliado_id',
 
-	'gest',
+    	'gest',
 
-    'uni',
-    'desg',
+        'uni',
+        'desg',
 
-    'niv',
-    'gra',
+        'niv',
+        'gra',
 
-    'item',
+        'item',
 
-    'cat', 
+        'cat', 
 
-    'sue',
-    'b_ant',
-    'b_est',
-    'b_car',
-    'b_fro',
-    'b_ori',
-    'b_seg',
+        'sue',
+        'b_ant',
+        'b_est',
+        'b_car',
+        'b_fro',
+        'b_ori',
+        'b_seg',
 
-    'dfu',
-    'nat',
-    'lac',
-    'pre',
-    'sub',
-    
-    'gan',
-    'cot',
-    'cot_adi',
-    'mus'
+        'dfu',
+        'nat',
+        'lac',
+        'pre',
+        'sub',
+        
+        'gan',
+        'cot',
+        'cot_adi',
+        'mus',
+        'fr',
+        'sv'
 
 	];
 
