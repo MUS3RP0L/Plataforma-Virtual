@@ -30,10 +30,6 @@ class AuthController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('guest', ['except' => 'getLogout']);
-    // }
 
     protected $redirectTo = '/';
 
@@ -52,7 +48,6 @@ class AuthController extends Controller
                     'password' => $request->password,
                     'status' => 'Activo'
                 ]
-                , $request->has('remember')
                 )){
             return redirect()->intended($this->redirectPath());
         }
@@ -71,11 +66,8 @@ class AuthController extends Controller
             
             return redirect('login')
             ->withErrors($validator)
-            ->withInput();
+            ->withInput()
+            ->with('error', 'Error al iniciar sesión');
         }
     }
-
-
-
-
 }
