@@ -8,16 +8,33 @@
             <div class="row"> 
                 <div class="col-md-4 col-md-offset-6"> 
                     <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
-                        &nbsp;&nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;&nbsp;
+                        &nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;
                     </a>
 
-                    <a href="{!! url('viewaporte/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
-                        &nbsp;&nbsp;<span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;
-                    </a>
+                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
+                        <a href="" class="btn btn-success btn-raised dropdown-toggle" data-toggle="dropdown">
+                            &nbsp;<span class="glyphicon glyphicon-align-justify"></span>&nbsp;
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{!! url('viewaporte/' . $afiliado->id) !!}" class="text-center">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="{!! url('selectgestaporte/' . $afiliado->id) !!}" class="text-center">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
                 </div>
                 <div class="col-md-2 text-right">
                     <a href="{!! url('afiliado') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
-                        &nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;
+                        &nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;
                     </a>
                 </div>
             </div>
