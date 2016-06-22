@@ -111,7 +111,7 @@
 	            { data: 'cot' },
 	            { data: 'mus' },
 	            { data: 'fr' },
-	            { data: 'sv' } 
+	            { data: 'sv' }  
 	        ]
 	    });
 	});
