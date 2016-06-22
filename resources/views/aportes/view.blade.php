@@ -7,13 +7,10 @@
         <div class="col-md-12">
 
         	<div class="row">  
-             	<div class="col-md-8">
-                    <h2 style="margin-top:-2px;">{!! $afiliado->getTittleName() !!}</h2>
-                </div>
-                <div class="col-md-4 text-right"> 
-					<a style="margin:-6px 1px;" href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning">
-					   Regresar&nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i>
-					</a>
+                <div class="col-md-12 text-right"> 
+					<a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
+                        &nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;
+                    </a>
                 </div>
         	</div>
 
@@ -21,14 +18,14 @@
 				<div class="col-md-12">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">Planillas de Aportes</h3>
+							<h3 class="panel-title">Despliegue</h3>
 						</div>
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-2">
-											<b>Desde</b>
+											<b>desde</b>
 										</div>
 										<div class="col-md-3">
 											 {!! $firstAporte->desde !!} 
@@ -44,8 +41,6 @@
 							</div><br>
 							<div class="row">
 								<div class="col-md-12">
-									
-
 									<table class="table table-striped table-hover" id="afiliados-table">
 				                        <thead>
 				                            <tr class="success">
@@ -73,7 +68,6 @@
 				                            </tr>
 				                        </thead>
 				                    </table>
-
 								</div>
 							</div>						
 						</div>
@@ -99,6 +93,7 @@
 	    	"scrollX": true,
 	        processing: true,
 	        serverSide: true,
+	        pageLength: 50,
 	        bFilter: false,
 	        ajax: {
 	            url: '{!! route('getAporte') !!}',
