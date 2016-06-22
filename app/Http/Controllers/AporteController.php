@@ -28,6 +28,31 @@ class AporteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function aportesData(Request $request)
+    {   
+
+        $aportes = Aporte::select(['id', 'gest', 'grado_id', 'unidad_id', 'item', 'sue',
+                             'b_ant', 'b_est', 'b_car', 'b_fro', 'b_ori', 'b_seg',
+                             'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'cot', 'mus', 'fr', 'sv' ])->where('afiliado_id', $request->id);
+
+        return Datatables::of($aportes)
+                        ->editColumn('gest', function ($aportes) { return Carbon::parse($aportes->gest)->month . "-" . Carbon::parse($aportes->gest)->year ; })
+                        ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
+                        ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
+                        ->editColumn('sue', function ($aportes) { return Util::formatMoney($aportes->sue); })
+                        ->editColumn('b_ant', function ($aportes) { return Util::formatMoney($aportes->b_ant); })
+                        ->editColumn('b_est', function ($aportes) { return Util::formatMoney($aportes->b_est); })
+                        ->editColumn('b_car', function ($aportes) { return Util::formatMoney($aportes->b_car); })
+                        ->editColumn('b_fro', function ($aportes) { return Util::formatMoney($aportes->b_fro); })
+                        ->editColumn('b_ori', function ($aportes) { return Util::formatMoney($aportes->b_ori); })
+                        ->editColumn('b_seg', function ($aportes) { return Util::formatMoney($aportes->b_seg); })
+                        ->editColumn('gan', function ($aportes) { return Util::formatMoney($aportes->gan); })
+                        ->editColumn('cot', function ($aportes) { return Util::formatMoney($aportes->cot); })
+                        ->editColumn('mus', function ($aportes) { return Util::formatMoney($aportes->mus); })
+                        ->editColumn('fr', function ($aportes) { return Util::formatMoney($aportes->fr); })
+                        ->editColumn('sv', function ($aportes) { return Util::formatMoney($aportes->sv); })
+                        ->make(true);
+    }
 
     public function ViewAporte($afid)
     {
@@ -37,7 +62,6 @@ class AporteController extends Controller
         $firstAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'asc')->first();
         $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
 
-        
         if ($firstAporte) {
             
             $firstAporte->desde = Util::getMes(Carbon::parse($firstAporte->gest)->month) . " de " . Carbon::parse($firstAporte->gest)->year;
@@ -155,32 +179,6 @@ class AporteController extends Controller
                 ->addColumn('action','<div class="row text-center"><a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}" ><i class="glyphicon glyphicon-pencil"></i></a></div>')
                 ->make(true);
 
-    }
-
-    public function aportesData(Request $request)
-    {   
-
-        $aportes = Aporte::select(['id', 'gest', 'grado_id', 'unidad_id', 'item', 'sue',
-                             'b_ant', 'b_est', 'b_car', 'b_fro', 'b_ori', 'b_seg',
-                             'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'cot', 'mus' ])->where('afiliado_id', $request->id);
-
-        return Datatables::of($aportes)
-                        ->editColumn('gest', function ($aportes) { return Carbon::parse($aportes->gest)->month . "-" . Carbon::parse($aportes->gest)->year ; })
-                        // ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
-                        ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
-                        ->editColumn('sue', function ($aportes) { return Util::formatMoney($aportes->sue); })
-                        ->editColumn('b_ant', function ($aportes) { return Util::formatMoney($aportes->b_ant); })
-                        ->editColumn('b_est', function ($aportes) { return Util::formatMoney($aportes->b_est); })
-                        ->editColumn('b_car', function ($aportes) { return Util::formatMoney($aportes->b_car); })
-                        ->editColumn('b_fro', function ($aportes) { return Util::formatMoney($aportes->b_fro); })
-                        ->editColumn('b_ori', function ($aportes) { return Util::formatMoney($aportes->b_ori); })
-                        ->editColumn('b_seg', function ($aportes) { return Util::formatMoney($aportes->b_seg); })
-                        ->editColumn('gan', function ($aportes) { return Util::formatMoney($aportes->gan); })
-                        ->editColumn('cot', function ($aportes) { return Util::formatMoney($aportes->cot); })
-                        ->editColumn('mus', function ($aportes) { return Util::formatMoney($aportes->mus); })
-                        ->addColumn('fon', function ($aportes) { return Util::formatMoney($aportes->fr); })
-                        ->addColumn('vid', function ($aportes) { return Util::formatMoney($aportes->sv); })
-                        ->make(true);
     }
 
     /**

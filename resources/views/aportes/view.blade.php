@@ -44,27 +44,22 @@
 									<table class="table table-striped table-hover" id="afiliados-table">
 				                        <thead>
 				                            <tr class="success">
-				                                <th>Gest</th>
-				                                {{-- <th>Niv Gra</th> --}}
-				                                <th>Uni</th>
-				                                <th>Ite</th>
-												<th>Sue</th>
-												<th>Bon Ant</th>
-												<th>Bon Est</th>
-												<th>Bon Car</th>
-												<th>Bon Fro</th>
-												<th>Bon Ori</th>
-												<th>Bon Seg</th>
-												<th>Def</th>
-												<th>Nat</th>
-												<th>Lac</th>
-												<th>Pre</th>
-												<th>Sub</th>
-												<th>Gan</th>
-												<th>Cot</th>
-												<th>Mus</th> 
-												<th>F.R.P</th> 
-												<th>S.V.</th> 
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Gestión">Ges</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Grado">Gra</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Unidad">Uni</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Ítem">Ite</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Sueldo">Sue</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Antigüedad">Ant</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Estudio">Est</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono al Cargo">Car</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Frontera">Fro</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Oriente">Ori</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Seguridad Ciudadana">Seg</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total Ganado">Gan</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Cotizable">Cot</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Aporte Muserpol">Mus</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Fondo de Retiro">F.R.</div></th>
+				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Seguro de Vida">S.V.</div></th>
 				                            </tr>
 				                        </thead>
 				                    </table>
@@ -90,7 +85,6 @@
 	    $('#afiliados-table').DataTable({
 	    	"dom": '<"top">t<"bottom"lp>',
 	    	"order": [[ 0, "desc" ]],
-	    	"scrollX": true,
 	        processing: true,
 	        serverSide: true,
 	        pageLength: 50,
@@ -102,28 +96,22 @@
 	            }
 	        },
 	        columns: [
-	            { data: 'gest', name: 'gest' },
-	            // { data: 'grado_id', name: 'grado_id' },
-	            { data: 'unidad_id', name: 'unidad_id' },
-	            { data: 'item', name: 'item' },
-	            { data: 'sue', name: 'sue' },
-	            { data: 'b_ant', name: 'b_ant' },
-	            { data: 'b_est', name: 'b_est' },
-	            { data: 'b_car', name: 'b_car' },
-	            { data: 'b_fro', name: 'b_fro' },
-	            { data: 'b_ori', name: 'b_ori' },
-	            { data: 'b_seg', name: 'b_seg' },
-	            { data: 'dfu', name: 'dfu' },
-	            { data: 'nat', name: 'nat' },
-	            { data: 'lac', name: 'lac' },
-	            { data: 'pre', name: 'pre' },
-	            { data: 'sub', name: 'sub' },
-	            { data: 'gan', name: 'gan' },
-	            { data: 'cot', name: 'cot' },
-	            { data: 'mus', name: 'mus' },
-	            { data: 'fon', name: 'fon' },
-	            { data: 'vid', name: 'vid' },
-	            
+	            { data: 'gest' },
+	            { data: 'grado_id' },
+	            { data: 'unidad_id' },
+	            { data: 'item' },
+	            { data: 'sue', },
+	            { data: 'b_ant' },
+	            { data: 'b_est' },
+	            { data: 'b_car' },
+	            { data: 'b_fro' },
+	            { data: 'b_ori' },
+	            { data: 'b_seg' },
+	            { data: 'gan' },
+	            { data: 'cot' },
+	            { data: 'mus' },
+	            { data: 'fr' },
+	            { data: 'sv' } 
 	        ]
 	    });
 	});
