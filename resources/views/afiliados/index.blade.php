@@ -18,36 +18,29 @@
                         <div class="col-md-12">
 
                             <form method="POST" id="search-form" role="form">
-                                <div class="row">
+                                <div class="row"><br>
                                     <div class="col-md-4">
-
                                         <div class="form-group">
-                                                {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-4 control-label']) !!}
-                                            <div class="col-md-8">
-                                                {!! Form::text('pat', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                                <span class="help-block">Escriba el Apellido Paterno</span>
-                                            </div>
-                                        </div>
-                                        <br>
-
-                                    </div>
-                                
-                                    <div class="col-md-4">
-
-                                        <div class="form-group">
-                                                {!! Form::label('nom', 'Primer Nombre', ['class' => 'col-md-4 control-label']) !!}
-                                            <div class="col-md-8">
+                                                {!! Form::label('nom', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
+                                            <div class="col-md-7">
                                                 {!! Form::text('nom', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                                 <span class="help-block">Escriba el Primer Nombre</span>
                                             </div>
                                         </div>
-
+                                    </div>                       
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                                {!! Form::label('nom2', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
+                                            <div class="col-md-7">
+                                                {!! Form::text('nom2', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                                <span class="help-block">Escriba el Segundo Nombre</span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-4">
-
                                         <div class="form-group">
-                                                {!! Form::label('car', 'Número de Carnet', ['class' => 'col-md-4 control-label']) !!}
-                                            <div class="col-md-8">
+                                                {!! Form::label('car', 'Número Carnet', ['class' => 'col-md-5 control-label']) !!}
+                                            <div class="col-md-7">
                                                 {!! Form::text('car', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                                 <span class="help-block">Escriba el Número de Carnet de Identidad</span>
                                             </div>
@@ -55,57 +48,47 @@
 
                                     </div>
                                 </div>
-                                <br>
+                                <br><br>
                                 <div class="row">
                                     <div class="col-md-4">
-
                                         <div class="form-group">
-                                                {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-4 control-label']) !!}
-                                            <div class="col-md-8">
+                                                {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
+                                            <div class="col-md-7">
+                                                {!! Form::text('pat', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                                <span class="help-block">Escriba el Apellido Paterno</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                                {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
+                                            <div class="col-md-7">
                                                 {!! Form::text('mat', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                                 <span class="help-block">Escriba el Apellido Materno</span>
                                             </div>
                                         </div>
-
-                                    </div>
-                                
-                                    <div class="col-md-4">
-
-                                        <div class="form-group">
-                                                {!! Form::label('nom2', 'Segundo Nombre', ['class' => 'col-md-4 control-label']) !!}
-                                            <div class="col-md-8">
-                                                {!! Form::text('nom2', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                                <span class="help-block">Escriba el Segundo Nombre</span>
-                                            </div>
-                                        </div>
-
                                     </div>
                                     <div class="col-md-4">
-
                                         <div class="form-group">
-                                                {!! Form::label('matri', 'Número de Matrícula', ['class' => 'col-md-4 control-label']) !!}
-                                            <div class="col-md-8">
+                                                {!! Form::label('matri', 'Número Matrícula', ['class' => 'col-md-5 control-label']) !!}
+                                            <div class="col-md-7">
                                                 {!! Form::text('matri', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                                 <span class="help-block">Escriba el Número de Matrícula</span>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
-
                                 <br><br>
                                 <div class="row text-center">
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <button type="reset" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-erase"></span>&nbsp;&nbsp;&nbsp;</button>
-                                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;&nbsp;</button>
+                                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;&nbsp;</button>
                                         </div>
                                     </div>
                                 </div>
-                                <br>
-
+                                <br><br>
                             </form>
-
                         </div>
                     </div>  
 
