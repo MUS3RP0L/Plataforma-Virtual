@@ -145,24 +145,24 @@ class UsuarioController extends Controller
         
         $messages = [
             'ape.required' => 'El campo apellidos es requerido',
-            'ape.min' => 'El mínimo de caracteres permitidos para apellidos es 3', 
+            'ape.min' => 'El mínimo de caracteres permitidos en apellido es 3', 
             'ape.regex' => 'Sólo se aceptan letras para apellidos',
 
             'nom.required' => 'El campo nombre requerido',
-            'nom.min' => 'El mínimo de caracteres permitidos para nombre es 3',
+            'nom.min' => 'El mínimo de caracteres permitidos en nombre es 3',
             'nom.regex' => 'Sólo se aceptan letras para nombre',
 
             'tel.required' => 'El campo teléfono es requerido',
-            'tel.min' => 'El mínimo de caracteres permitidos para teléfono de usuario es 8',
+            'tel.min' => 'El mínimo de caracteres permitidos en teléfono de usuario es 8',
             'tel.numeric' => 'El campo teléfono tiene q ser númerico',
 
             'username.required' => 'El campo nombre de usuario requerido',
-            'username.min' => 'El mínimo de caracteres permitidos para nombre de usuario es 5',
+            'username.min' => 'El mínimo de caracteres permitidos en nombre de usuario es 5',
             'username.unique' => 'El nombre de usuario ya existe',
 
             'password.required' => 'El campo contraseña es requerido',
-            'password.min' => 'El mínimo de caracteres permitidos son 6',
-            'password.confirmed' => 'Los passwords no coinciden',
+            'password.min' => 'El mínimo de caracteres permitidos en contraseña es 6',
+            'password.confirmed' => 'Las contraseñas no coinciden',
 
             'rol.required' => 'El campo contraseña es requerido'
         ];
