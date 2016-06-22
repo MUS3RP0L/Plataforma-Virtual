@@ -49,10 +49,16 @@ Breadcrumbs::register('show_afiliado', function($breadcrumbs, $afiliado) {
     $breadcrumbs->parent('afiliado');
     $breadcrumbs->push($afiliado->getTittleName(), URL::to('afiliado/'.$afiliado->id));
 });
+
 // Show Aportes Afiliado
 Breadcrumbs::register('aportes_afiliado', function($breadcrumbs, $afiliado) {
     $breadcrumbs->parent('show_afiliado', $afiliado);
     $breadcrumbs->push('Aportes');
+});
+// Show Crear Aportes Afiliado
+Breadcrumbs::register('registro_aportes_afiliado', function($breadcrumbs, $afiliado) {
+    $breadcrumbs->parent('show_afiliado', $afiliado);
+    $breadcrumbs->push('Registro de Aporte');
 });
 
 // Fondo de Retiro
