@@ -2,18 +2,15 @@
 
 @section('content')
 <div class="container-fluid">
-
+    {!! Breadcrumbs::render('registro_aportes_afiliado', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
 
             <div class="row">  
-                <div class="col-md-8">
-                    <h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
-                    <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
-                </div>
-                <div class="col-md-4 text-right"> 
-                    <a href="{!! url('afiliado/' . $afiliado->id) !!}" class="btn btn-raised btn-warning">
-                       Regresar&nbsp;&nbsp;<i class="glyphicon glyphicon-share-alt"></i>
+
+                <div class="col-md-12 text-right"> 
+                    <a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
+                        &nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;
                     </a>
                 </div>
             </div>
@@ -41,7 +38,7 @@
                                         <th>Octubre</th>
                                         <th>Noviembre</th>
                                         <th>Diciembre</th>
-                                        <th>Opciones</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -59,36 +56,33 @@
 <script>
     $(function() {
         $('#regapor-table').DataTable({
-            "dom": '<"top">t<"bottom"lp>',
-            "order": [[ 0, "asc" ]],
-            // "scrollX": true,
+            "dom": '<"top">t<"bottom"p>',
+            "order": [[ 0, "desc" ]],
             processing: true,
             serverSide: true,
             bFilter: false,
+            pageLength: 12,
             ajax: {
                 url: '{!! route('getRegPago') !!}',
                 data: function (d) {
-                    d.id = {{ $afid }};
+                    d.id = {{ $afiliado->id }};
                 }
             },
-
             columns: [
-               
-                { data: 'year', name: 'year' },
-                { data: 'm1', name: 'm1' },
-                { data: 'm2', name: 'm2' },
-                { data: 'm3', name: 'm3' },
-                { data: 'm4', name: 'm4' },
-                { data: 'm5', name: 'm5' },
-                { data: 'm6', name: 'm6' },
-                { data: 'm7', name: 'm7' },
-                { data: 'm8', name: 'm8' },
-                { data: 'm9', name: 'm9' },
-                { data: 'm10', name: 'm10' },
-                { data: 'm11', name: 'm11' },
-                { data: 'm12', name: 'm12' },
-                { data: 'action', name: 'action' }
-                         
+                { data: 'year'},
+                { data: 'm1', "sClass": "text-center", bSortable: false },
+                { data: 'm2', "sClass": "text-center", bSortable: false },
+                { data: 'm3', "sClass": "text-center", bSortable: false },
+                { data: 'm4', "sClass": "text-center", bSortable: false },
+                { data: 'm5', "sClass": "text-center", bSortable: false },
+                { data: 'm6', "sClass": "text-center", bSortable: false },
+                { data: 'm7', "sClass": "text-center", bSortable: false },
+                { data: 'm8', "sClass": "text-center", bSortable: false },
+                { data: 'm9', "sClass": "text-center", bSortable: false },
+                { data: 'm10', "sClass": "text-center", bSortable: false },
+                { data: 'm11', "sClass": "text-center", bSortable: false },
+                { data: 'm12', "sClass": "text-center", bSortable: false },
+                { data: 'action', "sClass": "text-center", bSortable: false }       
             ]
         });
     });
