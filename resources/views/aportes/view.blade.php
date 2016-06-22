@@ -44,22 +44,22 @@
 									<table class="table table-striped table-hover" id="afiliados-table">
 				                        <thead>
 				                            <tr class="success">
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Gestión">Ges</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Grado">Gra</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Unidad">Uni</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Ítem">Ite</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Sueldo">Sue</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Antigüedad">Ant</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Estudio">Est</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono al Cargo">Car</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Frontera">Fro</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Oriente">Ori</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Seguridad Ciudadana">Seg</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total Ganado">Gan</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Cotizable">Cot</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Aporte Muserpol">Mus</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Fondo de Retiro">F.R.</div></th>
-				                            	<th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Seguro de Vida">S.V.</div></th>
+				                            	<th class="text-center"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Gestión">Gestión</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Grado">Grado</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Unidad">Unidad</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Ítem">Ítem</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Sueldo">Sueldo</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Antigüedad">B Antigüedad</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Estudio">B Estudio</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono al Cargo">B al Cargo</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Frontera">B Frontera</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Oriente">B Oriente</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Seguridad Ciudadana">B Seguridad</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total Ganado">Ganado</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total Cotizable">Cotizable</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total Aporte Muserpol">Aporte</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="% Fondo de Retiro">F.R.</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title=" % Seguro de Vida">S.V.</div></th>
 				                            </tr>
 				                        </thead>
 				                    </table>
@@ -83,11 +83,11 @@
 
 	$(function() {
 	    $('#afiliados-table').DataTable({
-	    	"dom": '<"top">t<"bottom"lp>',
+	    	"dom": '<"top">t<"bottom"p>',
 	    	"order": [[ 0, "desc" ]],
 	        processing: true,
 	        serverSide: true,
-	        pageLength: 50,
+	        pageLength: 100,
 	        bFilter: false,
 	        ajax: {
 	            url: '{!! route('getAporte') !!}',
@@ -97,21 +97,21 @@
 	        },
 	        columns: [
 	            { data: 'gest' },
-	            { data: 'grado_id' },
-	            { data: 'unidad_id' },
-	            { data: 'item' },
-	            { data: 'sue', },
-	            { data: 'b_ant' },
-	            { data: 'b_est' },
-	            { data: 'b_car' },
-	            { data: 'b_fro' },
-	            { data: 'b_ori' },
-	            { data: 'b_seg' },
-	            { data: 'gan' },
-	            { data: 'cot' },
-	            { data: 'mus' },
-	            { data: 'fr' },
-	            { data: 'sv' }  
+	            { data: 'grado_id', "sClass": "text-right", bSortable: false },
+	            { data: 'unidad_id', "sClass": "text-right", bSortable: false },
+	            { data: 'item', "sClass": "text-right", bSortable: false },
+	            { data: 'sue', "sClass": "text-right", bSortable: false },
+	            { data: 'b_ant', "sClass": "text-right", bSortable: false },
+	            { data: 'b_est', "sClass": "text-right", bSortable: false },
+	            { data: 'b_car', "sClass": "text-right", bSortable: false },
+	            { data: 'b_fro', "sClass": "text-right", bSortable: false },
+	            { data: 'b_ori', "sClass": "text-right", bSortable: false },
+	            { data: 'b_seg', "sClass": "text-right", bSortable: false },
+	            { data: 'gan', "sClass": "text-right", bSortable: false },
+	            { data: 'cot', "sClass": "text-right", bSortable: false },
+	            { data: 'mus', "sClass": "text-right", bSortable: false },
+	            { data: 'fr', "sClass": "text-right", bSortable: false },
+	            { data: 'sv', "sClass": "text-right", bSortable: false }  
 	        ]
 	    });
 	});
