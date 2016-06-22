@@ -5,15 +5,14 @@
 	{!! Breadcrumbs::render('aportes_afiliado', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
-
         	<div class="row">  
+
                 <div class="col-md-12 text-right"> 
 					<a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
                         &nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;
                     </a>
                 </div>
         	</div>
-
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-primary">
@@ -21,24 +20,6 @@
 							<h3 class="panel-title">Despliegue</h3>
 						</div>
 						<div class="panel-body">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="row">
-										<div class="col-md-2">
-											<b>desde</b>
-										</div>
-										<div class="col-md-3">
-											 {!! $firstAporte->desde !!} 
-										</div>
-										<div class="col-md-2">
-											<b>hasta</b>
-										</div>
-										<div class="col-md-3">
-											 {!! $lastAporte->hasta !!} 
-										</div>
-									</div>
-								</div>
-							</div><br>
 							<div class="row">
 								<div class="col-md-12">
 									<table class="table table-striped table-hover" id="afiliados-table">

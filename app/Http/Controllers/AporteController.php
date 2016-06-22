@@ -37,7 +37,7 @@ class AporteController extends Controller
 
         return Datatables::of($aportes)
                         ->editColumn('gest', function ($aportes) { return Carbon::parse($aportes->gest)->month . "-" . Carbon::parse($aportes->gest)->year ; })
-                        ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv . "-" . $aportes->grado->grad; })
+                        ->editColumn('grado_id', function ($aportes) { return $aportes->grado->niv ? $aportes->grado->niv . "-" . $aportes->grado->grad : ' '; })
                         ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad->cod; })
                         ->editColumn('sue', function ($aportes) { return Util::formatMoney($aportes->sue); })
                         ->editColumn('b_ant', function ($aportes) { return Util::formatMoney($aportes->b_ant); })
@@ -57,22 +57,13 @@ class AporteController extends Controller
     public function ViewAporte($afid)
     {
 
-        $afiliado = Afiliado::idIs($afid)->firstOrFail();
-
+        $afiliado = Afiliado::idIs($afid)->first();
         $firstAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'asc')->first();
-        $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
 
         if ($firstAporte) {
-            
-            $firstAporte->desde = Util::getMes(Carbon::parse($firstAporte->gest)->month) . " de " . Carbon::parse($firstAporte->gest)->year;
-            $lastAporte->hasta = Util::getMes(Carbon::parse($lastAporte->gest)->month) . " de " . Carbon::parse($lastAporte->gest)->year;
-
             $data = array(
                 'afiliado' => $afiliado,
-                'lastAporte' => $lastAporte,
-                'firstAporte' => $firstAporte,
             );
-
             return view('aportes.view', $data);
         }
         else
@@ -83,48 +74,17 @@ class AporteController extends Controller
         }
     }
 
-    public function RegAporteGest($afid)
-    {
-
-        $afiliado = Afiliado::idIs($afid)->firstOrFail();
-
-        $data = array(
-            'afiliado' => $afiliado,
-            'afid' => $afid
-        );
-
-        return view('aportes.index', $data);
-    }
-
-    public function CalcAporteGest($afid, $gesid)
-    {
-        $afiliado = Afiliado::idIs($afid)->firstOrFail();
-        $categorias = Categoria::select(['por'])->get();
-
-        $data = array(
-            'afiliado' => $afiliado,
-            'afid' => $afid,
-            'gesid' => $gesid,
-            'categorias' => Categoria::orderBy('id')->get(array('por'))
-        );
-
-        return view('aportes.calc', $data);
-    }
-
-
     public function RegPagoData(Request $request)
     {   
-        $afiliado = Afiliado::idIs($request->id)->firstOrFail();
-
+        $afiliado = Afiliado::idIs($request->id)->first();
         $afi["afi_id"] = $afiliado->id;
 
         $gestiones = new Collection;
 
         $from = Carbon::parse($afiliado->fech_ing);
-
-        $to = Carbon::now();
         
-        $to->diffInHours($from);
+        $fto = Carbon::now();
+        $to = Carbon::createFromDate($fto->year, $fto->month, 1)->subMonth();
 
         for ($i=$from->year; $i <= $to->year ; $i++) { 
             
@@ -174,11 +134,35 @@ class AporteController extends Controller
                 ->editColumn('m10', '<?php if($m10 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m10 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m10 === -1){ ?>&nbsp;<?php } ?>')
                 ->editColumn('m11', '<?php if($m11 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m11 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m11 === -1){ ?>&nbsp;<?php } ?>')
                 ->editColumn('m12', '<?php if($m12 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m12 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m12 === -1){ ?>&nbsp;<?php } ?>')
-                
-                // ->addColumn('action','<div class="row text-center"><a href="calcaportegest/{{$afi_id}}/{{$year}}" ><i class="glyphicon glyphicon-pencil"></i></a></div>')
-                ->addColumn('action','<div class="row text-center"><a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}" ><i class="glyphicon glyphicon-pencil"></i></a></div>')
+                ->addColumn('action','<div class="row text-center"><a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}" ><i class="glyphicon glyphicon-edit"></i></a></div>')
                 ->make(true);
+    }
 
+    public function SelectGestAporte($afid)
+    {
+
+        $afiliado = Afiliado::idIs($afid)->first();
+
+        $data = array(
+            'afiliado' => $afiliado,
+        );
+
+        return view('aportes.gest', $data);
+    }
+
+    public function CalcAporteGest($afid, $gesid)
+    {
+        $afiliado = Afiliado::idIs($afid)->first();
+        $categorias = Categoria::select(['por'])->get();
+
+        $data = array(
+            'afiliado' => $afiliado,
+            'afid' => $afid,
+            'gesid' => $gesid,
+            'categorias' => Categoria::orderBy('id')->get(array('por'))
+        );
+
+        return view('aportes.calc', $data);
     }
 
     /**
