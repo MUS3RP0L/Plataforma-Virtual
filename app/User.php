@@ -34,7 +34,7 @@ class User extends Model implements AuthenticatableContract,
         'tel', 
         'username',
         'password',
-        'role', 
+        'rol_id', 
         'status'
     ];
 
