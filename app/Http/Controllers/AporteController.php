@@ -87,37 +87,43 @@ class AporteController extends Controller
         $to = Carbon::createFromDate($fto->year, $fto->month, 1)->subMonth();
 
         for ($i=$from->year; $i <= $to->year ; $i++) { 
-            
+            $c["count"] = 0;
+            $c["total"] = 0;
             $base = array();
             $mes = array();
  
             for ($j=1; $j <= 12; $j++) { 
 
-                $aportes = Aporte::select(['gest'])->where('afiliado_id', $request->id)->where('gest', '=',Carbon::createFromDate($i, $j, 1)->toDateString())->first();   
-     
+                $aportes = Aporte::select(['gest'])->where('afiliado_id', $request->id)->where('gest', '=',Carbon::createFromDate($i, $j, 1)->toDateString())->first();
                 if ($aportes) {
                     $mes["m".$j] = 1;
+                    $c["count"] ++;
+                    $c["total"] ++;
                 }else{
                    $mes["m".$j] = 0;
+                   $c["total"] ++;
                 }
-
                 if ($i == $from->year) {
                     if($j < $from->month){
                         $mes["m".$j] = -1;
+                        $c["total"] --;
                     }
                 }
-
                 if ($i == $to->year) {
                     if($j > $to->month){
                         $mes["m".$j] = -1;
+                        $c["total"] --;
                     }
                 }
-
                 $base = array_merge($base, $mes);
             }
-
+            if ($c["total"] == $c["count"]) {
+                $c["status"] = 0;
+            }else{
+                $c["status"] = 1;
+            }
             $year = array('year'=> $i);
-            $gestiones->push(array_merge($afi, $year, $base));
+            $gestiones->push(array_merge($afi, $c, $year, $base));
         }
 
         return Datatables::of($gestiones)
@@ -133,7 +139,7 @@ class AporteController extends Controller
                 ->editColumn('m10', '<?php if($m10 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m10 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m10 === -1){ ?>&nbsp;<?php } ?>')
                 ->editColumn('m11', '<?php if($m11 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m11 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m11 === -1){ ?>&nbsp;<?php } ?>')
                 ->editColumn('m12', '<?php if($m12 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m12 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m12 === -1){ ?>&nbsp;<?php } ?>')
-                ->addColumn('action','<div class="row text-center"><a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}" ><i class="glyphicon glyphicon-edit"></i></a></div>')
+                ->addColumn('action','<?php if($status === 1){ ?><div class="row text-center"><a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}" ><i class="glyphicon glyphicon-edit"></i></a></div><?php } ?>')
                 ->make(true);
     }
 
