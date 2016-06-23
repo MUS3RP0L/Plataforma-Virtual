@@ -18,6 +18,8 @@ use Muserpol\Helper\Util;
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
 use Muserpol\Categoria;
+use Muserpol\AporTasa;
+use Muserpol\IpcTasa;
 
 use Illuminate\Support\Collection;
 
@@ -162,34 +164,57 @@ class AporteController extends Controller
         $fto = Carbon::now();
         $to = Carbon::createFromDate($fto->year, $fto->month, 1)->subMonth();
 
-        $base = array();
-        $mes = array();
+        $IpcAct = IpcTasa::select('ipc')->where('gest', '=',Carbon::createFromDate($to->year, $to->month, 1)->toDateString())->first();
+
+        $months = new Collection;
+
+        $month = array();
 
         for ($j=1; $j <= 12; $j++) { 
             $aportes = Aporte::select(['gest'])->where('afiliado_id', $afid)->where('gest', '=',Carbon::createFromDate($gestid, $j, 1)->toDateString())->first();
+            $AporTasa = AporTasa::where('gest', '=',Carbon::createFromDate($gestid, $j, 1)->toDateString())->first();
+            $IpcTasa = IpcTasa::where('gest', '=',Carbon::createFromDate($gestid, $j, 1)->toDateString())->first();
+
             if(!$aportes) {
                 if ($gestid == $from->year) {
                     if($j >= $from->month){
-                       $mes[$j] = Util::getMes($j);
+                        $month["id"] = $j;
+                        $month["name"] = Util::getMes($j);
+                        $month["fr_a"] = $AporTasa->apor_fr_a;
+                        $month["apor_sv_a"] = $AporTasa->apor_sv_a;
+                        $month["ipc"] = $IpcTasa->ipc;
+                        $months->push($month);
                     }
                 }
                 elseif ($gestid == $to->year) {
                     if($j <= $to->month){
-                        $mes[$j] = Util::getMes($j);
+                        $month["id"] = $j;
+                        $month["name"] = Util::getMes($j);
+                        $month["fr_a"] = $AporTasa->apor_fr_a;
+                        $month["sv_a"] = $AporTasa->apor_sv_a;
+                        $month["ipc"] = $IpcTasa->ipc;
+                        $months->push($month);
                     }
                 }else{
-                    $mes[$j] = Util::getMes($j);
+                    $month["id"] = $j;
+                    $month["name"] = Util::getMes($j);
+                    $month["fr_a"] = $AporTasa->apor_fr_a;
+                    $month["sv_a"] = $AporTasa->apor_sv_a;
+                    $month["ipc"] = $IpcTasa->ipc;
+                    $months->push($month);
                 }
             }
+            
         }
 
         $data = array(
+            'months' => $months,
             'afiliado' => $afiliado,
             'gestid' => $gestid,
-            'months' => $mes,
-            'categorias' => Categoria::orderBy('id')->get(array('por'))
+            'IpcAct' => $IpcAct,
+            'categorias' => Categoria::where('name', '<>', '')->orderBy('id', 'desc')->get(array('por', 'name')),
         );
-
+        // return $data;
         return view('aportes.calc', $data);
     }
 
