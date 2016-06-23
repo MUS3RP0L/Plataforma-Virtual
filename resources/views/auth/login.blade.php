@@ -2,17 +2,6 @@
 
 @section('content')
 
-<div class="container">
-	@if (Session::has('error'))
-        <div class="alert alert-warning" role="alert">
-           @foreach ($errors->all() as $error)
-              <div><h4>{{ $error }}</h4></div>
-          @endforeach
-          <div><h4>{{Session::get('error')}}</h4></div>
-        </div>
-    @endif
-</div>
-
 <div class="row" style="margin: 6% 0 0 0;">
 	<div class="col-md-6 col-md-offset-3">
   		<div class="panel panel-primary">
