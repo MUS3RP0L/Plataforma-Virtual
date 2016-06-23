@@ -30,8 +30,8 @@ class CategoriasTableSeeder extends Seeder
             ['id' => '7', 'from' => '25', 'to' => '28', 'name' => '85%', 'por' => '0.85'],
             ['id' => '8', 'from' => '29', 'to' => '0', 'name' => '100%', 'por' => '1'],
 
-            ['id' => '9', 'from' => '-', 'to' => '-', 'name' => '34%', 'por' => '0.34'],
-            ['id' => '10', 'from' => '-', 'to' => '-', 'name' => '50%', 'por' => '0.5']
+            ['id' => '9', 'from' => '0', 'to' => '0', 'name' => '', 'por' => '0.34'],
+            ['id' => '10', 'from' => '0', 'to' => '0', 'name' => '', 'por' => '0.5']
 
         ];
 
