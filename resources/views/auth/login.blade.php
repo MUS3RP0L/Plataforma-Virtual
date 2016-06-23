@@ -24,7 +24,6 @@
 			                	<span class="help-block">Ingrese su contraseña</span>
 			              	</div>
 			            </div>
-						<br>
 				        <div class="row text-center">
 		                    <div class="form-group">
 		                        <div class="col-md-12">

@@ -133,14 +133,14 @@
             }
         },
         columns: [
-            { data: 'ci', sWidth: '11%' },
-            { data: 'matri', sWidth: '12%', bSortable: false },
-            { data: 'gra', sWidth: '12%', bSortable: false },
-            { data: 'pat', sWidth: '15%', bSortable: false },
-            { data: 'mat', sWidth: '15%', bSortable: false },
-            { data: 'noms', sWidth: '15%', bSortable: false },
-            { data: 'est', sWidth: '15%', bSortable: false },
-            { data: 'action', name: 'action', sWidth: '5%', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
+            { data: 'ci' },
+            { data: 'matri', bSortable: false },
+            { data: 'gra', bSortable: false },
+            { data: 'pat', bSortable: false },
+            { data: 'mat', bSortable: false },
+            { data: 'noms', bSortable: false },
+            { data: 'est', bSortable: false },
+            { data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
         ]
     });
 
