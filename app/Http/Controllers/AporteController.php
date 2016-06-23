@@ -164,7 +164,7 @@ class AporteController extends Controller
         $fto = Carbon::now();
         $to = Carbon::createFromDate($fto->year, $fto->month, 1)->subMonth();
 
-        $IpcAct = IpcTasa::select('ipc')->where('gest', '=',Carbon::createFromDate($to->year, $to->month, 1)->toDateString())->first();
+        $IpcAct = IpcTasa::select('ipc')->where('gest', '=',Carbon::createFromDate($fto->year, $fto->month, 1)->toDateString())->first();
 
         $months = new Collection;
 

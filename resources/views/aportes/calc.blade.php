@@ -19,58 +19,63 @@
                 <div class="panel-body">
                     <div class="row"><p>
                         <div class="col-md-12">
-                        
-                         <h2><span data-bind="text: aportes().length"></span> Meses</h2>
-
-                        <table class="table table-hover">
-                            <thead>
-                                <tr class="success">
-                                    <th>Mes</th>
-                                    <th>Haber Básico</th>
-                                    <th>Categoría</th>
-                                    <th>Antigüedad</th>
-                                    <th>Bono Estudio</th>
-                                    <th>Bono Cargo</th>
-                                    <th>Bono Frontera</th>
-                                    <th>Bono Oriente</th>
-                                    <th>Cotizable</th>
-                                    <th>F.R.</th>
-                                    <th>S.V.</th>
-                                    <th>Subtotal Aporte</th>
-                                    <th>Ajuste IPC</th>
-                                    <th>Total Aporte</th>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="success">
+                                        <th style="text-align: center" width="6%">Mes</th>
+                                        <th style="text-align: center" width="6%">H. Básico</th>
+                                        <th style="text-align: center" width="6%">Categoría</th>
+                                        <th style="text-align: center" width="5%">Antigüedad</th>
+                                        <th style="text-align: center" width="6%">B. Estudio</th>
+                                        <th style="text-align: center" width="6%">B. al Cargo</th>
+                                        <th style="text-align: center" width="6%">B. Frontera</th>
+                                        <th style="text-align: center" width="6%">B. Oriente</th>
+                                        <th style="text-align: center" width="7%">Cotizable</th>
+                                        <th style="text-align: center" width="6%">F.R.</th>
+                                        <th style="text-align: center" width="6%">S.V.</th>
+                                        <th style="text-align: center" width="6%">Aporte</th>
+                                        <th style="text-align: center" width="6%">IPC</th>
+                                        <th style="text-align: center" width="6%">Total</th>
+                                        <th style="text-align: center" width="1%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: aportes">
+                                    <tr>
+                                        <td style="text-align: center"><span data-bind="text: nameMonth"/></td>
+                                        <td style="text-align: center"><input data-bind="value: haber, valueUpdate: 'afterkeydown'" style="text-align: right;width: 80px;"/></td>
+                                        <td style="text-align: center"><select data-bind="options: $root.categorias, value: categoria, optionsText: 'name'"></select></td>
+                                        <td style="text-align: right;padding-right:2%;"><span data-bind="text: anti"/></td>
+                                        <td style="text-align: center"><input data-bind="value: estu, valueUpdate: 'afterkeydown'" style="text-align: right;width: 79px;"/></td>
+                                        <td style="text-align: center"><input data-bind="value: carg, valueUpdate: 'afterkeydown'" style="text-align: right;width: 79px;"/></td>
+                                        <td style="text-align: center"><input data-bind="value: fron, valueUpdate: 'afterkeydown'" style="text-align: right;width: 79px;"/></td>
+                                        <td style="text-align: center"><input data-bind="value: orie, valueUpdate: 'afterkeydown'" style="text-align: right;width: 79px;"/></td>
+                                        <td style="text-align: right;padding-right:2%;"><span data-bind="text: coti"/></td>
+                                        <td style="text-align: right;padding-right:2%;"><span data-bind="text: apfr"/></td>
+                                        <td style="text-align: right;padding-right:2%;"><span data-bind="text: apsv"/></td>
+                                        <td style="text-align: right;padding-right:2%;"><span data-bind="text: apor"/></td>
+                                        <td style="text-align: right;padding-right:2%;"><span data-bind="text: aipc"/></td>
+                                        <td style="text-align: right;padding-right:2%;"><span data-bind="text: tapo"/></td>
+                                        <td style="text-align: center"><a href="#" data-bind="click: $root.removeAporte, visible: tapo() == 0"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                    </tr>    
+                                </tbody>
+                                <tr class="active">
+                                    <th style="text-align: center"><span data-bind="text: aportes().length"></span></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th style="text-align: right;padding-right:2%;"><span data-bind="text: tCot()"></span></th>
+                                    <th style="text-align: right;padding-right:2%;"><span data-bind="text: tAfr()"></span></th>
+                                    <th style="text-align: right;padding-right:2%;"><span data-bind="text: tAsv()"></span></th>
+                                    <th style="text-align: right;padding-right:2%;"><span data-bind="text: tApo()"></span></th>
+                                    <th style="text-align: right;padding-right:2%;"><span data-bind="text: tipc()"></span></th>
+                                    <th style="text-align: right;padding-right:2%;"><span data-bind="text: tTap()"></span></th>
+                                    <th></th>
                                 </tr>
-                            </thead>
-                            <tbody data-bind="foreach: aportes">
-                                <tr>
-                                    <td><span data-bind="text: nameMonth" class="form-control"/></td>
-                                    <td><input data-bind="value: haber, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/></td>
-                                    <td><select data-bind="options: $root.categorias, value: categoria, optionsText: 'name'" class="form-control"  style="text-align: right"></select></td>
-                                    <td><span data-bind="text: anti" class="form-control"  style="text-align: right"/></td>
-                                    <td><input data-bind="value: estu, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/></td>
-                                    <td><input data-bind="value: carg, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/></td>
-                                    <td><input data-bind="value: fron, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/></td>
-                                    <td><input data-bind="value: orie, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/></td>
-                                    <td><span data-bind="text: coti" class="form-control"  style="text-align: right"/></td>
-                                    <td><span data-bind="text: apfr" class="form-control"  style="text-align: right"/></td>
-                                    <td><span data-bind="text: apsv" class="form-control"  style="text-align: right"/></td>
-                                    <td><span data-bind="text: apor" class="form-control"  style="text-align: right"/></td>
-                                    <td><span data-bind="text: aipc" class="form-control"  style="text-align: right"/></td>
-                                    <td><span data-bind="text: tapo" class="form-control"  style="text-align: right"/></td>
-
-                                    <!-- <td><a href="#" data-bind="click: $root.removeAporte">Quitar</a></td> -->
-                                </tr>    
-                            </tbody>
-                        </table>
-
-                        {{-- <button data-bind="click: addAporte, enable: aportes().length < 12">Adicionar</button> --}}
-
-{{--                         <h3 data-bind="visible: totalSurcharge() > 0">
-                            Total <span data-bind="text: totalSurcharge()"></span>
-                        </h3> --}}
-
-
-
+                            </table>
                         </div>
                     </div>                      
                 </div>
@@ -100,38 +105,38 @@
         self.haber = ko.observable(haber);
         self.categoria = ko.observable(categorias);
         self.anti = ko.computed(function() {
-            var anti = parseFloat(self.categoria().por) * parseFloat(self.haber());
-            return anti ? anti : '';       
+            var anti = roundToTwo(parseFloat(self.categoria().por) * parseFloat(self.haber()));
+            return anti ? anti : 0;       
         }); 
         self.estu = ko.observable(estu);
         self.carg = ko.observable(carg);
         self.fron = ko.observable(fron);
         self.orie = ko.observable(orie);
         self.coti = ko.computed(function() {
-            var coti = parseFloat(self.haber()) + parseFloat(self.anti()) + 
+            var coti = roundToTwo(parseFloat(self.haber()) + parseFloat(self.anti()) + 
                         parseFloat(self.estu()) + parseFloat(self.carg()) +
-                        parseFloat(self.fron()) + parseFloat(self.orie());
-            return coti ? coti : '';       
+                        parseFloat(self.fron()) + parseFloat(self.orie()));
+            return coti ? coti : 0;       
         });
         self.apfr = ko.computed(function() {
-            var apfr = parseFloat(self.coti()) * parseFloat(fr_a)/100;
-            return apfr ? apfr : '';       
+            var apfr = roundToTwo(parseFloat(self.coti()) * parseFloat(fr_a) / 100);
+            return apfr ? apfr : 0;       
         });
         self.apsv = ko.computed(function() {
-            var apsv = parseFloat(self.coti()) * parseFloat(sv_a)/100;
-            return apsv ? apsv : '';       
+            var apsv = roundToTwo(parseFloat(self.coti()) * parseFloat(sv_a) / 100);
+            return apsv ? apsv : 0;       
         });
         self.apor = ko.computed(function() {
-            var apor = parseFloat(self.apfr()) + parseFloat(self.apsv());
-            return apor ? apor : '';       
+            var apor = roundToTwo(parseFloat(self.apfr()) + parseFloat(self.apsv()));
+            return apor ? apor : 0;       
         });
         self.aipc = ko.computed(function() {
-            var aipc = parseFloat(self.apor()) -(parseFloat(self.apor()) * parseFloat(ipc)/parseFloat(IpcAct.ipc));
-            return aipc ? aipc : '';       
+            var aipc = roundToTwo(parseFloat(self.apor()) - (parseFloat(self.apor()) * parseFloat(ipc) / parseFloat(IpcAct.ipc)));
+            return aipc ? aipc : 0;       
         });
         self.tapo = ko.computed(function() {
-            var tapo = parseFloat(self.apor()) + parseFloat(self.aipc());
-            return tapo ? tapo : '';       
+            var tapo = roundToTwo(parseFloat(self.apor()) + parseFloat(self.aipc()));
+            return tapo ? tapo : 0;
         });
     }
 
@@ -144,22 +149,46 @@
             return new CalcAporte(month.name, '', categorias, 0, 0, 0, 0,month.fr_a, month.sv_a, month.ipc);
         }));
 
-        // self.totalSurcharge = ko.computed(function() {
-        //    var total = 0;
-        //    for (var i = 0; i < self.aportes().length; i++)
-        //        total += self.aportes()[i].haber();
-        //    return total;
-        // });    
+        self.tCot = ko.pureComputed(function() {
+        var total = 0;
+        $.each(self.aportes(), function() { total += this.coti() })
+        return roundToTwo(total);
+        });
+        self.tAfr = ko.pureComputed(function() {
+        var total = 0;
+        $.each(self.aportes(), function() { total += this.apfr() })
+        return roundToTwo(total);
+        });
+        self.tAsv = ko.pureComputed(function() {
+        var total = 0;
+        $.each(self.aportes(), function() { total += this.apsv() })
+        return roundToTwo(total);
+        });
+        self.tApo = ko.pureComputed(function() {
+        var total = 0;
+        $.each(self.aportes(), function() { total += this.apor() })
+        return roundToTwo(total);
+        });
+        self.tipc = ko.pureComputed(function() {
+        var total = 0;
+        $.each(self.aportes(), function() { total += this.aipc() })
+        return roundToTwo(total);
+        });
+        self.tTap = ko.pureComputed(function() {
+        var total = 0;
+        $.each(self.aportes(), function() { total += this.tapo() })
+        return roundToTwo(total);
+        });
 
-
-        // self.addAporte = function() {
-        //     self.aportes.push(new CalcAporte("", 0,self.availableMeals[0]));
-        // }
-
-        // self.removeAporte = function(aporte) { self.aportes.remove(aporte) }
+        self.removeAporte = function(aporte) { self.aportes.remove(aporte) }
     }
 
     ko.applyBindings(new CalcAporteysViewModel({!! $months !!}));
+
+    function roundToTwo(num, toString) {
+      var val = +(Math.round(num + "e+2")  + "e-2");
+      return toString ? val.toFixed(2) : (val || 0);
+    }
 
 </script>
 @endpush
