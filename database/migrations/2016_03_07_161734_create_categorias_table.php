@@ -17,10 +17,12 @@ class CreateCategoriasTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id');
-            $table->double('por');
+            
             $table->integer('from');
-            $table->integer('name');
             $table->integer('to');
+            $table->double('por');
+            $table->string('name');
+
             $table->timestamps();
         });
 
