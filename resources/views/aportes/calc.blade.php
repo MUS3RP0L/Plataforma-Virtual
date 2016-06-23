@@ -2,20 +2,16 @@
 
 @section('content')
 <div class="container-fluid">
+    {!! Breadcrumbs::render('registro_aportes_afiliado', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
-            <div class="panel-heading">
-                <div class="row">  
-                    <div class="col-md-8">
-                        <h3>{!! $afiliado->pat !!} {!! $afiliado->mat !!}  {!! $afiliado->nom !!} {!! $afiliado->nom2 !!} {!! $afiliado->ap_esp !!}</h3>
-                        <h4><b>{!! $afiliado->grado->lit !!}</b></h4>
-                    </div>
-                    <div class="col-md-4 text-right"> 
-                        {!! link_to(URL::previous(), 'volver', ['class' => 'btn btn-raised btn-warning']) !!}
-                    </div>
+            <div class="row">  
+                <div class="col-md-12 text-right"> 
+                    <a href="{!! url('selectgestaporte/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
+                        &nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;
+                    </a>
                 </div>
             </div>
-
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Cálculo de Aportes</h3>
@@ -23,10 +19,8 @@
                 <div class="panel-body">
                     <div class="row"><p>
                         <div class="col-md-12">
-                            
-
-
-                        {{-- <h2><span data-bind="text: aportes().length"></span> Meses</h2> --}}
+                        
+                         <h2><span data-bind="text: aportes().length"></span> Meses</h2>
 
                         <table class="table table-hover">
                             <thead>
@@ -40,43 +34,31 @@
                                     <th>Bono Frontera</th>
                                     <th>Bono Oriente</th>
                                     <th>Cotizable</th>
-                                    <th></th>
+                                    <th>F.R.</th>
+                                    <th>S.V.</th>
+                                    <th>Subtotal Aporte</th>
+                                    <th>Ajuste IPC</th>
+                                    <th>Total Aporte</th>
                                 </tr>
                             </thead>
                             <tbody data-bind="foreach: aportes">
                                 <tr>
-                                    <td>
-                                        <span data-bind="text: mes" class="form-control"/>
-                                    </td>
-                                    <td>
-                                        <input data-bind="value: haber, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
-                                    </td>
-                                    <td>
-                                        <select data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'" class="form-control"  style="text-align: right">
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <span data-bind="text: ant" class="form-control"  style="text-align: right"/>
-                                    </td>
+                                    <td><span data-bind="text: nameMonth" class="form-control"/></td>
+                                    <td><input data-bind="value: haber, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/></td>
+                                    <td><select data-bind="options: $root.categorias, value: categoria, optionsText: 'name'" class="form-control"  style="text-align: right"></select></td>
+                                    <td><span data-bind="text: anti" class="form-control"  style="text-align: right"/></td>
+                                    <td><input data-bind="value: estu, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/></td>
+                                    <td><input data-bind="value: carg, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/></td>
+                                    <td><input data-bind="value: fron, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/></td>
+                                    <td><input data-bind="value: orie, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/></td>
+                                    <td><span data-bind="text: coti" class="form-control"  style="text-align: right"/></td>
+                                    <td><span data-bind="text: apfr" class="form-control"  style="text-align: right"/></td>
+                                    <td><span data-bind="text: apsv" class="form-control"  style="text-align: right"/></td>
+                                    <td><span data-bind="text: apor" class="form-control"  style="text-align: right"/></td>
+                                    <td><span data-bind="text: aipc" class="form-control"  style="text-align: right"/></td>
+                                    <td><span data-bind="text: tapo" class="form-control"  style="text-align: right"/></td>
 
-                                    <td>
-                                        <input data-bind="value: est, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
-                                    </td>
-                                    <td>
-                                        <input data-bind="value: car, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
-                                    </td>
-                                    <td>
-                                        <input data-bind="value: fro, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
-                                    </td>
-                                    <td>
-                                        <input data-bind="value: ori, valueUpdate: 'afterkeydown'" class="form-control" style="text-align: right"/>
-                                    </td>
-                                    <td>
-                                        <span data-bind="text: atotal" class="form-control"  style="text-align: right"/>
-                                    </td>
-
-
-                                    <td><a href="#" data-bind="click: $root.removeAporte">Quitar</a></td>
+                                    <!-- <td><a href="#" data-bind="click: $root.removeAporte">Quitar</a></td> -->
                                 </tr>    
                             </tbody>
                         </table>
@@ -106,73 +88,78 @@
         $('.combobox').combobox();
     });
 
-    function CalcAporte(mes, haber, initialMeal, est, car, fro, ori) {
+    var months = {!! $months !!};
+    var categorias = {!! $categorias !!};
+    var IpcAct = {!! $IpcAct !!};
+
+     function CalcAporte(nameMonth, haber, categorias, estu, carg,  fron, orie, fr_a, sv_a, ipc) {
 
         var self = this;
-        self.mes = mes;
+
+        self.nameMonth = nameMonth;
         self.haber = ko.observable(haber);
-        self.meal = ko.observable(initialMeal);
-        self.est = ko.observable(est);
-        self.car = ko.observable(car);
-        self.fro = ko.observable(fro);
-        self.ori = ko.observable(ori);
-
-        self.ant = ko.computed(function() {
-
-            var ant = self.meal().price*self.haber();
-            return ant ? ant : "";       
-        });  
-
-        self.atotal = ko.computed(function() {
-
-            var atotal = (parseFloat(self.meal().price) * parseFloat(self.haber())) 
-                            + parseFloat(self.haber()) 
-                            + parseFloat(self.est())
-                            + parseFloat(self.car())
-                            + parseFloat(self.fro())
-                            + parseFloat(self.ori());
-            return atotal ? atotal : 0;       
-        });   
+        self.categoria = ko.observable(categorias);
+        self.anti = ko.computed(function() {
+            var anti = parseFloat(self.categoria().por) * parseFloat(self.haber());
+            return anti ? anti : '';       
+        }); 
+        self.estu = ko.observable(estu);
+        self.carg = ko.observable(carg);
+        self.fron = ko.observable(fron);
+        self.orie = ko.observable(orie);
+        self.coti = ko.computed(function() {
+            var coti = parseFloat(self.haber()) + parseFloat(self.anti()) + 
+                        parseFloat(self.estu()) + parseFloat(self.carg()) +
+                        parseFloat(self.fron()) + parseFloat(self.orie());
+            return coti ? coti : '';       
+        });
+        self.apfr = ko.computed(function() {
+            var apfr = parseFloat(self.coti()) * parseFloat(fr_a)/100;
+            return apfr ? apfr : '';       
+        });
+        self.apsv = ko.computed(function() {
+            var apsv = parseFloat(self.coti()) * parseFloat(sv_a)/100;
+            return apsv ? apsv : '';       
+        });
+        self.apor = ko.computed(function() {
+            var apor = parseFloat(self.apfr()) + parseFloat(self.apsv());
+            return apor ? apor : '';       
+        });
+        self.aipc = ko.computed(function() {
+            var aipc = parseFloat(self.apor()) -(parseFloat(self.apor()) * parseFloat(ipc)/parseFloat(IpcAct.ipc));
+            return aipc ? aipc : '';       
+        });
+        self.tapo = ko.computed(function() {
+            var tapo = parseFloat(self.apor()) + parseFloat(self.aipc());
+            return tapo ? tapo : '';       
+        });
     }
 
-    function CalcAporteysViewModel() {
+    function CalcAporteysViewModel(months) {
         var self = this;
 
-        // self.availableMeals = categorias;
+        self.categorias = categorias;  
 
-        self.availableMeals = [
-            { mealName: "100%", price: 1 },
-            { mealName: "85%", price: 0.85 },
-            { mealName: "75%", price: 0.75 }
-        ];    
+        self.aportes = ko.observableArray(ko.utils.arrayMap(months, function(month) {
+            return new CalcAporte(month.name, '', categorias, 0, 0, 0, 0,month.fr_a, month.sv_a, month.ipc);
+        }));
 
-        self.aportes = ko.observableArray([
-            new CalcAporte("Enero", '', self.availableMeals[0],0,0,0,0,0),
-            new CalcAporte("Febrero", '', self.availableMeals[0],0,0,0,0,0),
-            new CalcAporte("Marzo", '', self.availableMeals[0],0,0,0,0,0),
-            new CalcAporte("Abril", '', self.availableMeals[0],0,0,0,0,0),
-            new CalcAporte("Mayo", '', self.availableMeals[0],0,0,0,0,0),
-            new CalcAporte("Junio", '', self.availableMeals[0],0,0,0,0,0),
-            new CalcAporte("Julio", '', self.availableMeals[0],0,0,0,0,0)
-        ]);
-
-        
-        self.totalSurcharge = ko.computed(function() {
-           var total = 0;
-           for (var i = 0; i < self.aportes().length; i++)
-               total += self.aportes()[i].haber();
-           return total;
-        });    
+        // self.totalSurcharge = ko.computed(function() {
+        //    var total = 0;
+        //    for (var i = 0; i < self.aportes().length; i++)
+        //        total += self.aportes()[i].haber();
+        //    return total;
+        // });    
 
 
-        self.addAporte = function() {
-            self.aportes.push(new CalcAporte("", 0,self.availableMeals[0]));
-        }
+        // self.addAporte = function() {
+        //     self.aportes.push(new CalcAporte("", 0,self.availableMeals[0]));
+        // }
 
-        self.removeAporte = function(aporte) { self.aportes.remove(aporte) }
+        // self.removeAporte = function(aporte) { self.aportes.remove(aporte) }
     }
 
-    ko.applyBindings(new CalcAporteysViewModel());
+    ko.applyBindings(new CalcAporteysViewModel({!! $months !!}));
 
 </script>
 @endpush
