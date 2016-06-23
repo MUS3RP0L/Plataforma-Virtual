@@ -5,16 +5,13 @@
     {!! Breadcrumbs::render('registro_aportes_afiliado', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
-
             <div class="row">  
-
                 <div class="col-md-12 text-right"> 
                     <a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
                         &nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;
                     </a>
                 </div>
             </div>
-
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Despliegue de Aportes por Gestión</h3>
@@ -48,7 +45,6 @@
             </div>
         </div>
     </div>
-
 </div>
 @endsection
 

@@ -93,8 +93,7 @@ class AporteController extends Controller
             $mes = array();
  
             for ($j=1; $j <= 12; $j++) { 
-
-                $aportes = Aporte::select(['gest'])->where('afiliado_id', $request->id)->where('gest', '=',Carbon::createFromDate($i, $j, 1)->toDateString())->first();
+                $aportes = Aporte::select(['gest'])->where('afiliado_id', $afiliado->id)->where('gest', '=',Carbon::createFromDate($i, $j, 1)->toDateString())->first();
                 if ($aportes) {
                     $mes["m".$j] = 1;
                     $c["count"] ++;
@@ -145,7 +144,6 @@ class AporteController extends Controller
 
     public function SelectGestAporte($afid)
     {
-
         $afiliado = Afiliado::idIs($afid)->first();
 
         $data = array(
@@ -155,15 +153,40 @@ class AporteController extends Controller
         return view('aportes.gest', $data);
     }
 
-    public function CalcAporteGest($afid, $gesid)
+    public function CalcAporteGest($afid, $gestid)
     {
         $afiliado = Afiliado::idIs($afid)->first();
         $categorias = Categoria::select(['por'])->get();
 
+        $from = Carbon::parse($afiliado->fech_ing);
+        $fto = Carbon::now();
+        $to = Carbon::createFromDate($fto->year, $fto->month, 1)->subMonth();
+
+        $base = array();
+        $mes = array();
+
+        for ($j=1; $j <= 12; $j++) { 
+            $aportes = Aporte::select(['gest'])->where('afiliado_id', $afid)->where('gest', '=',Carbon::createFromDate($gestid, $j, 1)->toDateString())->first();
+            if(!$aportes) {
+                if ($gestid == $from->year) {
+                    if($j >= $from->month){
+                       $mes[$j] = Util::getMes($j);
+                    }
+                }
+                elseif ($gestid == $to->year) {
+                    if($j <= $to->month){
+                        $mes[$j] = Util::getMes($j);
+                    }
+                }else{
+                    $mes[$j] = Util::getMes($j);
+                }
+            }
+        }
+
         $data = array(
             'afiliado' => $afiliado,
-            'afid' => $afid,
-            'gesid' => $gesid,
+            'gestid' => $gestid,
+            'months' => $mes,
             'categorias' => Categoria::orderBy('id')->get(array('por'))
         );
 
