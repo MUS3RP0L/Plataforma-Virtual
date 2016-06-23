@@ -38,36 +38,29 @@ class TasaController extends Controller
 
     public function tasasData()
     {
-        $tasas = AporTasa::select(['gest', 'apor_a', 'apor_fr_a', 'apor_sv_a', 'apor_p', 'apor_fr_p', 'apor_sv_p']);
+        $tasas = AporTasa::select(['gest', 'apor_a', 'apor_fr_a', 'apor_sv_a', 'apor_am_p']);
 
         return Datatables::of($tasas)
-                ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
-                ->addColumn('mes', function ($tasa) { return Util::getMes(Carbon::parse($tasa->gest)->month); })
-                ->editColumn('apor_a', function ($tasa) { return Util::formatMoney($tasa->apor_a); })
-                ->editColumn('apor_fr_a', function ($tasa) { return Util::formatMoney($tasa->apor_fr_a); })
-                ->editColumn('apor_sv_a', function ($tasa) { return Util::formatMoney($tasa->apor_sv_a); })
-                ->editColumn('apor_p', function ($tasa) { return Util::formatMoney($tasa->apor_p); })
-                ->editColumn('apor_fr_p', function ($tasa) { return Util::formatMoney($tasa->apor_fr_p); })
-                ->editColumn('apor_sv_p', function ($tasa) { return Util::formatMoney($tasa->apor_sv_p); })
-                ->make(true);
+            ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
+            ->addColumn('mes', function ($tasa) { return Util::getMes(Carbon::parse($tasa->gest)->month); })
+            ->editColumn('apor_a', function ($tasa) { return Util::formatMoney($tasa->apor_a); })
+            ->editColumn('apor_fr_a', function ($tasa) { return Util::formatMoney($tasa->apor_fr_a); })
+            ->editColumn('apor_sv_a', function ($tasa) { return Util::formatMoney($tasa->apor_sv_a); })
+            ->addColumn('apor_p', function ($tasa) { return Util::formatMoney($tasa->apor_am_p); })
+            ->editColumn('apor_am_p', function ($tasa) { return Util::formatMoney($tasa->apor_am_p); })
+            ->make(true);
     }
 
     public function save($request, $id = false)
     {
         $rules = [
-            'apor_a' => 'required|numeric',
             'apor_fr_a' => 'required|numeric',
             'apor_sv_a' => 'required|numeric',
-            'apor_p' => 'required|numeric',
-            'apor_fr_p' => 'required|numeric',
-            'apor_sv_p' => 'required|numeric'
+            'apor_am_p' => 'required|numeric'
 
         ];
 
         $messages = [
-
-            'apor_a.required' => 'El campo Aporte Muserpol Sector Activo no puede ser vacío', 
-            'apor_a.numeric' => 'El campo Aporte Muserpol Sector Activo sólo se aceptan números',
 
             'apor_fr_a.required' => 'El campo Fondo de Retiro Sector Activo no puede ser vacío', 
             'apor_fr_a.numeric' => 'El campo Fondo de Retiro Sector Activo sólo se aceptan números',
@@ -75,14 +68,8 @@ class TasaController extends Controller
             'apor_sv_a.required' => 'El campo Seguro de Vida Sector Activo no puede ser vacío', 
             'apor_sv_a.numeric' => 'El campo Seguro de Vida Sector Activo sólo se aceptan números',
 
-            'apor_p.required' => 'El campo Aporte Muserpol Sector Pasivo no puede ser vacío', 
-            'apor_p.numeric' => 'El campo Aporte Muserpol Sector Pasivo sólo se aceptan números',
-
-            'apor_fr_p.required' => 'El campo Fondo de Retiro Sector Pasivo no puede ser vacío', 
-            'apor_fr_p.numeric' => 'El campo Fondo de Retiro Sector Pasivo sólo se aceptan números',
-
-            'apor_sv_p.required' => 'El campo Seguro de Vida Sector Pasivo no puede ser vacío', 
-            'apor_sv_p.numeric' => 'El campo Seguro de Vida Sector Pasivo sólo se aceptan números',
+            'apor_am_p.required' => 'El campo Seguro de Vida Sector Pasivo no puede ser vacío', 
+            'apor_am_p.numeric' => 'El campo Seguro de Vida Sector Pasivo sólo se aceptan números',
 
         ];
         
@@ -101,11 +88,9 @@ class TasaController extends Controller
                   
             $aporTasa->apor_fr_a = trim($request->apor_fr_a);
             $aporTasa->apor_sv_a = trim($request->apor_sv_a);
-            $aporTasa->apor_a = trim($request->apor_a);
+            $aporTasa->apor_a = trim($request->apor_fr_a) + trim($request->apor_sv_a);
             
-            $aporTasa->apor_fr_p = trim($request->apor_fr_p);
-            $aporTasa->apor_sv_p = trim($request->apor_sv_p);
-            $aporTasa->apor_p = trim($request->apor_p);
+            $aporTasa->apor_am_p = trim($request->apor_am_p);
 
             $aporTasa->save();
 

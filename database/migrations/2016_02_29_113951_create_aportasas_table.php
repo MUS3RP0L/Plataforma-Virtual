@@ -21,12 +21,11 @@ class CreateAportasasTable extends Migration
 
             $table->date('gest')->unique()->required();
 
-            $table->double('apor_a');
             $table->double('apor_fr_a');
             $table->double('apor_sv_a');
-            $table->double('apor_p');
-            $table->double('apor_fr_p');
-            $table->double('apor_sv_p');
+            $table->double('apor_a');
+
+            $table->double('apor_am_p');
 
             $table->timestamps();
 

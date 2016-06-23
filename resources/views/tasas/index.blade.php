@@ -40,8 +40,7 @@
                                                 <th>Fondo de Retiro</th>
                                                 <th>Seguro de Vida</th>
                                                 <th>Aporte Muserpol</th>
-                                                <th>Fondo de Retiro</th>
-                                                <th>Seguro de Vida</th>
+                                                <th>Auxilio Mortuorio</th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -84,38 +83,17 @@
                                 <span class="help-block">Nuevo Aporte de Seguro de Vida</span>
                             </div>
                         </div>
-                        <div class="form-group">
-                                {!! Form::label('apor_a', 'Total Aporte', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('apor_a', $aporTasaLast->apor_a, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                <span class="help-block">Total Aporte Sector Activo</span>
-                            </div>
-                        </div>
                     </div>
-            
                     <div class="col-md-6">
                         <h3 class="panel-title">Sector Pasivo</h3>                            
                         <div class="form-group">
-                                {!! Form::label('apor_fr_p', 'Fondo de Retiro', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('apor_fr_p', $aporTasaLast->apor_fr_p, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                <span class="help-block">Nuevo Aporte de Fondo de Retiro</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('apor_sv_p', 'Seguro de Vida', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('apor_sv_p', 'Auxilio Mortuorio', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
                                 {!! Form::text('apor_sv_p', $aporTasaLast->apor_sv_p, ['class'=> 'form-control', 'required' => 'required']) !!}
                                 <span class="help-block">Nuevo Aporte de Seguro de Vida</span>
                             </div>
                         </div>
-                        <div class="form-group">
-                                {!! Form::label('apor_p', 'Total Aporte', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('apor_p', $aporTasaLast->apor_p, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                <span class="help-block">Total Aporte Sector Pasivo</span>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             
@@ -155,8 +133,7 @@ $(function() {
             { data: 'apor_fr_a', sClass: "text-center", bSortable: false },
             { data: 'apor_sv_a', sClass: "text-center", bSortable: false },
             { data: 'apor_p', sClass: "text-center", bSortable: false },
-            { data: 'apor_fr_p', sClass: "text-center", bSortable: false },
-            { data: 'apor_sv_p', sClass: "text-center", bSortable: false },
+            { data: 'apor_am_p', sClass: "text-center", bSortable: false },
         ]
     });
 });

@@ -44,11 +44,9 @@ class CreateTA extends Command
               
         $newAporTasa->apor_fr_a = $aporTasaLast->apor_fr_a;
         $newAporTasa->apor_sv_a = $aporTasaLast->apor_sv_a;
-        $newAporTasa->apor_a = $aporTasaLast->apor_a;
-        
-        $newAporTasa->apor_fr_p = $aporTasaLast->apor_fr_p;
-        $newAporTasa->apor_sv_p = $aporTasaLast->apor_sv_p;
-        $newAporTasa->apor_p = $aporTasaLast->apor_p;
+        $newAporTasa->apor_a = $newAporTasa->apor_fr_a + $newAporTasa->apor_sv_a;
+
+        $newAporTasa->apor_am_p = $aporTasaLast->apor_am_p;
         
         $fecha = Carbon::parse($aporTasaLast->gest);
         $newAporTasa->gest = $fecha->addMonth();

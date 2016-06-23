@@ -15,9 +15,7 @@ class AporTasa extends Model
         'apor_a',
         'apor_fr_a',
         'apor_sv_a',
-        'apor_p',
-        'apor_fr_p',
-        'apor_sv_p'
+        'apor_am_p'
 	];
 
 	protected $guarded = ['id'];
