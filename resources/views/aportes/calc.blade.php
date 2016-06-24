@@ -131,7 +131,8 @@
             return apor ? apor : 0;       
         });
         self.aipc = ko.computed(function() {
-            var aipc = roundToTwo(parseFloat(self.apor()) - (parseFloat(self.apor()) * parseFloat(ipc) / parseFloat(IpcAct.ipc)));
+            var aipc = roundToTwo(parseFloat(self.apor()) * ((parseFloat(IpcAct.ipc))/(parseFloat(ipc))-1));
+            // var aipc = roundToTwo(parseFloat(self.apor()) - (parseFloat(self.apor()) * parseFloat(ipc) / ));
             return aipc ? aipc : 0;       
         });
         self.tapo = ko.computed(function() {
