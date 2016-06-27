@@ -61,7 +61,6 @@ class AporteController extends Controller
 
         $afiliado = Afiliado::idIs($afid)->first();
         $firstAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'asc')->first();
-
         if ($firstAporte) {
             $data = array(
                 'afiliado' => $afiliado,
@@ -126,7 +125,6 @@ class AporteController extends Controller
             $year = array('year'=> $i);
             $gestiones->push(array_merge($afi, $c, $year, $base));
         }
-
         return Datatables::of($gestiones)
                 ->editColumn('m1', '<?php if($m1 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m1 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m1 === -1){ ?>&nbsp;<?php } ?>')
                 ->editColumn('m2', '<?php if($m2 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m2 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m2 === -1){ ?>&nbsp;<?php } ?>')
@@ -140,24 +138,35 @@ class AporteController extends Controller
                 ->editColumn('m10', '<?php if($m10 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m10 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m10 === -1){ ?>&nbsp;<?php } ?>')
                 ->editColumn('m11', '<?php if($m11 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m11 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m11 === -1){ ?>&nbsp;<?php } ?>')
                 ->editColumn('m12', '<?php if($m12 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m12 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m12 === -1){ ?>&nbsp;<?php } ?>')
-                ->addColumn('action','<?php if($status === 1){ ?><div class="row text-center"><a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}" ><i class="glyphicon glyphicon-edit"></i></a></div><?php } ?>')
+                ->addColumn('action','
+                    <?php if($status === 1){ ?>
+                        <div class="btn-group" style="margin:-6px 0;">
+                            <a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}/n" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}/reintegro" >reintegro</a></li>
+                            </ul>
+                        </div>
+                    <?php } ?>')
                 ->make(true);
     }
 
     public function SelectGestAporte($afid)
     {
         $afiliado = Afiliado::idIs($afid)->first();
-
         $data = array(
             'afiliado' => $afiliado,
         );
-
         return view('aportes.gest', $data);
     }
 
-    public function CalcAporteGest($afid, $gestid)
+    public function CalcAporteGest($afid, $gestid, $type = null)
     {
         $afiliado = Afiliado::idIs($afid)->first();
+        $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
+        $afiliado->fech_ini_apor = Util::getdateabre($afiliado->fech_ing);
+        $afiliado->fech_fin_apor = Util::getdateabre($lastAporte->gest);
+
         $categorias = Categoria::select(['por'])->get();
 
         $from = Carbon::parse($afiliado->fech_ing);
@@ -174,7 +183,6 @@ class AporteController extends Controller
             $aportes = Aporte::select(['gest'])->where('afiliado_id', $afid)->where('gest', '=',Carbon::createFromDate($gestid, $j, 1)->toDateString())->first();
             $AporTasa = AporTasa::where('gest', '=',Carbon::createFromDate($gestid, $j, 1)->toDateString())->first();
             $IpcTasa = IpcTasa::where('gest', '=',Carbon::createFromDate($gestid, $j, 1)->toDateString())->first();
-
             if(!$aportes) {
                 if ($gestid == $from->year) {
                     if($j >= $from->month){
@@ -203,18 +211,16 @@ class AporteController extends Controller
                     $month["ipc"] = $IpcTasa->ipc;
                     $months->push($month);
                 }
-            }
-            
+            }  
         }
-
         $data = array(
             'months' => $months,
             'afiliado' => $afiliado,
             'gestid' => $gestid,
+            'type' => $type == "reintegro" ? "Reintegro" : "Normal",
             'IpcAct' => $IpcAct,
             'categorias' => Categoria::where('name', '<>', '')->orderBy('id', 'desc')->get(array('por', 'name')),
         );
-        // return $data;
         return view('aportes.calc', $data);
     }
 
@@ -236,7 +242,7 @@ class AporteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->data;
     }
 
     /**
