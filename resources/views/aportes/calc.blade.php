@@ -79,9 +79,7 @@
                             </table>
                         </div>
                     </div>
-                    
                     {!! Form::hidden('data', null, ['data-bind'=> 'value: ko.toJSON(model)']) !!}
-
                     <div class="row text-center">
                         <div class="form-group">
                             <div class="col-md-12">
@@ -90,7 +88,6 @@
                             </div>
                         </div>
                     </div>
-
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -112,9 +109,7 @@
     var IpcAct = {!! $IpcAct !!};
 
      function CalcAporte(nameMonth, haber, categorias, estu, carg,  fron, orie, fr_a, sv_a, ipc) {
-
         var self = this;
-
         self.nameMonth = nameMonth;
         self.haber = ko.observable(haber);
         self.categoria = ko.observable(categorias);
@@ -155,14 +150,12 @@
     }
 
     function CalcAporteysViewModel(months) {
+        
         var self = this;
-
         self.categorias = categorias;  
-
         self.aportes = ko.observableArray(ko.utils.arrayMap(months, function(month) {
             return new CalcAporte(month.name, '', categorias, 0, 0, 0, 0,month.fr_a, month.sv_a, month.ipc);
         }));
-
         self.tCot = ko.pureComputed(function() {
         var total = 0;
         $.each(self.aportes(), function() { total += this.coti() })
@@ -193,18 +186,16 @@
         $.each(self.aportes(), function() { total += this.tapo() })
         return roundToTwo(total);
         });
-
         self.removeAporte = function(aporte) { self.aportes.remove(aporte) }
     }
 
-    window.model = new CalcAporteysViewModel({!! $months !!});
-
-    ko.applyBindings(model);
-
     function roundToTwo(num, toString) {
-      var val = +(Math.round(num + "e+2")  + "e-2");
-      return toString ? val.toFixed(2) : (val || 0);
+        var val = +(Math.round(num + "e+2")  + "e-2");
+        return toString ? val.toFixed(2) : (val || 0);
     }
+
+    window.model = new CalcAporteysViewModel({!! $months !!});
+    ko.applyBindings(model);
 
 </script>
 @endpush

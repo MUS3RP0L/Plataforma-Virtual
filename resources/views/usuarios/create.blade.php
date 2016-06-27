@@ -55,8 +55,7 @@
 										<div class="form-group">
 												{!! Form::label('username', 'Carnet de Indentidad', ['class' => 'col-md-4 control-label']) !!}
 											<div class="col-md-6">
-												{!! Form
-													::text('username', null, ['class'=> 'form-control', 'required' => 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+												{!! Form::text('username', null, ['class'=> 'form-control', 'required' => 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
 													<span class="help-block">Número de Carnet de Identidad</span>
 											</div>
 										</div>
