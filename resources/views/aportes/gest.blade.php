@@ -14,7 +14,7 @@
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Despliegue de Aportes por Gestión</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-list-alt"></span> Despliegue de Aportes por Gestión</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row"><p>

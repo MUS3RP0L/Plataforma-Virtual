@@ -13,7 +13,7 @@
 
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
                         <a href="" class="btn btn-success btn-raised dropdown-toggle" data-toggle="dropdown">
-                            &nbsp;<span class="glyphicon glyphicon-align-justify"></span>&nbsp;
+                            &nbsp;<span class="glyphicon glyphicon-th-list"></span>&nbsp;
                         </a>
                         <ul class="dropdown-menu"  role="menu">
                             <li>
