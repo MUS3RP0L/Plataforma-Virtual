@@ -219,12 +219,12 @@ class SueldoController extends Controller
             ini_set('max_input_time', '-1');
             ini_set('memory_limit', '-1');
             set_time_limit(36000);
-            $results = collect( $reader->all());
+            $results = collect($reader->select(array('niv', 'gra','sue'))->get());
         });
 
         $grados = DB::table('grados')
                 -> orderBy('id','asc')->get();
-       
+      
         foreach ($grados as $item) {
            
           foreach ($results as $datos) {
@@ -249,7 +249,7 @@ class SueldoController extends Controller
                         $sueldos->grado_id = $item->id;
                         $sueldos->gest = Util::datePickPeriod($gest);
                         $sueldos->sue = Util::decimal($datos['sue']); 
-                        $sueldos->save();
+                        $sueldos->save();                   
                     }
                     break; 
               } 
@@ -259,6 +259,7 @@ class SueldoController extends Controller
         }
         Session::flash('message', "Sueldos importados exitosamente !!");
         return redirect('sueldo');
+  
     }
 }
 
