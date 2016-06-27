@@ -203,37 +203,69 @@ class SueldoController extends Controller
 
     public function save($request, $id = false)
     {
-        global $gest;
+        global $gest, $results,$result;
 
         $reader = $request->file('archive');
         $filename = $reader->getRealPath();
 
         $gest = $request->gest;
+        $col = array('UNI','DESG','MES','A_O', 'CHE', 'ITEM','CAR', 'PAT', 'MAT', 'APES','NOM', 'NOM2','ECIV','NIV', 'GRA', 'SEX', 'DTR', 'SUE', 'CAT', 'EST', 'CARG','FRO', 'ORI', 'BSEG','DFU', 'NAT', 'LAC', 'PRE', 'SUB', 'GAN', 'LIT', 'LITCIP','COV', 'MUC', 'MUCCIP', 'ASC', 'ASCCIP',  'POL', 'SAL', 'PVIAL','OTR', 'AFP', 'F10', 'F02', 'F2P', 'F05', 'AP3F', 'FASA05F', 'FANS1F',  'AP3V','FASA05V', 'FANS1V',  'V10', 'V02', 'V2P', 'V05', 'CNP', 'COP', 'DGI', 'MUS', 'ODE', 'ODR', 'PAG', 'NAC', 'ING', 'C31', 'NUA', 'CUENTA');
+                ini_set('upload_max_filesize', '9999M');
+                ini_set('post_max_size', '9999M');
+                ini_set('max_execution_time', '-1');
+                ini_set('max_input_time', '-1');
+                ini_set('memory_limit', '-1');
+                set_time_limit('-1');
 
-        $col = array('codigo', 'nivel', 'grado', 'literal', 'sueldo');
-
-
-        Excel::selectSheetsByIndex(0)->filter('chunk')->select($col)->load($filename,$reader)->chunk(10, function($results) {
-
-            foreach ($results as $result) {   
-
-            global $gest;       
-
-                $sueldo = new sueldo;
-                $sueldo->user_id = Auth::user()->id;
-                $sueldo->grado_id = $result->codigo;
-                $sueldo->gest = Util::datePickPeriod($gest);
-                $sueldo->sue = $result->sueldo;
-                
-                $sueldo->save();
-            }
-
+        Excel::load($filename, function($reader) {
+            global $gest, $results;
+    
+            ini_set('upload_max_filesize', '9999M');
+                ini_set('post_max_size', '9999M');
+                ini_set('max_execution_time', 36000);
+                ini_set('max_input_time', 36000);
+                ini_set('memory_limit', '512M');
+                set_time_limit(36000);
+                $results = collect( $reader->all());
         });
 
-        $message = "Se importó los Sueldos Correctamente.";
+        $grados = DB::table('grados')
+                -> orderBy('id','asc')->get();
+       
+        foreach ($grados as $item) {
+           
+          foreach ($results as $datos) {
+              if($datos['niv'] == $item->niv && $datos['gra'] == $item->grad && Util::decimal($datos['sue'])<> 0)
+              {     
+                    $fecha = Util::datePickPeriod($gest);
+                    $year = Carbon::parse($fecha)->year;
+                    $month = Carbon::parse($fecha)->month;
 
-        Session::flash('message', $message);
-
+                    $sueldo =  DB::table('sueldos')
+                            ->select(DB::raw('sueldos.id,sueldos.user_id,sueldos.grado_id,grados.niv,grados.grad, sueldos.gest'))
+                            ->leftJoin('grados', 'sueldos.grado_id', '=', 'grados.id')
+                            ->where('niv', '=', $item->niv)
+                            ->where('grad', '=', $item->grad)
+                            ->whereMonth('gest', '=', $month)
+                            ->whereYear('gest', '=', $year)
+                            ->first(); 
+                    if(!$sueldo)
+                    { 
+                        $sueldos = new Sueldo;
+                        $sueldos->user_id = Auth::user()->id;
+                        $sueldos->grado_id = $item->id;
+                        $sueldos->gest = Util::datePickPeriod($gest);
+                        $sueldos->sue = Util::decimal($datos['sue']); 
+                        $sueldos->save();
+                    }
+                    break; 
+              } 
+              
+          }
+           
+        }
+        Session::flash('message', "Sueldos importados exitosamente !!");
         return redirect('sueldo');
     }
 }
+
