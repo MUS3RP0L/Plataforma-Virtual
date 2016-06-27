@@ -87,9 +87,9 @@
                     <div class="col-md-6">
                         <h3 class="panel-title">Sector Pasivo</h3>                            
                         <div class="form-group">
-                                {!! Form::label('apor_sv_p', 'Auxilio Mortuorio', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('apor_am_p', 'Auxilio Mortuorio', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('apor_sv_p', $aporTasaLast->apor_sv_p, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                {!! Form::text('apor_am_p', $aporTasaLast->apor_am_p, ['class'=> 'form-control', 'required' => 'required']) !!}
                                 <span class="help-block">Nuevo Aporte de Seguro de Vida</span>
                             </div>
                         </div>
