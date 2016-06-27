@@ -247,6 +247,7 @@
     });
 
     var months = {!! $months !!};
+    var afiliado = {!! $afiliado !!};
     var categorias = {!! $categorias !!};
     var IpcAct = {!! $IpcAct !!};
 
@@ -296,7 +297,7 @@
         var self = this;
         self.categorias = categorias;  
         self.aportes = ko.observableArray(ko.utils.arrayMap(months, function(month) {
-            return new CalcAporte(month.name, '', categorias, 0, 0, 0, 0,month.fr_a, month.sv_a, month.ipc);
+            return new CalcAporte(month.name, '', categorias[afiliado.categoria_id-1], 0, 0, 0, 0,month.fr_a, month.sv_a, month.ipc);
         }));
         self.tCot = ko.pureComputed(function() {
         var total = 0;

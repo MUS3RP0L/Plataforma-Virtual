@@ -167,8 +167,6 @@ class AporteController extends Controller
         $afiliado->fech_ini_apor = Util::getdateabre($afiliado->fech_ing);
         $afiliado->fech_fin_apor = Util::getdateabre($lastAporte->gest);
 
-        $categorias = Categoria::select(['por'])->get();
-
         $from = Carbon::parse($afiliado->fech_ing);
         $fto = Carbon::now();
         $to = Carbon::createFromDate($fto->year, $fto->month, 1)->subMonth();
@@ -219,7 +217,7 @@ class AporteController extends Controller
             'gestid' => $gestid,
             'type' => $type == "reintegro" ? "Reintegro" : "Normal",
             'IpcAct' => $IpcAct,
-            'categorias' => Categoria::where('name', '<>', '')->orderBy('id', 'desc')->get(array('por', 'name')),
+            'categorias' => Categoria::where('name', '<>', '')->orderBy('id', 'asc')->get(array('por', 'name', 'id')),
         );
         return view('aportes.calc', $data);
     }
