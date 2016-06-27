@@ -31,12 +31,12 @@ class AuthController extends Controller
      * @return void
      */
 
+    protected $redirectTo = '/';
+
     public function __construct()
     {
-        $this->middleware('guest' , ['except' => 'getlogout']);
+        $this->middleware('guest' , ['except' => 'getLogout']);
     }
-
-    protected $redirectTo = '/';
 
     /**
      * Create a new user instance after a valid registration.
