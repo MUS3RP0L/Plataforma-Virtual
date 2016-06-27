@@ -203,30 +203,23 @@ class SueldoController extends Controller
 
     public function save($request, $id = false)
     {
-        global $gest, $results,$result;
+        global $gest, $results;
 
         $reader = $request->file('archive');
         $filename = $reader->getRealPath();
 
         $gest = $request->gest;
-        $col = array('UNI','DESG','MES','A_O', 'CHE', 'ITEM','CAR', 'PAT', 'MAT', 'APES','NOM', 'NOM2','ECIV','NIV', 'GRA', 'SEX', 'DTR', 'SUE', 'CAT', 'EST', 'CARG','FRO', 'ORI', 'BSEG','DFU', 'NAT', 'LAC', 'PRE', 'SUB', 'GAN', 'LIT', 'LITCIP','COV', 'MUC', 'MUCCIP', 'ASC', 'ASCCIP',  'POL', 'SAL', 'PVIAL','OTR', 'AFP', 'F10', 'F02', 'F2P', 'F05', 'AP3F', 'FASA05F', 'FANS1F',  'AP3V','FASA05V', 'FANS1V',  'V10', 'V02', 'V2P', 'V05', 'CNP', 'COP', 'DGI', 'MUS', 'ODE', 'ODR', 'PAG', 'NAC', 'ING', 'C31', 'NUA', 'CUENTA');
-                ini_set('upload_max_filesize', '9999M');
-                ini_set('post_max_size', '9999M');
-                ini_set('max_execution_time', '-1');
-                ini_set('max_input_time', '-1');
-                ini_set('memory_limit', '-1');
-                set_time_limit('-1');
 
         Excel::load($filename, function($reader) {
             global $gest, $results;
     
             ini_set('upload_max_filesize', '9999M');
-                ini_set('post_max_size', '9999M');
-                ini_set('max_execution_time', 36000);
-                ini_set('max_input_time', 36000);
-                ini_set('memory_limit', '512M');
-                set_time_limit(36000);
-                $results = collect( $reader->all());
+            ini_set('post_max_size', '9999M');
+            ini_set('max_execution_time', '-1');
+            ini_set('max_input_time', '-1');
+            ini_set('memory_limit', '-1');
+            set_time_limit(36000);
+            $results = collect( $reader->all());
         });
 
         $grados = DB::table('grados')

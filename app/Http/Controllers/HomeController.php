@@ -14,7 +14,7 @@ use Carbon\Carbon;
 
 use Muserpol\Activity;
 use Muserpol\AfiState;
-use Muserpol\Afitype;
+use Muserpol\AfiType;
 use Muserpol\Aporte;
 use Muserpol\FondoTramite;
 use Session;
@@ -143,11 +143,11 @@ class HomeController extends Controller
       $fechactual = Carbon::now();
       $Fyear1 = Carbon::parse($fechactual)->year;
 
-      $aportemeses = DB::table('Aportes')
-                            ->select(DB::raw('DISTINCT(month(Aportes.gest)) as mes1'))
+      $aportemeses = DB::table('aportes')
+                            ->select(DB::raw('DISTINCT(month(aportes.gest)) as mes1'))
                             ->where('aportes.aporte_type_id', '=', 2)
-                            ->whereYear('Aportes.gest', '=', $Fyear1)
-                            ->orderBy('Aportes.gest', 'asc')
+                            ->whereYear('aportes.gest', '=', $Fyear1)
+                            ->orderBy('aportes.gest', 'asc')
                             ->get();
 
        if($aportemeses)
