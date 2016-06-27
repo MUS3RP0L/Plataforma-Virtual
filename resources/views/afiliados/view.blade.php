@@ -15,7 +15,7 @@
                         <a href="" class="btn btn-success btn-raised dropdown-toggle" data-toggle="dropdown">
                             &nbsp;<span class="glyphicon glyphicon-align-justify"></span>&nbsp;
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu"  role="menu">
                             <li>
                                 <a href="{!! url('viewaporte/' . $afiliado->id) !!}" class="text-center">
                                     <span class="glyphicon glyphicon-eye-open"></span>
@@ -27,7 +27,6 @@
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </a>
                             </li>
-
                         </ul>
                     </div>
 
