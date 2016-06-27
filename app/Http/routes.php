@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('solicitante', 'SolicitanteController');
 
 	// view Registros Aportes
-	// Route::resource('aportes', 'AporteController');
+	Route::resource('aporte', 'AporteController');
 	Route::get('viewaporte/{afid}', 'AporteController@ViewAporte');
 	Route::get('selectgestaporte/{afid}', 'AporteController@SelectGestAporte');
 	Route::get('calcaportegest/{afid}/{gesid}', 'AporteController@CalcAporteGest');

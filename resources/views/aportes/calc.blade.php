@@ -17,7 +17,8 @@
                     <h3 class="panel-title">Cálculo de Aportes</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="row"><p>
+                    {!! Form::open(['method' => 'POST', 'route' => ['aporte.store'], 'class' => 'form-horizontal']) !!}
+                    <div class="row">
                         <div class="col-md-12">
                             <table class="table table-hover">
                                 <thead>
@@ -77,7 +78,20 @@
                                 </tr>
                             </table>
                         </div>
-                    </div>                      
+                    </div>
+                    
+                    {!! Form::hidden('data', null, ['data-bind'=> 'value: ko.toJSON(model)']) !!}
+
+                    <div class="row text-center">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -183,7 +197,9 @@
         self.removeAporte = function(aporte) { self.aportes.remove(aporte) }
     }
 
-    ko.applyBindings(new CalcAporteysViewModel({!! $months !!}));
+    window.model = new CalcAporteysViewModel({!! $months !!});
+
+    ko.applyBindings(model);
 
     function roundToTwo(num, toString) {
       var val = +(Math.round(num + "e+2")  + "e-2");
