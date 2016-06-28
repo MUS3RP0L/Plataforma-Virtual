@@ -75,8 +75,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('getSueldoCua', array('as'=>'getSueldoCua', 'uses'=>'SueldoController@sueldoCuaData'));
 
 	// Reporte Totales
-	Route::get('totales', 'ReporteController@ReportAporte');
-	Route::post('ir_totales', 'ReporteController@GenerateReportAporte');
 	Route::get('total_month', 'ReporteController@ReportAporteMonth');
 	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
 
