@@ -57,7 +57,7 @@
             processing: true,
             serverSide: true,
             bFilter: false,
-            pageLength: 12,
+            pageLength: 8,
             ajax: {
                 url: '{!! route('getRegPago') !!}',
                 data: function (d) {

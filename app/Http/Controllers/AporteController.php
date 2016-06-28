@@ -215,6 +215,7 @@ class AporteController extends Controller
             'months' => $months,
             'afiliado' => $afiliado,
             'gestid' => $gestid,
+            'lastAporte' => $lastAporte,
             'type' => $type == "reintegro" ? "Reintegro" : "Normal",
             'IpcAct' => $IpcAct,
             'categorias' => Categoria::where('name', '<>', '')->orderBy('id', 'asc')->get(array('por', 'name', 'id')),

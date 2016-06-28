@@ -117,7 +117,7 @@
         "dom": '<"top">t<"bottom"p>',   
         processing: true,
         serverSide: true,
-        pageLength: 5,
+        pageLength: 8,
         ajax: {
             url: '{!! route('getAfiliado') !!}',
             data: function (d) {
