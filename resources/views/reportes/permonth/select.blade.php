@@ -16,11 +16,8 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Reporte por Mes</h3>
                 </div>
-                <div class="panel-body">
-					
+                <div class="panel-body">					
 					{!! Form::open(['url' => 'go_total_month', 'role' => 'form', 'class' => 'form-horizontal']) !!}					
-						<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-						
 						<div class="row">
 							<div class="col-md-6">  
 								<div class="form-group form-group-lg">
