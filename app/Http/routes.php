@@ -43,12 +43,6 @@ Route::group(['middleware' => 'auth'], function() {
 	// Notas
 	Route::get('getNote/{afid}', array('as'=>'getNote', 'uses'=>'NoteController@notesData'));
 
-	// Totales
-	Route::get('totales', 'ReporteController@ReportAporte');
-	Route::post('ir_totales', 'ReporteController@GenerateReportAporte');
-	Route::get('total_month', 'ReporteController@ReportAporteMonth');
-	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
-
 	// Tramite Fondo de Retiro
 	Route::resource('tramite_fondo_retiro', 'FondoTramiteController');
 	Route::get('tramite_fondo_retiro_ventanilla/{afid}', 'FondoTramiteController@print_ventanilla');
@@ -79,6 +73,12 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('getSueldoSeg', array('as'=>'getSueldoSeg', 'uses'=>'SueldoController@sueldoSegData'));
 	Route::get('getSueldoTer', array('as'=>'getSueldoTer', 'uses'=>'SueldoController@sueldoTerData'));
 	Route::get('getSueldoCua', array('as'=>'getSueldoCua', 'uses'=>'SueldoController@sueldoCuaData'));
+
+	// Reporte Totales
+	Route::get('totales', 'ReporteController@ReportAporte');
+	Route::post('ir_totales', 'ReporteController@GenerateReportAporte');
+	Route::get('total_month', 'ReporteController@ReportAporteMonth');
+	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
 
 });
 
