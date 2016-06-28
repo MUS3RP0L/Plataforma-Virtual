@@ -90,7 +90,16 @@ class AfiliadoController extends Controller
                 ->addColumn('gra', function ($afiliado) { return $afiliado->grado_id ? $afiliado->grado->abre : ' '; })
                 ->addColumn('noms', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
                 ->addColumn('est', function ($afiliado) { return $afiliado->afi_state->name; })
-                ->addColumn('action', function ($afiliado) { return  '<div class="row text-center"><a href="afiliado/'.$afiliado->id.'" ><div class="col-md-12"><i class="glyphicon glyphicon-eye-open"></i></div></a></div>';})
+                ->addColumn('action', function ($afiliado) { return  '
+                        <div class="btn-group" style="margin:-3px 0;">
+                            <a href="afiliado/'.$afiliado->id.'" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a href="" data-target="#" class="btn btn-success btn-raised btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="selectgestaporte/'.$afiliado->id.'"><i class="glyphicon glyphicon-plus"></i> Aporte</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="tramite_fondo_retiro/'.$afiliado->id.'"><i class="glyphicon glyphicon-plus"></i> Tramite FR</a></li>
+                            </ul>
+                        </div>';})
                 ->make(true);
     }
 
