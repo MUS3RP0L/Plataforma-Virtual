@@ -50,6 +50,9 @@
         $(document).on('ready', function(){
             $.material.init();
         });
+	    $(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip(); 
+		});
     </script>
 
     @if (Session::has('error'))

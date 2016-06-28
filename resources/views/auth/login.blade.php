@@ -27,7 +27,7 @@
 				        <div class="row text-center">
 		                    <div class="form-group">
 		                        <div class="col-md-12">
-		                            <button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+		                            <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Ingresar">&nbsp;<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;</button>
 		                        </div>
 		                    </div>
 		                </div>
