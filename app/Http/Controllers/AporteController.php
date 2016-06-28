@@ -141,10 +141,10 @@ class AporteController extends Controller
                 ->addColumn('action','
                     <?php if($status === 1){ ?>
                         <div class="btn-group" style="margin:-6px 0;">
-                            <a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}/n" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a href="" data-target="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                            <a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}/n" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="" data-target="#" class="btn btn-success btn-raised btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}/reintegro" >reintegro</a></li>
+                                <li><a href="{{ url("calcaportegest")}}/{{$afi_id}}/{{$year}}/reintegro" style="padding:3px 10px;"><i class="glyphicon glyphicon-pencil"></i> reintegro</a></li>
                             </ul>
                         </div>
                     <?php } ?>')

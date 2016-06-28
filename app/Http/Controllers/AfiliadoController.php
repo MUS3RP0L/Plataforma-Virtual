@@ -95,9 +95,9 @@ class AfiliadoController extends Controller
                             <a href="afiliado/'.$afiliado->id.'" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
                             <a href="" data-target="#" class="btn btn-success btn-raised btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="selectgestaporte/'.$afiliado->id.'"><i class="glyphicon glyphicon-plus"></i> Aporte</a></li>
+                                <li><a href="selectgestaporte/'.$afiliado->id.'" style="padding:3px 10px;"><i class="glyphicon glyphicon-plus"></i> Aporte</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="tramite_fondo_retiro/'.$afiliado->id.'"><i class="glyphicon glyphicon-plus"></i> Tramite FR</a></li>
+                                <li><a href="tramite_fondo_retiro/'.$afiliado->id.'" style="padding:3px 10px;"><i class="glyphicon glyphicon-plus"></i> Trámite FR</a></li>
                             </ul>
                         </div>';})
                 ->make(true);
