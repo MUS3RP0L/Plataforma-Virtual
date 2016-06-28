@@ -150,7 +150,6 @@ class AporteController extends Controller
                     <?php } ?>')
                 ->make(true);
     }
-
     public function SelectGestAporte($afid)
     {
         $afiliado = Afiliado::idIs($afid)->first();
@@ -160,21 +159,21 @@ class AporteController extends Controller
         return view('aportes.gest', $data);
     }
 
-    public function CalcAporteGest($afid, $gestid, $type = null)
+    public static function getViewModel($afid, $gestid)
     {
         $afiliado = Afiliado::idIs($afid)->first();
-        $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
-        $afiliado->fech_ini_apor = Util::getdateabre($afiliado->fech_ing);
-        $afiliado->fech_fin_apor = Util::getdateabre($lastAporte->gest);
+
+        $cate = Categoria::all();
+        $list_cate = array('' => '');
+        foreach ($cate as $item) {
+             $list_cate[$item->id]=$item->name;
+        }
 
         $from = Carbon::parse($afiliado->fech_ing);
         $fto = Carbon::now();
         $to = Carbon::createFromDate($fto->year, $fto->month, 1)->subMonth();
-
         $IpcAct = IpcTasa::select('ipc')->where('gest', '=',Carbon::createFromDate($fto->year, $fto->month, 1)->toDateString())->first();
-
         $months = new Collection;
-
         $month = array();
 
         for ($j=1; $j <= 12; $j++) { 
@@ -211,15 +210,60 @@ class AporteController extends Controller
                 }
             }  
         }
-        $data = array(
+
+        return [
             'months' => $months,
+            'IpcAct' => $IpcAct,
+            'list_cate' => $list_cate,
+            'categorias' => Categoria::where('name', '<>', '')->orderBy('id', 'asc')->get(array('por', 'name', 'id'))
+        ];
+    }
+
+    public function CalcAporteGest($afid, $gestid, $type = null)
+    {
+        $afiliado = Afiliado::idIs($afid)->first();
+        $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
+        $afiliado->fech_ini_apor = Util::getdateabre($afiliado->fech_ing);
+        $afiliado->fech_fin_apor = Util::getdateabre($lastAporte->gest);
+
+
+        $data = array(
             'afiliado' => $afiliado,
-            'gestid' => $gestid,
             'lastAporte' => $lastAporte,
             'type' => $type == "reintegro" ? "Reintegro" : "Normal",
-            'IpcAct' => $IpcAct,
-            'categorias' => Categoria::where('name', '<>', '')->orderBy('id', 'asc')->get(array('por', 'name', 'id')),
+            'afid' => $afid,
+            'gestid' => $gestid,
+            'result' => 0
         );
+
+        $data = array_merge($data, self::getViewModel($afid, $gestid));
+
+        return view('aportes.calc', $data);
+    }
+
+    public function GenerateCalcAporteGest(Request $request)
+    {
+        $afiliado = Afiliado::idIs($request->afid)->first();
+        $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
+        $afiliado->fech_ini_apor = Util::getdateabre($afiliado->fech_ing);
+        $afiliado->fech_fin_apor = Util::getdateabre($lastAporte->gest);
+
+        $lastAporte->sue = $request->sue;
+        $lastAporte->b_est = $request->b_est;
+        $lastAporte->b_car = $request->b_car;
+        $lastAporte->b_fro = $request->b_fro;
+        $lastAporte->b_ori = $request->b_ori;
+
+        $data = array(
+            'afiliado' => $afiliado,
+            'lastAporte' => $lastAporte,
+            'type' => $request->type == "reintegro" ? "Reintegro" : "Normal",
+            'afid' => $request->afid,
+            'gestid' => $request->gestid,
+            'result' => 1
+        );
+
+         $data = array_merge($data, self::getViewModel($request->afid, $request->gestid));
         return view('aportes.calc', $data);
     }
 
