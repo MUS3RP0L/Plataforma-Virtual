@@ -21,7 +21,7 @@ class CategoriasTableSeeder extends Seeder
     private function createCategoria()
     {
         $statuses = [
-            ['id' => '1', 'from' => '0', 'to' => '4', 'name' => '0', 'por' => '0'],
+            ['id' => '1', 'from' => '0', 'to' => '4', 'name' => '0%', 'por' => '0'],
             ['id' => '2', 'from' => '5', 'to' => '8', 'name' => '35%', 'por' => '0.35'],
             ['id' => '3', 'from' => '9', 'to' => '12', 'name' => '45%', 'por' => '0.45'],
             ['id' => '4', 'from' => '13', 'to' => '16', 'name' => '55%', 'por' => '0.55'],
