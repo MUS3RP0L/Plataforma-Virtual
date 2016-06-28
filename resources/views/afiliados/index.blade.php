@@ -2,9 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-
     {!! Breadcrumbs::render('afiliado') !!}
-
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
@@ -78,8 +76,8 @@
                                 <div class="row text-center">
                                     <div class="form-group">
                                         <div class="col-md-12">
-                                            <button type="reset" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-erase"></span>&nbsp;&nbsp;&nbsp;</button>
-                                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;&nbsp;</button>
+                                            <button type="reset" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Limpiar">&nbsp;<span class="glyphicon glyphicon-erase"></span>&nbsp;</button>
+                                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Buscar">&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;</button>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +107,6 @@
             </div>
         </div>
     </div>
-
 </div>
 @endsection
 
@@ -120,6 +117,7 @@
         "dom": '<"top">t<"bottom"p>',   
         processing: true,
         serverSide: true,
+        pageLength: 5,
         ajax: {
             url: '{!! route('getAfiliado') !!}',
             data: function (d) {
