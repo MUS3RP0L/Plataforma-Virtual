@@ -29,7 +29,6 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
                 <div class="col-md-2 text-right">
                     <a href="{!! url('afiliado') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">

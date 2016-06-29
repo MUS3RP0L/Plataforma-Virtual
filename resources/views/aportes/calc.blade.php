@@ -1,12 +1,18 @@
 @extends('layout')
-
 @section('content')
 <div class="container-fluid">
     {!! Breadcrumbs::render('registro_aportes_afiliado', $afiliado) !!}
     <div class="row">
         <div class="col-md-12">
-            <div class="row">  
-                <div class="col-md-12 text-right"> 
+            <div class="row">
+                <div class="col-md-4 col-md-offset-6">
+                    <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Actualizar">
+                        <a href="" data-target="#myModal-update" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
+                            &nbsp;<span class="glyphicon glyphicon-refresh"></span>&nbsp;
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-2 text-right">
                     <a href="{!! url('selectgestaporte/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
                         &nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;
                     </a>
@@ -147,13 +153,8 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">  
-                        <div class="col-md-11">
+                        <div class="col-md-12">
                             <h3 class="panel-title"><span class="glyphicon glyphicon-list-alt"></span> Cálculo de Aportes</h3>
-                        </div>
-                        <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="left" data-original-title="Editar">
-                            <div data-toggle="modal" data-target="#myModal-personal"> 
-                                <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -187,17 +188,17 @@
                                             <td style="text-align: center"><span data-bind="text: nameMonth"/></td>
                                             <td style="text-align: center"><input data-bind="value: haber, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
                                             <td style="text-align: center"><select data-bind="options: $root.categorias, value: categoria, optionsText: 'name'"></select></td>
-                                            <td style="text-align: right;padding-right:1%;"><span data-bind="text: anti"/></td>
+                                            <td style="text-align: right"><span data-bind="text: anti"/></td>
                                             <td style="text-align: center"><input data-bind="value: estu, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
                                             <td style="text-align: center"><input data-bind="value: carg, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
                                             <td style="text-align: center"><input data-bind="value: fron, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
                                             <td style="text-align: center"><input data-bind="value: orie, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
-                                            <td style="text-align: right;"><span data-bind="text: coti"/></td>
-                                            <td style="text-align: right;"><span data-bind="text: apfr"/></td>
-                                            <td style="text-align: right;"><span data-bind="text: apsv"/></td>
-                                            <td style="text-align: right;"><span data-bind="text: apor"/></td>
-                                            <td style="text-align: right;"><span data-bind="text: aipc"/></td>
-                                            <td style="text-align: right;"><span data-bind="text: tapo"/></td>
+                                            <td style="text-align: right"><span data-bind="text: coti"/></td>
+                                            <td style="text-align: right"><span data-bind="text: apfr"/></td>
+                                            <td style="text-align: right"><span data-bind="text: apsv"/></td>
+                                            <td style="text-align: right"><span data-bind="text: apor"/></td>
+                                            <td style="text-align: right"><span data-bind="text: aipc"/></td>
+                                            <td style="text-align: right"><span data-bind="text: tapo"/></td>
                                             <td style="text-align: center"><a href="#" data-bind="click: $root.removeAporte, visible: $parent.aportes().length > 1"><span class="glyphicon glyphicon-remove"></span></a></td>
                                         </tr>    
                                     </tbody>
@@ -225,7 +226,8 @@
                         <div class="row text-center">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
+                                    <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;</a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;</button>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +238,7 @@
     </div>
 </div>
 
-<div id="myModal-personal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="myModal-update" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -253,21 +255,21 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('sue', 'Haber Básico', ['class' => 'col-md-5 control-label']) !!}
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     {!! Form::text('sue', $lastAporte->sue, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Haber Básico</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('b_est', 'Bono Estudio', ['class' => 'col-md-5 control-label']) !!}
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     {!! Form::text('b_est', $lastAporte->b_est, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Bono Estudio</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('b_fro', 'Bono Frontera', ['class' => 'col-md-5 control-label']) !!}
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     {!! Form::text('b_fro', $lastAporte->b_fro, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Bono Frontera</span>
                                 </div>
@@ -276,31 +278,35 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('categoria_id', 'Categoría', ['class' => 'col-md-5 control-label']) !!}
-                                <div class="col-md-7">
+                                <div class="col-md-5">
                                     {!! Form::select('categoria_id', $list_cate, $afiliado->categoria_id, ['class' => 'combobox form-control']) !!}
                                     <span class="help-block">Seleccione Departamento</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('b_car', 'Bono al Cargo', ['class' => 'col-md-5 control-label']) !!}
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     {!! Form::text('b_car', $lastAporte->b_car, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Bono al Cargo</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::label('b_fro', 'Bono Oriente', ['class' => 'col-md-5 control-label']) !!}
-                                <div class="col-md-6">
-                                    {!! Form::text('b_fro', $lastAporte->b_fro, ['class'=> 'form-control']) !!}
+                                {!! Form::label('b_ori', 'Bono Oriente', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-4">
+                                    {!! Form::text('b_ori', $lastAporte->b_ori, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Bono Oriente</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row text-center">
-                        <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Actualizar">&nbsp;<span class="glyphicon glyphicon-refresh"></span>&nbsp;</button>
-                    </div>
-                {!! Form::close() !!}
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Guardar">&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>                
+                    {!! Form::close() !!}
             </div>
         </div>
     </div>
