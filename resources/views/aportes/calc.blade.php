@@ -129,18 +129,6 @@
                                             <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        Primer Aporte
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        {!! $afiliado->fech_ini_apor !!}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
-                                                <div class="row">
-                                                    <div class="col-md-6">
                                                         Último Aporte
                                                     </div>
                                                     <div class="col-md-6">
@@ -309,7 +297,6 @@
                         <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Actualizar">&nbsp;<span class="glyphicon glyphicon-refresh"></span>&nbsp;</button>
                     </div>
                 {!! Form::close() !!}
-
             </div>
         </div>
     </div>
