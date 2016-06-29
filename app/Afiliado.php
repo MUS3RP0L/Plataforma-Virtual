@@ -304,7 +304,7 @@ class Afiliado extends Model
 
 	public function getFullName()
     {
-        return $this->grado->lit . ' ' . $this->pat . ' ' . $this->mat. ' ' . $this->nom;
+        return $this->grado->lit . ' ' . $this->nom . ' ' . $this->nom2 . ' ' . $this->pat. ' ' . $this->mat;
     }
 
     public function getTittleName()
