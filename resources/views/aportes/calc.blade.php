@@ -164,21 +164,21 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr class="success">
-                                            <th style="text-align: center" width="6%">Mes</th>
-                                            <th style="text-align: center" width="6%">H. Básico</th>
-                                            <th style="text-align: center" width="6%">Categoría</th>
-                                            <th style="text-align: center" width="5%">Antigüed</th>
-                                            <th style="text-align: center" width="6%">B. Estud</th>
-                                            <th style="text-align: center" width="6%">B. Cargo</th>
-                                            <th style="text-align: center" width="6%">B. Front</th>
-                                            <th style="text-align: center" width="6%">B. Orien</th>
-                                            <th style="text-align: center" width="9%">Cotizable</th>
-                                            <th style="text-align: center" width="7%">F.R.</th>
-                                            <th style="text-align: center" width="7%">S.V.</th>
-                                            <th style="text-align: center" width="7%">Aporte</th>
-                                            <th style="text-align: center" width="7%">IPC</th>
-                                            <th style="text-align: center" width="7%">Total</th>
-                                            <th style="text-align: center" width="1%"></th>
+                                            <th style="text-align: center" width="6%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Mes">Mes</div></th>
+                                            <th style="text-align: center" width="6%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Haber Básico">H. Básico</div></th>
+                                            <th style="text-align: center" width="6%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Categoría">Categoría</div></th>
+                                            <th style="text-align: center" width="5%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Antigüedad">Antigüed</div></th>
+                                            <th style="text-align: center" width="6%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Estudio">B Estud</div></th>
+                                            <th style="text-align: center" width="6%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono al Cargo">B Cargo</div></th>
+                                            <th style="text-align: center" width="6%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Frontera">B Front</div></th>
+                                            <th style="text-align: center" width="6%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Oriente">B Orien</div></th>
+                                            <th style="text-align: right" width="9%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Cotizable">Cotizable</div></th>
+                                            <th style="text-align: right" width="7%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="% Fondo de Retiro">F.R.</div></th>
+                                            <th style="text-align: right" width="7%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="% Seguro de Vida">S.V.</div></th>
+                                            <th style="text-align: right" width="7%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Subtotal Aporte Muserpol">Aporte</div></th>
+                                            <th style="text-align: right" width="7%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Ajuste IPC">IPC</div></th>
+                                            <th style="text-align: right" width="7%"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total Aporte Muserpol">Total</div></th>
+                                            <th width="1%"></th>
 
                                         </tr>
                                     </thead>
@@ -187,17 +187,17 @@
                                             <td style="text-align: center"><span data-bind="text: nameMonth"/></td>
                                             <td style="text-align: center"><input data-bind="value: haber, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
                                             <td style="text-align: center"><select data-bind="options: $root.categorias, value: categoria, optionsText: 'name'"></select></td>
-                                            <td style="text-align: right;padding-right:2%;"><span data-bind="text: anti"/></td>
+                                            <td style="text-align: right;padding-right:1%;"><span data-bind="text: anti"/></td>
                                             <td style="text-align: center"><input data-bind="value: estu, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
                                             <td style="text-align: center"><input data-bind="value: carg, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
                                             <td style="text-align: center"><input data-bind="value: fron, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
                                             <td style="text-align: center"><input data-bind="value: orie, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
-                                            <td style="text-align: right;padding-right:2%;"><span data-bind="text: coti"/></td>
-                                            <td style="text-align: right;padding-right:2%;"><span data-bind="text: apfr"/></td>
-                                            <td style="text-align: right;padding-right:2%;"><span data-bind="text: apsv"/></td>
-                                            <td style="text-align: right;padding-right:2%;"><span data-bind="text: apor"/></td>
-                                            <td style="text-align: right;padding-right:2%;"><span data-bind="text: aipc"/></td>
-                                            <td style="text-align: right;padding-right:2%;"><span data-bind="text: tapo"/></td>
+                                            <td style="text-align: right;"><span data-bind="text: coti"/></td>
+                                            <td style="text-align: right;"><span data-bind="text: apfr"/></td>
+                                            <td style="text-align: right;"><span data-bind="text: apsv"/></td>
+                                            <td style="text-align: right;"><span data-bind="text: apor"/></td>
+                                            <td style="text-align: right;"><span data-bind="text: aipc"/></td>
+                                            <td style="text-align: right;"><span data-bind="text: tapo"/></td>
                                             <td style="text-align: center"><a href="#" data-bind="click: $root.removeAporte, visible: $parent.aportes().length > 1"><span class="glyphicon glyphicon-remove"></span></a></td>
                                         </tr>    
                                     </tbody>
@@ -210,12 +210,12 @@
                                         <th></th>
                                         <th></th>
                                         <th></th>
-                                        <th style="text-align: right;padding-right:2%;"><span data-bind="text: tCot()"></span></th>
-                                        <th style="text-align: right;padding-right:2%;"><span data-bind="text: tAfr()"></span></th>
-                                        <th style="text-align: right;padding-right:2%;"><span data-bind="text: tAsv()"></span></th>
-                                        <th style="text-align: right;padding-right:2%;"><span data-bind="text: tApo()"></span></th>
-                                        <th style="text-align: right;padding-right:2%;"><span data-bind="text: tipc()"></span></th>
-                                        <th style="text-align: right;padding-right:2%;"><span data-bind="text: tTap()"></span></th>
+                                        <th style="text-align: right;"><span data-bind="text: tCot()"></span></th>
+                                        <th style="text-align: right;"><span data-bind="text: tAfr()"></span></th>
+                                        <th style="text-align: right;"><span data-bind="text: tAsv()"></span></th>
+                                        <th style="text-align: right;"><span data-bind="text: tApo()"></span></th>
+                                        <th style="text-align: right;"><span data-bind="text: tipc()"></span></th>
+                                        <th style="text-align: right;"><span data-bind="text: tTap()"></span></th>
                                         <th></th>
                                     </tr>
                                 </table>
