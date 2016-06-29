@@ -253,7 +253,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::open(['url' => 'go_calcaportegest', 'role' => 'form', 'class' => 'form-horizontal']) !!}                  
+                {!! Form::open(['url' => 'calcaportegest', 'role' => 'form', 'class' => 'form-horizontal']) !!}                  
                     <input type="hidden" name="afid" value="{{$afid}}"/>
                     <input type="hidden" name="gestid" value="{{$gestid}}"/>
                     <input type="hidden" name="type" value="{{$type}}"/>

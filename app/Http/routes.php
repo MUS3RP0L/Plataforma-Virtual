@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// Cálculo aportes
 	Route::get('calcaportegest/{afid}/{gesid}/{type}', 'AporteController@CalcAporteGest');
-	Route::post('go_calcaportegest', 'AporteController@GenerateCalcAporteGest');
+	Route::post('calcaportegest', 'AporteController@GenerateCalcAporteGest');
 
 	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
 	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
