@@ -160,6 +160,9 @@
                 </div>
                 <div class="panel-body">
                     {!! Form::open(['method' => 'POST', 'route' => ['aporte.store'], 'class' => 'form-horizontal']) !!}
+                        <input type="hidden" name="afid" value="{{$afid}}"/>
+                        <input type="hidden" name="gestid" value="{{$gestid}}"/>
+                        <input type="hidden" name="type" value="{{$type}}"/>
                         <div class="row">
                             <div class="col-md-12">
                                 <table class="table table-hover">
@@ -358,8 +361,9 @@
         var categorias = {!! $categorias !!};
         var IpcAct = {!! $IpcAct !!};
 
-        function CalcAporte(nameMonth, haber, categorias, estu, carg,  fron, orie, fr_a, sv_a, ipc) {
+        function CalcAporte(idMonth, nameMonth, haber, categorias, estu, carg,  fron, orie, fr_a, sv_a, ipc) {
             var self = this;
+            self.idMonth = idMonth;
             self.nameMonth = nameMonth;
             self.haber = ko.observable(haber);
             self.categoria = ko.observable(categorias);
@@ -404,7 +408,7 @@
             var self = this;
             self.categorias = categorias;  
             self.aportes = ko.observableArray(ko.utils.arrayMap(months, function(month) {
-                return new CalcAporte(month.name, lastap.sue ? lastap.sue : "",
+                return new CalcAporte(month.id, month.name, lastap.sue ? lastap.sue : "",
                 categorias[afiliado.categoria_id-1], lastap.b_est ? lastap.b_est : 0,
                     lastap.b_car ? lastap.b_car : 0, lastap.b_fro ? lastap.b_fro : 0,
                     lastap.b_ori ? lastap.b_ori : 0,month.fr_a, month.sv_a, month.ipc);
