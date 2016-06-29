@@ -178,6 +178,8 @@
                                             <th style="text-align: center" width="7%">Aporte</th>
                                             <th style="text-align: center" width="7%">IPC</th>
                                             <th style="text-align: center" width="7%">Total</th>
+                                            <th style="text-align: center" width="1%"></th>
+
                                         </tr>
                                     </thead>
                                     <tbody data-bind="foreach: aportes">
@@ -196,6 +198,7 @@
                                             <td style="text-align: right;padding-right:2%;"><span data-bind="text: apor"/></td>
                                             <td style="text-align: right;padding-right:2%;"><span data-bind="text: aipc"/></td>
                                             <td style="text-align: right;padding-right:2%;"><span data-bind="text: tapo"/></td>
+                                            <td style="text-align: center"><a href="#" data-bind="click: $root.removeAporte, visible: $parent.aportes().length > 1"><span class="glyphicon glyphicon-remove"></span></a></td>
                                         </tr>    
                                     </tbody>
                                     <tr class="active">
@@ -213,6 +216,7 @@
                                         <th style="text-align: right;padding-right:2%;"><span data-bind="text: tApo()"></span></th>
                                         <th style="text-align: right;padding-right:2%;"><span data-bind="text: tipc()"></span></th>
                                         <th style="text-align: right;padding-right:2%;"><span data-bind="text: tTap()"></span></th>
+                                        <th></th>
                                     </tr>
                                 </table>
                             </div>
@@ -398,6 +402,7 @@
             $.each(self.aportes(), function() { total += parseFloat(this.tapo()) })
             return roundToTwo(total);
             });
+            self.removeAporte = function(aporte) { self.aportes.remove(aporte) }
         }
 
         window.model = new CalcAporteysViewModel({!! $months !!}, {!! $lastAporte !!});
