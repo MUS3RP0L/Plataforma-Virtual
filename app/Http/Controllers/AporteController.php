@@ -17,6 +17,7 @@ use Muserpol\Helper\Util;
 
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
+use Muserpol\Pago;
 use Muserpol\Categoria;
 use Muserpol\AporTasa;
 use Muserpol\IpcTasa;
@@ -237,7 +238,6 @@ class AporteController extends Controller
         );
 
         $data = array_merge($data, self::getViewModel($afid, $gestid));
-
         return view('aportes.calc', $data);
     }
 
@@ -264,7 +264,7 @@ class AporteController extends Controller
             'result' => 1
         );
 
-         $data = array_merge($data, self::getViewModel($request->afid, $request->gestid));
+        $data = array_merge($data, self::getViewModel($request->afid, $request->gestid));
         return view('aportes.calc', $data);
     }
 
@@ -286,7 +286,72 @@ class AporteController extends Controller
      */
     public function store(Request $request)
     {
+        // return $this->save($request);
         return $request->data;
+    }
+
+    public function save($request, $id = false)
+    {       
+        $rules = [
+            
+            'afid' => 'required',
+            
+        ];
+
+        $messages = [
+            
+            'afid.required' => 'Afiliado no disponible', 
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()){
+            return redirect('afiliado/'.$request->afid)
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
+
+            $afiliado = Afiliado::where('id', '=', $request->afid)->first();
+            $gest = Carbon::createFromDate($gestid, $item->idMonth, 1)->toDateString();
+
+            $aporte = new Pago;
+
+            foreach (json_decode($request->data) as $item)
+            {  
+                $aporte = Aporte::where('gest', '=', $gest)->where('afiliado_id', '=', $afiliado->id)->first();
+
+                if (!$aporte) {
+
+                    $aporte = new Aporte;
+                    $aporte->user_id = Auth::user()->id;
+                    $aporte->aporte_type_id = 2;
+                    $aporte->afiliado_id = $afiliado->id;
+                    $aporte->gest = $gest;
+                    $aporte->aporte_type_id = 1;
+
+                    $aporte->sue = Util::decimal($item->sue);
+                    $aporte->categoria_id = $categoria_id;
+                    $aporte->b_ant = Util::decimal($result->cat);
+                    $aporte->b_est = Util::decimal($result->est);
+                    $aporte->b_car = Util::decimal($result->carg);
+                    $aporte->b_fro = Util::decimal($result->fro);
+                    $aporte->b_ori = Util::decimal($result->ori);
+
+                    $aporte->cot = (FLOAT)$aporte->sue + (FLOAT)$aporte->b_ant + (FLOAT)$aporte->b_est + (FLOAT)$aporte->b_car + (FLOAT)$aporte->b_fro + (FLOAT)$aporte->b_ori;
+                    $aporte->fr = $aporte->mus * $por_apor->apor_fr_a / $por_apor->apor_a;
+                    $aporte->sv = $aporte->mus * $por_apor->apor_sv_a / $por_apor->apor_a;
+                    $aporte->mus = Util::decimal($result->mus);
+                    $aporte->save();
+                }
+            }
+                    
+            $message = "Aportes Guardados";      
+            
+            Session::flash('message', $message);
+        }
+        
+        return redirect('afiliado/'.$id);
     }
 
     /**
