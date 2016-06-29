@@ -410,7 +410,7 @@
 
         function roundToTwo(num) {
             var val = +(Math.round(num + "e+2")  + "e-2");
-            return parseFloat(Math.round(parseFloat(val) * 100) / 100).toFixed(2);
+            return num ? parseFloat(Math.round(parseFloat(val) * 100) / 100).toFixed(2) : 0;
         }
 
 </script>
