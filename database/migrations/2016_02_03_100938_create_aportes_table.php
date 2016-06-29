@@ -42,14 +42,12 @@ class CreateAportesTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('pago_type_id');
             $table->UnsignedBigInteger('user_id');
+            $table->UnsignedBigInteger('afiliado_id');
             $table->UnsignedBigInteger('depa_id');
 
-            $table->date('fech_emis')->nullable();
             $table->date('fech_pago')->nullable();
-            $table->string('reci');
-            $table->string('titular');
+
             $table->string('grado');
-            $table->string('matri');
             $table->string('periodo');
             
             $table->double('cot');
@@ -62,6 +60,7 @@ class CreateAportesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->foreign('pago_type_id')->references('id')->on('pago_types'); 
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('depa_id')->references('id')->on('departamentos');
