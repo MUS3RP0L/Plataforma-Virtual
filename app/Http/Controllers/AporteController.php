@@ -247,6 +247,7 @@ class AporteController extends Controller
         $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
         $afiliado->fech_ini_apor = Util::getdateabre($afiliado->fech_ing);
         $afiliado->fech_fin_apor = Util::getdateabre($lastAporte->gest);
+        $afiliado->categoria_id = $request->categoria_id;
 
         $lastAporte->sue = $request->sue;
         $lastAporte->b_est = $request->b_est;

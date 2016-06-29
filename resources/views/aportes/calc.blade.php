@@ -283,9 +283,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('cate', 'Categoría', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('categoria_id', 'Categoría', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-7">
-                                    {!! Form::select('cate', $list_cate, $afiliado->categoria_id-1, ['class' => 'combobox form-control']) !!}
+                                    {!! Form::select('categoria_id', $list_cate, $afiliado->categoria_id, ['class' => 'combobox form-control']) !!}
                                     <span class="help-block">Seleccione Departamento</span>
                                 </div>
                             </div>
