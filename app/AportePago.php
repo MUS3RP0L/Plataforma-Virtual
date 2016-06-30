@@ -23,4 +23,9 @@ class AportePago extends Model
 	];
 
 	protected $guarded = ['id'];
+
+    public function afiliado(){
+
+        return $this->belongsTo('Muserpol\Afiliado');
+    }
 }

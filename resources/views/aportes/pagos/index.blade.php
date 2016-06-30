@@ -15,7 +15,10 @@
                             <table class="table table-striped table-hover" id="aportes_pago-table">
                                 <thead>
                                     <tr class="success">
-                                        <th>Número</th>
+                                        <th>Número de Pago</th>
+                                        <th>Estado</th>
+                                        <th>Afiliado</th>
+                                        <th>Fecha Emisión</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -40,6 +43,9 @@ $(function() {
         order: [0, "desc"],
         columns: [
             { data: 'id' },
+            { data: 'status', bSortable: false },
+            { data: 'afiliado', bSortable: false },
+            { data: 'fecha_emision', bSortable: false },
         ]
     });
 });

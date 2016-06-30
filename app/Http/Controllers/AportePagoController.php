@@ -34,9 +34,12 @@ class AportePagoController extends Controller
     public function AportePagoData(Request $request)
     {   
 
-        $aporte_pagos = AportePago::select(['id']);
+        $aporte_pagos = AportePago::select(['id', 'afiliado_id', 'created_at']);
 
         return Datatables::of($aporte_pagos)
+                        ->addColumn('status', function ($aporte_pagos) { return $aporte_pagos->fech_pago ? 'Pagado' : 'Pendiente'; })
+                        ->addColumn('afiliado', function ($aporte_pagos) { return $aporte_pagos->afiliado->getTittleName(); })
+                        ->addColumn('fecha_emision', function ($aporte_pagos) { return Util::getdateabre($aporte_pagos->created_at); })
                         ->make(true);
     }
 
