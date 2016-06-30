@@ -286,8 +286,8 @@ class AporteController extends Controller
      */
     public function store(Request $request)
     {
-        // return $this->save($request);
-        return $request->data;
+        return $this->save($request);
+        // return $request->data;
     }
 
     public function save($request, $id = false)
@@ -313,13 +313,29 @@ class AporteController extends Controller
         else{
 
             $afiliado = Afiliado::where('id', '=', $request->afid)->first();
-            $gest = Carbon::createFromDate($gestid, $item->idMonth, 1)->toDateString();
 
-            $aporte = new Pago;
+            $data = json_decode($request->data);
 
-            foreach (json_decode($request->data) as $item)
+            $pago = new Pago;
+            $pago->user_id = Auth::user()->id;
+            $pago->afiliado_id = $afiliado->id;
+            $pago->save();
+
+            $tCot = 0;
+            $tApo = 0;
+            $tAfr = 0;
+            $tAsv = 0;
+            $tipc = 0;
+            $tTap = 0;
+
+            foreach ($data->aportes as $item)
             {  
+                $gest = Carbon::createFromDate($request->gestid, $item->idMonth, 1)->toDateString();
                 $aporte = Aporte::where('gest', '=', $gest)->where('afiliado_id', '=', $afiliado->id)->first();
+                $por_apor = AporTasa::where('gest', '=', $gest)->first();
+                $IpcTasa = IpcTasa::where('gest', '=', $gest)->first();
+                $fto = Carbon::now();
+                $IpcAct = IpcTasa::select('ipc')->where('gest', '=',Carbon::createFromDate($fto->year, $fto->month, 1)->toDateString())->first();
 
                 if (!$aporte) {
 
@@ -328,22 +344,40 @@ class AporteController extends Controller
                     $aporte->aporte_type_id = 2;
                     $aporte->afiliado_id = $afiliado->id;
                     $aporte->gest = $gest;
-                    $aporte->aporte_type_id = 1;
 
-                    $aporte->sue = Util::decimal($item->sue);
-                    $aporte->categoria_id = $categoria_id;
-                    $aporte->b_ant = Util::decimal($result->cat);
-                    $aporte->b_est = Util::decimal($result->est);
-                    $aporte->b_car = Util::decimal($result->carg);
-                    $aporte->b_fro = Util::decimal($result->fro);
-                    $aporte->b_ori = Util::decimal($result->ori);
-
+                    $aporte->sue = $item->haber;
+                    $aporte->categoria_id = $item->categoria->id;
+                    $aporte->b_ant = $item->anti;
+                    $aporte->b_est = $item->estu;
+                    $aporte->b_car = $item->carg;
+                    $aporte->b_fro = $item->fron;
+                    $aporte->b_ori = $item->orie;
+                    
+                    
                     $aporte->cot = (FLOAT)$aporte->sue + (FLOAT)$aporte->b_ant + (FLOAT)$aporte->b_est + (FLOAT)$aporte->b_car + (FLOAT)$aporte->b_fro + (FLOAT)$aporte->b_ori;
-                    $aporte->fr = $aporte->mus * $por_apor->apor_fr_a / $por_apor->apor_a;
-                    $aporte->sv = $aporte->mus * $por_apor->apor_sv_a / $por_apor->apor_a;
-                    $aporte->mus = Util::decimal($result->mus);
-                    $aporte->save();
+                    $aporte->fr = $aporte->cot * $por_apor->apor_fr_a / 100;
+                    $aporte->sv = $aporte->cot * $por_apor->apor_sv_a / 100;
+                    $aporte->sub_mus = $aporte->cot * $por_apor->apor_a / 100;          
+                    $aporte->ipc = $aporte->sub_mus * ( $IpcAct->ipc / $IpcTasa->ipc -1 );
+
+                    $aporte->mus = $aporte->sub_mus + $aporte->ipc;
+                    $aporte->save();            
+
+                    $tCot += $aporte->cot;
+                    $tApo += $aporte->sub_mus;
+                    $tAfr += $aporte->fr;
+                    $tAsv += $aporte->sv;
+                    $tipc += $aporte->ipc;
+                    $tTap += $aporte->mus;
                 }
+
+                $pago->cot = $tCot;
+                $pago->mus = $tApo;
+                $pago->fr = $tAfr;
+                $pago->sv = $tAsv;
+                $pago->ipc = $tipc;
+                $pago->total = $tTap;
+                $pago->save();
             }
                     
             $message = "Aportes Guardados";      
