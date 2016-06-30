@@ -47,7 +47,9 @@ Route::group(['middleware' => 'auth'], function() {
 	//Pagos Aporte
 	Route::resource('aportepago', 'AportePagoController');
 	Route::get('getAportePago', array('as'=>'getAportePago', 'uses'=>'AportePagoController@AportePagoData'));
-	
+	Route::get('print_aportepago/{id}', 'AportePagoController@PrintAportePago');
+
+
 	// Notas
 	Route::get('getNote/{afid}', array('as'=>'getNote', 'uses'=>'NoteController@notesData'));
 

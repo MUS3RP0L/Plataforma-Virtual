@@ -28,4 +28,9 @@ class AportePago extends Model
 
         return $this->belongsTo('Muserpol\Afiliado');
     }
+
+    public function scopeIdIs($query, $id)
+    {
+        return $query->where('id', $id);
+    }
 }
