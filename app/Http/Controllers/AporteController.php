@@ -343,6 +343,8 @@ class AporteController extends Controller
                     $aporte->user_id = Auth::user()->id;
                     $aporte->aporte_type_id = 2;
                     $aporte->afiliado_id = $afiliado->id;
+                    $aporte->aporte_pago_id = $pago->id;
+    
                     $aporte->gest = $gest;
 
                     $aporte->sue = $item->haber;
