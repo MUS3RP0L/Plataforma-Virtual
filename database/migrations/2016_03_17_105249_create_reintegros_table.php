@@ -19,7 +19,7 @@ class CreateReintegrosTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('afiliado_id');
-            $table->UnsignedBigInteger('pago_id')->nullable();
+            $table->UnsignedBigInteger('aporte_pago_id')->nullable();
 
             $table->date('gest')->required();
 
@@ -48,7 +48,7 @@ class CreateReintegrosTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
-            $table->foreign('pago_id')->references('id')->on('pagos');
+            $table->foreign('aporte_pago_id')->references('id')->on('aporte_pagos');
 
             $table->unique(array('afiliado_id','gest'));
         });

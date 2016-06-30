@@ -22,7 +22,7 @@ class CreateAportesTable extends Migration
             
             $table->timestamps();
 
-        });
+        }); 
 
         Schema::create('pago_types', function(Blueprint $table){
             
@@ -35,7 +35,7 @@ class CreateAportesTable extends Migration
 
         });
 
-        Schema::create('pagos', function(Blueprint $table){
+        Schema::create('aporte_pagos', function(Blueprint $table){
             
             $table->engine = 'InnoDB';
 
@@ -69,7 +69,7 @@ class CreateAportesTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('afiliado_id');
             $table->UnsignedBigInteger('aporte_type_id');
-            $table->UnsignedBigInteger('pago_id')->nullable();
+            $table->UnsignedBigInteger('aporte_pago_id')->nullable();
 
             $table->date('gest')->required();
 
@@ -107,7 +107,7 @@ class CreateAportesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->foreign('aporte_type_id')->references('id')->on('aporte_types');
-            $table->foreign('pago_id')->references('id')->on('pagos');
+            $table->foreign('aporte_pago_id')->references('id')->on('aporte_pagos');
 
             $table->unique(array('afiliado_id','gest'));
 
