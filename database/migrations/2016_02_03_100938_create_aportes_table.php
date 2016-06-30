@@ -53,6 +53,7 @@ class CreateAportesTable extends Migration
             $table->double('sv');
             $table->double('ipc');
             $table->double('total');
+            $table->double('pagado');
 
             $table->timestamps();
             $table->softDeletes();

@@ -16,9 +16,11 @@
                                 <thead>
                                     <tr class="success">
                                         <th>Número de Pago</th>
-                                        <th>Estado</th>
-                                        <th>Afiliado</th>
                                         <th>Fecha Emisión</th>
+                                        <th>Afiliado</th>
+                                        <th>Estado</th>               
+                                        <th>Total Aporte</th>               
+                                        <th>Acción</th>               
                                     </tr>
                                 </thead>
                             </table>
@@ -43,9 +45,11 @@ $(function() {
         order: [0, "desc"],
         columns: [
             { data: 'id' },
-            { data: 'status', bSortable: false },
-            { data: 'afiliado', bSortable: false },
             { data: 'fecha_emision', bSortable: false },
+            { data: 'afiliado', bSortable: false },
+            { data: 'status', bSortable: false },
+            { data: 'total_aporte', bSortable: false },
+            { data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
         ]
     });
 });
