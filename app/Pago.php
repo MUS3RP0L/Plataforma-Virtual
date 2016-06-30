@@ -4,9 +4,9 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pago extends Model
+class AportePago extends Model
 {
-    protected $table = 'pagos';
+    protected $table = 'aporte_pagos';
 
 	protected $fillable = [
 	

@@ -17,7 +17,7 @@ use Muserpol\Helper\Util;
 
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
-use Muserpol\Pago;
+use Muserpol\AportePago;
 use Muserpol\Categoria;
 use Muserpol\AporTasa;
 use Muserpol\IpcTasa;
@@ -316,7 +316,7 @@ class AporteController extends Controller
 
             $data = json_decode($request->data);
 
-            $pago = new Pago;
+            $pago = new AportePago;
             $pago->user_id = Auth::user()->id;
             $pago->afiliado_id = $afiliado->id;
             $pago->save();
