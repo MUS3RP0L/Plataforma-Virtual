@@ -37,13 +37,16 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('viewaporte/{afid}', 'AporteController@ViewAporte');
 	// Select year Aporte
 	Route::get('selectgestaporte/{afid}', 'AporteController@SelectGestAporte');
-
 	// Cálculo aportes
 	Route::get('calcaportegest/{afid}/{gesid}/{type}', 'AporteController@CalcAporteGest');
 	Route::post('calcaportegest', 'AporteController@GenerateCalcAporteGest');
 
 	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
 	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
+	
+	//Pagos Aporte
+	Route::resource('aportepago', 'AportePagoController');
+	Route::get('getAportePago', array('as'=>'getAportePago', 'uses'=>'AportePagoController@AportePagoData'));
 	
 	// Notas
 	Route::get('getNote/{afid}', array('as'=>'getNote', 'uses'=>'NoteController@notesData'));
