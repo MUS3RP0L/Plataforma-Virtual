@@ -38,11 +38,6 @@
             <div class="title"><b>Fecha de Emisión: La Paz, {!! $aportePago->date !!}</b></div>
           </td>
         </tr>
-        <tr>
-            <td  colspan="2" style="border: 0px;text-align:right;">
-             <div class="title">Usuario: {{ Auth::user()->ape }} {{ Auth::user()->nom }}</div>
-            </td>
-        </tr>
       </table>
 
       <h1>

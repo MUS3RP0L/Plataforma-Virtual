@@ -8,7 +8,7 @@
 
 @section('title2')
 
-  RECEPCIÓN
+  {{ $aportePago->getNumberTram() }}
 
 @endsection
 
