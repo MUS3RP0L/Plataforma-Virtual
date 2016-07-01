@@ -52,18 +52,6 @@ class AportePagoController extends Controller
                         ->make(true);
     }
 
-    public function PrintAportePago($id) 
-    {
-
-        $aportePago = AportePago::first();
-
-        $view = \View::make('print.pagosaporte.show', compact('afiliado'))->render();
-        $pdf = \App::make('dompdf.wrapper');
-        $name_input = $aportePago->id;
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
-        return $pdf->stream();
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -102,6 +90,18 @@ class AportePagoController extends Controller
         );
         
         return view('aportes.pagos.show', $data);
+    }
+
+    public function PrintAportePago($id) 
+    {
+
+        $aportePago = AportePago::first();
+
+        $view = \View::make('print_pago.pagosaporte.show', compact('afiliado'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $name_input = $aportePago->id;
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
+        return $pdf->stream();
     }
 
     /**
