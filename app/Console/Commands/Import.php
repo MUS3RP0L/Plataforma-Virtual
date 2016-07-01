@@ -44,9 +44,10 @@ class Import extends Command
      *
      * @return mixed
      */
+   
     public function handle()
     {   
-        global $name;
+        global $cAfiN, $cAfiU, $cApor, $progress, $name;
         $password = $this->ask('Estimado Usuario: Escriba la contraseña para realizar la operacion, Gracias.');
         
         if ($password == ACCESS) {
@@ -54,16 +55,11 @@ class Import extends Command
             $name = $this->ask('Estimado Usuario: Escriba el nombre de la carpeta que desea importar, Gracias.');
 
             if ($this->confirm('Esta seguro de importar la Carpeta ' . $name . '? [y|N]') && $name) {
-
-                global $cAfiN, $cAfiU, $cApor, $progress;
-
-                $time_start = microtime(true); 
-
+               
+                $time_start = microtime(true);
                 $this->info("Importando registros...\n");
                 $progress = $this->output->createProgressBar();
                 $progress->setFormat("%current%/%max% [%bar%] %percent:3s%%");
-
-                global $cAfiN, $cAfiU, $cApor, $progress, $name;
                         ini_set('upload_max_filesize', '9999M');
                         ini_set('post_max_size', '9999M');
                         ini_set('max_execution_time', 36000);
@@ -128,13 +124,17 @@ class Import extends Command
                                 $fech_ing = Util::date($result->ing);    
                         } 
                         
+                        //busqueda del afiliado por ci
                         $afiliado = Afiliado::where('ci', '=', Util::zero($result->car))->first();
+                        //obtiene fecha/gestion(año, mes, dia 1), con los parametros a_o y mes de excel
                         $gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
                         if (is_null($result->desg)) {
                             $result->desg = 0;
                         }
+                        //busqueda del desglose mediante cod, parametro desg
+                        //busqueda de unidad mediante cod o desglose_id, parametro uni o $desglose_id
                         $desglose_id = Desglose::select('id')->where('cod', $result->desg)->first()->id;
-                        if ($desglose_id == 1) {
+                        if ($desglose_id == 1)  {
                             $unidad_id = 20;
                         }else{
                             $unidad_id = Unidad::select('id')->where('cod', $result->uni)->orwhere('desglose_id', $desglose_id)->first()->id;
@@ -155,7 +155,6 @@ class Import extends Command
 
                                 $afiliado = new Afiliado;
                                 $afiliado->sex = $result->sex;
-                                $afiliado->fech_est = $gest;
                                 $cAfiN ++;
 
                             }
@@ -164,27 +163,26 @@ class Import extends Command
                             $afiliado->ci = Util::zero($result->car);
                         }
                         else{$cAfiU ++;}
+
+                        $afiliado->fech_est = $gest;
                         
                         switch ($result->desg) {
                             
                             case '1'://Disponibilidad
                                 $afiliado->afi_state_id = 3;
-                                if ($afiliado->afi_state_id <> 4){$afiliado->fech_est = $gest;}
                             break;
                             case '3'://Comisión
                                 $afiliado->afi_state_id = 2;
-                                if ($afiliado->afi_state_id <> 3){$afiliado->fech_est = $gest;}
                             break;
                             default://Servicio
                                 $afiliado->afi_state_id = 1;
-                                if ($afiliado->afi_state_id <> 1){$afiliado->fech_est = $gest;}
                         }  
 
                         switch ($result->desg) {
                             case '5': //Batallón
                                 $afiliado->afi_type_id = 2;
                             break;
-                            default://Servicio
+                            default://Comando
                                 $afiliado->afi_type_id = 1;
                         }     
 

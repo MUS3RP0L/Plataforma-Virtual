@@ -37,7 +37,7 @@ class Note extends Model
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
 			$note->user_id = $user_id;
 			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->fech_gra;
+			$note->fech = $afiliado->fech_est;
 			$note->grado_id = $afiliado->grado_id;
 			$note->type = NOTE_TYPE_UPDATE_GRAD;
         	$grado = Grado::where('id', $afiliado->grado_id)->first();
@@ -50,7 +50,7 @@ class Note extends Model
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
 			$note->user_id = $user_id;
 			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->fech_uni;
+			$note->fech = $afiliado->fech_est;
 			$note->unidad_id = $afiliado->unidad_id;
 			$note->type = NOTE_TYPE_UPDATE_UNI;
         	$unidad = Unidad::where('id', $afiliado->unidad_id)->first();
@@ -79,7 +79,7 @@ class Note extends Model
 			$note = new Note;
 			if (Auth::user()) {$note->$user_id = Auth::user()->id;}else{$note->user_id = 1;}
 			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->fech_gra;
+			$note->fech = $afiliado->fech_est;
 			$note->grado_id = $afiliado->grado_id;
 			$note->type = NOTE_TYPE_UPDATE_GRAD;
         	$grado = Grado::where('id', $afiliado->grado_id)->first();
@@ -92,7 +92,7 @@ class Note extends Model
 			$note = new Note;
 			if (Auth::user()) {$note->$user_id = Auth::user()->id;}else{$note->user_id = 1;}
 			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->fech_uni;
+			$note->fech = $afiliado->fech_est;
 			$note->unidad_id = $afiliado->unidad_id;
 			$note->type = NOTE_TYPE_UPDATE_UNI;
         	$unidad = Unidad::where('id', $afiliado->unidad_id)->first();
