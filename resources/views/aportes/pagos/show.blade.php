@@ -2,7 +2,14 @@
 
 @section('content')
 <div class="container-fluid">
-    {!! Breadcrumbs::render('aportes_pago') !!}
+    {!! Breadcrumbs::render('show_aportes_pago', $afiliado) !!}
+    <div class="row">  
+        <div class="col-md-12 text-right"> 
+            <a href="{!! url('aportepago/') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
+                &nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;
+            </a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">

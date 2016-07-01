@@ -73,7 +73,13 @@ Breadcrumbs::register('fondo_tramite', function($breadcrumbs, $afiliado) {
     $breadcrumbs->push('Trámite de Fondo de Retiro');
 });
 
-//Aportes Pago
+//Aportes Pago Aportes
 Breadcrumbs::register('aportes_pago', function($breadcrumbs) {
     $breadcrumbs->push('Aportes Voluntarios', URL::to('aportepago'));
+});
+
+//show Pago Aportes
+Breadcrumbs::register('show_aportes_pago', function($breadcrumbs, $afiliado) {
+    $breadcrumbs->parent('show_afiliado', $afiliado);
+    $breadcrumbs->push('Aporte Voluntario');
 });

@@ -94,9 +94,11 @@ class AportePagoController extends Controller
     public function show($id)
     {
         $aportePago = AportePago::idIs($id)->first();
+        $afiliado = Afiliado::idIs($aportePago->afiliado_id)->first();
 
         $data = array(
             'aportePago' => $aportePago,
+            'afiliado' => $afiliado,
         );
         
         return view('aportes.pagos.show', $data);
