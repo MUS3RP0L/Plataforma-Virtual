@@ -399,7 +399,8 @@ class IpcTasasTableSeeder extends Seeder
 			['gest' => '2016-3-1',  'ipc' => '162.2500', 'user_id' => '1'],
 			['gest' => '2016-4-1',  'ipc' => '162.8800', 'user_id' => '1'],
 			['gest' => '2016-5-1',  'ipc' => '164.8800', 'user_id' => '1'],
-			['gest' => '2016-6-1',  'ipc' => '164.8800', 'user_id' => '1']
+			['gest' => '2016-6-1',  'ipc' => '164.8800', 'user_id' => '1'],
+			['gest' => '2016-7-1',  'ipc' => '164.8800', 'user_id' => '1']
 		];
 
         foreach ($statuses as $status) {

@@ -399,6 +399,7 @@ class AporTasasTableSeeder extends Seeder
 			['gest' => '2016-4-1', 'apor_a' => '2.5000', 'apor_fr_a' =>'1.8500', 'apor_sv_a'  =>'.6500', 'apor_am_p' => '1.5000', 'user_id' => '1'],
 			['gest' => '2016-5-1', 'apor_a' => '2.5000', 'apor_fr_a' =>'1.8500', 'apor_sv_a'  =>'.6500', 'apor_am_p' => '1.5000', 'user_id' => '1'],
 			['gest' => '2016-6-1', 'apor_a' => '2.5000', 'apor_fr_a' =>'1.8500', 'apor_sv_a'  =>'.6500', 'apor_am_p' => '1.5000', 'user_id' => '1'],
+			['gest' => '2016-7-1', 'apor_a' => '2.5000', 'apor_fr_a' =>'1.8500', 'apor_sv_a'  =>'.6500', 'apor_am_p' => '1.5000', 'user_id' => '1']
         ];
 
         foreach ($statuses as $status) {
