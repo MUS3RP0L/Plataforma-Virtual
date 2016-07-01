@@ -45,7 +45,7 @@ class CreateAportesTable extends Migration
 
             $table->date('fech_pago')->nullable();
 
-            $table->string('periodo');
+            $table->string('codigo');
             
             $table->double('cot');
             $table->double('mus');

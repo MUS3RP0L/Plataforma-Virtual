@@ -316,7 +316,14 @@ class AporteController extends Controller
 
             $data = json_decode($request->data);
 
+            $now = Carbon::now();
+            $last = AportePago::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             $pago = new AportePago;
+            if ($last) {
+                $pago->codigo = $last->codigo + 1;
+            }else{
+                $pago->codigo = 1;
+            }
             $pago->user_id = Auth::user()->id;
             $pago->afiliado_id = $afiliado->id;
             $pago->save();
