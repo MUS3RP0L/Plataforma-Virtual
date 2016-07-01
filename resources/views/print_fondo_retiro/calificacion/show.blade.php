@@ -1,4 +1,4 @@
-@extends('print.layoutPrint')
+@extends('print_fondo_retiro.layoutPrint')
 
 @section('title')
   FICHA TÉCNICA DE CALIFICACIÓN
