@@ -187,15 +187,9 @@ class Import extends Command
                         }     
 
                         if ($result->uni) {
-                            if ($afiliado->unidad_id <> $unidad_id) {
-                                $afiliado->fech_uni = $gest;
-                            }
                             $afiliado->unidad_id = $unidad_id; 
                         }
                         if ($result->gra) {              
-                            if ($afiliado->grado_id <> $grado_id) {
-                                $afiliado->fech_gra = $gest;
-                            }
                             $afiliado->grado_id = $grado_id;
                         }                
                         
