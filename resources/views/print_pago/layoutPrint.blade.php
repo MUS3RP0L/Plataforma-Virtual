@@ -7,6 +7,7 @@
   </head>
   <body>
     <header class="clearfix">
+
       <table class="tableh">
             <tr>
               <th style="width: 25%;border: 0px;">
@@ -18,7 +19,6 @@
                 <h3><b>MUTUAL DE SERVICIOS AL POLICÍA<br>
                     DIRECCIÓN DE BENEFICIOS ECONÓMICOS<br>
                     UNIDAD DE FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
-                    @yield('title')
                     </b></h3>
               </th>
               <th style="width: 25%;border: 0px">
@@ -28,11 +28,14 @@
               </th>
             </tr>
       </table>
+
       <table class="tablet">
         <tr>
           <td style="border: 0px;">
+            <div class="title"><b>N° de Tramite: {{ $aportePago->getNumberTram() }}</b></div>
           </td>
           <td style="border: 0px;text-align:right;">
+            <div class="title"><b>Fecha de Emisión: La Paz, {!! $aportePago->date !!}</b></div>
           </td>
         </tr>
         <tr>
@@ -41,9 +44,10 @@
             </td>
         </tr>
       </table>
+
       <h1>
         <b>       
-          FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
+           @yield('title')<br>
           @yield('title2')
         </b>
       </h1>

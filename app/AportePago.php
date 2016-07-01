@@ -3,6 +3,7 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class AportePago extends Model
 {
@@ -32,5 +33,12 @@ class AportePago extends Model
     public function scopeIdIs($query, $id)
     {
         return $query->where('id', $id);
+    }
+
+    public function getNumberTram()
+    {
+        if ($this->codigo) {
+            return $this->codigo . "/" . Carbon::parse($this->created_at)->year;
+        }
     }
 }

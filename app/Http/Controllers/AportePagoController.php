@@ -94,15 +94,17 @@ class AportePagoController extends Controller
 
     public function PrintAportePago($id) 
     {
-
         $aportePago = AportePago::first();
+        $aportePago->date = Util::getfulldate($aportePago->created_at);
 
-        $view = \View::make('print_pago.pagosaporte.show', compact('afiliado'))->render();
+        $view = \View::make('print_pago.pagosaporte.show', compact('aportePago'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $aportePago->id;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
         return $pdf->stream();
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
