@@ -10,38 +10,32 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
-        Schema::create('roles', function(Blueprint $table)
-        {
-            $table->engine = 'InnoDB';
-
+        Schema::create('roles', function(Blueprint $table){
+           
             $table->bigIncrements('id');
             $table->string('name');
-
             $table->timestamps();
+
         });
 
         Schema::create('users', function (Blueprint $table) {
-            
-            $table->engine = 'InnoDB';
-            
+                        
             $table->bigIncrements('id');
-            $table->UnsignedBigInteger('rol_id');
-
-            $table->string('ape');
-            $table->string('nom');
-            $table->string('tel')->nullable();
+            $table->UnsignedBigInteger('role_id');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('phone')->nullable();
             $table->string('username')->unique();
             $table->string('password', 60);
-            $table->enum('status',['Activo', 'Inactivo'])->default('Activo');
+            $table->enum('status',['active', 'inactive'])->default('active');
             $table->rememberToken();
-            
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('rol_id')->references('id')->on('roles');
-
+            $table->foreign('role_id')->references('id')->on('roles');
+            
         });
     }
 
@@ -50,6 +44,7 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
+
     public function down()
     {
         Schema::drop('users');

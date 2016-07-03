@@ -27,13 +27,13 @@ class RolesTableSeeder extends Seeder
             ['id' => '4', 'name' => 'Fondo de Retiro - Certificación'],
             ['id' => '5', 'name' => 'Fondo de Retiro - Calificación'],
             ['id' => '6', 'name' => 'Fondo de Retiro - Legal'],      
-            ['id' => '7', 'name' => 'Complemento Económico'],
+            ['id' => '7', 'name' => 'Complemento Económico']
 
         ];
 
         foreach ($statuses as $status) {
          
-            Muserpol\Rol::create($status);
+            Muserpol\Role::create($status);
             
         }
     }
