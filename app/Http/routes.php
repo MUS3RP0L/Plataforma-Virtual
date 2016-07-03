@@ -17,6 +17,12 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => 'auth'], function() {
 
+	// User Management
+	Route::resource('user', 'UserController');
+	Route::get('user/block/{user}', 'UserController@Block');
+	Route::get('user/unblock/{user}', 'UserController@Unblock');
+	Route::get('getUser', array('as'=>'getUser', 'uses'=>'UserController@UsersData'));
+
 	// Inicio
 	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
 	Route::get('home', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
@@ -64,11 +70,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 
-	// Gestion de Usuarios
-	Route::resource('usuario', 'UsuarioController');
-	Route::get('usuario/block/{id}', 'UsuarioController@block');
-	Route::get('usuario/unblock/{id}', 'UsuarioController@unBlock');
-	Route::get('getUsuario', array('as'=>'getUsuario', 'uses'=>'UsuarioController@UsuariosData'));
+
 	
 	// AporTasa
 	Route::resource('tasa', 'TasaController');
