@@ -6,19 +6,19 @@ Breadcrumbs::register('home', function($breadcrumbs) {
 });
 
 
-// Usuario
-Breadcrumbs::register('usuario', function($breadcrumbs) {
-    $breadcrumbs->push('Usuarios', URL::to('usuario'));
+// Users
+Breadcrumbs::register('users', function($breadcrumbs) {
+    $breadcrumbs->push('Usuarios', URL::to('user'));
 });
 // Crear Usuario
-Breadcrumbs::register('crear_usuario', function($breadcrumbs) {
-    $breadcrumbs->parent('usuario');
-    $breadcrumbs->push('Nuevo Usuario');
+Breadcrumbs::register('create_user', function($breadcrumbs) {
+    $breadcrumbs->parent('users');
+    $breadcrumbs->push('Nuevo');
 });
 // Editar Usuario
-Breadcrumbs::register('editar_usuario', function($breadcrumbs) {
-    $breadcrumbs->parent('usuario');
-    $breadcrumbs->push('Editar Usuario');
+Breadcrumbs::register('edit_user', function($breadcrumbs) {
+    $breadcrumbs->parent('users');
+    $breadcrumbs->push('Editar');
 });
 
 
