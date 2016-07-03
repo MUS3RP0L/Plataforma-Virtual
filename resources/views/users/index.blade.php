@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container-fluid">
-    {!! Breadcrumbs::render('usuario') !!}
+    {!! Breadcrumbs::render('users') !!}
     <div class="row">
         <div class="col-md-12">
 
             <div class="row">
                 <div class="col-md-12 text-right">  
-                    <a href="{!! url('usuario/create') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success">&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;</a>
+                    <a href="{!! url('user/create') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success">&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;</a>
                 </div>
             </div> 
 
@@ -53,12 +53,12 @@ $(function() {
         processing: true,
         serverSide: true,
         pageLength: 30,
-        ajax: '{!! route('getUsuario') !!}',
+        ajax: '{!! route('getUser') !!}',
 
         columns: [
             { data: 'username', sWidth: '20%' },
             { data: 'name', sWidth: '20%', bSortable: false },
-            { data: 'tel',sWidth: '15%', bSortable: false },
+            { data: 'phone',sWidth: '15%', bSortable: false },
             { data: 'type', sWidth: '20%', bSortable: false },
             { data: 'status', sWidth: '10%', bSortable: false },
             { data: 'action', sWidth: '15%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
