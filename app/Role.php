@@ -4,7 +4,7 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rol extends Model
+class Role extends Model
 {
     protected $table = 'roles';
 
@@ -15,8 +15,8 @@ class Rol extends Model
 
 	protected $guarded = ['id'];
 
-	public function usuarios()
+	public function users()
     {
-        return $this->hasMany('Muserpol\Usuarios');
+        return $this->hasMany(User::class);
     }
 }

@@ -21,6 +21,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var string
      */
+
     protected $table = 'users';
 
     /**
@@ -28,10 +29,12 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
+
     protected $fillable = [
-        'ape',
-        'nom',
-        'tel', 
+        
+        'first_name',
+        'last_name',
+        'phone', 
         'username',
         'password',
         'rol_id', 
@@ -43,21 +46,22 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
+    
     protected $hidden = ['password'];
 
-    public function rol(){
+    public function role(){
 
-        return $this->belongsTo('Muserpol\Rol');
+        return $this->belongsTo(Role::class);
     }
 
-    public function scopeIdIs($query, $id)
-    {
+    public function scopeIdIs($query, $id){
+        
         return $query->where('id', $id);
     }
 
-    public function getFullName()
-    {
-        return $this->nom . ' ' . $this->ape;
+    public function getFullName(){
+
+        return $this->first_name . ' ' . $this->last_name;
     }
 
     
