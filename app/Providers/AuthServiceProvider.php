@@ -12,6 +12,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
+    
     protected $policies = [
         'Muserpol\Model' => 'Muserpol\Policies\ModelPolicy',
     ];
@@ -22,12 +23,15 @@ class AuthServiceProvider extends ServiceProvider
      * @param  \Illuminate\Contracts\Auth\Access\Gate  $gate
      * @return void
      */
+
     public function boot(GateContract $gate)
     {
         parent::registerPolicies($gate);
  
-        $gate->define('admin', function($user){
-            return $user->rol_id == 1;
+        $gate->define('manage', function($user){
+
+            return $user->role_id == 1;
+
         });
     }
 }
