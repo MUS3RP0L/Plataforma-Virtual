@@ -38,7 +38,6 @@
 												<span class="help-block">Teléfono Celular</span>
 											</div>
 										</div>
-										<div class="form-group"><br><br></div>
 									</div>
 								</div>							
 							</div>
@@ -87,13 +86,13 @@
 						</div>
 					</div>
 				</div>
-				<br><br>
+				<br>
 
 				<div class="row text-center">
 		            <div class="form-group">
 						<div class="col-md-12">
-							<a href="{!! url('usuario') !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
-							&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+							<a href="{!! url('user') !!}" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancelar">&nbsp;<i class="glyphicon glyphicon-remove"></i>&nbsp;</a>
+							&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Guardar">&nbsp;<i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;</button>
 						</div>
 		            </div>
 	        	</div>

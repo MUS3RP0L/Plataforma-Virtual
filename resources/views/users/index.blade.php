@@ -5,36 +5,35 @@
     {!! Breadcrumbs::render('users') !!}
     <div class="row">
         <div class="col-md-12">
-
             <div class="row">
                 <div class="col-md-12 text-right">  
-                    <a href="{!! url('user/create') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success">&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;</a>
+                    <a href="{!! url('user/create') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Nuevo"><i class="glyphicon glyphicon-plus"></i></a>
                 </div>
             </div> 
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Listado</h3>
+                            <h3 class="panel-title">Lista de Usuarios</h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
-
-        					<table  class="table table-striped table-hover" id="users-table">
-
-                                <thead>
-                                    <tr class="success">
-                                        <th>Número de Carnet</th>
-                                        <th>Nombres y Apellidos</th>
-                                        <th>Teléfono</th>
-                                        <th>Tipo</th>
-                                        <th>Estado</th>
-                                        <th class="text-center">Opciones</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                					<table  class="table table-hover" id="users-table">
+                                        <thead>
+                                            <tr class="success">
+                                                <th>Número de Carnet</th>
+                                                <th>Nombres y Apellidos</th>
+                                                <th>Teléfono</th>
+                                                <th>Tipo</th>
+                                                <th>Estado</th>
+                                                <th class="text-center">Acción</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
         			</div>
                 </div>
             </div>
@@ -49,19 +48,19 @@
 <script>
 $(function() {
     $('#users-table').DataTable({
-        "dom": '<"top">t<"bottom"ip>',   
+        "dom": '<"top">t<"bottom"p>',   
         processing: true,
         serverSide: true,
-        pageLength: 30,
+        pageLength: 10,
         ajax: '{!! route('getUser') !!}',
 
         columns: [
-            { data: 'username', sWidth: '20%' },
-            { data: 'name', sWidth: '20%', bSortable: false },
-            { data: 'phone',sWidth: '15%', bSortable: false },
-            { data: 'type', sWidth: '20%', bSortable: false },
-            { data: 'status', sWidth: '10%', bSortable: false },
-            { data: 'action', sWidth: '15%', orderable: false, searchable: false, bSortable: false, sClass: 'center' }
+            { data: 'username' },
+            { data: 'name', bSortable: false },
+            { data: 'phone', bSortable: false },
+            { data: 'role', bSortable: false },
+            { data: 'status', bSortable: false },
+            { data: 'action', orderable: false, searchable: false, bSortable: false, sClass: 'text-center' }
         ]
     });
 });
