@@ -51,7 +51,7 @@ class AuthController extends Controller
                 [
                     'username' => $request->username,
                     'password' => $request->password,
-                    'status' => 'Activo'
+                    'status' => 'active'
                 ]
                 )){
             return redirect()->intended($this->redirectPath());

@@ -10,6 +10,7 @@ use Auth;
 use Validator;
 use Session;
 use Datatables;
+use Util;
 
 use Muserpol\User;
 use Muserpol\Role;
@@ -40,15 +41,26 @@ class UserController extends Controller
         $users = User::select(['id','username', 'first_name', 'last_name', 'phone','role_id','status'])->where('id', '>', 1);
 
         return Datatables::of($users)
-                ->addColumn('name', '{!! $first_name !!} {!! $last_name !!}')
-                ->addColumn('type', function ($user) { return $user->role->name; })
-                ->addColumn('action', function ($user) { return $user->status == "active" ?
-                    '<div class="text-center"><a href="user/'.$user->id.'/edit" > <i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="user/block/'.$user->id.'" > <i class="glyphicon glyphicon-ban-circle"></i></a></div>':
-                    '<div class="text-center"><a href="user/'.$user->id.'/edit" > <i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="user/unblock/'.$user->id.'" > <i class="glyphicon glyphicon-ok-circle"></i></a></div>';
-            })
-            
-            ->make(true);
+            ->addColumn('name', function ($user) { return Util::ucw($user->first_name) . ' ' . Util::ucw($user->last_name); })
+            ->addColumn('role', function ($user) { return $user->role->name; })
+            ->addColumn('status', function ($user) { return $user->status == 'active' ? 'Activo' : 'Inactivo'; })
+            ->addColumn('action', function ($user) { return  $user->status == "active" ?
+                        '<div class="btn-group" style="margin:-3px 0;">
+                            <a href="user/ '.$user->id.'/edit " class="btn btn-primary btn-raised btn-sm">&nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;</a>
+                            <a href="" class="btn btn-primary btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">&nbsp;<span class="caret"></span>&nbsp;</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="user/block/ '.$user->id.' " style="padding:3px 10px;"><i class="glyphicon glyphicon-ban-circle"></i> Bloquear</a></li>
+                            </ul>
+                        </div>' :
+                        '<div class="btn-group" style="margin:-3px 0;">
+                            <a href="user/ '.$user->id.'/edit " class="btn btn-primary btn-raised btn-sm">&nbsp;&nbsp;<i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;</a>
+                            <a href="" class="btn btn-primary btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">&nbsp;<span class="caret"></span>&nbsp;</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="user/unblock/ '.$user->id.' " style="padding:3px 10px;"><i class="glyphicon glyphicon-ok-circle"></i> Activar</a></li>
+                            </ul>
+                        </div>';})->make(true);
     }
+                
     /**
      * Show the form for creating a new resource.
      *
@@ -209,7 +221,7 @@ class UserController extends Controller
     {
         $user->status = "inactive";
         $user->save();
-        $message = "Usuario Inactivado";
+        $message = "Usuario Bloqueado";
         Session::flash('message', $message);
         return redirect('user');
     }
