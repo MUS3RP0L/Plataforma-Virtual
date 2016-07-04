@@ -37,10 +37,7 @@
 												{!! Form::text('phone', $user->phone, ['class'=> 'form-control', 'required' => 'required']) !!}
 												<span class="help-block">Teléfono Celular</span>
 											</div>
-										</div>
-										@can('admin')
-											<div class="form-group"><br><br></div>
-										@endcan						
+										</div>					
 									</div>
 								</div>							
 							</div>

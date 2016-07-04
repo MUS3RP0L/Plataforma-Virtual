@@ -143,7 +143,6 @@ class UserController extends Controller
                 'first_name' => 'required|min:3|regex:/^[A-ZÑa-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'phone' => 'required|min:8|numeric',
                 'username' => 'required|unique:users,username,'.$user->id,
-                'role' => 'required'
             ];
         }
         else { 
@@ -181,7 +180,7 @@ class UserController extends Controller
             'password.min' => 'El mínimo de caracteres permitidos en contraseña es 6',
             'password.confirmed' => 'Las contraseñas no coinciden',
 
-            'role.required' => 'El campo contraseña es requerido'
+            'role.required' => 'El campo tipo de usuario es requerido'
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -208,7 +207,7 @@ class UserController extends Controller
             $user->phone = trim($request->phone);
             $user->username = trim($request->username);
             if($request->password){$user->password = bcrypt(trim($request->password));}
-            $user->role_id = $request->role; 
+            if($request->role){$user->role_id = $request->role;}
             $user->save();
 
             Session::flash('message', $message);
