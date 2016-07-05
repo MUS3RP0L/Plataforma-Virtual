@@ -1,13 +1,11 @@
 <?php
 
-namespace Muserpol\Http\Controllers;
+namespace Muserpol\Http\Controllers\Rate;
 
 use Illuminate\Http\Request;
-
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 
-use DB;
 use Auth;
 use Validator;
 use Session;
@@ -15,9 +13,9 @@ use Datatables;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
-use Muserpol\AporTasa;
+use Muserpol\ContributionRate;
 
-class TasaController extends Controller
+class ContributionRateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,10 +24,10 @@ class TasaController extends Controller
      */
     public function index()
     {
-        $aporTasaLast = AporTasa::orderBy('gest', 'desc')->first();
+        $lastContributionRate = ContributionRate::orderBy('month_year', 'desc')->first();
 
         $data = array(
-            'aporTasaLast' => $aporTasaLast,
+            'lastContributionRate' => $lastContributionRate,
             'gest' => Util::getfullmonthYear($aporTasaLast->gest)
         );
 
