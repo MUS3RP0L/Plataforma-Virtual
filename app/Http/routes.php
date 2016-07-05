@@ -18,10 +18,10 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 Route::group(['middleware' => 'auth'], function() {
 
 	// User Management
-	Route::resource('user', 'UserController');
-	Route::get('user/block/{user}', 'UserController@Block');
-	Route::get('user/unblock/{user}', 'UserController@Unblock');
-	Route::get('getUser', array('as'=>'getUser', 'uses'=>'UserController@UsersData'));
+	Route::resource('user', 'User\UserController');
+	Route::get('user/block/{user}', 'User\UserController@Block');
+	Route::get('user/unblock/{user}', 'User\UserController@Unblock');
+	Route::get('getUser', array('as'=>'getUser', 'uses'=>'User\UserController@UsersData'));
 
 	// Inicio
 	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showIndex']);

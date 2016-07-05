@@ -1,6 +1,6 @@
 <?php
 
-namespace Muserpol\Http\Controllers;
+namespace Muserpol\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Muserpol\Http\Requests;
