@@ -24,28 +24,28 @@ class ContributionRateController extends Controller
      */
     public function index()
     {
-        $lastContributionRate = ContributionRate::orderBy('month_year', 'desc')->first();
+        $last_contribution_rate = ContributionRate::orderBy('month_year', 'desc')->first();
 
         $data = array(
-            'lastContributionRate' => $lastContributionRate,
-            'gest' => Util::getfullmonthYear($aporTasaLast->gest)
+            'last_contribution_rate' => $last_contribution_rate,
+            'month_year' => Util::getfullmonthYear($last_contribution_rate->month_year)
         );
 
-        return view('tasas.index', $data);
+        return view('contribution_rates.index', $data);
     }
 
-    public function tasasData()
+    public function Data()
     {
-        $tasas = AporTasa::select(['gest', 'apor_a', 'apor_fr_a', 'apor_sv_a', 'apor_am_p']);
+        $contribution_rates = ContributionRate::select(['month_year', 'rate_active', 'retirement_fund', 'life_insurance', 'rate_passive']);
 
-        return Datatables::of($tasas)
-            ->editColumn('gest', function ($tasa) { return Carbon::parse($tasa->gest)->year; })
-            ->addColumn('mes', function ($tasa) { return Util::getMes(Carbon::parse($tasa->gest)->month); })
-            ->editColumn('apor_a', function ($tasa) { return Util::formatMoney($tasa->apor_a); })
-            ->editColumn('apor_fr_a', function ($tasa) { return Util::formatMoney($tasa->apor_fr_a); })
-            ->editColumn('apor_sv_a', function ($tasa) { return Util::formatMoney($tasa->apor_sv_a); })
-            ->addColumn('apor_p', function ($tasa) { return Util::formatMoney($tasa->apor_am_p); })
-            ->editColumn('apor_am_p', function ($tasa) { return Util::formatMoney($tasa->apor_am_p); })
+        return Datatables::of($contribution_rates)
+            ->addColumn('year', function ($contribution_rate) { return Carbon::parse($contribution_rate->month_year)->year; })
+            ->addColumn('month', function ($contribution_rate) { return Util::getMes(Carbon::parse($contribution_rate->month_year)->month); })
+            ->editColumn('rate_active', function ($contribution_rate) { return Util::formatMoney($contribution_rate->rate_active); })
+            ->editColumn('retirement_fund', function ($contribution_rate) { return Util::formatMoney($contribution_rate->retirement_fund); })
+            ->editColumn('life_insurance', function ($contribution_rate) { return Util::formatMoney($contribution_rate->life_insurance); })
+            ->addColumn('rate_passive', function ($contribution_rate) { return Util::formatMoney($contribution_rate->rate_passive); })
+            ->editColumn('mortuary_aid', function ($contribution_rate) { return Util::formatMoney($contribution_rate->rate_passive); })
             ->make(true);
     }
 
