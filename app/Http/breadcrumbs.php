@@ -1,31 +1,38 @@
 <?php
 
-// Inicio
-Breadcrumbs::register('home', function($breadcrumbs) {
-    $breadcrumbs->push('Inicio', route('home'));
-});
-
-
 // Users
 Breadcrumbs::register('users', function($breadcrumbs) {
     $breadcrumbs->push('Usuarios', URL::to('user'));
 });
-// Crear Usuario
+// Crear User
 Breadcrumbs::register('create_user', function($breadcrumbs) {
     $breadcrumbs->parent('users');
     $breadcrumbs->push('Nuevo');
 });
-// Editar Usuario
+// Edit User
 Breadcrumbs::register('edit_user', function($breadcrumbs) {
     $breadcrumbs->parent('users');
     $breadcrumbs->push('Editar');
 });
 
-
-// Tasas de aporte
-Breadcrumbs::register('tasas_aporte', function($breadcrumbs) {
-    $breadcrumbs->push('Tasas de Aporte', URL::to('tasa'));
+// Contribution Rate
+Breadcrumbs::register('contribution_rates', function($breadcrumbs) {
+    $breadcrumbs->push('Tasas de Aporte', URL::to('contribution_rate'));
 });
+
+
+
+
+
+
+
+
+
+// Inicio
+Breadcrumbs::register('home', function($breadcrumbs) {
+    $breadcrumbs->push('Inicio', route('home'));
+});
+
 
 
 // Tasas IPC
