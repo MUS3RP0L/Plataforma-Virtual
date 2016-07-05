@@ -36,7 +36,7 @@ class UserController extends Controller
         }
     }
 
-    public function UsersData()
+    public function Data()
     {
         $users = User::select(['id','username', 'first_name', 'last_name', 'phone','role_id','status'])->where('id', '>', 1);
 

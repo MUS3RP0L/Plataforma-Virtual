@@ -21,7 +21,15 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('user', 'User\UserController');
 	Route::get('user/block/{user}', 'User\UserController@Block');
 	Route::get('user/unblock/{user}', 'User\UserController@Unblock');
-	Route::get('getUser', array('as'=>'getUser', 'uses'=>'User\UserController@UsersData'));
+	Route::get('get_user', array('as'=>'get_user', 'uses'=>'User\UserController@Data'));
+
+	// Contribution Rate
+	Route::resource('contribution_rate', 'Rate\ContributionRateController');
+	Route::get('getContributionRate', array('as'=>'getContributionRate', 'uses'=>'Rate\ContributionRateController@Data'));
+
+
+
+
 
 	// Inicio
 	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showIndex']);

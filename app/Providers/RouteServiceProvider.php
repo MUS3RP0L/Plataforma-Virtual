@@ -27,6 +27,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot($router);
 
         $router->model('user', 'Muserpol\User');
+        $router->model('contribution_rate', 'Muserpol\ContributionRate');
     }
 
     /**

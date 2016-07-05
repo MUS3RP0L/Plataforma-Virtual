@@ -21,13 +21,13 @@ class RolesTableSeeder extends Seeder
     private function createRoles()
     {
         $statuses = [
-            ['id' => '1', 'name' => 'Administrador'],
-            ['id' => '2', 'name' => 'Fondo de Retiro'],
-            ['id' => '3', 'name' => 'Fondo de Retiro - Ventanilla'],
-            ['id' => '4', 'name' => 'Fondo de Retiro - Certificación'],
-            ['id' => '5', 'name' => 'Fondo de Retiro - Calificación'],
-            ['id' => '6', 'name' => 'Fondo de Retiro - Legal'],      
-            ['id' => '7', 'name' => 'Complemento Económico']
+            ['name' => 'Administrador'],
+            ['name' => 'Fondo de Retiro'],
+            ['name' => 'Fondo de Retiro - Ventanilla'],
+            ['name' => 'Fondo de Retiro - Certificación'],
+            ['name' => 'Fondo de Retiro - Calificación'],
+            ['name' => 'Fondo de Retiro - Legal'],      
+            ['name' => 'Complemento Económico']
 
         ];
 

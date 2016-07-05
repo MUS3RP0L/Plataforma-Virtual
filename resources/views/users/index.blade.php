@@ -52,7 +52,7 @@ $(function() {
         processing: true,
         serverSide: true,
         pageLength: 10,
-        ajax: '{!! route('getUser') !!}',
+        ajax: '{!! route('get_user') !!}',
 
         columns: [
             { data: 'username' },
