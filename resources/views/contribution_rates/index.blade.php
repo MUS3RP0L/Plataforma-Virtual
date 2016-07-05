@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="container-fluid">
-    {!! Breadcrumbs::render('tasas_aporte') !!}
+    {!! Breadcrumbs::render('contribution_rates') !!}
     <div class="row">
         <div class="col-md-12">
             
-            @can('admin')
+            @can('manage')
                 <div class="row">
                     <div class="col-md-12 text-right"> 
                         <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Modificar">
@@ -60,26 +60,26 @@
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Editar Tasas de Aporte - {!! $gest !!}</h4>
+                <h4 class="modal-title">Editar Tasas de Aporte - {!! $month_year !!}</h4>
             </div>
             <div class="modal-body">
 
-                {!! Form::model($aporTasaLast, ['method' => 'PATCH', 'route' => ['tasa.update', $aporTasaLast->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($last_contribution_rate, ['method' => 'PATCH', 'route' => ['contribution_rate.update', $last_contribution_rate->id], 'class' => 'form-horizontal']) !!}
 
                 <div class="row">           
                     <div class="col-md-6">
                         <h3 class="panel-title">Sector Activo</h3>
                         <div class="form-group">
-                                {!! Form::label('apor_fr_a', 'Fondo de Retiro', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('retirement_fund', 'Fondo de Retiro', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('apor_fr_a', $aporTasaLast->apor_fr_a, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                {!! Form::text('retirement_fund', $last_contribution_rate->retirement_fund, ['class'=> 'form-control', 'required' => 'required']) !!}
                                 <span class="help-block">Nuevo Aporte de Fondo de Retiro</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('apor_sv_a', 'Seguro de Vida', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('life_insurance', 'Seguro de Vida', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('apor_sv_a', $aporTasaLast->apor_sv_a, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                {!! Form::text('life_insurance', $last_contribution_rate->life_insurance, ['class'=> 'form-control', 'required' => 'required']) !!}
                                 <span class="help-block">Nuevo Aporte de Seguro de Vida</span>
                             </div>
                         </div>
@@ -87,9 +87,9 @@
                     <div class="col-md-6">
                         <h3 class="panel-title">Sector Pasivo</h3>                            
                         <div class="form-group">
-                                {!! Form::label('apor_am_p', 'Auxilio Mortuorio', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('rate_passive', 'Auxilio Mortuorio', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('apor_am_p', $aporTasaLast->apor_am_p, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                {!! Form::text('rate_passive', $last_contribution_rate->rate_passive, ['class'=> 'form-control', 'required' => 'required']) !!}
                                 <span class="help-block">Nuevo Aporte de Seguro de Vida</span>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                 <div class="row text-center">
                     <div class="form-group" style="padding-bottom:0px">
                         <div class="col-md-12">
-                            <a href="{!! url('tasa') !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('contribution_rate') !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -118,24 +118,26 @@
 
 @push('scripts')
 <script>
-$(function() {
-    $('#tasas-table').DataTable({
-        dom: '<"top">t<"bottom"p>',
-        processing: true,
-        serverSide: true,
-        pageLength: 10,
-        ajax: '{!! route('getTasa') !!}',
-        order: [0, "desc"],
-        columns: [
-            { data: 'gest' },
-            { data: 'mes', bSortable: false },
-            { data: 'apor_a', sClass: "text-center", bSortable: false },
-            { data: 'apor_fr_a', sClass: "text-center", bSortable: false },
-            { data: 'apor_sv_a', sClass: "text-center", bSortable: false },
-            { data: 'apor_p', sClass: "text-center", bSortable: false },
-            { data: 'apor_am_p', sClass: "text-center", bSortable: false },
-        ]
+
+    $(function() {
+        $('#tasas-table').DataTable({
+            dom: '<"top">t<"bottom"p>',
+            processing: true,
+            serverSide: true,
+            pageLength: 10,
+            ajax: '{!! route('getContributionRate') !!}',
+            order: [0, "desc"],
+            columns: [
+                { data: 'year', name: 'month_year' },
+                { data: 'month', bSortable: false },
+                { data: 'rate_active', sClass: "text-center", bSortable: false },
+                { data: 'retirement_fund', sClass: "text-center", bSortable: false },
+                { data: 'life_insurance', sClass: "text-center", bSortable: false },
+                { data: 'rate_passive', sClass: "text-center", bSortable: false },
+                { data: 'mortuary_aid', sClass: "text-center", bSortable: false },
+            ]
+        });
     });
-});
+
 </script>
 @endpush

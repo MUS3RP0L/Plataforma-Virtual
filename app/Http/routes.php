@@ -79,11 +79,6 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 
-	
-	// AporTasa
-	Route::resource('tasa', 'TasaController');
-	Route::get('getTasa', array('as'=>'getTasa', 'uses'=>'TasaController@tasasData'));
-
 	// IPCTasa
 	Route::resource('ipc', 'IpcController');
 	Route::get('getIpc', array('as'=>'getIpc', 'uses'=>'IpcController@ipctasasData'));
