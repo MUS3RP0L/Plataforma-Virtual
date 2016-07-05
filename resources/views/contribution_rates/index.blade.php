@@ -10,9 +10,7 @@
                 <div class="row">
                     <div class="col-md-12 text-right"> 
                         <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Modificar">
-                            <a href="" data-target="#myModal-edit" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                                &nbsp;&nbsp;<span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;
-                            </a>
+                            <a href="" data-target="#myModal-edit" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal"><i class="glyphicon glyphicon-wrench"></i></a>
                         </div>
                     </div>
                 </div>
@@ -27,20 +25,20 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="table table-striped table-hover" id="tasas-table">
+                                    <table class="table table-hover" id="contribution_rate-table">
                                         <thead>
                                             <tr class="success">
-                                                <th rowspan="2">Año</th>
-                                                <th rowspan="2">Mes</th>
+                                                <th style="text-align:center;" rowspan="2">Año</th>
+                                                <th style="text-align:center;" rowspan="2">Mes</th>
                                                 <th style="text-align:center;" colspan="3">Sector Activo</th>
                                                 <th style="text-align:center;" colspan="4">Sector Pasivo</th>
                                             </tr>
                                             <tr class="success">
-                                                <th>Aporte Muserpol</th>
                                                 <th>Fondo de Retiro</th>
                                                 <th>Seguro de Vida</th>
-                                                <th>Aporte Muserpol</th>
+                                                <th>Total Aporte</th>
                                                 <th>Auxilio Mortuorio</th>
+                                                <th>Total Aporte</th>             
                                             </tr>
                                         </thead>
                                     </table>
@@ -118,26 +116,25 @@
 
 @push('scripts')
 <script>
+$(function() {
+    $('#contribution_rate-table').DataTable({
+        dom: '<"top">t<"bottom"p>',
+        processing: true,
+        serverSide: true,
+        pageLength: 10,
+        ajax: '{!! route('getContributionRate') !!}',
+        order: [0, "desc"],
+        columns: [
 
-    $(function() {
-        $('#tasas-table').DataTable({
-            dom: '<"top">t<"bottom"p>',
-            processing: true,
-            serverSide: true,
-            pageLength: 10,
-            ajax: '{!! route('getContributionRate') !!}',
-            order: [0, "desc"],
-            columns: [
-                { data: 'year', name: 'month_year' },
-                { data: 'month', bSortable: false },
-                { data: 'rate_active', sClass: "text-center", bSortable: false },
-                { data: 'retirement_fund', sClass: "text-center", bSortable: false },
-                { data: 'life_insurance', sClass: "text-center", bSortable: false },
-                { data: 'rate_passive', sClass: "text-center", bSortable: false },
-                { data: 'mortuary_aid', sClass: "text-center", bSortable: false },
-            ]
-        });
+            { data: 'year', sClass: "text-center", name: 'month_year' },
+            { data: 'month', sClass: "text-center", bSortable: false },
+            { data: 'retirement_fund', sClass: "text-center", bSortable: false },
+            { data: 'life_insurance', sClass: "text-center", bSortable: false },
+            { data: 'rate_active', sClass: "text-center", bSortable: false },
+            { data: 'mortuary_aid', sClass: "text-center", bSortable: false },
+            { data: 'rate_passive', sClass: "text-center", bSortable: false },
+        ]
     });
-
+});
 </script>
 @endpush
