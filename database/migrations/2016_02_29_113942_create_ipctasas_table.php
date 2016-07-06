@@ -10,21 +10,16 @@ class CreateIpctasasTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
-        Schema::create('ipc_tasas', function(Blueprint $table){
-            
-            $table->engine = 'InnoDB';
+        Schema::create('ipc_rates', function(Blueprint $table){
 
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
-
-            $table->date('gest')->unique()->required();
-
-            $table->double('ipc');
-            
+            $table->date('month_year')->unique()->required();
+            $table->double('index');
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users'); 
 
         });
@@ -38,6 +33,6 @@ class CreateIpctasasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ipc_tasas');
+        Schema::drop('ipc_rates');
     }
 }

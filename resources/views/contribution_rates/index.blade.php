@@ -120,7 +120,7 @@ $(function() {
         processing: true,
         serverSide: true,
         pageLength: 10,
-        ajax: '{!! route('getContributionRate') !!}',
+        ajax: '{!! route('get_contribution_rate') !!}',
         order: [0, "desc"],
         columns: [
 
