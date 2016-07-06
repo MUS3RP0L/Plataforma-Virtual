@@ -27,10 +27,12 @@ class ContributionRateController extends Controller
     {
         $last_contribution_rate = ContributionRate::orderBy('month_year', 'desc')->first();
 
-        $data = array(
+        $data = [
+
             'last_contribution_rate' => $last_contribution_rate,
             'month_year' => Util::getfullmonthYear($last_contribution_rate->month_year)
-        );
+
+        ];
 
         return view('contribution_rates.index', $data);
     }
@@ -70,7 +72,7 @@ class ContributionRateController extends Controller
         }
     }
 
-    public function save($request, $contribution_rate = false)
+    public function save($request, $contribution_rate  = false)
     {
         $rules = [
 
@@ -95,7 +97,7 @@ class ContributionRateController extends Controller
         
         $validator = Validator::make($request->all(), $rules, $messages);
         
-        if ($validator->fails()){
+        if ($validator->fails()) {
 
             return redirect('contribution_rate/'.$contribution_rate.'/edit')
             ->withErrors($validator)

@@ -76,16 +76,22 @@ class UserController extends Controller
         }
 
         return [
+
             'list_roles' => $list_roles
+
         ];
     }
 
     public function create()
     {
         if (Auth::user()->can('manage')) {
+
             return view('users.create', self::getViewModel());
+
         }else{
+
             return redirect('/');
+
         }   
     }
 
@@ -111,7 +117,9 @@ class UserController extends Controller
     public function edit($user)
     {   
         $data = [
+
             'user' => $user
+
         ];
 
         $data = array_merge($data, self::getViewModel());
@@ -139,21 +147,25 @@ class UserController extends Controller
         if ($user) {
 
             $rules = [
+
                 'last_name' => 'required|min:3|regex:/^[A-ZÑa-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'first_name' => 'required|min:3|regex:/^[A-ZÑa-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'phone' => 'required|min:8|numeric',
                 'username' => 'required|unique:users,username,'.$user->id,
+
             ];
         }
         else { 
 
             $rules = [
+
                 'last_name' => 'required|min:3|regex:/^[A-ZÑa-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'first_name' => 'required|min:3|regex:/^[A-ZÑa-záéíóúàèìòùäëïöüñ\s]+$/i',
                 'phone' => 'required|min:8|numeric',
                 'username' => 'required|unique:users,username',
                 'password' => 'required|min:6|confirmed',
                 'role' => 'required'
+
             ];
         }
         
@@ -181,11 +193,13 @@ class UserController extends Controller
             'password.confirmed' => 'Las contraseñas no coinciden',
 
             'role.required' => 'El campo tipo de usuario es requerido'
+            
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
         
-        if ($validator->fails()){
+        if ($validator->fails()) {
+            
             return redirect($user ? 'user/'.$user->id.'/edit' : 'user/create')
             ->withErrors($validator)
             ->withInput();

@@ -32,7 +32,7 @@ class ReporteController extends Controller
 
         $data = array(
             'anios' => $anios,
-            'meses' => Util::getAllMeses(),
+            'meses' => Util::getArrayMonths(),
             'resultado' => 0,
             'anio' => '',
             'mes' => '',
@@ -106,7 +106,7 @@ class ReporteController extends Controller
         $mus = $musC + $musB;
         
         $anios = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest ) gest'))->lists('gest');
-        $meses = Util::getAllMeses();
+        $meses = Util::getArrayMonths();
         $data = array(
             'total' => Util::formatMoney($total),
             'totalSueldoC' => Util::formatMoney($sueldoC),
