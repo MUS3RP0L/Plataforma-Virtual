@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIpctasasTable extends Migration
+class CreateIpcRatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -23,7 +23,6 @@ class CreateIpctasasTable extends Migration
             $table->foreign('user_id')->references('id')->on('users'); 
 
         });
-
     }
 
     /**
