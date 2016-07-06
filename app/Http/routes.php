@@ -30,6 +30,13 @@ Route::group(['middleware' => 'auth'], function() {
 	// IPC Rate
 	Route::resource('ipc_rate', 'Rate\IpcRateController');
 	Route::get('get_ipc_rate', array('as'=>'get_ipc_rate', 'uses'=>'Rate\IpcRateController@Data'));
+	
+	// Sueldos
+	Route::resource('base_wage', 'BaseWageController');
+	Route::get('get_first_level_base_wage', array('as'=>'get_first_level_base_wage', 'uses'=>'BaseWageController@FirstLevelData'));
+	Route::get('get_secondLevel_base_wage', array('as'=>'get_secondLevel_base_wage', 'uses'=>'BaseWageController@SecondLevelData'));
+	Route::get('get_thirdLevel_base_wage', array('as'=>'get_thirdLevel_base_wage', 'uses'=>'BaseWageController@ThirdLevelData'));
+	Route::get('get_fourthLevel_base_wage', array('as'=>'get_fourthLevel_base_wage', 'uses'=>'BaseWageController@FourthLevelData'));
 
 
 
@@ -81,18 +88,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('tramite_fondo_retiro_calificacion/{afid}', 'FondoTramiteController@print_calificacion');
 	Route::get('tramite_fondo_retiro_dictamenlegal/{afid}', 'FondoTramiteController@print_dictamenlegal');
 	
-
-
-
-
-
-	// Sueldos
-	Route::resource('sueldo', 'SueldoController');
-	Route::get('getSueldoPri', array('as'=>'getSueldoPri', 'uses'=>'SueldoController@sueldoPriData'));
-	Route::get('getSueldoSeg', array('as'=>'getSueldoSeg', 'uses'=>'SueldoController@sueldoSegData'));
-	Route::get('getSueldoTer', array('as'=>'getSueldoTer', 'uses'=>'SueldoController@sueldoTerData'));
-	Route::get('getSueldoCua', array('as'=>'getSueldoCua', 'uses'=>'SueldoController@sueldoCuaData'));
-
 	// Reporte Totales
 	Route::get('total_month', 'ReporteController@ReportAporteMonth');
 	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
