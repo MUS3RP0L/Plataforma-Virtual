@@ -25,7 +25,13 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// Contribution Rate
 	Route::resource('contribution_rate', 'Rate\ContributionRateController');
-	Route::get('getContributionRate', array('as'=>'getContributionRate', 'uses'=>'Rate\ContributionRateController@Data'));
+	Route::get('get_Contribution_rate', array('as'=>'get_contribution_rate', 'uses'=>'Rate\ContributionRateController@Data'));
+	
+	// IPC Rate
+	Route::resource('ipc_rate', 'Rate\IpcRateController');
+	Route::get('get_ipc_rate', array('as'=>'get_ipc_rate', 'uses'=>'Rate\IpcRateController@Data'));
+
+
 
 
 
@@ -79,9 +85,6 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 
-	// IPCTasa
-	Route::resource('ipc', 'IpcController');
-	Route::get('getIpc', array('as'=>'getIpc', 'uses'=>'IpcController@ipctasasData'));
 
 	// Sueldos
 	Route::resource('sueldo', 'SueldoController');

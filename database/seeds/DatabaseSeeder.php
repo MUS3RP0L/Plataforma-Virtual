@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(GradoTableSeeder::class);   
         // $this->call(DepartamentoTableSeeder::class);
         // $this->call(AfiTypeTableSeeder::class);
-        // $this->call(IpcTasasTableSeeder::class);
 
+        $this->call(IpcRateTableSeeder::class);
         $this->call(ContributionRateTableSeeder::class);
         
         // $this->call(SueldosTableSeeder::class);

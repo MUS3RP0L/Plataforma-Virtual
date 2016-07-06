@@ -4,6 +4,8 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Muserpol\Helper\Util;
+
 class IpcRate extends Model
 {
     protected $table = 'ipc_rates';
@@ -15,4 +17,9 @@ class IpcRate extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function getMonthYearEdit()
+    {	
+        return Util::getdateforEditPeriod($this->month_year);
+    }
 }

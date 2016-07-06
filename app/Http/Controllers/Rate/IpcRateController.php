@@ -15,90 +15,37 @@ use Muserpol\Helper\Util;
 
 use Muserpol\IpcRate;
 
-class IpcController extends Controller
+class IpcRateController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function index()
     {
-        $ipcTasaLast = IpcRate::orderBy('month_year', 'desc')->first();
-        $ipcTasaLast->year = Carbon::parse($ipcTasaLast->gest)->year;
-        $ipcTasaLast->month = Carbon::parse($ipcTasaLast->gest)->month;
+        $last_ipc_rate = IpcRate::orderBy('month_year', 'desc')->first();
 
-        $data = array(
-            'ipcTasaLast' => $ipcTasaLast,
-            'meses' => Util::getAllMeses()
-        );
+        $data = [
 
-        return view('ipc.index', $data);
+            'last_ipc_rate' => $last_ipc_rate,
+            'months' => Util::getArrayMonths()
+
+        ];
+
+        return view('ipc_rate.index', $data);
     }
 
-    public function ipctasasData()
+    public function Data()
     {
-        $ipcs = IpcTasa::select(['gest', 'ipc']);
+        $ipc_rates = IpcRate::select(['month_year', 'index']);
 
-        return Datatables::of($ipcs)
-                ->editColumn('gest', function ($ipc) { return Carbon::parse($ipc->gest)->year; })
-                ->addColumn('mes', function ($ipc) { return Util::getMes(Carbon::parse($ipc->gest)->month); })
-                ->editColumn('ipc', function ($ipc) { return Util::formatMoney($ipc->ipc); })
+        return Datatables::of($ipc_rates)
+                ->editColumn('year', function ($ipc_rate) { return Carbon::parse($ipc_rate->month_year)->year; })
+                ->addColumn('month', function ($ipc_rate) { return Util::getMes(Carbon::parse($ipc_rate->month_year)->month); })
+                ->editColumn('index', function ($ipc_rate) { return Util::formatMoney($ipc_rate->index); })
                 ->make(true);
-    }
-
-    public function save($request, $id = false)
-    {
-        $rules = [
-            'year' => 'required|numeric',
-            'month' => 'required|numeric',
-            'ipc' => 'required|numeric'
-        ];
-
-        $messages = [
-
-            'year.required' => 'El campo Año no puede ser vacío', 
-            'year.numeric' => 'El campo Año sólo se aceptan números',
-
-            'month.required' => 'El campo Mes no puede ser vacío', 
-            'month.numeric' => 'El campo Mes sólo se aceptan números',
-
-            'ipc.required' => 'El campo IPC no puede ser vacío', 
-            'ipc.numeric' => 'El campo IPC sólo se aceptan números'
-
-        ];
-        
-        $validator = Validator::make($request->all(), $rules, $messages);
-        
-        if ($validator->fails()){
-            return redirect('ipc')
-            ->withErrors($validator)
-            ->withInput();
-        }
-        else{
-
-            $ipcTasa = IpcTasa::where('gest', '=', Carbon::createFromDate($request->year, $request->month, 1)->toDateString())->first();
-
-            if ($ipcTasa) {
-                $ipcTasa->user_id = Auth::user()->id;
-                $ipcTasa->ipc = trim($request->ipc);
-
-                $ipcTasa->save();
-
-                $message = "Índice de Precios al Consumidor actualizado con éxito";
-
-                Session::flash('message', $message);
-            }
-            else
-            {
-                $message = "Fecha no disponible";
-                Session::flash('message', $message);
-            }
-
-        }
-        
-        return redirect('ipc');
     }
 
     /**
@@ -108,9 +55,61 @@ class IpcController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, $ipc_rate)
     {
-        return $this->save($request, $id);
+        return $this->save($request, $ipc_rate);
+    }
+
+    public function save($request, $ipc_rate = false)
+    {
+        $rules = [
+
+            'month_year' => 'required',
+            'index' => 'required|numeric'
+        ];
+
+        $messages = [
+
+            'month_year.required' => 'El campo Año no puede ser vacío', 
+
+            'index.required' => 'El campo IPC no puede ser vacío', 
+            'index.numeric' => 'El campo IPC sólo se aceptan números'
+
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()) {
+            return redirect('ipc_rate')
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
+
+            $ipcTasa = IpcRate::where('month_year', '=', Util::datePickPeriod($request->month_year))->first();
+
+            if ($ipcTasa) {
+
+                $ipcTasa->user_id = Auth::user()->id;
+                $ipcTasa->index = trim($request->index);
+                $ipcTasa->save();
+
+                $message = "Índice de Precios al Consumidor actualizado con éxito";
+
+                Session::flash('message', $message);
+
+            }
+            else {
+
+                $message = "Fecha no disponible";
+
+                Session::flash('message', $message);
+            }
+
+        }
+        
+        return redirect('ipc_rate');
     }
 
 }
