@@ -4,7 +4,7 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sueldo extends Model
+class BaseWage extends Model
 {
     protected $table = 'sueldos';
 

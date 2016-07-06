@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('ipc_rate', 'Rate\IpcRateController');
 	Route::get('get_ipc_rate', array('as'=>'get_ipc_rate', 'uses'=>'Rate\IpcRateController@Data'));
 	
-	// Sueldos
+	// Base Wage
 	Route::resource('base_wage', 'BaseWageController');
 	Route::get('get_first_level_base_wage', array('as'=>'get_first_level_base_wage', 'uses'=>'BaseWageController@FirstLevelData'));
 	Route::get('get_secondLevel_base_wage', array('as'=>'get_secondLevel_base_wage', 'uses'=>'BaseWageController@SecondLevelData'));
