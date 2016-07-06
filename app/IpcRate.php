@@ -4,14 +4,14 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IpcTasa extends Model
+class IpcRate extends Model
 {
-    protected $table = 'ipc_tasas';
+    protected $table = 'ipc_rates';
 
 	protected $fillable = [
 	
-		'gest',
-		'ipc'
+		'month_year',
+		'index'
 	];
 
 	protected $guarded = ['id'];
