@@ -75,15 +75,15 @@
                         </div>
                     </div>
             
-                <div class="row text-center">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <a href="{!! url('ipc_rate') !!}" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancelar">&nbsp;<i class="glyphicon glyphicon-remove"></i>&nbsp;</a>
-                            &nbsp;&nbsp;
-                            <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Guardar">&nbsp;<i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;</button>
+                    <div class="row text-center">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <a href="{!! url('ipc_rate') !!}" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancelar">&nbsp;<i class="glyphicon glyphicon-remove"></i>&nbsp;</a>
+                                &nbsp;&nbsp;
+                                <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Guardar">&nbsp;<i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
             {!! Form::close() !!}
 
@@ -119,7 +119,7 @@ $(function() {
         order: [0, "desc"],
         columns: [
             { data: 'year', name:'month_year' },
-            { data: 'month',  "sClass": "text-center", bSortable: false },
+            { data: 'month', bSortable: false },
             { data: 'index', "sClass": "text-center", bSortable: false }
         ]
     });
