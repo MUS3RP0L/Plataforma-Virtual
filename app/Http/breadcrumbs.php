@@ -20,8 +20,10 @@ Breadcrumbs::register('contribution_rates', function($breadcrumbs) {
     $breadcrumbs->push('Tasas de Aporte', URL::to('contribution_rate'));
 });
 
-
-
+// IPC Rate
+Breadcrumbs::register('ipc_rates', function($breadcrumbs) {
+    $breadcrumbs->push('Tasas de Índice de Precio al Consumidor', URL::to('ipc_rate'));
+});
 
 
 
@@ -31,13 +33,6 @@ Breadcrumbs::register('contribution_rates', function($breadcrumbs) {
 // Inicio
 Breadcrumbs::register('home', function($breadcrumbs) {
     $breadcrumbs->push('Inicio', route('home'));
-});
-
-
-
-// Tasas IPC
-Breadcrumbs::register('tasas_ipc', function($breadcrumbs) {
-    $breadcrumbs->push('Tasas de Índice de Precio al Consumidor', URL::to('ipc'));
 });
 
 
