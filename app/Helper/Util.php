@@ -196,7 +196,7 @@ class Util
         return $meses[$mes-1];
 	}
 
-	public static function getAllMeses()
+	public static function getArrayMonths()
 	{    
 		return array('1' => 'Enero','2' => 'Febrero','3' => 'Marzo','4' => 'Abril','5' => 'Mayo','6' => 'Junio','7' => 'Julio','8' => 'Agosto','9' => 'Septiembre','10' => 'Octubre','11' => 'Noviembre','12' => 'Diciembre');
 	}
@@ -262,7 +262,7 @@ class Util
 	    }   
     }
 
-    public static function getMonths($fech_ini, $fech_fin)
+    public static function getMonths2($fech_ini, $fech_fin)
     {
     	if (!$fech_ini) {
     		return "";
