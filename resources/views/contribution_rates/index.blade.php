@@ -4,23 +4,21 @@
 <div class="container-fluid">
     {!! Breadcrumbs::render('contribution_rates') !!}
     <div class="row">
-        <div class="col-md-12">
-            
+        <div class="col-md-12">        
             @can('manage')
                 <div class="row">
                     <div class="col-md-12 text-right"> 
                         <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Modificar">
-                            <a href="" data-target="#myModal-edit" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal"><i class="glyphicon glyphicon-wrench"></i></a>
+                            <a href="" data-target="#myModal-edit" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">&nbsp;<i class="glyphicon glyphicon-wrench"></i>&nbsp;</a>
                         </div>
                     </div>
                 </div>
             @endcan
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Despliegue</h3>
+                            <h3 class="panel-title">Lista de Tasas de Aporte</h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -35,7 +33,7 @@
                                             </tr>
                                             <tr class="success">
                                                 <th>Fondo de Retiro</th>
-                                                <th>Seguro de Vida</th>
+                                                <th>Cuota mortuoria</th>
                                                 <th>Total Aporte</th>
                                                 <th>Auxilio Mortuorio</th>
                                                 <th>Total Aporte</th>             
@@ -51,7 +49,6 @@
         </div>
     </div>
 </div>
-
 
 <div id="myModal-edit" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
@@ -71,24 +68,24 @@
                                 {!! Form::label('retirement_fund', 'Fondo de Retiro', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
                                 {!! Form::text('retirement_fund', $last_contribution_rate->retirement_fund, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                <span class="help-block">Nuevo Aporte de Fondo de Retiro</span>
+                                <span class="help-block">Porcentaje de Fondo de Retiro</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('life_insurance', 'Seguro de Vida', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('mortuary_quota', 'Cuota mortuoria', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('life_insurance', $last_contribution_rate->life_insurance, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                <span class="help-block">Nuevo Aporte de Seguro de Vida</span>
+                                {!! Form::text('mortuary_quota', $last_contribution_rate->mortuary_quota, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                <span class="help-block">Porcentaje de Seguro de Vida</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <h3 class="panel-title">Sector Pasivo</h3>                            
                         <div class="form-group">
-                                {!! Form::label('rate_passive', 'Auxilio Mortuorio', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('mortuary_aid', 'Auxilio Mortuorio', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('rate_passive', $last_contribution_rate->rate_passive, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                <span class="help-block">Nuevo Aporte de Seguro de Vida</span>
+                                {!! Form::text('mortuary_aid', $last_contribution_rate->mortuary_aid, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                <span class="help-block">Porcentaje de Auxilio Mortuorio</span>
                             </div>
                         </div>
 
@@ -96,10 +93,11 @@
                 </div>
             
                 <div class="row text-center">
-                    <div class="form-group" style="padding-bottom:0px">
+                    <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('contribution_rate') !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
-                            &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+                            <a href="{!! url('contribution_rate') !!}" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancelar">&nbsp;<i class="glyphicon glyphicon-remove"></i>&nbsp;</a>
+                            &nbsp;&nbsp;
+                            <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Guardar">&nbsp;<i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;</button>
                         </div>
                     </div>
                 </div>
@@ -129,7 +127,7 @@ $(function() {
             { data: 'year', sClass: "text-center", name: 'month_year' },
             { data: 'month', sClass: "text-center", bSortable: false },
             { data: 'retirement_fund', sClass: "text-center", bSortable: false },
-            { data: 'life_insurance', sClass: "text-center", bSortable: false },
+            { data: 'mortuary_quota', sClass: "text-center", bSortable: false },
             { data: 'rate_active', sClass: "text-center", bSortable: false },
             { data: 'mortuary_aid', sClass: "text-center", bSortable: false },
             { data: 'rate_passive', sClass: "text-center", bSortable: false },

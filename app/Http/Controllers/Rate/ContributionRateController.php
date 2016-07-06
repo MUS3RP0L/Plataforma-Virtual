@@ -22,6 +22,7 @@ class ContributionRateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $last_contribution_rate = ContributionRate::orderBy('month_year', 'desc')->first();
@@ -36,68 +37,17 @@ class ContributionRateController extends Controller
 
     public function Data()
     {
-        $contribution_rates = ContributionRate::select(['month_year', 'rate_active', 'retirement_fund', 'life_insurance', 'rate_passive']);
+        $contribution_rates = ContributionRate::select(['month_year', 'rate_active', 'retirement_fund', 'mortuary_quota', 'mortuary_aid']);
 
         return Datatables::of($contribution_rates)
             ->addColumn('year', function ($contribution_rate) { return Carbon::parse($contribution_rate->month_year)->year; })
             ->addColumn('month', function ($contribution_rate) { return Util::getMes(Carbon::parse($contribution_rate->month_year)->month); })
-            ->editColumn('rate_active', function ($contribution_rate) { return Util::formatMoney($contribution_rate->rate_active); })
             ->editColumn('retirement_fund', function ($contribution_rate) { return Util::formatMoney($contribution_rate->retirement_fund); })
-            ->editColumn('life_insurance', function ($contribution_rate) { return Util::formatMoney($contribution_rate->life_insurance); })
-            ->addColumn('rate_passive', function ($contribution_rate) { return Util::formatMoney($contribution_rate->rate_passive); })
-            ->editColumn('mortuary_aid', function ($contribution_rate) { return Util::formatMoney($contribution_rate->rate_passive); })
+            ->editColumn('mortuary_quota', function ($contribution_rate) { return Util::formatMoney($contribution_rate->mortuary_quota); })
+            ->editColumn('rate_active', function ($contribution_rate) { return Util::formatMoney($contribution_rate->rate_active); })
+            ->editColumn('mortuary_aid', function ($contribution_rate) { return Util::formatMoney($contribution_rate->mortuary_aid); })
+            ->addColumn('rate_passive', function ($contribution_rate) { return Util::formatMoney($contribution_rate->mortuary_aid); })
             ->make(true);
-    }
-
-    public function save($request, $id = false)
-    {
-        $rules = [
-            'apor_fr_a' => 'required|numeric',
-            'apor_sv_a' => 'required|numeric',
-            'apor_am_p' => 'required|numeric'
-
-        ];
-
-        $messages = [
-
-            'apor_fr_a.required' => 'El campo Fondo de Retiro Sector Activo no puede ser vacío', 
-            'apor_fr_a.numeric' => 'El campo Fondo de Retiro Sector Activo sólo se aceptan números',
-
-            'apor_sv_a.required' => 'El campo Seguro de Vida Sector Activo no puede ser vacío', 
-            'apor_sv_a.numeric' => 'El campo Seguro de Vida Sector Activo sólo se aceptan números',
-
-            'apor_am_p.required' => 'El campo Seguro de Vida Sector Pasivo no puede ser vacío', 
-            'apor_am_p.numeric' => 'El campo Seguro de Vida Sector Pasivo sólo se aceptan números',
-
-        ];
-        
-        $validator = Validator::make($request->all(), $rules, $messages);
-        
-        if ($validator->fails()){
-            return redirect('tasa/'.$id.'/edit')
-            ->withErrors($validator)
-            ->withInput();
-        }
-        else{
-
-            $aporTasa = AporTasa::where('id', '=', $id)->first();
-
-            $aporTasa->user_id = Auth::user()->id;
-                  
-            $aporTasa->apor_fr_a = trim($request->apor_fr_a);
-            $aporTasa->apor_sv_a = trim($request->apor_sv_a);
-            $aporTasa->apor_a = trim($request->apor_fr_a) + trim($request->apor_sv_a);
-            
-            $aporTasa->apor_am_p = trim($request->apor_am_p);
-
-            $aporTasa->save();
-
-            $message = "Tasa de Aporte Actualizado con éxito";
-
-            Session::flash('message', $message);
-        }
-        
-        return redirect('tasa');
     }
 
     /**
@@ -107,12 +57,64 @@ class ContributionRateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, $contribution_rate)
     {
-        if (Auth::user()->can('admin')) {
-            return $this->save($request, $id);
+        if (Auth::user()->can('manage')) {
+
+            return $this->save($request, $contribution_rate);
+
         }else{
+
             return redirect('/');
         }
+    }
+
+    public function save($request, $contribution_rate = false)
+    {
+        $rules = [
+
+            'retirement_fund' => 'required|numeric',
+            'mortuary_quota' => 'required|numeric',
+            'mortuary_aid' => 'required|numeric'
+
+        ];
+
+        $messages = [
+
+            'retirement_fund.required' => 'El campo Fondo de Retiro Sector Activo no puede ser vacío', 
+            'retirement_fund.numeric' => 'El campo Fondo de Retiro Sector Activo sólo se aceptan números',
+
+            'mortuary_quota.required' => 'El campo Seguro de Vida Sector Activo no puede ser vacío', 
+            'mortuary_quota.numeric' => 'El campo Seguro de Vida Sector Activo sólo se aceptan números',
+
+            'mortuary_aid.required' => 'El campo Seguro de Vida Sector Pasivo no puede ser vacío', 
+            'mortuary_aid.numeric' => 'El campo Seguro de Vida Sector Pasivo sólo se aceptan números',
+
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        if ($validator->fails()){
+
+            return redirect('contribution_rate/'.$contribution_rate.'/edit')
+            ->withErrors($validator)
+            ->withInput();
+        }
+        else{
+
+            $contribution_rate->user_id = Auth::user()->id;                 
+            $contribution_rate->retirement_fund = trim($request->retirement_fund);
+            $contribution_rate->mortuary_quota = trim($request->mortuary_quota);
+            $contribution_rate->rate_active = trim($request->retirement_fund) + trim($request->mortuary_quota);
+            $contribution_rate->mortuary_aid = trim($request->mortuary_aid);
+            $contribution_rate->save();
+
+            $message = "Tasa de Aporte Actualizado con éxito";
+
+            Session::flash('message', $message);
+        }
+        
+        return redirect('contribution_rate');
     }
 }
