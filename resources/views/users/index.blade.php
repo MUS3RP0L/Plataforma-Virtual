@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12 text-right">  
-                    <a href="{!! url('user/create') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Nuevo"><i class="glyphicon glyphicon-plus"></i></a>
+                    <a href="{!! url('user/create') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Nuevo">&nbsp;<i class="glyphicon glyphicon-plus"></i>&nbsp;</a>
                 </div>
             </div> 
             <div class="row">
@@ -19,7 +19,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
-                					<table  class="table table-hover" id="users-table">
+                					<table class="table table-hover" id="users-table">
                                         <thead>
                                             <tr class="success">
                                                 <th>Número de Carnet</th>
