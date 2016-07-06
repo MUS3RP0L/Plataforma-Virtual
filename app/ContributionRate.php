@@ -12,9 +12,9 @@ class ContributionRate extends Model
 	
 		'month_year',
 		'retirement_fund',
-        'life_insurance',
+        'mortuary_quota',
         'rate_active',
-        'rate_passive'
+        'mortuary_aid'
 	];
 
 	protected $guarded = ['id'];

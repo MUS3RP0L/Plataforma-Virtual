@@ -1,21 +1,19 @@
 <?php
 
-namespace Muserpol\Http\Controllers;
+namespace Muserpol\Http\Controllers\Rate;
 
 use Illuminate\Http\Request;
-
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 
-use DB;
 use Auth;
 use Validator;
 use Session;
 use Datatables;
 use Carbon\Carbon;
-
 use Muserpol\Helper\Util;
-use Muserpol\IpcTasa;
+
+use Muserpol\IpcRate;
 
 class IpcController extends Controller
 {
@@ -24,9 +22,10 @@ class IpcController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-        $ipcTasaLast = IpcTasa::orderBy('gest', 'desc')->first();
+        $ipcTasaLast = IpcRate::orderBy('month_year', 'desc')->first();
         $ipcTasaLast->year = Carbon::parse($ipcTasaLast->gest)->year;
         $ipcTasaLast->month = Carbon::parse($ipcTasaLast->gest)->month;
 

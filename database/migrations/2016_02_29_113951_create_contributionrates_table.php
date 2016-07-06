@@ -18,9 +18,9 @@ class CreateContributionRatesTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->date('month_year')->unique()->required();
             $table->double('retirement_fund');
-            $table->double('life_insurance');
+            $table->double('mortuary_quota');
             $table->double('rate_active');
-            $table->double('rate_passive');
+            $table->double('mortuary_aid');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users'); 
       
