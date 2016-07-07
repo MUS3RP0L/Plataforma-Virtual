@@ -4,14 +4,14 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Departamento extends Model
+class City extends Model
 {
-    protected $table = 'departamentos';
+    protected $table = 'cities';
 
 	protected $fillable = [
 	
 		'name',
-		'cod'
+		'code'
 	
 	];
 

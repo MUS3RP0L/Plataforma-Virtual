@@ -10,13 +10,14 @@ class CreateAfiliadosTable extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
-        Schema::create('departamentos', function(Blueprint $table) {
+        Schema::create('cities', function(Blueprint $table) {
             
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('cod');
+            $table->string('code');
 
         });
 
@@ -90,9 +91,9 @@ class CreateAfiliadosTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('afi_type_id')->nullable();
             $table->UnsignedBigInteger('afi_state_id')->nullable();
-            $table->UnsignedBigInteger('departamento_exp_id')->nullable();
-            $table->UnsignedBigInteger('departamento_nat_id')->nullable();
-            $table->UnsignedBigInteger('departamento_dir_id')->nullable();
+            $table->UnsignedBigInteger('city_exp_id')->nullable();
+            $table->UnsignedBigInteger('city_nat_id')->nullable();
+            $table->UnsignedBigInteger('city_dir_id')->nullable();
             $table->UnsignedBigInteger('grado_id')->nullable();
             $table->UnsignedBigInteger('unidad_id')->nullable();
             $table->UnsignedBigInteger('categoria_id')->nullable();
@@ -128,9 +129,9 @@ class CreateAfiliadosTable extends Migration
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('afi_type_id')->references('id')->on('afi_types');
             $table->foreign('afi_state_id')->references('id')->on('afi_states');
-            $table->foreign('departamento_exp_id')->references('id')->on('departamentos');
-            $table->foreign('departamento_nat_id')->references('id')->on('departamentos');
-            $table->foreign('departamento_dir_id')->references('id')->on('departamentos');
+            $table->foreign('city_exp_id')->references('id')->on('cities');
+            $table->foreign('city_nat_id')->references('id')->on('cities');
+            $table->foreign('city_dir_id')->references('id')->on('cities');
             $table->foreign('grado_id')->references('id')->on('grados');
             $table->foreign('unidad_id')->references('id')->on('unidades');
             $table->foreign('categoria_id')->references('id')->on('categorias');
@@ -166,7 +167,7 @@ class CreateAfiliadosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('departamentos');
+        Schema::drop('cities');
         Schema::drop('grados');
         Schema::drop('afi_types');
         Schema::drop('afiliados');

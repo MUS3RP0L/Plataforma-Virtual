@@ -91,9 +91,9 @@ class Afiliado extends Model
         return $this->belongsTo('Muserpol\AfiState');
     }
 
-    public function departamento()
+    public function city()
     {
-        return $this->belongsTo('Muserpol\Departamento');
+        return $this->belongsTo('Muserpol\City');
     }
 
     public function fondo_tramite()
