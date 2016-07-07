@@ -18,11 +18,11 @@ class CreateBaseWagesTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('degree_id');
-            $table->date('gest')->required();
-            $table->double('sue');
+            $table->date('month_year')->required();
+            $table->double('amount');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users'); 
-            $table->foreign('degrees_id')->references('id')->on('degrees');
+            $table->foreign('degree_id')->references('id')->on('degrees');
 
         });
     }
@@ -34,6 +34,6 @@ class CreateBaseWagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sueldos');
+        Schema::drop('base_wages');
     }
 }

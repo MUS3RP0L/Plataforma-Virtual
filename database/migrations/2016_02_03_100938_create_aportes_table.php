@@ -13,84 +13,79 @@ class CreateAportesTable extends Migration
     public function up()
     {
 
-        Schema::create('aporte_types', function(Blueprint $table) {
+        Schema::create('contribution_payments', function(Blueprint $table) {
+            
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('user_id');
+            $table->UnsignedBigInteger('affiliate_id');
+            $table->enum('type',['normal', 'refund'])->default('normal');
+            $table->date('payment_date')->nullable();
+            $table->string('code'); 
+            $table->double('quotable');
+            $table->double('retirement_fund');
+            $table->double('mortuary_quota');
+            $table->double('mortuary_aid');
+            $table->double('subtotal');
+            $table->double('ipc');
+            $table->double('total');
+            $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('user_id')->references('id')->on('users'); 
+            $table->foreign('affiliate_id')->references('id')->on('affiliates');
+
+        });
+
+        Schema::create('contribution_types', function(Blueprint $table) {
             
             $table->bigIncrements('id');
             $table->string('name');
             
         }); 
 
-        Schema::create('pago_types', function(Blueprint $table) {
-            
-            $table->bigIncrements('id');
-            $table->string('name');
-            
-        });
-
-        Schema::create('aporte_pagos', function(Blueprint $table) {
-            
-            $table->bigIncrements('id');
-            $table->UnsignedBigInteger('user_id');
-            $table->UnsignedBigInteger('afiliado_id');
-            $table->date('fech_pago')->nullable();
-            $table->string('codigo');            
-            $table->double('cot');
-            $table->double('mus');
-            $table->double('fr');
-            $table->double('sv');
-            $table->double('ipc');
-            $table->double('total');
-            $table->double('pagado');
-            $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('afiliado_id')->references('id')->on('afiliados');
-            $table->foreign('user_id')->references('id')->on('users'); 
-
-        });
-
-        Schema::create('aportes', function (Blueprint $table) {
+        Schema::create('contributions', function (Blueprint $table) {
                         
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
-            $table->UnsignedBigInteger('afiliado_id');
-            $table->UnsignedBigInteger('aporte_type_id');
-            $table->UnsignedBigInteger('aporte_pago_id')->nullable();
+            $table->UnsignedBigInteger('affiliate_id');
+            $table->UnsignedBigInteger('contribution_type_id');
+            $table->UnsignedBigInteger('contribution_payment_id')->nullable();
             $table->UnsignedBigInteger('degree_id')->nullable();
             $table->UnsignedBigInteger('unit_id')->nullable();
-            $table->date('gest')->required();
+            $table->UnsignedBigInteger('category_id')->nullable();
+            $table->date('month_year')->required();
             $table->string('item')->nullable();
-            $table->double('sue');
-            $table->double('b_ant');
-            $table->double('rent_dig');
-            $table->double('b_est');
-            $table->double('b_car');
-            $table->double('b_fro');
-            $table->double('b_ori');
-            $table->double('b_seg')->nullable();
-            $table->string('dfu')->nullable();
-            $table->string('nat')->nullable();
-            $table->string('lac')->nullable();
-            $table->string('pre')->nullable();
-            $table->double('sub')->nullable();
-            $table->double('gan');
-            $table->double('pag');
-            $table->double('cot');
-            $table->double('mus');
-            $table->double('fr');
-            $table->double('sv');
+            $table->double('base_wage');
+            $table->double('seniority_bonus');
+            $table->double('dignity_pension');
+            $table->double('study_bonus');
+            $table->double('position_bonus');
+            $table->double('border_bonus');
+            $table->double('east_bonus');
+            $table->double('public_security_bonus')->nullable();
+            $table->string('death')->nullable();
+            $table->string('natality')->nullable();
+            $table->string('lactation')->nullable();
+            $table->string('prenatal')->nullable();
+            $table->double('subsidy')->nullable();
+            $table->double('gain');
+            $table->double('payable_liquid');
+            $table->double('quotable');
+            $table->double('retirement_fund');
+            $table->double('mortuary_quota');
+            $table->double('mortuary_aid');
+            $table->double('subtotal')->nullable();
             $table->double('ipc')->nullable();
-            $table->double('sub_mus')->nullable();;
+            $table->double('total');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users'); 
-            $table->foreign('afiliado_id')->references('id')->on('afiliados');
-            $table->foreign('aporte_type_id')->references('id')->on('aporte_types');
-            $table->foreign('aporte_pago_id')->references('id')->on('aporte_pagos');
+            $table->foreign('affiliate_id')->references('id')->on('affiliates');
+            $table->foreign('contribution_type_id')->references('id')->on('contribution_types');
+            $table->foreign('contribution_payment_id')->references('id')->on('contribution_payments');
             $table->foreign('degree_id')->references('id')->on('degrees');
-            $table->foreign('uni_id')->references('id')->on('units');
-            $table->UnsignedBigInteger('categoria_id')->nullable();
-            $table->foreign('categoria_id')->references('id')->on('categorias');
-            $table->unique(array('afiliado_id','gest'));
+            $table->foreign('unit_id')->references('id')->on('units');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->unique(array('afiliado_id','month_year'));
 
         });
     }
@@ -102,6 +97,6 @@ class CreateAportesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('aportes');
+        Schema::drop('contributions');
     }
 }
