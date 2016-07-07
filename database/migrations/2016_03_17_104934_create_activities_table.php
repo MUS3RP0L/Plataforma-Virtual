@@ -14,13 +14,10 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             
-            $table->engine = 'InnoDB';
-
             $table->increments('id');
             $table->timestamps();
             $table->UnsignedBigInteger('afiliado_id');
             $table->UnsignedBigInteger('user_id');
-
             $table->UnsignedBigInteger('conyuge_id');
             $table->UnsignedBigInteger('fondo_tramite_id');
             $table->UnsignedBigInteger('solicitante_id');
@@ -33,8 +30,7 @@ class CreateActivitiesTable extends Migration
             $table->UnsignedBigInteger('apor_tasa_id');
             $table->UnsignedBigInteger('sueldo_id');
             $table->text('message');
-            $table->integer('activity_type_id');
-            
+            $table->integer('activity_type_id');   
             $table->foreign('user_id')->references('id')->on('users'); 
 
         });

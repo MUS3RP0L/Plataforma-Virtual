@@ -12,7 +12,7 @@ class CreateContributionRatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('contribution_rates', function(Blueprint $table){
+        Schema::create('contribution_rates', function(Blueprint $table) {
 
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');

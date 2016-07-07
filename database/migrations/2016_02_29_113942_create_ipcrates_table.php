@@ -13,7 +13,7 @@ class CreateIpcRatesTable extends Migration
 
     public function up()
     {
-        Schema::create('ipc_rates', function(Blueprint $table){
+        Schema::create('ipc_rates', function(Blueprint $table) {
 
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
