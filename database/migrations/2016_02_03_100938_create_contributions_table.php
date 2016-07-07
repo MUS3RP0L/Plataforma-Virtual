@@ -55,8 +55,8 @@ class CreateContributionsTable extends Migration
             $table->date('month_year')->required();
             $table->string('item')->nullable();
             $table->double('base_wage');
-            $table->double('seniority_bonus');
             $table->double('dignity_pension');
+            $table->double('seniority_bonus');
             $table->double('study_bonus');
             $table->double('position_bonus');
             $table->double('border_bonus');
