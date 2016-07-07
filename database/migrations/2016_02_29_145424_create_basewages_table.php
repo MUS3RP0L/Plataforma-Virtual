@@ -17,12 +17,12 @@ class CreateBaseWagesTable extends Migration
             
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
-            $table->UnsignedBigInteger('grado_id');
+            $table->UnsignedBigInteger('degree_id');
             $table->date('gest')->required();
             $table->double('sue');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users'); 
-            $table->foreign('grado_id')->references('id')->on('grados');
+            $table->foreign('degrees_id')->references('id')->on('degrees');
 
         });
     }

@@ -55,8 +55,8 @@ class CreateAportesTable extends Migration
             $table->UnsignedBigInteger('afiliado_id');
             $table->UnsignedBigInteger('aporte_type_id');
             $table->UnsignedBigInteger('aporte_pago_id')->nullable();
-            $table->UnsignedBigInteger('grado_id')->nullable();
-            $table->UnsignedBigInteger('unidad_id')->nullable();
+            $table->UnsignedBigInteger('degree_id')->nullable();
+            $table->UnsignedBigInteger('unit_id')->nullable();
             $table->date('gest')->required();
             $table->string('item')->nullable();
             $table->double('sue');
@@ -86,8 +86,8 @@ class CreateAportesTable extends Migration
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->foreign('aporte_type_id')->references('id')->on('aporte_types');
             $table->foreign('aporte_pago_id')->references('id')->on('aporte_pagos');
-            $table->foreign('grado_id')->references('id')->on('grados');
-            $table->foreign('unidad_id')->references('id')->on('unidades');
+            $table->foreign('degree_id')->references('id')->on('degrees');
+            $table->foreign('uni_id')->references('id')->on('units');
             $table->UnsignedBigInteger('categoria_id')->nullable();
             $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->unique(array('afiliado_id','gest'));
