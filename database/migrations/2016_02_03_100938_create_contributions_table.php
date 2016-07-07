@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAportesTable extends Migration
+class CreateContributionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,7 @@ class CreateAportesTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('affiliate_id');
-            $table->enum('type',['normal', 'refund'])->default('normal');
+            $table->enum('type',['normal', 'reimbursements'])->default('normal');
             $table->date('payment_date')->nullable();
             $table->string('code'); 
             $table->double('quotable');
@@ -62,7 +62,7 @@ class CreateAportesTable extends Migration
             $table->double('border_bonus');
             $table->double('east_bonus');
             $table->double('public_security_bonus')->nullable();
-            $table->string('death')->nullable();
+            $table->string('deceased')->nullable();
             $table->string('natality')->nullable();
             $table->string('lactation')->nullable();
             $table->string('prenatal')->nullable();

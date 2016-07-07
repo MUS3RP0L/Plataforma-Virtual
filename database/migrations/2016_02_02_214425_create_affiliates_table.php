@@ -138,6 +138,26 @@ class CreateAffiliatesTable extends Migration
 
         });
 
+        Schema::create('spouses', function (Blueprint $table) {
+                    
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('user_id');
+            $table->UnsignedBigInteger('affiliate_id');
+            $table->string('identity_card')->required();
+            $table->string('last_name')->nullable();
+            $table->string('mothers_last_name')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('second_name')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->date('date_death')->nullable();
+            $table->string('reason_death')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('user_id')->references('id')->on('users'); 
+            $table->foreign('affiliate_id')->references('id')->on('affiliates');
+
+        });
+
         Schema::create('record', function(Blueprint $table) {
 
             $table->bigIncrements('id');
