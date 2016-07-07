@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UnidadTableSeeder extends Seeder
+class UnitTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,12 +13,12 @@ class UnidadTableSeeder extends Seeder
     {
         Eloquent::unguard();
 
-        $this->createUnidades();
+        $this->createUnits();
 
         Eloquent::reguard();
     }
 
-    private function createUnidades()
+    private function createUnits()
     {
         $statuses = [
 	    	['id' => '1', 'desglose_id' => '8', 'dist' => 'CHUQUISACA', 'cod' => '10182', 'abre' => 'C.D.PN.CH.', 'lit' => 'COMANDO DEPARTAMENTAL CHUQUISACA'],
@@ -174,7 +174,7 @@ class UnidadTableSeeder extends Seeder
 
         foreach ($statuses as $status) {
 
-                Muserpol\Unidad::create($status);
+                Muserpol\Unit::create($status);
             
         }
     }

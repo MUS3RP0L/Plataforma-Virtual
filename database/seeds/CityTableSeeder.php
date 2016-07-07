@@ -23,15 +23,15 @@ class CityTableSeeder extends Seeder
     {
         $statuses = [
 
-            ['name' => 'BENI', 'code' => 'BN'],
-            ['name' => 'CHUQUISACA', 'code' => 'CH'],
-            ['name' => 'COCHABAMBA', 'code' => 'CB'],
-            ['name' => 'LA PAZ', 'code' => 'LP'],
-            ['name' => 'ORURO', 'code' => 'OR'],
-            ['name' => 'PANDO', 'code' => 'PN'],
-            ['name' => 'POTOSÍ', 'code' => 'PO'],
-            ['name' => 'SANTA CRUZ', 'code' => 'SC'],
-            ['name' => 'TARIJA', 'code' => 'TJ']
+            ['name' => 'BENI', 'shortened' => 'BN'],
+            ['name' => 'CHUQUISACA', 'shortened' => 'CH'],
+            ['name' => 'COCHABAMBA', 'shortened' => 'CB'],
+            ['name' => 'LA PAZ', 'shortened' => 'LP'],
+            ['name' => 'ORURO', 'shortened' => 'OR'],
+            ['name' => 'PANDO', 'shortened' => 'PN'],
+            ['name' => 'POTOSÍ', 'shortened' => 'PO'],
+            ['name' => 'SANTA CRUZ', 'shortened' => 'SC'],
+            ['name' => 'TARIJA', 'shortened' => 'TJ']
 
         ];
 

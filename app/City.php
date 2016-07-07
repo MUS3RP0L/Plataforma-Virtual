@@ -11,7 +11,7 @@ class City extends Model
 	protected $fillable = [
 	
 		'name',
-		'code'
+		'shortened'
 	
 	];
 
