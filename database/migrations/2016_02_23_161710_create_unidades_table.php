@@ -26,19 +26,19 @@ class CreateUnidadesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('aportes', function (Blueprint $table) {
+        // Schema::table('aportes', function (Blueprint $table) {
 
-            $table->UnsignedBigInteger('unidad_id')->nullable();
-            $table->foreign('unidad_id')->references('id')->on('unidades');
+        //     $table->UnsignedBigInteger('unidad_id')->nullable();
+        //     $table->foreign('unidad_id')->references('id')->on('unidades');
 
-        });
+        // });
 
-         Schema::table('afiliados', function (Blueprint $table) {
+        //  Schema::table('afiliados', function (Blueprint $table) {
 
-            $table->UnsignedBigInteger('unidad_id')->nullable();
-            $table->foreign('unidad_id')->references('id')->on('unidades');
+        //     $table->UnsignedBigInteger('unidad_id')->nullable();
+        //     $table->foreign('unidad_id')->references('id')->on('unidades');
 
-        });
+        // });
 
     }
 

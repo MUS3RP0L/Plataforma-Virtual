@@ -51,13 +51,13 @@ class AddQualificationAfi extends Migration
 
         });
 
-        Schema::table('unidades', function (Blueprint $table) {
+        // Schema::table('unidades', function (Blueprint $table) {
             
-            $table->UnsignedBigInteger('desglose_id');
+        //     $table->UnsignedBigInteger('desglose_id');
 
-            $table->foreign('desglose_id')->references('id')->on('desgloses');
+        //     $table->foreign('desglose_id')->references('id')->on('desgloses');
 
-        });
+        // });
     }
 
     /**

@@ -3,19 +3,18 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSueldosTable extends Migration
+class CreateBaseWagesTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
+    
     public function up()
     {
-        Schema::create('sueldos', function(Blueprint $table){
+        Schema::create('base_wages', function(Blueprint $table){
             
-            $table->engine = 'InnoDB';
-
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('grado_id');

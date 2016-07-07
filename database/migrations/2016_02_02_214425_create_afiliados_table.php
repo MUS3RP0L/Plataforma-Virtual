@@ -14,7 +14,6 @@ class CreateAfiliadosTable extends Migration
     {
         Schema::create('departamentos', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             
             $table->bigIncrements('id');
             $table->string('name');
@@ -22,6 +21,19 @@ class CreateAfiliadosTable extends Migration
 
             $table->timestamps();
 
+        });
+
+        Schema::create('grados', function (Blueprint $table)
+        {
+        
+            
+            $table->bigIncrements('id');         
+            $table->string('niv');
+            $table->string('grad');
+            $table->string('lit');
+            $table->string('abre');
+            
+            $table->timestamps();
         });
 
         Schema::create('state_types', function(Blueprint $table)
@@ -73,6 +85,8 @@ class CreateAfiliadosTable extends Migration
             $table->UnsignedBigInteger('departamento_nat_id')->nullable();
             $table->UnsignedBigInteger('departamento_dir_id')->nullable();
 
+            $table->UnsignedBigInteger('grado_id')->nullable();
+
             $table->string('ci')->unique()->required();
             $table->string('matri')->required();
             
@@ -119,6 +133,8 @@ class CreateAfiliadosTable extends Migration
             $table->foreign('departamento_exp_id')->references('id')->on('departamentos');
             $table->foreign('departamento_nat_id')->references('id')->on('departamentos');
             $table->foreign('departamento_dir_id')->references('id')->on('departamentos');
+
+            $table->foreign('grado_id')->references('id')->on('grados');
         });
 
         Schema::create('notes', function(Blueprint $table)
@@ -153,6 +169,7 @@ class CreateAfiliadosTable extends Migration
     public function down()
     {
         Schema::drop('departamentos');
+        Schema::drop('grados');
         Schema::drop('afi_types');
         Schema::drop('afiliados');
         Schema::drop('notes');

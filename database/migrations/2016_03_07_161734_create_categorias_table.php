@@ -26,19 +26,19 @@ class CreateCategoriasTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('afiliados', function (Blueprint $table) {
+        // Schema::table('afiliados', function (Blueprint $table) {
 
-            $table->UnsignedBigInteger('categoria_id')->nullable();
-            $table->foreign('categoria_id')->references('id')->on('categorias');
+        //     $table->UnsignedBigInteger('categoria_id')->nullable();
+        //     $table->foreign('categoria_id')->references('id')->on('categorias');
 
-        });
+        // });
 
-        Schema::table('aportes', function (Blueprint $table) {
+        // Schema::table('aportes', function (Blueprint $table) {
 
-            $table->UnsignedBigInteger('categoria_id')->nullable();
-            $table->foreign('categoria_id')->references('id')->on('categorias');
+        //     $table->UnsignedBigInteger('categoria_id')->nullable();
+        //     $table->foreign('categoria_id')->references('id')->on('categorias');
 
-        });
+        // });
     
     }
 
