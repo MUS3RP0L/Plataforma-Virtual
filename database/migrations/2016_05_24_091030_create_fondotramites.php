@@ -26,7 +26,7 @@ class CreateFondotramites extends Migration
             $table->bigIncrements('id');   
             $table->UnsignedBigInteger('afiliado_id');
             $table->UnsignedBigInteger('modalidad_id')->nullable();
-            $table->UnsignedBigInteger('departamento_id')->nullable();
+            $table->UnsignedBigInteger('city_id')->nullable();
             $table->string('codigo');
             $table->date('fech_ven')->nullable();
             $table->date('fech_arc')->nullable();
@@ -45,7 +45,7 @@ class CreateFondotramites extends Migration
             $table->softDeletes();
             $table->foreign('afiliado_id')->references('id')->on('afiliados');
             $table->foreign('modalidad_id')->references('id')->on('modalidades');
-            $table->foreign('departamento_id')->references('id')->on('departamentos');
+            $table->foreign('city_id')->references('id')->on('cities');
 
         });
 
