@@ -44,7 +44,7 @@ class CreateAffiliatesTable extends Migration
             $table->bigIncrements('id'); 
             $table->UnsignedBigInteger('breakdown_id');
             $table->string('district');
-            $table->string('cod');
+            $table->string('code');
             $table->string('name');
             $table->string('shortened');
             $table->timestamps();
