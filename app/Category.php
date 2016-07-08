@@ -4,13 +4,13 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class Category extends Model
 {
-    protected $table = 'categorias';
+    protected $table = 'categories';
 
 	protected $fillable = [
 	
-		'por',
+		'percentage',
 		'name',
 		'from',
 		'to'
