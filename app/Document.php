@@ -5,29 +5,29 @@ namespace Muserpol;
 use Illuminate\Database\Eloquent\Model;
 use Muserpol\Helper\Util;
 
-class Documento extends Model
+class Document extends Model
 {
-    protected $table = 'documentos';
+    protected $table = 'documents';
 
     protected $fillable = [
 
-    	'requisito_id',
-    	'fondo_tramite_id',
-    	'fech_pres',
-    	'est',
-    	'obs'
+    	'requirement_id',
+    	'retirement_fund_id',
+    	'reception_date',
+    	'status',
+    	'comment'
     ];
 
     protected $guarded = ['id'];
 
-    public function fondo_tramite(){
+    public function retirement_funds(){
 
-        return $this->belongsTo('Muserpol\FondoTramite');
+        return $this->belongsTo('Muserpol\Retirement_fund');
     }
 
-    public function requisito(){
+    public function requirement(){
 
-        return $this->belongsTo('Muserpol\Requisito');
+        return $this->belongsTo('Muserpol\Requirement');
     }
 
     public function scopeFonTraIs($query, $id)
@@ -45,14 +45,14 @@ class Documento extends Model
     }
 }
 
-Documento::created(function($documento)
+Document::created(function($document)
 {
-    Activity::createdDocumento($documento);
+    Activity::createdDocument($document);
     
 });
 
-Documento::updating(function($documento)
+Document::updating(function($document)
 {
-    Activity::updateDocumento($documento);
+    Activity::updateDocument($document);
     
 });
