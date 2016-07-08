@@ -20,7 +20,7 @@ class AfiTypeTableSeeder extends Seeder
         Eloquent::reguard();
     }
 
-    private function createAfiType()
+    private function createAffiliate_types()
     {
         $statuses = [
             ['id' => '1', 'name' => 'COMANDO'],
@@ -29,10 +29,10 @@ class AfiTypeTableSeeder extends Seeder
 
         foreach ($statuses as $status) {
 
-            Muserpol\AfiType::create($status);    
+            Muserpol\AffiliateType::create($status);    
         }
     }
-    private function createStateType()
+    private function createState_types()
     {
         $statuses = [
             ['id' => '1', 'name' => 'ACTIVO'],
@@ -46,7 +46,7 @@ class AfiTypeTableSeeder extends Seeder
         }
     }
 
-    private function createAfiState()
+    private function createAffiliate_states()
     {
         $statuses = [
             ['id' => '1', 'state_type_id' => '1', 'name' => 'SERVICIO'],
@@ -64,7 +64,7 @@ class AfiTypeTableSeeder extends Seeder
 
         foreach ($statuses as $status) {
 
-            Muserpol\AfiState::create($status);    
+            Muserpol\AffiliateState::create($status);    
         }
     }
 }
