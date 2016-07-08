@@ -119,7 +119,7 @@ class CreateRetirementFundsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds');        
-            $table->foreign('soli_type_id')->references('id')->on('applicant_types');        
+            $table->foreign('applicant_type_id')->references('id')->on('applicant_types');        
 
         });
 
