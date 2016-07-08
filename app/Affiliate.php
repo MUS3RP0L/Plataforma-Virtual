@@ -32,74 +32,91 @@ class Affiliate extends Model
     	'registration',
     	'last_name',
     	'mothers_last_name',
-    	'calle',
-    	'num_domi',
-    	'tele',
-    	'celu',
-    	'email'
+    	'first_name',
+    	'second_name',
+    	'surname_husband',
+    	'civil_status',
+        'gender',
+        'birth_date',
+        'date_entry',
+        'date_death',
+        'reason_death',
+        'date_decommissioned',
+        'reason_decommissioned',
+        'service_start_date',
+        'service_end_date',
+        'change_date',
+        'zone',
+        'Street',
+        'number_address',
+        'phone',
+        'cell_phone',
+        'afp',
+        'nua',
+    	'item'
 	];
 
 	protected $guarded = ['id'];
 
-	public function aportes()
-    {
-        return $this->hasMany('Muserpol\Aporte');
-    }
+	// public function aportes()
+ //    {
+ //        return $this->hasMany('Muserpol\Aporte');
+ //    }
 
-    public function aportes_musers()
-    {
-        return $this->hasMany('Muserpol\AportesMuser');
-    }    
+ //    public function aportes_musers()
+ //    {
+ //        return $this->hasMany('Muserpol\AportesMuser');
+ //    }    
 
-    public function notes()
-    {
-        return $this->hasMany('Muserpol\Note');
-    }
+ //    public function notes()
+ //    {
+ //        return $this->hasMany('Muserpol\Note');
+ //    }
 
-    public function conyuge()
-    {
-        return $this->hasOne('Muserpol\Conyuge');
-    }
+ //    public function conyuge()
+ //    {
+ //        return $this->hasOne('Muserpol\Conyuge');
+ //    }
 
-    public function solicitantes()
-    {
-        return $this->hasMany('Muserpol\Solicitante');
-    }
+ //    public function solicitantes()
+ //    {
+ //        return $this->hasMany('Muserpol\Solicitante');
+ //    }
 
-    public function user()
-    {
-        return $this->belongsTo('Muserpol\User');
-    }
+ //    public function user()
+ //    {
+ //        return $this->belongsTo('Muserpol\User');
+ //    }
 
-    public function grado(){
+ //    public function grado(){
 
-        return $this->belongsTo('Muserpol\Grado');
-    }
+ //        return $this->belongsTo('Muserpol\Grado');
+ //    }
 
-    public function unidad(){
+ //    public function unidad(){
 
-        return $this->belongsTo('Muserpol\Unidad');
-    }
+ //        return $this->belongsTo('Muserpol\Unidad');
+ //    }
 
-    public function afi_type()
-    {
-        return $this->belongsTo('Muserpol\AfiType');
-    }
+ //    public function afi_type()
+ //    {
+ //        return $this->belongsTo('Muserpol\AfiType');
+ //    }
 
-    public function afi_state()
-    {
-        return $this->belongsTo('Muserpol\AfiState');
-    }
+ //    public function afi_state()
+ //    {
+ //        return $this->belongsTo('Muserpol\AfiState');
+ //    }
 
-    public function city()
-    {
-        return $this->belongsTo('Muserpol\City');
-    }
+ //    public function city()
+ //    {
+ //        return $this->belongsTo('Muserpol\City');
+ //    }
 
-    public function fondo_tramite()
-    {
-        return $this->hasMany('Muserpol\FondoTramite');
-    }
+    // public function fondo_tramite()
+    // {
+    //     return $this->hasMany('Muserpol\FondoTramite');
+    // }
 
 	public function scopeIdIs($query, $id)
     {

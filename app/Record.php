@@ -3,15 +3,15 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
+
 use Muserpol\Helper\Util;
 use Auth;
-
 
 define("NOTE_TYPE_UPDATE_STATE", 1);
 define("NOTE_TYPE_UPDATE_GRAD", 2);
 define("NOTE_TYPE_UPDATE_UNI", 3);
 
-class Note extends Model
+class Record extends Model
 {
 	public static function updateAfiliado($afiliado)
 	{					
@@ -20,7 +20,7 @@ class Note extends Model
 		
 		if ($afiliadoL->afi_state_id <> $afiliado->afi_state_id) {
 
-			$note = new Note;
+			$note = new Record;
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
 			$note->user_id = $user_id;
 			$note->afiliado_id = $afiliado->id;
@@ -33,7 +33,7 @@ class Note extends Model
 		}
 		
 		if ($afiliadoL->grado_id <> $afiliado->grado_id) {
-			$note = new Note;
+			$note = new Record;
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
 			$note->user_id = $user_id;
 			$note->afiliado_id = $afiliado->id;
@@ -46,7 +46,7 @@ class Note extends Model
 		}
 
 		if ($afiliadoL->unidad_id <> $afiliado->unidad_id) {
-			$note = new Note;
+			$note = new Record;
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
 			$note->user_id = $user_id;
 			$note->afiliado_id = $afiliado->id;
@@ -63,7 +63,7 @@ class Note extends Model
 	{					
 		if ($afiliado->afi_state_id) {
 
-			$note = new Note;
+			$note = new Record;
 			if (Auth::user()) {$note->$user_id = Auth::user()->id;}else{$note->user_id = 1;}
 			$note->afiliado_id = $afiliado->id;
 			$note->fech = $afiliado->fech_est;
@@ -76,7 +76,7 @@ class Note extends Model
 
 		if ($afiliado->grado_id) {
 			
-			$note = new Note;
+			$note = new Record;
 			if (Auth::user()) {$note->$user_id = Auth::user()->id;}else{$note->user_id = 1;}
 			$note->afiliado_id = $afiliado->id;
 			$note->fech = $afiliado->fech_est;
@@ -89,7 +89,7 @@ class Note extends Model
 		
 		if ($afiliado->unidad_id) {
 			
-			$note = new Note;
+			$note = new Record;
 			if (Auth::user()) {$note->$user_id = Auth::user()->id;}else{$note->user_id = 1;}
 			$note->afiliado_id = $afiliado->id;
 			$note->fech = $afiliado->fech_est;

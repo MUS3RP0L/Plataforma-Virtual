@@ -3,10 +3,13 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Spouse extends Model
 {
     protected $table = 'spouses';
+
+    protected $dates = ['deleted_at'];
 
 	protected $fillable = [
 	    'user_id',
@@ -90,10 +93,10 @@ class Spouse extends Model
 Spouse::created(function($spouse)
 {
     Activity::createdSpouse($spouse);
-    
 });
+
 Spouse::updating(function($spouse)
 {
     Activity::updateSpouse($spouse);
-    
+
 });
