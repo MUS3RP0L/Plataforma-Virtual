@@ -92,9 +92,9 @@ class CreateAffiliatesTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('affiliate_state_id')->nullable();
             $table->UnsignedBigInteger('affiliate_type_id')->nullable();
-            $table->UnsignedBigInteger('city_exp_id')->nullable();
-            $table->UnsignedBigInteger('city_nat_id')->nullable();
-            $table->UnsignedBigInteger('city_dir_id')->nullable();
+            $table->UnsignedBigInteger('city_identity_card_id')->nullable();
+            $table->UnsignedBigInteger('city_birth_id')->nullable();
+            $table->UnsignedBigInteger('city_address_id')->nullable();
             $table->UnsignedBigInteger('degree_id')->nullable();
             $table->UnsignedBigInteger('unit_id')->nullable();
             $table->UnsignedBigInteger('category_id')->nullable();
