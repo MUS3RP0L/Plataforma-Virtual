@@ -12,18 +12,25 @@
             <tr>
               <th style="width: 25%;border: 0px;">
                 <div id="logo">
-                  <img src="assets/images/logo.jpg">
+                  <h2><b>MUTUAL DE SERVICIOS AL POLICÍA<br>
+                    MUSERPOL
+                    
+                   </b></h2>
                 </div>
               </th>
               <th style="width: 50%;border: 0px">
-                <h3><b>MUTUAL DE SERVICIOS AL POLICÍA<br>
-                    DIRECCIÓN DE BENEFICIOS ECONÓMICOS<br>
-                    UNIDAD DE FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
-                    </b></h3>
+                <h2><b>Pago de Aportes Voluntarios<br>
+                    APORTE DIRECTO DE VIUDAS<br>
+                    EFECTIVO<br>
+                    </b></h2>
               </th>
               <th style="width: 25%;border: 0px">
                 <div id="logo2">
-                  <img src="assets/images/escudo.jpg">
+                  <h3><b>Fecha: {!! $aporte_pagos->fech_pago !!}<br>
+                        Hora: <br>
+                        Usuario: {!! $aporte_pagos->id !!}
+
+                    </b></h3>
                 </div>
               </th>
             </tr>
