@@ -39,7 +39,7 @@ class CreateReintegrosTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users'); 
-            $table->foreign('affiliate_id')->references('id')->on('afiliados');
+            $table->foreign('affiliate_id')->references('id')->on('affiliates');
             $table->foreign('contribution_payment_id')->references('id')->on('contribution_payments');
             $table->unique(array('affiliate_id','gest'));
 

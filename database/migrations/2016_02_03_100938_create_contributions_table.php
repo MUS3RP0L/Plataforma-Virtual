@@ -85,7 +85,7 @@ class CreateContributionsTable extends Migration
             $table->foreign('degree_id')->references('id')->on('degrees');
             $table->foreign('unit_id')->references('id')->on('units');
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->unique(array('afiliado_id','month_year'));
+            $table->unique(array('affiliate_id','month_year'));
 
         });
     }

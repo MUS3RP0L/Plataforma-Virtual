@@ -19,10 +19,10 @@ class CreateActivitiesTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('affiliate_id');
             $table->UnsignedBigInteger('spouse_id');
-            // $table->UnsignedBigInteger('fondo_tramite_id');
-            // $table->UnsignedBigInteger('solicitante_id');
-            // $table->UnsignedBigInteger('documento_id');
-            // $table->UnsignedBigInteger('antecedente_id');
+            $table->UnsignedBigInteger('retirement_fund_id');
+            $table->UnsignedBigInteger('applicant_id');
+            $table->UnsignedBigInteger('document_id');
+            $table->UnsignedBigInteger('antecedent_id');
             $table->UnsignedBigInteger('contribution_id');
             $table->UnsignedBigInteger('contribution_payment_id');
             $table->UnsignedBigInteger('record_id');

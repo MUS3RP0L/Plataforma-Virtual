@@ -38,14 +38,15 @@ class CreateFondotramites extends Migration
             $table->double('total_quotable');
             $table->double('total_additional_quotable');
             $table->double('subtotal');
-            $table->double('rendimiento');
+            $table->double('performance');
+            $table->double('total');
             $table->string('comment');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('affiliate_id')->references('id')->on('affiliates');
             $table->foreign('retirement_fund_modality_id')->references('id')->on('retirement_fund_modalities');
             $table->foreign('city_id')->references('id')->on('cities');
-            
+
         });
 
         Schema::create('requirements', function (Blueprint $table) {
@@ -65,14 +66,14 @@ class CreateFondotramites extends Migration
             $table->UnsignedBigInteger('retirement_fund_id');
             $table->date('reception_date');
             $table->boolean('status')->default(0);
-            $table->string('observation')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
-            $table->foreign('requirement_id')->references('id')->on('requisitos');        
+            $table->foreign('requirement_id')->references('id')->on('requirements');        
             $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds'); 
 
         });
 
-        Schema::create('prestaciones', function (Blueprint $table) {
+        Schema::create('antecedent_files', function (Blueprint $table) {
             
             $table->bigIncrements('id');
             $table->string('name');
@@ -80,44 +81,45 @@ class CreateFondotramites extends Migration
 
         });
 
-        Schema::create('antecedentes', function (Blueprint $table) {
+        Schema::create('antecedents', function (Blueprint $table) {
 
             $table->bigIncrements('id');
-            $table->UnsignedBigInteger('prestacion_id');
-            $table->UnsignedBigInteger('fondo_tramite_id');
-            $table->boolean('est')->default(0);
-            $table->date('fecha')->nullable();
-            $table->string('nro_comp')->nullable();
+            $table->UnsignedBigInteger('antecedent_file_id');
+            $table->UnsignedBigInteger('retirement_fund_id');
+            $table->boolean('status')->default(0);
+            $table->date('reception_date')->nullable();
+            $table->string('code')->nullable();
             $table->timestamps();
-            $table->foreign('prestacion_id')->references('id')->on('prestaciones');      
-            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
+            $table->foreign('antecedent_file_id')->references('id')->on('antecedents_files');      
+            $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds');    
+
         });
 
-        Schema::create('soli_types', function(Blueprint $table) {
+        Schema::create('applicant_types', function(Blueprint $table) {
 
             $table->bigIncrements('id');
             $table->string('name');
 
         });
 
-        Schema::create('solicitantes', function (Blueprint $table) {
+        Schema::create('applicants', function (Blueprint $table) {
             
             $table->bigIncrements('id');
-            $table->UnsignedBigInteger('fondo_tramite_id');
-            $table->UnsignedBigInteger('soli_type_id');
-            $table->string('ci')->required();
-            $table->string('pat')->nullable();
-            $table->string('mat')->nullable();
-            $table->string('nom')->nullable();
-            $table->string('paren')->nullable();
-            $table->string('direc_domi')->nullable();
-            $table->string('tele_domi')->nullable();
-            $table->string('celu_domi')->nullable();
-            $table->string('direc_trab')->nullable();
+            $table->UnsignedBigInteger('retirement_fund_id');
+            $table->UnsignedBigInteger('applicant_type_id');
+            $table->string('identity_card')->required();
+            $table->string('last_name')->nullable();
+            $table->string('mothers_last_name')->nullable();
+            $table->string('name')->nullable();
+            $table->string('kinship')->nullable();
+            $table->string('home_address')->nullable();
+            $table->string('home_phone_number')->nullable();
+            $table->string('home_cell_phone_number')->nullable();
+            $table->string('work_address')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
-            $table->foreign('soli_type_id')->references('id')->on('soli_types');        
+            $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds');        
+            $table->foreign('soli_type_id')->references('id')->on('applicant_types');        
 
         });
 
@@ -130,6 +132,13 @@ class CreateFondotramites extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('retirement_fund_modalities');
+        Schema::drop('retirement_funds');
+        Schema::drop('requirements');
+        Schema::drop('documents');
+        Schema::drop('antecedent_files');
+        Schema::drop('antecedents');
+        Schema::drop('applicant_types');
+        Schema::drop('applicants');
     }
 }

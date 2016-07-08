@@ -127,14 +127,14 @@ class CreateAffiliatesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users'); 
-            $table->foreign('affiliate_state_id')->references('id')->on('afi_states');
-            $table->foreign('affiliate_type_id')->references('id')->on('afi_types');
+            $table->foreign('affiliate_state_id')->references('id')->on('affiliate_states');
+            $table->foreign('affiliate_type_id')->references('id')->on('affiliate_types');
             $table->foreign('city_exp_id')->references('id')->on('cities');
             $table->foreign('city_nat_id')->references('id')->on('cities');
             $table->foreign('city_dir_id')->references('id')->on('cities');
             $table->foreign('degree_id')->references('id')->on('degrees');
             $table->foreign('unit_id')->references('id')->on('units');
-            $table->foreign('category_id')->references('id')->on('categorias');
+            $table->foreign('category_id')->references('id')->on('categories');
 
         });
 
@@ -172,7 +172,6 @@ class CreateAffiliatesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users'); 
-            $table->foreign('affiliate_state_id')->references('id')->on('affiliate_states');
 
         });
 
