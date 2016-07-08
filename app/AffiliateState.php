@@ -3,7 +3,6 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AffiliateState extends Model
 {
@@ -11,6 +10,7 @@ class AffiliateState extends Model
 
 	protected $fillable = [
 	
+		'state_type_id',
 		'name'
 	
 	];

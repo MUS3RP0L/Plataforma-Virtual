@@ -32,12 +32,12 @@ class User extends Model implements AuthenticatableContract,
 
     protected $fillable = [
         
+        'rol_id',        
         'first_name',
         'last_name',
         'phone', 
         'username',
         'password',
-        'rol_id', 
         'status'
     ];
 

@@ -3,7 +3,6 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class StateType extends Model
 {
@@ -12,6 +11,7 @@ class StateType extends Model
 	protected $fillable = [
 	
 		'name'
+		
 	];
 
 	protected $guarded = ['id'];

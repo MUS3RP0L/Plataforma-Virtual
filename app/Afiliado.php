@@ -3,35 +3,35 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
 use DB;
 
-class Afiliado extends Model
+class Affiliate extends Model
 {
 	use SoftDeletes;
 
-    protected $table = 'afiliados';
+    protected $table = 'affiliates';
 
     protected $dates = ['deleted_at'];
 
 	protected $fillable = [
 	
-    	'ci',
-    	'matri',
-    	'pat',
-    	'mat',
-    	'nom',
-    	'nom2',
-    	'ap_esp',
-    	'est_civ',
-    	'sex',
-    	'fech_nac',
-    	'fech_ing',
-    	'fech_dece',
-    	'zona',
+    	'user_id',
+    	'affiliate_state_id',
+    	'affiliate_type_id',
+    	'city_identity_card_id',
+    	'city_birth_id',
+    	'city_address_id',
+    	'degree_id',
+    	'unit_id',
+    	'category_id',
+    	'identity_card',
+    	'registration',
+    	'last_name',
+    	'mothers_last_name',
     	'calle',
     	'num_domi',
     	'tele',

@@ -10,10 +10,11 @@ class Category extends Model
 
 	protected $fillable = [
 	
-		'percentage',
-		'name',
 		'from',
-		'to'
+		'to',
+		'name',
+		'percentage'
+		
 	];
 
 	protected $guarded = ['id'];

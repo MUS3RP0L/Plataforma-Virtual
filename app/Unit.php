@@ -10,11 +10,12 @@ class Unit extends Model
     protected $table = 'units';
 
 	protected $fillable = [
-	'breakdown_id',
-	'code',
-	'district',
-	'name',
-	'shortened'
+	
+		'breakdown_id',
+		'district',
+		'code',
+		'name',
+		'shortened'
 
 	];
 

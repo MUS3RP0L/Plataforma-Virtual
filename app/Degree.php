@@ -3,7 +3,6 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Degree extends Model
 {
@@ -11,10 +10,10 @@ class Degree extends Model
 
 	protected $fillable = [
 	
-	'code_level',
-	'code_degree',
-	'name',
-	'shortened'
+		'code_level',
+		'code_degree',
+		'name',
+		'shortened'
 	
 	];
 

@@ -9,9 +9,9 @@ class Breakdown extends Model
     protected $table = 'breakdowns';
 
 	protected $fillable = [
-	
-	'code',
-	'name'
+		
+		'code',
+		'name'
 
 	];
 
