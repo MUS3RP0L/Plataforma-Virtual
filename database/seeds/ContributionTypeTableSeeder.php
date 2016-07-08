@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AporteTypeTableSeeder extends Seeder
+class ContributionTypeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,12 +13,12 @@ class AporteTypeTableSeeder extends Seeder
     {
         Eloquent::unguard();
 
-        $this->createAporteType();
+        $this->createContribution_types();
 
         Eloquent::reguard();
     }
 
-    private function createAporteType()
+    private function createContribution_types()
     {
         $statuses = [
             ['id' => '1', 'name' => 'COMANDO'],
@@ -28,7 +28,7 @@ class AporteTypeTableSeeder extends Seeder
 
         foreach ($statuses as $status) {
 
-                Muserpol\AporteType::create($status);
+                Muserpol\ContributionType::create($status);
             
         }
     }
