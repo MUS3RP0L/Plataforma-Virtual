@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReintegrosTable extends Migration
+class CreateReimbursementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -41,7 +41,7 @@ class CreateReintegrosTable extends Migration
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('affiliate_id')->references('id')->on('affiliates');
             $table->foreign('contribution_payment_id')->references('id')->on('contribution_payments');
-            $table->unique(array('affiliate_id','gest'));
+            $table->unique(array('affiliate_id','month_year'));
 
         });
     }

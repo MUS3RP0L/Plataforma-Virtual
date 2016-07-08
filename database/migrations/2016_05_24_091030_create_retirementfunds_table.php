@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFondotramites extends Migration
+class CreateRetirementFundsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -90,7 +90,7 @@ class CreateFondotramites extends Migration
             $table->date('reception_date')->nullable();
             $table->string('code')->nullable();
             $table->timestamps();
-            $table->foreign('antecedent_file_id')->references('id')->on('antecedents_files');      
+            $table->foreign('antecedent_file_id')->references('id')->on('antecedent_files');      
             $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds');    
 
         });
