@@ -4,9 +4,9 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SoliType extends Model
+class ApplicantType extends Model
 {
-    protected $table = 'soli_types';
+    protected $table = 'applicant_types';
 
 	protected $fillable = [
 	
