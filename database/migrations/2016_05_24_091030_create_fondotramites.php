@@ -27,28 +27,25 @@ class CreateFondotramites extends Migration
             $table->UnsignedBigInteger('retirement_fund_modality_id')->nullable();
             $table->UnsignedBigInteger('city_id')->nullable();
             $table->string('code');
-            $table->date('fech_ven')->nullable();
-            $table->date('fech_arc')->nullable();
-            $table->date('fech_cal')->nullable();
-            $table->date('fech_dic')->nullable();
-
-            $table->date('fech_ini_anti')->nullable();
-            $table->date('fech_fin_anti')->nullable();
-
-            $table->date('fech_ini_reco')->nullable();
-            $table->date('fech_fin_reco')->nullable();
-
-            $table->double('total_cot');
-            $table->double('total_cot_adi');
+            $table->date('reception_date')->nullable();
+            $table->date('check_file_date')->nullable();
+            $table->date('qualification_date')->nullable();
+            $table->date('legal_assessment_date')->nullable();
+            $table->date('anticipation_start_date')->nullable();
+            $table->date('anticipation_end_date')->nullable();
+            $table->date('recognized_start_date')->nullable();
+            $table->date('recognized_end_date')->nullable();
+            $table->double('total_quotable');
+            $table->double('total_additional_quotable');
             $table->double('subtotal');
             $table->double('rendimiento');
-            $table->string('obs');
+            $table->string('comment');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('affiliate_id')->references('id')->on('affiliates');
             $table->foreign('retirement_fund_modality_id')->references('id')->on('retirement_fund_modalities');
             $table->foreign('city_id')->references('id')->on('cities');
-
+            
         });
 
         Schema::create('requirements', function (Blueprint $table) {
@@ -78,8 +75,8 @@ class CreateFondotramites extends Migration
         Schema::create('prestaciones', function (Blueprint $table) {
             
             $table->bigIncrements('id');
-            $table->text('name')->nullable();
-            $table->string('sigla')->nullable();
+            $table->string('name');
+            $table->string('shortened');
 
         });
 
