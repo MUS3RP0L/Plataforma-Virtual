@@ -4,13 +4,13 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Desglose extends Model
+class Breakdown extends Model
 {
-    protected $table = 'desgloses';
+    protected $table = 'breakdowns';
 
 	protected $fillable = [
 	
-	'cod',
+	'code',
 	'name'
 
 	];
