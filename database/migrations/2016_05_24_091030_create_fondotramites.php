@@ -12,30 +12,32 @@ class CreateFondotramites extends Migration
      */
     public function up()
     {
-        Schema::create('modalidades', function(Blueprint $table) {
+        Schema::create('retirement_fund_modalities', function(Blueprint $table) {
             
-            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('abre');
             $table->string('name');
+            $table->string('shortened');
 
         });
 
-        Schema::create('fondo_tramites', function (Blueprint $table) {
+        Schema::create('retirement_funds', function (Blueprint $table) {
                     
             $table->bigIncrements('id');   
-            $table->UnsignedBigInteger('afiliado_id');
-            $table->UnsignedBigInteger('modalidad_id')->nullable();
+            $table->UnsignedBigInteger('affiliate_id');
+            $table->UnsignedBigInteger('retirement_fund_modality_id')->nullable();
             $table->UnsignedBigInteger('city_id')->nullable();
-            $table->string('codigo');
+            $table->string('code');
             $table->date('fech_ven')->nullable();
             $table->date('fech_arc')->nullable();
             $table->date('fech_cal')->nullable();
-            $table->date('fech_dic')->nullable();     
+            $table->date('fech_dic')->nullable();
+
             $table->date('fech_ini_anti')->nullable();
             $table->date('fech_fin_anti')->nullable();
+
             $table->date('fech_ini_reco')->nullable();
             $table->date('fech_fin_reco')->nullable();
+
             $table->double('total_cot');
             $table->double('total_cot_adi');
             $table->double('subtotal');
@@ -43,34 +45,33 @@ class CreateFondotramites extends Migration
             $table->string('obs');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('afiliado_id')->references('id')->on('afiliados');
-            $table->foreign('modalidad_id')->references('id')->on('modalidades');
+            $table->foreign('affiliate_id')->references('id')->on('affiliates');
+            $table->foreign('retirement_fund_modality_id')->references('id')->on('retirement_fund_modalities');
             $table->foreign('city_id')->references('id')->on('cities');
 
         });
 
-        Schema::create('requisitos', function (Blueprint $table) {
+        Schema::create('requirements', function (Blueprint $table) {
                     
             $table->bigIncrements('id'); 
-            $table->UnsignedBigInteger('modalidad_id');        
-            $table->text('abre');
-            $table->text('name');
-            $table->timestamps();
-            $table->foreign('modalidad_id')->references('id')->on('modalidades');
+            $table->UnsignedBigInteger('retirement_fund_modality_id');        
+            $table->string('name');
+            $table->string('shortened');
+            $table->foreign('retirement_fund_modality_id')->references('id')->on('retirement_fund_modalities');
 
         });
 
-        Schema::create('documentos', function (Blueprint $table) {
+        Schema::create('documents', function (Blueprint $table) {
                     
             $table->bigIncrements('id'); 
-            $table->UnsignedBigInteger('requisito_id');
-            $table->UnsignedBigInteger('fondo_tramite_id');
-            $table->date('fech_pres');
-            $table->boolean('est')->default(0);
-            $table->string('obs')->nullable();
+            $table->UnsignedBigInteger('requirement_id');
+            $table->UnsignedBigInteger('retirement_fund_id');
+            $table->date('reception_date');
+            $table->boolean('status')->default(0);
+            $table->string('observation')->nullable();
             $table->timestamps();
-            $table->foreign('requisito_id')->references('id')->on('requisitos');        
-            $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites'); 
+            $table->foreign('requirement_id')->references('id')->on('requisitos');        
+            $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds'); 
 
         });
 
@@ -102,26 +103,6 @@ class CreateFondotramites extends Migration
 
         });
 
-        Schema::create('conyuges', function (Blueprint $table) {
-                    
-            $table->bigIncrements('id');
-            $table->UnsignedBigInteger('user_id');
-            $table->UnsignedBigInteger('afiliado_id');
-            $table->string('ci')->required();
-            $table->string('pat')->nullable();
-            $table->string('mat')->nullable();
-            $table->string('nom')->nullable();
-            $table->string('nom2')->nullable();
-            $table->date('fech_nac')->nullable();
-            $table->date('fech_dece')->nullable();
-            $table->string('motivo_dece')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users'); 
-            $table->foreign('afiliado_id')->references('id')->on('afiliados');
-
-        });
-
         Schema::create('solicitantes', function (Blueprint $table) {
             
             $table->bigIncrements('id');
@@ -140,9 +121,8 @@ class CreateFondotramites extends Migration
             $table->softDeletes();
             $table->foreign('fondo_tramite_id')->references('id')->on('fondo_tramites');        
             $table->foreign('soli_type_id')->references('id')->on('soli_types');        
-        });
 
-        
+        });
 
     }
 

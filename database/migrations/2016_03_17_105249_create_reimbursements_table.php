@@ -22,7 +22,6 @@ class CreateReintegrosTable extends Migration
             $table->date('month_year')->required();
             $table->double('base_wage');
             $table->double('seniority_bonus');
-            $table->double('dignity_pension');
             $table->double('study_bonus');
             $table->double('position_bonus');
             $table->double('border_bonus');
@@ -43,7 +42,7 @@ class CreateReintegrosTable extends Migration
             $table->foreign('affiliate_id')->references('id')->on('afiliados');
             $table->foreign('contribution_payment_id')->references('id')->on('contribution_payments');
             $table->unique(array('affiliate_id','gest'));
-            
+
         });
     }
 
