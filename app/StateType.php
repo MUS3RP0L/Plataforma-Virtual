@@ -18,6 +18,6 @@ class StateType extends Model
 
 	public function afi_states()
     {
-        return $this->hasMany('Muserpol\AfiState');
+        return $this->hasMany('Muserpol\AffiliateState');
     } 
 }
