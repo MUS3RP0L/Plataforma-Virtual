@@ -3,31 +3,38 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Carbon\Carbon;
 
-class AportePago extends Model
+class ContributionPayment extends Model
 {
-    protected $table = 'aporte_pagos';
+    protected $table = 'contribution_payments';
+
+    protected $dates = ['deleted_at'];
 
 	protected $fillable = [
 	
         'user_id',
-        'afiliado_id',
-        'fech_pago',
-        'periodo',        
-        'cot',
-        'mus',
-        'fr',
-        'sv',
+        'affiliate_id',
+        'type',
+        'payment_date',        
+        'code',
+        'quotable',
+        'retirement_fund',
+        'mortuary_quota',
+        'mortuary_aid',
+        'subtotal',
         'ipc',
         'total'
+
 	];
 
 	protected $guarded = ['id'];
 
-    public function afiliado(){
+    public function affiliate(){
 
-        return $this->belongsTo('Muserpol\Afiliado');
+        return $this->belongsTo('Muserpol\Affiliate');
     }
 
     public function scopeIdIs($query, $id)

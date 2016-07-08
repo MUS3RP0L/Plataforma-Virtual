@@ -4,6 +4,7 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 use DB;
 
 class Contribution extends Model
