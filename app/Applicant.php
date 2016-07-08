@@ -6,45 +6,41 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Muserpol\Helper\Util;
 
-class Solicitante extends Model
+class Applicant extends Model
 {
-    protected $table = 'solicitantes';
+    protected $table = 'applicants';
 
 	protected $fillable = [
-	    'fondo_tramite_id',
-        'soli_type_id',
-		'ci',
-		'pat',
-		'mat',
-		'nom',
-		'paren',
-		'zona_domi',
-        'calle_domi',
-        'num_domi',
-        'tele_domi',
-        'celu_domi',
-        'zona_trab',
-        'calle_trab',
-        'num_trab',
+	    'retirement_fund_id',
+        'applicant_type_id',
+		'identity_card',
+		'last_name',
+		'mothers_last_name',
+		'name',
+		'kinship',
+		'home_address',
+        'home_phone_number',
+        'home_cell_phone_number',
+        'work_address'
 		
 	];
 
 	protected $guarded = ['id'];
 
 	
-    public function soliType()
+    public function applicant_type()
     {
-        return $this->belongsTo('Muserpol\SoliType');
+        return $this->belongsTo('Muserpol\ApplicantType');
     }
 
-    public function fondo_tramite()
+    public function retirement_fund()
     {
-        return $this->belongsTo('Muserpol\FondoTramite');
+        return $this->belongsTo('Muserpol\RetirementFund');
     }
 
     public function scopeFonTraIs($query, $id)
     {
-        return $query->where('fondo_tramite_id', $id);
+        return $query->where('retirement_fund_id', $id);
     }
 
     public function getFullNametoPrint()
@@ -87,15 +83,15 @@ class Solicitante extends Model
     }
 }
 
-Solicitante::created(function($solicitante)
+Applicant::created(function($applicant)
 {   
-    Activity::createdSolicitante($solicitante);
+    Activity::createdApplicant($applicant);
     
 });
 
-Solicitante::updating(function($solicitante)
+Applicant::updating(function($applicant)
 {   
-    Activity::updateSolicitante($solicitante);
+    Activity::updateApplicant($applicant);
     
 });
 
