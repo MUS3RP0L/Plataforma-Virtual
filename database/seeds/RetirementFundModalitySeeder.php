@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Retirement_fund_modalitySeeder extends Seeder
+class RetirementFundModalitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
