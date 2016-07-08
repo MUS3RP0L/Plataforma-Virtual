@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class affiliateTypeandStateTablesSeeder extends Seeder
+class AffiliateTypeandStateTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

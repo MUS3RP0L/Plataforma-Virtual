@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(CityTableSeeder::class);
         $this->call(DegreeTableSeeder::class);   
-        $this->call(affiliateTypeandStateTableSeeder::class);
+        $this->call(AffiliateTypeandStateTableSeeder::class);
         $this->call(IpcRateTableSeeder::class);
         $this->call(ContributionRateTableSeeder::class);
         $this->call(BaseWageTableSeeder::class);
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BreakdownTableSeeder::class);
         $this->call(UnitTableSeeder::class);
         $this->call(ApplicantTypeSeeder::class);
-        $this->call(RetirementFundModalitySeeder::class);
+        $this->call(RetirementFundModalityTableSeeder::class);
         $this->call(RequirementTableSeeder::class);
         $this->call(AntecedentFileTableSeeder::class);
 
