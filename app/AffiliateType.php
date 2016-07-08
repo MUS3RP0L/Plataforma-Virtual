@@ -5,9 +5,9 @@ namespace Muserpol;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AfiType extends Model
+class AffiliateType extends Model
 {
-    protected $table = 'afi_types';
+    protected $table = 'affiliate_types';
 
 	protected $fillable = [
 	
