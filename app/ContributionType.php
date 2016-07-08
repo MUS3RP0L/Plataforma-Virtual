@@ -4,9 +4,9 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AporteType extends Model
+class ContributionType extends Model
 {
-    protected $table = 'aporte_types';
+    protected $table = 'contribution_types';
 
 	protected $fillable = [
 	
