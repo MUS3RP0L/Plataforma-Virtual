@@ -9,26 +9,28 @@ class ContributionTypeTableSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
         Eloquent::unguard();
 
-        $this->createContribution_types();
+        $this->createContributionTypes();
 
         Eloquent::reguard();
     }
 
-    private function createContribution_types()
+    private function createContributionTypes()
     {
         $statuses = [
-            ['id' => '1', 'name' => 'COMANDO'],
-            ['id' => '2', 'name' => 'VOLUNTARIO'],
-            ['id' => '3', 'name' => 'VOLUNTARIO INTERIOR']
+
+            ['name' => 'Comando'],
+            ['name' => 'Voluntario']
+
         ];
 
         foreach ($statuses as $status) {
 
-                Muserpol\ContributionType::create($status);
+            Muserpol\ContributionType::create($status);
             
         }
     }

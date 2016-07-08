@@ -10,6 +10,7 @@ class CityTableSeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
         Eloquent::unguard();

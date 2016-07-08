@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
         Model::unguard();
@@ -17,23 +18,19 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(CityTableSeeder::class);
-        
-        // $this->call(GradoTableSeeder::class);   
-        // $this->call(AfiTypeTableSeeder::class);
-
+        $this->call(DegreeTableSeeder::class);   
+        $this->call(affiliateTypeandStateTableSeeder::class);
         $this->call(IpcRateTableSeeder::class);
         $this->call(ContributionRateTableSeeder::class);
-        
-        // $this->call(SueldosTableSeeder::class);
-        // $this->call(CategoriasTableSeeder::class);
-        // $this->call(AporteTypeTableSeeder::class);
-        // $this->call(PagoTypesTableSeeder::class);
-        // $this->call(DesgloseTableSeeder::class);
-        // $this->call(UnidadTableSeeder::class);
-        // $this->call(SoliTypeSeeder::class);
-        // $this->call(ModalidadesSeeder::class);
-        // $this->call(RequisitosSeeder::class);
-        // $this->call(PrestacionesTableSeeder::class);
+        $this->call(BaseWageTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
+        $this->call(ContributionTypeTableSeeder::class);
+        $this->call(BreakdownTableSeeder::class);
+        $this->call(UnitTableSeeder::class);
+        $this->call(ApplicantTypeSeeder::class);
+        $this->call(RetirementFundModalitySeeder::class);
+        $this->call(RequirementTableSeeder::class);
+        $this->call(AntecedentFileTableSeeder::class);
 
         Model::reguard();
     }

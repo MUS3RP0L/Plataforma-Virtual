@@ -9,21 +9,24 @@ class ApplicantTypeSeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
         Eloquent::unguard();
 
-        $this->createApplicant_types();
+        $this->createApplicantTypes();
 
         Eloquent::reguard();
     }
 
-    private function createApplicant_types()
+    private function createApplicantTypes()
     {
         $statuses = [
-            ['id' => '1', 'name' => 'TITULAR'],
-            ['id' => '2', 'name' => 'CONYUGE'],
-            ['id' => '3', 'name' => 'OTRO']
+
+            ['name' => 'Titular'],
+            ['name' => 'Conyuge'],
+            ['name' => 'Otro']
+
         ];
 
         foreach ($statuses as $status) {

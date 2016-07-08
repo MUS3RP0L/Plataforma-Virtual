@@ -9,6 +9,7 @@ class RolesTableSeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
         Eloquent::unguard();
@@ -21,6 +22,7 @@ class RolesTableSeeder extends Seeder
     private function createRoles()
     {
         $statuses = [
+
             ['name' => 'Administrador'],
             ['name' => 'Fondo de Retiro'],
             ['name' => 'Fondo de Retiro - Ventanilla'],
@@ -28,6 +30,7 @@ class RolesTableSeeder extends Seeder
             ['name' => 'Fondo de Retiro - Calificación'],
             ['name' => 'Fondo de Retiro - Legal'],      
             ['name' => 'Complemento Económico']
+            ['name' => 'Tesorería']
 
         ];
 

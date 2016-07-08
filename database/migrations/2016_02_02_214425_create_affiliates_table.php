@@ -58,8 +58,8 @@ class CreateAffiliatesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('from');
             $table->integer('to');
-            $table->double('percentage');
             $table->string('name');
+            $table->double('percentage');
 
         });
 
@@ -106,7 +106,7 @@ class CreateAffiliatesTable extends Migration
             $table->string('second_name')->nullable();
             $table->string('surname_husband')->nullable();
             $table->enum('civil_status', ['C', 'S', 'V', 'D'])->nullable();
-            $table->enum('gender', ['M', 'F'])->nullable();
+            $table->enum('gender', ['M', 'F']);
             $table->date('birth_date')->nullable();
             $table->date('date_entry')->nullable();
             $table->string('date_death')->nullable();
@@ -138,6 +138,23 @@ class CreateAffiliatesTable extends Migration
 
         });
 
+        Schema::create('record', function(Blueprint $table) {
+
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('user_id');
+            $table->UnsignedBigInteger('affiliate_id');
+            $table->UnsignedBigInteger('affiliate_state_id');
+            $table->UnsignedBigInteger('degree_id');
+            $table->UnsignedBigInteger('unit_id');
+            $table->date('date');
+            $table->integer('type');
+            $table->string('message');
+            $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('user_id')->references('id')->on('users'); 
+
+        });
+
         Schema::create('spouses', function (Blueprint $table) {
                     
             $table->bigIncrements('id');
@@ -155,23 +172,6 @@ class CreateAffiliatesTable extends Migration
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('affiliate_id')->references('id')->on('affiliates');
-
-        });
-
-        Schema::create('record', function(Blueprint $table) {
-
-            $table->bigIncrements('id');
-            $table->UnsignedBigInteger('user_id');
-            $table->UnsignedBigInteger('affiliate_id');
-            $table->UnsignedBigInteger('degree_id');
-            $table->UnsignedBigInteger('unit_id');
-            $table->UnsignedBigInteger('affiliate_state_id');
-            $table->date('fech');
-            $table->integer('type');
-            $table->string('message');
-            $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users'); 
 
         });
 
@@ -194,5 +194,6 @@ class CreateAffiliatesTable extends Migration
         Schema::drop('affiliate_types');
         Schema::drop('affiliates');
         Schema::drop('record');
+        Schema::drop('spouses');
     }
 }

@@ -9,6 +9,7 @@ class IpcRateTableSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
         Eloquent::unguard();
@@ -401,6 +402,7 @@ class IpcRateTableSeeder extends Seeder
 			['month_year' => '2016-5-1',  'index' => '164.8800', 'user_id' => '1'],
 			['month_year' => '2016-6-1',  'index' => '164.8800', 'user_id' => '1'],
 			['month_year' => '2016-7-1',  'index' => '164.8800', 'user_id' => '1']
+			
 		];
 
         foreach ($statuses as $status) {

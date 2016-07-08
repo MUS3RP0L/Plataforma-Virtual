@@ -18,7 +18,6 @@ class CreateReimbursementsTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('affiliate_id');
             $table->UnsignedBigInteger('contribution_payment_id')->nullable();
-            $table->UnsignedBigInteger('category_id')->nullable();
             $table->date('month_year')->required();
             $table->double('base_wage');
             $table->double('seniority_bonus');

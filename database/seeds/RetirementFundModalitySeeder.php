@@ -9,23 +9,26 @@ class RetirementFundModalitySeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
         Eloquent::unguard();
 
-        $this->createRetirement_fund_modalities();
+        $this->createRetirementFundModalities();
 
         Eloquent::reguard();
     }
 
-    private function createRetirement_fund_modalities()
+    private function createRetirementFundModalities()
     {
         $statuses = [
-            ['id' => '1', 'shortened' => 'BAJA FORZOSA', 'name' => 'RETIRO POR BAJA FORZOSA'],
-            ['id' => '2', 'shortened' => 'BAJA VOLUNTARIA', 'name' => 'RETIRO POR BAJA VOLUNTARIA'],
-            ['id' => '3', 'shortened' => 'JUBILACIÓN', 'name' => 'RETIRO POR JUBILACIÓN'],
-            ['id' => '4', 'shortened' => 'FALLECIMIENTO', 'name' => 'RETIRO POR FALLECIMIENTO'],
-            ['id' => '5', 'shortened' => 'DEVOLUCIÓN', 'name' => 'DEVOLUCIÓN DE DESCUENTOS AL GARANTE']
+
+            ['shortened' => 'Baja Forzosa', 'name' => 'Retiro por Baja Forzosa'],
+            ['shortened' => 'Baja Voluntaria', 'name' => 'Retiro por Baja Voluntaria'],
+            ['shortened' => 'Jubilación', 'name' => 'Retiro por Jubilación'],
+            ['shortened' => 'Fallecimiento', 'name' => 'Retiro por Fallecimiento'],
+            ['shortened' => 'Devolución', 'name' => 'Devolución de Descuentos al Garante']
+        
         ];
 
         foreach ($statuses as $status) {

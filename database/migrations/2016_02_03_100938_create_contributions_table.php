@@ -96,7 +96,8 @@ class CreateContributionsTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {   
+        Schema::drop('contribution_payments');
         Schema::drop('contributions');
     }
 }

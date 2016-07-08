@@ -9,6 +9,7 @@ class BreakdownTableSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
         Eloquent::unguard();
@@ -22,30 +23,22 @@ class BreakdownTableSeeder extends Seeder
     {
         $statuses = [
             
-            ['id' => '1', 'code' => '1', 'name' => 'DISPONIBILIDAD'],// Servicio Disponibilidad *
-
-            ['id' => '2', 'code' => '2', 'name' => 'DIR NAL POFOMA'],//Servicio 
-
-            ['id' => '3', 'code' => '3', 'name' => 'ITEM CERO'],//Comisión * 
-
-            ['id' => '4', 'code' => '5', 'name' => 'BAT. SEG. FISICA PRIVADA'],//Servicio Batallón *
-
-            ['id' => '5', 'code' => '6', 'name' => 'JUZGADOS POLICIALES - UNIDAD C.C. Y FAMILIAR'],//Servicio
-
-            ['id' => '6', 'code' => '8', 'name' => 'ESCUADRON DE SEG. LOS PUMAS'],//Servicio
-
-            ['id' => '7', 'code' => '9', 'name' => 'DIR NAL SEG. PENITENCIARIA'],//Servicio
-
-            ['id' => '8', 'code' => '0', 'name' => ''],//Servicio
-
-            ['id' => '9', 'code' => '4', 'name' => ''],//
-            ['id' => '10', 'code' => '7', 'name' => '']//
+            ['code' => '1', 'name' => 'Disponibilidad'],// Servicio Disponibilidad *
+            ['code' => '2', 'name' => 'Dir. Nal. Pofoma'],//Servicio 
+            ['code' => '3', 'name' => 'Item Cero'],//Comisión * 
+            ['code' => '5', 'name' => 'Bat. Seg. Física Privada'],//Servicio Batallón *
+            ['code' => '6', 'name' => 'Juzgados Policiales'],//Servicio
+            ['code' => '8', 'name' => 'Escuadrón de Seg. Los Pumas'],//Servicio
+            ['code' => '9', 'name' => 'Dir. Nal. Seg. Penitenciaria'],//Servicio
+            ['code' => '0', 'name' => 'Servicio'],//Servicio
+            ['code' => '4', 'name' => 'S/N'],//
+            ['code' => '7', 'name' => 'S/N']//
 
         ];
 
         foreach ($statuses as $status) {
 
-                Muserpol\Breakdown::create($status);
+            Muserpol\Breakdown::create($status);
             
         }
     }
