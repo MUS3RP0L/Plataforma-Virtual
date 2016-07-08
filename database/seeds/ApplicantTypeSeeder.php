@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SoliTypeSeeder extends Seeder
+class ApplicantTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,12 +13,12 @@ class SoliTypeSeeder extends Seeder
     {
         Eloquent::unguard();
 
-        $this->createSoliType();
+        $this->createApplicant_types();
 
         Eloquent::reguard();
     }
 
-    private function createSoliType()
+    private function createApplicant_types()
     {
         $statuses = [
             ['id' => '1', 'name' => 'TITULAR'],
@@ -28,7 +28,7 @@ class SoliTypeSeeder extends Seeder
 
         foreach ($statuses as $status) {
 
-                Muserpol\SoliType::create($status);
+                Muserpol\ApplicantType::create($status);
             
         }
     }
