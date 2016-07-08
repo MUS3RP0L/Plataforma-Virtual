@@ -4,31 +4,33 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Conyuge extends Model
+class Spouse extends Model
 {
-    protected $table = 'conyuges';
+    protected $table = 'spouses';
 
 	protected $fillable = [
-	
-		'ci',
-		'pat',
-		'mat',
-		'nom',
-		'nom2',
-		'fech_dece',
-		'motivo_dece'		
+	    'user_id',
+        'affiliate_id',
+		'identity_card',
+		'last_name',
+		'mothers_last_name',
+		'first_name',
+		'second_name',
+		'birth_date',
+        'date_death',
+        'reason_death'		
 	];
 
 	protected $guarded = ['id'];
 
-	public function afiliado()
+	public function affiliate()
     {
-        return $this->belongsTo('Muserpol\Afiliado');
+        return $this->belongsTo('Muserpol\Affiliate');
     }
 
     public function scopeAfiIs($query, $id)
     {
-        return $query->where('afiliado_id', $id);
+        return $query->where('affiliate_id', $id);
     }
 
     public function getDataEdit_fech_nac()
@@ -85,13 +87,13 @@ class Conyuge extends Model
     }
 }
 
-Conyuge::created(function($conyuge)
+Spouse::created(function($spouse)
 {
-    Activity::createdConyuge($conyuge);
+    Activity::createdSpouse($spouse);
     
 });
-Conyuge::updating(function($conyuge)
+Spouse::updating(function($spouse)
 {
-    Activity::updateConyuge($conyuge);
+    Activity::updateSpouse($spouse);
     
 });
