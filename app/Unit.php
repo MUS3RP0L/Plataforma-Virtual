@@ -5,16 +5,16 @@ namespace Muserpol;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Unidad extends Model
+class Unit extends Model
 {
-    protected $table = 'unidades';
+    protected $table = 'units';
 
 	protected $fillable = [
-	
-	'cod',
-	'dist',
-	'lit',
-	'abre'
+	'breakdown_id',
+	'code',
+	'district',
+	'name',
+	'shortened'
 
 	];
 
