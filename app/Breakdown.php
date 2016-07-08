@@ -4,18 +4,16 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class Breakdown extends Model
 {
-    protected $table = 'categorias';
+    protected $table = 'breakdowns';
 
 	protected $fillable = [
 	
-		'por',
-		'name',
-		'from',
-		'to'
+	'code',
+	'name'
+
 	];
 
 	protected $guarded = ['id'];
-
 }

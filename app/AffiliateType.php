@@ -3,10 +3,11 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AporteType extends Model
+class AffiliateType extends Model
 {
-    protected $table = 'aporte_types';
+    protected $table = 'affiliate_types';
 
 	protected $fillable = [
 	
@@ -15,5 +16,4 @@ class AporteType extends Model
 	];
 
 	protected $guarded = ['id'];
-
 }
