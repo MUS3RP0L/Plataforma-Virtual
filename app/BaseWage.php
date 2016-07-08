@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class BaseWage extends Model
 {
-    protected $table = 'sueldos';
+    protected $table = 'base_wages';
 
 	protected $fillable = [
-	
-		'grado_id',
-		'gest',
-		'sue'
+		'user_id',
+		'degree_id',
+		'month_year',
+		'amount'
 	];
 
 	protected $guarded = ['id'];
 
-	public function grado()
+	public function degree()
     {
-        return $this->belongsTo('Muserpol\Grado');
+        return $this->belongsTo('Muserpol\Degree');
     }
 }
