@@ -17,6 +17,7 @@ class CreateRetirementFundsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('shortened');
+            $table->timestamps();
 
         });
 
@@ -55,6 +56,7 @@ class CreateRetirementFundsTable extends Migration
             $table->UnsignedBigInteger('retirement_fund_modality_id');        
             $table->string('name');
             $table->string('shortened');
+            $table->timestamps();
             $table->foreign('retirement_fund_modality_id')->references('id')->on('retirement_fund_modalities');
 
         });
@@ -78,6 +80,7 @@ class CreateRetirementFundsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('shortened');
+            $table->timestamps();
 
         });
 
@@ -99,6 +102,7 @@ class CreateRetirementFundsTable extends Migration
 
             $table->bigIncrements('id');
             $table->string('name');
+            $table->timestamps();
 
         });
 

@@ -18,6 +18,7 @@ class CreateAffiliatesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('shortened');
+            $table->timestamps();
 
         });
 
@@ -28,6 +29,7 @@ class CreateAffiliatesTable extends Migration
             $table->string('code_degree');
             $table->string('name');
             $table->string('shortened');
+            $table->timestamps();
 
         });
 
@@ -36,6 +38,7 @@ class CreateAffiliatesTable extends Migration
             $table->bigIncrements('id');         
             $table->integer('code');
             $table->string('name')->nullable();
+            $table->timestamps();
 
         });
 
@@ -60,6 +63,7 @@ class CreateAffiliatesTable extends Migration
             $table->integer('to');
             $table->string('name');
             $table->double('percentage');
+            $table->timestamps();
 
         });
 
@@ -67,6 +71,7 @@ class CreateAffiliatesTable extends Migration
            
             $table->bigIncrements('id');
             $table->string('name');
+            $table->timestamps();
 
         });
 
@@ -75,7 +80,9 @@ class CreateAffiliatesTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('state_type_id');
             $table->string('name');
+            $table->timestamps();
             $table->foreign('state_type_id')->references('id')->on('state_types');
+
 
         }); 
 
@@ -83,6 +90,7 @@ class CreateAffiliatesTable extends Migration
 
             $table->bigIncrements('id');
             $table->string('name');
+            $table->timestamps();
 
         });
 
@@ -129,9 +137,9 @@ class CreateAffiliatesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users'); 
             $table->foreign('affiliate_state_id')->references('id')->on('affiliate_states');
             $table->foreign('affiliate_type_id')->references('id')->on('affiliate_types');
-            $table->foreign('city_exp_id')->references('id')->on('cities');
-            $table->foreign('city_nat_id')->references('id')->on('cities');
-            $table->foreign('city_dir_id')->references('id')->on('cities');
+            $table->foreign('city_identity_card_id')->references('id')->on('cities');
+            $table->foreign('city_birth_id')->references('id')->on('cities');
+            $table->foreign('city_address_id')->references('id')->on('cities');
             $table->foreign('degree_id')->references('id')->on('degrees');
             $table->foreign('unit_id')->references('id')->on('units');
             $table->foreign('category_id')->references('id')->on('categories');
