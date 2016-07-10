@@ -29,7 +29,7 @@ class RolesTableSeeder extends Seeder
             ['name' => 'Fondo de Retiro - Certificación'],
             ['name' => 'Fondo de Retiro - Calificación'],
             ['name' => 'Fondo de Retiro - Legal'],      
-            ['name' => 'Complemento Económico']
+            ['name' => 'Complemento Económico'],
             ['name' => 'Tesorería']
 
         ];

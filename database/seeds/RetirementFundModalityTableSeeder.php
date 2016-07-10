@@ -33,7 +33,7 @@ class RetirementFundModalityTableSeeder extends Seeder
 
         foreach ($statuses as $status) {
          
-            Muserpol\Modality::create($status);
+            Muserpol\RetirementFundModality::create($status);
         }
     }
 }
