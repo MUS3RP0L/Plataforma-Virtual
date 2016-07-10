@@ -12,7 +12,8 @@ class Spouse extends Model
     protected $dates = ['deleted_at'];
 
 	protected $fillable = [
-	    'user_id',
+	    
+        'user_id',
         'affiliate_id',
 		'identity_card',
 		'last_name',

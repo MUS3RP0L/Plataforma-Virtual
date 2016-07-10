@@ -9,7 +9,8 @@ class Requirement extends Model
     protected $table = 'requirements';
 
 	protected $fillable = [
-		'retirement_fund_modality_id',
+		
+        'retirement_fund_modality_id',
 		'name',
         'shortened'
 	];

@@ -16,6 +16,7 @@ class Document extends Model
     	'reception_date',
     	'status',
     	'comment'
+        
     ];
 
     protected $guarded = ['id'];

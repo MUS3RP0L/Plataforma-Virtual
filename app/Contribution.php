@@ -17,6 +17,7 @@ class Contribution extends Model
 
     protected $fillable = [
 
+        'user_id',
     	'affiliate_id',
         'contribution_type_id',
         'contribution_payment_id',

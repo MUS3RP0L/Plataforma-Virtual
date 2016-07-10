@@ -3,72 +3,74 @@
 namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
 use DB;
 
-class FondoTramite extends Model
+class RetirementFund extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'fondo_tramites';
+    protected $table = 'retirement_funds';
 
     protected $dates = ['deleted_at'];
 
 	protected $fillable = [
 		
-		'afiliado_id',
-		'modalidad_id',
-		'departamento_id',
-        'fech_ven',
-        'fech_arc',
-        'fech_cal',
-        'fech_dic',
-        'fech_ini_anti',
-        'fech_fin_anti',
-        'fech_ini_reco',
-        'fech_fin_reco',
-        'total_cot',
-        'total_cot_adi',
-        'subtotal',
-        'rendimiento',
-        'obs'
+		'affiliate_id',
+		'retirement_fund_modality_id',
+		'city_id',
+        'code',
+        'reception_date',
+        'check_file_date',
+        'qualification_date',
+        'legal_assessment_date',
+        'anticipation_start_date',
+        'anticipation_end_date',
+        'recognized_start_date',
+        'recognized_end_date',
+        'total_quotable',
+        'total_additional_quotable',
+        'rensubtotaldimiento',
+        'performance',
+        'total',
+        'comment'
 		
 	];
 
 	protected $guarded = ['id'];
 
-	public function afiliado(){
+	// public function afiliado(){
 
-        return $this->belongsTo('Muserpol\Afiliado');
-    }
+ //        return $this->belongsTo('Muserpol\Afiliado');
+ //    }
 
-	public function modalidad(){
+	// public function modalidad(){
 
-        return $this->belongsTo('Muserpol\Modalidad');
-    }
+ //        return $this->belongsTo('Muserpol\Modalidad');
+ //    }
 
-    public function departamento(){
+ //    public function departamento(){
 
-        return $this->belongsTo('Muserpol\Departamento');
-    }
+ //        return $this->belongsTo('Muserpol\Departamento');
+ //    }
 
-    public function documentos(){
+ //    public function documentos(){
 
-        return $this->hasMany('Muserpol\Documento');
-    }
+ //        return $this->hasMany('Muserpol\Documento');
+ //    }
 
-    public function antecedentes(){
+ //    public function antecedentes(){
 
-        return $this->hasMany('Muserpol\Antecedente');
-    }
+ //        return $this->hasMany('Muserpol\Antecedente');
+ //    }
 
-    public function solicitantes()
-    {
-        return $this->hasMany('Muserpol\Solicitante');
-    }
+ //    public function solicitantes()
+ //    {
+ //        return $this->hasMany('Muserpol\Solicitante');
+ //    }
 
     public function scopeIdIs($query, $id)
     {

@@ -11,7 +11,8 @@ class Applicant extends Model
     protected $table = 'applicants';
 
 	protected $fillable = [
-	    'retirement_fund_id',
+	    
+        'retirement_fund_id',
         'applicant_type_id',
 		'identity_card',
 		'last_name',
