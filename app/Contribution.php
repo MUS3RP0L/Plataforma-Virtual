@@ -88,7 +88,7 @@ class Contribution extends Model
     {
        return $query = DB::table('contributions')
                     ->select(DB::raw('COUNT(*) total, month(contributions.month_year) as mes'))
-                    ->where('contributions.aporte_type_id', '=', 2)
+                    ->where('contributions.contribution_type_id', '=', 2)
                     ->whereMonth('contributions.month_year', '=', $mes)
                     ->whereYear('contributions.month_year', '=', $anio);        
     }  

@@ -8,14 +8,14 @@ use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 
 use DB;
-use Muserpol\Afiliado;
+use Muserpol\Affiliate;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
 
 use Muserpol\Activity;
-use Muserpol\AfiState;
-use Muserpol\AfiType;
-use Muserpol\Aporte;
+use Muserpol\AffiliateState;
+use Muserpol\AffiliateType;
+use Muserpol\Contribution;
 use Muserpol\FondoTramite;
 use Session;
 
@@ -48,18 +48,18 @@ class HomeController extends Controller
 
 	public function showIndex()
 	{
-      $AfiServ = DB::table('afiliados')
+      $AfiServ = DB::table('affiliates')
                     ->select(DB::raw('COUNT(*) totalAfiS'))
-                    ->where('afiliados.afi_state_id', '=', 1)
+                    ->where('affiliates.affiliate_state_id', '=', 1)
                     ->get();
 
       foreach ($AfiServ as $item) {        
         $totalAfiServ = $item->totalAfiS;
       }
 
-      $AfiComi = DB::table('afiliados')
+      $AfiComi = DB::table('affiliates')
                     ->select(DB::raw('COUNT(*) totalAfiC'))
-                    ->where('afiliados.afi_state_id', '=', 2)
+                    ->where('affiliates.affiliate_state_id', '=', 2)
                     ->get();
 
       foreach ($AfiComi as $item) {        
@@ -67,32 +67,32 @@ class HomeController extends Controller
       }
 
       // gráficos por estados
-      $estados = AfiState::all();
-      $tipos = AfiType::all();
-      $distritos = DB::table('unidades')->select(DB::raw('DISTINCT (unidades.dist) as dist'))->get(); 
+      $estados = AffiliateState::all();
+      $tipos = AffiliateType::all();
+      $distritos = DB::table('units')->select(DB::raw('DISTINCT (units.district) as dist'))->get(); 
       $anio = Carbon::now()->year;
      
       foreach ($estados as $item) {
-        $afiestado = Afiliado::afiEstado($item->id,$anio)->first();
+        $afiestado = Affiliate::afiEstado($item->id,$anio)->first();
         $list_estados[$item->id] = $afiestado->total1;
       }
 
       foreach ($tipos as $item) {
-        $Afitype = Afiliado::afiType($item->id,$anio)->first();
+        $Afitype = Affiliate::afiType($item->id,$anio)->first();
         $list_types[$item->id] = $Afitype->tipo;
 
       }  
 
-      $ultimoAporte = DB::table('aportes')->orderBy('gest', 'desc')->first();
+      $ultimoAporte = DB::table('contributions')->orderBy('month_year', 'desc')->first();
       if($ultimoAporte)
       {
-        $Ayear = Carbon::parse($ultimoAporte->gest)->subYears(5);
+        $Ayear = Carbon::parse($ultimoAporte->month_year)->subYears(5);
         $Ayear1 = Carbon::parse($Ayear)->year;
-        $gestAportes = DB::table('aportes')->select(DB::raw('DISTINCT(year(aportes.gest)) as anio'))
-                                    ->whereYear('aportes.gest', '>', $Ayear1)->orderBy('aportes.gest', 'asc')->get();
+        $gestAportes = DB::table('contributions')->select(DB::raw('DISTINCT(year(contributions.month_year)) as anio'))
+                                    ->whereYear('contributions.month_year', '>', $Ayear1)->orderBy('contributions.month_year', 'asc')->get();
 
         foreach ($gestAportes as $item) {
-          $monto = Aporte::afiAporte($item->anio)->first();
+          $monto = Contribution::afiAporte($item->anio)->first();
           $list_aportes[] = $monto->muserpol;
           $list_gestion[] = $monto->gestion;
         
@@ -109,7 +109,7 @@ class HomeController extends Controller
      
       foreach ($distritos as $item) {
 
-        $Afidistrito = Afiliado::afiDistrito($item->dist, $anio)->first();
+        $Afidistrito = Affiliate::afiDistrito($item->dist, $anio)->first();
         $list_distrito[$item->dist] = $Afidistrito->distrito;
         
       } 
@@ -118,10 +118,10 @@ class HomeController extends Controller
       $fechactual = Carbon::now();
       $Fyear1 = Carbon::parse($fechactual)->year;
 
-      $fondotramite = DB::table('fondo_tramites')
-                            ->select(DB::raw('DISTINCT(month(fondo_tramites.fech_ven)) as mes'))
-                            ->whereYear('fondo_tramites.fech_ven', '=', $Fyear1)
-                            ->orderBy('fondo_tramites.fech_ven', 'asc')
+      $fondotramite = DB::table('retirement_funds')
+                            ->select(DB::raw('DISTINCT(month(retirement_funds.reception_date)) as mes'))
+                            ->whereYear('retirement_funds.reception_date', '=', $Fyear1)
+                            ->orderBy('retirement_funds.reception_date', 'asc')
                             ->get();
       if($fondotramite)
       {
@@ -143,11 +143,11 @@ class HomeController extends Controller
       $fechactual = Carbon::now();
       $Fyear1 = Carbon::parse($fechactual)->year;
 
-      $aportemeses = DB::table('aportes')
-                            ->select(DB::raw('DISTINCT(month(aportes.gest)) as mes1'))
-                            ->where('aportes.aporte_type_id', '=', 2)
-                            ->whereYear('aportes.gest', '=', $Fyear1)
-                            ->orderBy('aportes.gest', 'asc')
+      $aportemeses = DB::table('contributions')
+                            ->select(DB::raw('DISTINCT(month(contributions.month_year)) as mes1'))
+                            ->where('contributions.contribution_type_id', '=', 2)
+                            ->whereYear('contributions.month_year', '=', $Fyear1)
+                            ->orderBy('contributions.month_year', 'asc')
                             ->get();
 
        if($aportemeses)
