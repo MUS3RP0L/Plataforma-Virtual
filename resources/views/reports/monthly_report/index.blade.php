@@ -2,37 +2,30 @@
 
 @section('content')
 <div class="container-fluid">
+     {!! Breadcrumbs::render('monthly_reports') !!}
     <div class="row">
         <div class="col-md-12">
-            <div class="panel-heading">
-                <div class="row">  
-                    <div class="col-md-8">
-                        <h4><b>Reporte por Mes</b></h4>
-                    </div>
-                </div>
-            </div>
-
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Reporte por Mes</h3>
                 </div>
                 <div class="panel-body">					
-					{!! Form::open(['url' => 'go_total_month', 'role' => 'form', 'class' => 'form-horizontal']) !!}					
+					{!! Form::open(['url' => 'monthly_report', 'role' => 'form', 'class' => 'form-horizontal']) !!}					
 						<div class="row">
 							<div class="col-md-6">  
 								<div class="form-group form-group-lg">
                                         {!! Form::label('year', 'AÑO', ['class' => 'col-md-3 control-label']) !!}
                                     <div class="col-md-9">
-                                        {!! Form::select('year', $anios, $anio, ['class' => 'combobox form-control', 'required' => 'required']) !!}
+                                        {!! Form::select('year', $years, $year, ['class' => 'combobox form-control', 'required' => 'required']) !!}
                                         <span class="help-block">Seleccione el Año</span>
                                     </div>
                                 </div>
 							</div>
 							<div class="col-md-6">  
 					        	<div class="form-group form-group-lg">
-                                        {!! Form::label('mes', 'MES', ['class' => 'col-md-3 control-label']) !!}
+                                        {!! Form::label('month', 'MES', ['class' => 'col-md-3 control-label']) !!}
                                     <div class="col-md-9">
-                                        {!! Form::select('mes', $meses, $mes,['class' => 'combobox form-control', 'required' => 'required']) !!}
+                                        {!! Form::select('month', $months, $month, ['class' => 'combobox form-control', 'required' => 'required']) !!}
                                         <span class="help-block">Seleccione el Mes</span>
                                     </div>
                             	</div>
@@ -52,7 +45,7 @@
 				</div>
 					
 			</div>
-			@if($resultado)
+			@if($result)
 			<div class="panel panel-primary">
                 <div class="panel-heading">                     
                     <div class="row">
@@ -164,9 +157,9 @@
 @push('scripts')
 <script type="text/javascript">
 
-	  $(document).ready(function(){
-	    $('.combobox').combobox();
-	  });
+	$(document).ready(function(){
+	   $('.combobox').combobox();
+	});
 
 </script>
 @endpush

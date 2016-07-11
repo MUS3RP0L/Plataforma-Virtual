@@ -1,6 +1,6 @@
 <?php
 
-namespace Muserpol\Http\Controllers;
+namespace Muserpol\Http\Controllers\Report;
 
 use Illuminate\Http\Request;
 use Muserpol\Http\Requests;
@@ -10,10 +10,9 @@ use DB;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
-use Muserpol\Aporte;
-use Muserpol\Grado;
+use Muserpol\Contribution;
 
-class ReporteController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,34 +22,36 @@ class ReporteController extends Controller
 
     public function ShowMonthlyReport()
     {
-        $anios = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest ) gest'))->lists('gest');
+        $years = DB::table('contributions')->select(DB::raw('DISTINCT YEAR(contributions.month_year ) years'))->lists('years');
 
-        $data = array(
-            'anios' => $anios,
-            'meses' => Util::getArrayMonths(),
-            'resultado' => 0,
-            'anio' => '',
-            'mes' => '',
+        $data = [
 
-        );
-        return view('reportes.permonth.select', $data);
+            'years' => $years,
+            'months' => Util::getArrayMonths(),
+            'result' => false,
+            'year' => null,
+            'month' => null
+
+        ];
+
+        return view('reports.monthly_report.index', $data);
     }
 
     public function GenerateMonthlyReport(Request $request)
     {
 
-        $anios = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest) year'))->get();
+        $years = DB::table('contributions')->select(DB::raw('DISTINCT YEAR(contributions.month_year) year'))->get();
         $i=0; $a = $request->year;
-        foreach ($anios as $item) {
+        foreach ($years as $item) {
             $year = $item->year;
             if($i==$a)
             {break;}
             $i++;
         }
+
         $date = Carbon::createFromDate($year, $request->mes, 1)->toDateString();
         $year1 = Carbon::parse($date)->year;
         $month1 = Carbon::parse($date)->month;
-
 
         $totalRegistrosC = DB::select('call sumar_aportesC('.$month1.','.$year1.')');
                
@@ -100,7 +101,7 @@ class ReporteController extends Controller
         $sv = $svC + $svB;
         $mus = $musC + $musB;
         
-        $anios = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest ) gest'))->lists('gest');
+        $years = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest ) gest'))->lists('gest');
         $meses = Util::getArrayMonths();
         $data = array(
             'total' => Util::formatMoney($total),
@@ -142,7 +143,7 @@ class ReporteController extends Controller
             'totalMuserpol' => Util::formatMoney($mus),
             'anio' => $request->year,
             'mes' => $request->mes,
-            'anios' => $anios,
+            'years' => $years,
             'meses' => $meses,
             'resultado' => 1,
         );

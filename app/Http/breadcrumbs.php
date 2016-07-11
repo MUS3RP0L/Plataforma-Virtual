@@ -30,6 +30,13 @@ Breadcrumbs::register('base_wages', function($breadcrumbs) {
     $breadcrumbs->push('Sueldos de Personal de la Policía Nacional', URL::to('base_wage'));
 });
 
+// Monthly Report
+Breadcrumbs::register('monthly_reports', function($breadcrumbs) {
+    $breadcrumbs->push('Reporte Mensual de Totales', URL::to('monthly_report'));
+});
+
+
+
 
 
 
