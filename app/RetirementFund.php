@@ -83,10 +83,10 @@ class RetirementFund extends Model
     }
     public function scopeNroTramites($query, $mes, $anio)
     {
-       return $query = DB::table('fondo_tramites')
-                    ->select(DB::raw('COUNT(*) total, month(fondo_tramites.fech_ven) as mes'))
-                    ->whereMonth('fondo_tramites.fech_ven', '=', $mes)
-                    ->whereYear('fondo_tramites.fech_ven', '=', $anio);        
+       return $query = DB::table('retirement_funds')
+                    ->select(DB::raw('COUNT(*) total, month(retirement_funds.reception_date) as mes'))
+                    ->whereMonth('retirement_funds.reception_date', '=', $mes)
+                    ->whereYear('retirement_funds.reception_date', '=', $anio);        
     }  
 
     public function getFull_fech_ini_anti()
