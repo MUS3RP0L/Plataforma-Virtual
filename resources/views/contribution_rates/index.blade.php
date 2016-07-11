@@ -61,48 +61,48 @@
 
                 {!! Form::model($last_contribution_rate, ['method' => 'PATCH', 'route' => ['contribution_rate.update', $last_contribution_rate->id], 'class' => 'form-horizontal']) !!}
 
-                <div class="row">           
-                    <div class="col-md-6">
-                        <h3 class="panel-title">Sector Activo</h3>
-                        <div class="form-group">
-                                {!! Form::label('retirement_fund', 'Fondo de Retiro', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('retirement_fund', $last_contribution_rate->retirement_fund, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                <span class="help-block">Porcentaje de Fondo de Retiro</span>
+                    <div class="row">           
+                        <div class="col-md-6">
+                            <h3 class="panel-title">Sector Activo</h3>
+                            <div class="form-group">
+                                    {!! Form::label('retirement_fund', 'Fondo de Retiro', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-6">
+                                    {!! Form::text('retirement_fund', $last_contribution_rate->retirement_fund, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                    <span class="help-block">Porcentaje de Fondo de Retiro</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    {!! Form::label('mortuary_quota', 'Cuota mortuoria', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-6">
+                                    {!! Form::text('mortuary_quota', $last_contribution_rate->mortuary_quota, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                    <span class="help-block">Porcentaje de Seguro de Vida</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                                {!! Form::label('mortuary_quota', 'Cuota mortuoria', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('mortuary_quota', $last_contribution_rate->mortuary_quota, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                <span class="help-block">Porcentaje de Seguro de Vida</span>
+                        <div class="col-md-6">
+                            <h3 class="panel-title">Sector Pasivo</h3>                            
+                            <div class="form-group">
+                                    {!! Form::label('mortuary_aid', 'Auxilio Mortuorio', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-6">
+                                    {!! Form::text('mortuary_aid', $last_contribution_rate->mortuary_aid, ['class'=> 'form-control', 'required' => 'required']) !!}
+                                    <span class="help-block">Porcentaje de Auxilio Mortuorio</span>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <h3 class="panel-title">Sector Pasivo</h3>                            
-                        <div class="form-group">
-                                {!! Form::label('mortuary_aid', 'Auxilio Mortuorio', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('mortuary_aid', $last_contribution_rate->mortuary_aid, ['class'=> 'form-control', 'required' => 'required']) !!}
-                                <span class="help-block">Porcentaje de Auxilio Mortuorio</span>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-            
-                <div class="row text-center">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <a href="{!! url('contribution_rate') !!}" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancelar">&nbsp;<i class="glyphicon glyphicon-remove"></i>&nbsp;</a>
-                            &nbsp;&nbsp;
-                            <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Guardar">&nbsp;<i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;</button>
                         </div>
                     </div>
-                </div>
+                
+                    <div class="row text-center">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <a href="{!! url('contribution_rate') !!}" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancelar">&nbsp;<i class="glyphicon glyphicon-remove"></i>&nbsp;</a>
+                                &nbsp;&nbsp;
+                                <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Guardar">&nbsp;<i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
 
-            {!! Form::close() !!}
+                {!! Form::close() !!}
 
             </div>
         </div>
