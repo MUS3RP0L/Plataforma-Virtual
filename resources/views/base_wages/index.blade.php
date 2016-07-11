@@ -2,61 +2,52 @@
 
 @section('content')
 <div class="container-fluid">
-    {!! Breadcrumbs::render('sueldos') !!}
+    {!! Breadcrumbs::render('base_wages') !!}
     <div class="row">
         <div class="col-md-12">
-
-            @can('admin')
+            @can('manage')
                 <div class="row">
                     <div class="col-md-12 text-right"> 
                         <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Importar">
-                            <a href="" data-target="#myModal-import" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                                &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-import"></span>&nbsp;&nbsp;&nbsp;
-                            </a>
+                            <a href="" data-target="#myModal-import" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">&nbsp;<i class="glyphicon glyphicon-import"></i>&nbsp;</a>
                         </div>
                     </div>
                 </div>
             @endcan
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Primer Nivel</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row"><p>
-                        <div class="col-md-12">
-                            <table class="table table-striped table-hover" id="sueldoPri-table">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Primer Nivel</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-striped table-hover" id="first_level_base_wage-table">
                                 <thead>
                                     <tr class="success">
                                         <th>AÑO</th>    
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 00 - COMANDANTE GRAL">CMTE GRAL</div></th>
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 01 - COMANDANTE GRAL">CMTE GRAL</div></th>
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 02 - SUBCOMANDANTE">SBCMTE GRAL</div></th>
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 03 - INSPECTOR GENERAL">INSP. GRAL.</div></th>
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 04 - DIRECTOR GENERAL">DIR. GRAL.</div></th>
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 01 - CORONEL CON SUELDO DE GENERAL">CNL.</div></th>
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 02 - CORONEL">CNL.</div></th>
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 03 - TENIENTE CORONEL">TCNL.</div></th>
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 04 - MAYOR">MY.</div></th>
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 05 - CAPITAN">CAP.</div></th>
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 06 - TENIENTE">TTE.</div></th>
-                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 07 - SUBTENIENTE">SBTTE.</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 00 - COMANDANTE GENERAL">CMTE GRAL</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 01 - COMANDANTE GENERAL">CMTE GRAL</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 02 - SUBCOMANDANTE GENERAL">SBCMTE</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 03 - INSPECTOR GENERAL">INSP GRAL</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="00 04 - DIRECTOR GENERAL">DIR GRAL</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 01 - CORONEL CON SUELDO DE GENERAL">CNL</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 02 - CORONEL">CNL</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 03 - TENIENTE CORONEL">TCNL</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 04 - MAYOR">MY</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 05 - CAPITAN">CAP</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 06 - TENIENTE">TTE</div></th>
+                                        <th><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="01 07 - SUBTENIENTE">SBTTE</div></th>
                                     </tr>
                                 </thead>
                             </table>
                         </div>
-                    </div>                      
-                </div>
-            </div>
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Segundo Nivel</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row"><p>
-                        <div class="col-md-12">
-                            <table class="table table-striped table-hover" id="sueldoSeg-table">
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Segundo Nivel</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-striped table-hover" id="second_level_base_wage-table">
                                 <thead>
                                     <tr class="success">
                                         <th>AÑO</th>
@@ -70,18 +61,13 @@
                                 </thead>
                             </table>
                         </div>
-                    </div>                      
-                </div>
-            </div>
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Tercer Nivel</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row"><p>
-                        <div class="col-md-12">
-                            <table class="table table-striped table-hover" id="sueldoTer-table">
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Tercer Nivel</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-striped table-hover" id="third_level_base_wage-table">
                                 <thead>
                                     <tr class="success">
                                         <th>AÑO</th>
@@ -98,17 +84,13 @@
                             </table>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Cuarto Nivel</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row"><p>
-                        <div class="col-md-12">
-                            <table class="table table-striped table-hover" id="sueldoCua-table">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Cuarto Nivel</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-striped table-hover" id="fourth_level_base_wage-table">
                                 <thead>
                                     <tr class="success">
                                         <th>AÑO</th>
@@ -124,15 +106,15 @@
                                 </thead>
                             </table>
                         </div>
-                    </div>                      
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div id="myModal-import" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg">
+<div id="myModal-import" class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog">
         <div class="modal-content panel-warning">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -141,14 +123,15 @@
             <div class="modal-body">
 
                 {!! Form::open(['method' => 'POST', 'route' => ['base_wage.store'], 'class' => 'form-horizontal', 'files' => true ]) !!}
+                    
                     <br>
                     <div class="row">
                         <div class="col-md-12">                         
                             <div class="form-group">
-                                    {!! Form::label('archive', 'Sueldos', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-6">
+                                    {!! Form::label('archive', 'Archivo', ['class' => 'col-md-3 control-label']) !!}
+                                <div class="col-md-8">
                                     <input type="file" id="inputFile" name="archive">
-                                    <input type="text" readonly="" class="form-control " placeholder="Seleccione Archivo en Formato Excel de sueldos...">
+                                    <input type="text" readonly="" class="form-control " placeholder="Formato Excel">
                                 </div>
                             </div>
                         </div>
@@ -156,10 +139,10 @@
                     <div class="row">
                         <div class="col-md-12">                         
                             <div class="form-group">
-                                    {!! Form::label('gest', 'Mes y Año', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-3">
+                                    {!! Form::label('month_year', 'Mes y Año', ['class' => 'col-md-3 control-label']) !!}
+                                <div class="col-md-7">
                                     <div class="input-group">
-                                        <input type="text" class="form-control datepicker" name="gest" value="">
+                                        <input type="text" class="form-control datepicker" name="month_year" value="">
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </div>
@@ -169,18 +152,17 @@
                         </div>
                     </div>
 
-
-
                     <div class="row text-center">
-                        <div class="form-group" style="padding-bottom:0px">
+                        <div class="form-group">
                             <div class="col-md-12">
-                                <a href="{!! url('sueldo') !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
-                                &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+                                <a href="{!! url('base_wage') !!}" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancelar">&nbsp;<i class="glyphicon glyphicon-remove"></i>&nbsp;</a>
+                                &nbsp;&nbsp;
+                                <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Guardar">&nbsp;<i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;</button>
                             </div>
                         </div>
                     </div>
 
-            {!! Form::close() !!}
+                {!! Form::close() !!}
 
             </div>
         </div>
@@ -201,16 +183,8 @@
         autoclose: true
     });
 
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip(); 
-    });
-
-    $(document).ready(function(){
-        $('[data-toggle="popover"]').popover(); 
-    });
-
     $(function() {
-        $('#sueldoPri-table').DataTable({
+        $('#first_level_base_wage-table').DataTable({
             "dom": '<"top">t<"bottom"p>',
             processing: true,
             serverSide: true,
@@ -236,7 +210,7 @@
             ]
         });
 
-        $('#sueldoSeg-table').DataTable({
+        $('#second_level_base_wage-table').DataTable({
             "dom": '<"top">t<"bottom"p>',
             processing: true,
             serverSide: true,
@@ -256,7 +230,7 @@
             ]
         });
 
-        $('#sueldoTer-table').DataTable({
+        $('#third_level_base_wage-table').DataTable({
             "dom": '<"top">t<"bottom"p>',
             processing: true,
             serverSide: true,
@@ -278,7 +252,7 @@
             ]
         });
 
-        $('#sueldoCua-table').DataTable({
+        $('#fourth_level_base_wage-table').DataTable({
             "dom": '<"top">t<"bottom"p>',
             processing: true,
             serverSide: true,

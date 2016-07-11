@@ -25,6 +25,11 @@ Breadcrumbs::register('ipc_rates', function($breadcrumbs) {
     $breadcrumbs->push('Tasas de Índice de Precio al Consumidor', URL::to('ipc_rate'));
 });
 
+// Base Wage
+Breadcrumbs::register('base_wages', function($breadcrumbs) {
+    $breadcrumbs->push('Sueldos de Personal de la Policía Nacional', URL::to('base_wage'));
+});
+
 
 
 
@@ -33,12 +38,6 @@ Breadcrumbs::register('ipc_rates', function($breadcrumbs) {
 // Inicio
 Breadcrumbs::register('home', function($breadcrumbs) {
     $breadcrumbs->push('Inicio', route('home'));
-});
-
-
-// Sueldos
-Breadcrumbs::register('sueldos', function($breadcrumbs) {
-    $breadcrumbs->push('Sueldos de Personal de la Policía Nacional', URL::to('sueldo'));
 });
 
 

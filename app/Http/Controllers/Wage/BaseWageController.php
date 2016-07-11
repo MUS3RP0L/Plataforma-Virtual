@@ -180,37 +180,28 @@ class BaseWageController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('sueldos.import');
-    }
-
-        /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         return $this->save($request);
     }
 
-    public function save($request, $id = false)
+    public function save($request, $base_wage = false)
     {
-        global $gest, $results;
+        global $month_year, $results;
 
         $reader = $request->file('archive');
         $filename = $reader->getRealPath();
-
-        $gest = $request->gest;
+        $month_year = $request->month_year;
 
         Excel::load($filename, function($reader) {
-            global $gest, $results;
+            
+            global $month_year, $results;
     
             ini_set('upload_max_filesize', '9999M');
             ini_set('post_max_size', '9999M');
@@ -218,46 +209,50 @@ class BaseWageController extends Controller
             ini_set('max_input_time', '-1');
             ini_set('memory_limit', '-1');
             set_time_limit(36000);
+
             $results = collect($reader->select(array('niv', 'gra','sue'))->get());
+            
         });
 
-        $grados = DB::table('grados')
-                -> orderBy('id','asc')->get();
+        $degrees = DB::table('degrees')-> orderBy('id','asc')->get();
       
-        foreach ($grados as $item) {
+        foreach ($degrees as $item) {
            
-          foreach ($results as $datos) {
-              if($datos['niv'] == $item->niv && $datos['gra'] == $item->grad && Util::decimal($datos['sue'])<> 0)
-              {     
-                    $fecha = Util::datePickPeriod($gest);
-                    $year = Carbon::parse($fecha)->year;
-                    $month = Carbon::parse($fecha)->month;
+            foreach ($results as $datos) {
 
-                    $sueldo =  DB::table('sueldos')
-                            ->select(DB::raw('sueldos.id,sueldos.user_id,sueldos.grado_id,grados.niv,grados.grad, sueldos.gest'))
-                            ->leftJoin('grados', 'sueldos.grado_id', '=', 'grados.id')
-                            ->where('niv', '=', $item->niv)
-                            ->where('grad', '=', $item->grad)
-                            ->whereMonth('gest', '=', $month)
-                            ->whereYear('gest', '=', $year)
+                if($datos['niv'] == $item->niv && $datos['gra'] == $item->grad && Util::decimal($datos['sue'])<> 0)
+                {     
+                    $date = Util::datePickPeriod($month_year);
+                    $year = Carbon::parse($date)->year;
+                    $month = Carbon::parse($date)->month;
+
+                    $base_wage =  DB::table('base_wages')
+                            ->select(DB::raw('base_wages.degree_id, degrees.code_level, degrees.code_degree, base_wages.month_year'))
+                            ->leftJoin('degrees', 'base_wages.degree_id', '=', 'degrees.id')
+                            ->where('code_level', '=', $item->niv)
+                            ->where('code_degree', '=', $item->grad)
+                            ->whereMonth('month_year', '=', $month)
+                            ->whereYear('month_year', '=', $year)
                             ->first(); 
-                    if(!$sueldo)
+                    
+                    if(!$base_wage)
                     { 
-                        $sueldos = new Sueldo;
-                        $sueldos->user_id = Auth::user()->id;
-                        $sueldos->grado_id = $item->id;
-                        $sueldos->gest = Util::datePickPeriod($gest);
-                        $sueldos->sue = Util::decimal($datos['sue']); 
-                        $sueldos->save();                   
+                        $base_wage = new BaseWage;
+                        $base_wage->user_id = Auth::user()->id;
+                        $base_wage->degree_id = $item->id;
+                        $base_wage->month_year = Util::datePickPeriod($month_year);
+                        $base_wage->amount = Util::decimal($datos['sue']); 
+                        $base_wage->save();                   
                     }
                     break; 
-              } 
+                } 
               
-          }
+            }
            
         }
-        Session::flash('message', "Sueldos importados exitosamente !!");
-        return redirect('sueldo');
+
+        Session::flash('message', "Sueldos importados exitosamente");
+        return redirect('base_wage');
   
     }
 }
