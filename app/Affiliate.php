@@ -58,65 +58,60 @@ class Affiliate extends Model
 
 	protected $guarded = ['id'];
 
-	// public function aportes()
- //    {
- //        return $this->hasMany('Muserpol\Aporte');
- //    }
+	public function contributions()
+    {
+        return $this->hasMany('Muserpol\Contribution');
+    }
 
- //    public function aportes_musers()
- //    {
- //        return $this->hasMany('Muserpol\AportesMuser');
- //    }    
+    public function records()
+    {
+        return $this->hasMany('Muserpol\Record');
+    }
 
- //    public function notes()
- //    {
- //        return $this->hasMany('Muserpol\Note');
- //    }
+    public function spouse()
+    {
+        return $this->hasOne('Muserpol\Spouse');
+    }
 
- //    public function conyuge()
- //    {
- //        return $this->hasOne('Muserpol\Conyuge');
- //    }
+    public function applicats()
+    {
+        return $this->hasMany('Muserpol\Applicant');
+    }
 
- //    public function solicitantes()
- //    {
- //        return $this->hasMany('Muserpol\Solicitante');
- //    }
+    public function user()
+    {
+        return $this->belongsTo('Muserpol\User');
+    }
 
- //    public function user()
- //    {
- //        return $this->belongsTo('Muserpol\User');
- //    }
+    public function degree(){
 
- //    public function grado(){
+        return $this->belongsTo('Muserpol\Degree');
+    }
 
- //        return $this->belongsTo('Muserpol\Grado');
- //    }
+    public function unit(){
 
- //    public function unidad(){
+        return $this->belongsTo('Muserpol\Unit');
+    }
 
- //        return $this->belongsTo('Muserpol\Unidad');
- //    }
+    public function affiliate_type()
+    {
+        return $this->belongsTo('Muserpol\AffiliateType');
+    }
 
- //    public function afi_type()
- //    {
- //        return $this->belongsTo('Muserpol\AfiType');
- //    }
+    public function affiliate_state()
+    {
+        return $this->belongsTo('Muserpol\AfiliateState');
+    }
 
- //    public function afi_state()
- //    {
- //        return $this->belongsTo('Muserpol\AfiState');
- //    }
+    public function city()
+    {
+        return $this->belongsTo('Muserpol\City');
+    }
 
- //    public function city()
- //    {
- //        return $this->belongsTo('Muserpol\City');
- //    }
-
-    // public function fondo_tramite()
-    // {
-    //     return $this->hasMany('Muserpol\FondoTramite');
-    // }
+    public function retirement_fund()
+    {
+        return $this->hasMany('Muserpol\RetirementFund');
+    }
 
 	public function scopeIdIs($query, $id)
     {
@@ -130,29 +125,29 @@ class Affiliate extends Model
 
     public function scopeAfiEstado($query, $estado, $anio)
     {
-       return $query = DB::table('afiliados')
+       return $query = DB::table('affiliates')
                     ->select(DB::raw('COUNT(*) total1'))
-                    ->where('afiliados.afi_state_id', '=', $estado)
-                    ->whereYear('afiliados.updated_at', '=', $anio);      
+                    ->where('affiliates.affiliate_state_id', '=', $estado)
+                    ->whereYear('affiliates.updated_at', '=', $anio);      
     }
 
     public function scopeAfiType($query, $type, $anio)
     {
-       return $query = DB::table('afiliados')
+       return $query = DB::table('affiliates')
                     ->select(DB::raw('COUNT(*) tipo'))
-                    ->where('afiliados.afi_type_id', '=', $type)
-                    ->whereYear('afiliados.updated_at', '=', $anio);        
+                    ->where('affiliates.affiliate_type_id', '=', $type)
+                    ->whereYear('affiliates.updated_at', '=', $anio);        
     }
 
     public function scopeAfiDistrito($query, $dist, $anio)
     {
-       return $query = DB::table('afiliados')
+       return $query = DB::table('affiliates')
                     ->select(DB::raw('COUNT(*) distrito'))
-                    ->leftJoin('unidades', 'afiliados.unidad_id', '=', 'unidades.id')
-                    ->leftJoin('afi_states', 'afiliados.afi_state_id', '=', 'afi_states.id')
-                    ->leftJoin('state_types', 'afi_states.state_type_id', '=', 'state_types.id')
-                    ->where('unidades.dist', '=', $dist)
-                    ->whereYear('afiliados.updated_at', '=', $anio);        
+                    ->leftJoin('units', 'affiliates.unit_id', '=', 'units.id')
+                    ->leftJoin('affiliate_states', 'affiliates.affiliate_state_id', '=', 'affiliate_states.id')
+                    ->leftJoin('state_types', 'affiliate_states.state_type_id', '=', 'state_types.id')
+                    ->where('units.district', '=', $dist)
+                    ->whereYear('affiliates.updated_at', '=', $anio);        
     }    
 
     public function getFullDateNac()
