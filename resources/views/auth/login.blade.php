@@ -8,6 +8,7 @@
     		<div class="panel-heading"><h4 class="text-center">Plataforma Virtual - Mutual de Servicios al Policía</h4></div>
     			<div class="panel-body">
 		        	{!! Form::open(['url' => 'login', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+			             {!! csrf_field() !!}
 			            <br>
 			            <div class="form-group">
 			              	{!! Form::label('usermane', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
