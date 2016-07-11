@@ -148,8 +148,6 @@ class ImportPayroll extends Command
 
                         $category_id = Category::select('id')->where('percentage', Util::CalcCategory(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
                         
-                        $por_apor = AporTasa::where('gest', '=', Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString())->first();
-
                         //busqueda del afiliado
                         $affiliate = Affiliate::where('identity_card', '=', Util::zero($result->car))->first();
 
@@ -255,8 +253,6 @@ class ImportPayroll extends Command
                                 $contribution->payable_liquid = Util::decimal($result->pag);
                                 $contribution->quotable = (FLOAT)$aporte->sue + (FLOAT)$aporte->b_ant + (FLOAT)$aporte->b_est + (FLOAT)$aporte->b_car + (FLOAT)$aporte->b_fro + (FLOAT)$aporte->b_ori;
                                 $contribution->total = Util::decimal($result->mus);
-
-                                $percentage_contribution
                                 if ($aporte->total) {
                                     $aporte->retirement_fund = $aporte->mus * $por_apor->apor_fr_a / $por_apor->apor_a;
                                     $aporte->mortuary_quota = $aporte->mus * $por_apor->apor_sv_a / $por_apor->apor_a;

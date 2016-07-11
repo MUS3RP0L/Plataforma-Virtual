@@ -5,6 +5,90 @@ use Carbon\Carbon;
 
 class Util
 {
+	public static function FirstName($nom)
+	{
+		$noms = explode(" ", $nom);
+		if (count($noms) > 0) {
+			return $noms[0];
+		}
+		else{
+			return '';
+		}
+	}
+
+	public static function SecondName($nom)
+	{
+		$noms = explode(" ", $nom);
+		if (count($noms) > 1) {
+			return $noms[1];
+		}
+		else{
+			return '';
+		}
+	}
+
+	public static function CalcCategory($b_ant, $sue)
+	{
+		if ($b_ant == 0 || $sue == 0) {
+			return 0;
+		}
+		else{
+			return number_format($b_ant/$sue, 2, '.', ',');
+		}
+	}
+
+	public static function CalcRegistration($nac, $pat, $mat, $nom, $sex)
+	{
+		$newnac = explode("-", $nac);
+		$nac_day = $newnac[2];
+		$nac_month = $newnac[1];
+		$nac_year = substr($newnac[0], -2);
+
+		$month_first = substr($nac_month, 0, 1);
+		$month_second = substr($nac_month, 1, 1);
+		
+		if($pat  <> ''){
+			$pat_first = substr($pat, 0, 1);		
+		}
+		else{
+			$pat_first = '';
+		}
+		if($mat <> ''){
+			$mat_first = substr($mat, 0, 1);		
+		}
+		else{
+			$mat_first = '';
+		}		
+		if($nom<> ''){
+			$nom_first = substr($nom, 0, 1);		
+		}
+		else{
+			$nom_first = '';
+		}
+
+		if($sex == "M"){
+			return $nac_year . $nac_month . $nac_day . $pat_first . $mat_first . $nom_first;
+		}
+		elseif ($sex == "F"){
+			if($month_first = 0){
+				$month_last = "5" .$month_second;
+			}
+			elseif ($month_first = 1) {
+				$month_last = "6" . $month_second;
+			}
+			return $nac_year . $month_last . $nac_day . $pat_first . $mat_first . $nom_first;
+		}	
+	}
+
+
+
+
+
+
+
+
+
+
 	public static function ucw($string)
 	{
 		if ($string) {
@@ -66,28 +150,6 @@ class Util
 		return date($anios[$a] . $nac_year ."-". $nac_month ."-". $nac_day);
 	}
 
-	public static function FirstName($nom)
-	{
-		$noms = explode(" ", $nom);
-		if (count($noms) > 0) {
-			return $noms[0];
-		}
-		else{
-			return '';
-		}
-	}
-
-	public static function OtherName($nom)
-	{
-		$noms = explode(" ", $nom);
-		if (count($noms) > 1) {
-			return $noms[1];
-		}
-		else{
-			return '';
-		}
-	}
-
 	public static function datePick($date)
 	{
 		if ($date) {
@@ -107,59 +169,6 @@ class Util
 	public static function zero($string)
 	{
 		return preg_replace('/^0+/', '', $string);
-	}
-
-	public static function calcCat($b_ant, $sue)
-	{
-		if ($b_ant == 0 || $sue == 0) {
-			return 0;
-		}
-		else{
-			return number_format($b_ant/$sue, 2, '.', ',');
-		}
-	}
-
-	public static function calcMatri($nac, $pat, $mat, $nom, $sex)
-	{
-		$newnac = explode("-", $nac);
-		$nac_day = $newnac[2];
-		$nac_month = $newnac[1];
-		$nac_year = substr($newnac[0], -2);
-
-		$month_first = substr($nac_month, 0, 1);
-		$month_second = substr($nac_month, 1, 1);
-		
-		if($pat  <> ''){
-			$pat_first = substr($pat, 0, 1);		
-		}
-		else{
-			$pat_first = '';
-		}
-		if($mat <> ''){
-			$mat_first = substr($mat, 0, 1);		
-		}
-		else{
-			$mat_first = '';
-		}		
-		if($nom<> ''){
-			$nom_first = substr($nom, 0, 1);		
-		}
-		else{
-			$nom_first = '';
-		}
-
-		if($sex == "M"){
-			return $nac_year . $nac_month . $nac_day . $pat_first . $mat_first . $nom_first;
-		}
-		elseif ($sex == "F"){
-			if($month_first = 0){
-				$month_last = "5" .$month_second;
-			}
-			elseif ($month_first = 1) {
-				$month_last = "6" . $month_second;
-			}
-			return $nac_year . $month_last . $nac_day . $pat_first . $mat_first . $nom_first;
-		}	
 	}
 
 	public static function formatMoney($value){
