@@ -140,7 +140,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::open(['method' => 'POST', 'route' => ['sueldo.store'], 'class' => 'form-horizontal', 'files' => true ]) !!}
+                {!! Form::open(['method' => 'POST', 'route' => ['base_wage.store'], 'class' => 'form-horizontal', 'files' => true ]) !!}
                     <br>
                     <div class="row">
                         <div class="col-md-12">                         
@@ -217,22 +217,22 @@
             lengthMenu: false,
             pageLength: 10,
             "scrollX": true,
-            ajax: '{!! route('getSueldoPri') !!}',
+            ajax: '{!! route('get_first_level_base_wage') !!}',
             order: [[0, "desc"]],
             columns: [
-                { data: 'gest', "sClass": "text-center", sWidth: '1%' },
-                { data: 'c1', "sClass": "text-right", sWidth: '9%', bSortable: false },
-                { data: 'c2', "sClass": "text-right", sWidth: '9%', bSortable: false },
-                { data: 'c3', "sClass": "text-right", sWidth: '9%', bSortable: false },
-                { data: 'c4', "sClass": "text-right", sWidth: '9%', bSortable: false },
-                { data: 'c5', "sClass": "text-right", sWidth: '9%', bSortable: false },
-                { data: 'c6', "sClass": "text-right", sWidth: '8%', bSortable: false },
-                { data: 'c7', "sClass": "text-right", sWidth: '8%', bSortable: false },
-                { data: 'c8', "sClass": "text-right", sWidth: '7%', bSortable: false },
-                { data: 'c9', "sClass": "text-right", sWidth: '7%', bSortable: false },
-                { data: 'c10', "sClass": "text-right", sWidth: '7%', bSortable: false },
-                { data: 'c11', "sClass": "text-right", sWidth: '7%', bSortable: false },
-                { data: 'c12', "sClass": "text-right", sWidth: '7%', bSortable: false }
+                { data: 'year', name: 'month_year', sClass: "text-center", sWidth: '1%' },
+                { data: 'c1', sClass: "text-right", sWidth: '9%', bSortable: false },
+                { data: 'c2', sClass: "text-right", sWidth: '9%', bSortable: false },
+                { data: 'c3', sClass: "text-right", sWidth: '9%', bSortable: false },
+                { data: 'c4', sClass: "text-right", sWidth: '9%', bSortable: false },
+                { data: 'c5', sClass: "text-right", sWidth: '9%', bSortable: false },
+                { data: 'c6', sClass: "text-right", sWidth: '8%', bSortable: false },
+                { data: 'c7', sClass: "text-right", sWidth: '8%', bSortable: false },
+                { data: 'c8', sClass: "text-right", sWidth: '7%', bSortable: false },
+                { data: 'c9', sClass: "text-right", sWidth: '7%', bSortable: false },
+                { data: 'c10', sClass: "text-right", sWidth: '7%', bSortable: false },
+                { data: 'c11', sClass: "text-right", sWidth: '7%', bSortable: false },
+                { data: 'c12', sClass: "text-right", sWidth: '7%', bSortable: false }
             ]
         });
 
@@ -243,16 +243,16 @@
             lengthMenu: false,
             pageLength: 10,
             "scrollX": true,
-            ajax: '{!! route('getSueldoSeg') !!}',
+            ajax: '{!! route('get_second_level_base_wage') !!}',
             order: [[0, "desc"]],
             columns: [
-                { data: 'gest', "sClass": "text-center", sWidth: '1%' },
-                { data: 'c13', "sClass": "text-right", sWidth: '16%', bSortable: false },
-                { data: 'c14', "sClass": "text-right", sWidth: '16%', bSortable: false },
-                { data: 'c15', "sClass": "text-right", sWidth: '16%', bSortable: false },
-                { data: 'c16', "sClass": "text-right", sWidth: '16%', bSortable: false },
-                { data: 'c17', "sClass": "text-right", sWidth: '16%', bSortable: false },
-                { data: 'c18', "sClass": "text-right", sWidth: '16%', bSortable: false }
+                { data: 'year', name: 'month_year', sClass: "text-center", sWidth: '1%' },
+                { data: 'c13', sClass: "text-right", sWidth: '16%', bSortable: false },
+                { data: 'c14', sClass: "text-right", sWidth: '16%', bSortable: false },
+                { data: 'c15', sClass: "text-right", sWidth: '16%', bSortable: false },
+                { data: 'c16', sClass: "text-right", sWidth: '16%', bSortable: false },
+                { data: 'c17', sClass: "text-right", sWidth: '16%', bSortable: false },
+                { data: 'c18', sClass: "text-right", sWidth: '16%', bSortable: false }
             ]
         });
 
@@ -263,18 +263,18 @@
             lengthMenu: false,
             pageLength: 10,
             "scrollX": true,
-            ajax: '{!! route('getSueldoTer') !!}',
+            ajax: '{!! route('get_third_level_base_wage') !!}',
             order: [[0, "desc"]],
             columns: [
-                { data: 'gest', "sClass": "text-center", sWidth: '1%' },
-                { data: 'c19', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c20', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c21', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c22', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c23', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c24', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c25', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c26', "sClass": "text-right", sWidth: '12%', bSortable: false }
+                { data: 'year', name: 'month_year', sClass: "text-center", sWidth: '1%' },
+                { data: 'c19', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c20', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c21', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c22', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c23', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c24', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c25', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c26', sClass: "text-right", sWidth: '12%', bSortable: false }
             ]
         });
 
@@ -285,18 +285,18 @@
             lengthMenu: false,
             pageLength: 10,
             "scrollX": true,
-            ajax: '{!! route('getSueldoCua') !!}',
+            ajax: '{!! route('get_fourth_level_base_wage') !!}',
             order: [[0, "desc"]],
             columns: [
-                { data: 'gest', "sClass": "text-center", sWidth: '1%' },
-                { data: 'c27', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c28', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c29', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c30', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c31', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c32', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c33', "sClass": "text-right", sWidth: '12%', bSortable: false },
-                { data: 'c34', "sClass": "text-right", sWidth: '12%', bSortable: false }
+                { data: 'year', name: 'month_year', sClass: "text-center", sWidth: '1%' },
+                { data: 'c27', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c28', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c29', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c30', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c31', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c32', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c33', sClass: "text-right", sWidth: '12%', bSortable: false },
+                { data: 'c34', sClass: "text-right", sWidth: '12%', bSortable: false }
             ]
         });
     });

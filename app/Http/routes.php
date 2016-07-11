@@ -32,11 +32,11 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('get_ipc_rate', array('as'=>'get_ipc_rate', 'uses'=>'Rate\IpcRateController@Data'));
 	
 	// Base Wage
-	Route::resource('base_wage', 'BaseWageController');
-	Route::get('get_first_level_base_wage', array('as'=>'get_first_level_base_wage', 'uses'=>'BaseWageController@FirstLevelData'));
-	Route::get('get_secondLevel_base_wage', array('as'=>'get_secondLevel_base_wage', 'uses'=>'BaseWageController@SecondLevelData'));
-	Route::get('get_thirdLevel_base_wage', array('as'=>'get_thirdLevel_base_wage', 'uses'=>'BaseWageController@ThirdLevelData'));
-	Route::get('get_fourthLevel_base_wage', array('as'=>'get_fourthLevel_base_wage', 'uses'=>'BaseWageController@FourthLevelData'));
+	Route::resource('base_wage', 'Wage\BaseWageController');
+	Route::get('get_first_level_base_wage', array('as'=>'get_first_level_base_wage', 'uses'=>'Wage\BaseWageController@FirstLevelData'));
+	Route::get('get_second_level_base_wage', array('as'=>'get_second_level_base_wage', 'uses'=>'Wage\BaseWageController@SecondLevelData'));
+	Route::get('get_third_level_base_wage', array('as'=>'get_third_level_base_wage', 'uses'=>'Wage\BaseWageController@ThirdLevelData'));
+	Route::get('get_fourth_level_base_wage', array('as'=>'get_fourth_level_base_wage', 'uses'=>'Wage\BaseWageController@FourthLevelData'));
 
 
 
