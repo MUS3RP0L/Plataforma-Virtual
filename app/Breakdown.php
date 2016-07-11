@@ -16,4 +16,9 @@ class Breakdown extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function units()
+    {
+        return $this->hasMany('Muserpol\Unit');
+    }
 }

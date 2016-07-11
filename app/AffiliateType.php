@@ -15,4 +15,9 @@ class AffiliateType extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function affiliates()
+    {
+    	return $this->hasMany('Muserpol\Affiliate');
+    }
 }

@@ -28,4 +28,9 @@ class Degree extends Model
     {
         return $this->hasMany('Muserpol\Affiliate');
     }
+
+    public function contributions()
+    {
+    	return $this->hasMany('Muserpol\Contribution');
+    }
 }

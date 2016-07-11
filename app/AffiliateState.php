@@ -21,4 +21,9 @@ class AffiliateState extends Model
     {
     	return $this->belongsTo('Muserpol\StateType');
     }
+
+    public function affiliates()
+    {
+    	return $this->hasMany('Muserpol\Affiliate');
+    }
 }

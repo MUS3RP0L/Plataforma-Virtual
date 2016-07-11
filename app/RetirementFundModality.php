@@ -16,4 +16,14 @@ class RetirementFundModality extends Model
 
 	protected $guarded = ['id'];
 
+	public function retirement_funds(){
+
+        return $this->hasMany('Muserpol\RetirementFund');
+    }
+
+    public function requirements(){
+
+        return $this->hasMany('Muserpol\Requirement');
+    }
+
 }

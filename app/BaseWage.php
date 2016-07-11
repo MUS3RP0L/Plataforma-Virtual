@@ -18,4 +18,8 @@ class BaseWage extends Model
 
 	protected $guarded = ['id'];
 
+	public function degree()
+    {
+        return $this->belongsTo('Muserpol\Degree');
+    }
 }

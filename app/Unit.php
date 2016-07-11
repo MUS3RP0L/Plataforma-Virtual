@@ -20,4 +20,19 @@ class Unit extends Model
 	];
 
 	protected $guarded = ['id'];
+
+	public function affiliates()
+    {
+    	return $this->hasMany('Muserpol\Affiliate');
+    }
+
+    public function contributions()
+    {
+    	return $this->hasMany('Muserpol\Contribution');
+    }
+
+    public function breakdown()
+    {
+    	return $this->belongsTo('Muserpol\Breakdown');
+    }
 }

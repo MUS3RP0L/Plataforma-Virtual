@@ -21,9 +21,9 @@ class Document extends Model
 
     protected $guarded = ['id'];
 
-    public function retirement_funds(){
+    public function retirement_fund(){
 
-        return $this->belongsTo('Muserpol\Retirement_fund');
+        return $this->belongsTo('Muserpol\RetirementFund');
     }
 
     public function requirement(){

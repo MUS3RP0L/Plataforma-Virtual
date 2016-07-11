@@ -73,11 +73,6 @@ class Affiliate extends Model
         return $this->hasOne('Muserpol\Spouse');
     }
 
-    public function applicats()
-    {
-        return $this->hasMany('Muserpol\Applicant');
-    }
-
     public function user()
     {
         return $this->belongsTo('Muserpol\User');
@@ -111,6 +106,11 @@ class Affiliate extends Model
     public function retirement_fund()
     {
         return $this->hasMany('Muserpol\RetirementFund');
+    }
+
+    public function reimbursements()
+    {
+        return $this->hasMany('Muserpol\Reimbursement');
     }
 
 	public function scopeIdIs($query, $id)

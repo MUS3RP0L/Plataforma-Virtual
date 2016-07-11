@@ -42,36 +42,36 @@ class RetirementFund extends Model
 
 	protected $guarded = ['id'];
 
-	// public function afiliado(){
+	public function affiliate(){
 
- //        return $this->belongsTo('Muserpol\Afiliado');
- //    }
+        return $this->belongsTo('Muserpol\Affiliate');
+    }
 
-	// public function modalidad(){
+	public function retirement_fund_modality(){
 
- //        return $this->belongsTo('Muserpol\Modalidad');
- //    }
+        return $this->belongsTo('Muserpol\RetirementFundModality');
+    }
 
- //    public function departamento(){
+    public function city(){
 
- //        return $this->belongsTo('Muserpol\Departamento');
- //    }
+        return $this->belongsTo('Muserpol\City');
+    }
 
- //    public function documentos(){
+    public function documents(){
 
- //        return $this->hasMany('Muserpol\Documento');
- //    }
+        return $this->hasMany('Muserpol\Document');
+    }
 
- //    public function antecedentes(){
+    public function antecedents(){
 
- //        return $this->hasMany('Muserpol\Antecedente');
- //    }
+        return $this->hasMany('Muserpol\Antecedent');
+    }
 
- //    public function solicitantes()
- //    {
- //        return $this->hasMany('Muserpol\Solicitante');
- //    }
-
+    public function applicants()
+    {
+        return $this->hasMany('Muserpol\Applicant');
+    }
+    
     public function scopeIdIs($query, $id)
     {
         return $query->where('id', $id)->where('deleted_at', '=', null)->orderBy('id', 'desc');

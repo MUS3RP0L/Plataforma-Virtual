@@ -19,4 +19,13 @@ class Category extends Model
 
 	protected $guarded = ['id'];
 
+	public function affiliates()
+    {
+    	return $this->hasMany('Muserpol\Affiliate');
+    }
+
+    public function contribtions()
+    {
+    	return $this->hasMany('Muserpol\Contribution');
+    }
 }

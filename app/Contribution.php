@@ -67,6 +67,16 @@ class Contribution extends Model
         return $this->belongsTo('Muserpol\Unit');
     }
 
+    public function contribution_type()
+    {
+        return $this->belongsTo('Muserpol\ContributionType');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('Muserpol\Category');
+    }
+
     public function scopeIdIs($query, $id)
     {
         return $query->where('id', $id);
