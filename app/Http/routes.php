@@ -38,6 +38,9 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('get_third_level_base_wage', array('as'=>'get_third_level_base_wage', 'uses'=>'Wage\BaseWageController@ThirdLevelData'));
 	Route::get('get_fourth_level_base_wage', array('as'=>'get_fourth_level_base_wage', 'uses'=>'Wage\BaseWageController@FourthLevelData'));
 
+	// Monthly Report
+	Route::get('monthly_report', 'Report\ReportController@ShowMonthlyReport');
+	Route::post('monthly_report', 'Report\ReportController@GenerateMonthlyReport');
 
 
 
@@ -87,10 +90,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('tramite_fondo_retiro_certificacion/{afid}', 'FondoTramiteController@print_certificacion');
 	Route::get('tramite_fondo_retiro_calificacion/{afid}', 'FondoTramiteController@print_calificacion');
 	Route::get('tramite_fondo_retiro_dictamenlegal/{afid}', 'FondoTramiteController@print_dictamenlegal');
-	
-	// Reporte Totales
-	Route::get('total_month', 'ReporteController@ReportAporteMonth');
-	Route::post('go_total_month', 'ReporteController@GenerateReportAporteMonth');
 
 });
 

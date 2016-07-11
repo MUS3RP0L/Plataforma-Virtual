@@ -3,15 +3,10 @@
 namespace Muserpol\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 
 use DB;
-use Auth;
-use Validator;
-use Session;
-use Datatables;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
@@ -26,7 +21,7 @@ class ReporteController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function ReportAporteMonth()
+    public function ShowMonthlyReport()
     {
         $anios = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest ) gest'))->lists('gest');
 
@@ -41,7 +36,7 @@ class ReporteController extends Controller
         return view('reportes.permonth.select', $data);
     }
 
-    public function GenerateReportAporteMonth(Request $request)
+    public function GenerateMonthlyReport(Request $request)
     {
 
         $anios = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest) year'))->get();
