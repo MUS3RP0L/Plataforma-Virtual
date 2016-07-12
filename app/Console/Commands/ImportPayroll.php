@@ -42,7 +42,7 @@ class ImportPayroll extends Command
    
     public function handle()
     {   
-        global $NewAffi, $UpdateAffi, $NewContri, $Progress, $FolderName;
+        global $NewAffi, $UpdateAffi, $NewContri, $Progress, $FolderName, $Date;
 
         $password = $this->ask('Enter the password');
         
@@ -68,7 +68,7 @@ class ImportPayroll extends Command
                 
                     $rows->each(function($result) {
 
-                        global $NewAffi, $UpdateAffi, $NewContri, $Progress, $FolderName;
+                        global $NewAffi, $UpdateAffi, $NewContri, $Progress, $FolderName, $Date;
                         ini_set('upload_max_filesize', '99999M');
                         ini_set('post_max_size', '99999M');
                         ini_set('max_execution_time', '-1');
@@ -129,7 +129,7 @@ class ImportPayroll extends Command
                                             
                         //obtiene fecha/gestion(año, mes, dia 1), con los parametros a_o y mes de excel
                         $month_year = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString();
-                        
+                        $Date = Util::zero($result->mes) . "-" . Util::formatYear($result->a_o);
                         //busqueda del desglose
                         if (is_null($result->desg)) {$result->desg = 0;}
                         $breakdown_id = Breakdown::select('id')->where('code', $result->desg)->first()->id;
@@ -199,7 +199,6 @@ class ImportPayroll extends Command
                         }         
 
                         $affiliate->category_id = $category_id;       
-                        
                         $affiliate->user_id = 1;
                         $affiliate->last_name = $result->pat;
                         $affiliate->mothers_last_name = $result->mat;
@@ -207,14 +206,11 @@ class ImportPayroll extends Command
                         $affiliate->second_name = $second_name;
                         $affiliate->surname_husband = $result->apes;
                         $affiliate->civil_status = $result->eciv;
-
                         $affiliate->nua = $result->nua;
                         $affiliate->item = $result->item;
-
                         $affiliate->birth_date = $birth_date;
                         $affiliate->date_entry = $date_entry;
                         $affiliate->registration = Util::CalcRegistration($birth_date, $affiliate->last_name, $affiliate->mothers_last_name, $affiliate->first_name, $affiliate->gender);                           
-
                         $affiliate->save();
 
                         if (Util::decimal($result->sue)<> 0) {
@@ -270,6 +266,7 @@ class ImportPayroll extends Command
                         }
 
                         $Progress->advance();
+
                     });
 
                 });
@@ -278,20 +275,27 @@ class ImportPayroll extends Command
 
                 $execution_time = ($time_end - $time_start)/60;
                 
-                $cAfiT = $NewAffi + $UpdateAffi;
-                $NewAffi = $NewAffi ? $NewAffi : "0";
-                $UpdateAffi = $UpdateAffi ? $UpdateAffi : "0";
-                $cAfiT = $cAfiT ? $cAfiT : "0";
-                $NewContri = $NewContri ? $NewContri : "0";
+                $TotalAffi = $NewAffi + $UpdateAffi;
+                $TotalNewAffi = $NewAffi ? $NewAffi : "0";
+                $TotalUpdateAffi = $UpdateAffi ? $UpdateAffi : "0";
+                $TotalAffi = $TotalAffi ? $TotalAffi : "0";
+                $TotalNewContri = $NewContri ? $NewContri : "0";
 
                 $Progress->finish();
             
-                $this->info("\n\nEn la carpeta $FolderName Se registraros:\n\n
-                    $NewAffi Afiliados Nuevos.\n 
-                    $UpdateAffi Afiliados Actualizados.\n 
-                    $cAfiT Afiliados en total.\n 
-                    $NewContri Aportes ingresados.\n 
-                    $execution_time [Min] demorados en ejecutar de importación.\n");
+                $this->info("\n\nReport $Date:\n\n
+                    $TotalNewAffi new affiliates.\n 
+                    $TotalUpdateAffi affiliates successfully updated.\n 
+                    Total $TotalAffi affiliates.\n 
+                    Total $TotalNewContri entered contributions.\n 
+                    Execution time $execution_time [minutes].\n");
+                
+                \Storage::disk('local')->put($Date.'.txt', "\n\nReport:\n\n
+                    $TotalNewAffi new affiliates.\n 
+                    $TotalUpdateAffi affiliates successfully updated.\n 
+                    Total $TotalAffi affiliates.\n 
+                    Total $TotalNewContri entered contributions.\n 
+                    Execution time $execution_time [minutes].\n");
             }
         }
         else{
