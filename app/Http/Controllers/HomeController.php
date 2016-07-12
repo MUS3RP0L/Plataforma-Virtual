@@ -16,7 +16,7 @@ use Muserpol\Activity;
 use Muserpol\AffiliateState;
 use Muserpol\AffiliateType;
 use Muserpol\Contribution;
-use Muserpol\FondoTramite;
+use Muserpol\RetirementFund;
 use Session;
 
 class HomeController extends Controller
@@ -126,7 +126,7 @@ class HomeController extends Controller
       if($fondotramite)
       {
         foreach ($fondotramite as $item) {
-          $totalTramites = FondoTramite::nroTramites($item->mes,$Fyear1)->first();
+          $totalTramites = RetirementFund::nroTramites($item->mes,$Fyear1)->first();
           $list_ftgestion[] = Util::getMes($totalTramites->mes);
           $list_ftramites[] = $totalTramites->total; 
         }
@@ -153,7 +153,7 @@ class HomeController extends Controller
        if($aportemeses)
       {
         foreach ($aportemeses as $item) {
-            $totalav = Aporte::aporteVoluntario($item->mes1, $Fyear1)->first();
+            $totalav = Contribution::aporteVoluntario($item->mes1, $Fyear1)->first();
             $list_avmeses[] = Util::getMes($totalav->mes);
             $list_totalav[] = $totalav->total;         
         }
