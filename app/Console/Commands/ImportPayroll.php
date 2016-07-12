@@ -290,7 +290,7 @@ class ImportPayroll extends Command
                     Total $TotalNewContri entered contributions.\n 
                     Execution time $execution_time [minutes].\n");
                 
-                \Storage::disk('local')->put($Date.'.txt', "\n\nReport:\n\n
+                \Storage::disk('local')->put('ImportPayroll_'. $Date.'.txt', "\n\nReport:\n\n
                     $TotalNewAffi new affiliates.\n 
                     $TotalUpdateAffi affiliates successfully updated.\n 
                     Total $TotalAffi affiliates.\n 
