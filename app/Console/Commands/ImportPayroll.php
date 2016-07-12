@@ -251,11 +251,18 @@ class ImportPayroll extends Command
                                 $contribution->subsidy = Util::decimal($result->sub);
                                 $contribution->gain = Util::decimal($result->gan);
                                 $contribution->payable_liquid = Util::decimal($result->pag);
-                                $contribution->quotable = (FLOAT)$aporte->sue + (FLOAT)$aporte->b_ant + (FLOAT)$aporte->b_est + (FLOAT)$aporte->b_car + (FLOAT)$aporte->b_fro + (FLOAT)$aporte->b_ori;
+                                $contribution->quotable = (FLOAT)$contribution->base_wage +
+                                                          (FLOAT)$contribution->seniority_bonus + 
+                                                          (FLOAT)$contribution->study_bonus + 
+                                                          (FLOAT)$contribution->position_bonus + 
+                                                          (FLOAT)$contribution->border_bonus + 
+                                                          (FLOAT)$contribution->east_bonus;
+
                                 $contribution->total = Util::decimal($result->mus);
-                                if ($aporte->total) {
-                                    $aporte->retirement_fund = $aporte->mus * $por_apor->apor_fr_a / $por_apor->apor_a;
-                                    $aporte->mortuary_quota = $aporte->mus * $por_apor->apor_sv_a / $por_apor->apor_a;
+                                $percentage = round(($contribution->total / $contribution->quotable) * 100, 1);
+                                if ($percentage == 2.5) {
+                                    $contribution->retirement_fund = $contribution->total * 1.85 / $percentage;
+                                    $contribution->mortuary_quota = $contribution->total * 0.65 / $percentage;
                                 }
                                 $contribution->save();
                                 $NewContri ++;
