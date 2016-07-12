@@ -93,8 +93,8 @@ class HomeController extends Controller
 
         foreach ($gestAportes as $item) {
           $monto = Contribution::afiAporte($item->anio)->first();
-          $list_aportes[] = $monto->muserpol;
-          $list_gestion[] = $monto->gestion;
+          $list_aportes[] = $monto->total;
+          $list_gestion[] = $monto->month_year;
         
         }
         $AporteGestion = array($list_gestion, $list_aportes ); 

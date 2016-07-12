@@ -90,7 +90,7 @@ class Contribution extends Model
     public function scopeAfiAporte($query, $anio)
     {
         return $query = DB::table('contributions')
-                    ->select(DB::raw('SUM(contributions.mus) muserpol, year(contributions.month_year) as month_yearion'))
+                    ->select(DB::raw('SUM(contributions.total) total, year(contributions.month_year) as month_year'))
                     ->whereYear('contributions.month_year', '=', $anio);
     }
 
