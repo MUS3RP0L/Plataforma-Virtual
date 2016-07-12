@@ -12,9 +12,9 @@ use Validator;
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
-use Muserpol\Afiliado;
-use Muserpol\AporTasa;
-use Muserpol\Reintegro;
+use Muserpol\Affiliate;
+use Muserpol\ContributionRate;
+use Muserpol\Reimbursement;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
 
@@ -27,16 +27,16 @@ class Importreintegro extends Command
     public function handle()
     {
         global $nr,$cApor, $progress, $name;
-        $password = $this->ask('Estimado Usuario: Escriba la contraseña para realizar la operacion, Gracias.');
+        $password = $this->ask('Enter the password');
         
         if ($password == ACCESS) {
 
-            $name = $this->ask('Estimado Usuario: Escriba el nombre de la carpeta que desea importar, Gracias.');
+            $name = $this->ask('Enter the name of the folder you want to import');
 
-            if ($this->confirm('Esta seguro de importar la Carpeta ' . $name . '? [y|N]') && $name) {
+            if ($this->confirm('Are you sure to import the folder ' . $name . '? [y|N]') && $name) {
                
                 $time_start = microtime(true);
-                $this->info("Importando registros...\n");
+                $this->info("Importing...\n");
                 $progress = $this->output->createProgressBar();
                 $progress->setFormat("%current%/%max% [%bar%] %percent:3s%%");
                         ini_set('upload_max_filesize', '9999M');
@@ -58,38 +58,38 @@ class Importreintegro extends Command
                         ini_set('memory_limit', '-1');
                         set_time_limit(36000);
 
-                        $afiliado = Afiliado::where('ci', '=', Util::zero($result->car))->first();
+                        $afiliado = Affiliate::where('identity_card', '=', Util::zero($result->car))->first();
                         $gest = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1);
-                        $por_apor = AporTasa::where('gest', '=', Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString())->first();
+                        $por_apor = ContributionRate::where('month_year', '=', Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString())->first();
                         if (!$afiliado) {
 
-                            $afiliado = Afiliado::where('pat', '=', $result->pat)->where('mat', '=', $result->mat)
-                                                ->where('fech_ing', '=', $result->ing)->first();
+                            $afiliado = Affiliate::where('last_name', '=', $result->pat)->where('mothers_last_name', '=', $result->mat)
+                                                ->where('date_entry', '=', $result->ing)->first();
                         }
                        if($afiliado)
                        {
                         if (Util::decimal($result->sue)<> 0) {
-                            $reintegro = Reintegro::where('gest', '=', Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString())
-                                                ->where('afiliado_id', '=', $afiliado->id)->first();
+                            $reintegro = Reimbursement::where('month_year', '=', Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString())
+                                                ->where('affiliate_id', '=', $afiliado->id)->first();
                             if (!$reintegro) {
 
-                                $reintegro = new Reintegro;
+                                $reintegro = new Reimbursement;
                                 $reintegro->user_id = 1;
-                                $reintegro->afiliado_id = $afiliado->id;
-                                $reintegro->gest = $gest;
-                                $reintegro->sue = Util::decimal($result->sue);
-                                $reintegro->b_ant = Util::decimal($result->cat);
-                                $reintegro->b_est = Util::decimal($result->est);
-                                $reintegro->b_car = Util::decimal($result->carg);
-                                $reintegro->b_fro = Util::decimal($result->fro);
-                                $reintegro->b_ori = Util::decimal($result->ori);
-                                $reintegro->gan = Util::decimal($result->gan);
-                                $reintegro->pag = Util::decimal($result->pag);
-                                $reintegro->cot = (FLOAT)$reintegro->sue + (FLOAT)$reintegro->b_ant + (FLOAT)$reintegro->b_est + (FLOAT)$reintegro->b_car + (FLOAT)$reintegro->b_fro + (FLOAT)$reintegro->b_ori;
-                                $reintegro->mus = Util::decimal($result->mus);
-                                if ($reintegro->mus) {
-                                    $reintegro->fr = $reintegro->mus * $por_apor->apor_fr_a / $por_apor->apor_a;
-                                    $reintegro->sv = $reintegro->mus * $por_apor->apor_sv_a / $por_apor->apor_a;
+                                $reintegro->affiliate_id = $afiliado->id;
+                                $reintegro->month_year = $gest;
+                                $reintegro->base_wage = Util::decimal($result->sue);
+                                $reintegro->seniority_bonus = Util::decimal($result->cat);
+                                $reintegro->study_bonus = Util::decimal($result->est);
+                                $reintegro->position_bonus = Util::decimal($result->carg);
+                                $reintegro->border_bonus = Util::decimal($result->fro);
+                                $reintegro->east_bonus = Util::decimal($result->ori);
+                                $reintegro->gain = Util::decimal($result->gan);
+                                $reintegro->payable_liquid = Util::decimal($result->pag);
+                                $reintegro->quotable = (FLOAT)$reintegro->base_wage + (FLOAT)$reintegro->seniority_bonus + (FLOAT)$reintegro->study_bonus + (FLOAT)$reintegro->position_bonus + (FLOAT)$reintegro->border_bonus + (FLOAT)$reintegro->east_bonus;
+                                $reintegro->total = Util::decimal($result->mus);
+                                if ($reintegro->base_wage) {
+                                    $reintegro->retirement_fund = $reintegro->base_wage * $por_apor->retirement_fund / $por_apor->rate_active;
+                                    $reintegro->mortuary_aid = $reintegro->base_wage * $por_apor->mortuary_aid / $por_apor->rate_active;
                                 }
                                 $reintegro->save();
                                 $cApor ++;
