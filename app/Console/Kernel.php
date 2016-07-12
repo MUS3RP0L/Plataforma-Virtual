@@ -15,11 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
 
         \Muserpol\Console\Commands\ImportPayroll::class,
-        \Muserpol\Console\Commands\Solucion::class,
+        \Muserpol\Console\Commands\CreateIpcRate::class,
         \Muserpol\Console\Commands\CreateTA::class,  
-        \Muserpol\Console\Commands\Export::class,    
-        \Muserpol\Console\Commands\Export2::class,
-        \Muserpol\Console\Commands\CreateIPC::class,
         \Muserpol\Console\Commands\Importreintegro::class
     ];
 
