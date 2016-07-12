@@ -5,15 +5,8 @@ namespace Muserpol\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
 
-use DB;
-use Auth;
-use Session;
-use Validator;
-use Muserpol\Http\Requests;
-use Muserpol\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Muserpol\Affiliate;
-use Muserpol\ContributionRate;
 use Muserpol\Reimbursement;
 use Muserpol\Helper\Util;
 use Carbon\Carbon;
