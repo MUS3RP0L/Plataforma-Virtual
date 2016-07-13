@@ -39,16 +39,16 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('get_fourth_level_base_wage', array('as'=>'get_fourth_level_base_wage', 'uses'=>'Wage\BaseWageController@FourthLevelData'));
 
 	// Monthly Report
-	Route::get('monthly_report', 'Report\ReportController@ShowMonthlyReport');
-	Route::post('monthly_report', 'Report\ReportController@GenerateMonthlyReport');
+	Route::get('monthly_report', array('as'=>'monthly_report', 'uses'=>'Report\ReportController@ShowMonthlyReport'));
+	Route::post('monthly_report', array('as'=>'monthly_report', 'uses'=> 'Report\ReportController@GenerateMonthlyReport'));
 
 	// Record Affiliate
 	Route::get('get_record/{affiliate_id}', array('as'=>'get_record', 'uses'=>'Affiliate\RecordController@Data'));
 
 	// Affiliate
 	Route::resource('affiliate', 'Affiliate\AffiliateController');
-	Route::get('search_affiliate', array('as'=>'search_affiliate', 'uses'=>'Affiliate\AffiliateController@SearchAffiliate'));
-	Route::get('get_affiliate', array('as'=>'getAfiliado', 'uses'=>'Affiliate\AffiliateController@afiliadosData'));
+	Route::post('search_affiliate', array('as'=>'search_affiliate', 'uses'=>'Affiliate\AffiliateController@SearchAffiliate'));
+	Route::get('get_affiliate', array('as'=>'get_affiliate', 'uses'=>'Affiliate\AffiliateController@Data'));
 
 
 

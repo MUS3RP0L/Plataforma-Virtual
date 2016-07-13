@@ -32,71 +32,73 @@ class AffiliateController extends Controller
         return view('affiliates.index');
     }
 
-    public function afiliadosData(Request $request)
+    public function Data(Request $request)
     {
-        $afiliados = Afiliado::select(['id', 'ci', 'pat', 'mat', 'nom', 'nom2', 'matri', 'afi_state_id', 'grado_id']);
+        $affiliates = Affiliate::select(['id', 'identity_card', 'registration', 'last_name', 'mothers_last_name', 'first_name', 'second_name',  'affiliate_state_id', 'degree_id']);
         
-        if ($request->has('pat'))
+        if ($request->has('last_name'))
         {
-            $afiliados->where(function($afiliados) use ($request)
+            $affiliates->where(function($affiliates) use ($request)
             {   
-                $pat = trim($request->get('pat'));
-                $afiliados->where('pat', 'like', "%{$pat}%");
+                $last_name = trim($request->get('last_name'));
+                $affiliates->where('last_name', 'like', "%{$last_name}%");
             });
         }
-        if ($request->has('mat'))
+        if ($request->has('mothers_last_name'))
         {
-            $afiliados->where(function($afiliados) use ($request)
+            $affiliates->where(function($affiliates) use ($request)
             {   
-                $mat = trim($request->get('mat'));
-                $afiliados->where('mat', 'like', "%{$mat}%");
+                $mothers_last_name = trim($request->get('mothers_last_name'));
+                $affiliates->where('mothers_last_name', 'like', "%{$mothers_last_name}%");
             });
         }
-        if ($request->has('nom'))
+        if ($request->has('first_name'))
         {
-            $afiliados->where(function($afiliados) use ($request)
+            $affiliates->where(function($affiliates) use ($request)
             {
-                $nom = trim($request->get('nom'));
-                $afiliados->where('nom', 'like', "%{$nom}%");
+                $first_name = trim($request->get('first_name'));
+                $affiliates->where('first_name', 'like', "%{$first_name}%");
             });
         }
-        if ($request->has('nom2'))
+        if ($request->has('second_name'))
         {
-            $afiliados->where(function($afiliados) use ($request)
+            $affiliates->where(function($affiliates) use ($request)
             {
-                $nom2 = trim($request->get('nom2'));
-                $afiliados->where('nom2', 'like', "%{$nom2}%");
+                $second_name = trim($request->get('second_name'));
+                $affiliates->where('second_name', 'like', "%{$second_name}%");
             });
         }
-        if ($request->has('matri'))
+        if ($request->has('identity_card'))
         {
-            $afiliados->where(function($afiliados) use ($request)
+            $affiliates->where(function($affiliates) use ($request)
             {
-                $matri = trim($request->get('matri'));
-                $afiliados->where('matri', 'like', "%{$matri}%");
+                $identity_card = trim($request->get('identity_card'));
+                $affiliates->where('identity_card', 'like', "%{$identity_card}%");
             });
         }
-        if ($request->has('car'))
+        if ($request->has('registration'))
         {
-            $afiliados->where(function($afiliados) use ($request)
+            $affiliates->where(function($affiliates) use ($request)
             {
-                $car = trim($request->get('car'));
-                $afiliados->where('ci', 'like', "%{$car}%");
+                $registration = trim($request->get('registration'));
+                $affiliates->where('registration', 'like', "%{$registration}%");
             });
         }
-
-        return Datatables::of($afiliados)
-                ->addColumn('gra', function ($afiliado) { return $afiliado->grado_id ? $afiliado->grado->abre : ' '; })
-                ->addColumn('noms', function ($afiliado) { return $afiliado->nom .' '. $afiliado->nom2; })
-                ->addColumn('est', function ($afiliado) { return $afiliado->afi_state->name; })
-                ->addColumn('action', function ($afiliado) { return  '
+        
+        return Datatables::of($affiliates)
+                ->addColumn('degree', function ($affiliate) { return $affiliate->degree_id ? $affiliate->degree->shortened : ''; })
+                ->editColumn('last_name', function ($affiliate) { return Util::ucw($affiliate->last_name); })
+                ->editColumn('mothers_last_name', function ($affiliate) { return Util::ucw($affiliate->mothers_last_name); })
+                ->addColumn('names', function ($affiliate) { return Util::ucw($affiliate->first_name) .' '. Util::ucw($affiliate->second_name); })
+                ->addColumn('state', function ($affiliate) { return $affiliate->affiliate_state->name; })
+                ->addColumn('action', function ($affiliate) { return  '
                         <div class="btn-group" style="margin:-3px 0;">
-                            <a href="afiliado/'.$afiliado->id.'" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a href="afiliado/'.$affiliate->id.'" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
                             <a href="" data-target="#" class="btn btn-success btn-raised btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="selectgestaporte/'.$afiliado->id.'" style="padding:3px 10px;"><i class="glyphicon glyphicon-plus"></i> Aporte</a></li>
+                                <li><a href="selectgestaporte/'.$affiliate->id.'" style="padding:3px 10px;"><i class="glyphicon glyphicon-plus"></i> Aporte</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="tramite_fondo_retiro/'.$afiliado->id.'" style="padding:3px 10px;"><i class="glyphicon glyphicon-plus"></i> Trámite FR</a></li>
+                                <li><a href="tramite_fondo_retiro/'.$affiliate->id.'" style="padding:3px 10px;"><i class="glyphicon glyphicon-plus"></i> Trámite FR</a></li>
                             </ul>
                         </div>';})
                 ->make(true);
@@ -338,33 +340,31 @@ class AffiliateController extends Controller
     public function SearchAffiliate(Request $request)
     {
         $rules = [
-            'search' => 'required',
+            'identity_card' => 'required',
         ];
         
         $messages = [
-            'search.required' => 'El campo es requerido para realizar la búsqueda del Afiliado.',
+            'identity_card.required' => 'El campo es requerido para realizar la búsqueda del Afiliado.',
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
         
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return redirect("/")
             ->withErrors($validator)
             ->withInput();
         }
         else{
 
-        $afiliado = Afiliado::ciIs($request->search)->first();
+        $affiliate = Affiliate::identitycardIs($request->identity_card)->first();
 
-            if($afiliado){
-                return redirect("afiliado/{$afiliado->id}");
+            if($affiliate) {
+                return redirect("affiliate/{$affiliate->id}");
             }
-            else{
-                    $message = "No logramos encontrar al Afiliado con Carnet: ".$request->search;
-
-                    Session::flash('message', $message);
-                
-                return redirect("afiliado");
+            else {
+                $message = "No logramos encontrar al Afiliado con Carnet: ".$request->identity_card;
+                Session::flash('message', $message);
+                return redirect("affiliate");
             }
 
         }

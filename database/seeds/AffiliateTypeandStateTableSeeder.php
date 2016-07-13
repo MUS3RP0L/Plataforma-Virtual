@@ -57,7 +57,7 @@ class AffiliateTypeandStateTableSeeder extends Seeder
 
             ['state_type_id' => '1', 'name' => 'Servicio'],
             ['state_type_id' => '1', 'name' => 'Comisión'],
-            ['state_type_id' => '1', 'name' => 'disponibilidad'],
+            ['state_type_id' => '1', 'name' => 'Disponibilidad'],
 
             ['state_type_id' => '2', 'name' => 'Fallecido'],
             ['state_type_id' => '2', 'name' => 'Jubilado'],

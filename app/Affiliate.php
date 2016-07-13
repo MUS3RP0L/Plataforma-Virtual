@@ -95,7 +95,7 @@ class Affiliate extends Model
 
     public function affiliate_state()
     {
-        return $this->belongsTo('Muserpol\AfiliateState');
+        return $this->belongsTo('Muserpol\AffiliateState');
     }
 
     public function city()
@@ -118,10 +118,18 @@ class Affiliate extends Model
         return $query->where('id', $id);
     }
 
-    public function scopeCiIs($query, $ci)
+    public function scopeIdentitycardIs($query, $ci)
     {
-        return $query->where('ci', $ci);
+        return $query->where('identity_card', $ci);
     }
+
+
+
+
+
+
+
+
 
     public function scopeAfiEstado($query, $estado, $anio)
     {
