@@ -69,6 +69,7 @@ class ImportPayroll extends Command
                     $rows->each(function($result) {
 
                         global $NewAffi, $UpdateAffi, $NewContri, $Progress, $FolderName, $Date;
+                        
                         ini_set('upload_max_filesize', '99999M');
                         ini_set('post_max_size', '99999M');
                         ini_set('max_execution_time', '-1');
