@@ -40,6 +40,12 @@ Breadcrumbs::register('affiliates', function($breadcrumbs) {
     $breadcrumbs->push('Afiliados', URL::to('affiliate'));
 });
 
+// Show Affiliate
+Breadcrumbs::register('show_affiliate', function($breadcrumbs, $affiliate) {
+    $breadcrumbs->parent('affiliates');
+    $breadcrumbs->push($affiliate->getTittleName(), URL::to('affiliate/'.$affiliate->id));
+});
+
 
 
 
@@ -57,11 +63,6 @@ Breadcrumbs::register('home', function($breadcrumbs) {
     $breadcrumbs->push('Inicio', route('home'));
 });
 
-// Show Afiliado
-Breadcrumbs::register('show_afiliado', function($breadcrumbs, $afiliado) {
-    $breadcrumbs->parent('afiliado');
-    $breadcrumbs->push($afiliado->getTittleName(), URL::to('afiliado/'.$afiliado->id));
-});
 
 // Show Aportes Afiliado
 Breadcrumbs::register('aportes_afiliado', function($breadcrumbs, $afiliado) {
