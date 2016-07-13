@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container-fluid">
-    {!! Breadcrumbs::render('show_afiliado', $afiliado) !!}
+    {!! Breadcrumbs::render('show_affiliate', $affiliate) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="row"> 
                 <div class="col-md-4 col-md-offset-6"> 
-                    <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
+                    <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
                         &nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;
                     </a>
 
@@ -17,13 +17,13 @@
                         </a>
                         <ul class="dropdown-menu"  role="menu">
                             <li>
-                                <a href="{!! url('viewaporte/' . $afiliado->id) !!}" class="text-center">
+                                <a href="{!! url('viewaporte/' . $affiliate->id) !!}" class="text-center">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li>
-                                <a href="{!! url('selectgestaporte/' . $afiliado->id) !!}" class="text-center">
+                                <a href="{!! url('selectgestaporte/' . $affiliate->id) !!}" class="text-center">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </a>
                             </li>
@@ -64,7 +64,7 @@
                                                         Carnet Identidad
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $afiliado->ci !!} {!! $afiliado->depa_exp !!}
+                                                         {!! $affiliate->ci !!} {!! $affiliate->depa_exp !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -76,7 +76,7 @@
                                                         Apellido Paterno
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $afiliado->pat !!}
+                                                         {!! $affiliate->pat !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -88,7 +88,7 @@
                                                         Apellido Materno
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $afiliado->mat !!}
+                                                         {!! $affiliate->mat !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -100,7 +100,7 @@
                                                         Primer Nombre
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->nom !!}
+                                                        {!! $affiliate->nom !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -112,12 +112,12 @@
                                                         Segundo Nombre
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->nom2 !!}
+                                                        {!! $affiliate->nom2 !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        @if ($afiliado->ap_esp)
+                                        @if ($affiliate->ap_esp)
                                         <tr>
                                             <td style="border-top:1px solid #d4e4cd;">
                                                 <div class="row">
@@ -125,13 +125,13 @@
                                                         Apellido de Esposo
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->ap_esp !!}
+                                                        {!! $affiliate->ap_esp !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         @endif
-                                        @if($afiliado->fech_dece)
+                                        @if($affiliate->fech_dece)
                                             <tr>
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
@@ -139,7 +139,7 @@
                                                             Fecha de Deceso
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->getFull_fech_dece() !!}
+                                                            {!! $affiliate->getFull_fech_dece() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -159,7 +159,7 @@
                                                         Fecha Nacimiento
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $afiliado->getFullDateNac() !!}
+                                                         {!! $affiliate->getFullDateNac() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -171,7 +171,7 @@
                                                         Edad
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->getHowOld() !!}
+                                                        {!! $affiliate->getHowOld() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -183,7 +183,7 @@
                                                         Sexo
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->getSex() !!}
+                                                        {!! $affiliate->getSex() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -195,7 +195,7 @@
                                                         Estado Civil
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->getCivil() !!}
+                                                        {!! $affiliate->getCivil() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -207,20 +207,20 @@
                                                         Lugar Nacimiento
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $afiliado->depa_nat !!}
+                                                         {!! $affiliate->depa_nat !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        @if($afiliado->motivo_dece)
+                                        @if($affiliate->motivo_dece)
                                             <tr>
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Motivo de Deceso
                                                         </div>
-                                                        <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->unidad->lit !!}">
-                                                            {!! $afiliado->motivo_dece !!}
+                                                        <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->unidad->lit !!}">
+                                                            {!! $affiliate->motivo_dece !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -265,7 +265,7 @@
                                                             Departamento
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->depa_dir !!}
+                                                            {!! $affiliate->depa_dir !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -277,7 +277,7 @@
                                                             Zona
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->zona !!}
+                                                            {!! $affiliate->zona !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -289,7 +289,7 @@
                                                             Calle, Avenida
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->calle !!}
+                                                            {!! $affiliate->calle !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -309,7 +309,7 @@
                                                             Núm Domicilio
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->num_domi !!}
+                                                            {!! $affiliate->num_domi !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -321,7 +321,7 @@
                                                             Teléfono
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->tele !!}
+                                                            {!! $affiliate->tele !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -333,7 +333,7 @@
                                                             Celular
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->celu !!}
+                                                            {!! $affiliate->celu !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -532,7 +532,7 @@
                                                     <div class="col-md-6">
                                                         Estado
                                                     </div>
-                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->afi_state->state_type->name !!}">{!! $afiliado->afi_state->name !!}
+                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->afi_state->state_type->name !!}">{!! $affiliate->afi_state->name !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -543,7 +543,7 @@
                                                     <div class="col-md-6">
                                                         Tipo
                                                     </div>
-                                                    <div class="col-md-6">{!! $afiliado->afi_type->name !!}
+                                                    <div class="col-md-6">{!! $affiliate->afi_type->name !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -554,7 +554,7 @@
                                                     <div class="col-md-6">
                                                         Grado
                                                     </div>
-                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->grado->lit !!}"> {!! $afiliado->grado->abre !!}
+                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->grado->lit !!}"> {!! $affiliate->grado->abre !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -565,13 +565,13 @@
                                                     <div class="col-md-6">
                                                         Unidad
                                                     </div>
-                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->unidad->lit !!}">
-                                                        {!! $afiliado->unidad->abre !!}
+                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->unidad->lit !!}">
+                                                        {!! $affiliate->unidad->abre !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        @if($afiliado->fech_baja)
+                                        @if($affiliate->fech_baja)
                                             <tr>
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
@@ -579,7 +579,7 @@
                                                             Fecha de Baja
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $afiliado->getData_fech_baja() !!}
+                                                            {!! $affiliate->getData_fech_baja() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -599,7 +599,7 @@
                                                         Fecha de Ingreso
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->getFullDateIng() !!}
+                                                        {!! $affiliate->getFullDateIng() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -611,7 +611,7 @@
                                                         Núm. de Matrícula
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->matri !!}
+                                                        {!! $affiliate->matri !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -623,20 +623,20 @@
                                                         Núm. de Ítem
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->item !!}
+                                                        {!! $affiliate->item !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        @if($afiliado->motivo_baja)
+                                        @if($affiliate->motivo_baja)
                                             <tr>
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Motivo Baja
                                                         </div>
-                                                        <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->unidad->lit !!}">
-                                                            {!! $afiliado->motivo_baja !!}
+                                                        <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->unidad->lit !!}">
+                                                            {!! $affiliate->motivo_baja !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -717,51 +717,51 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['afiliado.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="per"/>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group"> 
                                 {!! Form::label('ci', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-5">
-                                {!! Form::text('ci', $afiliado->ci, ['class'=> 'form-control', 'required']) !!}
+                                {!! Form::text('ci', $affiliate->ci, ['class'=> 'form-control', 'required']) !!}
                                 <span class="help-block">Número de CI</span>
                             </div>
-                                {!! Form::select('depa_exp', $list_depas_abre, $afiliado->departamento_exp_id, ['class' => 'col-md-2 combobox form-control']) !!}
+                                {!! Form::select('depa_exp', $list_depas_abre, $affiliate->departamento_exp_id, ['class' => 'col-md-2 combobox form-control']) !!}
                         </div>
                         <div class="form-group">
                                 {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('pat', $afiliado->pat, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('pat', $affiliate->pat, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Apellido Paterno</span>
                             </div>
                         </div>  
                         <div class="form-group">
                                 {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('mat', $afiliado->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('mat', $affiliate->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Apellido Materno</span>
                             </div>
                         </div>                              
                         <div class="form-group">
                                 {!! Form::label('nom', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('nom', $afiliado->nom, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('nom', $affiliate->nom, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el  Primer Nombre</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('nom2', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('nom2', $afiliado->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('nom2', $affiliate->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Segundo Nombre</span>
                             </div>
                         </div>
-                        @if ($afiliado->sex == 'F')
+                        @if ($affiliate->sex == 'F')
                             <div class="form-group">
                                     {!! Form::label('ap_esp', 'Apellido de Esposo', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-7">
-                                    {!! Form::text('ap_esp', $afiliado->ap_esp, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    {!! Form::text('ap_esp', $affiliate->ap_esp, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                     <span class="help-block">Escriba el Apellido de Esposo (Opcional)</span>
                                 </div>
                             </div>
@@ -773,7 +773,7 @@
                                 {!! Form::label('fech_nac', 'Fecha de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
                     			<div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="fech_nac" value="{!! $afiliado->getDataEdit() !!}">
+                                    <input type="text" class="form-control datepicker" name="fech_nac" value="{!! $affiliate->getDataEdit() !!}">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </div>
@@ -783,14 +783,14 @@
                         <div class="form-group">
                                     {!! Form::label('est_civ', 'Estado Civil', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::select('est_civ', $list_est_civ, $afiliado->est_civ, ['class' => 'combobox form-control', 'required']) !!}
+                                {!! Form::select('est_civ', $list_est_civ, $affiliate->est_civ, ['class' => 'combobox form-control', 'required']) !!}
                                 <span class="help-block">Seleccione el Estado Civil</span>
                             </div>
                         </div>
                         <div class="form-group">
                                     {!! Form::label('depa_nat', 'Lugar de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::select('depa_nat', $list_depas, $afiliado->departamento_nat_id, ['class' => 'combobox form-control']) !!}
+                                {!! Form::select('depa_nat', $list_depas, $affiliate->departamento_nat_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
@@ -813,7 +813,7 @@
                                     {!! Form::label('fech_dece', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-7">
                                     <div class="input-group">
-                                        <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $afiliado->getData_fech_dece() !!}">
+                                        <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $affiliate->getData_fech_dece() !!}">
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </div>
@@ -823,7 +823,7 @@
                             <div class="form-group">
                                     {!! Form::label('motivo_dece', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-6">
-                                    {!! Form::textarea('motivo_dece', $afiliado->motivo_dece, ['class'=> 'form-control', 'rows' => '2']) !!}
+                                    {!! Form::textarea('motivo_dece', $affiliate->motivo_dece, ['class'=> 'form-control', 'rows' => '2']) !!}
                                     <span class="help-block">Escriba el Motivo de fallecimiento</span>
                                 </div>
                             </div>
@@ -834,7 +834,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('afiliado/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -856,28 +856,28 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['afiliado.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['afiliado.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="dom"/>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                                     {!! Form::label('depa_dir', 'Departamento', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::select('depa_dir', $list_depas, $afiliado->departamento_dir_id, ['class' => 'combobox form-control']) !!}
+                                {!! Form::select('depa_dir', $list_depas, $affiliate->departamento_dir_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('zona', 'Zona', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('zona', $afiliado->zona, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('zona', $affiliate->zona, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba la Zona</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('calle', 'Calle, Avenida', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('calle', $afiliado->calle, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('calle', $affiliate->calle, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba la Calle y/o Avenida</span>
                             </div>
                         </div>
@@ -887,21 +887,21 @@
                         <div class="form-group">
                                 {!! Form::label('num_domi', 'Número de Domicilio', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('num_domi', $afiliado->num_domi, ['class'=> 'form-control',  'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('num_domi', $affiliate->num_domi, ['class'=> 'form-control',  'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Número de Domicilio</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('tele', 'Teléfono fijo', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('tele', $afiliado->tele, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('tele', $affiliate->tele, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Teléfono fijo</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('celu', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('celu', $afiliado->celu, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('celu', $affiliate->celu, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Teléfono Celular</span>
                             </div>
                         </div>
@@ -911,7 +911,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('afiliado/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -933,7 +933,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($conyuge, ['method' => 'PATCH', 'route' => ['conyuge.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($conyuge, ['method' => 'PATCH', 'route' => ['conyuge.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="cony"/>
                 <div class="row">
                     <div class="col-md-6">
@@ -1027,7 +1027,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('afiliado/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -1079,7 +1079,7 @@
         autoclose: true
     });
 
-    var titular = {!! $afiliado !!};
+    var titular = {!! $affiliate !!};
     var conyuge = {!! $conyuge !!};
 
     var Model = function() {
@@ -1110,9 +1110,9 @@
             pageLength: 10,
             bFilter: false,
             ajax: {
-                url: '{!! route('getNote') !!}',
+                url: '{!! route('get_record') !!}',
                 data: function (d) {
-                    d.id = {{ $afiliado->id }};
+                    d.id = {{ $affiliate->id }};
                 }
             },
             columns: [

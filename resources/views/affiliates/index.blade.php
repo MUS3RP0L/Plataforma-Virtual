@@ -87,7 +87,7 @@
                     </div>  
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-striped table-hover" id="afiliados-table">
+                            <table class="table table-hover" id="affiliates-table">
                                 <thead>
                                     <tr class="success">
                                         <th>Núm. Carnet</th>
@@ -113,7 +113,7 @@
 @push('scripts')
 <script>
 
-        var oTable = $('#afiliados-table').DataTable({
+        var oTable = $('#affiliates-table').DataTable({
         "dom": '<"top">t<"bottom"p>',   
         processing: true,
         serverSide: true,
