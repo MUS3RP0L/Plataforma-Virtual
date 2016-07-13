@@ -79,7 +79,7 @@ class RetirementFund extends Model
 
     public function scopeAfiIs($query, $id)
     {
-        return $query->where('afiliado_id', $id);
+        return $query->where('affiliate_id', $id);
     }
     public function scopeTotalRetirementFund($query, $month, $year)
     {

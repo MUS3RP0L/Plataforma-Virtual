@@ -15,17 +15,17 @@ use Datatables;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
-use Muserpol\Afiliado;
-use Muserpol\Aporte;
-use Muserpol\Conyuge;
-use Muserpol\Solicitante;
-use Muserpol\Modalidad;
-use Muserpol\Departamento;
-use Muserpol\Requisito;
-use Muserpol\FondoTramite;
-use Muserpol\Documento;
-use Muserpol\Prestacion;
-use Muserpol\Antecedente;
+use Muserpol\Affiliate;
+use Muserpol\Contribution;
+use Muserpol\Spouse;
+use Muserpol\Applicant;
+use Muserpol\RetirementFundModality;
+use Muserpol\City;
+use Muserpol\Requirement;
+use Muserpol\RetirementFund;
+use Muserpol\Document;
+use Muserpol\Antecedent;
+use Muserpol\AntecedentFile;
 
 
 class FondoTramiteController extends Controller
@@ -52,98 +52,98 @@ class FondoTramiteController extends Controller
 
     public static function getViewModel()
     {
-        $modalidades = Modalidad::all();
-        $list_modalidades = array('' => '');
-        foreach ($modalidades as $item) {
-             $list_modalidades[$item->id]=$item->name;
+        $modality = RetirementFundModality::all();
+        $list_modality = array('' => '');
+        foreach ($modality as $item) {
+             $list_modality[$item->id]=$item->name;
         }
 
-        $departamentos = Departamento::all();
-        $list_departamentos = array('' => '');
-        foreach ($departamentos as $item) {
-             $list_departamentos[$item->id]=$item->name;
+        $city = City::all();
+        $list_city = array('' => '');
+        foreach ($city as $item) {
+             $list_city[$item->id]=$item->name;
         }
 
-        $prestaciones = Prestacion::all();
+        $antecedentfile = AntecedentFile::all();
 
 
         return [
-            'list_modalidades' => $list_modalidades,
-            'list_departamentos' => $list_departamentos,
-            'prestaciones' => $prestaciones
+            'list_modality' => $list_modality,
+            'list_city' => $list_city,
+            'antecedentfile' => $antecedentfile
         ];
     }
 
     public function getData($afid){
 
-        $afiliado = Afiliado::idIs($afid)->first();
+        $affiliate = Affiliate::idIs($afid)->first();
         
-        $conyuge = Conyuge::afiIs($afid)->first();
-        if (!$conyuge) {$conyuge = new Conyuge;}
+        $spouse = Spouse::afiIs($afid)->first();
+        if (!$spouse) {$spouse = new Spouse;}
         
-        $fondoTramite = FondoTramite::afiIs($afid)->first();
-        if (!$fondoTramite) {
+        $retirementfund = RetirementFund::afiIs($afid)->first();
+        if (!$retirementfund) {
             
             $now = Carbon::now();
-            $last = FondoTramite::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
-            $fondoTramite = new FondoTramite;
+            $last = RetirementFund::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
+            $retirementfund = new RetirementFund;
             if ($last) {
-                $fondoTramite->codigo = $last->codigo + 1;
+                $retirementfund->code = $last->code + 1;
             }else{
-                $fondoTramite->codigo = 1;
+                $retirementfund->code = 1;
             }
-            $fondoTramite->afiliado_id = $afid;
-            $fondoTramite->save();
+            $retirementfund->affiliate_id = $afid;
+            $retirementfund->save();
         }
 
-        $solicitante = Solicitante::fonTraIs($fondoTramite->id)->first();
-        if (!$solicitante) {$solicitante = new Solicitante;}
+        $applicant = Applicant::fonTraIs($retirementfund->id)->first();
+        if (!$applicant) {$applicant = new Applicant;}
         
-        $requisitos = Requisito::modalidadIs($fondoTramite->modalidad_id)->get();
-        $documentos = Documento::fonTraIs($fondoTramite->id)->get();
-        $antecedentes = Antecedente::fonTraIs($fondoTramite->id)->get();
+        $requirement = Requirement::modalidadIs($retirementfund->retirement_fund_modality_id)->get();
+        $document = Document::fonTraIs($retirementfund->id)->get();
+        $antecedent = Antecedent::fonTraIs($retirementfund->id)->get();
 
-        if ($fondoTramite->modalidad_id) {
+        if ($retirementfund->retirement_fund_modality_id) {
             $info_gen = TRUE;
         }else{
             $info_gen = FALSE;
         }
-        if ($solicitante->ci) {
+        if ($applicant->identity_card) {
             $info_soli = TRUE;
         }else{
             $info_soli = FALSE;
         }
-        if (Documento::fonTraIs($fondoTramite->id)->first()) {
+        if (Document::fonTraIs($retirementfund->id)->first()) {
             $info_docu = TRUE;
         }else{
             $info_docu = FALSE;
         }
 
-        if (Antecedente::fonTraIs($fondoTramite->id)->first()) {
+        if (Antecedent::fonTraIs($retirementfund->id)->first()) {
             $info_antec = TRUE;
         }else{
             $info_antec = FALSE;
         }
 
-        if ($fondoTramite->obs) {
+        if ($retirementfund->comment) {
             $info_obs = TRUE;
         }else{
             $info_obs = FALSE;
         }
 
-        $lastAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'desc')->first();
-        $afiliado->fech_ini_apor = $afiliado->fech_ing;
-        $afiliado->fech_fin_apor = $lastAporte->gest;
+        $lastContribution = Contribution::afiIs($affiliate->id)->orderBy('month_year', 'desc')->first();
+        $affiliate->service_start_date = $afiliado->date_entry;
+        $afiliado->service_end_date = $lastContribution->month_year;
 
         $data = array(
-            'afiliado' => $afiliado,
-            'conyuge' => $conyuge,
-            'fondoTramite' => $fondoTramite,
-            'solicitante' => $solicitante,
-            'documentos' => $documentos,
-            'requisitos' => $requisitos,
-            'antecedentes' => $antecedentes,
-            'antecedentes2' => $antecedentes,
+            'affiliate' => $affiliate,
+            'spouse' => $spouse,
+            'retirementfund' => $retirementfund,
+            'applicant' => $applicant,
+            'document' => $document,
+            'requirement' => $requirement,
+            'antecedent' => $antecedent,
+            'antecedent2' => $antecedent,
             'info_gen' => $info_gen,
             'info_soli' => $info_soli,
             'info_docu' => $info_docu,
@@ -251,14 +251,14 @@ class FondoTramiteController extends Controller
     {       
         $rules = [
             
-            'afiliado_id' => 'numeric',
-            'modalidad_id' => 'numeric',
+            'affiliate_id' => 'numeric',
+            'retirement_fund_modality_id' => 'numeric',
         ];
 
         $messages = [
             
-            'afiliado_id.numeric' => 'Solo se aceptan números para id afiliado', 
-            'modalidad_id.numeric' => 'Solo se aceptan números para id modalidad'
+            'affiliate_id.numeric' => 'Solo se aceptan números para id afiliado', 
+            'retirement_fund_modality_id.numeric' => 'Solo se aceptan números para id modalidad'
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -270,41 +270,41 @@ class FondoTramiteController extends Controller
         }
         else{
 
-            $fondoTramite = FondoTramite::afiIs($id)->first();
-            $afiliado = Afiliado::idIs($id)->first();
+            $retirementfund = RetirementFund::afiIs($id)->first();
+            $affiliate = Affiliate::idIs($id)->first();
 
             switch ($request->type) {
 
                 case 'gene':
 
-                    if($request->modalidad == 4 && $afiliado->fech_dece == null)
+                    if($request->modalidad == 4 && $affiliate->date_decommissioned == null)
                     {
                         $message = "Ingrese Fecha de deceso de Afiliado";
                     }
                     else{
 
                         if ($request->modalidad) {
-                        $fondoTramite->modalidad_id = trim($request->modalidad);
+                        $retirementfund->retirement_fund_modality_id = trim($request->modalidad);
                         }
-                        $fondoTramite->departamento_id = trim($request->departamento);
-                        $fondoTramite->save();
+                        $retirementfund->city_id = trim($request->departamento);
+                        $retirementfund->save();
 
                         switch ($request->modalidad) {
                             case '1':
-                                $afiliado->afi_state_id = 8;
-                                $afiliado->save();
+                                $affiliate->affiliate_state_id = 8;
+                                $affiliate->save();
                             break;
                             case '2':
-                                $afiliado->afi_state_id = 7;
-                                $afiliado->save();
+                                $affiliate->affiliate_state_id = 7;
+                                $affiliate->save();
                             break;
                             case '3':
-                                $afiliado->afi_state_id = 5;
-                                $afiliado->save();
+                                $affiliate->affiliate_state_id = 5;
+                                $affiliate->save();
                             break;
                             case '4':
-                                $afiliado->afi_state_id = 4;
-                                $afiliado->save();
+                                $affiliate->affiliate_state_id = 4;
+                                $affiliate->save();
                             break;
                         }
                         $message = "Información General de Fondo de Retiro actualizado con éxito";
@@ -312,24 +312,24 @@ class FondoTramiteController extends Controller
                 break;
 
                 case 'docu':
-                    if($fondoTramite->modalidad_id)
+                    if($retirementfund->retirement_fund_modality_id)
                     {
                         foreach (json_decode($request->data) as $item)
                           {   
-                            $Documento = Documento::where('fondo_tramite_id', '=', $fondoTramite->id)
-                                            ->where('requisito_id', '=', $item->requisito_id)->first();
+                            $Document = Document::where('retirement_fund_id', '=', $retirementfund->id)
+                                            ->where('requirement_id', '=', $item->requisito_id)->first();
                             
-                            if (!$Documento) {
-                                $Documento = new Documento;
-                                $Documento->fondo_tramite_id = $fondoTramite->id;
-                                $Documento->requisito_id = $item->requisito_id;
+                            if (!$Document) {
+                                $Document = new Document;
+                                $Document->retirement_fund_id = $retirementfund->id;
+                                $Document->requirement_id = $item->requisito_id;
                             }
-                            $Documento->est = $item->booleanValue;
-                            $Documento->fech_pres = date('Y-m-d');
-                            $Documento->save();
+                            $Document->status = $item->booleanValue;
+                            $Document->reception_date = date('Y-m-d');
+                            $Document->save();
 
-                            $fondoTramite->fech_ven = date('Y-m-d');
-                            $fondoTramite->save();
+                            $retirementfund->reception_date = date('Y-m-d'); 
+                            $retirementfund->save();
                         }
 
                         $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
@@ -341,39 +341,39 @@ class FondoTramiteController extends Controller
                 case 'antec':
                     foreach (json_decode($request->data) as $item)
                     {   
-                        $antecedente = Antecedente::where('fondo_tramite_id', '=', $fondoTramite->id)
-                                        ->where('prestacion_id', '=', $item->prestacion_id)->first();
+                        $antecedent = Antecedent::where('retirement_fund_id', '=', $retirementfund->id)
+                                        ->where('antecedent_file_id', '=', $item->prestacion_id)->first();
                         
-                        if (!$antecedente) {
-                            $antecedente = new Antecedente;
-                            $antecedente->fondo_tramite_id = $fondoTramite->id;
-                            $antecedente->prestacion_id = $item->prestacion_id;
+                        if (!$antecedent) {
+                            $antecedent = new Antecedent;
+                            $antecedent->retirement_fund_id = $retirementfund->id;
+                            $antecedent->antecedent_file_id = $item->prestacion_id;
                         }
 
-                        $antecedente->est = $item->booleanValue;
-                        $antecedente->save();
+                        $antecedent->status = $item->booleanValue;
+                        $antecedent->save();
                     }
 
-                     $fondoTramite->fech_arc = date('Y-m-d');
-                     $fondoTramite->save();
+                     $retirementfund->check_file_date = date('Y-m-d'); 
+                     $retirementfund->save();
 
                     $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
                 break;
 
                 case 'periods':
-                    $afiliado->fech_ini_serv = Util::datePickPeriod($request->fech_ini_serv);
-                    $afiliado->fech_fin_serv = Util::datePickPeriod($request->fech_fin_serv);
-                    $afiliado->save();
+                    $affiliate->service_start_date = Util::datePickPeriod($request->fech_ini_serv);
+                    $affiliate->service_end_date = Util::datePickPeriod($request->fech_fin_serv);
+                    $affiliate->save();
                     
-                    $fondoTramite->fech_ini_anti = Util::datePickPeriod($request->fech_ini_anti);
-                    $fondoTramite->fech_fin_anti = Util::datePickPeriod($request->fech_fin_anti);
+                    $retirementfund->anticipation_start_date = Util::datePickPeriod($request->fech_ini_anti);
+                    $retirementfund->anticipation_end_date = Util::datePickPeriod($request->fech_fin_anti);
 
-                    $fondoTramite->fech_ini_reco = Util::datePickPeriod($request->fech_ini_reco);
-                    $fondoTramite->fech_fin_reco = Util::datePickPeriod($request->fech_fin_reco);
-                    $fondoTramite->save();
+                    $retirementfund->recognized_start_date = Util::datePickPeriod($request->fech_ini_reco);
+                    $retirementfund->recognized_end_date = Util::datePickPeriod($request->fech_fin_reco);
+                    $retirementfund->save();
 
-                    $fondoTramite->fech_cal = date('Y-m-d');
-                    $fondoTramite->save();
+                    $retirementfund->qualification_date = date('Y-m-d'); 
+                    $retirementfund->save();
                     
                     $message = "Información de Periodos de Aporte actualizado con éxito";
                 break;
@@ -387,8 +387,8 @@ class FondoTramiteController extends Controller
 
     public function destroy($afid)
     {
-        $fondoTramite = FondoTramite::afiIs($afid)->first();
-        $fondoTramite->delete();
+        $retirementfund = RetirementFund::afiIs($afid)->first();
+        $retirementfund->delete();
 
         $message = "Trámite de Fondo de Retiro Eliminado";
         Session::flash('message', $message);

@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <div class="row"> 
                 <div class="col-md-4 col-md-offset-6">
-                    @if($fondoTramite->fech_ven)
+                    @if($retirementfund->reception_date)
                      <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
                         <a href="" data-target="#myModal-print-ventanilla" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
                             &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
@@ -22,7 +22,7 @@
                       </div>  
                     @endif
 
-                    @if(($fondoTramite->fech_ven) && ($fondoTramite->fech_arc))
+                    @if(($retirementfund->reception_date) && ($retirementfund->check_file_date))
                     <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
                         <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
@@ -113,7 +113,7 @@
                                                             Modalidad
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $fondoTramite->modalidad->abre !!}
+                                                            {!! $retirementfund->retirement_fund_modality->shortened !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -125,7 +125,7 @@
                                                             Ciudad
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $fondoTramite->departamento->name !!}
+                                                            {!! $retirementfund->city->name !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -141,7 +141,7 @@
                                                             Número Tramite
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $fondoTramite->getNumberTram() !!}
+                                                            {!! $retirementfund->getNumberTram() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -153,7 +153,7 @@
                                                             Estado
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $fondoTramite->getStatus() !!}
+                                                            {!! $retirementfund->getStatus() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -204,7 +204,7 @@
                                                             Carnet Identidad
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->ci !!}
+                                                            {!! $applicant->identity_card !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -216,7 +216,7 @@
                                                             Apellido Paterno
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->pat !!}
+                                                            {!! $applicant->last_name !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -228,7 +228,7 @@
                                                             Apellido Materno
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->mat !!}
+                                                            {!! $applicant->mothers_last_name !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -240,7 +240,7 @@
                                                             Nombre(s)
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->nom !!}
+                                                            {!! $applicant->name !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -256,7 +256,7 @@
                                                             Domicilio Actual
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->direc_domi !!}
+                                                            {!! $applicant->home_address !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -268,7 +268,7 @@
                                                             Teléfono fijo
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->tele_domi !!}
+                                                            {!! $applicant->home_phone_number !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -280,7 +280,7 @@
                                                             Teléfono Celular
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->celu_domi !!}
+                                                            {!! $applicant->home_cell_phone !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -292,7 +292,7 @@
                                                             Domicilio Trabajo
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $solicitante->direc_trab !!}
+                                                            {!! $applicant->work_address !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -354,19 +354,19 @@
                                             </thead>
                                             <tbody>
                                                 
-                                                @foreach ($documentos as $item)
+                                                @foreach ($document as $item)
                                                     <tr>
-                                                        <td>{!! $item->requisito->abre !!}</td>
+                                                        <td>{!! $item->requirement->shortened !!}</td>
                                                         <td> 
                                                             <div class="text-center">
-                                                                @if($item->est)
+                                                                @if($item->status)
                                                                 <span class="glyphicon glyphicon-ok"></span>
                                                                 @endif
                                                             </div>
                                                         </td>
                                                         <td style="width: 20%;"> 
                                                             <div class="text-center">
-                                                                @if($item->est)
+                                                                @if($item->status)
                                                                     {!! $item->getData_fech_requi() !!}
                                                                 @endif
                                                             </div>
@@ -436,13 +436,13 @@
                                             </thead>
                                             <tbody>
                                                 
-                                                @foreach ($antecedentes as $item)
+                                                @foreach ($antecedent as $item)
                                                     <tr>
-                                                        <td>{!! $item->prestacion->sigla !!}</td>
-                                                        <td>{!! $item->prestacion->name !!}</td>    
+                                                        <td>{!! $item->antecedent_file->shortened !!}</td>
+                                                        <td>{!! $item->antecedent_file->name !!}</td>    
                                                         <td> 
                                                             <div class="text-center">
-                                                                @if($item->est)
+                                                                @if($item->status)
                                                                 <span class="glyphicon glyphicon-ok"></span>
                                                                 @endif
                                                             </div>
@@ -505,7 +505,7 @@
                                                         Desde
                                                     </div>
                                                     <div class="col-md-8">
-                                                        {!! $afiliado->getFull_fech_ini_apor() !!}
+                                                        {!! $affiliate->getFull_fech_ini_apor() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -521,7 +521,7 @@
                                                         Hasta
                                                     </div>
                                                     <div class="col-md-8">
-                                                        {!! $afiliado->getFull_fech_fin_apor() !!}
+                                                        {!! $affiliate->getFull_fech_fin_apor() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -537,7 +537,7 @@
                                                         Total
                                                     </div>
                                                     <div class="col-md-9">
-                                                        {!! $afiliado->getYearsAndMonths_fech_ini_apor() !!}
+                                                        {!! $affiliate->getYearsAndMonths_fech_ini_apor() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -545,7 +545,7 @@
                                     </table>
                                 </div>
                             </div>
-                            @if($afiliado->fech_ini_serv)
+                            @if($affiliate->service_start_date)
                                 <br>
                                 <div class="row text-center"> 
                                     <div class="col-md-12">
@@ -562,7 +562,7 @@
                                                             Desde
                                                         </div>
                                                         <div class="col-md-8">
-                                                            {!! $afiliado->getFull_fech_ini_serv() !!}
+                                                            {!! $affiliate->getFull_fech_ini_serv() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -578,7 +578,7 @@
                                                             Hasta
                                                         </div>
                                                         <div class="col-md-8">
-                                                            {!! $afiliado->getFull_fech_fin_serv() !!}
+                                                            {!! $affiliate->getFull_fech_fin_serv() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -594,7 +594,7 @@
                                                             Total
                                                         </div>
                                                         <div class="col-md-9">
-                                                            {!! $afiliado->getYearsAndMonths_fech_fin_serv() !!}
+                                                            {!! $affiliate->getYearsAndMonths_fech_fin_serv() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -604,7 +604,7 @@
                                 </div>
                             @endif
                             
-                            @if($fondoTramite->fech_ini_anti)
+                            @if($retirementfund->anticipation_start_date)
                                 <br>
                                 <div class="row text-center"> 
                                     <div class="col-md-12">
@@ -621,7 +621,7 @@
                                                             Desde
                                                         </div>
                                                         <div class="col-md-8">
-                                                            {!! $fondoTramite->getFull_fech_ini_anti() !!}
+                                                            {!! $retirementfund->getFull_fech_ini_anti() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -637,7 +637,7 @@
                                                             Hasta
                                                         </div>
                                                         <div class="col-md-8">
-                                                            {!! $fondoTramite->getFull_fech_fin_anti() !!}
+                                                            {!! $retirementfund->getFull_fech_fin_anti() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -653,7 +653,7 @@
                                                             Total
                                                         </div>
                                                         <div class="col-md-9">
-                                                            {!! $fondoTramite->getYearsAndMonths_fech_ini_anti() !!}
+                                                            {!! $retirementfund->getYearsAndMonths_fech_ini_anti() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -663,7 +663,7 @@
                                 </div>
                             @endif
 
-                            @if($fondoTramite->fech_ini_reco)
+                            @if($retirementfund->recodnized_start_date)
                                 <br>
                                 <div class="row text-center"> 
                                     <div class="col-md-12">
@@ -680,7 +680,7 @@
                                                             Desde
                                                         </div>
                                                         <div class="col-md-8">
-                                                            {!! $fondoTramite->getFull_fech_ini_reco() !!}
+                                                            {!! $retirementfund->getFull_fech_ini_reco() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -696,7 +696,7 @@
                                                             Hasta
                                                         </div>
                                                         <div class="col-md-8">
-                                                            {!! $fondoTramite->getFull_fech_fin_reco() !!}
+                                                            {!! $retirementfund->getFull_fech_fin_reco() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -712,7 +712,7 @@
                                                             Total
                                                         </div>
                                                         <div class="col-md-9">
-                                                            {!! $fondoTramite->getYearsAndMonths_fech_ini_reco() !!}
+                                                            {!! $retirementfund->getYearsAndMonths_fech_ini_reco() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -757,7 +757,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($fondoTramite, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($retirementfund, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="gene"/>
                 <div class="row">
                     <div class="col-md-12">
@@ -768,14 +768,14 @@
                                 Modalidad
                             </div>
                             <div class="col-md-8">
-                                 {!! $fondoTramite->modalidad->name !!}
+                                 {!! $retirementfund->retirement_fund_modality->name !!}
                             </div>
                         </div>
                         @else
                         <div class="form-group">
                             {!! Form::label('modalidad', 'Modalidad', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::select('modalidad', $list_modalidades, $fondoTramite->modalidad_id, ['class' => 'combobox form-control ', 'required' ]) !!}
+                                {!! Form::select('modalidad', $list_modality, $retirementfund->retirement_fund_modality_id, ['class' => 'combobox form-control ', 'required' ]) !!}
                             </div>
                         </div>
                         @endif
@@ -786,7 +786,7 @@
                         <div class="form-group">
                                     {!! Form::label('departamento', 'Ciudad', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::select('departamento', $list_departamentos, $fondoTramite->departamento_id, ['class' => 'combobox form-control', 'required' ]) !!}
+                                {!! Form::select('departamento', $list_city, $retirementfund->city_id, ['class' => 'combobox form-control', 'required' ]) !!}
                                 <span class="help-block">Seleccione el departamento</span>
                             </div>
                         </div>
@@ -817,7 +817,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($solicitante, ['method' => 'PATCH', 'route' => ['solicitante.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($applicant, ['method' => 'PATCH', 'route' => ['solicitante.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="soli"/>
                 <div class="row">
                     <div class="col-md-3 col-md-offset-3">
@@ -848,7 +848,7 @@
                     <div class="col-md-3">
                         <div class="form-group label-floating" data-bind="fadeVisible: parenShow">
                             <label class="control-label" for="focusedInput2">Parentesco</label>
-                            {!! Form::text('paren', $solicitante->paren, ['class'=> 'form-control', 'id'=> 'focusedInput2', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                            {!! Form::text('paren', $applicant->kinship, ['class'=> 'form-control', 'id'=> 'focusedInput2', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                         </div>                                 
                     </div>
                 </div>
@@ -857,28 +857,28 @@
                         <div class="form-group">
                                 {!! Form::label('ci', 'Carnet Identidad', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('ci', '',['class'=> 'form-control', 'required', 'data-bind' => 'value: soli_ci']) !!}
+                                {!! Form::text('ci', $applicant->identity_card,['class'=> 'form-control', 'required', 'data-bind' => 'value: soli_ci']) !!}
                                 <span class="help-block">Núm. Carnet de Identidad</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('pat', $solicitante->pat, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
+                                {!! Form::text('pat', $applicant->last_name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
                                 <span class="help-block">Escriba Apellido Paterno</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('mat', $solicitante->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mat']) !!}
+                                {!! Form::text('mat', $applicant->mothers_last_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mat']) !!}
                                 <span class="help-block">Escriba Apellido Materno</span>
                             </div>
                         </div>  
                         <div class="form-group">
                                 {!! Form::label('nom', 'Nombre(s)', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('nom', $solicitante->nom, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
+                                {!! Form::text('nom', $applicant->name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
                                 <span class="help-block">Escriba los Nombre(s)</span>
                             </div>
                         </div>                                                  
@@ -888,28 +888,28 @@
                         <div class="form-group">
                                 {!! Form::label('direc_domi', 'Domicilio  Actual', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('direc_domi', $solicitante->direc_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_direc_domi']) !!}
+                                {!! Form::text('direc_domi', $applicant->home_address, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_direc_domi']) !!}
                                 <span class="help-block">Escriba Domicilio Actual</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('tele_domi', 'Teléfono fijo', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('tele_domi', $solicitante->tele_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_tele_domi']) !!}
+                                {!! Form::text('tele_domi', $applicant->home_phone_number, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_tele_domi']) !!}
                                 <span class="help-block">Escriba Número Teléfono fijo</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('celu_domi', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('celu_domi', $solicitante->celu_domi, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_celu']) !!}
+                                {!! Form::text('celu_domi', $applicant->home_cell_phone_number, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_celu']) !!}
                                 <span class="help-block">Escriba NúmeroTeléfono Celular</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('direc_trab', 'Domicilio Trabajo', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('direc_trab', $solicitante->direc_trab, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('direc_trab', $applicant->home_address, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba Domicilio de Trabajo</span>
                             </div>
                         </div>
@@ -946,7 +946,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($requisitos, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($requirement, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="docu"/>
                 <div class="row">
                     <div class="col-md-12" data-bind="event: { mouseover: enableDetails, mouseout: disableDetails }">
@@ -978,7 +978,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -999,7 +999,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($prestaciones, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($antecedent_file, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="antec"/>
                 <div class="row">
                     <div class="col-md-12" data-bind="event: { mouseover: enableDetails2, mouseout: disableDetails2 }">
@@ -1033,7 +1033,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
                             &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
                         </div>
                     </div>
@@ -1054,7 +1054,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($afiliado, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $afiliado->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="periods"/>
                 <div class="row">
                     <h5 class="modal-title">Años de Aportes</h5>
@@ -1068,7 +1068,7 @@
                                                 Desde
                                             </div>
                                             <div class="col-md-8">
-                                                {!! $afiliado->getFull_fech_ini_apor() !!}
+                                                {!! $affiliate->getFull_fech_ini_apor() !!}
                                             </div>
                                         </div>
                                     </td>
@@ -1084,7 +1084,7 @@
                                                 Hasta
                                             </div>
                                             <div class="col-md-8">
-                                                {!! $afiliado->getFull_fech_fin_apor() !!}
+                                                {!! $affiliate->getFull_fech_fin_apor() !!}
                                             </div>
                                         </div>
                                     </td>
@@ -1103,13 +1103,13 @@
                                 <div class="col-md-6">
                                     {!! Form::label('fech_ini_serv', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_ini_serv" value="{!! $afiliado->getData_fech_ini_serv() !!}"/>
+                                        <input type="text" class="form-control" name="fech_ini_serv" value="{!! $affiliate->getData_fech_ini_serv() !!}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     {!! Form::label('fech_fin_serv', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_fin_serv" value="{!! $afiliado->getData_fech_fin_serv() !!}"/>
+                                        <input type="text" class="form-control" name="fech_fin_serv" value="{!! $affiliate->getData_fech_fin_serv() !!}"/>
                                     </div>
                                 </div>
                             </div>
@@ -1135,13 +1135,13 @@
                                 <div class="col-md-6">
                                     {!! Form::label('fech_ini_anti', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_ini_anti" value="{!! $afiliado->getData_fech_ini_anti() !!}"/>
+                                        <input type="text" class="form-control" name="fech_ini_anti" value="{!! $affiliate->getData_fech_ini_anti() !!}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     {!! Form::label('fech_fin_anti', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_fin_anti" value="{!! $afiliado->getData_fech_fin_anti() !!}"/>
+                                        <input type="text" class="form-control" name="fech_fin_anti" value="{!! $affiliate->getData_fech_fin_anti() !!}"/>
                                     </div>
                                 </div>
                             </div>
@@ -1156,13 +1156,13 @@
                                 <div class="col-md-6">
                                     {!! Form::label('fech_ini_reco', 'DESDE', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_ini_reco" value="{!! $afiliado->getData_fech_ini_reco() !!}"/>
+                                        <input type="text" class="form-control" name="fech_ini_reco" value="{!! $affiliate->getData_fech_ini_reco() !!}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     {!! Form::label('fech_fin_reco', 'HASTA', ['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="fech_fin_reco" value="{!! $afiliado->getData_fech_fin_reco() !!}"/>
+                                        <input type="text" class="form-control" name="fech_fin_reco" value="{!! $affiliate->getData_fech_fin_reco() !!}"/>
                                     </div>
                                 </div>
                             </div>
@@ -1172,7 +1172,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
                             &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
                         </div>
                     </div>
@@ -1194,7 +1194,7 @@
                 <h4 class="modal-title">Ventanilla Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro_ventanilla/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('tramite_fondo_retiro_ventanilla/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
@@ -1208,7 +1208,7 @@
                 <h4 class="modal-title">Certificación Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro_certificacion/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('tramite_fondo_retiro_certificacion/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
@@ -1222,7 +1222,7 @@
                 <h4 class="modal-title">Calificación de Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro_calificacion/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('tramite_fondo_retiro_calificacion/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
@@ -1236,7 +1236,7 @@
                 <h4 class="modal-title">Dictamen Legal</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro_dictamenlegal/' . $afiliado->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('tramite_fondo_retiro_dictamenlegal/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
@@ -1245,7 +1245,7 @@
 <div id="myModal-delete" class="modal fade">
     <div class="modal-dialog">
         <div class="alert alert-dismissible alert-danger">
-           {!! Form::model($afiliado, ['method' => 'DELETE', 'route' => ['tramite_fondo_retiro.destroy', $afiliado->id], 'class' => 'form-horizontal']) !!}
+           {!! Form::model($affiliate, ['method' => 'DELETE', 'route' => ['tramite_fondo_retiro.destroy', $affiliate->id], 'class' => 'form-horizontal']) !!}
 
                 <div class="modal-body text-center">
                     <p><br>
