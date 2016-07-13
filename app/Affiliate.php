@@ -123,39 +123,31 @@ class Affiliate extends Model
         return $query->where('identity_card', $ci);
     }
 
-
-
-
-
-
-
-
-
-    public function scopeAfiEstado($query, $estado, $anio)
+    public function scopeAfibyState($query, $state, $year)
     {
        return $query = DB::table('affiliates')
-                    ->select(DB::raw('COUNT(*) total1'))
-                    ->where('affiliates.affiliate_state_id', '=', $estado)
-                    ->whereYear('affiliates.updated_at', '=', $anio);      
+                    ->select(DB::raw('COUNT(*) total'))
+                    ->where('affiliates.affiliate_state_id', '=', $state)
+                    ->whereYear('affiliates.updated_at', '=', $year);      
     }
 
-    public function scopeAfiType($query, $type, $anio)
+    public function scopeAfibyType($query, $type, $year)
     {
        return $query = DB::table('affiliates')
-                    ->select(DB::raw('COUNT(*) tipo'))
+                    ->select(DB::raw('COUNT(*) type'))
                     ->where('affiliates.affiliate_type_id', '=', $type)
-                    ->whereYear('affiliates.updated_at', '=', $anio);        
+                    ->whereYear('affiliates.updated_at', '=', $year);        
     }
 
-    public function scopeAfiDistrito($query, $dist, $anio)
+    public function scopeAfiDistrict($query, $district, $year)
     {
        return $query = DB::table('affiliates')
-                    ->select(DB::raw('COUNT(*) distrito'))
+                    ->select(DB::raw('COUNT(*) district'))
                     ->leftJoin('units', 'affiliates.unit_id', '=', 'units.id')
                     ->leftJoin('affiliate_states', 'affiliates.affiliate_state_id', '=', 'affiliate_states.id')
                     ->leftJoin('state_types', 'affiliate_states.state_type_id', '=', 'state_types.id')
-                    ->where('units.district', '=', $dist)
-                    ->whereYear('affiliates.updated_at', '=', $anio);        
+                    ->where('units.district', '=', $district)
+                    ->whereYear('affiliates.updated_at', '=', $year);        
     }    
 
     public function getFullDateNac()

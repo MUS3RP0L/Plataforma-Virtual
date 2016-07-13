@@ -87,20 +87,20 @@ class Contribution extends Model
         return $query->where('affiliate_id', $id);
     }
 
-    public function scopeAfiAporte($query, $anio)
+    public function scopeAfiContribution($query, $year)
     {
         return $query = DB::table('contributions')
                     ->select(DB::raw('SUM(contributions.total) total, year(contributions.month_year) as month_year'))
-                    ->whereYear('contributions.month_year', '=', $anio);
+                    ->whereYear('contributions.month_year', '=', $year);
     }
 
-    public function scopeAporteVoluntario($query, $mes, $anio)
+    public function scopeVoluntaryContribution($query, $month, $year)
     {
        return $query = DB::table('contributions')
-                    ->select(DB::raw('COUNT(*) total, month(contributions.month_year) as mes'))
+                    ->select(DB::raw('COUNT(*) total, month(contributions.month_year) as month'))
                     ->where('contributions.contribution_type_id', '=', 2)
-                    ->whereMonth('contributions.month_year', '=', $mes)
-                    ->whereYear('contributions.month_year', '=', $anio);        
+                    ->whereMonth('contributions.month_year', '=', $month)
+                    ->whereYear('contributions.month_year', '=', $year);        
     }  
 }
 

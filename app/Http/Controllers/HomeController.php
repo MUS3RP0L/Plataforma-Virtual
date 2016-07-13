@@ -66,104 +66,100 @@ class HomeController extends Controller
         $totalAfiComi = $item->totalAfiC;
       }
 
-      // gráficos por estados
-      $estados = AffiliateState::all();
-      $tipos = AffiliateType::all();
-      $distritos = DB::table('units')->select(DB::raw('DISTINCT (units.district) as dist'))->get(); 
-      $anio = Carbon::now()->year;
+      $affiliateState = AffiliateState::all();
+      $affiliateType = AffiliateType::all();
+      $district = DB::table('units')->select(DB::raw('DISTINCT (units.district) as district'))->get(); 
+      $year = Carbon::now()->year;
      
-      foreach ($estados as $item) {
-        $afiestado = Affiliate::afiEstado($item->id,$anio)->first();
-        $list_estados[$item->id] = $afiestado->total1;
+      foreach ($affiliateState as $item) {
+        $TotalAffiliates = Affiliate::afibyState($item->id,$year)->first();
+        $Total_AffiliatebyState[$item->id] = $TotalAffiliates->total;
       }
 
-      foreach ($tipos as $item) {
-        $Afitype = Affiliate::afiType($item->id,$anio)->first();
-        $list_types[$item->id] = $Afitype->tipo;
+      foreach ($affiliateType as $item) {
+        $Afitype = Affiliate::afibyType($item->id,$year)->first();
+        $Total_AffiliatebyType[$item->id] = $Afitype->type;
 
       }  
-
-      $ultimoAporte = DB::table('contributions')->orderBy('month_year', 'desc')->first();
-      if($ultimoAporte)
+      //Total Contributions of last five year, disaggregated by year.
+      $lastContribution = DB::table('contributions')->orderBy('month_year', 'desc')->first();
+      if($lastContribution)
       {
-        $Ayear = Carbon::parse($ultimoAporte->month_year)->subYears(5);
-        $Ayear1 = Carbon::parse($Ayear)->year;
-        $gestAportes = DB::table('contributions')->select(DB::raw('DISTINCT(year(contributions.month_year)) as anio'))
-                                    ->whereYear('contributions.month_year', '>', $Ayear1)->orderBy('contributions.month_year', 'asc')->get();
+        $date_contribution = Carbon::parse($lastContribution->month_year)->subYears(5);
+        $yearc = Carbon::parse($date_contribution)->year;
+        $listYear = DB::table('contributions')->select(DB::raw('DISTINCT(year(contributions.month_year)) as year'))
+                                    ->whereYear('contributions.month_year', '>', $yearc)->orderBy('contributions.month_year', 'asc')->get();
 
-        foreach ($gestAportes as $item) {
-          $monto = Contribution::afiAporte($item->anio)->first();
-          $list_aportes[] = $monto->total;
-          $list_gestion[] = $monto->month_year;
+        foreach ($listYear as $item) {
+          $totalContribution = Contribution::afiContribution($item->year)->first();
+          $list_totalcontribution[] = $totalContribution->total;
+          $list_year[] = $totalContribution->month_year;
         
         }
-        $AporteGestion = array($list_gestion, $list_aportes ); 
+        $totalContributionByYear = array($list_year, $list_totalcontribution ); 
       }
       else
       {
-        $list_aportes[] = 0;
-        $list_gestion[] =0;
-        $AporteGestion = array($list_gestion, $list_aportes );
+        $list_totalcontribution[] = 0;
+        $list_year[] =0;
+        $totalContributionByYear = array($list_gestion, $list_aportes );
       }
        
-     
-      foreach ($distritos as $item) {
+      // Total Affiliates disaggregated by district.
+      foreach ($district as $item) {
 
-        $Afidistrito = Affiliate::afiDistrito($item->dist, $anio)->first();
-        $list_distrito[$item->dist] = $Afidistrito->distrito;
+        $afiDistrict = Affiliate::afiDistrict($item->district, $year)->first();
+        $list_affiliateByDisctrict[$item->district] = $afiDistrict->district;
         
       } 
 
-      //Nro. Tramites del ultimo año por mes
-      $fechactual = Carbon::now();
-      $Fyear1 = Carbon::parse($fechactual)->year;
+      //Total Retirement Fund of current year, disaggregated by month.
+      $current_date = Carbon::now();
+      $current_year = Carbon::parse($current_date)->year;
 
-      $fondotramite = DB::table('retirement_funds')
-                            ->select(DB::raw('DISTINCT(month(retirement_funds.reception_date)) as mes'))
-                            ->whereYear('retirement_funds.reception_date', '=', $Fyear1)
+      $monthRetirementFund = DB::table('retirement_funds')
+                            ->select(DB::raw('DISTINCT(month(retirement_funds.reception_date)) as month'))
+                            ->whereYear('retirement_funds.reception_date', '=', $current_year)
                             ->orderBy('retirement_funds.reception_date', 'asc')
                             ->get();
-      if($fondotramite)
+      if($monthRetirementFund)
       {
-        foreach ($fondotramite as $item) {
-          $totalTramites = RetirementFund::nroTramites($item->mes,$Fyear1)->first();
-          $list_ftgestion[] = Util::getMes($totalTramites->mes);
-          $list_ftramites[] = $totalTramites->total; 
+        foreach ($monthRetirementFund as $item) {
+          $totalRetirementFundByMonth = RetirementFund::totalRetirementFund($item->month,$current_year)->first();
+          $list_month[] = Util::getMes($totalRetirementFundByMonth->month);
+          $list_totalRetirementFundByMonth[] = $totalRetirementFundByMonth->total; 
         }
-        $tramitesgestion = array($list_ftgestion, $list_ftramites); 
+        $total_retirementFundByMonth = array($list_month, $list_totalRetirementFundByMonth); 
       }
       else
       {
-        $list_ftgestion[] = 0;
-        $list_ftramites[] = 0;
-        $tramitesgestion = array($list_ftgestion, $list_ftramites); 
+        $list_month[] = 0;
+        $list_totalRetirementFundByMonth[] = 0;
+        $total_retirementFundByMonth = array($list_month, $list_totalRetirementFundByMonth); 
       }
       
-      //aporte voluntario gestion actual
-      $fechactual = Carbon::now();
-      $Fyear1 = Carbon::parse($fechactual)->year;
-
-      $aportemeses = DB::table('contributions')
-                            ->select(DB::raw('DISTINCT(month(contributions.month_year)) as mes1'))
+      //voluntary contribution by current year
+      $monthVoluntaryContribution = DB::table('contributions')
+                            ->select(DB::raw('DISTINCT(month(contributions.month_year)) as month'))
                             ->where('contributions.contribution_type_id', '=', 2)
-                            ->whereYear('contributions.month_year', '=', $Fyear1)
+                            ->whereYear('contributions.month_year', '=', $current_year)
                             ->orderBy('contributions.month_year', 'asc')
                             ->get();
 
-       if($aportemeses)
+       if($monthVoluntaryContribution)
       {
-        foreach ($aportemeses as $item) {
-            $totalav = Contribution::aporteVoluntario($item->mes1, $Fyear1)->first();
-            $list_avmeses[] = Util::getMes($totalav->mes);
-            $list_totalav[] = $totalav->total;         
+        foreach ($monthVoluntaryContribution as $item) {
+            $totalVoluntaryContributionByMonth = Contribution::voluntaryContribution($item->month, $current_year)->first();
+            $list_monthVoluntaryContribution[] = Util::getMes($totalVoluntaryContributionByMonth->month);
+            $list_amountVoluntaryContribution[] = $totalVoluntaryContributionByMonth->total;         
         }
-        $aportevoluntario = array($list_avmeses, $list_totalav); 
+        $total_voluntayContributionByMonth = array($list_monthVoluntaryContribution, $list_amountVoluntaryContribution); 
       }
       else
       {
-        $list_avmeses[] = 0;
-        $list_totalav[] = 0;
-        $aportevoluntario = array($list_avmeses, $list_totalav); 
+        $list_monthVoluntaryContribution[] = 0;
+        $list_amountVoluntaryContribution[] = 0;
+        $total_voluntayContributionByMonth = array($list_monthVoluntaryContribution, $list_amountVoluntaryContribution); 
       }
       
 
@@ -175,16 +171,16 @@ class HomeController extends Controller
       'totalAfiServ' => $totalAfiServ,
       'totalAfiComi' => $totalAfiComi,
       'totalAfi' => $totalAfi,
-      'list_estados' => $list_estados,
-      'list_types' => $list_types,
-      'list_distrito' => $list_distrito,
-      'AporteGestion' => $AporteGestion,
-      'tramitesgestion' => $tramitesgestion,
-      'aportevoluntario' => $aportevoluntario,
-      'Fyear1' => $Fyear1
+      'Total_AffiliatebyState' => $Total_AffiliatebyState,
+      'Total_AffiliatebyType' => $Total_AffiliatebyType,
+      'totalContributionByYear' => $totalContributionByYear,
+      'list_affiliateByDisctrict' => $list_affiliateByDisctrict,
+      'total_retirementFundByMonth' => $total_retirementFundByMonth,
+      'total_voluntayContributionByMonth' => $total_voluntayContributionByMonth,
+      'current_year' => $current_year
     ];
 
      return view('home', $data);    
-     // return response()->json($aportevoluntario);
+      //return response()->json($totalAfiServ);
 	}
 }
