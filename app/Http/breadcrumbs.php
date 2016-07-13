@@ -35,6 +35,10 @@ Breadcrumbs::register('monthly_reports', function($breadcrumbs) {
     $breadcrumbs->push('Reporte Mensual de Totales', URL::to('monthly_report'));
 });
 
+// Afiliados
+Breadcrumbs::register('afiliado', function($breadcrumbs) {
+    $breadcrumbs->push('Afiliados', URL::to('afiliado'));
+});
 
 
 
@@ -48,10 +52,7 @@ Breadcrumbs::register('home', function($breadcrumbs) {
 });
 
 
-// Afiliado Search
-Breadcrumbs::register('afiliado', function($breadcrumbs) {
-    $breadcrumbs->push('Afiliados', URL::to('afiliado'));
-});
+
 // Show Afiliado
 Breadcrumbs::register('show_afiliado', function($breadcrumbs, $afiliado) {
     $breadcrumbs->parent('afiliado');

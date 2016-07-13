@@ -43,7 +43,13 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('monthly_report', 'Report\ReportController@GenerateMonthlyReport');
 
 	// Record Affiliate
-	Route::get('get_record/{affiliate_id}', array('as'=>'get_record', 'uses'=>'Record\RecordController@Data'));
+	Route::get('get_record/{affiliate_id}', array('as'=>'get_record', 'uses'=>'Affiliate\RecordController@Data'));
+
+	// Affiliate
+	Route::resource('affiliate', 'Affiliate\AffiliateController');
+	Route::get('search_affiliate', array('as'=>'search_affiliate', 'uses'=>'Affiliate\AffiliateController@SearchAffiliate'));
+	Route::get('get_affiliate', array('as'=>'getAfiliado', 'uses'=>'Affiliate\AffiliateController@afiliadosData'));
+
 
 
 
@@ -58,10 +64,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
 	Route::get('home', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
 
-	// Afiliados
-	Route::resource('afiliado', 'AfiliadoController');
-	Route::get('ir_afiliado', 'AfiliadoController@go_search');
-	Route::get('getAfiliado', array('as'=>'getAfiliado', 'uses'=>'AfiliadoController@afiliadosData'));
 
 	// Conyuges
 	Route::resource('conyuge', 'ConyugeController');
@@ -71,6 +73,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// view Registros Aportes
 	Route::resource('aporte', 'AporteController');
+
 	Route::get('viewaporte/{afid}', 'AporteController@ViewAporte');
 	// Select year Aporte
 	Route::get('selectgestaporte/{afid}', 'AporteController@SelectGestAporte');

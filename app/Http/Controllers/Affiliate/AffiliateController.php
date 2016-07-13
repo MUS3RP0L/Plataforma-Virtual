@@ -1,9 +1,8 @@
 <?php
 
-namespace Muserpol\Http\Controllers;
+namespace Muserpol\Http\Controllers\Affiliate;
 
 use Illuminate\Http\Request;
-
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 
@@ -15,22 +14,22 @@ use Datatables;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
-use Muserpol\Afiliado;
-use Muserpol\Aporte;
-use Muserpol\Departamento;
-use Muserpol\Solicitante;
-use Muserpol\Conyuge;
+use Muserpol\Affiliate;
+use Muserpol\Contribution;
+use Muserpol\City;
+use Muserpol\Spouse;
 
-class AfiliadoController extends Controller
+class AffiliateController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        return view('afiliados.index');
+        return view('affiliates.index');
     }
 
     public function afiliadosData(Request $request)
@@ -336,7 +335,7 @@ class AfiliadoController extends Controller
         return redirect('afiliado/'.$id);
     }
 
-    public function go_search(Request $request)
+    public function SearchAffiliate(Request $request)
     {
         $rules = [
             'search' => 'required',
