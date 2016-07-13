@@ -30,6 +30,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('contribution_rate', 'Muserpol\ContributionRate');
         $router->model('ipc_rate', 'Muserpol\IpcRate');
         $router->model('base_wage', 'Muserpol\BaseWage');
+        $router->model('affiliate', 'Muserpol\Affiliate');
     }
 
     /**
