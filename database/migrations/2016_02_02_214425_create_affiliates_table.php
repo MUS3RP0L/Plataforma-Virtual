@@ -146,7 +146,7 @@ class CreateAffiliatesTable extends Migration
 
         });
 
-        Schema::create('record', function(Blueprint $table) {
+        Schema::create('records', function(Blueprint $table) {
 
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
@@ -159,7 +159,9 @@ class CreateAffiliatesTable extends Migration
             $table->string('message');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users'); 
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('affiliate_id')->references('id')->on('affiliates');
+
 
         });
 

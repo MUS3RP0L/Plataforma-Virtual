@@ -377,15 +377,15 @@ class Affiliate extends Model
 
 }
 
-// Afiliado::created(function($afiliado)
-// {
-//     Note::createAfiliado($afiliado);
-// });
+Affiliate::created(function($affiliate)
+{
+    Record::CreatedAffiliate($affiliate);
+});
 
-// Afiliado::updating (function($afiliado)
-// {
-// 	Activity::updateAfiliado($afiliado);
-// 	Note::updateAfiliado($afiliado);
-// });
+Affiliate::updating(function($affiliate)
+{
+	// Activity::updateAfiliado($affiliate);
+	Record::UpdatingAffiliate($affiliate);
+});
 
 

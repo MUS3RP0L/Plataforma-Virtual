@@ -7,97 +7,97 @@ use Illuminate\Database\Eloquent\Model;
 use Muserpol\Helper\Util;
 use Auth;
 
-define("NOTE_TYPE_UPDATE_STATE", 1);
-define("NOTE_TYPE_UPDATE_GRAD", 2);
-define("NOTE_TYPE_UPDATE_UNI", 3);
+define("NOTE_TYPE_UPDATE_AFFILIATE_STATE", 1);
+define("NOTE_TYPE_UPDATE_AFFILIATE_DEGREE", 2);
+define("NOTE_TYPE_UPDATE_AFFILIATE_UNIT", 3);
 
 class Record extends Model
 {
-	public static function updateAfiliado($afiliado)
+	public static function UpdatingAffiliate($affiliate)
 	{					
 		
-		$afiliadoL = Afiliado::where('id', '=', $afiliado->id)->firstOrFail();
+		$last_affiliate = Affiliate::where('id', '=', $affiliate->id)->firstOrFail();
 		
-		if ($afiliadoL->afi_state_id <> $afiliado->afi_state_id) {
+		if ($last_affiliate->affiliate_state_id <> $affiliate->affiliate_state_id) {
 
-			$note = new Record;
+			$record = new Record;
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
-			$note->user_id = $user_id;
-			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->fech_est;
-			$note->afi_state_id = $afiliado->afi_state_id;
-			$note->type = NOTE_TYPE_UPDATE_STATE;
-			$afi_state = AfiState::where('id', $afiliado->afi_state_id)->first();
-			$note->message = "Afiliado cambio de estado a " . $afi_state->name;
-			$note->save();
+			$record->user_id = $user_id;
+			$record->affiliate_id = $affiliate->id;
+			$record->date = $affiliate->change_date;
+			$record->affiliate_state_id = $affiliate->affiliate_state_id;
+			$record->type = NOTE_TYPE_UPDATE_AFFILIATE_STATE;
+			$affiliate_state = AffiliateState::where('id', $affiliate->affiliate_state_id)->first();
+			$record->message = "Afiliado cambio de estado a " . $affiliate_state->name;
+			$record->save();
 		}
 		
-		if ($afiliadoL->grado_id <> $afiliado->grado_id) {
-			$note = new Record;
+		if ($last_affiliate->degree_id <> $affiliate->degree_id) {
+			$record = new Record;
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
-			$note->user_id = $user_id;
-			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->fech_est;
-			$note->grado_id = $afiliado->grado_id;
-			$note->type = NOTE_TYPE_UPDATE_GRAD;
-        	$grado = Grado::where('id', $afiliado->grado_id)->first();
-			$note->message = "Afiliado cambio de grado a " . $grado->abre;
-			$note->save();
+			$record->user_id = $user_id;
+			$record->affiliate_id = $affiliate->id;
+			$record->date = $affiliate->change_date;
+			$record->degree_id = $affiliate->degree_id;
+			$record->type = NOTE_TYPE_UPDATE_AFFILIATE_DEGREE;
+        	$degree = Degree::where('id', $affiliate->degree_id)->first();
+			$record->message = "Afiliado cambio de grado a " . $degree->shortened;
+			$record->save();
 		}
 
-		if ($afiliadoL->unidad_id <> $afiliado->unidad_id) {
-			$note = new Record;
+		if ($last_affiliate->unit_id <> $affiliate->unit_id) {
+			$record = new Record;
 			if (Auth::user()) {$user_id = Auth::user()->id;}else{$user_id = 1;}
-			$note->user_id = $user_id;
-			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->fech_est;
-			$note->unidad_id = $afiliado->unidad_id;
-			$note->type = NOTE_TYPE_UPDATE_UNI;
-        	$unidad = Unidad::where('id', $afiliado->unidad_id)->first();
-			$note->message = "Afiliado cambio de unidad a " . $unidad->abre;
-			$note->save();
+			$record->user_id = $user_id;
+			$record->affiliate_id = $affiliate->id;
+			$record->date = $affiliate->change_date;
+			$record->unit_id = $affiliate->unit_id;
+			$record->type = NOTE_TYPE_UPDATE_AFFILIATE_UNIT;
+        	$unit = Unit::where('id', $affiliate->unit_id)->first();
+			$record->message = "Afiliado cambio de unidad a " . $unit->shortened;
+			$record->save();
 		}	
 	}
 
-	public static function createAfiliado($afiliado)
+	public static function CreatedAffiliate($affiliate)
 	{					
-		if ($afiliado->afi_state_id) {
+		if ($affiliate->affiliate_state_id) {
 
-			$note = new Record;
-			if (Auth::user()) {$note->$user_id = Auth::user()->id;}else{$note->user_id = 1;}
-			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->fech_est;
-			$note->afi_state_id = $afiliado->afi_state_id;
-			$note->type = NOTE_TYPE_UPDATE_STATE;
-			$afi_state = AfiState::where('id', $afiliado->afi_state_id)->first();
-			$note->message = "Afiliado ingresó de " . $afi_state->name;
-			$note->save();
+			$record = new Record;
+			if (Auth::user()) {$record->$user_id = Auth::user()->id;}else{$record->user_id = 1;}
+			$record->affiliate_id = $affiliate->id;
+			$record->date = $affiliate->change_date;
+			$record->affiliate_state_id = $affiliate->affiliate_state_id;
+			$record->type = NOTE_TYPE_UPDATE_AFFILIATE_STATE;
+			$affiliate_state = AffiliateState::where('id', $affiliate->affiliate_state_id)->first();
+			$record->message = "Afiliado ingresó de " . $affiliate_state->name;
+			$record->save();
 		}
 
-		if ($afiliado->grado_id) {
+		if ($affiliate->degree_id) {
 			
-			$note = new Record;
-			if (Auth::user()) {$note->$user_id = Auth::user()->id;}else{$note->user_id = 1;}
-			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->fech_est;
-			$note->grado_id = $afiliado->grado_id;
-			$note->type = NOTE_TYPE_UPDATE_GRAD;
-        	$grado = Grado::where('id', $afiliado->grado_id)->first();
-			$note->message = "Afiliado creado con grado de " . $grado->abre;
-			$note->save();
+			$record = new Record;
+			if (Auth::user()) {$record->$user_id = Auth::user()->id;}else{$record->user_id = 1;}
+			$record->affiliate_id = $affiliate->id;
+			$record->date = $affiliate->change_date;
+			$record->degree_id = $affiliate->degree_id;
+			$record->type = NOTE_TYPE_UPDATE_AFFILIATE_DEGREE;
+        	$degree = Degree::where('id', $affiliate->degree_id)->first();
+			$record->message = "Afiliado creado con grado de " . $degree->shortened;
+			$record->save();
 		}
 		
-		if ($afiliado->unidad_id) {
+		if ($affiliate->unit_id) {
 			
-			$note = new Record;
-			if (Auth::user()) {$note->$user_id = Auth::user()->id;}else{$note->user_id = 1;}
-			$note->afiliado_id = $afiliado->id;
-			$note->fech = $afiliado->fech_est;
-			$note->unidad_id = $afiliado->unidad_id;
-			$note->type = NOTE_TYPE_UPDATE_UNI;
-        	$unidad = Unidad::where('id', $afiliado->unidad_id)->first();
-			$note->message = "Afiliado ingresó a la unidad de " . $unidad->abre;
-			$note->save();
+			$record = new Record;
+			if (Auth::user()) {$record->$user_id = Auth::user()->id;}else{$record->user_id = 1;}
+			$record->affiliate_id = $affiliate->id;
+			$record->date = $affiliate->change_date;
+			$record->unit_id = $affiliate->unit_id;
+			$record->type = NOTE_TYPE_UPDATE_AFFILIATE_UNIT;
+        	$unit = Unit::where('id', $affiliate->unit_id)->first();
+			$record->message = "Afiliado ingresó a la unidad de " . $unit->shortened;
+			$record->save();
 
 		}
 
@@ -105,8 +105,8 @@ class Record extends Model
 
 	public function getFullDate()
     {	
-		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		return date("d", strtotime($this->fech))." de ".$meses[date("n", strtotime($this->fech))-1]. " de ".date("Y", strtotime($this->fech));
+		$months = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		return date("d", strtotime($this->date))." de ".$months[date("n", strtotime($this->date))-1]. " de ".date("Y", strtotime($this->date));
  
     }
 }

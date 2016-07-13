@@ -42,6 +42,13 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('monthly_report', 'Report\ReportController@ShowMonthlyReport');
 	Route::post('monthly_report', 'Report\ReportController@GenerateMonthlyReport');
 
+	// Record Affiliate
+	Route::get('get_record/{affiliate_id}', array('as'=>'get_record', 'uses'=>'Record\RecordController@Data'));
+
+
+
+
+
 
 
 
@@ -79,10 +86,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('print_aportepago/{id}', 'AportePagoController@PrintAportePago');
 	Route::get('getAportePago', array('as'=>'getAportePago', 'uses'=>'AportePagoController@AportePagoData'));
 
-
-
-	// Notas
-	Route::get('getNote/{afid}', array('as'=>'getNote', 'uses'=>'NoteController@notesData'));
 
 	// Tramite Fondo de Retiro
 	Route::resource('tramite_fondo_retiro', 'FondoTramiteController');
