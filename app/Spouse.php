@@ -32,7 +32,7 @@ class Spouse extends Model
         return $this->belongsTo('Muserpol\Affiliate');
     }
 
-    public function scopeAfiIs($query, $id)
+    public function scopeAffiliateidIs($query, $id)
     {
         return $query->where('affiliate_id', $id);
     }
