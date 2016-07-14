@@ -82,7 +82,7 @@ class Contribution extends Model
         return $query->where('id', $id);
     }
 
-    public function scopeAffiliateidIs($query, $id)
+    public function scopeAfiIs($query, $id)
     {
         return $query->where('affiliate_id', $id);
     }

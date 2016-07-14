@@ -33,7 +33,7 @@ class Document extends Model
 
     public function scopeFonTraIs($query, $id)
     {
-        return $query->where('fondo_tramite_id', $id);
+        return $query->where('retirement_fund_id', $id);
     }
 
     public function getData_fech_requi()

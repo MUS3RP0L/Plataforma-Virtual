@@ -100,55 +100,55 @@ class FondoTramiteController extends Controller
         if (!$applicant) {$applicant = new Applicant;}
         
          $requirement = Requirement::modalidadIs($retirementfund->retirement_fund_modality_id)->get();
-        // $document = Document::fonTraIs($retirementfund->id)->get();
-        // $antecedent = Antecedent::fonTraIs($retirementfund->id)->get();
+         $document = Document::fonTraIs($retirementfund->id)->get();
+         $antecedent = Antecedent::fonTraIs($retirementfund->id)->get();
 
-        // if ($retirementfund->retirement_fund_modality_id) {
-        //     $info_gen = TRUE;
-        // }else{
-        //     $info_gen = FALSE;
-        // }
-        // if ($applicant->identity_card) {
-        //     $info_soli = TRUE;
-        // }else{
-        //     $info_soli = FALSE;
-        // }
-        // if (Document::fonTraIs($retirementfund->id)->first()) {
-        //     $info_docu = TRUE;
-        // }else{
-        //     $info_docu = FALSE;
-        // }
+        if ($retirementfund->retirement_fund_modality_id) {
+            $info_gen = TRUE;
+        }else{
+            $info_gen = FALSE;
+        }
+        if ($applicant->identity_card) {
+            $info_soli = TRUE;
+        }else{
+            $info_soli = FALSE;
+        }
+        if (Document::fonTraIs($retirementfund->id)->first()) {
+            $info_docu = TRUE;
+        }else{
+            $info_docu = FALSE;
+        }
 
-        // if (Antecedent::fonTraIs($retirementfund->id)->first()) {
-        //     $info_antec = TRUE;
-        // }else{
-        //     $info_antec = FALSE;
-        // }
+        if (Antecedent::fonTraIs($retirementfund->id)->first()) {
+            $info_antec = TRUE;
+        }else{
+            $info_antec = FALSE;
+        }
 
-        // if ($retirementfund->comment) {
-        //     $info_obs = TRUE;
-        // }else{
-        //     $info_obs = FALSE;
-        // }
+        if ($retirementfund->comment) {
+            $info_obs = TRUE;
+        }else{
+            $info_obs = FALSE;
+        }
 
-        // $lastContribution = Contribution::afiIs($affiliate->id)->orderBy('month_year', 'desc')->first();
-        // $affiliate->service_start_date = $afiliado->date_entry;
-        // $afiliado->service_end_date = $lastContribution->month_year;
+        $lastContribution = Contribution::afiIs($affiliate->id)->orderBy('month_year', 'desc')->first();
+        $affiliate->service_start_date = $affiliate->date_entry;
+        $affiliate->service_end_date = $lastContribution->month_year;
 
         $data = array(
             'affiliate' => $affiliate,
             'spouse' => $spouse,
             'retirementfund' => $retirementfund,
             'applicant' => $applicant,
-            // 'document' => $document,
-            // 'requirement' => $requirement,
-            // 'antecedent' => $antecedent,
-            // 'antecedent2' => $antecedent,
-            // 'info_gen' => $info_gen,
-            // 'info_soli' => $info_soli,
-            // 'info_docu' => $info_docu,
-            // 'info_obs' => $info_obs,
-            // 'info_antec' => $info_antec
+            'requirement' => $requirement,
+            'document' => $document,
+            'antecedent' => $antecedent,
+            'antecedent2' => $antecedent,
+            'info_gen' => $info_gen,
+            'info_soli' => $info_soli,
+            'info_docu' => $info_docu,
+            'info_obs' => $info_obs,
+            'info_antec' => $info_antec
         );
 
         $data = array_merge($data, self::getViewModel());
