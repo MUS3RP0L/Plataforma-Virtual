@@ -84,15 +84,15 @@ class Applicant extends Model
     }
 }
 
-Applicant::created(function($applicant)
-{   
-    Activity::createdApplicant($applicant);
+// Applicant::created(function($applicant)
+// {   
+//     Activity::createdApplicant($applicant);
     
-});
+// });
 
-Applicant::updating(function($applicant)
-{   
-    Activity::updateApplicant($applicant);
+// Applicant::updating(function($applicant)
+// {   
+//     Activity::updateApplicant($applicant);
     
-});
+// });
 

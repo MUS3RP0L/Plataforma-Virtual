@@ -29,6 +29,6 @@ class Requirement extends Model
 
     public function scopeModalidadIs($query, $id)
     {
-        return $query->where('modalidad_id', $id);
+        return $query->where('retirement_fund_modality_id', $id);
     }
 }
