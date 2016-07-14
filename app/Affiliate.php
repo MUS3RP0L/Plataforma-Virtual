@@ -123,6 +123,116 @@ class Affiliate extends Model
         return $query->where('identity_card', $ci);
     }
 
+    public function getTittleName()
+    {
+        return Util::ucw($this->first_name) . ' ' . Util::ucw($this->second_name)  . ' ' . Util::ucw($this->last_name) . ' ' . Util::ucw($this->mothers_last_name) . ' ' . Util::ucw($this->surname_husband);
+    }
+
+    public function getFullDateDeath()
+    {   
+        return Util::getdateabre($this->date_death);
+    }
+
+    public function getFullBirthDate()
+    {   
+        return Util::getdateabre($this->birth_date);
+    }
+    
+    public function getHowOld()
+    {
+        if ($this->date_death) {
+            return Util::getHowOldF($this->birth_date, $this->date_death) . " AÑOS";
+        }
+        else{
+            return Carbon::parse($this->birth_date)->age . " AÑOS";
+        }   
+    }
+
+    public function getFullGender()
+    {
+        if ($this->gender == 'M') {
+            return "MASCULINO";
+        } 
+        else if ($this->gender == 'F'){
+            return "FEMENINO";
+        }
+    }
+
+    public function getFullCivilStatus()
+    {
+        if ($this->civil_status == 'S') {
+            
+            if ($this->sex == 'M') {
+                return "SOLTERO";
+            }
+            else{
+                return "SOLTERA";
+            }         
+        } 
+        else if ($this->civil_status == 'C'){
+            if ($this->sex == 'M') {
+                return "CASADO";
+            }
+            else{
+                return "CASADA";
+            }
+        }
+        else if ($this->civil_status == 'V'){
+            if ($this->sex == 'M') {
+                return "VIUDO";
+            }
+            else{
+                return "VIUDA";
+            }
+        }
+        else if ($this->civil_status == 'D'){
+            if ($this->sex == 'M') {
+                return "DIVORCIADO";
+            }
+            else{
+                return "DIVORCIADA";
+            }
+        }
+    }
+
+    public function getFullDateDecommissioned()
+    {   
+        return Util::getdateforEdit($this->date_decommissioned);
+    }
+
+    public function getFullDateEntry()
+    {   
+        return Util::getdateabre($this->date_entry);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function scopeAfibyState($query, $state, $year)
     {
        return $query = DB::table('affiliates')
@@ -150,20 +260,7 @@ class Affiliate extends Model
                     ->whereYear('affiliates.updated_at', '=', $year);        
     }    
 
-    public function getFullDateNac()
-    {	
-        return Util::getdateabre($this->fech_nac);
-    }
-
-    public function getFullDateIng()
-    {   
-        return Util::getdateabre($this->fech_ing);
-    }
-
-    public function getFull_fech_dece()
-    {   
-        return Util::getdateabre($this->fech_dece);
-    }
+    
 
     public function getFull_fech_ini_apor()
     {   
@@ -191,63 +288,6 @@ class Affiliate extends Model
         return Util::getYearsAndMonths($this->fech_ini_serv, $this->fech_fin_serv);
     }
 
-    public function getHowOld()
-    {
-    	if ($this->fech_dece) {
-    		return Util::getHowOldF($this->fech_nac, $this->fech_dece) . " AÑOS";
-    	}
-    	else{
-    		return Carbon::parse($this->fech_nac)->age . " AÑOS";
-    	}	
-    }
-	
-	public function getCivil()
-	{
-	    if ($this->est_civ == 'S') {
-	        
-	        if ($this->sex == 'M') {
-	        	return "SOLTERO";
-	    	}
-	    	else{
-	    		return "SOLTERA";
-	    	}	      
-	    } 
-	    else if ($this->est_civ == 'C'){
-	        if ($this->sex == 'M') {
-	        	return "CASADO";
-	    	}
-	    	else{
-	    		return "CASADA";
-	    	}
-	    }
-	    else if ($this->est_civ == 'V'){
-	        if ($this->sex == 'M') {
-	        	return "VIUDO";
-	    	}
-	    	else{
-	    		return "VIUDA";
-	    	}
-	    }
-	    else if ($this->est_civ == 'D'){
-	        if ($this->sex == 'M') {
-	        	return "DIVORCIADO";
-	    	}
-	    	else{
-	    		return "DIVORCIADA";
-	    	}
-	    }
-	}
-
-	public function getSex()
-	{
-	    if ($this->sex == 'M') {
-	        return "MASCULINO";
-	    } 
-	    else if ($this->sex == 'F'){
-	        return "FEMENINO";
-	    }
-	}
-
     public function getDataEdit_fech_ing()
     {   
         return Util::getdateforEdit($this->fech_ing);
@@ -262,10 +302,7 @@ class Affiliate extends Model
         return Util::getdateforEdit($this->fech_est);
     }
 
-    public function getData_fech_baja()
-    {   
-        return Util::getdateforEdit($this->fech_baja);
-    }
+
 
     public function getData_fech_dece()
     {   
@@ -317,11 +354,6 @@ class Affiliate extends Model
 	public function getFullName()
     {
         return $this->grado->lit . ' ' . $this->nom . ' ' . $this->nom2 . ' ' . $this->pat. ' ' . $this->mat;
-    }
-
-    public function getTittleName()
-    {
-        return Util::ucw($this->nom) . ' ' . Util::ucw($this->nom2)  . ' ' . Util::ucw($this->pat) . ' ' . Util::ucw($this->mat) . ' ' . Util::ucw($this->ap_esp);
     }
 
     public function getFullNametoPrint()
