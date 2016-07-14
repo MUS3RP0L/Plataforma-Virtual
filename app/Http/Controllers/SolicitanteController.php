@@ -15,10 +15,10 @@ use Datatables;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
-use Muserpol\Afiliado;
-use Muserpol\Solicitante;
-use Muserpol\SoliType;
-use Muserpol\FondoTramite;
+use Muserpol\Affiliate;
+use Muserpol\Aplicant;
+use Muserpol\ApplicantType;
+use Muserpol\RetirementFund;
 
 class SolicitanteController extends Controller
 {
@@ -120,7 +120,7 @@ class SolicitanteController extends Controller
         }
         else{
 
-            $fondoTramite = FondoTramite::afiIs($id)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
+            $fondoTramite = RetirementFund::afiIs($id)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             $solicitante = Solicitante::fonTraIs($fondoTramite->id)->orderBy('id', 'asc')->first();
 
             if (!$solicitante) {
