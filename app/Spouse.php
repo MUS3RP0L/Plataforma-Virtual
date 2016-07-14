@@ -110,23 +110,3 @@ Spouse::updating(function($spouse)
     Activity::updateSpouse($spouse);
 
 });
-n", strtotime($this->fech_dece))-1]. " ".date("Y", strtotime($this->fech_dece)); 
-        }
-    }
-
-    public function getFullName()
-    {
-        return $this->pat . ' ' . $this->mat. ' ' . $this->nom. ' ' .$this->nom2;
-    }
-}
-
-Spouse::created(function($spouse)
-{
-    Activity::createdSpouse($spouse);
-});
-
-Spouse::updating(function($spouse)
-{
-    Activity::updateSpouse($spouse);
-
-});
