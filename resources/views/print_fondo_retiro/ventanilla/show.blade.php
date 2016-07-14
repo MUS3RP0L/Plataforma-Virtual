@@ -22,39 +22,39 @@
             </tr>
             <tr>
               <th class="service">SOLICITANTE</th>
-              <td class="info">{!! $solicitante->getFullNametoPrint() !!}</td>
+              <td class="info">{!! $applicant->getFullNametoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">TITULAR</th>
-              <td class="info">{!! $afiliado->getFullNametoPrint() !!}</td>
+              <td class="info">{!! $affiliate->getFullNametoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">PARENTESCO DEL TITULAR</th>
-              <td class="info">{!! $solicitante->getParentesco() !!}</td>
+              <td class="info">{!! $applicant->getParentesco() !!}</td>
             </tr>
             <tr>
               <th class="service">CARNET DE IDENTIDAD</th>
-              <td class="info">{!! $solicitante->ci !!}</td>
+              <td class="info">{!! $applicant->identity_card !!}</td>
             </tr>
             <tr>
               <th class="service">FECHA DE NACIMIENTO</th>
-              <td class="info">{!! $solicitante->getFullDateNactoPrint() !!}</td>
+              <td class="info">{!! $applicant->getFullDateNactoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">DIRECCIÓN DE DOMICILIO</th>
-              <td class="info">{!! $solicitante->getFullDireccDomitoPrint() !!}</td>
+              <td class="info">{!! $applicant->getFullDireccDomitoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">TELEFONO DOMICILIO</th>
-              <td class="info">{!! $solicitante->tele_domi !!}</td>
+              <td class="info">{!! $applicant->home_phone_number !!}</td>
             </tr>
             <tr>
               <th class="service">TELEFONO CELULAR</th>
-              <td class="info">{!! $solicitante->celu_domi !!}</td>
+              <td class="info">{!! $applicant->home_cell_phone_number !!}</td>
             </tr>
             <tr>
               <th class="service">CIUDAD</th>
-              <td class="info">{!! $fondoTramite->departamento->name !!}</td>
+              <td class="info">{!! $retirementfund->city->name !!}</td>
             </tr>
           </table>
       </div>
@@ -76,11 +76,11 @@
                 <th class="grand">FECHA</th>
               </tr>
               <?php $i=1;?>
-               @foreach ($documentos as $item)
+               @foreach ($document as $item)
               <tr>
                 <td style="width:1%" class="info">{!! $i !!}</td>  
-                <td style="width:75%" class="info">{!! $item->requisito->name !!}</td>
-                @if ($item->est == 1)
+                <td style="width:75%" class="info">{!! $item->requirement->name !!}</td>
+                @if ($item->status == 1)
                   <td class="info"><center><img class="circle" src="{!! asset('assets/images/check.png') !!}" style="width:70%" alt="icon"></center></td>
                 @else
                   <td class="info"> </td>

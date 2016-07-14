@@ -31,7 +31,7 @@
       <table class="tablet">
         <tr>
           <td style="border: 0px;">
-            <div class="title"><b>N° de Tramite: {{ $fondoTramite->getNumberTram() }}</b></div>
+            <div class="title"><b>N° de Tramite: {{ $retirementfund->getNumberTram() }}</b></div>
           </td>
           <td style="border: 0px;text-align:right;">
             <div class="title"><b>Fecha de Emisión: La Paz, {!! $date !!}</b></div>
@@ -39,14 +39,14 @@
         </tr>
         <tr>
             <td  colspan="2" style="border: 0px;text-align:right;">
-             <div class="title">Usuario: {{ Auth::user()->ape }} {{ Auth::user()->nom }}</div>
+             <div class="title">Usuario: {{ Auth::user()->last_name }} {{ Auth::user()->first_name }}</div>
             </td>
         </tr>
       </table>
       <h1>
         <b>       
           FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
-          MODALIDAD: {!! $fondoTramite->modalidad->name !!}<br>
+          MODALIDAD: {!! $retirementfund->retirement_fund_modality->name !!}<br>
           @yield('title2')
         </b>
       </h1>

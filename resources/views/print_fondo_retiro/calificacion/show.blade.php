@@ -18,43 +18,43 @@
             </tr>
             <tr>
               <th class="service">NOMBRE DEL BENEFICIARIO</th>
-              <td class="info" style="width: 60%">{!! $afiliado->getFullNametoPrint() !!}</td>
+              <td class="info" style="width: 60%">{!! $affiliate->getFullNametoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">CARNET DE IDENTIDAD</th>
-              <td class="info">{!! $afiliado->ci !!}</td>
+              <td class="info">{!! $affiliate->identity_card !!}</td>
             </tr>
             <tr>
               <th class="service">FECHA DE NACIMIENTO</th>
-              <td class="info">{!! $afiliado->getFullDateNactoPrint() !!}</td>
+              <td class="info">{!! $affiliate->getFullDateNactoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">NÚMERO DE MATRÍCULA</th>
-              <td class="info">{!! $afiliado->matri !!}</td>
+              <td class="info">{!! $affiliate->registration !!}</td>
             </tr>
             <tr>
               <th class="service">NÚMERO ÚNICO DE AFILIADO-AFP</th>
-              <td class="info">{!! $afiliado->nua !!}</td>
+              <td class="info">{!! $affiliate->nua !!}</td>
             </tr>
             <tr>
               <th class="service">ESTADO CIVIL</th>
-              <td class="info">{!! $afiliado->getCivil() !!}</td>
+              <td class="info">{!! $affiliate->getCivil() !!}</td>
             </tr>
             <tr>
               <th class="service">EDAD</th>
-              <td class="info">{!! $afiliado->getHowOld() !!}</td>
+              <td class="info">{!! $affiliate->getHowOld() !!}</td>
             </tr>
             <tr>
               <th class="service">DIRECCIÓN DOMICILIO</th>
-              <td class="info">{!! $afiliado->getFullDirecctoPrint() !!}</td>
+              <td class="info">{!! $affiliate->getFullDirecctoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">FECHA DE FALLECIMIENTO</th>
-              <td class="info">{!! $afiliado->getFull_fech_decetoPrint() !!}</td>
+              <td class="info">{!! $affiliate->getFull_fech_decetoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">CAUSA DE FALLECIMIENTO</th>
-              <td class="info">{!! $afiliado->motivo_dece !!}</td>
+              <td class="info">{!! $affiliate->reason_decommissioned !!}</td>
             </tr>
           </table>
       </div>
@@ -65,23 +65,23 @@
             </tr>
             <tr>
               <th class="service">GRADO</th>
-              <td class="info" style="width: 60%">{!! $afiliado->grado->lit !!}</td>
+              <td class="info" style="width: 60%">{!! $affiliate->degree->name !!}</td>
             </tr>
             <tr>
               <th class="service">FECHA DE ALTA</th>
-              <td class="info">{!! $afiliado->getFullDateIngtoPrint() !!}</td>
+              <td class="info">{!! $affiliate->getFullDateIngtoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">FECHA DE BAJA</th>
-              <td class="info">{!! $afiliado->getData_fech_bajatoPrint() !!}</td>
+              <td class="info">{!! $affiliate->getData_fech_bajatoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">MOTIVO DE BAJA</th>
-              <td class="info">{!! $afiliado->motivo_baja !!}</td>
+              <td class="info">{!! $affiliate->reason_decommissioned !!}</td>
             </tr>
             <tr>
               <th class="service">PERIODO DE APORTE</th>
-              <td class="info">{!! $afiliado->fech_ini_apor ? "DESDE " . $afiliado->getFull_fech_ini_apor() . " - HASTA " . $afiliado->getFull_fech_fin_apor() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_apor() : '' !!}</td>
+              <td class="info">{!! $affiliate->fech_ini_apor ? "DESDE " . $afiliado->getFull_fech_ini_apor() . " - HASTA " . $afiliado->getFull_fech_fin_apor() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_apor() : '' !!}</td>
             </tr>
             <tr>
               <th class="service">PERIODO DE SERVICIO</th>
@@ -104,23 +104,23 @@
             </tr>
             <tr>
               <th class="service">NOMBRE DE CONYUGE</th>
-              <td class="info" style="width: 60%">{!! $conyuge->getFullNametoPrint() !!}</td>
+              <td class="info" style="width: 60%">{!! $spouse->getFullNametoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">FECHA DE NACIMIENTO</th>
-              <td class="info">{!! $conyuge->getFullDateNactoPrint() !!}</td>
+              <td class="info">{!! $spouse->getFullDateNactoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">CARNET DE IDENTIDAD</th>
-              <td class="info">{!! $conyuge->ci !!}</td>
+              <td class="info">{!! $spouse->identity_card !!}</td>
             </tr>
             <tr>
               <th class="service">FECHA DE FALLECIMIENTO</th>
-              <td class="info">{!! $conyuge->getFull_fech_decetoPrint() !!}</td>
+              <td class="info">{!! $spouse->getFull_fech_decetoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">CAUSA DE FALLECIMIENTO</th>
-              <td class="info">{!! $conyuge->motivo_dece !!}</td>
+              <td class="info">{!! $spouse->reason_death !!}</td>
             </tr>
           </table>
       </div>
@@ -131,27 +131,27 @@
             </tr>
             <tr>
               <th class="service">NOMBRE DE SOLICITANTE</th>
-              <td class="info" style="width: 60%">{!! $solicitante->getFullNametoPrint() !!}</td>
+              <td class="info" style="width: 60%">{!! $applicant->getFullNametoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">PARENTESCO CON TITULAR</th>
-              <td class="info">{!! $solicitante->paren !!}</td>
+              <td class="info">{!! $applicant->kinship !!}</td>
             </tr>
             <tr>
               <th class="service">CARNET DE IDENTIDAD</th>
-              <td class="info">{!! $solicitante->ci !!}</td>
+              <td class="info">{!! $applicant->identity_card !!}</td>
             </tr>
             <tr>
               <th class="service">DIRECCIÓN DE DOMICILIO</th>
-              <td class="info">{!! $solicitante->getFullDireccDomitoPrint() !!}</td>
+              <td class="info">{!! $applicant->getFullDireccDomitoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">DIRECCIÓN DE TRABAJO</th>
-              <td class="info">{!! $solicitante->getFullDireccTrabtoPrint() !!}</td>
+              <td class="info">{!! $applicant->getFullDireccTrabtoPrint() !!}</td>
             </tr>
             <tr>
               <th class="service">TELEFONO CELULAR Y/O DOMICILIO</th>
-              <td class="info">{!! $solicitante->getFullNumber() !!}</td>
+              <td class="info">{!! $applicant->getFullNumber() !!}</td>
             </tr>
           </table>
       </div>
@@ -187,7 +187,7 @@
         <table class="tablet">
           <tr>
             <td style="border: 0px;">
-              <div class="title"><b>N° de Tramite: {{ $fondoTramite->getNumberTram() }}</b></div>
+              <div class="title"><b>N° de Tramite: {{ $retirementfund->getNumberTram() }}</b></div>
             </td>
             <td style="border: 0px;text-align:right;">
               <div class="title"><b>Fecha de Emisión: La Paz, {!! $date !!}</b></div>
@@ -195,14 +195,14 @@
           </tr>
           <tr>
               <td  colspan="2" style="border: 0px;text-align:right;">
-               <div class="title">Usuario: {{ Auth::user()->ape }} {{ Auth::user()->nom }}</div>
+               <div class="title">Usuario: {{ Auth::user()->last_name }} {{ Auth::user()->first_name }}</div>
               </td>
           </tr>
         </table>
         <h1>
           <b>       
             FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
-            MODALIDAD: {!! $fondoTramite->modalidad->name !!}<br>
+            MODALIDAD: {!! $retirementfund->retirement_fund_modality->name !!}<br>
             CALIFICACIÓN
             <h3>(Página 2/2)</h3>
           </b>
@@ -225,15 +225,15 @@
           </tr>
           <tr>
             <th class="service">PERIODO DE APORTES</th>
-            <td class="total">{!! $fondoTramite->fech_ini_pcot ? "Desde " . $fondoTramite->getFull_fech_ini_pcot() . " - Hasta " . $fondoTramite->getFull_fech_fin_pcot() : '' !!}</td>
+            <td class="total">{!! $retirementfund->fech_ini_pcot ? "Desde " . $retirementfund->getFull_fech_ini_pcot() . " - Hasta " . $retirementfund->getFull_fech_fin_pcot() : '' !!}</td>
           </tr>       
           <tr>
             <th class="service">TIEMPO COTIZABLE</th>
-            <td class="total">{!! $fondoTramite->fech_ini_pcot ? $fondoTramite->getYearsAndMonths_fech_pcot() : '' !!}</td>
+            <td class="total">{!! $retirementfund->fech_ini_pcot ? $retirementfund->getYearsAndMonths_fech_pcot() : '' !!}</td>
           </tr>
           <tr>
             <th class="service">TOTAL DE MESES COTIZABLES</th>
-            <td class="total">{!! $fondoTramite->fech_ini_pcot ? $fondoTramite->getMonths_fech_pcot() : '' !!}</td>
+            <td class="total">{!! $retirementfund->fech_ini_pcot ? $retirementfund->getMonths_fech_pcot() : '' !!}</td>
           </tr>
       </table>
 

@@ -12,35 +12,35 @@
 
       <p>El suscrito Encargado de  Archivo de Beneficios Económicos:</p>
       <p>CERTIFICA QUE:</p>
-      <p>A  requerimiento  de la Hoja de trámite N° {{ $fondoTramite->getNumberTram() }} de  Ventanilla de Beneficios Económicos,  se realiza  la  revisión manual de los datos que  figuran en el expediente presentado  en  favor del titular señor(a):</p>
+      <p>A  requerimiento  de la Hoja de trámite N° {{ $retirementfund->getNumberTram() }} de  Ventanilla de Beneficios Económicos,  se realiza  la  revisión manual de los datos que  figuran en el expediente presentado  en  favor del titular señor(a):</p>
       </table>
 
       <table class="tablet1">
         <tr>
-            <td class="cert">{!! $afiliado->nom !!}</td>
-            <td class="cert">{!! $afiliado->pat !!}</td>
-            <td class="cert">{!! $afiliado->mat !!}</td>
-            @if ($afiliado->ap_esp)
-            <td class="cert">{!! $afiliado->ap_esp !!}</td>
+            <td class="cert">{!! $affiliate->first_name !!}</td>
+            <td class="cert">{!! $affiliate->last_name !!}</td>
+            <td class="cert">{!! $affiliate->mothers_last_name !!}</td>
+            @if ($affiliate->surname_husband)
+            <td class="cert">{!! $affiliate->surname_husband !!}</td>
             @endif
         </tr>
         <tr>
             <td class="certitle" style="width: 30%">NOMBRES</td>
             <td class="certitle" style="width: 23%">PATERNO</td>
             <td class="certitle" style="width: 23%">MATERNO</td>
-            @if ($afiliado->ap_esp)
+            @if ($affiliate->surname_husband)
             <td class="certitle" style="width: 23%">APELLIDO MATRIMONIO</td>
             @endif
         </tr>    
       </table>
       <table class="tablet1">
         <tr>
-              <td class="cert">{!! $afiliado->ci !!}</td>
+              <td class="cert">{!! $affiliate->identity_card !!}</td>
               <td class="cert"></td>
               <td class="certitle2"></td>
-              <td class="cert">{!! $afiliado->matri !!}</td>
+              <td class="cert">{!! $affiliate->registration !!}</td>
               <td class="certitle2"></td>
-              <td class="cert">{!! $afiliado->grado->abre !!}</td>
+              <td class="cert">{!! $affiliate->degree->shortened !!}</td>
               
         </tr>
         <tr>
@@ -63,11 +63,11 @@
               <th class="grand service"><center>SIGLA</center></th>
               <th class="grand service"><center>ESTADO</center></th>
              </tr>             
-              @foreach ($antecedentes as $item)
+              @foreach ($antecedent as $item)
               <tr>              
-                <td style="width: 80%" class="info">{!! $item->prestacion->name !!}</td>
-                <td style="width: 20%" class="info">{!! $item->prestacion->sigla !!}</td>
-                @if ($item->est == 1)
+                <td style="width: 80%" class="info">{!! $item->antecedent_file->name !!}</td>
+                <td style="width: 20%" class="info">{!! $item->antecedent_file->shortened !!}</td>
+                @if ($item->status == 1)
                   <td class="info"><center><img class="circle" src="{!! asset('assets/images/check.png') !!}" style="width:70%" alt="icon"></center></td>
                 @else
                 <td class="info"> </td>
@@ -90,10 +90,10 @@
                 
               </tr>
               <tr>
-                  <td class="info"><center>{!! $afiliado->getDataEdit_fech_ing() !!}</center></td>
-                  <td class="info"><center>{!! $afiliado->getData_fech_baja() !!}</center></td>
-                  <td class="info"><center>{!! $afiliado->motivo_baja !!}</center></td>
-                  <td class="info"><center>{!! $afiliado->getDataEdit() !!}</center></td>
+                  <td class="info"><center>{!! $affiliate->getDataEdit_fech_ing() !!}</center></td>
+                  <td class="info"><center>{!! $affiliate->getData_fech_baja() !!}</center></td>
+                  <td class="info"><center>{!! $affiliate->date_decommissioned !!}</center></td>
+                  <td class="info"><center>{!! $affiliate->getDataEdit() !!}</center></td>
                   <td class="info"> </td>
               </tr>
             </table>
@@ -111,11 +111,11 @@
               </tr>                     
               <tr>
                     
-                    <td class="info">{!! $solicitante->nom !!}</td>
-                    <td class="info">{!! $solicitante->pat !!}</td>
-                    <td class="info">{!! $solicitante->mat !!}</td>
+                    <td class="info">{!! $solicitante->name !!}</td>
+                    <td class="info">{!! $solicitante->last_name !!}</td>
+                    <td class="info">{!! $solicitante->mothers_last_name !!}</td>
                     <td class="info"></td>
-                    <td class="info">{!! $solicitante->paren !!}</td>
+                    <td class="info">{!! $solicitante->kinship !!}</td>
               </tr>               
             </table>
         </div>

@@ -172,16 +172,16 @@ class FondoTramiteController extends Controller
     public function print_ventanilla($afid) 
     {
         $data = $this->getData($afid);
-        $afiliado = $data['afiliado'];
-        $requisitos = $data['requisitos'];
-        $solicitante = $data['solicitante'];
-        $documentos = $data['documentos'];
-        $fondoTramite = $data['fondoTramite'];
+        $affiliate = $data['affiliate'];
+        $requirement = $data['requirement'];
+        $applicant = $data['applicant'];
+        $document = $data['document'];
+        $retirementfund = $data['retirementfund'];
         $date = Util::getfulldate(date('Y-m-d'));
 
-        $view = \View::make('print_fondo_retiro.ventanilla.show', compact('afiliado', 'requisitos', 'solicitante', 'fondoTramite', 'documentos', 'date'))->render();
+        $view = \View::make('print_fondo_retiro.ventanilla.show', compact('affiliate', 'requirement', 'applicant', 'document', 'retirementfund', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
-        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
+        $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
         return $pdf->stream();
     }
@@ -189,16 +189,16 @@ class FondoTramiteController extends Controller
     public function print_certificacion($afid) 
     {
         $data = $this->getData($afid);
-        $afiliado = $data['afiliado'];
-        $solicitante = $data['solicitante'];
-        $fondoTramite = $data['fondoTramite'];
-        $prestaciones = $data['prestaciones'];
-        $antecedentes = $data['antecedentes'];
+        $affiliate = $data['affiliate'];
+        $applicant = $data['applicant'];
+        $retirementfund = $data['retirementfund'];
+        $antecedentfile = $data['antecedentfile'];
+        $antecedent = $data['antecedent'];
         $date = Util::getfulldate(date('Y-m-d'));
 
-        $view = \View::make('print_fondo_retiro.certificacion.show', compact('afiliado', 'solicitante', 'fondoTramite', 'prestaciones', 'antecedentes', 'date'))->render();
+        $view = \View::make('print_fondo_retiro.certificacion.show', compact('affiliate', 'applicant', 'retirementfund', 'antecedentfile', 'antecedent', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
-        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
+        $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/certificacion/' . $name_input . '.pdf');
         return $pdf->stream();
     }
@@ -206,15 +206,15 @@ class FondoTramiteController extends Controller
     public function print_calificacion($afid)
     {
         $data = $this->getData($afid);
-        $afiliado = $data['afiliado'];
-        $conyuge = $data['conyuge'];
-        $solicitante = $data['solicitante'];
-        $fondoTramite = $data['fondoTramite'];
+        $affiliate = $data['affiliate'];
+        $spouse = $data['spouse'];
+        $applicant = $data['applicant'];
+        $retirementfund = $data['retirementfund'];
         $date = Util::getfulldate(date('Y-m-d'));
 
-        $view =  \View::make('print_fondo_retiro.calificacion.show', compact('afiliado', 'conyuge','solicitante', 'fondoTramite', 'date'))->render();
+        $view =  \View::make('print_fondo_retiro.calificacion.show', compact('affiliate', 'spouse','applicant', 'retirementfund', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
-        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
+        $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/calificacion/' . $name_input . '.pdf');
         return $pdf->stream('calif');
     }
@@ -222,14 +222,14 @@ class FondoTramiteController extends Controller
     public function print_dictamenlegal($afid)
     {
         $data = $this->getData($afid);
-        $afiliado = $data['afiliado'];
-        $solicitante = $data['solicitante'];
-        $fondoTramite = $data['fondoTramite'];
-        $documentos = $data['documentos'];
+        $affiliate = $data['affiliate'];
+        $applicant = $data['applicant'];
+        $retirementfund = $data['retirementfund'];
+        $document = $data['document'];
         $date = Util::getfulldate(date('Y-m-d'));
-        $view =  \View::make('print_fondo_retiro.dictamenlegal.show', compact('afiliado', 'solicitante','documentos','fondoTramite', 'date'))->render();
+        $view =  \View::make('print_fondo_retiro.dictamenlegal.show', compact('affiliate', 'applicant','retirementfund','document', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
-        $name_input = $afiliado->id ."-" . $afiliado->pat ."-" . $afiliado->mat ."-" . $afiliado->nom ."-" . $afiliado->ci;
+        $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/dictamen_legal/' . $name_input . '.pdf');
         return $pdf->stream('calif');
     }
