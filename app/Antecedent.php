@@ -47,14 +47,14 @@ class Antecedent extends Model
 
 }
 
-Antecedent::created(function($antecedent)
-{
-    Activity::createdAntecedent($antecedent);
+// Antecedent::created(function($antecedent)
+// {
+//     Activity::createdAntecedent($antecedent);
     
-});
+// });
 
-Antecedent::updating(function($antecedent)
-{
-    Activity::updateAntecedent($antecedent);
+// Antecedent::updating(function($antecedent)
+// {
+//     Activity::updateAntecedent($antecedent);
     
-});
+// });

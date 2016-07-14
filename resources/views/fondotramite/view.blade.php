@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-    {!! Breadcrumbs::render('fondo_tramite', $afiliado) !!}
+    
     <div class="row">
         <div class="col-md-12">
             <div class="row"> 
@@ -78,7 +78,7 @@
                       </ul>
                     </div>
 
-                    <a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
+                    <a href="{!! url('affiliate/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
                         &nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;
                     </a>
                 </div>
@@ -796,7 +796,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -922,7 +922,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('tramite_fondo_retiro/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>

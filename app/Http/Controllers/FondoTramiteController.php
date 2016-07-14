@@ -153,8 +153,8 @@ class FondoTramiteController extends Controller
 
         $data = array_merge($data, self::getViewModel());
 
-        //return $data;
-       return response()->json($data);
+        return $data;
+      // return response()->json($data);
     }
 
 
@@ -166,7 +166,7 @@ class FondoTramiteController extends Controller
      */
     public function show($id)
     {
-        return self::getData($id);
+        return view('fondotramite.view', self::getData($id));
     }
 
 
