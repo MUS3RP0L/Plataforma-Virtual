@@ -118,8 +118,10 @@ class AffiliateController extends Controller
         }
 
         return [
+
             'cities_list' => $cities_list,
             'cities_list_short' => $cities_list_short
+            
         ];
     }
 
@@ -180,13 +182,14 @@ class AffiliateController extends Controller
         foreach ($consulta as $item) {
             $total_gain = Util::formatMoney($item->gain);
             $total_public_security_bonus = Util::formatMoney($item->public_security_bonus);
-            $quotable = Util::formatMoney($item->quotable);
-            $retirement_fund = Util::formatMoney($item->retirement_fund);
-            $mortuary_quota = Util::formatMoney($item->mortuary_quota);
+            $total_quotable = Util::formatMoney($item->quotable);
+            $total_retirement_fund = Util::formatMoney($item->retirement_fund);
+            $total_mortuary_quota = Util::formatMoney($item->mortuary_quota);
             $total = Util::formatMoney($item->total);
         }
 
         $data = [
+
             'affiliate' => $affiliate,
             'spouse' => $spouse,
             'gender_list' => $gender_list,
@@ -195,15 +198,15 @@ class AffiliateController extends Controller
             'last_contribution' => $last_contribution,
             'total_gain' => $total_gain,
             'total_public_security_bonus' => $total_public_security_bonus,
-            'quotable' => $quotable,
-            'retirement_fund' => $retirement_fund,
-            'mortuary_quota' => $mortuary_quota,
+            'total_quotable' => $total_quotable,
+            'total_retirement_fund' => $total_retirement_fund,
+            'total_mortuary_quota' => $total_mortuary_quota,
             'total' => $total
+
         ];
        
         $data = array_merge($data, self::getViewModel());
         return view('affiliates.view', $data);
-        
     }
 
     /**

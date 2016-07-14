@@ -7,11 +7,11 @@
         <div class="col-md-12">
             <div class="row"> 
                 <div class="col-md-4 col-md-offset-6"> 
-                    <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
+                    <!-- <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
                         &nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;
-                    </a>
+                    </a> -->
 
-                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
+                    <!-- <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
                         <a href="" class="btn btn-success btn-raised dropdown-toggle" data-toggle="dropdown">
                             &nbsp;<span class="glyphicon glyphicon-th-list"></span>&nbsp;
                         </a>
@@ -28,10 +28,10 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-md-2 text-right">
-                    <a href="{!! url('afiliado') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
+                    <a href="{!! url('affiliate') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
                         &nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;
                     </a>
                 </div>
@@ -64,7 +64,7 @@
                                                         Carnet Identidad
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $affiliate->ci !!} {!! $affiliate->depa_exp !!}
+                                                         {!! $affiliate->identity_card !!} {!! $affiliate->city_identity_card !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -76,7 +76,7 @@
                                                         Apellido Paterno
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $affiliate->pat !!}
+                                                         {!! $affiliate->last_name !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -88,7 +88,7 @@
                                                         Apellido Materno
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $affiliate->mat !!}
+                                                         {!! $affiliate->mothers_last_name !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -100,7 +100,7 @@
                                                         Primer Nombre
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $affiliate->nom !!}
+                                                        {!! $affiliate->first_name !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -112,26 +112,26 @@
                                                         Segundo Nombre
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $affiliate->nom2 !!}
+                                                        {!! $affiliate->second_name !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        @if ($affiliate->ap_esp)
+                                        @if ($affiliate->surname_husband)
                                         <tr>
-                                            <td style="border-top:1px solid #d4e4cd;">
+                                            <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         Apellido de Esposo
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $affiliate->ap_esp !!}
+                                                        {!! $affiliate->surname_husband !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         @endif
-                                        @if($affiliate->fech_dece)
+                                        @if($affiliate->date_death)
                                             <tr>
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
@@ -139,7 +139,7 @@
                                                             Fecha de Deceso
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $affiliate->getFull_fech_dece() !!}
+                                                            {!! $affiliate->getFullDateDeath() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -159,7 +159,7 @@
                                                         Fecha Nacimiento
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $affiliate->getFullDateNac() !!}
+                                                         {!! $affiliate->getFullBirthDate() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -183,7 +183,7 @@
                                                         Sexo
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $affiliate->getSex() !!}
+                                                        {!! $affiliate->getFullGender() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -195,7 +195,7 @@
                                                         Estado Civil
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $affiliate->getCivil() !!}
+                                                        {!! $affiliate->getFullCivilStatus() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -207,20 +207,20 @@
                                                         Lugar Nacimiento
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $affiliate->depa_nat !!}
+                                                         {!! $affiliate->city_birth !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        @if($affiliate->motivo_dece)
+                                        @if($affiliate->reason_death)
                                             <tr>
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Motivo de Deceso
                                                         </div>
-                                                        <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->unidad->lit !!}">
-                                                            {!! $affiliate->motivo_dece !!}
+                                                        <div class="col-md-6">
+                                                            {!! $affiliate->reason_death !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -241,7 +241,7 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title"><span class="glyphicon glyphicon-home"></span> Información de Domicilio</h3>
                                 </div>
-                                @if($info_dom)
+                                @if($info_address)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-domicilio"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
@@ -253,7 +253,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_dom)
+                                @if($info_address)
 
                                     <div class="col-md-6">
 
@@ -265,7 +265,7 @@
                                                             Departamento
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $affiliate->depa_dir !!}
+                                                            {!! $affiliate->city_address !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -277,7 +277,7 @@
                                                             Zona
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $affiliate->zona !!}
+                                                            {!! $affiliate->zone !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -289,7 +289,7 @@
                                                             Calle, Avenida
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $affiliate->calle !!}
+                                                            {!! $affiliate->Street !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -309,7 +309,7 @@
                                                             Núm Domicilio
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $affiliate->num_domi !!}
+                                                            {!! $affiliate->number_address !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -321,7 +321,7 @@
                                                             Teléfono
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $affiliate->tele !!}
+                                                            {!! $affiliate->phone !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -333,7 +333,7 @@
                                                             Celular
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $affiliate->celu !!}
+                                                            {!! $affiliate->cell_phone !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -341,7 +341,6 @@
                                         </table>
 
                                     </div>
-
                                 @else
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-domicilio"> 
@@ -351,7 +350,6 @@
                                         </div>
                                     </div>
                                 @endif
-
                             </div>
                         </div>
                     </div>
@@ -363,7 +361,7 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Información de Conyuge</h3>
                                 </div>
-                                @if($info_cony)
+                                @if($info_spouse)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-conyuge"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
@@ -375,7 +373,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_cony)
+                                @if($info_spouse)
 
                                     <div class="col-md-6">
 
@@ -387,7 +385,7 @@
                                                             Carnet Identidad
                                                         </div>
                                                         <div class="col-md-6">
-                                                             {!! $conyuge->ci !!}
+                                                             {!! $conyuge->identity_card !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -399,7 +397,7 @@
                                                             Apellido Paterno
                                                         </div>
                                                         <div class="col-md-6">
-                                                             {!! $conyuge->pat !!}
+                                                             {!! $conyuge->last_name !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -411,12 +409,12 @@
                                                             Apellido Materno
                                                         </div>
                                                         <div class="col-md-6">
-                                                             {!! $conyuge->mat !!}
+                                                             {!! $conyuge->mothers_last_name !!}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            @if($conyuge->motivo_dece)
+                                            @if($conyuge->date_death)
                                                 <tr>
                                                     <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                         <div class="row">
@@ -424,7 +422,7 @@
                                                                 Fecha Deceso
                                                             </div>
                                                             <div class="col-md-6">
-                                                                 {!! $conyuge->getFullDateDece() !!}
+                                                                 {!! $conyuge->getFullDateDeath() !!}
                                                             </div>
                                                         </div>
                                                     </td>
@@ -445,7 +443,7 @@
                                                             Fecha Nacimiento
                                                         </div>
                                                         <div class="col-md-6">
-                                                             {!! $conyuge->getFullDateNac() !!}
+                                                             {!! $conyuge->getFullBirthDate() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -457,7 +455,7 @@
                                                             Primer Nombre
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $conyuge->nom !!}
+                                                            {!! $conyuge->first_name !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -469,12 +467,12 @@
                                                             Segundo Nombre
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $conyuge->nom2 !!}
+                                                            {!! $conyuge->second_name !!}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            @if($conyuge->motivo_dece)
+                                            @if($conyuge->reason_death)
                                                 <tr>
                                                     <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                         <div class="row">
@@ -482,7 +480,7 @@
                                                                 Motivo Deceso
                                                             </div>
                                                             <div class="col-md-6">
-                                                                {!! $conyuge->motivo_dece !!}
+                                                                {!! $conyuge->reason_death !!}
                                                             </div>
                                                         </div>
                                                     </td>
@@ -532,7 +530,8 @@
                                                     <div class="col-md-6">
                                                         Estado
                                                     </div>
-                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->afi_state->state_type->name !!}">{!! $affiliate->afi_state->name !!}
+                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->affiliate_state->state_type->name !!}">
+                                                        {!! $affiliate->affiliate_state->name !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -543,7 +542,7 @@
                                                     <div class="col-md-6">
                                                         Tipo
                                                     </div>
-                                                    <div class="col-md-6">{!! $affiliate->afi_type->name !!}
+                                                    <div class="col-md-6">{!! $affiliate->affiliate_type->name !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -554,7 +553,7 @@
                                                     <div class="col-md-6">
                                                         Grado
                                                     </div>
-                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->grado->lit !!}"> {!! $affiliate->grado->abre !!}
+                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->degree->name !!}"> {!! $affiliate->degree->shortened !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -565,13 +564,13 @@
                                                     <div class="col-md-6">
                                                         Unidad
                                                     </div>
-                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->unidad->lit !!}">
-                                                        {!! $affiliate->unidad->abre !!}
+                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->unit->name !!}">
+                                                        {!! $affiliate->unit->shortened !!}
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        @if($affiliate->fech_baja)
+                                        @if($affiliate->date_decommissioned)
                                             <tr>
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
@@ -579,7 +578,7 @@
                                                             Fecha de Baja
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $affiliate->getData_fech_baja() !!}
+                                                            {!! $affiliate->getFullDateDecommissioned() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -599,7 +598,7 @@
                                                         Fecha de Ingreso
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $affiliate->getFullDateIng() !!}
+                                                        {!! $affiliate->getFullDateEntry() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -611,7 +610,7 @@
                                                         Núm. de Matrícula
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $affiliate->matri !!}
+                                                        {!! $affiliate->registration !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -628,15 +627,15 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        @if($affiliate->motivo_baja)
+                                        @if($affiliate->reason_decommissioned)
                                             <tr>
                                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             Motivo Baja
                                                         </div>
-                                                        <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->unidad->lit !!}">
-                                                            {!! $affiliate->motivo_baja !!}
+                                                        <div class="col-md-6">
+                                                            {!! $affiliate->reason_decommissioned !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -668,30 +667,30 @@
                                     <table class="table table-bordered table-hover" style="width:100%;font-size: 14px">
                                         <tr>
                                             <td>Ganado</td>
-                                            <td style="text-align: right">{{ $totalGanado }}</td>
+                                            <td style="text-align: right">{{ $total_gain }}</td>
                                         </tr>
                                         <tr>
                                             <td>Bono de Seguridad Ciudadana</td>
-                                            <td style="text-align: right">{{ $totalSegCiu }}</td>
+                                            <td style="text-align: right">{{ $total_public_security_bonus }}</td>
                                         </tr>
                                         <tr class="active">
                                             <td>Cotizable</td>
-                                            <td style="text-align: right">{{ $totalCotizable }}</td>
+                                            <td style="text-align: right">{{ $total_quotable }}</td>
                                         </tr>
                                     </table>
 
                                     <table class="table table-bordered table-hover" style="width:100%;font-size: 14px">
                                         <tr>
                                             <td>Aporte Fondo de Retiro</td>
-                                            <td style="text-align: right">{{ $totalFon }}</td>
+                                            <td style="text-align: right">{{ $total_retirement_fund }}</td>
                                         </tr>
                                         <tr>
                                             <td>Aporte Seguro de Vida</td>
-                                            <td style="text-align: right">{{ $totalSegVid }}</td>
+                                            <td style="text-align: right">{{ $total_mortuary_quota }}</td>
                                         </tr>
                                         <tr class="active">
                                             <td>Aporte Muserpol</td>
-                                            <td style="text-align: right">{{ $totalMuserpol }}</td>
+                                            <td style="text-align: right">{{ $total }}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -717,7 +716,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['afiliado.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['affiliate.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="per"/>
                 <div class="row">
                     <div class="col-md-6">
@@ -1079,13 +1078,13 @@
         autoclose: true
     });
 
-    var titular = {!! $affiliate !!};
-    var conyuge = {!! $conyuge !!};
+    var affiliate = {!! $affiliate !!};
+    var spouse = {!! $spouse !!};
 
     var Model = function() {
  
-        this.fallecidoValue = ko.observable(titular.fech_dece ? true : false);     
-        this.fallecidoConyuValue = ko.observable(conyuge.fech_dece ? true : false);     
+        this.fallecidoValue = ko.observable(affiliate.fech_dece ? true : false);     
+        this.fallecidoConyuValue = ko.observable(spouse.fech_dece ? true : false);     
     };
 
     ko.bindingHandlers.fadeVisible = {
