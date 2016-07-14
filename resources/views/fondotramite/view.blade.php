@@ -999,7 +999,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($antecedent_file, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($antecedentfile, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="antec"/>
                 <div class="row">
                     <div class="col-md-12" data-bind="event: { mouseover: enableDetails2, mouseout: disableDetails2 }">
@@ -1295,46 +1295,46 @@
     });
 
 
-    var titular = {!! $afiliado !!};
-    var conyuge = {!! $conyuge !!};
-    var solicitante = {!! $solicitante !!};
+    var titular = {!! $affiliate !!};
+    var conyuge = {!! $spouse !!};
+    var solicitante = {!! $applicant !!};
 
-    var Model = function(requisitos, prestaciones) {
+    var Model = function(requirement, antecedentfile) {
         @if ($info_docu)
-            this.requisitos = ko.observableArray(ko.utils.arrayMap(requisitos, function(documento) {
-            return { requisito_id: documento.requisito_id, requiname: documento.requisito.name, booleanValue: documento.est };
+            this.requirement = ko.observableArray(ko.utils.arrayMap(requirement, function(document) {
+            return { requisito_id: document.requirement_id, requiname: document.requirement.name, booleanValue: document.status };
             }));
         @else
-            this.requisitos = ko.observableArray(ko.utils.arrayMap(requisitos, function(documento) {
-            return { requisito_id: documento.id, requiname: documento.name, booleanValue: false };
+            this.requirement = ko.observableArray(ko.utils.arrayMap(requirement, function(document) {
+            return { requisito_id: document.id, requiname: document.name, booleanValue: false };
             }));
         @endif
 
         @if ($info_antec)
-            this.prestaciones = ko.observableArray(ko.utils.arrayMap(prestaciones, function(documento) {
-            return { prestacion_id: documento.prestacion_id, sigla: documento.prestacion.sigla, prestaname: documento.prestacion.name, booleanValue: documento.est };
+            this.antecedentfile = ko.observableArray(ko.utils.arrayMap(antecedentfile, function(document) {
+            return { prestacion_id: document.antecedent_file_id, sigla: document.antecedent_file.shortened, prestaname: document.antecedent_file.name, booleanValue: document.status };
             }));
         @else
-            this.prestaciones = ko.observableArray(ko.utils.arrayMap(prestaciones, function(documento) {
-            return { prestacion_id: documento.id, sigla: documento.sigla, prestaname: documento.name, booleanValue: false };
+            this.antecedentfile = ko.observableArray(ko.utils.arrayMap(antecedentfile, function(document) {
+            return { prestacion_id: document.id, sigla: document.shortened, prestaname: document.name, booleanValue: false };
             }));
         @endif
 
         this.enableDetails = function() {
-            this.lastSavedJson(JSON.stringify(ko.toJS(this.requisitos), null, 2));
+            this.lastSavedJson(JSON.stringify(ko.toJS(this.requirement), null, 2));
         };
         this.disableDetails = function() {
-            this.lastSavedJson(JSON.stringify(ko.toJS(this.requisitos), null, 2));
+            this.lastSavedJson(JSON.stringify(ko.toJS(this.requirement), null, 2));
         };
      
         this.lastSavedJson = ko.observable("");
 
 
         this.enableDetails2 = function() {
-            this.lastSavedJson2(JSON.stringify(ko.toJS(this.prestaciones), null, 2));
+            this.lastSavedJson2(JSON.stringify(ko.toJS(this.antecedentfile), null, 2));
         };
         this.disableDetails2 = function() {
-            this.lastSavedJson2(JSON.stringify(ko.toJS(this.prestaciones), null, 2));
+            this.lastSavedJson2(JSON.stringify(ko.toJS(this.antecedentfile), null, 2));
         };
      
         this.lastSavedJson2 = ko.observable("");
@@ -1350,69 +1350,69 @@
         this.soli_ci = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                return titular.ci;
+                return titular.identity_card;
             } 
             if (desiredType == '2'){
-                return conyuge.ci;
+                return conyuge.identity_card;
             } 
             if (desiredType == '3'){
-                return solicitante.ci;
+                return solicitante.identity_card;
             }
         }, this);
 
         this.soli_pat = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                return titular.pat;
+                return titular.last_name;
             } 
             if (desiredType == '2'){
-                return conyuge.pat;
+                return conyuge.last_name;
             } 
             if (desiredType == '3'){
-                return solicitante.pat;
+                return solicitante.last_name;
             }
         }, this);
 
         this.soli_mat = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                return titular.mat;
+                return titular.mothers_last_name;
             } 
             if (desiredType == '2'){
-                return conyuge.mat;
+                return conyuge.mothers_last_name;
             } 
             if (desiredType == '3'){
-                return solicitante.mat;
+                return solicitante.mothers_last_name;
             }
         }, this);
 
         this.soli_nom = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                var nom2 = titular.nom2 ? titular.nom2 : '';
-                return titular.nom +" "+ nom2;
+                var nom2 = titular.second_name ? titular.second_name : '';
+                return titular.first_name +" "+ second_name;
             } 
             if (desiredType == '2'){
-                return conyuge.nom;
+                return conyuge.first_name;
             } 
             if (desiredType == '3'){
-                return solicitante.nom;
+                return solicitante.first_name;
             }
         }, this);
 
         this.soli_direc_domi = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                var zona = titular.zona ? titular.zona : '';
-                var calle = titular.calle ? titular.calle : '';
-                var num_domi = titular.num_domi ? "N° " + titular.num_domi : '';
-                return zona + " " + calle + " " + num_domi;
+                var zona = titular.zone ? titular.zone : '';
+                var calle = titular.street ? titular.street : '';
+                var num_domi = titular.number_address ? "N° " + titular.number_address : '';
+                return zone + " " + street + " " + number_address;
             } 
             if (desiredType == '2'){
-                return solicitante.direc_domi;
+                return solicitante.home_address;
             } 
             if (desiredType == '3'){
-                return solicitante.direc_domi;
+                return solicitante.home_address;
             }
 
         }, this);
@@ -1423,23 +1423,23 @@
                 return titular.tele;
             } 
             if (desiredType == '2'){
-                return solicitante.tele_domi;
+                return solicitante.home_phone_number;
             } 
             if (desiredType == '3'){
-                return solicitante.tele_domi;
+                return solicitante.home_phone_number;
             }
         }, this);
 
         this.soli_celu = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                return titular.celu;
+                return titular.cell_phone;
             } 
             if (desiredType == '2'){
-                return solicitante.celu_domi;
+                return solicitante.home_cell_phone_number;
             } 
             if (desiredType == '3'){
-                return solicitante.celu_domi;
+                return solicitante.home_cell_phone_number;
             }
         }, this);
   
@@ -1459,15 +1459,15 @@
     
     @if ($info_docu)
         @if ($info_antec)
-        ko.applyBindings(new Model({!! $documentos !!}, {!! $antecedentes !!}));
+        ko.applyBindings(new Model({!! $document !!}, {!! $antecedent !!}));
         @else
-        ko.applyBindings(new Model({!! $documentos !!}, {!! $prestaciones !!}));
+        ko.applyBindings(new Model({!! $document !!}, {!! $antecedentfile !!}));
         @endif
     @else
         @if ($info_antec)
-        ko.applyBindings(new Model({!! $requisitos !!}, {!! $antecedentes !!}));
+        ko.applyBindings(new Model({!! $requirement !!}, {!! $antecedent !!}));
         @else
-        ko.applyBindings(new Model({!! $requisitos !!}, {!! $prestaciones !!}));
+        ko.applyBindings(new Model({!! $requirement !!}, {!! $antecedentfile !!}));
         @endif
     @endif
 

@@ -47,7 +47,7 @@ class Affiliate extends Model
         'service_end_date',
         'change_date',
         'zone',
-        'Street',
+        'street',
         'number_address',
         'phone',
         'cell_phone',
