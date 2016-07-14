@@ -206,7 +206,8 @@ class AffiliateController extends Controller
         ];
        
         $data = array_merge($data, self::getViewModel());
-        return view('affiliates.view', $data);
+        return $data;
+        // return view('affiliates.view', $data);
     }
 
     /**
