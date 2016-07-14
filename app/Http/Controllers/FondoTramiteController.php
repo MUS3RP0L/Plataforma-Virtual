@@ -78,7 +78,7 @@ class FondoTramiteController extends Controller
 
         $affiliate = Affiliate::idIs($afid)->first();
         
-        $spouse = Spouse::afiIs($afid)->first();
+        $spouse = Spouse::affiliateidIs($afid)->first();
         if (!$spouse) {$spouse = new Spouse;}
         
         $retirementfund = RetirementFund::afiIs($afid)->first();
