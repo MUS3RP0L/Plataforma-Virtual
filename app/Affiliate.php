@@ -355,7 +355,7 @@ class Affiliate extends Model
 
 	public function getFullName()
     {
-        return $this->grado->lit . ' ' . $this->nom . ' ' . $this->nom2 . ' ' . $this->pat. ' ' . $this->mat;
+        return $this->degree->name . ' ' . $this->first_name . ' ' . $this->second_name . ' ' . $this->last_name. ' ' . $this->mothers_last_name;
     }
 
     public function getFullNametoPrint()

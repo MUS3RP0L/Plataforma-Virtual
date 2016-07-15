@@ -140,14 +140,14 @@ class RetirementFund extends Model
 
 }
 
-// FondoTramite::created(function($fondotramite)
-// {
-//     Activity::createdFondoRetiro($fondotramite);
+RetirementFund::created(function($retirementfund)
+{
+    Activity::createdFondoRetiro($retirementfund);
     
-// });
+});
 
-// FondoTramite::updating(function($fondotramite)
-// {
-//     Activity::updateFondoRetiro($fondotramite);
+RetirementFund::updating(function($retirementfund)
+{
+    Activity::updateFondoRetiro($retirementfund);
     
-// });
+});

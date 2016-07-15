@@ -25,43 +25,43 @@ class Activity extends Model
     public $timestamps = true;
 	protected $softDelete = false;	
 
-	public static function updateAfiliado($afiliado)
+	public static function updateAfiliado($affiliate)
 	{		
 		if (Auth::user()) 
 		{
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $afiliado->id;
+			$activity->affiliate_id = $affiliate->id;
 			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_AFILIADO;
-			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Afiliado', $afiliado);
+			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Afiliado', $affiliate);
 			$activity->save();
 		}		
 	}
 
-	public static function updateFondoRetiro($fondotramite)
+	public static function updateFondoRetiro($retirementfund)
 	{		
 		if (Auth::user()) 
-		{   $afiliado = Afiliado::findOrFail($fondotramite->afiliado_id);
+		{   $affiliate = Affiliate::findOrFail($retirementfund->affiliate_id);
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $fondotramite->afiliado_id;
-			$activity->fondo_tramite_id = $fondotramite->id;
+			$activity->affiliate_id = $retirementfund->affiliate_id;
+			$activity->retirement_fund_id = $retirementfund->id;
 			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_FONDO_RETIRO;
-			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Fondo de Retiro', $afiliado);
+			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Fondo de Retiro', $affiliate);
 			$activity->save();
 		}		
 	}
 
-	public static function createdFondoRetiro($fondotramite)
+	public static function createdFondoRetiro($retirementfund)
 	{		
 		if (Auth::user()) 
-		{   $afiliado = Afiliado::findOrFail($fondotramite->afiliado_id);
+		{   $affiliate = Affiliate::findOrFail($retirementfund->affiliate_id);
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $fondotramite->afiliado_id;
-			$activity->fondo_tramite_id = $fondotramite->id;
+			$activity->affiliate_id = $retirementfund->affiliate_id;
+			$activity->retirement_fund_id = $retirementfund->id;
 			$activity->activity_type_id = ACTIVITY_TYPE_CREATE_FONDO_RETIRO;
-			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Fondo de Retiro', $afiliado);
+			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Fondo de Retiro', $affiliate);
 			$activity->save();
 		}		
 	}

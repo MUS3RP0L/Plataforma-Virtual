@@ -957,7 +957,7 @@
                                     <th>Estado</th>
                                 </tr>
                             </thead>
-                            <tbody data-bind="foreach: requisitos">
+                            <tbody data-bind="foreach: requirement">
                                 <tr>
                                     <td data-bind='text: requiname'></td>
                                     <td> 
@@ -1011,7 +1011,7 @@
                                     <th class="text-center">Estado</th>
                                 </tr>
                             </thead>
-                            <tbody data-bind="foreach: prestaciones">
+                            <tbody data-bind="foreach: antecedentfile">
                                 <tr>
                                     <td data-bind='text: sigla'></td>
                                     <td data-bind='text: prestaname'></td>
