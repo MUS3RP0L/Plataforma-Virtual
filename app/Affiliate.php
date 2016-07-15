@@ -205,6 +205,16 @@ class Affiliate extends Model
         return Util::getdateabre($this->date_entry);
     }
 
+    public function getEditBirthDate()
+    {   
+        return Util::getdateforEdit($this->birth_date);
+    }
+
+    public function getEditDateDeath()
+    {   
+        return Util::getdateforEdit($this->date_death);
+    }
+
 
 
 
@@ -292,10 +302,7 @@ class Affiliate extends Model
     {   
         return Util::getdateforEdit($this->fech_ing);
     }
-    public function getDataEdit()
-    {	
-        return Util::getdateforEdit($this->fech_nac);
-    }
+
 
     public function getDataEditEst()
     {	
@@ -303,11 +310,6 @@ class Affiliate extends Model
     }
 
 
-
-    public function getData_fech_dece()
-    {   
-        return Util::getdateforEdit($this->fech_dece);
-    }
 
     public function getDataEditGra()
     {	

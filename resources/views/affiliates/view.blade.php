@@ -721,46 +721,46 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group"> 
-                                {!! Form::label('ci', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('identity_card', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-5">
-                                {!! Form::text('ci', $affiliate->ci, ['class'=> 'form-control', 'required']) !!}
+                                {!! Form::text('identity_card', $affiliate->identity_card, ['class'=> 'form-control', 'required']) !!}
                                 <span class="help-block">Número de CI</span>
                             </div>
-                                {!! Form::select('depa_exp', $list_depas_abre, $affiliate->departamento_exp_id, ['class' => 'col-md-2 combobox form-control']) !!}
+                                {!! Form::select('depa_exp', $cities_list_short, $affiliate->city_identity_card_id, ['class' => 'col-md-2 combobox form-control']) !!}
                         </div>
                         <div class="form-group">
-                                {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('last_name', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('pat', $affiliate->pat, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('last_name', $affiliate->last_name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Apellido Paterno</span>
                             </div>
                         </div>  
                         <div class="form-group">
-                                {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('mothers_last_name', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('mat', $affiliate->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('mothers_last_name', $affiliate->mothers_last_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Apellido Materno</span>
                             </div>
                         </div>                              
                         <div class="form-group">
-                                {!! Form::label('nom', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('first_name', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('nom', $affiliate->nom, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('first_name', $affiliate->first_name, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el  Primer Nombre</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('nom2', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('second_name', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('nom2', $affiliate->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('second_name', $affiliate->second_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Segundo Nombre</span>
                             </div>
                         </div>
                         @if ($affiliate->sex == 'F')
                             <div class="form-group">
-                                    {!! Form::label('ap_esp', 'Apellido de Esposo', ['class' => 'col-md-5 control-label']) !!}
+                                    {!! Form::label('surname_husband', 'Apellido de Esposo', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-7">
-                                    {!! Form::text('ap_esp', $affiliate->ap_esp, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    {!! Form::text('surname_husband', $affiliate->surname_husband, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                     <span class="help-block">Escriba el Apellido de Esposo (Opcional)</span>
                                 </div>
                             </div>
@@ -769,10 +769,10 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                                {!! Form::label('fech_nac', 'Fecha de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('birth_date', 'Fecha de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
                     			<div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="fech_nac" value="{!! $affiliate->getDataEdit() !!}">
+                                    <input type="text" class="form-control datepicker" name="birth_date" value="{!! $affiliate->getEditBirthDate() !!}">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </div>
@@ -780,16 +780,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                                    {!! Form::label('est_civ', 'Estado Civil', ['class' => 'col-md-5 control-label']) !!}
+                                    {!! Form::label('civil_status', 'Estado Civil', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::select('est_civ', $list_est_civ, $affiliate->est_civ, ['class' => 'combobox form-control', 'required']) !!}
+                                {!! Form::select('civil_status', $gender_list, $affiliate->civil_status, ['class' => 'combobox form-control', 'required']) !!}
                                 <span class="help-block">Seleccione el Estado Civil</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                    {!! Form::label('depa_nat', 'Lugar de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
+                                    {!! Form::label('city_birth_id', 'Lugar de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::select('depa_nat', $list_depas, $affiliate->departamento_nat_id, ['class' => 'combobox form-control']) !!}
+                                {!! Form::select('city_birth_id', $cities_list, $affiliate->city_birth_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
@@ -812,7 +812,7 @@
                                     {!! Form::label('fech_dece', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-7">
                                     <div class="input-group">
-                                        <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $affiliate->getData_fech_dece() !!}">
+                                        <input type="text" class="form-control datepicker" name="date_death" value="{!! $affiliate->getEditDateDeath() !!}">
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </div>
@@ -820,9 +820,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                    {!! Form::label('motivo_dece', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                    {!! Form::label('reason_death', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-6">
-                                    {!! Form::textarea('motivo_dece', $affiliate->motivo_dece, ['class'=> 'form-control', 'rows' => '2']) !!}
+                                    {!! Form::textarea('reason_death', $affiliate->reason_death, ['class'=> 'form-control', 'rows' => '2']) !!}
                                     <span class="help-block">Escriba el Motivo de fallecimiento</span>
                                 </div>
                             </div>
@@ -833,7 +833,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('affiliate/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -855,28 +855,28 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['afiliado.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['affiliate.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="dom"/>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                                    {!! Form::label('depa_dir', 'Departamento', ['class' => 'col-md-5 control-label']) !!}
+                                    {!! Form::label('city_address_id', 'Departamento', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::select('depa_dir', $list_depas, $affiliate->departamento_dir_id, ['class' => 'combobox form-control']) !!}
+                                {!! Form::select('city_address_id', $cities_list, $affiliate->city_address_id, ['class' => 'combobox form-control']) !!}
                                 <span class="help-block">Seleccione Departamento</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('zona', 'Zona', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('zone', 'Zona', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('zona', $affiliate->zona, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('zone', $affiliate->zone, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba la Zona</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('calle', 'Calle, Avenida', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('street', 'Calle, Avenida', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('calle', $affiliate->calle, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('street', $affiliate->street, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba la Calle y/o Avenida</span>
                             </div>
                         </div>
@@ -891,16 +891,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('tele', 'Teléfono fijo', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('phone', 'Teléfono fijo', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('tele', $affiliate->tele, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('phone', $affiliate->phone, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Teléfono fijo</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('celu', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('cell_phone', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('celu', $affiliate->celu, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('cell_phone', $affiliate->cell_phone, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Teléfono Celular</span>
                             </div>
                         </div>
@@ -910,7 +910,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('affiliate/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -1012,9 +1012,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                    {!! Form::label('motivo_dece', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                    {!! Form::label('reason_death', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-6">
-                                    {!! Form::textarea('motivo_dece', $conyuge->motivo_dece, ['class'=> 'form-control', 'rows' => '2']) !!}
+                                    {!! Form::textarea('reason_death', $conyuge->reason_death, ['class'=> 'form-control', 'rows' => '2']) !!}
                                     <span class="help-block">Escriba el Motivo de fallecimiento</span>
                                 </div>
                             </div>
