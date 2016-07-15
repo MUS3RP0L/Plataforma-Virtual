@@ -1,22 +1,18 @@
 <?php
 
-namespace Muserpol\Http\Controllers;
+namespace Muserpol\Http\Controllers\Affiliate;
 
 use Illuminate\Http\Request;
-
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 
-use DB;
 use Auth;
 use Validator;
 use Session;
-use Datatables;
-use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
-use Muserpol\Afiliado;
-use Muserpol\Conyuge;
+use Muserpol\Affiliate;
+use Muserpol\Spouse;
 
 class ConyugeController extends Controller
 {

@@ -50,6 +50,11 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('search_affiliate', array('as'=>'search_affiliate', 'uses'=>'Affiliate\AffiliateController@SearchAffiliate'));
 	Route::get('get_affiliate', array('as'=>'get_affiliate', 'uses'=>'Affiliate\AffiliateController@Data'));
 
+	// Spouses
+	Route::resource('spouse', 'SpouseController');
+
+
+
 
 
 
@@ -63,10 +68,6 @@ Route::group(['middleware' => 'auth'], function() {
 	// Inicio
 	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
 	Route::get('home', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
-
-
-	// Conyuges
-	Route::resource('conyuge', 'ConyugeController');
 
 	// Solicitantes
 	Route::resource('solicitante', 'SolicitanteController');
