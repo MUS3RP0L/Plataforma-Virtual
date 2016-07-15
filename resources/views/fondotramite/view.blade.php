@@ -280,7 +280,7 @@
                                                             Teléfono Celular
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $applicant->home_cell_phone !!}
+                                                            {!! $applicant->home_cell_phone_number !!}
                                                         </div>
                                                     </div>
                                                 </td>

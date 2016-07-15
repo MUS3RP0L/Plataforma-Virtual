@@ -117,8 +117,8 @@ class RetirementFund extends Model
 
     public function getNumberTram()
     {
-        if ($this->codigo) {
-            return $this->codigo . "/" . Carbon::parse($this->created_at)->year;
+        if ($this->code) {
+            return $this->code . "/" . Carbon::parse($this->created_at)->year;
         }
     }
 
