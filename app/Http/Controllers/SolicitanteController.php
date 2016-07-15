@@ -16,7 +16,7 @@ use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
 use Muserpol\Affiliate;
-use Muserpol\Aplicant;
+use Muserpol\Applicant;
 use Muserpol\ApplicantType;
 use Muserpol\RetirementFund;
 
@@ -120,35 +120,35 @@ class SolicitanteController extends Controller
         }
         else{
 
-            $fondoTramite = RetirementFund::afiIs($id)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
-            $solicitante = Solicitante::fonTraIs($fondoTramite->id)->orderBy('id', 'asc')->first();
+            $RetirementFund = RetirementFund::afiIs($id)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
+            $Applicant = Applicant::fonTraIs($RetirementFund->id)->orderBy('id', 'asc')->first();
 
-            if (!$solicitante) {
-                $solicitante = new Solicitante;
+            if (!$Applicant) {
+                $Applicant = new Applicant;
             }
 
             switch ($request->type) {
                 case 'soli':
                     
-                    $soliType = SoliType::where('id', '=', $request->type_soli)->first();
-                    $solicitante->soli_type_id = $soliType->id;
+                    $ApplicantType = ApplicantType::where('id', '=', $request->type_soli)->first();
+                    $Applicant->applicant_type_id = $ApplicantType->id;
 
-                    $solicitante->fondo_tramite_id = $fondoTramite->id;
+                    $Applicant->retirement_fund_id = $RetirementFund->id;
 
-                    $solicitante->ci = trim($request->ci);
-                    $solicitante->pat = trim($request->pat);
-                    $solicitante->mat = trim($request->mat);
-                    $solicitante->nom = trim($request->nom);
+                    $Applicant->identity_card = trim($request->ci);
+                    $Applicant->last_name = trim($request->pat);
+                    $Applicant->mothers_last_name = trim($request->mat);
+                    $Applicant->name = trim($request->nom);
 
-                    $solicitante->paren = trim($request->paren);
+                    $Applicant->kinship = trim($request->paren);
 
-                    $solicitante->direc_domi = trim($request->direc_domi);
-                    $solicitante->tele_domi = trim($request->tele_domi);
-                    $solicitante->celu_domi = trim($request->celu_domi);
+                    $Applicant->home_address = trim($request->direc_domi);
+                    $Applicant->home_phone_number = trim($request->tele_domi);
+                    $Applicant->home_cell_phone_number = trim($request->celu_domi);
                     
-                    $solicitante->direc_trab = trim($request->direc_trab);
+                    $Applicant->work_address = trim($request->direc_trab);
 
-                    $solicitante->save();
+                    $Applicant->save();
                     
                     $message = "Información de Solicitante actualizada con éxito";
                     break;

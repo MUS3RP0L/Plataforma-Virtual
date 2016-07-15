@@ -131,7 +131,7 @@ class FondoTramiteController extends Controller
             $info_obs = FALSE;
         }
 
-        $lastContribution = Contribution::afiIs($affiliate->id)->orderBy('month_year', 'desc')->first();
+        $lastContribution = Contribution::affiliateidIs($affiliate->id)->orderBy('month_year', 'desc')->first();
         $affiliate->service_start_date = $affiliate->date_entry;
         $affiliate->service_end_date = $lastContribution->month_year;
 
