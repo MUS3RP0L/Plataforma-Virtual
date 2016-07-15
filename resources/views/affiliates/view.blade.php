@@ -159,7 +159,7 @@
                                                         Fecha Nacimiento
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $affiliate->getFullBirthDate() !!}
+                                                         {!! $affiliate->getShortBirthDate() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -443,7 +443,7 @@
                                                             Fecha Nacimiento
                                                         </div>
                                                         <div class="col-md-6">
-                                                             {!! $spouse->getFullBirthDate() !!}
+                                                             {!! $spouse->getShortBirthDate() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -598,7 +598,7 @@
                                                         Fecha de Ingreso
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $affiliate->getFullDateEntry() !!}
+                                                        {!! $affiliate->getShortDateEntry() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -910,8 +910,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('affiliate
-                            /' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('affiliate/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -935,42 +934,41 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($spouse, ['method' => 'PATCH', 'route' => ['spouse.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
-                <input type="hidden" name="type" value="cony"/>
+                {!! Form::model($spouse, ['method' => 'PATCH', 'route' => ['spouse.update', $affiliate->id], 'class' => 'form-horizontal']) !!} <input type="hidden" name="type" value="cony"/>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                                {!! Form::label('ci', ' Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('identity_card', ' Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('ci', $spouse->ci, ['class'=> 'form-control', 'required']) !!}
+                                {!! Form::text('identity_card', $spouse->identity_card, ['class'=> 'form-control', 'required']) !!}
                                 <span class="help-block">Escriba el Carnet de Identidad</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('last_name', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('pat', $spouse->pat, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('last_name', $spouse->last_name, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Apellido Paterno</span>
                             </div>
                         </div>  
                         <div class="form-group">
-                                {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('mothers_last_name', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('mat', $spouse->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('mothers_last_name', $spouse->mothers_last_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el  Apellido Materno</span>
                             </div>
                         </div>  
                         <div class="form-group">
-                                {!! Form::label('nom', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('first_name', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('nom', $spouse->nom, ['class'=> 'form-control', 'required','onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('first_name', $spouse->first_name, ['class'=> 'form-control', 'required','onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Primer Nombre</span>
                             </div>
                         </div>  
                         <div class="form-group">
-                                {!! Form::label('nom2', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('second_name', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('nom2', $spouse->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('second_name', $spouse->second_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Segundo Nombre</span>
                             </div>
                         </div>                          
@@ -978,10 +976,10 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                                {!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('birth_date', 'FECHA NACIMIENTO', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="fech_nac" value="{!! $spouse->getDataEdit_fech_nac() !!}">
+                                    <input type="text" class="form-control datepicker" name="birth_date" value="{!! $spouse->getEditBirthDate() !!}">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </div>
@@ -1004,10 +1002,10 @@
                         <div data-bind='fadeVisible: fallecidoConyuValue, valueUpdate: "afterkeydown"'>
 
                             <div class="form-group">
-                                    {!! Form::label('fech_dece', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                    {!! Form::label('date_death', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-7">
                                     <div class="input-group">
-                                        <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $spouse->getDataEdit_fech_dece() !!}">
+                                        <input type="text" class="form-control datepicker" name="date_death" value="{!! $spouse->getEditDateDeath() !!}">
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </div>
@@ -1029,7 +1027,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('afiliado/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('affiliate/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -1118,7 +1116,7 @@
                 }
             },
             columns: [
-                { data: 'fech' },
+                { data: 'date' },
                 { data: 'message', bSortable: false }
             ]
         });
