@@ -385,7 +385,7 @@
                                                             Carnet Identidad
                                                         </div>
                                                         <div class="col-md-6">
-                                                             {!! $conyuge->identity_card !!}
+                                                             {!! $spouse->identity_card !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -397,7 +397,7 @@
                                                             Apellido Paterno
                                                         </div>
                                                         <div class="col-md-6">
-                                                             {!! $conyuge->last_name !!}
+                                                             {!! $spouse->last_name !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -409,12 +409,12 @@
                                                             Apellido Materno
                                                         </div>
                                                         <div class="col-md-6">
-                                                             {!! $conyuge->mothers_last_name !!}
+                                                             {!! $spouse->mothers_last_name !!}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            @if($conyuge->date_death)
+                                            @if($spouse->date_death)
                                                 <tr>
                                                     <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                         <div class="row">
@@ -422,7 +422,7 @@
                                                                 Fecha Deceso
                                                             </div>
                                                             <div class="col-md-6">
-                                                                 {!! $conyuge->getFullDateDeath() !!}
+                                                                 {!! $spouse->getFullDateDeath() !!}
                                                             </div>
                                                         </div>
                                                     </td>
@@ -443,7 +443,7 @@
                                                             Fecha Nacimiento
                                                         </div>
                                                         <div class="col-md-6">
-                                                             {!! $conyuge->getFullBirthDate() !!}
+                                                             {!! $spouse->getFullBirthDate() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -455,7 +455,7 @@
                                                             Primer Nombre
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $conyuge->first_name !!}
+                                                            {!! $spouse->first_name !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -467,12 +467,12 @@
                                                             Segundo Nombre
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $conyuge->second_name !!}
+                                                            {!! $spouse->second_name !!}
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            @if($conyuge->reason_death)
+                                            @if($spouse->reason_death)
                                                 <tr>
                                                     <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                                         <div class="row">
@@ -480,7 +480,7 @@
                                                                 Motivo Deceso
                                                             </div>
                                                             <div class="col-md-6">
-                                                                {!! $conyuge->reason_death !!}
+                                                                {!! $spouse->reason_death !!}
                                                             </div>
                                                         </div>
                                                     </td>
@@ -910,7 +910,8 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('affiliate/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('affiliate
+                            /' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -923,6 +924,8 @@
     </div>
 </div>
 
+
+
 <div id="myModal-conyuge" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
@@ -932,42 +935,42 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($conyuge, ['method' => 'PATCH', 'route' => ['conyuge.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($spouse, ['method' => 'PATCH', 'route' => ['spouse.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="cony"/>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                                 {!! Form::label('ci', ' Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('ci', $conyuge->ci, ['class'=> 'form-control', 'required']) !!}
+                                {!! Form::text('ci', $spouse->ci, ['class'=> 'form-control', 'required']) !!}
                                 <span class="help-block">Escriba el Carnet de Identidad</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('pat', $conyuge->pat, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('pat', $spouse->pat, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Apellido Paterno</span>
                             </div>
                         </div>  
                         <div class="form-group">
                                 {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('mat', $conyuge->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('mat', $spouse->mat, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el  Apellido Materno</span>
                             </div>
                         </div>  
                         <div class="form-group">
                                 {!! Form::label('nom', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('nom', $conyuge->nom, ['class'=> 'form-control', 'required','onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('nom', $spouse->nom, ['class'=> 'form-control', 'required','onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Primer Nombre</span>
                             </div>
                         </div>  
                         <div class="form-group">
                                 {!! Form::label('nom2', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('nom2', $conyuge->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('nom2', $spouse->nom2, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba el Segundo Nombre</span>
                             </div>
                         </div>                          
@@ -978,7 +981,7 @@
                                 {!! Form::label('fech_nac', 'FECHA NACIMIENTO', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="fech_nac" value="{!! $conyuge->getDataEdit_fech_nac() !!}">
+                                    <input type="text" class="form-control datepicker" name="fech_nac" value="{!! $spouse->getDataEdit_fech_nac() !!}">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </div>
@@ -1004,7 +1007,7 @@
                                     {!! Form::label('fech_dece', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-7">
                                     <div class="input-group">
-                                        <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $conyuge->getDataEdit_fech_dece() !!}">
+                                        <input type="text" class="form-control datepicker" name="fech_dece" value="{!! $spouse->getDataEdit_fech_dece() !!}">
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </div>
@@ -1014,7 +1017,7 @@
                             <div class="form-group">
                                     {!! Form::label('reason_death', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-6">
-                                    {!! Form::textarea('reason_death', $conyuge->reason_death, ['class'=> 'form-control', 'rows' => '2']) !!}
+                                    {!! Form::textarea('reason_death', $spouse->reason_death, ['class'=> 'form-control', 'rows' => '2']) !!}
                                     <span class="help-block">Escriba el Motivo de fallecimiento</span>
                                 </div>
                             </div>

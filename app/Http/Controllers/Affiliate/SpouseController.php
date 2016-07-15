@@ -14,7 +14,7 @@ use Muserpol\Helper\Util;
 use Muserpol\Affiliate;
 use Muserpol\Spouse;
 
-class ConyugeController extends Controller
+class SpouseController extends Controller
 {
     /**
      * Display a listing of the resource.
