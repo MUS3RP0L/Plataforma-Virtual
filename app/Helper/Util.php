@@ -210,7 +210,7 @@ class Util
 		return array('1' => 'Enero','2' => 'Febrero','3' => 'Marzo','4' => 'Abril','5' => 'Mayo','6' => 'Junio','7' => 'Julio','8' => 'Agosto','9' => 'Septiembre','10' => 'Octubre','11' => 'Noviembre','12' => 'Diciembre');
 	}
 
-	public static function getdateabre($date)
+	public static function getDateShort($date)
 	{
 		if ($date) {
         	$meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
@@ -300,7 +300,7 @@ class Util
         return $years;
     }
 
-	public static function getdateforEdit($date)
+	public static function getDateEdit($date)
     {	
         if ($date) {
 		  return date("d", strtotime($date))."/".date("m", strtotime($date)). "/".date("Y", strtotime($date));

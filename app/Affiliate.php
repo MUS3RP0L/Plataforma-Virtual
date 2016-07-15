@@ -11,31 +11,31 @@ use DB;
 
 class Affiliate extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
 
     protected $table = 'affiliates';
 
     protected $dates = ['deleted_at'];
 
-	protected $fillable = [
-	
-    	'user_id',
-    	'affiliate_state_id',
-    	'affiliate_type_id',
-    	'city_identity_card_id',
-    	'city_birth_id',
-    	'city_address_id',
-    	'degree_id',
-    	'unit_id',
-    	'category_id',
-    	'identity_card',
-    	'registration',
-    	'last_name',
-    	'mothers_last_name',
-    	'first_name',
-    	'second_name',
-    	'surname_husband',
-    	'civil_status',
+    protected $fillable = [
+    
+        'user_id',
+        'affiliate_state_id',
+        'affiliate_type_id',
+        'city_identity_card_id',
+        'city_birth_id',
+        'city_address_id',
+        'degree_id',
+        'unit_id',
+        'category_id',
+        'identity_card',
+        'registration',
+        'last_name',
+        'mothers_last_name',
+        'first_name',
+        'second_name',
+        'surname_husband',
+        'civil_status',
         'gender',
         'birth_date',
         'date_entry',
@@ -53,12 +53,12 @@ class Affiliate extends Model
         'cell_phone',
         'afp',
         'nua',
-    	'item'
-	];
+        'item'
+    ];
 
-	protected $guarded = ['id'];
+    protected $guarded = ['id'];
 
-	public function contributions()
+    public function contributions()
     {
         return $this->hasMany('Muserpol\Contribution');
     }
@@ -113,7 +113,7 @@ class Affiliate extends Model
         return $this->hasMany('Muserpol\Reimbursement');
     }
 
-	public function scopeIdIs($query, $id)
+    public function scopeIdIs($query, $id)
     {
         return $query->where('id', $id);
     }
@@ -128,14 +128,14 @@ class Affiliate extends Model
         return Util::ucw($this->first_name) . ' ' . Util::ucw($this->second_name)  . ' ' . Util::ucw($this->last_name) . ' ' . Util::ucw($this->mothers_last_name) . ' ' . Util::ucw($this->surname_husband);
     }
 
-    public function getFullDateDeath()
+    public function getShortBirthDate()
     {   
-        return Util::getdateabre($this->date_death);
+        return Util::getDateShort($this->birth_date);
     }
 
-    public function getFullBirthDate()
+    public function getShortDateDeath()
     {   
-        return Util::getdateabre($this->birth_date);
+        return Util::getDateShort($this->date_death);
     }
     
     public function getHowOld()
@@ -195,25 +195,27 @@ class Affiliate extends Model
         }
     }
 
+    public function getShortDateEntry()
+    {   
+        return Util::getDateShort($this->date_entry);
+    }
+    
     public function getFullDateDecommissioned()
     {   
-        return Util::getdateforEdit($this->date_decommissioned);
-    }
-
-    public function getFullDateEntry()
-    {   
-        return Util::getdateabre($this->date_entry);
+        return Util::getDateEdit($this->date_decommissioned);
     }
 
     public function getEditBirthDate()
     {   
-        return Util::getdateforEdit($this->birth_date);
+        return Util::getDateEdit($this->birth_date);
     }
 
     public function getEditDateDeath()
     {   
-        return Util::getdateforEdit($this->date_death);
+        return Util::getDateEdit($this->date_death);
     }
+
+    
 
 
 
@@ -300,62 +302,60 @@ class Affiliate extends Model
 
     public function getDataEdit_fech_ing()
     {   
-        return Util::getdateforEdit($this->fech_ing);
+        return Util::getDateEdit($this->fech_ing);
     }
-
 
     public function getDataEditEst()
-    {	
-        return Util::getdateforEdit($this->fech_est);
+    {   
+        return Util::getDateEdit($this->fech_est);
     }
-
 
 
     public function getDataEditGra()
-    {	
-        return Util::getdateforEdit($this->fech_gra);
+    {   
+        return Util::getDateEdit($this->fech_gra);
     }
 
     public function getData_fech_ini_apor()
-    {	
+    {   
         return Util::getdateforEditPeriod($this->fech_ini_apor);
     }
     public function getData_fech_fin_apor()
-    {	
+    {   
         return Util::getdateforEditPeriod($this->fech_fin_apor);
-	}
+    }
 
     public function getData_fech_ini_serv()
-    {	
+    {   
         return Util::getdateforEditPeriod($this->fech_ini_serv);
     }
 
     public function getData_fech_fin_serv()
-    {	
+    {   
         return Util::getdateforEditPeriod($this->fech_fin_serv);
     }
 
     public function getData_fech_ini_anti()
-    {	
-    	return Util::getdateforEditPeriod($this->fech_ini_anti);
+    {   
+        return Util::getdateforEditPeriod($this->fech_ini_anti);
     }
     public function getData_fech_fin_anti()
-    {	
+    {   
         return Util::getdateforEditPeriod($this->fech_fin_anti);
     }
 
     public function getData_fech_ini_reco()
-    {	
-    	return Util::getdateforEditPeriod($this->fech_ini_reco);
+    {   
+        return Util::getdateforEditPeriod($this->fech_ini_reco);
     }
     public function getData_fech_fin_reco()
-    {	
-    	return Util::getdateforEditPeriod($this->fech_fin_reco);
-   	}
+    {   
+        return Util::getdateforEditPeriod($this->fech_fin_reco);
+    }
 
-	public function getFullName()
+    public function getFullName()
     {
-        return $this->degree->name . ' ' . $this->first_name . ' ' . $this->second_name . ' ' . $this->last_name. ' ' . $this->mothers_last_name;
+    return $this->degree->name . ' ' . $this->first_name . ' ' . $this->second_name . ' ' . $this->last_name. ' ' . $this->mothers_last_name;
     }
 
     public function getFullNametoPrint()
@@ -418,8 +418,8 @@ Affiliate::created(function($affiliate)
 
 Affiliate::updating(function($affiliate)
 {
-	// Activity::updateAfiliado($affiliate);
-	Record::UpdatingAffiliate($affiliate);
+    // Activity::updateAfiliado($affiliate);
+    Record::UpdatingAffiliate($affiliate);
 });
 
 

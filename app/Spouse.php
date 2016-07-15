@@ -5,6 +5,8 @@ namespace Muserpol;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Muserpol\Helper\Util;
+
 class Spouse extends Model
 {
     protected $table = 'spouses';
@@ -37,9 +39,23 @@ class Spouse extends Model
         return $query->where('affiliate_id', $id);
     }
 
-    public function getFullDateDeath()
+    public function getShortBirthDate()
     {   
-        return Util::getdateabre($this->date_death);
+        return Util::getDateShort($this->birth_date);
+    }
+
+    public function getShortDateDeath()
+    {   
+        return Util::getDateShort($this->date_death);
+    }
+
+    public function getEditBirthDate()
+    {
+        return Util::getDateEdit($this->birth_date);
+    }
+    public function getEditDateDeath()
+    {   
+        return Util::getDateEdit($this->birth_date);
     }
 
 
@@ -49,30 +65,16 @@ class Spouse extends Model
 
 
 
-    public function getDataEdit_fech_nac()
-    {   
-        if ($this->fech_nac) {
-        return date("d", strtotime($this->fech_nac))."/".date("m", strtotime($this->fech_nac)). "/".date("Y", strtotime($this->fech_nac));
-        }
-    }
-
-    public function getDataEdit_fech_dece()
-    {   
-        if ($this->fech_dece) {
-        return date("d", strtotime($this->fech_dece))."/".date("m", strtotime($this->fech_dece)). "/".date("Y", strtotime($this->fech_dece));
-        }
-    }
-
-    public function getFullBirthDate()
-    {   
-        return Util::getdateabre($this->birth_date);
-    }
 
 
 
 
 
     
+
+    
+
+  
 
     public function getFullNametoPrint()
     {
