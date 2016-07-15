@@ -80,6 +80,19 @@ class Util
 		}	
 	}
 
+	public static function getAllDate($date)
+    {	
+    	if ($date) {
+			$months = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+			return date("d", strtotime($date))." de ".$months[date("n", strtotime($date))-1]. " de ".date("Y", strtotime($date));
+ 		}
+    }
+
+
+
+
+
+
 
 
 

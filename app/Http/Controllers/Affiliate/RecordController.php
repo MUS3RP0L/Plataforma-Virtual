@@ -22,6 +22,6 @@ class RecordController extends Controller
     {   
         $records = Record::select(['date', 'message'])->where('affiliate_id', $request->id);
         
-        return Datatables::of($records)->editColumn('date', function ($records) { return $records->getFullDate() ; })->make(true);
+        return Datatables::of($records)->editColumn('date', function ($record) { return $record->getAllDate(); })->make(true);
     }
 }

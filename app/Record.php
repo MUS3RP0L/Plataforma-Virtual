@@ -103,10 +103,8 @@ class Record extends Model
 
 	}
 
-	public function getFullDate()
-    {	
-		$months = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		return date("d", strtotime($this->date))." de ".$months[date("n", strtotime($this->date))-1]. " de ".date("Y", strtotime($this->date));
- 
+	public function getAllDate()
+    {
+    	return Util::getAllDate($this->date);
     }
 }

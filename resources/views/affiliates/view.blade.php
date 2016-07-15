@@ -7,11 +7,11 @@
         <div class="col-md-12">
             <div class="row"> 
                 <div class="col-md-4 col-md-offset-6"> 
-                    <!-- <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
+                    <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
                         &nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;
-                    </a> -->
+                    </a>
 
-                    <!-- <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
+                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Aportes">
                         <a href="" class="btn btn-success btn-raised dropdown-toggle" data-toggle="dropdown">
                             &nbsp;<span class="glyphicon glyphicon-th-list"></span>&nbsp;
                         </a>
@@ -28,7 +28,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="col-md-2 text-right">
                     <a href="{!! url('affiliate') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
@@ -243,7 +243,7 @@
                                 </div>
                                 @if($info_address)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                        <div data-toggle="modal" data-target="#myModal-domicilio"> 
+                                        <div data-toggle="modal" data-target="#myModal-address"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
                                         </div>
                                     </div>
@@ -343,7 +343,7 @@
                                     </div>
                                 @else
                                     <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-domicilio"> 
+                                        <div data-toggle="modal" data-target="#myModal-address"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Domicilio">
                                                 <img class="circle" src="{!! asset('assets/images/home.png') !!}" width="40px" alt="icon">                                                                          
                                             </button>
@@ -363,7 +363,7 @@
                                 </div>
                                 @if($info_spouse)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                        <div data-toggle="modal" data-target="#myModal-conyuge"> 
+                                        <div data-toggle="modal" data-target="#myModal-spouse"> 
                                             <span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span>
                                         </div>
                                     </div>
@@ -492,7 +492,7 @@
                                     
                                 @else
                                     <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-conyuge"> 
+                                        <div data-toggle="modal" data-target="#myModal-spouse"> 
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Conyuge">
                                                 <img class="circle" src="{!! asset('assets/images/people.png') !!}" width="45px" alt="icon">                                                                          
                                             </button>
@@ -717,7 +717,7 @@
             <div class="modal-body">
 
                 {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['affiliate.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
-                <input type="hidden" name="type" value="per"/>
+                <input type="hidden" name="type" value="personal"/>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group"> 
@@ -799,14 +799,14 @@
                                 <div class="form-group">
                                     <div class="togglebutton">
                                       <label>
-                                        <input type="checkbox" data-bind="checked: fallecidoValue" name="fallecidoCheck"> Fallecido
+                                        <input type="checkbox" data-bind="checked: DateDeathAffiliateValue" name="DateDeathAffiliateCheck"> Fallecido
                                       </label>
                                   </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div data-bind='fadeVisible: fallecidoValue, valueUpdate: "afterkeydown"'>
+                        <div data-bind='fadeVisible: DateDeathAffiliateValue, valueUpdate: "afterkeydown"'>
 
                             <div class="form-group">
                                     {!! Form::label('fech_dece', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
@@ -846,7 +846,7 @@
     </div>
 </div>
 
-<div id="myModal-domicilio" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="myModal-address" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -925,7 +925,7 @@
 
 
 
-<div id="myModal-conyuge" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="myModal-spouse" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -992,14 +992,14 @@
                                 <div class="form-group">
                                     <div class="togglebutton">
                                       <label>
-                                        <input type="checkbox" data-bind="checked: fallecidoConyuValue" name="fallecidoConyuCheck"> Fallecido
+                                        <input type="checkbox" data-bind="checked: DateDeathSpouseValue" name="DateDeathSpouseCheck"> Fallecido
                                       </label>
                                   </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div data-bind='fadeVisible: fallecidoConyuValue, valueUpdate: "afterkeydown"'>
+                        <div data-bind='fadeVisible: DateDeathSpouseValue, valueUpdate: "afterkeydown"'>
 
                             <div class="form-group">
                                     {!! Form::label('date_death', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
@@ -1064,7 +1064,8 @@
 @endsection
 
 @push('scripts')
-<script type="text/javascript">
+
+<script>
 
     $(document).ready(function(){
         $('.combobox').combobox();
@@ -1083,9 +1084,8 @@
     var spouse = {!! $spouse !!};
 
     var Model = function() {
- 
-        this.fallecidoValue = ko.observable(affiliate.fech_dece ? true : false);     
-        this.fallecidoConyuValue = ko.observable(spouse.fech_dece ? true : false);     
+        this.DateDeathAffiliateValue = ko.observable(affiliate.fech_dece ? true : false);     
+        this.DateDeathSpouseValue = ko.observable(spouse.fech_dece ? true : false);     
     };
 
     ko.bindingHandlers.fadeVisible = {
@@ -1123,4 +1123,5 @@
     });
 
 </script>
+
 @endpush

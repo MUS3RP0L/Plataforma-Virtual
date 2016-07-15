@@ -226,82 +226,73 @@ class AffiliateController extends Controller
     {       
         $rules = [
             
-            'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'mat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'nom2' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'ap_esp' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            
-            'tele' =>'numeric',
-            'celu' =>'numeric',
+            'last_name' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'mothers_last_name' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'first_name' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'second_name' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'surname_husband' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'phone' =>'numeric',
+            'cell_phone' =>'numeric'
             
         ];
 
         $messages = [
 
-            
-            'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
-            'pat.regex' => 'Sólo se aceptan letras para apellido paterno',
+            'last_name.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
+            'last_name.regex' => 'Sólo se aceptan letras para apellido paterno',
 
-            'mat.min' => 'El mínimo de caracteres permitidos para apellido materno es 3',
-            'mat.regex' => 'Sólo se aceptan letras para apellido materno',
+            'mothers_last_name.min' => 'El mínimo de caracteres permitidos para apellido materno es 3',
+            'mothers_last_name.regex' => 'Sólo se aceptan letras para apellido materno',
 
-            'nom.min' => 'El mínimo de caracteres permitidos para primer nombre es 3',
-            'nom.regex' => 'Sólo se aceptan letras para primer nombre',
+            'first_name.min' => 'El mínimo de caracteres permitidos para primer nombre es 3',
+            'first_name.regex' => 'Sólo se aceptan letras para primer nombre',
 
-            'nom2.min' => 'El mínimo de caracteres permitidos para teléfono de usuario es 3',
-            'nom2.regex' => 'Sólo se aceptan letras para segundo nombre',
+            'second_name.min' => 'El mínimo de caracteres permitidos para teléfono de usuario es 3',
+            'second_name.regex' => 'Sólo se aceptan letras para segundo nombre',
 
-            'ap_esp.min' => 'El mínimo de caracteres permitidos para estado civil es 3',
-            'ap_esp.regex' => 'Sólo se aceptan letras para estado civil',
+            'surname_husband.min' => 'El mínimo de caracteres permitidos para estado civil es 3',
+            'surname_husband.regex' => 'Sólo se aceptan letras para estado civil',
 
-            'tele.numeric' => 'Sólo se aceptan números para teléfono',
+            'phone.numeric' => 'Sólo se aceptan números para teléfono',
 
-            'celu.numeric' => 'Sólo se aceptan números para celular',
-
+            'cell_phone.numeric' => 'Sólo se aceptan números para celular'
 
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
         
         if ($validator->fails()){
-            return redirect('afiliado/'.$id)
+            return redirect('affiliate/'.$id)
             ->withErrors($validator)
             ->withInput();
         }
         else{
 
-            $affiliate = Afiliado::where('id', '=', $id)->first();
+            $affiliate = Affiliate::where('id', '=', $id)->first();
 
             $affiliate->user_id = Auth::user()->id;
-            switch ($request->type) {
-                case 'per':
 
-                    $affiliate->ci = trim($request->ci);
-                    if (empty($request->depa_exp))
-                    {
-                        $affiliate->departamento_exp_id = null;
-                    }
-                    else
-                    {
-                        $affiliate->departamento_exp_id = $request->depa_exp;
-                    }
-                    $affiliate->pat = trim($request->pat);
-                    $affiliate->mat = trim($request->mat);
-                    $affiliate->nom = trim($request->nom);
-                    $affiliate->nom2 = trim($request->nom2);
-                    $affiliate->ap_esp = trim($request->ap_esp);
-                    $affiliate->fech_nac = Util::datePick($request->fech_nac); 
-                    $affiliate->est_civ = trim($request->est_civ); 
-                    if ($affiliate->departamento_nat_id <> trim($request->depa_nat)) {$affiliate->departamento_nat_id = trim($request->depa_nat);}
+            switch ($request->type) {
+                case 'personal':
+
+                    $affiliate->identity_card = trim($request->identity_card);
+                    if ($affiliate->city_identity_card_id <> trim($request->city_identity_card_id)) {$affiliate->city_identity_card_id = trim($request->city_identity_card_id);}
+                    // $affiliate->pat = trim($request->pat);
+                    // $affiliate->mat = trim($request->mat);
+                    // $affiliate->nom = trim($request->nom);
+                    // $affiliate->nom2 = trim($request->nom2);
+                    // $affiliate->ap_esp = trim($request->ap_esp);
+                    // $affiliate->fech_nac = Util::datePick($request->fech_nac); 
+                    // $affiliate->est_civ = trim($request->est_civ); 
+                    // if ($affiliate->departamento_nat_id <> trim($request->depa_nat)) {$affiliate->departamento_nat_id = trim($request->depa_nat);}
                     
-                    if ($request->fallecidoCheck == "on") {
-                        $affiliate->fech_dece = Util::datePick($request->fech_dece); 
-                        $affiliate->motivo_dece = trim($request->motivo_dece);
-                    }else{
-                        $affiliate->fech_dece = null; 
-                        $affiliate->motivo_dece = null;
-                    }
+                    // if ($request->fallecidoCheck == "on") {
+                    //     $affiliate->fech_dece = Util::datePick($request->fech_dece); 
+                    //     $affiliate->motivo_dece = trim($request->motivo_dece);
+                    // }else{
+                    //     $affiliate->fech_dece = null; 
+                    //     $affiliate->motivo_dece = null;
+                    // }
 
                     $affiliate->save();
                     
@@ -327,7 +318,7 @@ class AffiliateController extends Controller
             Session::flash('message', $message);
         }
         
-        return redirect('afiliado/'.$id);
+        return redirect('affiliate/'.$id);
     }
 
     public function SearchAffiliate(Request $request)
