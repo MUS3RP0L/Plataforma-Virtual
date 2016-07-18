@@ -716,7 +716,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['affiliate.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['affiliate.update', $affiliate], 'class' => 'form-horizontal']) !!}
                     <input type="hidden" name="type" value="personal"/>
                     <div class="row">
                         <div class="col-md-6">
@@ -856,7 +856,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['affiliate.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['affiliate.update', $affiliate], 'class' => 'form-horizontal']) !!}
                     <input type="hidden" name="type" value="address"/>
                     <div class="row">
                         <div class="col-md-6">
@@ -935,106 +935,106 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($spouse, ['method' => 'PATCH', 'route' => ['spouse.update', $affiliate->id], 'class' => 'form-horizontal']) !!} <input type="hidden" name="type" value="cony"/>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                                {!! Form::label('identity_card', ' Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('identity_card', $spouse->identity_card, ['class'=> 'form-control', 'required']) !!}
-                                <span class="help-block">Escriba el Carnet de Identidad</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('last_name', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('last_name', $spouse->last_name, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba el Apellido Paterno</span>
-                            </div>
-                        </div>  
-                        <div class="form-group">
-                                {!! Form::label('mothers_last_name', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('mothers_last_name', $spouse->mothers_last_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba el  Apellido Materno</span>
-                            </div>
-                        </div>  
-                        <div class="form-group">
-                                {!! Form::label('first_name', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('first_name', $spouse->first_name, ['class'=> 'form-control', 'required','onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba el Primer Nombre</span>
-                            </div>
-                        </div>  
-                        <div class="form-group">
-                                {!! Form::label('second_name', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('second_name', $spouse->second_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba el Segundo Nombre</span>
-                            </div>
-                        </div>                          
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                                {!! Form::label('birth_date', 'FECHA NACIMIENTO', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                <div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="birth_date" value="{!! $spouse->getEditBirthDate() !!}">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-offset-5 col-md-4">
-                                <div class="form-group">
-                                    <div class="togglebutton">
-                                      <label>
-                                        <input type="checkbox" data-bind="checked: DateDeathSpouseValue" name="DateDeathSpouseCheck"> Fallecido
-                                      </label>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div data-bind='fadeVisible: DateDeathSpouseValue, valueUpdate: "afterkeydown"'>
-
+                {!! Form::model($spouse, ['method' => 'PATCH', 'route' => ['spouse.update', $affiliate], 'class' => 'form-horizontal']) !!} 
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                    {!! Form::label('date_death', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                    {!! Form::label('identity_card', ' Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('identity_card', $spouse->identity_card, ['class'=> 'form-control', 'required']) !!}
+                                    <span class="help-block">Escriba el Carnet de Identidad</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    {!! Form::label('last_name', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('last_name', $spouse->last_name, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    <span class="help-block">Escriba el Apellido Paterno</span>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                    {!! Form::label('mothers_last_name', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('mothers_last_name', $spouse->mothers_last_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    <span class="help-block">Escriba el  Apellido Materno</span>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                    {!! Form::label('first_name', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('first_name', $spouse->first_name, ['class'=> 'form-control', 'required','onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    <span class="help-block">Escriba el Primer Nombre</span>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                    {!! Form::label('second_name', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('second_name', $spouse->second_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    <span class="help-block">Escriba el Segundo Nombre</span>
+                                </div>
+                            </div>                          
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                    {!! Form::label('birth_date', 'FECHA NACIMIENTO', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-7">
                                     <div class="input-group">
-                                        <input type="text" class="form-control datepicker" name="date_death" value="{!! $spouse->getEditDateDeath() !!}">
+                                        <input type="text" class="form-control datepicker" name="birth_date" value="{!! $spouse->getEditBirthDate() !!}">
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                    {!! Form::label('reason_death', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
-                                <div class="col-md-6">
-                                    {!! Form::textarea('reason_death', $spouse->reason_death, ['class'=> 'form-control', 'rows' => '2']) !!}
-                                    <span class="help-block">Escriba el Motivo de fallecimiento</span>
+
+                            <div class="row">
+                                <div class="col-md-offset-5 col-md-4">
+                                    <div class="form-group">
+                                        <div class="togglebutton">
+                                          <label>
+                                            <input type="checkbox" data-bind="checked: DateDeathSpouseValue" name="DateDeathSpouseCheck"> Fallecido
+                                          </label>
+                                      </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                    </div>
-                </div>
 
-                <div class="row text-center">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <a href="{!! url('affiliate/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+                            <div data-bind='fadeVisible: DateDeathSpouseValue, valueUpdate: "afterkeydown"'>
+
+                                <div class="form-group">
+                                        {!! Form::label('date_death', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control datepicker" name="date_death" value="{!! $spouse->getEditDateDeath() !!}">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        {!! Form::label('reason_death', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                    <div class="col-md-6">
+                                        {!! Form::textarea('reason_death', $spouse->reason_death, ['class'=> 'form-control', 'rows' => '2']) !!}
+                                        <span class="help-block">Escriba el Motivo de fallecimiento</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
-                </div>
 
-            {!! Form::close() !!}
+                    <div class="row text-center">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <a href="{!! url('affiliate/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                {!! Form::close() !!}
 
             </div>
         </div>

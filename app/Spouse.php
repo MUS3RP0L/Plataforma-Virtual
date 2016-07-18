@@ -102,13 +102,13 @@ class Spouse extends Model
     }
 }
 
-Spouse::created(function($spouse)
-{
-    Activity::createdSpouse($spouse);
-});
+// Spouse::created(function($spouse)
+// {
+//     Activity::createdSpouse($spouse);
+// });
 
-Spouse::updating(function($spouse)
-{
-    Activity::updateSpouse($spouse);
+// Spouse::updating(function($spouse)
+// {
+//     Activity::updateSpouse($spouse);
 
-});
+// });
