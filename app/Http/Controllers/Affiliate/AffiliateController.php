@@ -135,9 +135,8 @@ class AffiliateController extends Controller
     public function show($affiliate)
     {
         $spouse = Spouse::affiliateidIs($affiliate->id)->first();
-        if (!$spouse) {
-            $spouse = new Spouse;
-        }
+        if (!$spouse) { $spouse = new Spouse; }
+        
         if ($affiliate->gender == 'M') {
             $gender_list = ['' => '', 'C' => 'CASADO', 'S' => 'SOLTERO', 'V' => 'VIUDO', 'D' => 'DIVORCIADO'];
         }elseif ($affiliate->gender == 'F') {
