@@ -49,7 +49,7 @@ class ContributionController extends Controller
 
             $message = "No existe Registro de Aportes";
             Session::flash('message', $message);
-            
+
             return redirect('affiliate/'.$affiliate_id);
         }
     }
@@ -57,25 +57,26 @@ class ContributionController extends Controller
     public function Data(Request $request)
     {   
 
-        $aportes = Aporte::select(['id', 'gest', 'grado_id', 'unidad_id', 'item', 'sue','b_ant', 'b_est', 'b_car', 'b_fro', 'b_ori', 'b_seg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'cot', 'mus', 'fr', 'sv' ])->where('afiliado_id', $request->id);
+        $contributions = Contribution::select(['id', 'month_year', 'degree_id', 'unit_id', 'item', 'base_wage','seniority_bonus', 'study_bonus', 'position_bonus', 'border_bonus', 'east_bonus', 'public_security_bonus', 'gain', 'quotable', 'retirement_fund', 'mortuary_quota', 'total'])
+                                        ->where('affiliate_id', $request->affiliate_id);
 
-        return Datatables::of($aportes)
-                        ->editColumn('gest', function ($aportes) { return Carbon::parse($aportes->gest)->month . "-" . Carbon::parse($aportes->gest)->year ; })
-                        ->editColumn('grado_id', function ($aportes) { return $aportes->grado_id ? $aportes->grado->niv . "-" . $aportes->grado->grad : ''; })
-                        ->editColumn('unidad_id', function ($aportes) { return $aportes->unidad_id ? $aportes->unidad->cod : ''; })
-                        ->editColumn('sue', function ($aportes) { return Util::formatMoney($aportes->sue); })
-                        ->editColumn('b_ant', function ($aportes) { return Util::formatMoney($aportes->b_ant); })
-                        ->editColumn('b_est', function ($aportes) { return Util::formatMoney($aportes->b_est); })
-                        ->editColumn('b_car', function ($aportes) { return Util::formatMoney($aportes->b_car); })
-                        ->editColumn('b_fro', function ($aportes) { return Util::formatMoney($aportes->b_fro); })
-                        ->editColumn('b_ori', function ($aportes) { return Util::formatMoney($aportes->b_ori); })
-                        ->editColumn('b_seg', function ($aportes) { return Util::formatMoney($aportes->b_seg); })
-                        ->editColumn('gan', function ($aportes) { return Util::formatMoney($aportes->gan); })
-                        ->editColumn('cot', function ($aportes) { return Util::formatMoney($aportes->cot); })
-                        ->editColumn('mus', function ($aportes) { return Util::formatMoney($aportes->mus); })
-                        ->editColumn('fr', function ($aportes) { return Util::formatMoney($aportes->fr); })
-                        ->editColumn('sv', function ($aportes) { return Util::formatMoney($aportes->sv); })
-                        ->make(true);
+        return Datatables::of($contributions)
+                ->editColumn('month_year', function ($contribution) { return Carbon::parse($contribution->month_year)->month . "-" . Carbon::parse($contribution->month_year)->year ; })
+                ->editColumn('degree_id', function ($contribution) { return $contribution->degree_id ? $contribution->degree->code_level . "-" . $contribution->degree->code_degree : ''; })
+                ->editColumn('unit_id', function ($contribution) { return $contribution->unit_id ? $contribution->unit->code : ''; })
+                ->editColumn('base_wage', function ($contribution) { return Util::formatMoney($contribution->base_wage); })
+                ->editColumn('seniority_bonus', function ($contribution) { return Util::formatMoney($contribution->seniority_bonus); })
+                ->editColumn('study_bonus', function ($contribution) { return Util::formatMoney($contribution->study_bonus); })
+                ->editColumn('position_bonus', function ($contribution) { return Util::formatMoney($contribution->position_bonus); })
+                ->editColumn('border_bonus', function ($contribution) { return Util::formatMoney($contribution->border_bonus); })
+                ->editColumn('east_bonus', function ($contribution) { return Util::formatMoney($contribution->east_bonus); })
+                ->editColumn('public_security_bonus', function ($contribution) { return Util::formatMoney($contribution->public_security_bonus); })
+                ->editColumn('gain', function ($contribution) { return Util::formatMoney($contribution->gain); })
+                ->editColumn('quotable', function ($contribution) { return Util::formatMoney($contribution->quotable); })
+                ->editColumn('retirement_fund', function ($contribution) { return Util::formatMoney($contribution->retirement_fund); })
+                ->editColumn('mortuary_quota', function ($contribution) { return Util::formatMoney($contribution->mortuary_quota); })
+                ->editColumn('total', function ($contribution) { return Util::formatMoney($contribution->total); })
+                ->make(true);
     }
 
     public function RegPagoData(Request $request)

@@ -20,8 +20,8 @@ Route::group(['middleware' => 'auth'], function() {
 	// User Management
 	Route::resource('user', 'User\UserController');
 
-	Route::get('user/block/{user}', array('as'=>'user/block/{user}', 'uses'=>'User\UserController@Block'));
-	Route::get('user/unblock/{user}', array('as'=>'user/unblock/{user}', 'uses'=>'User\UserController@Unblock'));
+	Route::get('user/block/{user}', array('as'=>'user/block', 'uses'=>'User\UserController@Block'));
+	Route::get('user/unblock/{user}', array('as'=>'user/unblock', 'uses'=>'User\UserController@Unblock'));
 	Route::get('get_user', array('as'=>'get_user', 'uses'=>'User\UserController@Data'));
 
 	// Contribution Rate
@@ -61,8 +61,8 @@ Route::group(['middleware' => 'auth'], function() {
 	// Contribution
 	Route::resource('contribution', 'AporteController');
 
-	Route::get('show_contributions/{affiliate_id}', array('as'=>'show_contributions/{affiliate_id}', 'uses'=>'Contribution\ContributionController@ShowContributions'));
-	Route::get('get_contribution/{affiliate_id}', array('as'=>'get_contribution/{affiliate_id}', 'uses'=>'Contribution\ContributionController@Data'));
+	Route::get('show_contributions/{affiliate_id}', array('as'=>'show_contributions', 'uses'=>'Contribution\ContributionController@ShowContributions'));
+	Route::get('get_contribution/{affiliate_id}', array('as'=>'get_contribution', 'uses'=>'Contribution\ContributionController@Data'));
 
 
 	

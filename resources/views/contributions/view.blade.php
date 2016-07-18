@@ -34,10 +34,10 @@
 				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Oriente">B Oriente</div></th>
 				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Bono Seguridad Ciudadana">B Seguridad</div></th>
 				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total Ganado">Ganado</div></th>
-				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total Cotizable">Cotizable</div></th>
-				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total Aporte Muserpol">Aporte</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total Cotizable">Cotizable</div></th>        	
 				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="% Fondo de Retiro">F.R.</div></th>
 				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title=" % Seguro de Vida">S.V.</div></th>
+				                            	<th class="text-right"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total Aporte Muserpol">Aporte</div></th>
 				                            </tr>
 				                        </thead>
 				                    </table>
@@ -70,26 +70,26 @@
 	        ajax: {
 	            url: '{!! route('get_contribution') !!}',
 	            data: function (d) {
-	                d.id = {{ $affiliate->id }};
+	                d.affiliate_id = {{ $affiliate->id }};
 	            }
 	        },
 	        columns: [
-	            { data: 'gest' },
-	            // { data: 'grado_id', "sClass": "text-right", bSortable: false },
-	            // { data: 'unidad_id', "sClass": "text-right", bSortable: false },
-	            // { data: 'item', "sClass": "text-right", bSortable: false },
-	            // { data: 'sue', "sClass": "text-right", bSortable: false },
-	            // { data: 'b_ant', "sClass": "text-right", bSortable: false },
-	            // { data: 'b_est', "sClass": "text-right", bSortable: false },
-	            // { data: 'b_car', "sClass": "text-right", bSortable: false },
-	            // { data: 'b_fro', "sClass": "text-right", bSortable: false },
-	            // { data: 'b_ori', "sClass": "text-right", bSortable: false },
-	            // { data: 'b_seg', "sClass": "text-right", bSortable: false },
-	            // { data: 'gan', "sClass": "text-right", bSortable: false },
-	            // { data: 'cot', "sClass": "text-right", bSortable: false },
-	            // { data: 'mus', "sClass": "text-right", bSortable: false },
-	            // { data: 'fr', "sClass": "text-right", bSortable: false },
-	            // { data: 'sv', "sClass": "text-right", bSortable: false }  
+	            { data: 'month_year' },
+	            { data: 'degree_id', "sClass": "text-right", bSortable: false },
+	            { data: 'unit_id', "sClass": "text-right", bSortable: false },
+	            { data: 'item', "sClass": "text-right", bSortable: false },
+	            { data: 'base_wage', "sClass": "text-right", bSortable: false },
+	            { data: 'seniority_bonus', "sClass": "text-right", bSortable: false },
+	            { data: 'study_bonus', "sClass": "text-right", bSortable: false },
+	            { data: 'position_bonus', "sClass": "text-right", bSortable: false },
+	            { data: 'border_bonus', "sClass": "text-right", bSortable: false },
+	            { data: 'east_bonus', "sClass": "text-right", bSortable: false },
+	            { data: 'public_security_bonus', "sClass": "text-right", bSortable: false },
+	            { data: 'gain', "sClass": "text-right", bSortable: false },
+	            { data: 'quotable', "sClass": "text-right", bSortable: false },
+	            { data: 'retirement_fund', "sClass": "text-right", bSortable: false },
+	            { data: 'mortuary_quota', "sClass": "text-right", bSortable: false },
+	            { data: 'total', "sClass": "text-right", bSortable: false }  
 	        ]
 	    });
 	});

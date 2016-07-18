@@ -17,7 +17,7 @@
                         </a>
                         <ul class="dropdown-menu"  role="menu">
                             <li>
-                                <a href="{!! url('viewaporte/' . $affiliate->id) !!}" class="text-center">
+                                <a href="{!! url('show_contributions/' . $affiliate->id) !!}" class="text-center">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                             </li>
