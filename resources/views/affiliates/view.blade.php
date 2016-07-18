@@ -717,102 +717,62 @@
             <div class="modal-body">
 
                 {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['affiliate.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
-                <input type="hidden" name="type" value="personal"/>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group"> 
-                                {!! Form::label('identity_card', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-5">
-                                {!! Form::text('identity_card', $affiliate->identity_card, ['class'=> 'form-control', 'required']) !!}
-                                <span class="help-block">Número de CI</span>
+                    <input type="hidden" name="type" value="personal"/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group"> 
+                                    {!! Form::label('identity_card', 'Carnet de Identidad', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-5">
+                                    {!! Form::text('identity_card', $affiliate->identity_card, ['class'=> 'form-control', 'required']) !!}
+                                    <span class="help-block">Número de CI</span>
+                                </div>
+                                    {!! Form::select('city_identity_card_id', $cities_list_short, $affiliate->city_identity_card_id, ['class' => 'col-md-2 combobox form-control']) !!}
                             </div>
-                                {!! Form::select('city_identity_card_id', $cities_list_short, $affiliate->city_identity_card_id, ['class' => 'col-md-2 combobox form-control']) !!}
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('last_name', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('last_name', $affiliate->last_name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba el Apellido Paterno</span>
-                            </div>
-                        </div>  
-                        <div class="form-group">
-                                {!! Form::label('mothers_last_name', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('mothers_last_name', $affiliate->mothers_last_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba el Apellido Materno</span>
-                            </div>
-                        </div>                              
-                        <div class="form-group">
-                                {!! Form::label('first_name', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('first_name', $affiliate->first_name, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba el  Primer Nombre</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('second_name', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('second_name', $affiliate->second_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba el Segundo Nombre</span>
-                            </div>
-                        </div>
-                        @if ($affiliate->sex == 'F')
                             <div class="form-group">
-                                    {!! Form::label('surname_husband', 'Apellido de Esposo', ['class' => 'col-md-5 control-label']) !!}
+                                    {!! Form::label('last_name', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-7">
-                                    {!! Form::text('surname_husband', $affiliate->surname_husband, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                    <span class="help-block">Escriba el Apellido de Esposo (Opcional)</span>
+                                    {!! Form::text('last_name', $affiliate->last_name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    <span class="help-block">Escriba el Apellido Paterno</span>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                    {!! Form::label('mothers_last_name', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('mothers_last_name', $affiliate->mothers_last_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    <span class="help-block">Escriba el Apellido Materno</span>
+                                </div>
+                            </div>                              
+                            <div class="form-group">
+                                    {!! Form::label('first_name', 'Primer Nombre', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('first_name', $affiliate->first_name, ['class'=> 'form-control','required', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    <span class="help-block">Escriba el  Primer Nombre</span>
                                 </div>
                             </div>
-                        @endif
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                                {!! Form::label('birth_date', 'Fecha de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                    			<div class="input-group">
-                                    <input type="text" class="form-control datepicker" name="birth_date" value="{!! $affiliate->getEditBirthDate() !!}">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
+                            <div class="form-group">
+                                    {!! Form::label('second_name', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('second_name', $affiliate->second_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    <span class="help-block">Escriba el Segundo Nombre</span>
+                                </div>
+                            </div>
+                            @if ($affiliate->sex == 'F')
+                                <div class="form-group">
+                                        {!! Form::label('surname_husband', 'Apellido de Esposo', ['class' => 'col-md-5 control-label']) !!}
+                                    <div class="col-md-7">
+                                        {!! Form::text('surname_husband', $affiliate->surname_husband, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                        <span class="help-block">Escriba el Apellido de Esposo (Opcional)</span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                    {!! Form::label('civil_status', 'Estado Civil', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::select('civil_status', $gender_list, $affiliate->civil_status, ['class' => 'combobox form-control', 'required']) !!}
-                                <span class="help-block">Seleccione el Estado Civil</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                    {!! Form::label('city_birth_id', 'Lugar de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::select('city_birth_id', $cities_list, $affiliate->city_birth_id, ['class' => 'combobox form-control']) !!}
-                                <span class="help-block">Seleccione Departamento</span>
-                            </div>
+                            @endif
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-offset-5 col-md-4">
-                                <div class="form-group">
-                                    <div class="togglebutton">
-                                      <label>
-                                        <input type="checkbox" data-bind="checked: DateDeathAffiliateValue" name="DateDeathAffiliateCheck"> Fallecido
-                                      </label>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div data-bind='fadeVisible: DateDeathAffiliateValue, valueUpdate: "afterkeydown"'>
-
+                        <div class="col-md-6">
                             <div class="form-group">
-                                    {!! Form::label('date_death', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                    {!! Form::label('birth_date', 'Fecha de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-7">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control datepicker" name="date_death" value="{!! $affiliate->getEditDateDeath() !!}">
+                        			<div class="input-group">
+                                        <input type="text" class="form-control datepicker" name="birth_date" value="{!! $affiliate->getEditBirthDate() !!}">
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </div>
@@ -820,26 +780,67 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                    {!! Form::label('reason_death', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
-                                <div class="col-md-6">
-                                    {!! Form::textarea('reason_death', $affiliate->reason_death, ['class'=> 'form-control', 'rows' => '2']) !!}
-                                    <span class="help-block">Escriba el Motivo de fallecimiento</span>
+                                        {!! Form::label('civil_status', 'Estado Civil', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::select('civil_status', $gender_list, $affiliate->civil_status, ['class' => 'combobox form-control', 'required']) !!}
+                                    <span class="help-block">Seleccione el Estado Civil</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                        {!! Form::label('city_birth_id', 'Lugar de Nacimiento', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::select('city_birth_id', $cities_list, $affiliate->city_birth_id, ['class' => 'combobox form-control']) !!}
+                                    <span class="help-block">Seleccione Departamento</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-offset-5 col-md-4">
+                                    <div class="form-group">
+                                        <div class="togglebutton">
+                                          <label>
+                                            <input type="checkbox" data-bind="checked: DateDeathAffiliateValue" name="DateDeathAffiliateCheck"> Fallecido
+                                          </label>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div data-bind='fadeVisible: DateDeathAffiliateValue, valueUpdate: "afterkeydown"'>
+
+                                <div class="form-group">
+                                        {!! Form::label('date_death', 'Fecha Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control datepicker" name="date_death" value="{!! $affiliate->getEditDateDeath() !!}">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        {!! Form::label('reason_death', 'Causa Deceso', ['class' => 'col-md-5 control-label']) !!}
+                                    <div class="col-md-6">
+                                        {!! Form::textarea('reason_death', $affiliate->reason_death, ['class'=> 'form-control', 'rows' => '2']) !!}
+                                        <span class="help-block">Escriba el Motivo de fallecimiento</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row text-center">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <a href="{!! url('affiliate/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+                    <div class="row text-center">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <a href="{!! url('affiliate/' . $affiliate->id) !!}" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancelar">&nbsp;<i class="glyphicon glyphicon-remove"></i>&nbsp;</a>
+                                &nbsp;&nbsp;
+                                <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Guardar">&nbsp;<i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            {!! Form::close() !!}
+                {!! Form::close() !!}
 
             </div>
         </div>
@@ -856,67 +857,67 @@
             <div class="modal-body">
 
                 {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['affiliate.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
-                <input type="hidden" name="type" value="address"/>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                                    {!! Form::label('city_address_id', 'Departamento', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::select('city_address_id', $cities_list, $affiliate->city_address_id, ['class' => 'combobox form-control']) !!}
-                                <span class="help-block">Seleccione Departamento</span>
+                    <input type="hidden" name="type" value="address"/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                        {!! Form::label('city_address_id', 'Departamento', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::select('city_address_id', $cities_list, $affiliate->city_address_id, ['class' => 'combobox form-control']) !!}
+                                    <span class="help-block">Seleccione Departamento</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    {!! Form::label('zone', 'Zona', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('zone', $affiliate->zone, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    <span class="help-block">Escriba la Zona</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    {!! Form::label('street', 'Calle, Avenida', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('street', $affiliate->street, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                    <span class="help-block">Escriba la Calle y/o Avenida</span>
+                                </div>
+                            </div>                      
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                    {!! Form::label('number_address', 'Número de Domicilio', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('number_address', $affiliate->number_address, ['class'=> 'form-control']) !!}
+                                    <span class="help-block">Escriba el Número de Domicilio</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    {!! Form::label('phone', 'Teléfono fijo', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('phone', $affiliate->phone, ['class'=> 'form-control']) !!}
+                                    <span class="help-block">Escriba el Teléfono fijo</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    {!! Form::label('cell_phone', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-7">
+                                    {!! Form::text('cell_phone', $affiliate->cell_phone, ['class'=> 'form-control']) !!}
+                                    <span class="help-block">Escriba el Teléfono Celular</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                                {!! Form::label('zone', 'Zona', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('zone', $affiliate->zone, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba la Zona</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('street', 'Calle, Avenida', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('street', $affiliate->street, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba la Calle y/o Avenida</span>
-                            </div>
-                        </div>
-                                                          
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                                {!! Form::label('num_domi', 'Número de Domicilio', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('num_domi', $affiliate->num_domi, ['class'=> 'form-control',  'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba el Número de Domicilio</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('phone', 'Teléfono fijo', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('phone', $affiliate->phone, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba el Teléfono fijo</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                {!! Form::label('cell_phone', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
-                            <div class="col-md-7">
-                                {!! Form::text('cell_phone', $affiliate->cell_phone, ['class'=> 'form-control', 'numeric', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
-                                <span class="help-block">Escriba el Teléfono Celular</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row text-center">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <a href="{!! url('affiliate/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-success">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;</button>
+                    <div class="row text-center">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <a href="{!! url('affiliate/' . $affiliate->id) !!}" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancelar">&nbsp;<i class="glyphicon glyphicon-remove"></i>&nbsp;</a>
+                                &nbsp;&nbsp;
+                                <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Guardar">&nbsp;<i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            {!! Form::close() !!}
+                {!! Form::close() !!}
 
             </div>
         </div>
@@ -1084,8 +1085,8 @@
     var spouse = {!! $spouse !!};
 
     var Model = function() {
-        this.DateDeathAffiliateValue = ko.observable(affiliate.fech_dece ? true : false);     
-        this.DateDeathSpouseValue = ko.observable(spouse.fech_dece ? true : false);     
+        this.DateDeathAffiliateValue = ko.observable(affiliate.date_death ? true : false);     
+        this.DateDeathSpouseValue = ko.observable(spouse.date_death ? true : false);     
     };
 
     ko.bindingHandlers.fadeVisible = {

@@ -292,20 +292,21 @@ class AffiliateController extends Controller
                         $affiliate->reason_death = null;
                     }
                     $affiliate->save();
-                    
+
                     $message = "Información personal de Afiliado actualizado con éxito";
                     
                 break;
 
                 case 'address':
-                    
-                    if ($affiliate->departamento_dir_id <> trim($request->depa_dir)) {$affiliate->departamento_dir_id = trim($request->depa_dir);}
-                    $affiliate->zona = trim($request->zona);
-                    $affiliate->calle = trim($request->calle);
-                    $affiliate->num_domi = trim($request->num_domi);  
-                    $affiliate->tele = trim($request->tele);
-                    $affiliate->celu = trim($request->celu); 
-                    $affiliate->save();             
+
+                    if ($request->city_address_id) { $affiliate->city_address_id = $request->city_address_id; } else { $affiliate->city_address_id = null; }
+                    $affiliate->zone = trim($request->zone);
+                    $affiliate->street = trim($request->street);
+                    $affiliate->number_address = trim($request->number_address);  
+                    $affiliate->phone = trim($request->phone);
+                    $affiliate->cell_phone = trim($request->cell_phone); 
+                    $affiliate->save();
+
                     $message = "Información de domicilio de afiliado actualizado con éxito";
 
                 break;
