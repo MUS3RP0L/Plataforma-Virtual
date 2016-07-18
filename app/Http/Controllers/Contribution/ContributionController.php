@@ -1,19 +1,18 @@
 <?php
 
-namespace Muserpol\Http\Controllers;
+namespace Muserpol\Http\Controllers\Contribution;
 
 use Illuminate\Http\Request;
-
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 
-use DB;
 use Auth;
 use Validator;
 use Session;
 use Datatables;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
+use Illuminate\Support\Collection;
 
 use Muserpol\Afiliado;
 use Muserpol\Aporte;
@@ -22,9 +21,7 @@ use Muserpol\Categoria;
 use Muserpol\AporTasa;
 use Muserpol\IpcTasa;
 
-use Illuminate\Support\Collection;
-
-class AporteController extends Controller
+class ContributionController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -51,7 +51,30 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('get_affiliate', array('as'=>'get_affiliate', 'uses'=>'Affiliate\AffiliateController@Data'));
 
 	// Spouses
-	Route::resource('spouse', 'SpouseController');
+	Route::resource('spouse', 'Affiliate\SpouseController');
+
+
+
+
+
+	// view Registros Aportes
+	Route::resource('aporte', 'AporteController');
+
+	Route::get('viewaporte/{afid}', 'AporteController@ViewAporte');
+	// Select year Aporte
+	Route::get('selectgestaporte/{afid}', 'AporteController@SelectGestAporte');
+	// Cálculo aportes
+	Route::get('calcaportegest/{afid}/{gesid}/{type}', 'AporteController@CalcAporteGest');
+	Route::post('calcaportegest', 'AporteController@GenerateCalcAporteGest');
+
+	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
+	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
+
+	//Pagos Aporte
+	Route::resource('aportepago', 'AportePagoController');
+	Route::get('print_aportepago/{id}', 'AportePagoController@PrintAportePago');
+	Route::get('getAportePago', array('as'=>'getAportePago', 'uses'=>'AportePagoController@AportePagoData'));
+
 
 
 
@@ -71,25 +94,6 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// Solicitantes
 	Route::resource('solicitante', 'SolicitanteController');
-
-	// view Registros Aportes
-	Route::resource('aporte', 'AporteController');
-
-	Route::get('viewaporte/{afid}', 'AporteController@ViewAporte');
-	// Select year Aporte
-	Route::get('selectgestaporte/{afid}', 'AporteController@SelectGestAporte');
-	// Cálculo aportes
-	Route::get('calcaportegest/{afid}/{gesid}/{type}', 'AporteController@CalcAporteGest');
-	Route::post('calcaportegest', 'AporteController@GenerateCalcAporteGest');
-
-	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
-	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
-	
-	//Pagos Aporte
-	Route::resource('aportepago', 'AportePagoController');
-	Route::get('print_aportepago/{id}', 'AportePagoController@PrintAportePago');
-	Route::get('getAportePago', array('as'=>'getAportePago', 'uses'=>'AportePagoController@AportePagoData'));
-
 
 	// Tramite Fondo de Retiro
 	Route::resource('tramite_fondo_retiro', 'FondoTramiteController');
