@@ -2,15 +2,12 @@
 
 @section('content')
 <div class="container-fluid">
-	{!! Breadcrumbs::render('aportes_afiliado', $afiliado) !!}
+	{!! Breadcrumbs::render('show_contribution', $affiliate) !!}
     <div class="row">
         <div class="col-md-12">
         	<div class="row">  
-
                 <div class="col-md-12 text-right"> 
-					<a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
-                        &nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;
-                    </a>
+					<a href="{!! url('affiliate/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;</a>
                 </div>
         	</div>
 			<div class="row">
@@ -22,7 +19,7 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-12">
-									<table class="table table-striped table-hover" id="afiliados-table">
+									<table class="table table-striped table-hover" id="affiliate-table">
 				                        <thead>
 				                            <tr class="success">
 				                            	<th class="text-center"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Gestión">Gestión</div></th>
@@ -63,7 +60,7 @@
 	});
 
 	$(function() {
-	    $('#afiliados-table').DataTable({
+	    $('#affiliate-table').DataTable({
 	    	"dom": '<"top">t<"bottom"p>',
 	    	"order": [[ 0, "desc" ]],
 	        processing: true,
@@ -71,28 +68,28 @@
 	        pageLength: 100,
 	        bFilter: false,
 	        ajax: {
-	            url: '{!! route('getAporte') !!}',
+	            url: '{!! route('get_contribution') !!}',
 	            data: function (d) {
-	                d.id = {{ $afiliado->id }};
+	                d.id = {{ $affiliate->id }};
 	            }
 	        },
 	        columns: [
 	            { data: 'gest' },
-	            { data: 'grado_id', "sClass": "text-right", bSortable: false },
-	            { data: 'unidad_id', "sClass": "text-right", bSortable: false },
-	            { data: 'item', "sClass": "text-right", bSortable: false },
-	            { data: 'sue', "sClass": "text-right", bSortable: false },
-	            { data: 'b_ant', "sClass": "text-right", bSortable: false },
-	            { data: 'b_est', "sClass": "text-right", bSortable: false },
-	            { data: 'b_car', "sClass": "text-right", bSortable: false },
-	            { data: 'b_fro', "sClass": "text-right", bSortable: false },
-	            { data: 'b_ori', "sClass": "text-right", bSortable: false },
-	            { data: 'b_seg', "sClass": "text-right", bSortable: false },
-	            { data: 'gan', "sClass": "text-right", bSortable: false },
-	            { data: 'cot', "sClass": "text-right", bSortable: false },
-	            { data: 'mus', "sClass": "text-right", bSortable: false },
-	            { data: 'fr', "sClass": "text-right", bSortable: false },
-	            { data: 'sv', "sClass": "text-right", bSortable: false }  
+	            // { data: 'grado_id', "sClass": "text-right", bSortable: false },
+	            // { data: 'unidad_id', "sClass": "text-right", bSortable: false },
+	            // { data: 'item', "sClass": "text-right", bSortable: false },
+	            // { data: 'sue', "sClass": "text-right", bSortable: false },
+	            // { data: 'b_ant', "sClass": "text-right", bSortable: false },
+	            // { data: 'b_est', "sClass": "text-right", bSortable: false },
+	            // { data: 'b_car', "sClass": "text-right", bSortable: false },
+	            // { data: 'b_fro', "sClass": "text-right", bSortable: false },
+	            // { data: 'b_ori', "sClass": "text-right", bSortable: false },
+	            // { data: 'b_seg', "sClass": "text-right", bSortable: false },
+	            // { data: 'gan', "sClass": "text-right", bSortable: false },
+	            // { data: 'cot', "sClass": "text-right", bSortable: false },
+	            // { data: 'mus', "sClass": "text-right", bSortable: false },
+	            // { data: 'fr', "sClass": "text-right", bSortable: false },
+	            // { data: 'sv', "sClass": "text-right", bSortable: false }  
 	        ]
 	    });
 	});
