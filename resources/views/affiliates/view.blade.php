@@ -23,7 +23,7 @@
                             </li>
                             <li role="separator" class="divider"></li>
                             <li>
-                                <a href="{!! url('selectgestaporte/' . $affiliate->id) !!}" class="text-center">
+                                <a href="{!! url('select_contribution/' . $affiliate->id) !!}" class="text-center">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </a>
                             </li>

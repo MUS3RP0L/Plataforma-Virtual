@@ -2,14 +2,12 @@
 
 @section('content')
 <div class="container-fluid">
-    {!! Breadcrumbs::render('registro_aportes_afiliado', $afiliado) !!}
+    {!! Breadcrumbs::render('select_contribution', $affiliate) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="row">  
                 <div class="col-md-12 text-right"> 
-                    <a href="{!! url('afiliado/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
-                        &nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;
-                    </a>
+                    <a href="{!! url('affiliate/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;</a>
                 </div>
             </div>
             <div class="panel panel-primary">
@@ -59,9 +57,9 @@
             bFilter: false,
             pageLength: 8,
             ajax: {
-                url: '{!! route('getRegPago') !!}',
+                url: '{!! route('get_select_contribution') !!}',
                 data: function (d) {
-                    d.id = {{ $afiliado->id }};
+                    d.affiliate_id = {{ $afiliado->id }};
                 }
             },
             columns: [

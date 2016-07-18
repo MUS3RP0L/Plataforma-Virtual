@@ -47,12 +47,16 @@ Breadcrumbs::register('show_affiliate', function($breadcrumbs, $affiliate) {
 });
 
 // Show Contribution
-Breadcrumbs::register('show_contribution', function($breadcrumbs, $afiliado) {
-    $breadcrumbs->parent('show_affiliate', $afiliado);
+Breadcrumbs::register('show_contribution', function($breadcrumbs, $affiliate) {
+    $breadcrumbs->parent('show_affiliate', $affiliate);
     $breadcrumbs->push('Aportes');
 });
 
-
+// Show Select Contribution
+Breadcrumbs::register('select_contribution', function($breadcrumbs, $affiliate) {
+    $breadcrumbs->parent('show_affiliate', $affiliate);
+    $breadcrumbs->push('Registro de Aporte');
+});
 
 
 
@@ -66,18 +70,6 @@ Breadcrumbs::register('show_contribution', function($breadcrumbs, $afiliado) {
 // Inicio
 Breadcrumbs::register('home', function($breadcrumbs) {
     $breadcrumbs->push('Inicio', route('home'));
-});
-
-// Show Crear Aportes Afiliado
-Breadcrumbs::register('registro_aportes_afiliado', function($breadcrumbs, $afiliado) {
-    $breadcrumbs->parent('show_afiliado', $afiliado);
-    $breadcrumbs->push('Registro de Aporte');
-});
-
-// Show Crear Aportes Afiliado
-Breadcrumbs::register('registro_aportes_afiliado', function($breadcrumbs, $afiliado) {
-    $breadcrumbs->parent('show_afiliado', $afiliado);
-    $breadcrumbs->push('Registro de Aporte');
 });
 
 // Fondo de Retiro

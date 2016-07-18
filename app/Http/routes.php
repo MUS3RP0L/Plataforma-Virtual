@@ -63,23 +63,15 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('show_contributions/{affiliate_id}', array('as'=>'show_contributions', 'uses'=>'Contribution\ContributionController@ShowContributions'));
 	Route::get('get_contribution/{affiliate_id}', array('as'=>'get_contribution', 'uses'=>'Contribution\ContributionController@Data'));
-
-
 	
+	Route::get('select_contribution/{affiliate_id}', array('as'=>'select_contribution', 'uses'=>'Contribution\ContributionController@SelectContribution'));
+	Route::get('get_select_contribution/{id}', array('as'=>'get_select_contribution', 'uses'=>'AporteController@Data'));
 
-
-
-
-	
-
-	
-	// Select year Aporte
-	Route::get('selectgestaporte/{afid}', 'AporteController@SelectGestAporte');
-	// Cálculo aportes
 	Route::get('calcaportegest/{afid}/{gesid}/{type}', 'AporteController@CalcAporteGest');
 	Route::post('calcaportegest', 'AporteController@GenerateCalcAporteGest');
 
-	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
+
+
 
 	//Pagos Aporte
 	Route::resource('aportepago', 'AportePagoController');

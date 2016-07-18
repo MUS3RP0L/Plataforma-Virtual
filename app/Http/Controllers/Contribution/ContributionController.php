@@ -56,7 +56,6 @@ class ContributionController extends Controller
 
     public function Data(Request $request)
     {   
-
         $contributions = Contribution::select(['id', 'month_year', 'degree_id', 'unit_id', 'item', 'base_wage','seniority_bonus', 'study_bonus', 'position_bonus', 'border_bonus', 'east_bonus', 'public_security_bonus', 'gain', 'quotable', 'retirement_fund', 'mortuary_quota', 'total'])
                                         ->where('affiliate_id', $request->affiliate_id);
 
@@ -77,6 +76,17 @@ class ContributionController extends Controller
                 ->editColumn('mortuary_quota', function ($contribution) { return Util::formatMoney($contribution->mortuary_quota); })
                 ->editColumn('total', function ($contribution) { return Util::formatMoney($contribution->total); })
                 ->make(true);
+    }
+    
+    public function SelectContribution($affiliate_id)
+    {
+        $affiliate = Affiliate::idIs($affiliate_id)->first();
+        
+        $data = array(
+            'affiliate' => $affiliate,
+        );
+
+        return view('contributions.select', $data);
     }
 
     public function RegPagoData(Request $request)
@@ -153,14 +163,6 @@ class ContributionController extends Controller
                         </div>
                     <?php } ?>')
                 ->make(true);
-    }
-    public function SelectGestAporte($afid)
-    {
-        $afiliado = Afiliado::idIs($afid)->first();
-        $data = array(
-            'afiliado' => $afiliado,
-        );
-        return view('aportes.gest', $data);
     }
 
     public static function getViewModel($afid, $gestid)
