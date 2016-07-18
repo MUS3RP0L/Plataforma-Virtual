@@ -144,9 +144,9 @@ class AffiliateController extends Controller
             $gender_list = ['' => '', 'C' => 'CASADA', 'S' => 'SOLTERA', 'V' => 'VIUDA', 'D' => 'DIVORCIADA'];
         }
         if ($affiliate->city_identity_card_id) {
-            $affiliate->city_identity_card = City::idIs($affiliate->city_identity_card_id)->first()->cod;
+            $affiliate->city_identity_card = City::idIs($affiliate->city_identity_card_id)->first()->shortened;
         }else {
-            $affiliate->city_identity_card = ''; 
+            $affiliate->city_identity_card = 'hola'; 
         }
         if ($affiliate->city_birth_id) {
             $affiliate->city_birth = City::idIs($affiliate->city_birth_id)->first()->name;
@@ -217,12 +217,12 @@ class AffiliateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $affiliate)
     {
-        return $this->save($request, $id);
+        return $this->save($request, $affiliate);
     }
 
-    public function save($request, $id = false)
+    public function save($request, $affiliate = false)
     {       
         $rules = [
             
@@ -261,42 +261,41 @@ class AffiliateController extends Controller
         
         $validator = Validator::make($request->all(), $rules, $messages);
         
-        if ($validator->fails()){
-            return redirect('affiliate/'.$id)
+        if ($validator->fails()) {
+            return redirect('affiliate/'.$affiliate->id)
             ->withErrors($validator)
             ->withInput();
         }
-        else{
-
-            $affiliate = Affiliate::where('id', '=', $id)->first();
+        else {
 
             $affiliate->user_id = Auth::user()->id;
 
             switch ($request->type) {
+                
                 case 'personal':
 
                     $affiliate->identity_card = trim($request->identity_card);
-                    if ($affiliate->city_identity_card_id <> trim($request->city_identity_card_id)) {$affiliate->city_identity_card_id = trim($request->city_identity_card_id);}
-                    // $affiliate->pat = trim($request->pat);
-                    // $affiliate->mat = trim($request->mat);
-                    // $affiliate->nom = trim($request->nom);
-                    // $affiliate->nom2 = trim($request->nom2);
-                    // $affiliate->ap_esp = trim($request->ap_esp);
-                    // $affiliate->fech_nac = Util::datePick($request->fech_nac); 
-                    // $affiliate->est_civ = trim($request->est_civ); 
-                    // if ($affiliate->departamento_nat_id <> trim($request->depa_nat)) {$affiliate->departamento_nat_id = trim($request->depa_nat);}
-                    
-                    // if ($request->fallecidoCheck == "on") {
-                    //     $affiliate->fech_dece = Util::datePick($request->fech_dece); 
-                    //     $affiliate->motivo_dece = trim($request->motivo_dece);
-                    // }else{
-                    //     $affiliate->fech_dece = null; 
-                    //     $affiliate->motivo_dece = null;
-                    // }
+                    if ($request->city_identity_card_id) { $affiliate->city_identity_card_id = $request->city_identity_card_id; } else { $affiliate->city_identity_card_id = null; }
+                    $affiliate->last_name = trim($request->last_name);
+                    $affiliate->mothers_last_name = trim($request->mothers_last_name);
+                    $affiliate->first_name = trim($request->first_name);
+                    $affiliate->second_name = trim($request->second_name);
+                    $affiliate->surname_husband = trim($request->surname_husband);
+                    $affiliate->birth_date = Util::datePick($request->birth_date); 
+                    $affiliate->civil_status = trim($request->civil_status); 
 
+                    if ($request->city_birth_id) { $affiliate->city_birth_id = $request->city_birth_id; } else { $affiliate->city_birth_id = null; }
+
+                    if ($request->DateDeathAffiliateCheck == "on") {
+                        $affiliate->date_death = Util::datePick($request->date_death); 
+                        $affiliate->reason_death = trim($request->reason_death);
+                    }else {
+                        $affiliate->date_death = null; 
+                        $affiliate->reason_death = null;
+                    }
                     $affiliate->save();
                     
-                    $message = "Información personal de Afiliado actualizado con éxito". $request->fallecidoCheck;
+                    $message = "Información personal de Afiliado actualizado con éxito";
                     break;
 
                 case 'dom':
@@ -312,13 +311,15 @@ class AffiliateController extends Controller
                     $affiliate->save();
                     
                     $message = "Información de domicilio de afiliado actualizado con éxito";
-                    break;         
+                    break;
+
+                Session::flash('message', $message);   
             }
             
-            Session::flash('message', $message);
+            
         }
         
-        return redirect('affiliate/'.$id);
+        return redirect('affiliate/'.$affiliate->id);
     }
 
     public function SearchAffiliate(Request $request)
