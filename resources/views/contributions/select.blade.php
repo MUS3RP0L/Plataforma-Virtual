@@ -59,7 +59,7 @@
             ajax: {
                 url: '{!! route('get_select_contribution') !!}',
                 data: function (d) {
-                    d.affiliate_id = {{ $afiliado->id }};
+                    d.affiliate_id = {{ $affiliate->id }};
                 }
             },
             columns: [

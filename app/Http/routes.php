@@ -62,13 +62,29 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('contribution', 'AporteController');
 
 	Route::get('show_contributions/{affiliate_id}', array('as'=>'show_contributions', 'uses'=>'Contribution\ContributionController@ShowContributions'));
-	Route::get('get_contribution/{affiliate_id}', array('as'=>'get_contribution', 'uses'=>'Contribution\ContributionController@Data'));
+	Route::get('get_contribution/{affiliate_id}', array('as'=>'get_contribution', 'uses'=>'Contribution\ContributionController@ShowData'));
 	
 	Route::get('select_contribution/{affiliate_id}', array('as'=>'select_contribution', 'uses'=>'Contribution\ContributionController@SelectContribution'));
-	Route::get('get_select_contribution/{id}', array('as'=>'get_select_contribution', 'uses'=>'AporteController@Data'));
+	Route::get('get_select_contribution/{id}', array('as'=>'get_select_contribution', 'uses'=>'Contribution\ContributionController@SelectData'));
 
-	Route::get('calcaportegest/{afid}/{gesid}/{type}', 'AporteController@CalcAporteGest');
-	Route::post('calcaportegest', 'AporteController@GenerateCalcAporteGest');
+	Route::get('calculation_contribution/{affiliate_id}/{year}/{type}', 'Contribution\ContributionController@CalculationContribution');
+	Route::post('calculation_contribution', 'AporteController@GenerateCalculationContribution');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -77,18 +93,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('aportepago', 'AportePagoController');
 	Route::get('print_aportepago/{id}', 'AportePagoController@PrintAportePago');
 	Route::get('getAportePago', array('as'=>'getAportePago', 'uses'=>'AportePagoController@AportePagoData'));
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	// Inicio
