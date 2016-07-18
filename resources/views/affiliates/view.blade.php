@@ -139,7 +139,7 @@
                                                             Fecha de Deceso
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $affiliate->getFullDateDeath() !!}
+                                                            {!! $affiliate->getShortDateDeath() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -183,7 +183,7 @@
                                                         Sexo
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $affiliate->getFullGender() !!}
+                                                        {!! $affiliate->getGender() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -195,7 +195,7 @@
                                                         Estado Civil
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $affiliate->getFullCivilStatus() !!}
+                                                        {!! $affiliate->getCivilStatus() !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -422,7 +422,7 @@
                                                                 Fecha Deceso
                                                             </div>
                                                             <div class="col-md-6">
-                                                                 {!! $spouse->getFullDateDeath() !!}
+                                                                 {!! $spouse->getShortDateDeath() !!}
                                                             </div>
                                                         </div>
                                                     </td>
@@ -856,7 +856,7 @@
             <div class="modal-body">
 
                 {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['affiliate.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
-                <input type="hidden" name="type" value="dom"/>
+                <input type="hidden" name="type" value="address"/>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">

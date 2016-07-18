@@ -137,6 +137,11 @@ class Affiliate extends Model
     {   
         return Util::getDateShort($this->date_death);
     }
+
+    public function getShortDateEntry()
+    {   
+        return Util::getDateShort($this->date_entry);
+    }
     
     public function getHowOld()
     {
@@ -148,7 +153,7 @@ class Affiliate extends Model
         }   
     }
 
-    public function getFullGender()
+    public function getGender()
     {
         if ($this->gender == 'M') {
             return "MASCULINO";
@@ -158,7 +163,7 @@ class Affiliate extends Model
         }
     }
 
-    public function getFullCivilStatus()
+    public function getCivilStatus()
     {
         if ($this->civil_status == 'S') {
             
@@ -195,12 +200,9 @@ class Affiliate extends Model
         }
     }
 
-    public function getShortDateEntry()
-    {   
-        return Util::getDateShort($this->date_entry);
-    }
     
-    public function getFullDateDecommissioned()
+    
+    public function getEditDateDecommissioned()
     {   
         return Util::getDateEdit($this->date_decommissioned);
     }
@@ -298,22 +300,6 @@ class Affiliate extends Model
     public function getYearsAndMonths_fech_fin_serv()
     {
         return Util::getYearsAndMonths($this->fech_ini_serv, $this->fech_fin_serv);
-    }
-
-    public function getDataEdit_fech_ing()
-    {   
-        return Util::getDateEdit($this->fech_ing);
-    }
-
-    public function getDataEditEst()
-    {   
-        return Util::getDateEdit($this->fech_est);
-    }
-
-
-    public function getDataEditGra()
-    {   
-        return Util::getDateEdit($this->fech_gra);
     }
 
     public function getData_fech_ini_apor()

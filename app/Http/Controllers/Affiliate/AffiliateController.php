@@ -283,9 +283,7 @@ class AffiliateController extends Controller
                     $affiliate->surname_husband = trim($request->surname_husband);
                     $affiliate->birth_date = Util::datePick($request->birth_date); 
                     $affiliate->civil_status = trim($request->civil_status); 
-
                     if ($request->city_birth_id) { $affiliate->city_birth_id = $request->city_birth_id; } else { $affiliate->city_birth_id = null; }
-
                     if ($request->DateDeathAffiliateCheck == "on") {
                         $affiliate->date_death = Util::datePick($request->date_death); 
                         $affiliate->reason_death = trim($request->reason_death);
@@ -296,22 +294,21 @@ class AffiliateController extends Controller
                     $affiliate->save();
                     
                     $message = "Información personal de Afiliado actualizado con éxito";
-                    break;
+                    
+                break;
 
-                case 'dom':
+                case 'address':
                     
                     if ($affiliate->departamento_dir_id <> trim($request->depa_dir)) {$affiliate->departamento_dir_id = trim($request->depa_dir);}
                     $affiliate->zona = trim($request->zona);
                     $affiliate->calle = trim($request->calle);
-                    $affiliate->num_domi = trim($request->num_domi);
-                    
+                    $affiliate->num_domi = trim($request->num_domi);  
                     $affiliate->tele = trim($request->tele);
                     $affiliate->celu = trim($request->celu); 
-
-                    $affiliate->save();
-                    
+                    $affiliate->save();             
                     $message = "Información de domicilio de afiliado actualizado con éxito";
-                    break;
+
+                break;
 
                 Session::flash('message', $message);   
             }
