@@ -14,12 +14,12 @@ use Carbon\Carbon;
 use Muserpol\Helper\Util;
 use Illuminate\Support\Collection;
 
-use Muserpol\Afiliado;
-use Muserpol\Aporte;
-use Muserpol\AportePago;
-use Muserpol\Categoria;
-use Muserpol\AporTasa;
-use Muserpol\IpcTasa;
+use Muserpol\Affiliate;
+use Muserpol\Contribution;
+use Muserpol\ContributionPayment;
+use Muserpol\Category;
+use Muserpol\ContributionRate;
+use Muserpol\IpcRate;
 
 class ContributionController extends Controller
 {
@@ -28,12 +28,36 @@ class ContributionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function aportesData(Request $request)
+
+    public function ShowContributions($affiliate_id)
+    {
+        $affiliate = Affiliate::idIs($affiliate_id)->first();
+
+        $last_contribution = Contribution::affiliateidIs($affiliate->id)->first();
+
+        if ($last_contribution) {
+
+            $data = [
+
+                'affiliate' => $affiliate,
+
+            ];
+
+            return view('contributions.view', $data);
+        }
+        else {
+
+            $message = "No existe Registro de Aportes";
+            Session::flash('message', $message);
+            
+            return redirect('affiliate/'.$affiliate_id);
+        }
+    }
+
+    public function Data(Request $request)
     {   
 
-        $aportes = Aporte::select(['id', 'gest', 'grado_id', 'unidad_id', 'item', 'sue',
-                             'b_ant', 'b_est', 'b_car', 'b_fro', 'b_ori', 'b_seg',
-                             'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'cot', 'mus', 'fr', 'sv' ])->where('afiliado_id', $request->id);
+        $aportes = Aporte::select(['id', 'gest', 'grado_id', 'unidad_id', 'item', 'sue','b_ant', 'b_est', 'b_car', 'b_fro', 'b_ori', 'b_seg', 'dfu', 'nat', 'lac', 'pre', 'sub', 'gan', 'cot', 'mus', 'fr', 'sv' ])->where('afiliado_id', $request->id);
 
         return Datatables::of($aportes)
                         ->editColumn('gest', function ($aportes) { return Carbon::parse($aportes->gest)->month . "-" . Carbon::parse($aportes->gest)->year ; })
@@ -52,25 +76,6 @@ class ContributionController extends Controller
                         ->editColumn('fr', function ($aportes) { return Util::formatMoney($aportes->fr); })
                         ->editColumn('sv', function ($aportes) { return Util::formatMoney($aportes->sv); })
                         ->make(true);
-    }
-
-    public function ViewAporte($afid)
-    {
-
-        $afiliado = Afiliado::idIs($afid)->first();
-        $firstAporte = Aporte::afiIs($afiliado->id)->orderBy('gest', 'asc')->first();
-        if ($firstAporte) {
-            $data = array(
-                'afiliado' => $afiliado,
-            );
-            return view('aportes.view', $data);
-        }
-        else
-        {
-            $message = "No existe Registro de Aportes";
-            Session::flash('message', $message);
-            return redirect('afiliado/'.$afid);
-        }
     }
 
     public function RegPagoData(Request $request)
@@ -266,16 +271,6 @@ class ContributionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -314,7 +309,7 @@ class ContributionController extends Controller
             $data = json_decode($request->data);
 
             $now = Carbon::now();
-            $last = AportePago::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
+            $last = ContributionPayment::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             $pago = new AportePago;
             if ($last) {
                 $pago->codigo = $last->codigo + 1;

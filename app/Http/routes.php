@@ -19,20 +19,24 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// User Management
 	Route::resource('user', 'User\UserController');
-	Route::get('user/block/{user}', 'User\UserController@Block');
-	Route::get('user/unblock/{user}', 'User\UserController@Unblock');
+
+	Route::get('user/block/{user}', array('as'=>'user/block/{user}', 'uses'=>'User\UserController@Block'));
+	Route::get('user/unblock/{user}', array('as'=>'user/unblock/{user}', 'uses'=>'User\UserController@Unblock'));
 	Route::get('get_user', array('as'=>'get_user', 'uses'=>'User\UserController@Data'));
 
 	// Contribution Rate
 	Route::resource('contribution_rate', 'Rate\ContributionRateController');
+
 	Route::get('get_Contribution_rate', array('as'=>'get_contribution_rate', 'uses'=>'Rate\ContributionRateController@Data'));
 	
 	// IPC Rate
 	Route::resource('ipc_rate', 'Rate\IpcRateController');
+
 	Route::get('get_ipc_rate', array('as'=>'get_ipc_rate', 'uses'=>'Rate\IpcRateController@Data'));
 	
 	// Base Wage
 	Route::resource('base_wage', 'Wage\BaseWageController');
+
 	Route::get('get_first_level_base_wage', array('as'=>'get_first_level_base_wage', 'uses'=>'Wage\BaseWageController@FirstLevelData'));
 	Route::get('get_second_level_base_wage', array('as'=>'get_second_level_base_wage', 'uses'=>'Wage\BaseWageController@SecondLevelData'));
 	Route::get('get_third_level_base_wage', array('as'=>'get_third_level_base_wage', 'uses'=>'Wage\BaseWageController@ThirdLevelData'));
@@ -47,20 +51,28 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// Affiliate
 	Route::resource('affiliate', 'Affiliate\AffiliateController');
+
 	Route::post('search_affiliate', array('as'=>'search_affiliate', 'uses'=>'Affiliate\AffiliateController@SearchAffiliate'));
 	Route::get('get_affiliate', array('as'=>'get_affiliate', 'uses'=>'Affiliate\AffiliateController@Data'));
 
 	// Spouses
 	Route::resource('spouse', 'Affiliate\SpouseController');
 
+	// Contribution
+	Route::resource('contribution', 'AporteController');
+
+	Route::get('show_contributions/{affiliate_id}', array('as'=>'show_contributions/{affiliate_id}', 'uses'=>'Contribution\ContributionController@ShowContributions'));
+	Route::get('get_contribution/{affiliate_id}', array('as'=>'get_contribution/{affiliate_id}', 'uses'=>'Contribution\ContributionController@Data'));
+
+
+	
 
 
 
 
-	// view Registros Aportes
-	Route::resource('aporte', 'AporteController');
+	
 
-	Route::get('viewaporte/{afid}', 'AporteController@ViewAporte');
+	
 	// Select year Aporte
 	Route::get('selectgestaporte/{afid}', 'AporteController@SelectGestAporte');
 	// Cálculo aportes
@@ -68,7 +80,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('calcaportegest', 'AporteController@GenerateCalcAporteGest');
 
 	Route::get('getRegPago/{id}', array('as'=>'getRegPago', 'uses'=>'AporteController@RegPagoData'));
-	Route::get('getAporte/{afid}', array('as'=>'getAporte', 'uses'=>'AporteController@aportesData'));
 
 	//Pagos Aporte
 	Route::resource('aportepago', 'AportePagoController');
