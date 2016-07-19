@@ -80,19 +80,19 @@ class Applicant extends Model
 
     public function getFullName()
     {
-        return $this->pat . ' ' . $this->mat. ' ' . $this->nom;
+        return $this->last_name . ' ' . $this->mothers_last_name. ' ' . $this->first_name;
     }
 }
 
-// Applicant::created(function($applicant)
-// {   
-//     Activity::createdApplicant($applicant);
+Applicant::created(function($applicant)
+{   
+    Activity::createdApplicant($applicant);
     
-// });
+});
 
-// Applicant::updating(function($applicant)
-// {   
-//     Activity::updateApplicant($applicant);
+Applicant::updating(function($applicant)
+{   
+    Activity::updateApplicant($applicant);
     
-// });
+});
 

@@ -404,7 +404,7 @@ Affiliate::created(function($affiliate)
 
 Affiliate::updating(function($affiliate)
 {
-    // Activity::updateAfiliado($affiliate);
+    Activity::updateAffiliate($affiliate);
     Record::UpdatingAffiliate($affiliate);
 });
 

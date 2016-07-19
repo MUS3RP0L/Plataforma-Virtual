@@ -142,12 +142,12 @@ class RetirementFund extends Model
 
 RetirementFund::created(function($retirementfund)
 {
-    Activity::createdFondoRetiro($retirementfund);
+    Activity::createdRetirementFund($retirementfund);
     
 });
 
 RetirementFund::updating(function($retirementfund)
 {
-    Activity::updateFondoRetiro($retirementfund);
+    Activity::updateRetirementFund($retirementfund);
     
 });

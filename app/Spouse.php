@@ -98,17 +98,17 @@ class Spouse extends Model
 
     public function getFullName()
     {
-        return $this->pat . ' ' . $this->mat. ' ' . $this->nom. ' ' .$this->nom2;
+        return $this->last_name . ' ' . $this->mothers_last_name. ' ' . $this->first_name. ' ' .$this->second_name;
     }
 }
 
-// Spouse::created(function($spouse)
-// {
-//     Activity::createdSpouse($spouse);
-// });
+Spouse::created(function($spouse)
+{
+    Activity::createdSpouse($spouse);
+});
 
-// Spouse::updating(function($spouse)
-// {
-//     Activity::updateSpouse($spouse);
+Spouse::updating(function($spouse)
+{
+    Activity::updateSpouse($spouse);
 
-// });
+});

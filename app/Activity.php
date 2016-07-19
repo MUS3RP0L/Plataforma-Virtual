@@ -6,39 +6,39 @@ use Illuminate\Database\Eloquent\Model;
 use Muserpol\Helper\Util;
 use Auth;
 
-define("ACTIVITY_TYPE_UPDATE_AFILIADO", 1);
-define("ACTIVITY_TYPE_UPDATE_FONDO_RETIRO", 2);
-define("ACTIVITY_TYPE_UPDATE_APORTE", 3);
-define("ACTIVITY_TYPE_UPDATE_DOCUMENTO", 4);
-define("ACTIVITY_TYPE_UPDATE_ANTECEDENTE", 5);
-define("ACTIVITY_TYPE_UPDATE_CONYUGE", 6);
-define("ACTIVITY_TYPE_UPDATE_SOLICITANTE", 7);
+define("ACTIVITY_TYPE_UPDATE_AFFILIATE", 1);
+define("ACTIVITY_TYPE_UPDATE_RETIREMENT_FUND", 2);
+define("ACTIVITY_TYPE_UPDATE_CONTRIBUTION", 3);
+define("ACTIVITY_TYPE_UPDATE_DOCUMENT", 4);
+define("ACTIVITY_TYPE_UPDATE_ANTECEDENT", 5);
+define("ACTIVITY_TYPE_UPDATE_SPOUSE", 6);
+define("ACTIVITY_TYPE_UPDATE_APPLICANT", 7);
 
-define("ACTIVITY_TYPE_CREATE_CONYUGE", 8);
-define("ACTIVITY_TYPE_CREATE_SOLICITANTE", 9);
-define("ACTIVITY_TYPE_CREATE_FONDO_RETIRO", 10);
-define("ACTIVITY_TYPE_CREATE_DOCUMENTO", 11);
-define("ACTIVITY_TYPE_CREATE_ANTECEDENTE", 12);
+define("ACTIVITY_TYPE_CREATE_SPOUSE", 8);
+define("ACTIVITY_TYPE_CREATE_APPLICANT", 9);
+define("ACTIVITY_TYPE_CREATE_RETIREMENT_FUND", 10);
+define("ACTIVITY_TYPE_CREATE_DOCUMENT", 11);
+define("ACTIVITY_TYPE_CREATE_ANTECEDENT", 12);
 
 class Activity extends Model
 {
     public $timestamps = true;
 	protected $softDelete = false;	
 
-	public static function updateAfiliado($affiliate)
+	public static function updateAffiliate($affiliate)
 	{		
 		if (Auth::user()) 
 		{
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
 			$activity->affiliate_id = $affiliate->id;
-			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_AFILIADO;
+			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_AFFILIATE;
 			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Afiliado', $affiliate);
 			$activity->save();
 		}		
 	}
 
-	public static function updateFondoRetiro($retirementfund)
+	public static function updateRetirementFund($retirementfund)
 	{		
 		if (Auth::user()) 
 		{   $affiliate = Affiliate::findOrFail($retirementfund->affiliate_id);
@@ -46,13 +46,13 @@ class Activity extends Model
 			$activity->user_id = Auth::user()->id;
 			$activity->affiliate_id = $retirementfund->affiliate_id;
 			$activity->retirement_fund_id = $retirementfund->id;
-			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_FONDO_RETIRO;
+			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_RETIREMENT_FUND;
 			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Fondo de Retiro', $affiliate);
 			$activity->save();
 		}		
 	}
 
-	public static function createdFondoRetiro($retirementfund)
+	public static function createdRetirementFund($retirementfund)
 	{		
 		if (Auth::user()) 
 		{   $affiliate = Affiliate::findOrFail($retirementfund->affiliate_id);
@@ -60,152 +60,151 @@ class Activity extends Model
 			$activity->user_id = Auth::user()->id;
 			$activity->affiliate_id = $retirementfund->affiliate_id;
 			$activity->retirement_fund_id = $retirementfund->id;
-			$activity->activity_type_id = ACTIVITY_TYPE_CREATE_FONDO_RETIRO;
+			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_RETIREMENT_FUND;
 			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Fondo de Retiro', $affiliate);
 			$activity->save();
 		}		
 	}
 
-	public static function updateAporte($aporte)
+	public static function updateContribution($contribution)
 	{		
 		if (Auth::user()) 
-		{   $afiliado = Afiliado::findOrFail($aporte->afiliado_id);
+		{   $affiliate = Affiliate::findOrFail($contribution->affiliate_id);
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $aporte->afiliado_id;
-			$activity->aporte_id = $aporte->id;
-			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_APORTE;
-			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Aporte', $afiliado);
+			$activity->affiliate_id = $contribution->affiliate_id;
+			$activity->contribution_id = $contribution->id;
+			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_CONTRIBUTION;
+			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Aporte', $affiliate);
 			$activity->save();
 		}		
 	}
 
-	public static function updateDocumento($documento)
+	public static function updateDocument($document)
 	{		
 		if (Auth::user())
 		{	
-			$fondotramite = FondoTramite::findOrFail($documento->fondo_tramite_id); 
-		    $afiliado = Afiliado::findOrFail($fondotramite->afiliado_id);
+			$RetirementFund = RetirementFund::findOrFail($document->retirement_fund_id); 
+		    $affiliate = Affiliate::findOrFail($RetirementFund->affiliate_id);
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $fondotramite->afiliado_id;
-			$activity->documento_id = $documento->id;
-			$activity->fondo_tramite_id = $documento->fondo_tramite_id;
-			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_DOCUMENTO;
-			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Documento', $afiliado);
+			$activity->affiliate_id = $RetirementFund->affiliate_id;
+			$activity->document_id = $document->id;
+			$activity->retirement_fund_id = $document->retirement_fund_id;
+			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_DOCUMENT;
+			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Documento', $affiliate);
 			$activity->save();
 		}		
 	}
 
-	public static function createdDocumento($documento)
+	public static function createdDocument($document)
 	{		
 		if (Auth::user())
 		{	
-			$fondotramite = FondoTramite::findOrFail($documento->fondo_tramite_id); 
-		    $afiliado = Afiliado::findOrFail($fondotramite->afiliado_id);
+			$RetirementFund = RetirementFund::findOrFail($document->retirement_fund_id); 
+		    $affiliate = Affiliate::findOrFail($RetirementFund->affiliate_id);
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $fondotramite->afiliado_id;
-			$activity->documento_id = $documento->id;
-			$activity->fondo_tramite_id = $documento->fondo_tramite_id;
-			$activity->activity_type_id = ACTIVITY_TYPE_CREATE_DOCUMENTO;
-			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Documento', $afiliado);
+			$activity->affiliate_id = $RetirementFund->affiliate_id;
+			$activity->document_id = $document->id;
+			$activity->retirement_fund_id = $documento->retirement_fund_id;
+			$activity->activity_type_id = ACTIVITY_TYPE_CREATE_DOCUMENT;
+			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Documento', $affiliate);
 			$activity->save();
 		}		
 	}
 
 
-	public static function updateAntecedente($antecedente)
+	public static function updateAntecedent($antecedent)
 	{		
 		if (Auth::user())
 		{	
-			$fondotramite = FondoTramite::findOrFail($antecedente->fondo_tramite_id); 
-		    $afiliado = Afiliado::findOrFail($fondotramite->afiliado_id);
+			$RetirementFund = RetirementFund::findOrFail($antecedent->retirement_fund_id); 
+		    $affiliate = Affiliate::findOrFail($RetirementFund->affiliate_id);
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $fondotramite->afiliado_id;
-			$activity->antecedente_id = $antecedente->id;
-			$activity->fondo_tramite_id = $fondotramite->id;
-			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_ANTECEDENTE;
-			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Antecedente', $afiliado);
+			$activity->affiliate_id = $RetirementFund->affiliate_id;
+			$activity->antecedent_id = $antecedent->id;
+			$activity->retirement_fund_id = $RetirementFund->id;
+			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_ANTECEDENT;
+			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Antecedente', $affiliate);
 			$activity->save();
 		}		
 	}
 
-	public static function createdAntecedente($antecedente)
+	public static function createdAntecedent($antecedent)
 	{		
 		if (Auth::user())
 		{	
-			$fondotramite = FondoTramite::findOrFail($antecedente->fondo_tramite_id); 
-		    $afiliado = Afiliado::findOrFail($fondotramite->afiliado_id);
+			$RetirementFund = RetirementFund::findOrFail($antecedent->retirement_fund_id); 
+		    $affiliate = Affiliate::findOrFail($RetirementFund->affiliate_id);
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $fondotramite->afiliado_id;
-			$activity->antecedente_id = $antecedente->id;
-			$activity->fondo_tramite_id = $antecedente->fondo_tramite_id;
-			$activity->activity_type_id = ACTIVITY_TYPE_CREATE_ANTECEDENTE;
-			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Antecedente', $afiliado);
+			$activity->affiliate_id = $RetirementFund->affiliate_id;
+			$activity->antecedent_id = $antecedent->id;
+			$activity->retirement_fund_id = $antecedente->retirement_fund_id;
+			$activity->activity_type_id = ACTIVITY_TYPE_CREATE_ANTECEDENT;
+			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Antecedente', $affiliate);
 			$activity->save();
 		}		
 	}
 
-	public static function updateConyuge($conyuge)
+	public static function updateSpouse($spouse)
 	{		
 		if (Auth::user())
 		{	
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $conyuge->afiliado_id;
-			$activity->conyuge_id = $conyuge->id;
-			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_CONYUGE;
-			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Conyuge', $conyuge);
+			$activity->affiliate_id = $spouse->affiliate_id;
+			$activity->spouse_id = $spouse->id;
+			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_SPOUSE;
+			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Conyuge', $spouse);
 			$activity->save();
 		}		
 	}
-	public static function createdConyuge($conyuge)
+	public static function createdSpouse($spouse)
 	{		
 		if (Auth::user())
 		{	
-			
 		    $activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $conyuge->afiliado_id;
-			$activity->conyuge_id = $conyuge->id;
-			$activity->activity_type_id = ACTIVITY_TYPE_CREATE_CONYUGE;
-			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Conyuge', $conyuge);
+			$activity->affiliate_id = $spouse->affiliate_id;
+			$activity->spouse_id = $spouse->id;
+			$activity->activity_type_id = ACTIVITY_TYPE_CREATE_SPOUSE;
+			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Conyuge', $spouse);
 			$activity->save();
 		}		
 	}
 
-	public static function updateSolicitante($solicitante)
+	public static function updateApplicant($applicant)
 	{		
 		if (Auth::user())
 		{	
-			$fondotramite = FondoTramite::findOrFail($solicitante->fondo_tramite_id); 
-		    $afiliado = Afiliado::findOrFail($fondotramite->afiliado_id);
+			$RetirementFund = RetirementFund::findOrFail($applicant->retirement_fund_id); 
+		    $affiliate = Affiliate::findOrFail($RetirementFund->affiliate_id);
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $fondotramite->afiliado_id;
-			$activity->solicitante_id = $solicitante->id;
-			$activity->fondo_tramite_id = $solicitante->fondo_tramite_id;
-			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_SOLICITANTE;
-			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Solicitante', $solicitante);
+			$activity->affiliate_id = $RetirementFund->affiliate_id;
+			$activity->applicant_id = $applicant->id;
+			$activity->retirement_fund_id = $applicant->retirement_fund_id;
+			$activity->activity_type_id = ACTIVITY_TYPE_UPDATE_APPLICANT;
+			$activity->message = Util::encodeActivity(Auth::user(), 'actualizó al Solicitante', $applicant);
 			$activity->save();
 		}		
 	}
 
-	public static function createdSolicitante($solicitante)
+	public static function createdApplicant($applicant)
 	{		
 		if (Auth::user())
-		{	$fondotramite = FondoTramite::findOrFail($solicitante->fondo_tramite_id); 
-			$afiliado = Afiliado::findOrFail($fondotramite->afiliado_id);
+		{	$RetirementFund = RetirementFund::findOrFail($applicant->retirement_fund_id); 
+			$affiliate = Affiliate::findOrFail($RetirementFund->affiliate_id);
 			$activity = new Activity;
 			$activity->user_id = Auth::user()->id;
-			$activity->afiliado_id = $afiliado->id;
-			$activity->solicitante_id = $solicitante->id;
-			$activity->fondo_tramite_id = $solicitante->fondo_tramite_id;
-			$activity->activity_type_id = ACTIVITY_TYPE_CREATE_SOLICITANTE;
-			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Solicitante', $solicitante);
+			$activity->affiliate_id = $affiliate->id;
+			$activity->applicant_id = $applicant->id;
+			$activity->retirement_fund_id = $applicant->retirement_fund_id;
+			$activity->activity_type_id = ACTIVITY_TYPE_CREATE_APPLICANT;
+			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Solicitante', $applicant);
 			$activity->save();
 		}		
 	}
