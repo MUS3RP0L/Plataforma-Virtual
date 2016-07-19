@@ -184,14 +184,14 @@
 
                                         </tr>
                                     </thead>
-                                    <tbody data-bind="foreach: aportes">
+                                    <tbody data-bind="foreach: contributions">
                                         <tr>
-                                            <td style="text-align: center"><span data-bind="text: nameMonth"/></td>
-                                            <td style="text-align: center"><input data-bind="value: haber, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
-                                            <td style="text-align: center"><select data-bind="options: $root.categorias, value: categoria, optionsText: 'name'"></select></td>
-                                            <td style="text-align: right"><span data-bind="text: anti"/></td>
-                                            <td style="text-align: center"><input data-bind="value: estu, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
-                                            <td style="text-align: center"><input data-bind="value: carg, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
+                                            <td style="text-align: center"><span data-bind="text: name_month"/></td>
+                                            <td style="text-align: center"><input data-bind="value: base_wage, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
+                                            <td style="text-align: center"><select data-bind="options: $root.categories, value: category, optionsText: 'name'"></select></td>
+                                            <td style="text-align: right"><span data-bind="text: seniority_bonus"/></td>
+                                            <td style="text-align: center"><input data-bind="value: study_bonus, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
+                                            <td style="text-align: center"><input data-bind="value: position_bonus, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
                                             <td style="text-align: center"><input data-bind="value: fron, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
                                             <td style="text-align: center"><input data-bind="value: orie, valueUpdate: 'afterkeydown'" style="text-align: right;width: 70px;"/></td>
                                             <td style="text-align: right"><span data-bind="text: coti"/></td>
@@ -200,11 +200,11 @@
                                             <td style="text-align: right"><span data-bind="text: apor"/></td>
                                             <td style="text-align: right"><span data-bind="text: aipc"/></td>
                                             <td style="text-align: right"><span data-bind="text: tapo"/></td>
-                                            <td style="text-align: center"><a href="#" data-bind="click: $root.removeAporte, visible: $parent.aportes().length > 1"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                            <td style="text-align: center"><a href="#" data-bind="click: $root.removeContribution, visible: $parent.contributions().length > 1"><span class="glyphicon glyphicon-remove"></span></a></td>
                                         </tr>    
                                     </tbody>
                                     <tr class="active">
-                                        <th style="text-align: center"><span data-bind="text: aportes().length"></span></th>
+                                        <th style="text-align: center"><span data-bind="text: contributions().length"></span></th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
@@ -278,7 +278,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::open(['url' => 'calcaportegest', 'role' => 'form', 'class' => 'form-horizontal']) !!}                  
+                {!! Form::open(['url' => 'calculation_contribution', 'role' => 'form', 'class' => 'form-horizontal']) !!}                  
                     <input type="hidden" name="afid" value="{{ $affiliate->id }}"/>
                     <input type="hidden" name="gestid" value="{{ $year }}"/>
                     <input type="hidden" name="type" value="{{ $type }}"/>
@@ -287,14 +287,14 @@
                             <div class="form-group">
                                 {!! Form::label('sue', 'Haber Básico', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-4">
-                                    {!! Form::text('sue', $last_contribution->sue, ['class'=> 'form-control']) !!}
+                                    {!! Form::text('sue', $last_contribution->base_wage, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Haber Básico</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('b_est', 'Bono Estudio', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-4">
-                                    {!! Form::text('b_est', $last_contribution->b_est, ['class'=> 'form-control']) !!}
+                                    {!! Form::text('b_est', $last_contribution->study_bonus, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Bono Estudio</span>
                                 </div>
                             </div>
@@ -308,9 +308,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('categoria_id', 'Categoría', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('category_id', 'Categoría', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-5">
-                                    {!! Form::select('categoria_id', $list_categories, $affiliate->categoria_id, ['class' => 'combobox form-control']) !!}
+                                    {!! Form::select('category_id', $list_categories, $affiliate->category_id, ['class' => 'combobox form-control']) !!}
                                     <span class="help-block">Seleccione Departamento</span>
                                 </div>
                             </div>
@@ -353,97 +353,99 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 
-        var afiliado = {!! $affiliate !!};
+        var affiliate = {!! $affiliate !!};
         var months = {!! $months !!};
         var categories = {!! $categories !!};
         var IpcAct = {!! $ipc_actual !!};
 
-        function CalcAporte(idMonth, nameMonth, haber, categories, estu, carg,  fron, orie, fr_a, sv_a, ipc) {
+        function CalculationContribution(id_month, name_month, base_wage, categories, study_bonus, position_bonus,  fron, orie, fr_a, sv_a, ipc) {
             var self = this;
-            self.idMonth = idMonth;
-            self.nameMonth = nameMonth;
-            self.haber = ko.observable(haber);
-            self.categoria = ko.observable(categories);
-            self.anti = ko.computed(function() {
-                var anti = roundToTwo(parseFloat(self.categoria().por) * parseFloat(self.haber()));
-                return anti ? anti : 0;       
+            self.id_month = id_month;
+            self.name_month = name_month;
+            self.base_wage = ko.observable(base_wage);
+            self.category = ko.observable(categories);
+            self.seniority_bonus = ko.computed(function() {
+                var seniority_bonus = roundToTwo(parseFloat(self.category().por) * parseFloat(self.base_wage()));
+                return seniority_bonus ? seniority_bonus : 0;       
             }); 
-            self.estu = ko.observable(estu);
-            self.carg = ko.observable(carg);
-            self.fron = ko.observable(fron);
-            self.orie = ko.observable(orie);
-            self.coti = ko.computed(function() {
-                var coti = roundToTwo(parseFloat(self.haber()) + parseFloat(self.anti()) + 
-                            parseFloat(self.estu()) + parseFloat(self.carg()) +
-                            parseFloat(self.fron()) + parseFloat(self.orie()));
-                return coti ? coti : 0;       
-            });
-            self.apfr = ko.computed(function() {
-                var apfr = roundToTwo(parseFloat(self.coti()) * parseFloat(fr_a) / 100);
-                return apfr ? apfr : 0;       
-            });
-            self.apsv = ko.computed(function() {
-                var apsv = roundToTwo(parseFloat(self.coti()) * parseFloat(sv_a) / 100);
-                return apsv ? apsv : 0;       
-            });
-            self.apor = ko.computed(function() {
-                var apor = roundToTwo(parseFloat(self.apfr()) + parseFloat(self.apsv()));
-                return apor ? apor : 0;       
-            });
-            self.aipc = ko.computed(function() {
-                var aipc = roundToTwo(parseFloat(self.apor()) * ((parseFloat(IpcAct.ipc))/(parseFloat(ipc))-1));
-                return aipc ? aipc : 0;       
-            });
-            self.tapo = ko.computed(function() {
-                var tapo = roundToTwo(parseFloat(self.apor()) + parseFloat(self.aipc()));
-                return tapo ? tapo : 0;
-            });
+            self.study_bonus = ko.observable(study_bonus);
+            // self.position_bonus = ko.observable(position_bonus);
+            // self.fron = ko.observable(fron);
+            // self.orie = ko.observable(orie);
+            // self.coti = ko.computed(function() {
+            //     var coti = roundToTwo(parseFloat(self.base_wage()) + parseFloat(self.seniority_bonus()) + 
+            //                 parseFloat(self.study_bonus()) + parseFloat(self.position_bonus()) +
+            //                 parseFloat(self.fron()) + parseFloat(self.orie()));
+            //     return coti ? coti : 0;       
+            // });
+            // self.apfr = ko.computed(function() {
+            //     var apfr = roundToTwo(parseFloat(self.coti()) * parseFloat(fr_a) / 100);
+            //     return apfr ? apfr : 0;       
+            // });
+            // self.apsv = ko.computed(function() {
+            //     var apsv = roundToTwo(parseFloat(self.coti()) * parseFloat(sv_a) / 100);
+            //     return apsv ? apsv : 0;       
+            // });
+            // self.apor = ko.computed(function() {
+            //     var apor = roundToTwo(parseFloat(self.apfr()) + parseFloat(self.apsv()));
+            //     return apor ? apor : 0;       
+            // });
+            // self.aipc = ko.computed(function() {
+            //     var aipc = roundToTwo(parseFloat(self.apor()) * ((parseFloat(IpcAct.ipc))/(parseFloat(ipc))-1));
+            //     return aipc ? aipc : 0;       
+            // });
+            // self.tapo = ko.computed(function() {
+            //     var tapo = roundToTwo(parseFloat(self.apor()) + parseFloat(self.aipc()));
+            //     return tapo ? tapo : 0;
+            // });
         }
 
-        function CalcAporteysViewModel(months, lastap) {
+        function CalculationContributionModel(months, lastap) {
             
             var self = this;
             self.categories = categories;  
-            self.aportes = ko.observableArray(ko.utils.arrayMap(months, function(month) {
-                return new CalcAporte(month.id, month.name, lastap.sue ? lastap.sue : "",
-                categories[afiliado.categoria_id-1], lastap.b_est ? lastap.b_est : 0,
+            self.contributions = ko.observableArray(ko.utils.arrayMap(months, function(month) {
+                return new CalculationContribution(month.id, month.name, lastap.sue ? lastap.sue : "",
+                categories[affiliate.category_id-1], lastap.b_est ? lastap.b_est : 0,
                     lastap.b_car ? lastap.b_car : 0, lastap.b_fro ? lastap.b_fro : 0,
                     lastap.b_ori ? lastap.b_ori : 0,month.fr_a, month.sv_a, month.ipc);
             }));
-            self.tCot = ko.pureComputed(function() {
-            var total = 0;
-            $.each(self.aportes(), function() { total += parseFloat(this.coti()) })
-            return roundToTwo(total);
-            });
-            self.tAfr = ko.pureComputed(function() {
-            var total = 0;
-            $.each(self.aportes(), function() { total += parseFloat(this.apfr()) })
-            return roundToTwo(total);
-            });
-            self.tAsv = ko.pureComputed(function() {
-            var total = 0;
-            $.each(self.aportes(), function() { total += parseFloat(this.apsv()) })
-            return roundToTwo(total);
-            });
-            self.tApo = ko.pureComputed(function() {
-            var total = 0;
-            $.each(self.aportes(), function() { total += parseFloat(this.apor()) })
-            return roundToTwo(total);
-            });
-            self.tipc = ko.pureComputed(function() {
-            var total = 0;
-            $.each(self.aportes(), function() { total += parseFloat(this.aipc()) })
-            return roundToTwo(total);
-            });
-            self.tTap = ko.pureComputed(function() {
-            var total = 0;
-            $.each(self.aportes(), function() { total += parseFloat(this.tapo()) })
-            return roundToTwo(total);
-            });
-            self.removeAporte = function(aporte) { self.aportes.remove(aporte) }
+
+            // self.tCot = ko.pureComputed(function() {
+            // var total = 0;
+            // $.each(self.contributions(), function() { total += parseFloat(this.coti()) })
+            // return roundToTwo(total);
+            // });
+            // self.tAfr = ko.pureComputed(function() {
+            // var total = 0;
+            // $.each(self.contributions(), function() { total += parseFloat(this.apfr()) })
+            // return roundToTwo(total);
+            // });
+            // self.tAsv = ko.pureComputed(function() {
+            // var total = 0;
+            // $.each(self.contributions(), function() { total += parseFloat(this.apsv()) })
+            // return roundToTwo(total);
+            // });
+            // self.tApo = ko.pureComputed(function() {
+            // var total = 0;
+            // $.each(self.contributions(), function() { total += parseFloat(this.apor()) })
+            // return roundToTwo(total);
+            // });
+            // self.tipc = ko.pureComputed(function() {
+            // var total = 0;
+            // $.each(self.contributions(), function() { total += parseFloat(this.aipc()) })
+            // return roundToTwo(total);
+            // });
+            // self.tTap = ko.pureComputed(function() {
+            // var total = 0;
+            // $.each(self.contributions(), function() { total += parseFloat(this.tapo()) })
+            // return roundToTwo(total);
+            // });
+
+            self.removeContribution = function(contribution) { self.contributions.remove(contribution) }
         }
 
-        window.model = new CalcAporteysViewModel({!! $months !!}, {!! $last_contribution !!});
+        window.model = new CalculationContributionModel({!! $months !!}, {!! $last_contribution !!});
         ko.applyBindings(model);
 
         function roundToTwo(num) {
