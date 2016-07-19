@@ -52,13 +52,11 @@ Breadcrumbs::register('show_contribution', function($breadcrumbs, $affiliate) {
     $breadcrumbs->push('Aportes');
 });
 
-// Show Select Contribution
-Breadcrumbs::register('select_contribution', function($breadcrumbs, $affiliate) {
+// Show Register Contribution
+Breadcrumbs::register('register_contribution', function($breadcrumbs, $affiliate) {
     $breadcrumbs->parent('show_affiliate', $affiliate);
     $breadcrumbs->push('Registro de Aporte');
 });
-
-
 
 
 
