@@ -64,7 +64,7 @@
                                                         Carnet Identidad
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $affiliate->identity_card !!} {!! $affiliate->city_identity_card !!}
+                                                        {!! $affiliate->identity_card !!} {!! $affiliate->city_identity_card !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -76,7 +76,7 @@
                                                         Apellido Paterno
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $affiliate->last_name !!}
+                                                        {!! $affiliate->last_name !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -88,7 +88,7 @@
                                                         Apellido Materno
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $affiliate->mothers_last_name !!}
+                                                        {!! $affiliate->mothers_last_name !!}
                                                     </div>
                                                 </div>
                                             </td>
