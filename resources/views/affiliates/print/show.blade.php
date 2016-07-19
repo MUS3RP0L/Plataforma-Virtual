@@ -21,10 +21,6 @@
               <td class="info">{!! $affiliate->getFullDateNactoPrint() !!}</td>
             </tr>
             <tr>
-              <th class="service">NÚMERO DE MATRÍCULA</th>
-              <td class="info">{!! $affiliate->registration !!}</td>
-            </tr>
-            <tr>
               <th class="service">NÚMERO ÚNICO DE AFILIADO-AFP</th>
               <td class="info">{!! $affiliate->nua !!}</td>
             </tr>
@@ -50,15 +46,35 @@
             </tr>
           </table>
       </div>
-
+      <div class="title"><b>II. INFORMACIÓN INSTITUCIONAL</b></div>
       <div id="project">
         <table>
             <tr>
               <th colspan="2" class="grand service">DATOS INSTITUCIONALES</th>
             </tr>
             <tr>
+              <th class="service">MATRICULA</th>
+              <td class="info" style="width: 60%">{!! $affiliate->registration !!}</td>
+            </tr>
+            <tr>
+              <th class="service">ESTADO</th>
+              <td class="info" style="width: 60%">{!! $affiliate->affiliate_state->name !!}</td>
+            </tr>
+            <tr>
               <th class="service">GRADO</th>
               <td class="info" style="width: 60%">{!! $affiliate->degree->name !!}</td>
+            </tr>
+            <tr>
+              <th class="service">UNIDAD</th>
+              <td class="info" style="width: 60%">{!! $affiliate->unit->shortened !!}</td>
+            </tr>
+            <tr>
+              <th class="service">TIPO</th>
+              <td class="info" style="width: 60%">{!! $affiliate->affiliate_type->name !!}</td>
+            </tr>
+            <tr>
+              <th class="service">NRO. ITEM</th>
+              <td class="info" style="width: 60%">{!! $affiliate->item !!}</td>
             </tr>
             <tr>
               <th class="service">FECHA DE ALTA</th>
@@ -72,22 +88,7 @@
               <th class="service">MOTIVO DE BAJA</th>
               <td class="info">{!! $affiliate->reason_decommissioned !!}</td>
             </tr>
-            <tr>
-              <th class="service">PERIODO DE APORTE</th>
-              <td class="info">{!! $affiliate->fech_ini_apor ? "DESDE " . $affiliate->getFull_fech_ini_apor() . " - HASTA " . $afiliado->getFull_fech_fin_apor() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_apor() : '' !!}</td>
-            </tr>
-            <tr>
-              <th class="service">PERIODO DE SERVICIO</th>
-              <td class="info">{!! $affiliate->fech_ini_serv ? "DESDE " . $affiliate->getFull_fech_ini_serv() . " - HASTA " . $afiliado->getFull_fech_fin_serv() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_fin_serv() : '' !!}</td>
-            </tr>
-            <tr>
-              <th class="service">PERIODO ADICIONAL</th>
-              <td class="info">{!! $affiliate->fech_ini_anti ? "DESDE " . $affiliate->getFull_fech_ini_anti() . " - HASTA " . $afiliado->getFull_fech_fin_anti() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_anti() : '' !!}</td>
-            </tr>
-            <tr>
-              <th class="service">PERIODO DE RECONOCIMIENTO</th>
-              <td class="info">{!! $affiliate->fech_ini_reco ? "DESDE " . $affiliate->getFull_fech_ini_reco() . " - HASTA " . $afiliado->getFull_fech_fin_reco() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_reco() : '' !!}</td>
-            </tr>
+            
           </table>
       </div>
       

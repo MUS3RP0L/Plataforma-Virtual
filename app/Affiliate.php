@@ -366,7 +366,7 @@ class Affiliate extends Model
 
     public function getFullDateIngtoPrint()
     {   
-        return Util::getfulldate($this->fech_ing);
+        return Util::getfulldate($this->date_entry);
     }
     public function getFull_fech_fin_aportoPrint()
     {   
@@ -374,7 +374,7 @@ class Affiliate extends Model
     }
     public function getData_fech_bajatoPrint()
     {   
-        return Util::getfulldate($this->fech_baja);
+        return Util::getfulldate($this->date_decommissioned);
     }
 
     public function getData_fech_ini_Reco_print()
