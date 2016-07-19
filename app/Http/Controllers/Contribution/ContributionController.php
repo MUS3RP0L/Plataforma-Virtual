@@ -33,9 +33,9 @@ class ContributionController extends Controller
     {
         $affiliate = Affiliate::idIs($affiliate_id)->first();
 
-        $last_contribution = Contribution::affiliateidIs($affiliate->id)->first();
+        $contribution = Contribution::affiliateidIs($affiliate->id)->first();
 
-        if ($last_contribution) {
+        if ($contribution) {
 
             $data = [
 
@@ -110,8 +110,8 @@ class ContributionController extends Controller
  
             for ($j=1; $j <= 12; $j++) { 
 
-                $contribution = Contribution::select(['month_year'])->where('affiliate_id', $affiliate->id)->where('month_year', '=',Carbon::createFromDate($i, $j, 1)->toDateString())->first();
-                
+                $contribution = Contribution::select(['month_year'])->where('affiliate_id', $affiliate->id)
+                                                                    ->where('month_year', '=',Carbon::createFromDate($i, $j, 1)->toDateString())->first();  
                 if ($i == $from->year) {
                     if($j < $from->month){
                         $mes["m".$j] = -1;
@@ -143,9 +143,12 @@ class ContributionController extends Controller
             }else {
                 $c["status"] = true;
             }
+
             $year = array('year'=> $i);
             $group_contributions->push(array_merge($afi, $c, $year, $base));
+
         }
+
         return Datatables::of($group_contributions)
                 ->editColumn('m1', '<?php if($m1 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m1 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m1 === -1){ ?>&nbsp;<?php } ?>')
                 ->editColumn('m2', '<?php if($m2 === 1){ ?><i class="glyphicon glyphicon-check"></i><?php } if($m2 === 0){?><i class="glyphicon glyphicon-unchecked"></i><?php } if($m2 === -1){ ?>&nbsp;<?php } ?>')
@@ -172,90 +175,96 @@ class ContributionController extends Controller
                 ->make(true);
     }
 
-    public static function getViewModel($afid, $gestid)
-    {
-        $affiliate = Afiliado::idIs($afid)->first();
 
-        $cate = Categoria::all();
-        $list_cate = array('' => '');
-        foreach ($cate as $item) {
-             $list_cate[$item->id]=$item->name;
+    public static function getViewModel($affiliate_id, $year)
+    {
+        $affiliate = Affiliate::idIs($affiliate_id)->first();
+
+        $categories = Category::where('name', '<>', 'S/N')->get();
+        $list_categories = array('' => '');
+        foreach ($categories as $item) {
+             $list_categories[$item->id]=$item->name;
         }
 
-        $from = Carbon::parse($affiliate->fech_ing);
-        $fto = Carbon::now();
-        $to = Carbon::createFromDate($fto->year, $fto->month, 1)->subMonth();
-        $IpcAct = IpcTasa::select('ipc')->where('gest', '=',Carbon::createFromDate($fto->year, $fto->month, 1)->toDateString())->first();
+        $now = Carbon::now();
+        $from = Carbon::parse($affiliate->date_entry);      
+        $to = Carbon::createFromDate($now->year, $now->month, 1)->subMonth();
+
+        $ipc_actual = IpcRate::select('index')->where('month_year', '=',Carbon::createFromDate($now->year, $now->month, 1)->toDateString())->first();
+        
         $months = new Collection;
         $month = array();
 
         for ($j=1; $j <= 12; $j++) { 
-            $aportes = Aporte::select(['gest'])->where('afiliado_id', $afid)->where('gest', '=',Carbon::createFromDate($gestid, $j, 1)->toDateString())->first();
-            $AporTasa = AporTasa::where('gest', '=',Carbon::createFromDate($gestid, $j, 1)->toDateString())->first();
-            $IpcTasa = IpcTasa::where('gest', '=',Carbon::createFromDate($gestid, $j, 1)->toDateString())->first();
-            if(!$aportes) {
-                if ($gestid == $from->year) {
-                    if($j >= $from->month){
+
+            $contribution = Contribution::select(['month_year'])->where('affiliate_id', $affiliate_id)->where('month_year', '=', Carbon::createFromDate($year, $j, 1)->toDateString())->first();
+            $contribution_rate = ContributionRate::where('month_year', '=', Carbon::createFromDate($year, $j, 1)->toDateString())->first();
+            $ipc_rate = IpcRate::where('month_year', '=',Carbon::createFromDate($year, $j, 1)->toDateString())->first();
+
+            if(!$contribution) {
+                if ($year == $from->year) {
+                    if($j >= $from->month) {
                         $month["id"] = $j;
                         $month["name"] = Util::getMes($j);
-                        $month["fr_a"] = $AporTasa->apor_fr_a;
-                        $month["apor_sv_a"] = $AporTasa->apor_sv_a;
-                        $month["ipc"] = $IpcTasa->ipc;
+                        $month["retirement_fund"] = $contribution_rate->retirement_fund;
+                        $month["mortuary_quota"] = $contribution_rate->mortuary_quota;
+                        $month["ipc_rate"] = $ipc_rate->index;
                         $months->push($month);
                     }
                 }
-                elseif ($gestid == $to->year) {
-                    if($j <= $to->month){
+                elseif ($year == $to->year) {
+                    if($j <= $to->month) {
                         $month["id"] = $j;
                         $month["name"] = Util::getMes($j);
-                        $month["fr_a"] = $AporTasa->apor_fr_a;
-                        $month["sv_a"] = $AporTasa->apor_sv_a;
-                        $month["ipc"] = $IpcTasa->ipc;
+                        $month["retirement_fund"] = $contribution_rate->retirement_fund;
+                        $month["mortuary_quota"] = $contribution_rate->mortuary_quota;
+                        $month["ipc_rate"] = $ipc_rate->index;
                         $months->push($month);
                     }
-                }else{
+                }else {
                     $month["id"] = $j;
                     $month["name"] = Util::getMes($j);
-                    $month["fr_a"] = $AporTasa->apor_fr_a;
-                    $month["sv_a"] = $AporTasa->apor_sv_a;
-                    $month["ipc"] = $IpcTasa->ipc;
+                    $month["retirement_fund"] = $contribution_rate->retirement_fund;
+                    $month["mortuary_quota"] = $contribution_rate->mortuary_quota;
+                    $month["ipc_rate"] = $ipc_rate->index;
                     $months->push($month);
                 }
             }  
         }
 
+        // $last_contribution = Contribution::affiliateidIs($affiliate->id)->first();
+        // $lastAporte = Aporte::afiIs($affiliate->id)->orderBy('gest', 'desc')->first();
+        // $affiliate->fech_ini_apor = Util::getdateabre($affiliate->fech_ing);
+        // $affiliate->fech_fin_apor = Util::getdateabre($lastAporte->gest);
+
         return [
+
+            // 'affiliate' => $affiliate,
+            // 'list_categories' => $list_categories,
+            // 'categories' => Category::where('name', '<>', 'S/N')->orderBy('id', 'asc')->get(array('percentage', 'name', 'id')),
+            // 'ipc_actual' => $ipc_actual,
             'months' => $months,
-            'IpcAct' => $IpcAct,
-            'list_cate' => $list_cate,
-            'categorias' => Categoria::where('name', '<>', '')->orderBy('id', 'asc')->get(array('por', 'name', 'id'))
+            // 'lastAporte' => $lastAporte,
+            
         ];
     }
 
-    public function CalcAporteGest($afid, $gestid, $type = null)
+    public function CalculationContribution($affiliate_id, $year, $type = null)
     {
-        $affiliate = Afiliado::idIs($afid)->first();
-        $lastAporte = Aporte::afiIs($affiliate->id)->orderBy('gest', 'desc')->first();
-        $affiliate->fech_ini_apor = Util::getdateabre($affiliate->fech_ing);
-        $affiliate->fech_fin_apor = Util::getdateabre($lastAporte->gest);
 
-
-        $data = array(
-            'afiliado' => $affiliate,
-            'lastAporte' => $lastAporte,
+        $data = [
+            
             'type' => $type == "reintegro" ? "Reintegro" : "Normal",
-            'afid' => $afid,
-            'gestid' => $gestid,
-            'result' => 0
-        );
+            'result' => false
+        ];
 
-        $data = array_merge($data, self::getViewModel($afid, $gestid));
-        return view('aportes.calc', $data);
+        $data = array_merge($data, self::getViewModel($affiliate_id, $year));
+        // return view('aportes.calc', $data);
+        return $data;
     }
 
-    public function GenerateCalcAporteGest(Request $request)
+    public function GenerateCalculationContribution(Request $request)
     {
-        $affiliate = Afiliado::idIs($request->afid)->first();
         $lastAporte = Aporte::afiIs($affiliate->id)->orderBy('gest', 'desc')->first();
         $affiliate->fech_ini_apor = Util::getdateabre($affiliate->fech_ing);
         $affiliate->fech_fin_apor = Util::getdateabre($lastAporte->gest);
@@ -272,11 +281,11 @@ class ContributionController extends Controller
             'lastAporte' => $lastAporte,
             'type' => $request->type == "reintegro" ? "Reintegro" : "Normal",
             'afid' => $request->afid,
-            'gestid' => $request->gestid,
-            'result' => 1
+            'year' => $request->year,
+            'result' => true
         );
 
-        $data = array_merge($data, self::getViewModel($request->afid, $request->gestid));
+        $data = array_merge($data, self::getViewModel($request->afid, $request->year));
         return view('aportes.calc', $data);
     }
 

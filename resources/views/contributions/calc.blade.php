@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <div class="container-fluid">
-    {!! Breadcrumbs::render('registro_aportes_afiliado', $afiliado) !!}
+    {!! Breadcrumbs::render('register_contribution', $affiliate) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="row">
