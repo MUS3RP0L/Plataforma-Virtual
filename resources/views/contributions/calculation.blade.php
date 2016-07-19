@@ -12,10 +12,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-2 text-right">
-                    <a href="{!! url('selectgestaporte/' . $afiliado->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
-                        &nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;
-                    </a>
+                <div class="col-md-2 text-right"> 
+                    <a href="{!! url('select_contribution/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;</a>
                 </div>
             </div>
             <div class="row">
@@ -39,7 +37,7 @@
                                                         Carnet Identidad
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $afiliado->ci !!} {!! $afiliado->depa_exp !!}
+                                                         {!! $affiliate->identity_card !!} {!! $affiliate->city_identity_card !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -50,7 +48,7 @@
                                                     <div class="col-md-6">
                                                         Grado
                                                     </div>
-                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $afiliado->grado->lit !!}"> {!! $afiliado->grado->abre !!}
+                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->degree->name !!}"> {!! $affiliate->degree->shortened !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -66,7 +64,7 @@
                                                         Núm. de Matrícula
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->matri !!}
+                                                        {!! $affiliate->registration !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -77,8 +75,8 @@
                                                     <div class="col-md-6">
                                                         Estado
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        {!! $afiliado->afi_state->state_type->name !!}
+                                                    <div class="col-md-6" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $affiliate->affiliate_state->state_type->name !!}">
+                                                        {!! $affiliate->affiliate_state->name !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -94,7 +92,7 @@
                         <div class="panel-heading">
                             <div class="row">  
                                 <div class="col-md-12">
-                                    <h3 class="panel-title"><span class="glyphicon glyphicon-list-alt"></span> Información de Afiliado</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-list-alt"></span> Información de Aporte</h3>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +108,7 @@
                                                         Gestión
                                                     </div>
                                                     <div class="col-md-6">
-                                                         {!! $gestid !!}
+                                                         {!! $year !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -138,7 +136,7 @@
                                                         Último Aporte
                                                     </div>
                                                     <div class="col-md-6">
-                                                        {!! $afiliado->fech_fin_apor !!}
+                                                        {!! $last_contribution->date !!}
                                                     </div>
                                                 </div>
                                             </td>
@@ -159,10 +157,10 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    {!! Form::open(['method' => 'POST', 'route' => ['aporte.store'], 'class' => 'form-horizontal']) !!}
-                        <input type="hidden" name="afid" value="{{$afid}}"/>
-                        <input type="hidden" name="gestid" value="{{$gestid}}"/>
-                        <input type="hidden" name="type" value="{{$type}}"/>
+                    {!! Form::open(['method' => 'POST', 'route' => ['contribution.store'], 'class' => 'form-horizontal']) !!}
+                        <input type="hidden" name="afid" value="{{ $affiliate->id }}"/>
+                        <input type="hidden" name="gestid" value="{{ $year }}"/>
+                        <input type="hidden" name="type" value="{{ $type }}"/>
                         <div class="row">
                             <div class="col-md-12">
                                 <table class="table table-hover">
@@ -229,7 +227,7 @@
                         <div class="row text-center">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <a href="{!! url('afiliado/' . $afiliado->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;</a>
+                                    <a href="{!! url('affiliate/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;</a>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <div class="btn-group" data-toggle="tooltip" data-placement="bottom" data-original-title="Confirmar">
                                         <a href="" data-target="#myModal-confirm" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
@@ -244,7 +242,7 @@
                                 <div class="alert alert-dismissible alert-info">
                                     <div class="modal-body text-center">
                                         <p><br>
-                                            <div><h4>¿ Está seguro de guardar el Aporte de Bs. <b><span data-bind="text: tTap()"></span></b> al afiliado {!! $afiliado->getTittleName () !!}?</h4></div>
+                                            <div><h4>¿ Está seguro de guardar el Aporte de Bs. <b><span data-bind="text: tTap()"></span></b> al afiliado {!! $affiliate->getTittleName () !!}?</h4></div>
                                         </p>
                                     </div>
                                     <div class="row text-center">
@@ -281,29 +279,29 @@
             <div class="modal-body">
 
                 {!! Form::open(['url' => 'calcaportegest', 'role' => 'form', 'class' => 'form-horizontal']) !!}                  
-                    <input type="hidden" name="afid" value="{{$afid}}"/>
-                    <input type="hidden" name="gestid" value="{{$gestid}}"/>
-                    <input type="hidden" name="type" value="{{$type}}"/>
+                    <input type="hidden" name="afid" value="{{ $affiliate->id }}"/>
+                    <input type="hidden" name="gestid" value="{{ $year }}"/>
+                    <input type="hidden" name="type" value="{{ $type }}"/>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('sue', 'Haber Básico', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-4">
-                                    {!! Form::text('sue', $lastAporte->sue, ['class'=> 'form-control']) !!}
+                                    {!! Form::text('sue', $last_contribution->sue, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Haber Básico</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('b_est', 'Bono Estudio', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-4">
-                                    {!! Form::text('b_est', $lastAporte->b_est, ['class'=> 'form-control']) !!}
+                                    {!! Form::text('b_est', $last_contribution->b_est, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Bono Estudio</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('b_fro', 'Bono Frontera', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-4">
-                                    {!! Form::text('b_fro', $lastAporte->b_fro, ['class'=> 'form-control']) !!}
+                                    {!! Form::text('b_fro', $last_contribution->b_fro, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Bono Frontera</span>
                                 </div>
                             </div>
@@ -312,21 +310,21 @@
                             <div class="form-group">
                                 {!! Form::label('categoria_id', 'Categoría', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-5">
-                                    {!! Form::select('categoria_id', $list_cate, $afiliado->categoria_id, ['class' => 'combobox form-control']) !!}
+                                    {!! Form::select('categoria_id', $list_categories, $affiliate->categoria_id, ['class' => 'combobox form-control']) !!}
                                     <span class="help-block">Seleccione Departamento</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('b_car', 'Bono al Cargo', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-4">
-                                    {!! Form::text('b_car', $lastAporte->b_car, ['class'=> 'form-control']) !!}
+                                    {!! Form::text('b_car', $last_contribution->b_car, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Bono al Cargo</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('b_ori', 'Bono Oriente', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-4">
-                                    {!! Form::text('b_ori', $lastAporte->b_ori, ['class'=> 'form-control']) !!}
+                                    {!! Form::text('b_ori', $last_contribution->b_ori, ['class'=> 'form-control']) !!}
                                     <span class="help-block">Escriba el Bono Oriente</span>
                                 </div>
                             </div>
@@ -355,18 +353,17 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 
-
+        var afiliado = {!! $affiliate !!};
         var months = {!! $months !!};
-        var afiliado = {!! $afiliado !!};
-        var categorias = {!! $categorias !!};
-        var IpcAct = {!! $IpcAct !!};
+        var categories = {!! $categories !!};
+        var IpcAct = {!! $ipc_actual !!};
 
-        function CalcAporte(idMonth, nameMonth, haber, categorias, estu, carg,  fron, orie, fr_a, sv_a, ipc) {
+        function CalcAporte(idMonth, nameMonth, haber, categories, estu, carg,  fron, orie, fr_a, sv_a, ipc) {
             var self = this;
             self.idMonth = idMonth;
             self.nameMonth = nameMonth;
             self.haber = ko.observable(haber);
-            self.categoria = ko.observable(categorias);
+            self.categoria = ko.observable(categories);
             self.anti = ko.computed(function() {
                 var anti = roundToTwo(parseFloat(self.categoria().por) * parseFloat(self.haber()));
                 return anti ? anti : 0;       
@@ -406,10 +403,10 @@
         function CalcAporteysViewModel(months, lastap) {
             
             var self = this;
-            self.categorias = categorias;  
+            self.categories = categories;  
             self.aportes = ko.observableArray(ko.utils.arrayMap(months, function(month) {
                 return new CalcAporte(month.id, month.name, lastap.sue ? lastap.sue : "",
-                categorias[afiliado.categoria_id-1], lastap.b_est ? lastap.b_est : 0,
+                categories[afiliado.categoria_id-1], lastap.b_est ? lastap.b_est : 0,
                     lastap.b_car ? lastap.b_car : 0, lastap.b_fro ? lastap.b_fro : 0,
                     lastap.b_ori ? lastap.b_ori : 0,month.fr_a, month.sv_a, month.ipc);
             }));
@@ -446,7 +443,7 @@
             self.removeAporte = function(aporte) { self.aportes.remove(aporte) }
         }
 
-        window.model = new CalcAporteysViewModel({!! $months !!}, {!! $lastAporte !!});
+        window.model = new CalcAporteysViewModel({!! $months !!}, {!! $last_contribution !!});
         ko.applyBindings(model);
 
         function roundToTwo(num) {

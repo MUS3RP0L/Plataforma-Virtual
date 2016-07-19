@@ -82,9 +82,9 @@ class ContributionController extends Controller
     {
         $affiliate = Affiliate::idIs($affiliate_id)->first();
         
-        $data = array(
+        $data = [
             'affiliate' => $affiliate,
-        );
+        ];
 
         return view('contributions.select', $data);
     }
@@ -112,13 +112,6 @@ class ContributionController extends Controller
 
                 $contribution = Contribution::select(['month_year'])->where('affiliate_id', $affiliate->id)
                                                                     ->where('month_year', '=',Carbon::createFromDate($i, $j, 1)->toDateString())->first();  
-                if ($i == $from->year) {
-                    if($j < $from->month){
-                        $mes["m".$j] = -1;
-                        $total --;
-                    }
-                }
-
                 if ($contribution) {
                     $mes["m".$j] = 1;
                     $count ++;
@@ -126,6 +119,13 @@ class ContributionController extends Controller
                 }else {
                    $mes["m".$j] = 0;
                    $total ++;
+                }
+
+                if ($i == $from->year) {
+                    if($j < $from->month){
+                        $mes["m".$j] = -1;
+                        $total --;
+                    }
                 }
                 
                 if ($i == $to->year) {
@@ -206,9 +206,9 @@ class ContributionController extends Controller
                     if($j >= $from->month) {
                         $month["id"] = $j;
                         $month["name"] = Util::getMes($j);
-                        $month["retirement_fund"] = $contribution_rate->retirement_fund;
-                        $month["mortuary_quota"] = $contribution_rate->mortuary_quota;
-                        $month["ipc_rate"] = $ipc_rate->index;
+                        $month["retirement_fund"] = $contribution_rate ? $contribution_rate->retirement_fund : '0';
+                        $month["mortuary_quota"] = $contribution_rate ? $contribution_rate->mortuary_quota : '0';
+                        $month["ipc_rate"] = $contribution_rate ? $ipc_rate->index : '0';
                         $months->push($month);
                     }
                 }
@@ -216,35 +216,40 @@ class ContributionController extends Controller
                     if($j <= $to->month) {
                         $month["id"] = $j;
                         $month["name"] = Util::getMes($j);
-                        $month["retirement_fund"] = $contribution_rate->retirement_fund;
-                        $month["mortuary_quota"] = $contribution_rate->mortuary_quota;
-                        $month["ipc_rate"] = $ipc_rate->index;
+                        $month["retirement_fund"] = $contribution_rate ? $contribution_rate->retirement_fund : '0';
+                        $month["mortuary_quota"] = $contribution_rate ? $contribution_rate->mortuary_quota : '0';
+                        $month["ipc_rate"] = $contribution_rate ? $ipc_rate->index : '0';
                         $months->push($month);
                     }
                 }else {
                     $month["id"] = $j;
                     $month["name"] = Util::getMes($j);
-                    $month["retirement_fund"] = $contribution_rate->retirement_fund;
-                    $month["mortuary_quota"] = $contribution_rate->mortuary_quota;
-                    $month["ipc_rate"] = $ipc_rate->index;
+                    $month["retirement_fund"] = $contribution_rate ? $contribution_rate->retirement_fund : '0';
+                    $month["mortuary_quota"] = $contribution_rate ? $contribution_rate->mortuary_quota : '0';
+                    $month["ipc_rate"] = $contribution_rate ? $ipc_rate->index : '0';
                     $months->push($month);
                 }
             }  
         }
 
-        // $last_contribution = Contribution::affiliateidIs($affiliate->id)->first();
-        // $lastAporte = Aporte::afiIs($affiliate->id)->orderBy('gest', 'desc')->first();
-        // $affiliate->fech_ini_apor = Util::getdateabre($affiliate->fech_ing);
-        // $affiliate->fech_fin_apor = Util::getdateabre($lastAporte->gest);
+        $date = Carbon::createFromDate($year, $months[0]["id"], 1)->subMonth();
+        $last_contribution = null;
+        while (!$last_contribution) {
+            $last_contribution = Contribution::affiliateidIs($affiliate->id)->where('month_year', '=', $date->toDateString())->first();
+            $date = $date->subMonth();
+        }
+
+        $last_contribution->date = Util::getDateShort($last_contribution->month_year);
 
         return [
 
-            // 'affiliate' => $affiliate,
-            // 'list_categories' => $list_categories,
-            // 'categories' => Category::where('name', '<>', 'S/N')->orderBy('id', 'asc')->get(array('percentage', 'name', 'id')),
-            // 'ipc_actual' => $ipc_actual,
+            'affiliate' => $affiliate,
+            'list_categories' => $list_categories,
+            'categories' => Category::where('name', '<>', 'S/N')->orderBy('id', 'asc')->get(array('percentage', 'name', 'id')),
+            'ipc_actual' => $ipc_actual,
             'months' => $months,
-            // 'lastAporte' => $lastAporte,
+            'year' => $year,
+            'last_contribution' => $last_contribution
             
         ];
     }
@@ -256,11 +261,11 @@ class ContributionController extends Controller
             
             'type' => $type == "reintegro" ? "Reintegro" : "Normal",
             'result' => false
+
         ];
 
         $data = array_merge($data, self::getViewModel($affiliate_id, $year));
-        // return view('aportes.calc', $data);
-        return $data;
+        return view('contributions.calculation', $data);
     }
 
     public function GenerateCalculationContribution(Request $request)
@@ -276,14 +281,14 @@ class ContributionController extends Controller
         $lastAporte->b_fro = $request->b_fro;
         $lastAporte->b_ori = $request->b_ori;
 
-        $data = array(
+        $data = [
             'afiliado' => $affiliate,
             'lastAporte' => $lastAporte,
             'type' => $request->type == "reintegro" ? "Reintegro" : "Normal",
             'afid' => $request->afid,
             'year' => $request->year,
             'result' => true
-        );
+        ];
 
         $data = array_merge($data, self::getViewModel($request->afid, $request->year));
         return view('aportes.calc', $data);
