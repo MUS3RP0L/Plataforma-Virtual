@@ -204,14 +204,7 @@
                                     </tbody>
                                     <tr class="active">
                                         <th style="text-align: center"><span data-bind="text: contributions().length"></span></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th style="text-align: right;"><span data-bind="text: sum_quotable()"></span></th>
+                                        <th colspan="8" style="text-align: right;"><span data-bind="text: sum_quotable()"></span></th>
                                         <th style="text-align: right;"><span data-bind="text: sum_subtotal_retirement_fund()"></span></th>
                                         <th style="text-align: right;"><span data-bind="text: sum_subtotal_mortuary_quota()"></span></th>
                                         <th style="text-align: right;"><span data-bind="text: sum_subtotal()"></span></th>
