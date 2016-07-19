@@ -29,6 +29,11 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Imprimir">
+                        <a href="" data-target="#myModal-print-affiliate" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
+                            &nbsp;<span class="glyphicon glyphicon-print"></span>&nbsp;
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-2 text-right">
                     <a href="{!! url('affiliate') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">
@@ -1057,6 +1062,20 @@
                         </tr>
                     </thead>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal-print-affiliate" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content panel-warning">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Reporte Afiliado</h4>
+            </div>
+            <div class="modal-body">
+                <iframe src="{!! url('print_affiliate/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
