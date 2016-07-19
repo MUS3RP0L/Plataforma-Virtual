@@ -59,7 +59,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('spouse', 'Affiliate\SpouseController');
 
 	// Contribution
-	Route::resource('contribution', 'AporteController');
+	Route::resource('contribution', 'Contribution\ContributionController');
 
 	Route::get('show_contributions/{affiliate_id}', array('as'=>'show_contributions', 'uses'=>'Contribution\ContributionController@ShowContributions'));
 	Route::get('get_contribution/{affiliate_id}', array('as'=>'get_contribution', 'uses'=>'Contribution\ContributionController@ShowData'));
@@ -68,7 +68,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('get_select_contribution/{id}', array('as'=>'get_select_contribution', 'uses'=>'Contribution\ContributionController@SelectData'));
 
 	Route::get('calculation_contribution/{affiliate_id}/{year}/{type}', 'Contribution\ContributionController@CalculationContribution');
-	Route::post('calculation_contribution', 'AporteController@GenerateCalculationContribution');
+	Route::post('calculation_contribution', 'Contribution\ContributionController@GenerateCalculationContribution');
 
 
 

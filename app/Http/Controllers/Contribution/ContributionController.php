@@ -269,17 +269,14 @@ class ContributionController extends Controller
     }
 
     public function GenerateCalculationContribution(Request $request)
-    {
-        $lastAporte = Aporte::afiIs($affiliate->id)->orderBy('gest', 'desc')->first();
-        $affiliate->fech_ini_apor = Util::getdateabre($affiliate->fech_ing);
-        $affiliate->fech_fin_apor = Util::getdateabre($lastAporte->gest);
-        $affiliate->categoria_id = $request->categoria_id;
-
-        $lastAporte->sue = $request->sue;
-        $lastAporte->b_est = $request->b_est;
-        $lastAporte->b_car = $request->b_car;
-        $lastAporte->b_fro = $request->b_fro;
-        $lastAporte->b_ori = $request->b_ori;
+    {     
+        // $affiliate->category_id = $request->category_id;
+        $lastAporte = new Contribution;
+        $lastAporte->base_wage = $request->base_wage;
+        $lastAporte->study_bonus = $request->study_bonus;
+        $lastAporte->position_bonus = $request->position_bonus;
+        $lastAporte->border_bonus = $request->border_bonus;
+        $lastAporte->east_bonus = $request->east_bonus;
 
         $data = [
             'afiliado' => $affiliate,
@@ -291,7 +288,8 @@ class ContributionController extends Controller
         ];
 
         $data = array_merge($data, self::getViewModel($request->afid, $request->year));
-        return view('aportes.calc', $data);
+        // return view('aportes.calc', $data);
+        return $data;
     }
 
     /**
