@@ -352,6 +352,17 @@ class AffiliateController extends Controller
         }
     }
 
+    public function print_affiliate($affiliate) 
+    {   $affiliate = Affiliate::idIs($affiliate)->first();
+        $spouse = Spouse::affiliateidIs($affiliate->id)->first();
+        $date = Util::getfulldate(date('Y-m-d'));
+        $view = \View::make('affiliates.print.show', compact('affiliate', 'spouse', 'date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
+        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/certificacion/' . $name_input . '.pdf');
+        return $pdf->stream();
+    }
+
    
 
 }

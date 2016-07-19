@@ -351,7 +351,7 @@ class Affiliate extends Model
 
     public function getFullDirecctoPrint()
     {
-        return $this->calle . ' ' . $this->num_domi . ' ' . $this->zona. ' ' . $this->depa_dir;
+        return $this->street . ' ' . $this->number_address . ' ' . $this->zone. ' ' . $this->city_address_id;
     }
 
     public function getFullDateNactoPrint()
