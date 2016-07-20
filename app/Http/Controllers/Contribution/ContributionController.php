@@ -55,7 +55,7 @@ class ContributionController extends Controller
     }
 
     public function ShowData(Request $request)
-    {   
+    {
         $contributions = Contribution::select(['id', 'month_year', 'degree_id', 'unit_id', 'item', 'base_wage','seniority_bonus', 'study_bonus', 'position_bonus', 'border_bonus', 'east_bonus', 'public_security_bonus', 'gain', 'quotable', 'retirement_fund', 'mortuary_quota', 'total'])
                                         ->where('affiliate_id', $request->affiliate_id);
 
@@ -77,11 +77,11 @@ class ContributionController extends Controller
                 ->editColumn('total', function ($contribution) { return Util::formatMoney($contribution->total); })
                 ->make(true);
     }
-    
+
     public function SelectContribution($affiliate_id)
     {
         $affiliate = Affiliate::idIs($affiliate_id)->first();
-        
+
         $data = [
             'affiliate' => $affiliate,
         ];
@@ -90,28 +90,28 @@ class ContributionController extends Controller
     }
 
     public function SelectData(Request $request)
-    {   
+    {
         $affiliate = Affiliate::idIs($request->affiliate_id)->first();
         $afi["affiliate"] = $affiliate->id;
 
         $group_contributions = new Collection;
 
         $now = Carbon::now();
-        $from = Carbon::parse($affiliate->date_entry);      
+        $from = Carbon::parse($affiliate->date_entry);
         $to = Carbon::createFromDate($now->year, $now->month, 1)->subMonth();
 
-        for ($i=$from->year; $i <= $to->year ; $i++) { 
+        for ($i=$from->year; $i <= $to->year ; $i++) {
 
             $count = 0;
             $total = 0;
 
             $base = array();
             $mes = array();
- 
-            for ($j=1; $j <= 12; $j++) { 
+
+            for ($j=1; $j <= 12; $j++) {
 
                 $contribution = Contribution::select(['month_year'])->where('affiliate_id', $affiliate->id)
-                                                                    ->where('month_year', '=',Carbon::createFromDate($i, $j, 1)->toDateString())->first();  
+                                                                    ->where('month_year', '=',Carbon::createFromDate($i, $j, 1)->toDateString())->first();
                 if ($contribution) {
                     $mes["m".$j] = 1;
                     $count ++;
@@ -127,7 +127,7 @@ class ContributionController extends Controller
                         $total --;
                     }
                 }
-                
+
                 if ($i == $to->year) {
                     if($j > $to->month){
                         $mes["m".$j] = -1;
@@ -176,7 +176,7 @@ class ContributionController extends Controller
     }
 
 
-    public static function getViewModel($affiliate_id, $year)
+    public static function getViewModel($affiliate_id, $year, $category_id = null, $last_contribution = null)
     {
         $affiliate = Affiliate::idIs($affiliate_id)->first();
 
@@ -187,15 +187,15 @@ class ContributionController extends Controller
         }
 
         $now = Carbon::now();
-        $from = Carbon::parse($affiliate->date_entry);      
+        $from = Carbon::parse($affiliate->date_entry);
         $to = Carbon::createFromDate($now->year, $now->month, 1)->subMonth();
 
         $ipc_actual = IpcRate::select('index')->where('month_year', '=',Carbon::createFromDate($now->year, $now->month, 1)->toDateString())->first();
-        
+
         $months = new Collection;
         $month = array();
 
-        for ($j=1; $j <= 12; $j++) { 
+        for ($j=1; $j <= 12; $j++) {
 
             $contribution = Contribution::select(['month_year'])->where('affiliate_id', $affiliate_id)->where('month_year', '=', Carbon::createFromDate($year, $j, 1)->toDateString())->first();
             $contribution_rate = ContributionRate::where('month_year', '=', Carbon::createFromDate($year, $j, 1)->toDateString())->first();
@@ -229,17 +229,23 @@ class ContributionController extends Controller
                     $month["ipc_rate"] = $contribution_rate ? $ipc_rate->index : '0';
                     $months->push($month);
                 }
-            }  
+            }
         }
 
-        $date = Carbon::createFromDate($year, $months[0]["id"], 1)->subMonth();
-        $last_contribution = null;
-        while (!$last_contribution) {
-            $last_contribution = Contribution::affiliateidIs($affiliate->id)->where('month_year', '=', $date->toDateString())->first();
-            $date = $date->subMonth();
+        if (!$last_contribution) {
+            $date = Carbon::createFromDate($year, $months[0]["id"], 1)->subMonth();
+            $last_contribution = null;
+            while (!$last_contribution) {
+                $last_contribution = Contribution::affiliateidIs($affiliate->id)->where('month_year', '=', $date->toDateString())->first();
+                $date = $date->subMonth();
+            }
         }
 
         $last_contribution->date = Util::getDateShort($last_contribution->month_year);
+
+        if ($category_id) {
+            $affiliate->category_id = $category_id;
+        }
 
         return [
 
@@ -250,17 +256,16 @@ class ContributionController extends Controller
             'months' => $months,
             'year' => $year,
             'last_contribution' => $last_contribution
-            
+
         ];
     }
 
-    public function CalculationContribution($affiliate_id, $year, $type = null)
+    public function CalculationContribution($affiliate_id, $year, $type)
     {
 
         $data = [
-            
+
             'type' => $type == "reintegro" ? "Reintegro" : "Normal",
-            'result' => false
 
         ];
 
@@ -269,27 +274,22 @@ class ContributionController extends Controller
     }
 
     public function GenerateCalculationContribution(Request $request)
-    {     
-        // $affiliate->category_id = $request->category_id;
-        $lastAporte = new Contribution;
-        $lastAporte->base_wage = $request->base_wage;
-        $lastAporte->study_bonus = $request->study_bonus;
-        $lastAporte->position_bonus = $request->position_bonus;
-        $lastAporte->border_bonus = $request->border_bonus;
-        $lastAporte->east_bonus = $request->east_bonus;
+    {
+        $last_contribution = new Contribution;
+        $last_contribution->base_wage = $request->base_wage;
+        $last_contribution->study_bonus = $request->study_bonus;
+        $last_contribution->position_bonus = $request->position_bonus;
+        $last_contribution->border_bonus = $request->border_bonus;
+        $last_contribution->east_bonus = $request->east_bonus;
 
         $data = [
-            'afiliado' => $affiliate,
-            'lastAporte' => $lastAporte,
+
             'type' => $request->type == "reintegro" ? "Reintegro" : "Normal",
-            'afid' => $request->afid,
-            'year' => $request->year,
-            'result' => true
+
         ];
 
-        $data = array_merge($data, self::getViewModel($request->afid, $request->year));
-        // return view('aportes.calc', $data);
-        return $data;
+        $data = array_merge($data, self::getViewModel($request->affiliate_id, $request->year, $request->category_id, $last_contribution));
+        return view('contributions.calculation', $data);
     }
 
     /**
@@ -305,20 +305,20 @@ class ContributionController extends Controller
     }
 
     public function save($request, $id = false)
-    {       
+    {
         $rules = [
-            
+
             'afid' => 'required',
-            
+
         ];
 
         $messages = [
-            
-            'afid.required' => 'Afiliado no disponible', 
+
+            'afid.required' => 'Afiliado no disponible',
         ];
-        
+
         $validator = Validator::make($request->all(), $rules, $messages);
-        
+
         if ($validator->fails()){
             return redirect('afiliado/'.$request->afid)
             ->withErrors($validator)
@@ -350,7 +350,7 @@ class ContributionController extends Controller
             $tTap = 0;
 
             foreach ($data->aportes as $item)
-            {  
+            {
                 $gest = Carbon::createFromDate($request->gestid, $item->idMonth, 1)->toDateString();
                 $aporte = Aporte::where('gest', '=', $gest)->where('afiliado_id', '=', $affiliate->id)->first();
                 $por_apor = AporTasa::where('gest', '=', $gest)->first();
@@ -365,7 +365,7 @@ class ContributionController extends Controller
                     $aporte->aporte_type_id = 2;
                     $aporte->afiliado_id = $affiliate->id;
                     $aporte->aporte_pago_id = $pago->id;
-    
+
                     $aporte->gest = $gest;
 
                     $aporte->sue = $item->haber;
@@ -375,16 +375,16 @@ class ContributionController extends Controller
                     $aporte->b_car = $item->carg;
                     $aporte->b_fro = $item->fron;
                     $aporte->b_ori = $item->orie;
-                    
-                    
+
+
                     $aporte->cot = (FLOAT)$aporte->sue + (FLOAT)$aporte->b_ant + (FLOAT)$aporte->b_est + (FLOAT)$aporte->b_car + (FLOAT)$aporte->b_fro + (FLOAT)$aporte->b_ori;
                     $aporte->fr = $aporte->cot * $por_apor->apor_fr_a / 100;
                     $aporte->sv = $aporte->cot * $por_apor->apor_sv_a / 100;
-                    $aporte->sub_mus = $aporte->cot * $por_apor->apor_a / 100;          
+                    $aporte->sub_mus = $aporte->cot * $por_apor->apor_a / 100;
                     $aporte->ipc = $aporte->sub_mus * ( $IpcAct->ipc / $IpcTasa->ipc -1 );
 
                     $aporte->mus = $aporte->sub_mus + $aporte->ipc;
-                    $aporte->save();            
+                    $aporte->save();
 
                     $tCot += $aporte->cot;
                     $tApo += $aporte->sub_mus;
@@ -402,12 +402,12 @@ class ContributionController extends Controller
                 $pago->total = $tTap;
                 $pago->save();
             }
-                    
-            $message = "Aportes Guardados";      
-            
+
+            $message = "Aportes Guardados";
+
             Session::flash('message', $message);
         }
-        
+
         return redirect('afiliado/'.$id);
     }
 }

@@ -158,8 +158,8 @@
                 </div>
                 <div class="panel-body">
                     {!! Form::open(['method' => 'POST', 'route' => ['contribution.store'], 'class' => 'form-horizontal']) !!}
-                        <input type="hidden" name="afid" value="{{ $affiliate->id }}"/>
-                        <input type="hidden" name="gestid" value="{{ $year }}"/>
+                        <input type="hidden" name="affiliate_id" value="{{ $affiliate->id }}"/>
+                        <input type="hidden" name="year" value="{{ $year }}"/>
                         <input type="hidden" name="type" value="{{ $type }}"/>
                         <div class="row">
                             <div class="col-md-12">
@@ -266,22 +266,22 @@
             <div class="modal-body">
 
                 {!! Form::open(['url' => 'calculation_contribution', 'role' => 'form', 'class' => 'form-horizontal']) !!}                  
-                    <input type="hidden" name="afid" value="{{ $affiliate->id }}"/>
-                    <input type="hidden" name="gestid" value="{{ $year }}"/>
+                    <input type="hidden" name="affiliate_id" value="{{ $affiliate->id }}"/>
+                    <input type="hidden" name="year" value="{{ $year }}"/>
                     <input type="hidden" name="type" value="{{ $type }}"/>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('base_wage', 'Haber Básico', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-4">
-                                    {!! Form::text('base_wage', $last_contribution->base_wage, ['class'=> 'form-control']) !!}
+                                    {!! Form::text('base_wage', $last_contribution->base_wage, ['class'=> 'form-control', 'required']) !!}
                                     <span class="help-block">Escriba el Haber Básico</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('study_bonus', 'Bono Estudio', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-4">
-                                    {!! Form::text('study_bonus', $last_contribution->study_bonus, ['class'=> 'form-control']) !!}
+                                    {!! Form::text('study_bonus', $last_contribution->study_bonus, ['class'=> 'form-control', 'required']) !!}
                                     <span class="help-block">Escriba el Bono Estudio</span>
                                 </div>
                             </div>
@@ -297,21 +297,21 @@
                             <div class="form-group">
                                 {!! Form::label('category_id', 'Categoría', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-5">
-                                    {!! Form::select('category_id', $list_categories, $affiliate->category_id, ['class' => 'combobox form-control']) !!}
+                                    {!! Form::select('category_id', $list_categories, $affiliate->category_id, ['class' => 'combobox form-control', 'required']) !!}
                                     <span class="help-block">Seleccione Departamento</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('position_bonus', 'Bono al Cargo', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-4">
-                                    {!! Form::text('position_bonus', $last_contribution->position_bonus, ['class'=> 'form-control']) !!}
+                                    {!! Form::text('position_bonus', $last_contribution->position_bonus, ['class'=> 'form-control', 'required']) !!}
                                     <span class="help-block">Escriba el Bono al Cargo</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('east_bonus', 'Bono Oriente', ['class' => 'col-md-5 control-label']) !!}
                                 <div class="col-md-4">
-                                    {!! Form::text('east_bonus', $last_contribution->east_bonus, ['class'=> 'form-control']) !!}
+                                    {!! Form::text('east_bonus', $last_contribution->east_bonus, ['class'=> 'form-control', 'required']) !!}
                                     <span class="help-block">Escriba el Bono Oriente</span>
                                 </div>
                             </div>
@@ -406,39 +406,39 @@
         }));
 
         self.sum_quotable = ko.pureComputed(function() {
-        var sum = 0;
-        $.each(self.contributions(), function() { sum += parseFloat(this.quotable()) })
-        return roundToTwo(sum);
+            var sum = 0;
+            $.each(self.contributions(), function() { sum += parseFloat(this.quotable()) })
+            return roundToTwo(sum);
         });
 
         self.sum_subtotal_retirement_fund = ko.pureComputed(function() {
-        var sum = 0;
-        $.each(self.contributions(), function() { sum += parseFloat(this.subtotal_retirement_fund()) })
-        return roundToTwo(sum);
+            var sum = 0;
+            $.each(self.contributions(), function() { sum += parseFloat(this.subtotal_retirement_fund()) })
+            return roundToTwo(sum);
         });
 
         self.sum_subtotal_mortuary_quota = ko.pureComputed(function() {
-        var sum = 0;
-        $.each(self.contributions(), function() { sum += parseFloat(this.subtotal_mortuary_quota()) })
-        return roundToTwo(sum);
+            var sum = 0;
+            $.each(self.contributions(), function() { sum += parseFloat(this.subtotal_mortuary_quota()) })
+            return roundToTwo(sum);
         });
 
         self.sum_subtotal = ko.pureComputed(function() {
-        var sum = 0;
-        $.each(self.contributions(), function() { sum += parseFloat(this.subtotal()) })
-        return roundToTwo(sum);
+            var sum = 0;
+            $.each(self.contributions(), function() { sum += parseFloat(this.subtotal()) })
+            return roundToTwo(sum);
         });
 
         self.sum_subtotal_ipc_rate = ko.pureComputed(function() {
-        var sum = 0;
-        $.each(self.contributions(), function() { sum += parseFloat(this.subtotal_ipc_rate()) })
-        return roundToTwo(sum);
+            var sum = 0;
+            $.each(self.contributions(), function() { sum += parseFloat(this.subtotal_ipc_rate()) })
+            return roundToTwo(sum);
         });
 
         self.sum_total = ko.pureComputed(function() {
-        var sum = 0;
-        $.each(self.contributions(), function() { sum += parseFloat(this.total()) })
-        return roundToTwo(sum);
+            var sum = 0;
+            $.each(self.contributions(), function() { sum += parseFloat(this.total()) })
+            return roundToTwo(sum);
         });
 
         self.removeContribution = function(contribution) { self.contributions.remove(contribution) }
