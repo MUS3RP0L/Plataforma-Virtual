@@ -5,6 +5,7 @@ namespace Muserpol\Http\Controllers\Contribution;
 use Illuminate\Http\Request;
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
+use Muserpol\Http\Controllers\Contribution\ContributionPaymentController;
 
 use Auth;
 use Validator;
@@ -23,6 +24,13 @@ use Muserpol\IpcRate;
 
 class ContributionController extends Controller
 {
+    protected $contribution_payment;
+
+    public function __construct(ContributionPaymentController $contribution_payment)
+	{
+		$this->contribution_payment = $contribution_payment;
+	}
+
     /**
      * Display a listing of the resource.
      *
