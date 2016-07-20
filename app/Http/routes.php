@@ -73,8 +73,11 @@ Route::group(['middleware' => 'auth'], function() {
 	// Contribution Payments
 	Route::resource('contribution_payment', 'Contribution\ContributionPaymentController');
 
+
 	Route::get('print_aportepago/{id}', 'AportePagoController@PrintAportePago');
 	Route::get('getAportePago', array('as'=>'getAportePago', 'uses'=>'AportePagoController@AportePagoData'));
+
+
 
 
 

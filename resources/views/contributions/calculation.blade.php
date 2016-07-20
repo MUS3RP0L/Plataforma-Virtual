@@ -12,7 +12,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-2 text-right"> 
+                <div class="col-md-2 text-right">
                     <a href="{!! url('select_contribution/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;</a>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <div class="row">  
+                            <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="panel-title"><span class="glyphicon glyphicon-list-alt"></span> Información de Afiliado</h3>
                                 </div>
@@ -80,7 +80,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                        </tr>      
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <div class="row">  
+                            <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="panel-title"><span class="glyphicon glyphicon-list-alt"></span> Información de Aporte</h3>
                                 </div>
@@ -99,7 +99,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row">
                                 <div class="col-md-6">
-                                    
+
                                     <table class="table table-responsive" style="width:100%;">
                                         <tr>
                                             <td style="border-top:1px solid #d4e4cd;">
@@ -150,14 +150,14 @@
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <div class="row">  
+                    <div class="row">
                         <div class="col-md-12">
                             <h3 class="panel-title"><span class="glyphicon glyphicon-list-alt"></span> Cálculo de Aportes</h3>
                         </div>
                     </div>
                 </div>
                 <div class="panel-body">
-                    {!! Form::open(['method' => 'POST', 'route' => ['contribution.store'], 'class' => 'form-horizontal']) !!}
+                    {!! Form::open(['method' => 'POST', 'route' => ['contribution_payment.store'], 'class' => 'form-horizontal']) !!}
                         <input type="hidden" name="affiliate_id" value="{{ $affiliate->id }}"/>
                         <input type="hidden" name="year" value="{{ $year }}"/>
                         <input type="hidden" name="type" value="{{ $type }}"/>
@@ -200,7 +200,7 @@
                                             <td style="text-align: right"><span data-bind="text: subtotal_ipc_rate"/></td>
                                             <td style="text-align: right"><span data-bind="text: total"/></td>
                                             <td style="text-align: center"><a href="#" data-bind="click: $root.removeContribution, visible: $parent.contributions().length > 1"><span class="glyphicon glyphicon-remove"></span></a></td>
-                                        </tr>    
+                                        </tr>
                                     </tbody>
                                     <tr class="active">
                                         <th style="text-align: center"><span data-bind="text: contributions().length"></span></th>
@@ -265,7 +265,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::open(['url' => 'calculation_contribution', 'role' => 'form', 'class' => 'form-horizontal']) !!}                  
+                {!! Form::open(['url' => 'calculation_contribution', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                     <input type="hidden" name="affiliate_id" value="{{ $affiliate->id }}"/>
                     <input type="hidden" name="year" value="{{ $year }}"/>
                     <input type="hidden" name="type" value="{{ $type }}"/>
@@ -323,7 +323,7 @@
                                 <button type="submit" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Guardar">&nbsp;<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>&nbsp;</button>
                             </div>
                         </div>
-                    </div>                
+                    </div>
                     {!! Form::close() !!}
             </div>
         </div>
@@ -353,39 +353,39 @@
         self.category = ko.observable(categories);
         self.seniority_bonus = ko.computed(function() {
             var seniority_bonus = roundToTwo(parseFloat(self.category().percentage) * parseFloat(self.base_wage()));
-            return seniority_bonus ? seniority_bonus : 0;       
+            return seniority_bonus ? seniority_bonus : 0;
         });
         self.study_bonus = ko.observable(study_bonus);
         self.position_bonus = ko.observable(position_bonus);
         self.border_bonus = ko.observable(border_bonus);
         self.east_bonus = ko.observable(east_bonus);
-        
+
         self.quotable = ko.computed(function() {
-            var quotable = roundToTwo(parseFloat(self.base_wage()) + parseFloat(self.seniority_bonus()) + 
+            var quotable = roundToTwo(parseFloat(self.base_wage()) + parseFloat(self.seniority_bonus()) +
                         parseFloat(self.study_bonus()) + parseFloat(self.position_bonus()) +
                         parseFloat(self.border_bonus()) + parseFloat(self.east_bonus()));
-            return quotable ? quotable : 0;       
+            return quotable ? quotable : 0;
         });
 
         self.subtotal_retirement_fund = ko.computed(function() {
             var subtotal_retirement_fund = roundToTwo(parseFloat(self.quotable()) * parseFloat(retirement_fund) / 100);
-            return subtotal_retirement_fund ? subtotal_retirement_fund : 0;       
+            return subtotal_retirement_fund ? subtotal_retirement_fund : 0;
         });
 
         self.subtotal_mortuary_quota = ko.computed(function() {
             var subtotal_mortuary_quota = roundToTwo(parseFloat(self.quotable()) * parseFloat(mortuary_quota) / 100);
-            return subtotal_mortuary_quota ? subtotal_mortuary_quota : 0;       
+            return subtotal_mortuary_quota ? subtotal_mortuary_quota : 0;
         });
 
         self.subtotal = ko.computed(function() {
             var subtotal = roundToTwo(parseFloat(self.subtotal_retirement_fund()) + parseFloat(self.subtotal_mortuary_quota()));
-            return subtotal ? subtotal : 0;       
+            return subtotal ? subtotal : 0;
         });
 
         self.subtotal_ipc_rate = ko.computed(function() {
             var subtotal_ipc_rate = roundToTwo(parseFloat(self.subtotal()) * ((parseFloat(ipc_actual.index))/(parseFloat(ipc_rate))-1));
             if (subtotal_ipc_rate < 0) { subtotal_ipc_rate = 0; };
-            return subtotal_ipc_rate ? subtotal_ipc_rate : 0;      
+            return subtotal_ipc_rate ? subtotal_ipc_rate : 0;
         });
 
         self.total = ko.computed(function() {
@@ -395,9 +395,9 @@
     }
 
     function CalculationContributionModel(months, last_contribution) {
-        
+
         var self = this;
-        self.categories = categories;  
+        self.categories = categories;
         self.contributions = ko.observableArray(ko.utils.arrayMap(months, function(month) {
             return new CalculationContribution(month.id, month.name, last_contribution.base_wage ? last_contribution.base_wage : "",
             categories[affiliate.category_id-1], last_contribution.study_bonus ? last_contribution.study_bonus : 0,
