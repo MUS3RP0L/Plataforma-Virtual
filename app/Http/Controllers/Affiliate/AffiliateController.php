@@ -131,9 +131,9 @@ class AffiliateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function show($affiliate)
+    public function getData($affiliate)
     {
+        $affiliate = Affiliate::idIs($affiliate)->first();
         $spouse = Spouse::affiliateidIs($affiliate->id)->first();
         if (!$spouse) { $spouse = new Spouse; }
         
@@ -205,8 +205,11 @@ class AffiliateController extends Controller
         ];
        
         $data = array_merge($data, self::getViewModel());
-        
-        return view('affiliates.view', $data);
+        return $data;
+    }
+    public function show($affiliate)
+    {
+        return view('affiliates.view', self::getData($affiliate->id));
     }
 
     /**
@@ -353,10 +356,23 @@ class AffiliateController extends Controller
     }
 
     public function print_affiliate($affiliate) 
-    {   $affiliate = Affiliate::idIs($affiliate)->first();
-        $spouse = Spouse::affiliateidIs($affiliate->id)->first();
+    {   
+            // 'total_gain' => $total_gain,
+            // 'total_public_security_bonus' => $total_public_security_bonus,
+            // 'total_quotable' => $total_quotable,
+            // 'total_retirement_fund' => $total_retirement_fund,
+            // 'total_mortuary_quota' => $total_mortuary_quota,
+        $data = $this->getData($affiliate);
+        $affiliate = $data['affiliate'];
+        $spouse = $data['spouse'];
+        $total_gain = $data['total_gain'];
+        $total_public_security_bonus = $data['total_public_security_bonus'];
+        $total_quotable = $data['total_quotable'];
+        $total_retirement_fund = $data['total_retirement_fund'];
+        $total_mortuary_quota = $data['total_mortuary_quota'];
+        $total = $data['total'];
         $date = Util::getfulldate(date('Y-m-d'));
-        $view = \View::make('affiliates.print.show', compact('affiliate', 'spouse', 'date'))->render();
+        $view = \View::make('affiliates.print.show', compact('affiliate', 'spouse','total_gain','total_public_security_bonus','total_quotable','total_retirement_fund','total_mortuary_quota','total','date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/certificacion/' . $name_input . '.pdf');

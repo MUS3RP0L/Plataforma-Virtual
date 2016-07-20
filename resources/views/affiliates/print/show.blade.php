@@ -91,6 +91,39 @@
             
           </table>
       </div>
+
+      <div class="title"><b>III. RESUMEN DE APORTE</b></div>
+      <div id="project">
+        <table>
+            <tr>
+              <th colspan="2" class="grand service">DATOS DE APORTE</th>
+            </tr>
+            <tr>
+              <th class="service">GANADO</th>
+              <td class="info" style="width: 60%">{!! $total_gain !!}</td>
+            </tr>
+            <tr>
+              <th class="service">BONO DE SEGURIDAD CIUDADANA</th>
+              <td class="info" style="width: 60%">{!! $total_public_security_bonus !!}</td>
+            </tr>
+            <tr>
+              <th class="service">COTIZABLE</th>
+              <td class="info" style="width: 60%">{!! $total_quotable !!}</td>
+            </tr> 
+            <tr>
+              <th class="service">APORTE FONDO DE RETIRO</th>
+              <td class="info" style="width: 60%">{!! $total_retirement_fund !!}</td>
+            </tr>
+            <tr>
+              <th class="service">APORTE SEGURO DE VIDA</th>
+              <td class="info" style="width: 60%">{!! $total_mortuary_quota !!}</td>
+            </tr>
+             <tr>
+              <th class="service">APORTE MUSERPOL</th>
+              <td class="info" style="width: 60%">{!! $total !!}</td>
+            </tr>      
+          </table>
+      </div>
       
       
 @endsection
