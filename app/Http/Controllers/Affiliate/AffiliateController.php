@@ -35,11 +35,11 @@ class AffiliateController extends Controller
     public function Data(Request $request)
     {
         $affiliates = Affiliate::select(['id', 'identity_card', 'registration', 'last_name', 'mothers_last_name', 'first_name', 'second_name',  'affiliate_state_id', 'degree_id']);
-        
+
         if ($request->has('last_name'))
         {
             $affiliates->where(function($affiliates) use ($request)
-            {   
+            {
                 $last_name = trim($request->get('last_name'));
                 $affiliates->where('last_name', 'like', "%{$last_name}%");
             });
@@ -47,7 +47,7 @@ class AffiliateController extends Controller
         if ($request->has('mothers_last_name'))
         {
             $affiliates->where(function($affiliates) use ($request)
-            {   
+            {
                 $mothers_last_name = trim($request->get('mothers_last_name'));
                 $affiliates->where('mothers_last_name', 'like', "%{$mothers_last_name}%");
             });
@@ -84,7 +84,7 @@ class AffiliateController extends Controller
                 $affiliates->where('registration', 'like', "%{$registration}%");
             });
         }
-        
+
         return Datatables::of($affiliates)
                 ->addColumn('degree', function ($affiliate) { return $affiliate->degree_id ? $affiliate->degree->shortened : ''; })
                 ->editColumn('last_name', function ($affiliate) { return Util::ucw($affiliate->last_name); })
@@ -121,7 +121,7 @@ class AffiliateController extends Controller
 
             'cities_list' => $cities_list,
             'cities_list_short' => $cities_list_short
-            
+
         ];
     }
 
@@ -136,7 +136,7 @@ class AffiliateController extends Controller
         $affiliate = Affiliate::idIs($affiliate)->first();
         $spouse = Spouse::affiliateidIs($affiliate->id)->first();
         if (!$spouse) { $spouse = new Spouse; }
-        
+
         if ($affiliate->gender == 'M') {
             $gender_list = ['' => '', 'C' => 'CASADO', 'S' => 'SOLTERO', 'V' => 'VIUDO', 'D' => 'DIVORCIADO'];
         }elseif ($affiliate->gender == 'F') {
@@ -145,17 +145,17 @@ class AffiliateController extends Controller
         if ($affiliate->city_identity_card_id) {
             $affiliate->city_identity_card = City::idIs($affiliate->city_identity_card_id)->first()->shortened;
         }else {
-            $affiliate->city_identity_card = 'hola'; 
+            $affiliate->city_identity_card = 'hola';
         }
         if ($affiliate->city_birth_id) {
             $affiliate->city_birth = City::idIs($affiliate->city_birth_id)->first()->name;
         }else {
-            $affiliate->city_birth = ''; 
-        }       
+            $affiliate->city_birth = '';
+        }
         if ($affiliate->city_address_id) {
             $affiliate->city_address = City::idIs($affiliate->city_address_id)->first()->name;
         }else {
-            $affiliate->city_address = ''; 
+            $affiliate->city_address = '';
         }
         if ($affiliate->city_address_id || $affiliate->zone || $affiliate->Street || $affiliate->number_address || $affiliate->phone || $affiliate->cell_phone) {
             $info_address = TRUE;
@@ -203,7 +203,7 @@ class AffiliateController extends Controller
             'total' => $total
 
         ];
-       
+
         $data = array_merge($data, self::getViewModel());
         return $data;
     }
@@ -225,9 +225,9 @@ class AffiliateController extends Controller
     }
 
     public function save($request, $affiliate = false)
-    {       
+    {
         $rules = [
-            
+
             'last_name' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'mothers_last_name' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'first_name' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
@@ -235,12 +235,12 @@ class AffiliateController extends Controller
             'surname_husband' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'phone' =>'numeric',
             'cell_phone' =>'numeric'
-            
+
         ];
 
         $messages = [
 
-            'last_name.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
+            'last_name.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3',
             'last_name.regex' => 'Sólo se aceptan letras para apellido paterno',
 
             'mothers_last_name.min' => 'El mínimo de caracteres permitidos para apellido materno es 3',
@@ -260,9 +260,9 @@ class AffiliateController extends Controller
             'cell_phone.numeric' => 'Sólo se aceptan números para celular'
 
         ];
-        
+
         $validator = Validator::make($request->all(), $rules, $messages);
-        
+
         if ($validator->fails()) {
             return redirect('affiliate/'.$affiliate->id)
             ->withErrors($validator)
@@ -273,7 +273,7 @@ class AffiliateController extends Controller
             $affiliate->user_id = Auth::user()->id;
 
             switch ($request->type) {
-                
+
                 case 'personal':
 
                     $affiliate->identity_card = trim($request->identity_card);
@@ -283,20 +283,20 @@ class AffiliateController extends Controller
                     $affiliate->first_name = trim($request->first_name);
                     $affiliate->second_name = trim($request->second_name);
                     $affiliate->surname_husband = trim($request->surname_husband);
-                    $affiliate->birth_date = Util::datePick($request->birth_date); 
-                    $affiliate->civil_status = trim($request->civil_status); 
+                    $affiliate->birth_date = Util::datePick($request->birth_date);
+                    $affiliate->civil_status = trim($request->civil_status);
                     if ($request->city_birth_id) { $affiliate->city_birth_id = $request->city_birth_id; } else { $affiliate->city_birth_id = null; }
                     if ($request->DateDeathAffiliateCheck == "on") {
-                        $affiliate->date_death = Util::datePick($request->date_death); 
+                        $affiliate->date_death = Util::datePick($request->date_death);
                         $affiliate->reason_death = trim($request->reason_death);
                     }else {
-                        $affiliate->date_death = null; 
+                        $affiliate->date_death = null;
                         $affiliate->reason_death = null;
                     }
                     $affiliate->save();
 
                     $message = "Información personal de Afiliado actualizado con éxito";
-                    
+
                 break;
 
                 case 'address':
@@ -304,21 +304,21 @@ class AffiliateController extends Controller
                     if ($request->city_address_id) { $affiliate->city_address_id = $request->city_address_id; } else { $affiliate->city_address_id = null; }
                     $affiliate->zone = trim($request->zone);
                     $affiliate->street = trim($request->street);
-                    $affiliate->number_address = trim($request->number_address);  
+                    $affiliate->number_address = trim($request->number_address);
                     $affiliate->phone = trim($request->phone);
-                    $affiliate->cell_phone = trim($request->cell_phone); 
+                    $affiliate->cell_phone = trim($request->cell_phone);
                     $affiliate->save();
 
                     $message = "Información de domicilio de afiliado actualizado con éxito";
 
                 break;
 
-                Session::flash('message', $message);   
+                Session::flash('message', $message);
             }
-            
-            
+
+
         }
-        
+
         return redirect('affiliate/'.$affiliate->id);
     }
 
@@ -327,13 +327,13 @@ class AffiliateController extends Controller
         $rules = [
             'identity_card' => 'required',
         ];
-        
+
         $messages = [
             'identity_card.required' => 'El campo es requerido para realizar la búsqueda del Afiliado.',
         ];
-        
+
         $validator = Validator::make($request->all(), $rules, $messages);
-        
+
         if ($validator->fails()) {
             return redirect("/")
             ->withErrors($validator)
@@ -355,13 +355,8 @@ class AffiliateController extends Controller
         }
     }
 
-    public function print_affiliate($affiliate) 
-    {   
-            // 'total_gain' => $total_gain,
-            // 'total_public_security_bonus' => $total_public_security_bonus,
-            // 'total_quotable' => $total_quotable,
-            // 'total_retirement_fund' => $total_retirement_fund,
-            // 'total_mortuary_quota' => $total_mortuary_quota,
+    public function print_affiliate($affiliate)
+    {
         $data = $this->getData($affiliate);
         $affiliate = $data['affiliate'];
         $spouse = $data['spouse'];
@@ -379,6 +374,6 @@ class AffiliateController extends Controller
         return $pdf->stream();
     }
 
-   
+
 
 }
