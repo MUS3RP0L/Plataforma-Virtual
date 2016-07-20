@@ -366,11 +366,12 @@ class AffiliateController extends Controller
         $total_retirement_fund = $data['total_retirement_fund'];
         $total_mortuary_quota = $data['total_mortuary_quota'];
         $total = $data['total'];
+        $contributions = Contribution::select(['id', 'month_year', 'degree_id', 'unit_id', 'item', 'base_wage','seniority_bonus', 'study_bonus', 'position_bonus', 'border_bonus', 'east_bonus', 'public_security_bonus', 'gain', 'quotable', 'retirement_fund', 'mortuary_quota', 'total'])->where('affiliate_id', $affiliate->id)->get();
         $date = Util::getfulldate(date('Y-m-d'));
-        $view = \View::make('affiliates.print.show', compact('affiliate', 'spouse','total_gain','total_public_security_bonus','total_quotable','total_retirement_fund','total_mortuary_quota','total','date'))->render();
+        $view = \View::make('affiliates.print.show', compact('affiliate', 'spouse','total_gain','total_public_security_bonus','total_quotable','total_retirement_fund','total_mortuary_quota','total','contributions','date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/certificacion/' . $name_input . '.pdf');
+        $pdf->loadHTML($view)->setPaper('legal','landscape')->save('pdf/fondo_retiro/certificacion/' . $name_input . '.pdf');
         return $pdf->stream();
     }
 
