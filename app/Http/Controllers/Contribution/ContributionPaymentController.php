@@ -1,13 +1,11 @@
 <?php
 
-namespace Muserpol\Http\Controllers;
+namespace Muserpol\Http\Controllers\Contribution;
 
 use Illuminate\Http\Request;
-
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 
-use DB;
 use Auth;
 use Validator;
 use Session;
@@ -15,11 +13,10 @@ use Datatables;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
 
-use Muserpol\AportePago;
-use Muserpol\Afiliado;
+use Muserpol\Affiliate;
+use Muserpol\Contribution;
 
-
-class AportePagoController extends Controller
+class ContributionPaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,12 +24,12 @@ class AportePagoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         return view('aportes.pagos.index');
     }
 
     public function AportePagoData(Request $request)
-    {   
+    {
 
         $aporte_pagos = AportePago::select(['id', 'afiliado_id', 'created_at', 'total']);
 
@@ -88,11 +85,11 @@ class AportePagoController extends Controller
             'aportePago' => $aportePago,
             'afiliado' => $afiliado,
         );
-        
+
         return view('aportes.pagos.show', $data);
     }
 
-    public function PrintAportePago($id) 
+    public function PrintAportePago($id)
     {
         $aportePago = AportePago::first();
         $aportePago->date = Util::getfulldate($aportePago->created_at);
