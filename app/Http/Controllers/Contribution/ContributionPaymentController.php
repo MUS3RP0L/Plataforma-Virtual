@@ -28,22 +28,23 @@ class ContributionPaymentController extends Controller
      */
     public function index()
     {
-        return view('aportes.pagos.index');
+        return view('contribution_payments.index');
     }
 
-    public function AportePagoData(Request $request)
+    public function Data(Request $request)
     {
 
-        $aporte_pagos = AportePago::select(['id', 'afiliado_id', 'created_at', 'total']);
+        $contribution_payments = ContributionPayment::select(['id', 'affiliate_id', 'type', 'payment_date', 'code', 'created_at', 'total']);
 
-        return Datatables::of($aporte_pagos)
-                        ->addColumn('status', function ($aporte_pagos) { return $aporte_pagos->fech_pago ? 'Pagado' : 'Pendiente'; })
-                        ->addColumn('afiliado', function ($aporte_pagos) { return $aporte_pagos->afiliado->getTittleName(); })
-                        ->addColumn('fecha_emision', function ($aporte_pagos) { return Util::getdateabre($aporte_pagos->created_at); })
-                        ->addColumn('total_aporte', function ($aporte_pagos) { return Util::formatMoney($aporte_pagos->total); })
-                        ->addColumn('action', function ($aporte_pagos) { return  '
+        return Datatables::of($contribution_payments)
+
+                        ->addColumn('afiliado', function ($contribution_payment) { return $contribution_payment->afiliado->getTittleName(); })
+                        ->addColumn('fecha_emision', function ($contribution_payment) { return Util::getdateabre($contribution_payment->created_at); })
+                        ->addColumn('total_aporte', function ($contribution_payment) { return Util::formatMoney($contribution_payment->total); })
+                        ->addColumn('status', function ($contribution_payment) { return $contribution_payment->fech_pago ? 'Pagado' : 'Pendiente'; })
+                        ->addColumn('action', function ($contribution_payment) { return  '
                         <div class="btn-group" style="margin:-3px 0;">
-                            <a href="aportepago/' . $aporte_pagos->id . '" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a href="aportepago/' . $contribution_payment->id . '" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
                             <a href="" data-target="#" class="btn btn-success btn-raised btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li role="separator" class="divider"></li>

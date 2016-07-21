@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="container-fluid">
-    {!! Breadcrumbs::render('aportes_pago') !!}
+    {!! Breadcrumbs::render('show_direct_contributions') !!}
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Despliegue</h3>
                 </div>
-                <div class="panel-body"> 
+                <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table table-striped table-hover" id="aportes_pago-table">
@@ -18,14 +18,14 @@
                                         <th>Número de Pago</th>
                                         <th>Fecha Emisión</th>
                                         <th>Afiliado</th>
-                                        <th>Estado</th>               
-                                        <th>Total Aporte</th>               
-                                        <th>Acción</th>               
+                                        <th>Estado</th>
+                                        <th>Total Aporte</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                             </table>
                         </div>
-                    </div>                      
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@ $(function() {
         processing: true,
         serverSide: true,
         pageLength: 10,
-        ajax: '{!! route('getAportePago') !!}',
+        ajax: '{!! route('get_contribution_payment') !!}',
         order: [0, "desc"],
         columns: [
             { data: 'id' },

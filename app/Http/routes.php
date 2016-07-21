@@ -17,6 +17,10 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => 'auth'], function() {
 
+	// Dashboard
+	Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'Dashboard\DashboardController@showIndex']);
+	Route::get('/', ['as' => 'dashboard', 'uses' => 'Dashboard\DashboardController@showIndex']);
+
 	// User Management
 	Route::resource('user', 'User\UserController');
 
@@ -73,16 +77,10 @@ Route::group(['middleware' => 'auth'], function() {
 	// Contribution Payments
 	Route::resource('contribution_payment', 'Contribution\ContributionPaymentController');
 
+	Route::get('get_contribution_payment', array('as'=>'get_contribution_payment', 'uses'=>'Contribution\ContributionPaymentController@Data'));
+
+
 	//Route::get('print_aportepago/{contribution_payment_id}', 'Contribution\ContributionPaymentController@PrintAportePago');
-	// Route::get('getAportePago', array('as'=>'getAportePago', 'uses'=>'Contribution\ContributionPaymentController@AportePagoData'));
-
-	// Dashboard
-	Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'Dashboard\DashboardController@showIndex']);
-	Route::get('/', ['as' => 'dashboard', 'uses' => 'Dashboard\DashboardController@showIndex']);
-
-
-
-
 
 
 	// Solicitantes
