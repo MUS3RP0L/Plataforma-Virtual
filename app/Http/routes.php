@@ -73,21 +73,17 @@ Route::group(['middleware' => 'auth'], function() {
 	// Contribution Payments
 	Route::resource('contribution_payment', 'Contribution\ContributionPaymentController');
 
+	//Route::get('print_aportepago/{contribution_payment_id}', 'Contribution\ContributionPaymentController@PrintAportePago');
+	// Route::get('getAportePago', array('as'=>'getAportePago', 'uses'=>'Contribution\ContributionPaymentController@AportePagoData'));
 
-	Route::get('print_aportepago/{id}', 'AportePagoController@PrintAportePago');
-	Route::get('getAportePago', array('as'=>'getAportePago', 'uses'=>'AportePagoController@AportePagoData'));
-
-
-
-
-
+	// Dashboard
+	Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'Dashboard\DashboardController@showIndex']);
+	Route::get('/', ['as' => 'dashboard', 'uses' => 'Dashboard\DashboardController@showIndex']);
 
 
 
 
-	// Inicio
-	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
-	Route::get('home', ['as' => 'home', 'uses' => 'HomeController@showIndex']);
+
 
 	// Solicitantes
 	Route::resource('solicitante', 'SolicitanteController');

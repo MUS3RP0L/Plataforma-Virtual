@@ -1,9 +1,8 @@
 <?php
 
-namespace Muserpol\Http\Controllers;
+namespace Muserpol\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
-
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 
@@ -17,13 +16,12 @@ use Muserpol\AffiliateState;
 use Muserpol\AffiliateType;
 use Muserpol\Contribution;
 use Muserpol\RetirementFund;
-use Session;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /*
 	|--------------------------------------------------------------------------
-	| Home Controller
+	| Dashboard Controller
 	|--------------------------------------------------------------------------
 	|
 	| This controller renders your application's "dashboard" for users that
@@ -36,6 +34,7 @@ class HomeController extends Controller
 	 *
 	 * @return void
 	 */
+
 	public function __construct()
 	{
 		$this->middleware('auth');
@@ -53,7 +52,7 @@ class HomeController extends Controller
                     ->where('affiliates.affiliate_state_id', '=', 1)
                     ->get();
 
-      foreach ($AfiServ as $item) {        
+      foreach ($AfiServ as $item) {
         $totalAfiServ = $item->totalAfiS;
       }
 
@@ -62,15 +61,15 @@ class HomeController extends Controller
                     ->where('affiliates.affiliate_state_id', '=', 2)
                     ->get();
 
-      foreach ($AfiComi as $item) {        
+      foreach ($AfiComi as $item) {
         $totalAfiComi = $item->totalAfiC;
       }
 
       $affiliateState = AffiliateState::all();
       $affiliateType = AffiliateType::all();
-      $district = DB::table('units')->select(DB::raw('DISTINCT (units.district) as district'))->get(); 
+      $district = DB::table('units')->select(DB::raw('DISTINCT (units.district) as district'))->get();
       $year = Carbon::now()->year;
-     
+
       foreach ($affiliateState as $item) {
         $TotalAffiliates = Affiliate::afibyState($item->id,$year)->first();
         $Total_AffiliatebyState[$item->id] = $TotalAffiliates->total;
@@ -80,7 +79,7 @@ class HomeController extends Controller
         $Afitype = Affiliate::afibyType($item->id,$year)->first();
         $Total_AffiliatebyType[$item->id] = $Afitype->type;
 
-      }  
+      }
       //Total Contributions of last five year, disaggregated by year.
       $lastContribution = DB::table('contributions')->orderBy('month_year', 'desc')->first();
       if($lastContribution)
@@ -94,9 +93,9 @@ class HomeController extends Controller
           $totalContribution = Contribution::afiContribution($item->year)->first();
           $list_totalcontribution[] = $totalContribution->total;
           $list_year[] = $totalContribution->month_year;
-        
+
         }
-        $totalContributionByYear = array($list_year, $list_totalcontribution ); 
+        $totalContributionByYear = array($list_year, $list_totalcontribution );
       }
       else
       {
@@ -104,14 +103,14 @@ class HomeController extends Controller
         $list_year[] =0;
         $totalContributionByYear = array($list_gestion, $list_aportes );
       }
-       
+
       // Total Affiliates disaggregated by district.
       foreach ($district as $item) {
 
         $afiDistrict = Affiliate::afiDistrict($item->district, $year)->first();
         $list_affiliateByDisctrict[$item->district] = $afiDistrict->district;
-        
-      } 
+
+      }
 
       //Total Retirement Fund of current year, disaggregated by month.
       $current_date = Carbon::now();
@@ -127,17 +126,17 @@ class HomeController extends Controller
         foreach ($monthRetirementFund as $item) {
           $totalRetirementFundByMonth = RetirementFund::totalRetirementFund($item->month,$current_year)->first();
           $list_month[] = Util::getMes($totalRetirementFundByMonth->month);
-          $list_totalRetirementFundByMonth[] = $totalRetirementFundByMonth->total; 
+          $list_totalRetirementFundByMonth[] = $totalRetirementFundByMonth->total;
         }
-        $total_retirementFundByMonth = array($list_month, $list_totalRetirementFundByMonth); 
+        $total_retirementFundByMonth = array($list_month, $list_totalRetirementFundByMonth);
       }
       else
       {
         $list_month[] = 0;
         $list_totalRetirementFundByMonth[] = 0;
-        $total_retirementFundByMonth = array($list_month, $list_totalRetirementFundByMonth); 
+        $total_retirementFundByMonth = array($list_month, $list_totalRetirementFundByMonth);
       }
-      
+
       //voluntary contribution by current year
       $monthVoluntaryContribution = DB::table('contributions')
                             ->select(DB::raw('DISTINCT(month(contributions.month_year)) as month'))
@@ -151,17 +150,17 @@ class HomeController extends Controller
         foreach ($monthVoluntaryContribution as $item) {
             $totalVoluntaryContributionByMonth = Contribution::voluntaryContribution($item->month, $current_year)->first();
             $list_monthVoluntaryContribution[] = Util::getMes($totalVoluntaryContributionByMonth->month);
-            $list_amountVoluntaryContribution[] = $totalVoluntaryContributionByMonth->total;         
+            $list_amountVoluntaryContribution[] = $totalVoluntaryContributionByMonth->total;
         }
-        $total_voluntayContributionByMonth = array($list_monthVoluntaryContribution, $list_amountVoluntaryContribution); 
+        $total_voluntayContributionByMonth = array($list_monthVoluntaryContribution, $list_amountVoluntaryContribution);
       }
       else
       {
         $list_monthVoluntaryContribution[] = 0;
         $list_amountVoluntaryContribution[] = 0;
-        $total_voluntayContributionByMonth = array($list_monthVoluntaryContribution, $list_amountVoluntaryContribution); 
+        $total_voluntayContributionByMonth = array($list_monthVoluntaryContribution, $list_amountVoluntaryContribution);
       }
-      
+
 
     $activities = Activity::orderBy('created_at', 'desc')->take(10)->get();
     $totalAfi = $totalAfiServ + $totalAfiComi;
@@ -180,7 +179,7 @@ class HomeController extends Controller
       'current_year' => $current_year
     ];
 
-     return view('home', $data);    
+     return view('dashboard.index', $data);
       //return response()->json($totalAfiServ);
 	}
 }

@@ -2,96 +2,86 @@
 
 @section('content')
 <div class="container-fluid">
-	
-	{!! Breadcrumbs::render('home') !!}
+	{!! Breadcrumbs::render('dashboard') !!}
+  	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Actividades</div>
+				<div class="panel-body">
+					<ul class="panel-body list-group">
+				      @foreach ($activities as $activity)
+				        <li class="list-group-item">
+				          <span style="color:#888;font-style:italic">{!! $activity->created_at !!}:</span>
+				          {!! $activity->message !!}
+				        </li>
+				      @endforeach
+				      </ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<div class="col-md-12">
-
-	  	<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading">Actividades</div>
-					<div class="panel-body">
-						<ul class="panel-body list-group">
-					      @foreach ($activities as $activity)
-					        <li class="list-group-item">
-					          <span style="color:#888;font-style:italic">{!! $activity->created_at !!}:</span>
-					          {!! $activity->message !!}
-					        </li>
-					      @endforeach
-					      </ul>
-					</div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Total Afiliados por Estado</div>
+				<div class="panel-body" style="width: 92%">
+					<canvas id="doughnu-estado" width="450" height="320"/>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Total Aportes por Gestión</div>
+				<div class="panel-body" style="width: 95%">
+					<canvas id="bar-aportes" width="450px" height="150"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Total Afiliados por Tipo</div>
+				<div class="panel-body" style="width: 92%">
+					<canvas id="pie-tipo" width="450" height="320"/>
 				</div>
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading">Total Afiliados por Estado</div>
-					<div class="panel-body" style="width: 92%">
-						<canvas id="doughnu-estado" width="450" height="320"/>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-8">
-				<div class="panel panel-primary">
-					<div class="panel-heading">Total Aportes por Gestión</div>
-					<div class="panel-body" style="width: 95%">
-						<canvas id="bar-aportes" width="450px" height="150"></canvas>
-					</div>
+		<div class="col-md-8">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Total Aportes Voluntarios de la Gestión {!! $current_year !!}</div>
+				<div class="panel-body" style="width: 95%">
+					<canvas id="bar-AporteVoluntario" width="450" height="150"></canvas>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading">Total Afiliados por Tipo</div>
-					<div class="panel-body" style="width: 92%">
-						<canvas id="pie-tipo" width="450" height="320"/>
-					</div>
-				</div>
-			</div>
+	</div>
+	<div class="row">
 
-			<div class="col-md-8">
-				<div class="panel panel-primary">
-					<div class="panel-heading">Total Aportes Voluntarios de la Gestión {!! $current_year !!}</div>
-					<div class="panel-body" style="width: 95%">
-						<canvas id="bar-AporteVoluntario" width="450" height="150"></canvas>
-					</div>
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Total Afiliados por Distrito {!! $current_year !!}</div>
+				<div class="panel-body" style="width: 92%"  >
+					<canvas id="pie-distrito" width="450" height="320"></canvas>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			
-			<div class="col-md-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading">Total Afiliados por Distrito {!! $current_year !!}</div>
-					<div class="panel-body" style="width: 92%"  >
-						<canvas id="pie-distrito" width="450" height="320"></canvas>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-8">
-				<div class="panel panel-primary">
-					<div class="panel-heading">Total Trámites de la Gestión {!! $current_year !!}</div>
-					<div class="panel-body" style="width: 95%">
-						<canvas id="bar-tramites" width="450" height="150"></canvas>
-					</div>
+		<div class="col-md-8">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Total Trámites de la Gestión {!! $current_year !!}</div>
+				<div class="panel-body" style="width: 95%">
+					<canvas id="bar-tramites" width="450" height="150"></canvas>
 				</div>
 			</div>
 		</div>
-
-		
-
-
-
 	</div>
 </div>
 @endsection
 
 <script>
-	
+
 	var doughnutData = [
 				{
 					value: {!! json_encode($Total_AffiliatebyState[1]) !!},
@@ -139,13 +129,13 @@
 					value: {!! json_encode($Total_AffiliatebyState[8]) !!},
 					color: "#1E90FF",
 					highlight: "#FFC870",
-					label: "Voluntario" //DodgerBlue 
+					label: "Voluntario" //DodgerBlue
 				},
 				{
 					value: {!! json_encode($Total_AffiliatebyState[9]) !!},
 					color:"#B0C4DE",
 					highlight: "#FF5A5E",
-					label: "Temporal" //LightSteelBlue 
+					label: "Temporal" //LightSteelBlue
 				}
 
 			];
@@ -170,7 +160,7 @@
 	var barChartData = {
 		labels : {!! json_encode($totalContributionByYear[0]) !!},
 		datasets : [
-			
+
 			{
 				fillColor : "rgba(151,187,205,0.5)",
 				strokeColor : "rgba(151,187,205,0.8)",
@@ -317,7 +307,7 @@
 	var barAporteVoluntario = {
 		labels : {!! json_encode($total_voluntayContributionByMonth[0]) !!},
 		datasets : [
-			
+
 			{
 				fillColor : "rgba(151,187,205,0.5)",
 				strokeColor : "rgba(151,187,205,0.8)",
@@ -340,7 +330,7 @@
 				highlightStroke : "rgba(151,187,205,1)",
 				data : {!! json_encode($total_retirementFundByMonth[1]) !!}
 			}
-			
+
 		]
 
 	}
@@ -366,7 +356,7 @@
 		var ctx = document.getElementById("bar-tramites").getContext("2d");
 		window.myBar = new Chart(ctx).Bar(barTramites, {responsive : true});
 
-		
+
 	}
 
 </script>

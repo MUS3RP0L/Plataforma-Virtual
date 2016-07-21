@@ -58,17 +58,17 @@ Breadcrumbs::register('register_contribution', function($breadcrumbs, $affiliate
     $breadcrumbs->push('Registro de Aporte');
 });
 
-
-
-
-
-
-
-
-// Inicio
-Breadcrumbs::register('home', function($breadcrumbs) {
-    $breadcrumbs->push('Inicio', route('home'));
+// Dashboard
+Breadcrumbs::register('dashboard', function($breadcrumbs) {
+    $breadcrumbs->push('Inicio');
 });
+
+
+
+
+
+
+
 
 // Fondo de Retiro
 Breadcrumbs::register('fondo_tramite', function($breadcrumbs, $afiliado) {
