@@ -9,10 +9,10 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Reporte por Mes</h3>
                 </div>
-                <div class="panel-body">					
-					{!! Form::open(['url' => 'monthly_report', 'role' => 'form', 'class' => 'form-horizontal']) !!}					
+                <div class="panel-body">
+					{!! Form::open(['url' => 'monthly_report', 'role' => 'form', 'class' => 'form-horizontal']) !!}
 						<div class="row">
-							<div class="col-md-6">  
+							<div class="col-md-6">
 								<div class="form-group form-group-lg">
                                         {!! Form::label('year', 'AÑO', ['class' => 'col-md-3 control-label']) !!}
                                     <div class="col-md-9">
@@ -21,7 +21,7 @@
                                     </div>
                                 </div>
 							</div>
-							<div class="col-md-6">  
+							<div class="col-md-6">
 					        	<div class="form-group form-group-lg">
                                         {!! Form::label('month', 'MES', ['class' => 'col-md-3 control-label']) !!}
                                     <div class="col-md-9">
@@ -38,16 +38,16 @@
                                 <button type="submit" class="btn btn-raised btn-primary">Generar</button>
                               </div>
                             </div>
-                       	</div> 
-				      
+                       	</div>
+
 					{!! Form::close() !!}
 
 				</div>
-					
+
 			</div>
 			@if($result)
 			<div class="panel panel-primary">
-                <div class="panel-heading">                     
+                <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-6">
                             <h3 class="panel-title">Totales</h3>
@@ -145,7 +145,7 @@
                         </div>
 
                     </div>
-                    
+
                 </div>
             </div>
             @endif

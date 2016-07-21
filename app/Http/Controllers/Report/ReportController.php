@@ -41,7 +41,7 @@ class ReportController extends Controller
     {
 
         $years = DB::table('contributions')->select(DB::raw('DISTINCT YEAR(contributions.month_year) year'))->get();
-        $i=0; $a = $request->year;
+        $i=0; $a = $request->year1;
         foreach ($years as $item) {
             $year = $item->year;
             if($i==$a)
@@ -49,12 +49,11 @@ class ReportController extends Controller
             $i++;
         }
 
-        $date = Carbon::createFromDate($year, $request->mes, 1)->toDateString();
+        $date = Carbon::createFromDate($a, $request->month, 1)->toDateString();
         $year1 = Carbon::parse($date)->year;
         $month1 = Carbon::parse($date)->month;
-
         $totalRegistrosC = DB::select('call sumar_aportesC('.$month1.','.$year1.')');
-               
+
         foreach ($totalRegistrosC as $item) {
             $totalC = $item->total;
             $sueldoC = $item->sueldo;
@@ -100,9 +99,9 @@ class ReportController extends Controller
         $fr = $frC + $frB;
         $sv = $svC + $svB;
         $mus = $musC + $musB;
-        
-        $years = DB::table('aportes')->select(DB::raw('DISTINCT YEAR(aportes.gest ) gest'))->lists('gest');
-        $meses = Util::getArrayMonths();
+
+        $years = DB::table('contributions')->select(DB::raw('DISTINCT YEAR(contributions.month_year ) gest'))->lists('gest');
+        $months = Util::getArrayMonths();
         $data = array(
             'total' => Util::formatMoney($total),
             'totalSueldoC' => Util::formatMoney($sueldoC),
@@ -141,13 +140,13 @@ class ReportController extends Controller
             'totalMuserpolC' => Util::formatMoney($musC),
             'totalMuserpolB' => Util::formatMoney($musB),
             'totalMuserpol' => Util::formatMoney($mus),
-            'anio' => $request->year,
-            'mes' => $request->mes,
+            'year' => $request->year,
+            'month' => $request->month,
             'years' => $years,
-            'meses' => $meses,
-            'resultado' => 1,
+            'months' => $months,
+            'result' => 1,
         );
 
-        return view('reportes.permonth.select', $data);
+        return view('reports.monthly_report.index', $data);
     }
 }
