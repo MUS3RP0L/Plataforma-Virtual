@@ -15,13 +15,13 @@
                             <table class="table table-striped table-hover" id="aportes_pago-table">
                                 <thead>
                                     <tr class="success">
-                                        <th>Número</th>
-                                        <th>Nombre de Afiliado</th>
-                                        {{-- <th>Número de Pago</th>
-                                        <th>Fecha Emisión</th>
-                                        <th>Estado</th>
-                                        <th>Total Aporte</th>
-                                        <th>Acción</th> --}}
+                                        <th class="text-center"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Número de Trámite">Número</div></th>
+                                        <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Nombre de Afiliado">Nombre de Afiliado</div></th>
+                                        <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total a Pagar">Total a Pagar</div></th>
+                                        <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total a Pagar">Fecha Emisión</div></th>
+                                        <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Estado">Estado</div></th>
+                                        <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Fecha de Pago">Fecha de Pago</div></th>
+                                        <th class="text-center">Acción</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -45,12 +45,13 @@ $(function() {
         ajax: '{!! route('get_contribution_payment') !!}',
         order: [0, "desc"],
         columns: [
-            { data: 'code' },
+            { data: 'code', sClass: "text-center" },
             { data: 'affiliate_name', bSortable: false },
-            // { data: 'fecha_emision', bSortable: false },
-            // { data: 'status', bSortable: false },
-            // { data: 'total_aporte', bSortable: false },
-            // { data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
+            { data: 'total', bSortable: false },
+            { data: 'created_at', bSortable: false },
+            { data: 'status', bSortable: false },
+            { data: 'payment_date', bSortable: false },
+            { data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
         ]
     });
 });
