@@ -109,14 +109,8 @@ class ContributionPaymentController extends Controller
             $contribution_payment->affiliate_id = $request->affiliate_id;
             $contribution_payment->save();
 
-            $sum_quotable = 0;
-            $sum_subtotal = 0;
-            $sum_retirement_fund = 0;
-            $sum_mortuary_quota = 0;
-            $sum_ipc = 0;
-            $sum_total = 0;
-
-            foreach (json_decode($request->data)->contributions as $item)
+            $data = json_decode($request->data);
+            foreach ($data->contributions as $item)
             {
                 $month_year = Carbon::createFromDate($request->year, $item->id_month, 1)->toDateString();
                 $contribution = Contribution::where('month_year', '=', $month_year)->where('affiliate_id', '=', $request->affiliate_id)->first();
@@ -143,29 +137,21 @@ class ContributionPaymentController extends Controller
                     $contribution->border_bonus = $item->border_bonus;
                     $contribution->east_bonus = $item->east_bonus;
 
-                    $contribution->quotable = (FLOAT)$contribution->base_wage + (FLOAT)$contribution->seniority_bonus + (FLOAT)$contribution->study_bonus + (FLOAT)$contribution->position_bonus + (FLOAT)$contribution->border_bonus + (FLOAT)$contribution->east_bonus;
-                    $contribution->retirement_fund = $contribution->quotable * $contribution_rate->retirement_fund / 100;
-                    $contribution->mortuary_quota = $contribution->quotable * $contribution_rate->mortuary_quota / 100;
-                    $contribution->subtotal = $contribution->retirement_fund + $contribution->mortuary_quota;
-                    $contribution->ipc = $contribution->subtotal * ( $ipc_actual->index / $ipc_rate->index -1 );
-
-                    $contribution->total = $contribution->subtotal + $contribution->ipc;
+                    $contribution->quotable = $item->quotable;
+                    $contribution->retirement_fund = $item->subtotal_retirement_fund;
+                    $contribution->mortuary_quota = $item->subtotal_mortuary_quota;
+                    $contribution->subtotal = $item->subtotal;
+                    $contribution->ipc = $item->subtotal_ipc_rate;
+                    $contribution->total = $item->total;
                     $contribution->save();
-
-                    $sum_quotable += $contribution->quotable;
-                    $sum_retirement_fund += $contribution->retirement_fund;
-                    $sum_mortuary_quota += $contribution->mortuary_quota;
-                    $sum_subtotal += $contribution->subtotal;
-                    $sum_ipc += $contribution->ipc;
-                    $sum_total += $contribution->total;
                 }
 
-                $contribution_payment->quotable = $sum_quotable;
-                $contribution_payment->retirement_fund = $sum_retirement_fund;
-                $contribution_payment->mortuary_quota = $sum_mortuary_quota;
-                $contribution_payment->subtotal = $sum_subtotal;
-                $contribution_payment->ipc = $sum_ipc;
-                $contribution_payment->total = $sum_total;
+                $contribution_payment->quotable = $data->sum_quotable;
+                $contribution_payment->retirement_fund = $data->sum_subtotal_retirement_fund;
+                $contribution_payment->mortuary_quota = $data->sum_subtotal_mortuary_quota;
+                $contribution_payment->subtotal = $data->sum_subtotal;
+                $contribution_payment->ipc = $data->sum_subtotal_ipc_rate;
+                $contribution_payment->total = $data->sum_total;
                 $contribution_payment->save();
             }
             $message = "Aportes Guardados";
