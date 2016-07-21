@@ -11,9 +11,9 @@ class SumarAportesCStoredProcedure extends Migration
      * @return void
      */
     public function up() {
-         
-        DB::unprepared('CREATE PROCEDURE sumar_aportesC(IN mes int, anio int) BEGIN SELECT COUNT(DISTINCT(id)) total, SUM(aportes.sue) sueldo, SUM(aportes.b_ant) anti,SUM(aportes.b_est) b_est, SUM(aportes.b_car) b_car, SUM(aportes.b_fro) b_fro, SUM(aportes.b_ori) b_ori,SUM(aportes.b_seg) b_seg, SUM(aportes.gan) gan, SUM(aportes.cot) cot, SUM(aportes.mus) mus,SUM(aportes.fr) fr, SUM(aportes.sv) sv FROM APORTES WHERE Month(aportes.gest) = mes and Year(aportes.gest) = anio; END');
-    
+
+        DB::unprepared('CREATE PROCEDURE sumar_aportesC(IN mes int, anio int) BEGIN SELECT COUNT(DISTINCT(id)) total, SUM(contributions.base_wage) sueldo, SUM(contributions.seniority_bonus) anti,SUM(contributions.study_bonus) b_est, SUM(contributions.position_bonus) b_car, SUM(contributions.border_bonus) b_fro, SUM(contributions.east_bonus) b_ori,SUM(contributions.public_security_bonus) b_seg, SUM(contributions.gain) gan, SUM(contributions.quotable) cot, SUM(contributions.total) mus,SUM(contributions.retirement_fund) fr, SUM(contributions.mortuary_quota) sv FROM contributions WHERE Month(contributions.month_year) = mes and Year(contributions.month_year) = anio; END');
+
     }
 
     /**
@@ -25,6 +25,6 @@ class SumarAportesCStoredProcedure extends Migration
 
         $sql = "DROP PROCEDURE IF EXISTS sumar_aportesC";
         DB::connection()->getPdo()->exec($sql);
-        
+
     }
 }
