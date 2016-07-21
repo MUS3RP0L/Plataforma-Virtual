@@ -15,12 +15,13 @@
                             <table class="table table-striped table-hover" id="aportes_pago-table">
                                 <thead>
                                     <tr class="success">
-                                        <th>Número de Pago</th>
+                                        <th>Número</th>
+                                        <th>Nombre de Afiliado</th>
+                                        {{-- <th>Número de Pago</th>
                                         <th>Fecha Emisión</th>
-                                        <th>Afiliado</th>
                                         <th>Estado</th>
                                         <th>Total Aporte</th>
-                                        <th>Acción</th>
+                                        <th>Acción</th> --}}
                                     </tr>
                                 </thead>
                             </table>
@@ -44,12 +45,12 @@ $(function() {
         ajax: '{!! route('get_contribution_payment') !!}',
         order: [0, "desc"],
         columns: [
-            { data: 'id' },
-            { data: 'fecha_emision', bSortable: false },
-            { data: 'afiliado', bSortable: false },
-            { data: 'status', bSortable: false },
-            { data: 'total_aporte', bSortable: false },
-            { data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
+            { data: 'code' },
+            { data: 'affiliate_name', bSortable: false },
+            // { data: 'fecha_emision', bSortable: false },
+            // { data: 'status', bSortable: false },
+            // { data: 'total_aporte', bSortable: false },
+            // { data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
         ]
     });
 });

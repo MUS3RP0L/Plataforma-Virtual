@@ -37,19 +37,8 @@ class ContributionPaymentController extends Controller
         $contribution_payments = ContributionPayment::select(['id', 'affiliate_id', 'type', 'payment_date', 'code', 'created_at', 'total']);
 
         return Datatables::of($contribution_payments)
-
-                        ->addColumn('afiliado', function ($contribution_payment) { return $contribution_payment->afiliado->getTittleName(); })
-                        ->addColumn('fecha_emision', function ($contribution_payment) { return Util::getdateabre($contribution_payment->created_at); })
-                        ->addColumn('total_aporte', function ($contribution_payment) { return Util::formatMoney($contribution_payment->total); })
-                        ->addColumn('status', function ($contribution_payment) { return $contribution_payment->fech_pago ? 'Pagado' : 'Pendiente'; })
-                        ->addColumn('action', function ($contribution_payment) { return  '
-                        <div class="btn-group" style="margin:-3px 0;">
-                            <a href="aportepago/' . $contribution_payment->id . '" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
-                            <a href="" data-target="#" class="btn btn-success btn-raised btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li role="separator" class="divider"></li>
-                            </ul>
-                        </div>';})
+                        ->editColumn('code', function ($contribution_payment) { return $contribution_payment->getNumberTram(); })
+                        ->addColumn('affiliate_name', function ($contribution_payment) { return $contribution_payment->affiliate->getTittleName(); })
                         ->make(true);
     }
 

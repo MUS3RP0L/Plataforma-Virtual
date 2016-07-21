@@ -14,11 +14,11 @@ class ContributionPayment extends Model
     protected $dates = ['deleted_at'];
 
 	protected $fillable = [
-	
+
         'user_id',
         'affiliate_id',
         'type',
-        'payment_date',        
+        'payment_date',
         'code',
         'quotable',
         'retirement_fund',
@@ -44,8 +44,8 @@ class ContributionPayment extends Model
 
     public function getNumberTram()
     {
-        if ($this->codigo) {
-            return $this->codigo . "/" . Carbon::parse($this->created_at)->year;
+        if ($this->code) {
+            return $this->code . "/" . Carbon::parse($this->created_at)->year;
         }
     }
 }
