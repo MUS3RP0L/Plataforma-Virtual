@@ -34,7 +34,9 @@ class UnitTableSeeder extends Seeder
 	    	['breakdown_id' => '4', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'BAT.SEG.FP.LP.', 'name' => 'BAT. SEG. FISICA PRIVADA LP. (SERVICIOS)'],
 	    	['breakdown_id' => '5', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'J.P.C.C.F.', 'name' => 'JUZGADOS POLICIALES - C.C. Y FAMILIAR'],
 	    	['breakdown_id' => '6', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'ESC.SEG.PU.', 'name' => 'ESCUADRON DE SEG. LOS PUMAS'],
-	        ['breakdown_id' => '7', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'DIR.NAL.SEG.PEN.', 'name' => 'DIR NAL SEG. PENITENCIARIA'],
+	        ['breakdown_id' => '7', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'DIR.NAL.SEG.PEN.', 'name' => 'DIR NAL SEG. PENITENCIARIA  - ITEM CERO'],
+
+			['breakdown_id' => '3', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'DIR.NAL.SEG.PEN.', 'name' => 'DIR NAL SEG. PENITENCIARIA'],
 
 	        ['breakdown_id' => '8', 'district' => 'LA PAZ', 'code' => '20183', 'shortened' => 'ANAPOL', 'name' => 'ACADEMIA NACIONAL DE POLICIA'],
 
