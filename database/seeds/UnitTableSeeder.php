@@ -76,6 +76,8 @@ class UnitTableSeeder extends Seeder
 
 	    	['breakdown_id' => '8', 'district' => 'LA PAZ', 'code' => '20220', 'shortened' => 'DIR.NAL.SALUD', 'name' => 'DIRECION NACIONAL SALUD BIENESTAR SOCIAL'],
 
+			['breakdown_id' => '3', 'district' => 'LA PAZ', 'code' => '20220', 'shortened' => 'DIR.NAL.SALUD', 'name' => 'DIRECION NACIONAL SALUD BIENESTAR SOCIAL - ITEM CERO'],
+
 	    	['breakdown_id' => '8', 'district' => 'LA PAZ', 'code' => '20230', 'shortened' => 'DIR.NAL.INS.ENS.', 'name' => 'DIRECION NACIONAL DE INSTRUC. Y ENSEÑANZA'],
 
 	    	['breakdown_id' => '8', 'district' => 'LA PAZ', 'code' => '20280', 'shortened' => 'UTOP', 'name' => 'TACTICA DE OPERACIONES POLICIALES'],
@@ -151,7 +153,7 @@ class UnitTableSeeder extends Seeder
 
 	    	['breakdown_id' => '8', 'district' => 'PTO. SUAREZ', 'code' => '70582', 'shortened' => 'J.F.PN.PTOSUA.', 'name' => 'JEFATURA FRONTERIZA PUERTO SUAREZ'],
 	    	['breakdown_id' => '4', 'district' => 'PTO. SUAREZ', 'code' => '70582', 'shortened' => 'BAT.SEG.FP.PTOSUA.', 'name' => 'BAT. SEG. FISICA PRIVADA FRONT. PUERTO SUAREZ'],
-	    	
+
 	    	/* BUSCAR */
 	    	['breakdown_id' => '4', 'district' => 'PTO. SUAREZ', 'code' => '70594', 'shortened' => 'F.E.L.C.N.PTOSUA.', 'name' => 'F.E.L.C.N. PUERTO SUAREZ'],
 			/* BUSCAR */
@@ -170,13 +172,13 @@ class UnitTableSeeder extends Seeder
 	    	['breakdown_id' => '8', 'district' => 'PANDO', 'code' => '90182', 'shortened' => 'C.D.PN.PD.', 'name' => 'COMANDO DEPARTAMENTAL PANDO'],
 	    	['breakdown_id' => '4', 'district' => 'PANDO', 'code' => '90182', 'shortened' => 'BAT.SEG.FP.PD.', 'name' => 'BAT. SEG. FISICA PRIVADA PDO. (SERVICIOS)'],
 
-	    	['breakdown_id' => '8', 'district' => 'PANDO', 'code' => '90194', 'shortened' => 'F.E.L.C.N.PD.', 'name' => 'F.E.L.C.N. PANDO']  	
+	    	['breakdown_id' => '8', 'district' => 'PANDO', 'code' => '90194', 'shortened' => 'F.E.L.C.N.PD.', 'name' => 'F.E.L.C.N. PANDO']
     	];
 
         foreach ($statuses as $status) {
 
             Muserpol\Unit::create($status);
-            
+
         }
     }
 }
