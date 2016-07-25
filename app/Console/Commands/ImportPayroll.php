@@ -282,7 +282,7 @@ class ImportPayroll extends Command
 
                 $Progress->finish();
 
-                $this->info("\n\nReport $Date:\n\n
+                $this->info("\n\nReport $Date:\n
                     $TotalNewAffi new affiliates.\n
                     $TotalUpdateAffi affiliates successfully updated.\n
                     Total $TotalAffi affiliates.\n
