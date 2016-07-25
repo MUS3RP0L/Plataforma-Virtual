@@ -50,11 +50,11 @@ class ImportPayroll extends Command
         ini_set('memory_limit', '-1');
         set_time_limit('-1');
 
-        $password = $this->ask('Enter the password.');
+        $password = $this->ask('Enter the password');
 
         if ($password == ACCESS) {
 
-            $FolderName = $this->ask('Enter the name of the folder you want to import.');
+            $FolderName = $this->ask('Enter the name of the folder you want to import');
 
             if ($this->confirm('Are you sure to import the folder "' . $FolderName . '" ? [y|N]') && $FolderName) {
 
@@ -144,7 +144,8 @@ class ImportPayroll extends Command
 
                         if (!$affiliate) {
                             $affiliate = Affiliate::where('last_name', '=', $result->pat)->where('mothers_last_name', '=', $result->mat)
-                                                ->where('birth_date', '=', $birth_date)->where('date_entry', '=', $date_entry)->first();
+                                                ->where('birth_date', '=', $birth_date)->where('date_entry', '=', $date_entry)
+                                                ->where('identity_card', '=', Util::RepeatedIdentityCard($result->car))->first();
 
                             if (!$affiliate) {
 

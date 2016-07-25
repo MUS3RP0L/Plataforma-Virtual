@@ -27,6 +27,14 @@ class Util
 		}
 	}
 
+	public static function RepeatedIdentityCard($identity_card)
+	{
+		if (strpos($date, '-') !== false) {
+			$new_identity_card = explode("-", $date);
+			return $new_identity_card[0];
+		}
+	}
+
 	public static function CalcCategory($b_ant, $sue)
 	{
 		if ($b_ant == 0 || $sue == 0) {
@@ -46,21 +54,21 @@ class Util
 
 		$month_first = substr($nac_month, 0, 1);
 		$month_second = substr($nac_month, 1, 1);
-		
+
 		if($pat  <> ''){
-			$pat_first = substr($pat, 0, 1);		
+			$pat_first = substr($pat, 0, 1);
 		}
 		else{
 			$pat_first = '';
 		}
 		if($mat <> ''){
-			$mat_first = substr($mat, 0, 1);		
+			$mat_first = substr($mat, 0, 1);
 		}
 		else{
 			$mat_first = '';
-		}		
+		}
 		if($nom<> ''){
-			$nom_first = substr($nom, 0, 1);		
+			$nom_first = substr($nom, 0, 1);
 		}
 		else{
 			$nom_first = '';
@@ -77,11 +85,11 @@ class Util
 				$month_last = "6" . $month_second;
 			}
 			return $nac_year . $month_last . $nac_day . $pat_first . $mat_first . $nom_first;
-		}	
+		}
 	}
 
 	public static function getAllDate($date)
-    {	
+    {
     	if ($date) {
 			$months = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 			return date("d", strtotime($date))." de ".$months[date("n", strtotime($date))-1]. " de ".date("Y", strtotime($date));
@@ -192,7 +200,7 @@ class Util
 
 	public static function formatYear($year)
 	{
-		$first = substr($year, 0, 1); 
+		$first = substr($year, 0, 1);
 
 		if ($first == '9') {
 			return "19" . $year;
@@ -206,20 +214,20 @@ class Util
 	{
 	    if ($afp == 'V') {
 	        return true;
-	    } 
+	    }
 	    else if ($afp == 'F'){
 	        return false;
 	    }
 	}
 
 	public static function getMes($mes)
-	{	    
+	{
 	    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         return $meses[$mes-1];
 	}
 
 	public static function getArrayMonths()
-	{    
+	{
 		return array('1' => 'Enero','2' => 'Febrero','3' => 'Marzo','4' => 'Abril','5' => 'Mayo','6' => 'Junio','7' => 'Julio','8' => 'Agosto','9' => 'Septiembre','10' => 'Octubre','11' => 'Noviembre','12' => 'Diciembre');
 	}
 
@@ -280,8 +288,8 @@ class Util
 	        }
 	        else{
 	        		return "";
-	        } 
-	    }   
+	        }
+	    }
     }
 
     public static function getMonths2($fech_ini, $fech_fin)
@@ -300,8 +308,8 @@ class Util
 	        }
 	        else{
 	        		return "";
-	        } 
-	    }   
+	        }
+	    }
     }
 
     public static function getHowOldF($fech_ini, $fech_fin)
@@ -314,19 +322,19 @@ class Util
     }
 
 	public static function getDateEdit($date)
-    {	
+    {
         if ($date) {
 		  return date("d", strtotime($date))."/".date("m", strtotime($date)). "/".date("Y", strtotime($date));
         }
     }
 
     public static function getdateforEditPeriod($date)
-    {	
+    {
         if ($date) {
 		  return date("m", strtotime($date)). "/".date("Y", strtotime($date));
         }
     }
-	
+
 	public static function getMonthMM($month)
 	{
         $months = array('1' => '01', '2' => '02', '3' => '03', '4' => '04', '5' => '05','6' => '06', '7' => '07', '8' => '08', '9' => '09', '10' => '10', '11' => '11', '12' => '12');
