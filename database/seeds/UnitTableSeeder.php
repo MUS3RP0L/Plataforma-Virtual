@@ -34,7 +34,9 @@ class UnitTableSeeder extends Seeder
 	    	['breakdown_id' => '4', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'BAT.SEG.FP.LP.', 'name' => 'BAT. SEG. FISICA PRIVADA LP. (SERVICIOS)'],
 	    	['breakdown_id' => '5', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'J.P.C.C.F.', 'name' => 'JUZGADOS POLICIALES - C.C. Y FAMILIAR'],
 	    	['breakdown_id' => '6', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'ESC.SEG.PU.', 'name' => 'ESCUADRON DE SEG. LOS PUMAS'],
-	        ['breakdown_id' => '7', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'DIR.NAL.SEG.PEN.', 'name' => 'DIR NAL SEG. PENITENCIARIA'],
+	        ['breakdown_id' => '7', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'DIR.NAL.SEG.PEN.', 'name' => 'DIR NAL SEG. PENITENCIARIA  - ITEM CERO'],
+
+			['breakdown_id' => '3', 'district' => 'LA PAZ', 'code' => '20182', 'shortened' => 'DIR.NAL.SEG.PEN.', 'name' => 'DIR NAL SEG. PENITENCIARIA'],
 
 	        ['breakdown_id' => '8', 'district' => 'LA PAZ', 'code' => '20183', 'shortened' => 'ANAPOL', 'name' => 'ACADEMIA NACIONAL DE POLICIA'],
 
@@ -75,6 +77,8 @@ class UnitTableSeeder extends Seeder
 	    	['breakdown_id' => '8', 'district' => 'LA PAZ', 'code' => '20210', 'shortened' => 'DIPROVE', 'name' => 'DIRECION NACIONAL PREVENC. ROBO DE VEHICULOS'],
 
 	    	['breakdown_id' => '8', 'district' => 'LA PAZ', 'code' => '20220', 'shortened' => 'DIR.NAL.SALUD', 'name' => 'DIRECION NACIONAL SALUD BIENESTAR SOCIAL'],
+
+			['breakdown_id' => '3', 'district' => 'LA PAZ', 'code' => '20220', 'shortened' => 'DIR.NAL.SALUD', 'name' => 'DIRECION NACIONAL SALUD BIENESTAR SOCIAL - ITEM CERO'],
 
 	    	['breakdown_id' => '8', 'district' => 'LA PAZ', 'code' => '20230', 'shortened' => 'DIR.NAL.INS.ENS.', 'name' => 'DIRECION NACIONAL DE INSTRUC. Y ENSEÑANZA'],
 
@@ -151,7 +155,7 @@ class UnitTableSeeder extends Seeder
 
 	    	['breakdown_id' => '8', 'district' => 'PTO. SUAREZ', 'code' => '70582', 'shortened' => 'J.F.PN.PTOSUA.', 'name' => 'JEFATURA FRONTERIZA PUERTO SUAREZ'],
 	    	['breakdown_id' => '4', 'district' => 'PTO. SUAREZ', 'code' => '70582', 'shortened' => 'BAT.SEG.FP.PTOSUA.', 'name' => 'BAT. SEG. FISICA PRIVADA FRONT. PUERTO SUAREZ'],
-	    	
+
 	    	/* BUSCAR */
 	    	['breakdown_id' => '4', 'district' => 'PTO. SUAREZ', 'code' => '70594', 'shortened' => 'F.E.L.C.N.PTOSUA.', 'name' => 'F.E.L.C.N. PUERTO SUAREZ'],
 			/* BUSCAR */
@@ -170,13 +174,13 @@ class UnitTableSeeder extends Seeder
 	    	['breakdown_id' => '8', 'district' => 'PANDO', 'code' => '90182', 'shortened' => 'C.D.PN.PD.', 'name' => 'COMANDO DEPARTAMENTAL PANDO'],
 	    	['breakdown_id' => '4', 'district' => 'PANDO', 'code' => '90182', 'shortened' => 'BAT.SEG.FP.PD.', 'name' => 'BAT. SEG. FISICA PRIVADA PDO. (SERVICIOS)'],
 
-	    	['breakdown_id' => '8', 'district' => 'PANDO', 'code' => '90194', 'shortened' => 'F.E.L.C.N.PD.', 'name' => 'F.E.L.C.N. PANDO']  	
+	    	['breakdown_id' => '8', 'district' => 'PANDO', 'code' => '90194', 'shortened' => 'F.E.L.C.N.PD.', 'name' => 'F.E.L.C.N. PANDO']
     	];
 
         foreach ($statuses as $status) {
 
             Muserpol\Unit::create($status);
-            
+
         }
     }
 }
