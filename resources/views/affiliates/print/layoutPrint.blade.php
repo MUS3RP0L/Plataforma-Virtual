@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="assets/css/style.css" media="all" />
   </head>
   <body>
-    <header class="clearfix">
+    <header class="clearfix" class="legal">
       <table class="tableh">
             <tr>
               <th style="width: 25%;border: 0px;">
@@ -44,9 +44,9 @@
         </tr>
       </table>
       <h1>
-        <b>       
+        <b>
           REPORTE AFILIADO<br>
-          
+
           @yield('title2')
         </b>
       </h1>
