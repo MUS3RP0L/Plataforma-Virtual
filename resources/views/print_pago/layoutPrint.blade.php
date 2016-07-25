@@ -6,54 +6,52 @@
     <link rel="stylesheet" href="assets/css/style.css" media="all" />
   </head>
   <body>
-    <header class="clearfix">
-
+    <header class="clearfix" class="carta">
       <table class="tableh">
             <tr>
               <th style="width: 25%;border: 0px;">
                 <div id="logo">
-                  <h2><b>MUTUAL DE SERVICIOS AL POLICÍA<br>
-                    MUSERPOL
-                    
-                   </b></h2>
+                  <img src="assets/images/logo.jpg">
                 </div>
               </th>
               <th style="width: 50%;border: 0px">
-                <h2><b>Pago de Aportes Voluntarios<br>
-                    APORTE DIRECTO DE VIUDAS<br>
-                    EFECTIVO<br>
-                    </b></h2>
+                <h3><b>MUTUAL DE SERVICIOS AL POLICÍA<br>
+                    DIRECCIÓN DE BENEFICIOS ECONÓMICOS<br>
+                    UNIDAD DE FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
+                    @yield('title')
+                    </b></h3>
               </th>
               <th style="width: 25%;border: 0px">
                 <div id="logo2">
-                  <h3><b>Fecha: {!! $aporte_pagos->fech_pago !!}<br>
-                        Hora: <br>
-                        Usuario: {!! $aporte_pagos->id !!}
-
-                    </b></h3>
+                  <img src="assets/images/escudo.jpg">
                 </div>
               </th>
             </tr>
       </table>
-
       <table class="tablet">
         <tr>
           <td style="border: 0px;">
-            <div class="title"><b>N° de Tramite: {{ $aportePago->getNumberTram() }}</b></div>
+            <div >N° Aporte: <b>{{ $ContributionPayment->id }}<b></div>
           </td>
           <td style="border: 0px;text-align:right;">
-            <div class="title"><b>Fecha de Emisión: La Paz, {!! $aportePago->date !!}</b></div>
+            <div>Fecha de Emisión: La Paz, {!! $date !!}</div>
           </td>
         </tr>
+        <tr>
+            <td  colspan="2" style="border: 0px;text-align:right;">
+             <div >Usuario: {{ Auth::user()->last_name }} {{ Auth::user()->first_name }}</div>
+            </td>
+        </tr>
+      <br>
       </table>
+        <h3>
+        <b>
+          PAGO DE APORTES VOLUNTARIOS<br>
 
-      <h1>
-        <b>       
-           @yield('title')<br>
           @yield('title2')
         </b>
-      </h1>
-      <br>
+      </h3>
+
 
       @yield('content')
 

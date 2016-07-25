@@ -80,7 +80,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('get_contribution_payment', array('as'=>'get_contribution_payment', 'uses'=>'Contribution\ContributionPaymentController@Data'));
 
 
-	//Route::get('print_aportepago/{contribution_payment_id}', 'Contribution\ContributionPaymentController@PrintAportePago');
+	Route::get('print_aportepago/{contribution_payment_id}', 'Contribution\ContributionPaymentController@PrintContributionPayment');
 
 
 	// Solicitantes

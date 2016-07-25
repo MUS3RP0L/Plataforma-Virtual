@@ -173,7 +173,7 @@
         </table>
         <h1>
           <b>
-            REPORTE AFILIADO<br>
+            REPORTE DE APORTES<br>
             <h3>(Página 2/2)</h3>
           </b>
         </h1>

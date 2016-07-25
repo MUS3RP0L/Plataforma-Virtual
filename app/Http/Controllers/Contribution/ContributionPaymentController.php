@@ -187,24 +187,26 @@ class ContributionPaymentController extends Controller
         return view('aportes.pagos.show', $data);
     }
 
-    public function PrintAportePago($id)
+    public function PrintContributionPayment($id)
     {
-        $aportePago = AportePago::first();
-        $aportePago->date = Util::getfulldate($aportePago->created_at);
+        $ContributionPayment = ContributionPayment::IdIs($id)->first();
+        $affiliate = Affiliate::IdIs($ContributionPayment->affiliate_id)->first();
+        $date = Util::getDateEdit(date('Y-m-d'));
 
-        $view = \View::make('print_pago.pagosaporte.show', compact('aportePago'))->render();
+        $current_date = Carbon::now();
+        $hour = Carbon::parse($current_date)->toTimeString();
+        //$dt->toTimeString();
+        $view = \View::make('print_pago.pagosaporte.show', compact('ContributionPayment','affiliate','date','hour'))->render();
         $pdf = \App::make('dompdf.wrapper');
-        $name_input = $aportePago->id;
+        $name_input = $ContributionPayment->id;
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
         return $pdf->stream();
     }
 
-
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
