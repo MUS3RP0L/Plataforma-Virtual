@@ -29,10 +29,10 @@ class BreakdownTableSeeder extends Seeder
             ['code' => '4', 'name' => 'S/N'],//
             ['code' => '5', 'name' => 'Bat. Seg. Física Privada'],//Servicio Batallón *
             ['code' => '6', 'name' => 'Juzgados Policiales'],//Servicio
-            ['code' => '7', 'name' => 'S/N']//
+            ['code' => '7', 'name' => 'S/N'],//
             ['code' => '8', 'name' => 'Escuadrón de Seg. Los Pumas'],//Servicio
             ['code' => '9', 'name' => 'Dir. Nal. Seg. Penitenciaria'],//Servicio
-            ['code' => '0', 'name' => 'Servicio'],//Servicio
+            ['code' => '0', 'name' => 'Servicio']//Servicio
 
 
 
