@@ -1,4 +1,4 @@
-@extends('print_pago.layoutPrint')
+@extends('header')
 
 @section('content')
 
