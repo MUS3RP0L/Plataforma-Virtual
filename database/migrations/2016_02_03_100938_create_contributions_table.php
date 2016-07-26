@@ -14,13 +14,20 @@ class CreateContributionsTable extends Migration
     {
 
         Schema::create('contribution_payments', function(Blueprint $table) {
-            
+
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('affiliate_id');
             $table->enum('type',['normal', 'reimbursements'])->default('normal');
             $table->date('payment_date')->nullable();
-            $table->string('code'); 
+            $table->string('code');
+
+            $table->string('affiliate_name');
+            $table->string('affiliate_degree');
+            $table->string('affiliate_identity_card');
+            $table->string('affiliate_registration'); 
+
+
             $table->double('quotable');
             $table->double('retirement_fund');
             $table->double('mortuary_quota');
@@ -30,21 +37,21 @@ class CreateContributionsTable extends Migration
             $table->double('total');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users'); 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('affiliate_id')->references('id')->on('affiliates');
 
         });
 
         Schema::create('contribution_types', function(Blueprint $table) {
-            
+
             $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
-            
-        }); 
+
+        });
 
         Schema::create('contributions', function (Blueprint $table) {
-                        
+
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('affiliate_id');
@@ -79,7 +86,7 @@ class CreateContributionsTable extends Migration
             $table->double('total');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users'); 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('affiliate_id')->references('id')->on('affiliates');
             $table->foreign('contribution_type_id')->references('id')->on('contribution_types');
             $table->foreign('contribution_payment_id')->references('id')->on('contribution_payments');
@@ -97,7 +104,7 @@ class CreateContributionsTable extends Migration
      * @return void
      */
     public function down()
-    {   
+    {
         Schema::drop('contribution_payments');
         Schema::drop('contributions');
     }
