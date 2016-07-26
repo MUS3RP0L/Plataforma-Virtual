@@ -29,8 +29,8 @@ class Util
 
 	public static function RepeatedIdentityCard($identity_card)
 	{
-		if (strpos($date, '-') !== false) {
-			$new_identity_card = explode("-", $date);
+		if (strpos($identity_card, '-') !== false) {
+			$new_identity_card = explode("-", $identity_card);
 			return $new_identity_card[0];
 		}
 	}

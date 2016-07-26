@@ -139,7 +139,6 @@ class ImportPayroll extends Command
 
                         $category_id = Category::select('id')->where('percentage', Util::CalcCategory(Util::decimal($result->cat),Util::decimal($result->sue)))->first()->id;
 
-
                         $affiliate = Affiliate::where('identity_card', '=', Util::zero($result->car))->first();
 
                         if (!$affiliate) {
