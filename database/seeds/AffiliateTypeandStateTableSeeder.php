@@ -32,9 +32,10 @@ class AffiliateTypeandStateTableSeeder extends Seeder
 
         foreach ($statuses as $status) {
 
-            Muserpol\AffiliateType::create($status);    
+            Muserpol\AffiliateType::create($status);
         }
     }
+    
     private function createStateType()
     {
         $statuses = [
@@ -47,7 +48,7 @@ class AffiliateTypeandStateTableSeeder extends Seeder
 
         foreach ($statuses as $status) {
 
-            Muserpol\StateType::create($status);    
+            Muserpol\StateType::create($status);
         }
     }
 
@@ -71,7 +72,7 @@ class AffiliateTypeandStateTableSeeder extends Seeder
 
         foreach ($statuses as $status) {
 
-            Muserpol\AffiliateState::create($status);    
+            Muserpol\AffiliateState::create($status);
         }
     }
 }
