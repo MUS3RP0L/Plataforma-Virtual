@@ -19,15 +19,11 @@ class CreateContributionsTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('affiliate_id');
             $table->enum('type',['normal', 'reimbursements'])->default('normal');
-            $table->date('payment_date')->nullable();
             $table->string('code');
-
             $table->string('affiliate_name');
             $table->string('affiliate_degree');
             $table->string('affiliate_identity_card');
-            $table->string('affiliate_registration'); 
-
-
+            $table->string('affiliate_registration');
             $table->double('quotable');
             $table->double('retirement_fund');
             $table->double('mortuary_quota');
