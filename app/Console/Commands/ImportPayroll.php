@@ -45,9 +45,9 @@ class ImportPayroll extends Command
         global $NewAffi, $UpdateAffi, $NewContri, $Progress, $FolderName, $Date;
         ini_set('upload_max_filesize', '999999M');
         ini_set('post_max_size', '999999M');
+        ini_set('memory_limit', '999999M');
         ini_set('max_execution_time', '-1');
         ini_set('max_input_time', '-1');
-        ini_set('memory_limit', '-1');
         set_time_limit('-1');
 
         $password = $this->ask('Enter the password');
@@ -70,9 +70,9 @@ class ImportPayroll extends Command
                         global $NewAffi, $UpdateAffi, $NewContri, $Progress, $FolderName, $Date;
                         ini_set('upload_max_filesize', '999999M');
                         ini_set('post_max_size', '999999M');
+                        ini_set('memory_limit', '999999M');
                         ini_set('max_execution_time', '-1');
                         ini_set('max_input_time', '-1');
-                        ini_set('memory_limit', '-1');
                         set_time_limit('-1');
 
                         switch ($FolderName) {
