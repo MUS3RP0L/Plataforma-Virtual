@@ -157,16 +157,14 @@ class ContributionPaymentController extends Controller
                 $contribution_payment->total = $data->sum_total;
                 $contribution_payment->save();
             }
-            $message = "Aportes Guardados";
 
+            $message = "Aportes Guardados";
             Session::flash('message', $message);
 
         }
-        return redirect('affiliate');
+
+        return redirect('contribution_payment/'.$contribution_payment->id);
     }
-
-
-
 
     /**
      * Display the specified resource.
@@ -174,32 +172,30 @@ class ContributionPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
-        $aportePago = AportePago::idIs($id)->first();
-        $afiliado = Afiliado::idIs($aportePago->afiliado_id)->first();
+        $contribution_payment = ContributionPayment::idIs($id)->first();
 
-        $data = array(
-            'aportePago' => $aportePago,
-            'afiliado' => $afiliado,
-        );
+        $data = [
+            'contribution_payment' => $contribution_payment,
+        ];
 
-        return view('aportes.pagos.show', $data);
+        return view('contribution_payments.show', $data);
     }
 
     public function PrintContributionPayment($id)
     {
-        $ContributionPayment = ContributionPayment::IdIs($id)->first();
-        $affiliate = Affiliate::IdIs($ContributionPayment->affiliate_id)->first();
+        $contribution_payment = ContributionPayment::IdIs($id)->first();
+        $affiliate = Affiliate::IdIs($contribution_payment->affiliate_id)->first();
         $date = Util::getDateEdit(date('Y-m-d'));
 
         $current_date = Carbon::now();
         $hour = Carbon::parse($current_date)->toTimeString();
-        //$dt->toTimeString();
         $view = \View::make('print_pago.pagosaporte.show', compact('ContributionPayment','affiliate','date','hour'))->render();
         $pdf = \App::make('dompdf.wrapper');
-        $name_input = $ContributionPayment->id;
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
+        $name_input = $contribution_payment->id;
+        $pdf->loadHTML($view)->setPaper('letter');
         return $pdf->stream();
     }
 

@@ -1,73 +1,77 @@
 <?php
 
-// Users
-Breadcrumbs::register('users', function($breadcrumbs) {
-    $breadcrumbs->push('Usuarios', URL::to('user'));
-});
-// Crear User
-Breadcrumbs::register('create_user', function($breadcrumbs) {
-    $breadcrumbs->parent('users');
-    $breadcrumbs->push('Nuevo');
-});
-// Edit User
-Breadcrumbs::register('edit_user', function($breadcrumbs) {
-    $breadcrumbs->parent('users');
-    $breadcrumbs->push('Editar');
-});
+    // Dashboard
+    Breadcrumbs::register('dashboard', function($breadcrumbs) {
+        $breadcrumbs->push('Inicio');
+    });
 
-// Contribution Rate
-Breadcrumbs::register('contribution_rates', function($breadcrumbs) {
-    $breadcrumbs->push('Tasas de Aporte', URL::to('contribution_rate'));
-});
+    // Users
+    Breadcrumbs::register('users', function($breadcrumbs) {
+        $breadcrumbs->push('Usuarios', URL::to('user'));
+    });
+    // Crear User
+    Breadcrumbs::register('create_user', function($breadcrumbs) {
+        $breadcrumbs->parent('users');
+        $breadcrumbs->push('Nuevo');
+    });
+    // Edit User
+    Breadcrumbs::register('edit_user', function($breadcrumbs) {
+        $breadcrumbs->parent('users');
+        $breadcrumbs->push('Editar');
+    });
 
-// IPC Rate
-Breadcrumbs::register('ipc_rates', function($breadcrumbs) {
-    $breadcrumbs->push('Tasas de Índice de Precio al Consumidor', URL::to('ipc_rate'));
-});
+    // Contribution Rate
+    Breadcrumbs::register('contribution_rates', function($breadcrumbs) {
+        $breadcrumbs->push('Tasas de Aporte', URL::to('contribution_rate'));
+    });
 
-// Base Wage
-Breadcrumbs::register('base_wages', function($breadcrumbs) {
-    $breadcrumbs->push('Sueldos de Personal de la Policía Nacional', URL::to('base_wage'));
-});
+    // IPC Rate
+    Breadcrumbs::register('ipc_rates', function($breadcrumbs) {
+        $breadcrumbs->push('Tasas de Índice de Precio al Consumidor', URL::to('ipc_rate'));
+    });
 
-// Monthly Report
-Breadcrumbs::register('monthly_reports', function($breadcrumbs) {
-    $breadcrumbs->push('Reporte Mensual de Totales', URL::to('monthly_report'));
-});
+    // Base Wage
+    Breadcrumbs::register('base_wages', function($breadcrumbs) {
+        $breadcrumbs->push('Sueldos de Personal de la Policía Nacional', URL::to('base_wage'));
+    });
 
-// Affiliates
-Breadcrumbs::register('affiliates', function($breadcrumbs) {
-    $breadcrumbs->push('Afiliados', URL::to('affiliate'));
-});
+    // Monthly Report
+    Breadcrumbs::register('monthly_reports', function($breadcrumbs) {
+        $breadcrumbs->push('Reporte Mensual de Totales', URL::to('monthly_report'));
+    });
 
-// Show Affiliate
-Breadcrumbs::register('show_affiliate', function($breadcrumbs, $affiliate) {
-    $breadcrumbs->parent('affiliates');
-    $breadcrumbs->push($affiliate->getTittleName(), URL::to('affiliate/'.$affiliate->id));
-});
+    // Affiliates
+    Breadcrumbs::register('affiliates', function($breadcrumbs) {
+        $breadcrumbs->push('Afiliados', URL::to('affiliate'));
+    });
 
-// Show Contribution
-Breadcrumbs::register('show_contribution', function($breadcrumbs, $affiliate) {
-    $breadcrumbs->parent('show_affiliate', $affiliate);
-    $breadcrumbs->push('Aportes');
-});
+    // Show Affiliate
+    Breadcrumbs::register('show_affiliate', function($breadcrumbs, $affiliate) {
+        $breadcrumbs->parent('affiliates');
+        $breadcrumbs->push($affiliate->getTittleName(), URL::to('affiliate/'.$affiliate->id));
+    });
 
-// Show Register Contribution
-Breadcrumbs::register('register_contribution', function($breadcrumbs, $affiliate) {
-    $breadcrumbs->parent('show_affiliate', $affiliate);
-    $breadcrumbs->push('Registro de Aporte');
-});
+    // Show Contribution
+    Breadcrumbs::register('show_contribution', function($breadcrumbs, $affiliate) {
+        $breadcrumbs->parent('show_affiliate', $affiliate);
+        $breadcrumbs->push('Aportes');
+    });
 
-// Dashboard
-Breadcrumbs::register('dashboard', function($breadcrumbs) {
-    $breadcrumbs->push('Inicio');
-});
+    // Show Register Contribution
+    Breadcrumbs::register('register_contribution', function($breadcrumbs, $affiliate) {
+        $breadcrumbs->parent('show_affiliate', $affiliate);
+        $breadcrumbs->push('Registro de Aporte');
+    });
 
-//Show Direct Contributions
-Breadcrumbs::register('show_direct_contributions', function($breadcrumbs) {
-    $breadcrumbs->push('Aportes Directos', URL::to('aportepago'));
-});
+    //Show Direct Contributions
+    Breadcrumbs::register('show_direct_contributions', function($breadcrumbs) {
+        $breadcrumbs->push('Aportes Directos', URL::to('aportepago'));
+    });
 
+    //Show Contribution
+    Breadcrumbs::register('show_direct_contribution', function($breadcrumbs) {
+        $breadcrumbs->push('Aporte Directo', URL::to('aportepago'));
+    });
 
 
 
