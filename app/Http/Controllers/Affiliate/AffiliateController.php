@@ -145,7 +145,7 @@ class AffiliateController extends Controller
         if ($affiliate->city_identity_card_id) {
             $affiliate->city_identity_card = City::idIs($affiliate->city_identity_card_id)->first()->shortened;
         }else {
-            $affiliate->city_identity_card = 'hola';
+            $affiliate->city_identity_card = '';
         }
         if ($affiliate->city_birth_id) {
             $affiliate->city_birth = City::idIs($affiliate->city_birth_id)->first()->name;
