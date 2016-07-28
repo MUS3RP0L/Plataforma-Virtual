@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="assets/css/style.css" media="all" />
   </head>
   <body>
-    <header class="clearfix" class="carta">
+    <header class="clearfix">
       <table class="tableh">
             <tr>
               <th style="width: 25%;border: 0px;">
@@ -31,27 +31,26 @@
       <table class="tablet">
         <tr>
           <td style="border: 0px;">
-            <div >N° Aporte: <b>{{ $ContributionPayment->id }}<b></div>
+            {{-- <div class="title"><b>N° de Tramite: {{ $retirementfund->getNumberTram() }}</b></div> --}}
           </td>
           <td style="border: 0px;text-align:right;">
-            <div>Fecha de Emisión: La Paz, {!! $date !!}</div>
+            {{-- <div class="title"><b>Fecha de Emisión: La Paz, {!! $date !!}</b></div> --}}
           </td>
         </tr>
         <tr>
             <td  colspan="2" style="border: 0px;text-align:right;">
-             <div >Usuario: {{ Auth::user()->last_name }} {{ Auth::user()->first_name }}</div>
+             <div class="title">Usuario: {{ Auth::user()->last_name }} {{ Auth::user()->first_name }}</div>
             </td>
         </tr>
-      <br>
       </table>
-        <h3>
+      <h1>
         <b>
-          PAGO DE APORTES VOLUNTARIOS<br>
-
+          FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
+          {{-- MODALIDAD: {!! $retirementfund->retirement_fund_modality->name !!}<br> --}}
           @yield('title2')
         </b>
-      </h3>
-
+      </h1>
+      <br>
 
       @yield('content')
 

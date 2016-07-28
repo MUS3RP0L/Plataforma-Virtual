@@ -1,4 +1,4 @@
-@extends('header')
+@extends('contribution_payments.print.header')
 
 @section('content')
 
