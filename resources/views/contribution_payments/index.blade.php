@@ -19,8 +19,8 @@
                                         <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Nombre de Afiliado">Nombre de Afiliado</div></th>
                                         <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total a Pagar">Total a Pagar</div></th>
                                         <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Total a Pagar">Fecha Emisión</div></th>
-                                        <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Estado">Estado</div></th>
-                                        <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Fecha de Pago">Fecha de Pago</div></th>
+                                        {{-- <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Estado">Estado</div></th> --}}
+                                        {{-- <th class="text-left"><div data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Fecha de Pago">Fecha de Pago</div></th> --}}
                                         <th class="text-center">Acción</th>
                                     </tr>
                                 </thead>
@@ -49,8 +49,8 @@ $(function() {
             { data: 'affiliate_name', bSortable: false },
             { data: 'total', bSortable: false },
             { data: 'created_at', bSortable: false },
-            { data: 'status', bSortable: false },
-            { data: 'payment_date', bSortable: false },
+            // { data: 'status', bSortable: false },
+            // { data: 'payment_date', bSortable: false },
             { data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
         ]
     });

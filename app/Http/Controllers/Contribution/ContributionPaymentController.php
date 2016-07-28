@@ -34,15 +34,13 @@ class ContributionPaymentController extends Controller
     public function Data(Request $request)
     {
 
-        $contribution_payments = ContributionPayment::select(['id', 'affiliate_id', 'type', 'payment_date', 'code', 'created_at', 'total']);
+        $contribution_payments = ContributionPayment::select(['id', 'affiliate_id', 'type', 'code', 'created_at', 'total']);
 
         return Datatables::of($contribution_payments)
                         ->editColumn('code', function ($contribution_payment) { return $contribution_payment->getCode(); })
                         ->addColumn('affiliate_name', function ($contribution_payment) { return $contribution_payment->affiliate->getTittleName(); })
                         ->addColumn('total', function ($contribution_payment) { return Util::formatMoney($contribution_payment->total); })
                         ->editColumn('created_at', function ($contribution_payment) { return Util::getDateShort($contribution_payment->created_at); })
-                        ->addColumn('status', function ($contribution_payment) { return $contribution_payment->payment_date ? 'Pagado' : 'Pendiente'; })
-                        ->editColumn('payment_date', function ($contribution_payment) { return $contribution_payment->payment_date ? Util::getDateShort($contribution_payment->payment_date) : '-'; })
                         ->addColumn('action', function ($contribution_payment) { return  '
                         <div class="btn-group" style="margin:-3px 0;">
                             <a href="aportepago/' . $contribution_payment->id . '" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
@@ -195,7 +193,7 @@ class ContributionPaymentController extends Controller
 
         $current_date = Carbon::now();
         $hour = Carbon::parse($current_date)->toTimeString();
-        $view = \View::make('print_pago.pagosaporte.show', compact('ContributionPayment','affiliate','date','hour'))->render();
+        $view = \View::make('contribution_payments.print.show', compact('ContributionPayment','affiliate','date','hour'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $contribution_payment->id;
         $pdf->loadHTML($view)->setPaper('letter');
