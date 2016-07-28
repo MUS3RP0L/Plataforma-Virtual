@@ -22,7 +22,7 @@
                                                 <span class="help-block">Escriba el Primer Nombre</span>
                                             </div>
                                         </div>
-                                    </div>                       
+                                    </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             {!! Form::label('second_name', 'Segundo Nombre', ['class' => 'col-md-5 control-label']) !!}
@@ -36,7 +36,7 @@
                                         <div class="form-group">
                                             {!! Form::label('identity_card', 'Número Carnet', ['class' => 'col-md-5 control-label']) !!}
                                             <div class="col-md-7">
-                                                {!! Form::text('identity_card', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                                {!! Form::text('num_identity_card', '', ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                                 <span class="help-block">Escriba el Número de Carnet de Identidad</span>
                                             </div>
                                         </div>
@@ -84,7 +84,7 @@
                                 <br>
                             </form>
                         </div>
-                    </div>  
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table table-hover" id="affiliates-table">
@@ -96,13 +96,13 @@
                                         <th>Nombres</th>
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
-                                        <th>Estado</th>    
+                                        <th>Estado</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
                             </table>
                         </div>
-                    </div>                      
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
 <script>
 
         var oTable = $('#affiliates-table').DataTable({
-        "dom": '<"top">t<"bottom"p>',   
+        "dom": '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
         pageLength: 8,
@@ -126,7 +126,7 @@
                 d.first_name = $('input[name=first_name]').val();
                 d.second_name = $('input[name=second_name]').val();
                 d.registration = $('input[name=registration]').val();
-                d.identity_card = $('input[name=identity_card]').val();
+                d.identity_card = $('input[name=num_identity_card]').val();
                 d.post = $('input[name=post]').val();
             }
         },
