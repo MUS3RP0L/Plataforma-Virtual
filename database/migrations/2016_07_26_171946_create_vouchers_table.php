@@ -28,9 +28,10 @@ class CreateVouchersTable extends Migration
             $table->UnsignedBigInteger('affiliate_id');
             $table->UnsignedBigInteger('voucher_type_id');
             $table->UnsignedBigInteger('contribution_type_id')->nullable();
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->string('concept');
             $table->double('total');
+            $table->date('payment_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
