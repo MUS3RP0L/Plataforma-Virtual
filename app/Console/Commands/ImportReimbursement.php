@@ -82,7 +82,7 @@ class ImportReimbursement extends Command
                         if (!$affiliate) {
 
                             $affiliate = Affiliate::where('last_name', '=', $result->pat)->where('mothers_last_name', '=', $result->mat)
-                                                ->where('birth_date', '=', $birth_date)->where('date_entry', '=', $date_entry)
+                                                ->where('birth_date', '=', $result->nac)->where('date_entry', '=', $result->ing)
                                                 ->where('identity_card', '=', Util::RepeatedIdentityCard($result->car))->first();
                         }
                         if($affiliate) {
