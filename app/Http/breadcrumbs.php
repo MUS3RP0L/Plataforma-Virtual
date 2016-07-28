@@ -73,6 +73,11 @@
         $breadcrumbs->push('Aporte Directo', URL::to('aportepago'));
     });
 
+    //Show Voucher
+    Breadcrumbs::register('show_voucher', function($breadcrumbs) {
+        $breadcrumbs->push('Comprobantes de Pago', URL::to('voucher'));
+    });
+
 
 
 
