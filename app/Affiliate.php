@@ -167,7 +167,7 @@ class Affiliate extends Model
     {
         if ($this->civil_status == 'S') {
 
-            if ($this->sex == 'M') {
+            if ($this->gender == 'M') {
                 return "SOLTERO";
             }
             else{
@@ -175,7 +175,7 @@ class Affiliate extends Model
             }
         }
         else if ($this->civil_status == 'C'){
-            if ($this->sex == 'M') {
+            if ($this->gender == 'M') {
                 return "CASADO";
             }
             else{
@@ -183,7 +183,7 @@ class Affiliate extends Model
             }
         }
         else if ($this->civil_status == 'V'){
-            if ($this->sex == 'M') {
+            if ($this->gender == 'M') {
                 return "VIUDO";
             }
             else{
@@ -191,7 +191,7 @@ class Affiliate extends Model
             }
         }
         else if ($this->civil_status == 'D'){
-            if ($this->sex == 'M') {
+            if ($this->gender == 'M') {
                 return "DIVORCIADO";
             }
             else{
