@@ -80,6 +80,17 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('print_contribution_payment/{contribution_payment_id}', 'Contribution\ContributionPaymentController@PrintContributionPayment');
 
+	// Vouchers
+	Route::resource('voucher', 'Voucher\VoucherController');
+	Route::get('get_voucher', array('as'=>'get_voucher', 'uses'=>'Voucher\VoucherController@Data'));
+
+	Route::get('print_voucher/{voucher_id}', 'Voucher\VoucherController@PrintVoucher');
+
+
+
+
+
+
 
 	// Solicitantes
 	Route::resource('solicitante', 'SolicitanteController');
