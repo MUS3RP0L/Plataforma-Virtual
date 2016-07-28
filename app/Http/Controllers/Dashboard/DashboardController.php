@@ -101,7 +101,7 @@ class DashboardController extends Controller
       {
         $list_totalcontribution[] = 0;
         $list_year[] =0;
-        $totalContributionByYear = array($list_gestion, $list_aportes );
+        $totalContributionByYear = array($list_year, $list_totalcontribution );
       }
 
       // Total Affiliates disaggregated by district.
