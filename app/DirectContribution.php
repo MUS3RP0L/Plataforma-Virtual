@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Carbon\Carbon;
 
-class ContributionPayment extends Model
+class DirectContribution extends Model
 {
-    protected $table = 'contribution_payments';
+    protected $table = 'direct_contributions';
 
     protected $dates = ['deleted_at'];
 
@@ -18,7 +18,6 @@ class ContributionPayment extends Model
         'user_id',
         'affiliate_id',
         'type',
-        'payment_date',
         'code',
         'quotable',
         'retirement_fund',

@@ -20,7 +20,7 @@ class Contribution extends Model
         'user_id',
     	'affiliate_id',
         'contribution_type_id',
-        'contribution_payment_id',
+        'direct_contribution_id',
         'degree_id',
         'unit_id',
         'category_id',
@@ -57,7 +57,7 @@ class Contribution extends Model
 
         return $this->belongsTo('Muserpol\Affiliate');
     }
-    
+
     public function degree(){
 
         return $this->belongsTo('Muserpol\Degree');
@@ -100,12 +100,12 @@ class Contribution extends Model
                     ->select(DB::raw('COUNT(*) total, month(contributions.month_year) as month'))
                     ->where('contributions.contribution_type_id', '=', 2)
                     ->whereMonth('contributions.month_year', '=', $month)
-                    ->whereYear('contributions.month_year', '=', $year);        
-    }  
+                    ->whereYear('contributions.month_year', '=', $year);
+    }
 }
 
 Contribution::updating(function($contribution)
 {
     Activity::updateContribution($contribution);
-    
+
 });

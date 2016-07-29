@@ -9,10 +9,10 @@ class Reimbursement extends Model
     protected $table = 'reimbursements';
 
 	protected $fillable = [
-		
+
 		'user_id',
 		'affiliate_id',
-		'contribution_payment_id',
+		'direct_contribution_id',
 		'month_year',
 		'base_wage',
 		'seniority_bonus',
@@ -33,5 +33,5 @@ class Reimbursement extends Model
 	];
 
 	protected $guarded = ['id'];
-	
+
 }
