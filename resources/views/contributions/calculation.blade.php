@@ -157,7 +157,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    {!! Form::open(['method' => 'POST', 'route' => ['contribution_payment.store'], 'class' => 'form-horizontal']) !!}
+                    {!! Form::open(['method' => 'POST', 'route' => ['direct_contribution.store'], 'class' => 'form-horizontal']) !!}
                         <input type="hidden" name="affiliate_id" value="{{ $affiliate->id }}"/>
                         <input type="hidden" name="year" value="{{ $year }}"/>
                         <input type="hidden" name="type" value="{{ $type }}"/>

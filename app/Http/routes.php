@@ -71,14 +71,15 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('select_contribution/{affiliate_id}', array('as'=>'select_contribution', 'uses'=>'Contribution\ContributionController@SelectContribution'));
 	Route::get('get_select_contribution/{id}', array('as'=>'get_select_contribution', 'uses'=>'Contribution\ContributionController@SelectData'));
 
-	Route::get('calculation_contribution/{affiliate_id}/{year}/{type}', 'Contribution\ContributionController@CalculationContribution');
-	Route::post('calculation_contribution', 'Contribution\ContributionController@GenerateCalculationContribution');
+	// Direct Contribution
+	Route::resource('direct_contribution', 'Contribution\DirectContributionController');
 
-	// Contribution Payments
-	Route::resource('contribution_payment', 'Contribution\ContributionPaymentController');
-	Route::get('get_contribution_payment', array('as'=>'get_contribution_payment', 'uses'=>'Contribution\ContributionPaymentController@Data'));
+	Route::get('calculation_contribution/{affiliate_id}/{year}/{type}', 'Contribution\DirectContributionController@CalculationContribution');
+	Route::post('calculation_contribution', 'Contribution\DirectContributionController@GenerateCalculationContribution');
 
-	Route::get('print_contribution_payment/{contribution_payment_id}', 'Contribution\ContributionPaymentController@PrintContributionPayment');
+	Route::get('get_direct_contribution', array('as'=>'get_direct_contribution', 'uses'=>'Contribution\DirectContributionController@Data'));
+
+	Route::get('print_direct_contribution/{direct_contribution_id}', 'Contribution\DirectContributionController@PrintDirectContribution');
 
 	// Vouchers
 	Route::resource('voucher', 'Voucher\VoucherController');

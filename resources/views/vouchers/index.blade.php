@@ -42,7 +42,7 @@ $(function() {
         processing: true,
         serverSide: true,
         pageLength: 10,
-        ajax: '{!! route('get_contribution_payment') !!}',
+        ajax: '{!! route('get_voucher') !!}',
         order: [0, "desc"],
         columns: [
             { data: 'code', sClass: "text-center" },
@@ -50,7 +50,6 @@ $(function() {
             { data: 'total', bSortable: false },
             { data: 'created_at', bSortable: false },
             // { data: 'status', bSortable: false },
-            // { data: 'payment_date', bSortable: false },
             { data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
         ]
     });
