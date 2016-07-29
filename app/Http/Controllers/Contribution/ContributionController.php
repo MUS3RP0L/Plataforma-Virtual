@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Muserpol\Http\Requests;
 use Muserpol\Http\Controllers\Controller;
 
-use Auth;
-use Validator;
 use Session;
 use Datatables;
 use Carbon\Carbon;
@@ -16,8 +14,6 @@ use Illuminate\Support\Collection;
 
 use Muserpol\Affiliate;
 use Muserpol\Contribution;
-use Muserpol\ContributionRate;
-use Muserpol\IpcRate;
 
 class ContributionController extends Controller
 {
@@ -133,7 +129,6 @@ class ContributionController extends Controller
                     }
                 }
                 $base = array_merge($base, $mes);
-
             }
 
             if ($total == $count) {
@@ -144,7 +139,6 @@ class ContributionController extends Controller
 
             $year = array('year'=> $i);
             $group_contributions->push(array_merge($afi, $c, $year, $base));
-
         }
 
         return Datatables::of($group_contributions)
@@ -172,17 +166,4 @@ class ContributionController extends Controller
                     <?php } ?>')
                 ->make(true);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    // public function store(Request $request)
-    // {
-    //     return $this->save($request);
-    // }
-
 }
