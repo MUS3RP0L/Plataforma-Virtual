@@ -22,16 +22,16 @@ class VoucherController extends Controller
     public function Data(Request $request)
     {
 
-        $contribution_payments = Voucher::select(['id', 'affiliate_id', 'contribution_type_id', 'code', 'created_at', 'total']);
+        $vouchers = Voucher::select(['id', 'affiliate_id', 'contribution_type_id', 'code', 'created_at', 'total']);
 
-        return Datatables::of($contribution_payments)
-                        ->editColumn('code', function ($contribution_payment) { return $contribution_payment->getCode(); })
-                        ->addColumn('affiliate_name', function ($contribution_payment) { return $contribution_payment->affiliate->getTittleName(); })
-                        ->addColumn('total', function ($contribution_payment) { return Util::formatMoney($contribution_payment->total); })
-                        ->editColumn('created_at', function ($contribution_payment) { return Util::getDateShort($contribution_payment->created_at); })
-                        ->addColumn('action', function ($contribution_payment) { return  '
+        return Datatables::of($vouchers)
+                        ->editColumn('code', function ($voucher) { return $voucher->getCode(); })
+                        ->addColumn('affiliate_name', function ($voucher) { return $voucher->affiliate->getTittleName(); })
+                        ->addColumn('total', function ($voucher) { return Util::formatMoney($voucher->total); })
+                        ->editColumn('created_at', function ($voucher) { return Util::getDateShort($voucher->created_at); })
+                        ->addColumn('action', function ($voucher) { return  '
                         <div class="btn-group" style="margin:-3px 0;">
-                            <a href="aportepago/' . $contribution_payment->id . '" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a href="aportepago/' . $voucher->id . '" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
                             <a href="" data-target="#" class="btn btn-success btn-raised btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li role="separator" class="divider"></li>
