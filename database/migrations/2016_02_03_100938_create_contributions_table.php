@@ -13,7 +13,7 @@ class CreateContributionsTable extends Migration
     public function up()
     {
 
-        Schema::create('contribution_payments', function(Blueprint $table) {
+        Schema::create('direct_contributions', function(Blueprint $table) {
 
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
@@ -52,7 +52,7 @@ class CreateContributionsTable extends Migration
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('affiliate_id');
             $table->UnsignedBigInteger('contribution_type_id');
-            $table->UnsignedBigInteger('contribution_payment_id')->nullable();
+            $table->UnsignedBigInteger('direct_contribution_id')->nullable();
             $table->UnsignedBigInteger('degree_id')->nullable();
             $table->UnsignedBigInteger('unit_id')->nullable();
             $table->UnsignedBigInteger('category_id')->nullable();
@@ -85,7 +85,7 @@ class CreateContributionsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('affiliate_id')->references('id')->on('affiliates');
             $table->foreign('contribution_type_id')->references('id')->on('contribution_types');
-            $table->foreign('contribution_payment_id')->references('id')->on('contribution_payments');
+            $table->foreign('direct_contribution_id')->references('id')->on('direct_contributions');
             $table->foreign('degree_id')->references('id')->on('degrees');
             $table->foreign('unit_id')->references('id')->on('units');
             $table->foreign('category_id')->references('id')->on('categories');
@@ -101,7 +101,7 @@ class CreateContributionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('contribution_payments');
+        Schema::drop('direct_contributions');
         Schema::drop('contributions');
     }
 }

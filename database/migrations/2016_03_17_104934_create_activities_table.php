@@ -13,7 +13,7 @@ class CreateActivitiesTable extends Migration
     public function up()
     {
         Schema::create('activities', function (Blueprint $table) {
-            
+
             $table->increments('id');
             $table->timestamps();
             $table->UnsignedBigInteger('user_id');
@@ -24,14 +24,14 @@ class CreateActivitiesTable extends Migration
             $table->UnsignedBigInteger('document_id');
             $table->UnsignedBigInteger('antecedent_id');
             $table->UnsignedBigInteger('contribution_id');
-            $table->UnsignedBigInteger('contribution_payment_id');
+            $table->UnsignedBigInteger('direct_contribution_id');
             $table->UnsignedBigInteger('record_id');
             $table->UnsignedBigInteger('ipc_rate_id');
             $table->UnsignedBigInteger('contribution_rate_id');
             $table->UnsignedBigInteger('base_wage_id');
             $table->text('message');
-            $table->integer('activity_type_id');   
-            $table->foreign('user_id')->references('id')->on('users'); 
+            $table->integer('activity_type_id');
+            $table->foreign('user_id')->references('id')->on('users');
 
         });
     }

@@ -17,7 +17,7 @@ class CreateReimbursementsTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('affiliate_id');
-            $table->UnsignedBigInteger('contribution_payment_id')->nullable();
+            $table->UnsignedBigInteger('direct_contribution_id')->nullable();
             $table->date('month_year')->required();
             $table->decimal('base_wage', 13, 2);
             $table->decimal('seniority_bonus', 13, 2);
@@ -39,7 +39,7 @@ class CreateReimbursementsTable extends Migration
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('affiliate_id')->references('id')->on('affiliates');
-            $table->foreign('contribution_payment_id')->references('id')->on('contribution_payments');
+            $table->foreign('direct_contribution_id')->references('id')->on('direct_contributions');
             $table->unique(array('affiliate_id','month_year'));
 
         });
