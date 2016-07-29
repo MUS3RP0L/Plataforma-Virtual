@@ -13,7 +13,7 @@ class CreateRetirementFundsTable extends Migration
     public function up()
     {
         Schema::create('retirement_fund_modalities', function(Blueprint $table) {
-            
+
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('shortened');
@@ -22,8 +22,8 @@ class CreateRetirementFundsTable extends Migration
         });
 
         Schema::create('retirement_funds', function (Blueprint $table) {
-                    
-            $table->bigIncrements('id');   
+
+            $table->bigIncrements('id');
             $table->UnsignedBigInteger('affiliate_id');
             $table->UnsignedBigInteger('retirement_fund_modality_id')->nullable();
             $table->UnsignedBigInteger('city_id')->nullable();
@@ -36,11 +36,11 @@ class CreateRetirementFundsTable extends Migration
             $table->date('anticipation_end_date')->nullable();
             $table->date('recognized_start_date')->nullable();
             $table->date('recognized_end_date')->nullable();
-            $table->double('total_quotable');
-            $table->double('total_additional_quotable');
-            $table->double('subtotal');
-            $table->double('performance');
-            $table->double('total');
+            $table->decimal('total_quotable', 13, 2);
+            $table->decimal('total_additional_quotable', 13, 2);
+            $table->decimal('subtotal', 13, 2);
+            $table->decimal('performance', 13, 2);
+            $table->decimal('total', 13, 2);
             $table->string('comment');
             $table->timestamps();
             $table->softDeletes();
@@ -51,9 +51,9 @@ class CreateRetirementFundsTable extends Migration
         });
 
         Schema::create('requirements', function (Blueprint $table) {
-                    
-            $table->bigIncrements('id'); 
-            $table->UnsignedBigInteger('retirement_fund_modality_id');        
+
+            $table->bigIncrements('id');
+            $table->UnsignedBigInteger('retirement_fund_modality_id');
             $table->string('name');
             $table->string('shortened');
             $table->timestamps();
@@ -62,21 +62,21 @@ class CreateRetirementFundsTable extends Migration
         });
 
         Schema::create('documents', function (Blueprint $table) {
-                    
-            $table->bigIncrements('id'); 
+
+            $table->bigIncrements('id');
             $table->UnsignedBigInteger('requirement_id');
             $table->UnsignedBigInteger('retirement_fund_id');
             $table->date('reception_date');
             $table->boolean('status')->default(0);
             $table->string('comment')->nullable();
             $table->timestamps();
-            $table->foreign('requirement_id')->references('id')->on('requirements');        
-            $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds'); 
+            $table->foreign('requirement_id')->references('id')->on('requirements');
+            $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds');
 
         });
 
         Schema::create('antecedent_files', function (Blueprint $table) {
-            
+
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('shortened');
@@ -93,8 +93,8 @@ class CreateRetirementFundsTable extends Migration
             $table->date('reception_date')->nullable();
             $table->string('code')->nullable();
             $table->timestamps();
-            $table->foreign('antecedent_file_id')->references('id')->on('antecedent_files');      
-            $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds');    
+            $table->foreign('antecedent_file_id')->references('id')->on('antecedent_files');
+            $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds');
 
         });
 
@@ -107,7 +107,7 @@ class CreateRetirementFundsTable extends Migration
         });
 
         Schema::create('applicants', function (Blueprint $table) {
-            
+
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('retirement_fund_id');
             $table->UnsignedBigInteger('applicant_type_id');
@@ -122,8 +122,8 @@ class CreateRetirementFundsTable extends Migration
             $table->string('work_address')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds');        
-            $table->foreign('applicant_type_id')->references('id')->on('applicant_types');        
+            $table->foreign('retirement_fund_id')->references('id')->on('retirement_funds');
+            $table->foreign('applicant_type_id')->references('id')->on('applicant_types');
 
         });
 

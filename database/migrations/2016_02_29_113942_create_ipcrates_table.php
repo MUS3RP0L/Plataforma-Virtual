@@ -18,9 +18,9 @@ class CreateIpcRatesTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->date('month_year')->unique()->required();
-            $table->double('index');
+            $table->decimal('index', 13, 3);
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users'); 
+            $table->foreign('user_id')->references('id')->on('users');
 
         });
     }

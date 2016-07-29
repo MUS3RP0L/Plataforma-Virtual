@@ -17,13 +17,13 @@ class CreateContributionRatesTable extends Migration
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->date('month_year')->unique()->required();
-            $table->double('retirement_fund');
-            $table->double('mortuary_quota');
-            $table->double('rate_active');
-            $table->double('mortuary_aid');
+            $table->decimal('retirement_fund', 13, 3);
+            $table->decimal('mortuary_quota', 13, 3);
+            $table->decimal('rate_active', 13, 3);
+            $table->decimal('mortuary_aid', 13, 3);
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users'); 
-      
+            $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 

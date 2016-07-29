@@ -13,31 +13,31 @@ class CreateReimbursementsTable extends Migration
     public function up()
     {
         Schema::create('reimbursements', function (Blueprint $table) {
-                        
+
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('affiliate_id');
             $table->UnsignedBigInteger('contribution_payment_id')->nullable();
             $table->date('month_year')->required();
-            $table->double('base_wage');
-            $table->double('seniority_bonus');
-            $table->double('study_bonus');
-            $table->double('position_bonus');
-            $table->double('border_bonus');
-            $table->double('east_bonus');
-            $table->double('public_security_bonus')->nullable();
-            $table->double('gain');
-            $table->double('payable_liquid');
-            $table->double('quotable');
-            $table->double('retirement_fund');
-            $table->double('mortuary_quota');
-            $table->double('mortuary_aid');
-            $table->double('subtotal')->nullable();
-            $table->double('ipc')->nullable();
-            $table->double('total');
+            $table->decimal('base_wage', 13, 2);
+            $table->decimal('seniority_bonus', 13, 2);
+            $table->decimal('study_bonus', 13, 2);
+            $table->decimal('position_bonus', 13, 2);
+            $table->decimal('border_bonus', 13, 2);
+            $table->decimal('east_bonus', 13, 2);
+            $table->decimal('public_security_bonus', 13, 2)->nullable();
+            $table->decimal('gain', 13, 2);
+            $table->decimal('payable_liquid', 13, 2);
+            $table->decimal('quotable', 13, 2);
+            $table->decimal('retirement_fund', 13, 2);
+            $table->decimal('mortuary_quota', 13, 2);
+            $table->decimal('mortuary_aid', 13, 2);
+            $table->decimal('subtotal', 13, 2)->nullable();
+            $table->decimal('ipc', 13, 2)->nullable();
+            $table->decimal('total', 13, 2);
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users'); 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('affiliate_id')->references('id')->on('affiliates');
             $table->foreign('contribution_payment_id')->references('id')->on('contribution_payments');
             $table->unique(array('affiliate_id','month_year'));

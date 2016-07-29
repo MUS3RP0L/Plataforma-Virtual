@@ -30,7 +30,7 @@ class CreateVouchersTable extends Migration
             $table->UnsignedBigInteger('contribution_type_id')->nullable();
             $table->string('code')->nullable();
             $table->string('concept');
-            $table->double('total');
+            $table->decimal('total', 13, 2);
             $table->date('payment_date')->nullable();
             $table->timestamps();
             $table->softDeletes();

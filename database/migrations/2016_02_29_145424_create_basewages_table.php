@@ -10,18 +10,18 @@ class CreateBaseWagesTable extends Migration
      *
      * @return void
      */
-    
+
     public function up()
     {
         Schema::create('base_wages', function(Blueprint $table) {
-            
+
             $table->bigIncrements('id');
             $table->UnsignedBigInteger('user_id');
             $table->UnsignedBigInteger('degree_id');
             $table->date('month_year')->required();
-            $table->double('amount');
+            $table->decimal('amount', 13, 2);
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users'); 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('degree_id')->references('id')->on('degrees');
 
         });
