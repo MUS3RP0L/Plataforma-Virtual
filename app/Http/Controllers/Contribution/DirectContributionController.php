@@ -12,10 +12,12 @@ use Session;
 use Datatables;
 use Carbon\Carbon;
 use Muserpol\Helper\Util;
+use Illuminate\Support\Collection;
 
 use Muserpol\Affiliate;
 use Muserpol\DirectContribution;
 use Muserpol\Contribution;
+use Muserpol\Category;
 use Muserpol\ContributionRate;
 use Muserpol\IpcRate;
 

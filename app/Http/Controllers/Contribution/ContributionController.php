@@ -16,7 +16,6 @@ use Illuminate\Support\Collection;
 
 use Muserpol\Affiliate;
 use Muserpol\Contribution;
-use Muserpol\Category;
 use Muserpol\ContributionRate;
 use Muserpol\IpcRate;
 
