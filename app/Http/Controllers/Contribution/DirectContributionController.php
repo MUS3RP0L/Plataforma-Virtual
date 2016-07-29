@@ -159,7 +159,7 @@ class DirectContributionController extends Controller
         ];
 
         $data = array_merge($data, self::getViewModel($affiliate_id, $year));
-        return view('contributions.calculation', $data);
+        return view('direct_contributions.calculation', $data);
     }
 
     public function GenerateCalculationContribution(Request $request)
@@ -178,7 +178,7 @@ class DirectContributionController extends Controller
         ];
 
         $data = array_merge($data, self::getViewModel($request->affiliate_id, $request->year, $request->category_id, $last_contribution));
-        return view('contributions.calculation', $data);
+        return view('direct_contributions.calculation', $data);
     }
 
 
