@@ -1,4 +1,4 @@
-@extends('contribution_payments.print.header')
+@extends('direct_contributions.print.header')
 
 @section('content')
 
@@ -41,12 +41,12 @@
         <td class="grand service" style="text-align:center;">Total Aporte</td>
       </tr>
       <tr>
-        <th class="info" style="text-align:center;" >{{ $ContributionPayment->quotable }}</th>
-        <th class="info" style="text-align:center;">{{ $ContributionPayment->subtotal }}</th>
-        <th class="info" style="text-align:center;">{{ $ContributionPayment->retirement_fund }}</th>
-        <th class="info" style="text-align:center;">{{ $ContributionPayment->mortuary_quota }}</th>
-        <th class="info" style="text-align:center;">{{ $ContributionPayment->ipc }}</th>
-        <th class="info" style="text-align:center;">{{ $ContributionPayment->total }}</th>
+        <th class="info" style="text-align:center;" >{{ $direct_contribution->quotable }}</th>
+        <th class="info" style="text-align:center;">{{ $direct_contribution->subtotal }}</th>
+        <th class="info" style="text-align:center;">{{ $direct_contribution->retirement_fund }}</th>
+        <th class="info" style="text-align:center;">{{ $direct_contribution->mortuary_quota }}</th>
+        <th class="info" style="text-align:center;">{{ $direct_contribution->ipc }}</th>
+        <th class="info" style="text-align:center;">{{ $direct_contribution->total }}</th>
       </tr>
 
     </table>
