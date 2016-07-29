@@ -5,8 +5,8 @@
     {!! Breadcrumbs::render('register_contribution', $affiliate) !!}
     <div class="row">
         <div class="col-md-12">
-            <div class="row">  
-                <div class="col-md-12 text-right"> 
+            <div class="row">
+                <div class="col-md-12 text-right">
                     <a href="{!! url('affiliate/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;</a>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                                 </thead>
                             </table>
                         </div>
-                    </div>                      
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
                 { data: 'm10', "sClass": "text-center", bSortable: false },
                 { data: 'm11', "sClass": "text-center", bSortable: false },
                 { data: 'm12', "sClass": "text-center", bSortable: false },
-                { data: 'action', "sClass": "text-center", bSortable: false }       
+                { data: 'action', "sClass": "text-center", bSortable: false }
             ]
         });
     });
