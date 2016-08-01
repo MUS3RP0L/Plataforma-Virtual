@@ -21,6 +21,7 @@ use Muserpol\Category;
 use Muserpol\ContributionRate;
 use Muserpol\IpcRate;
 use Muserpol\BaseWage;
+use Muserpol\Voucher;
 
 class DirectContributionController extends Controller
 {
