@@ -140,6 +140,7 @@
                     <input type="hidden" name="affiliate_id" value="{{ $affiliate->id }}"/>
                     <input type="hidden" name="year" value="{{ $year }}"/>
                     <input type="hidden" name="type" value="{{ $type }}"/>
+                    <input type="hidden" name="last_contribution_date" value="{{ $last_contribution->date }}"/>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">

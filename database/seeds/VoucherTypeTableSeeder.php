@@ -22,7 +22,7 @@ class VoucherTypeTableSeeder extends Seeder
     {
         $statuses = [
 
-            ['name' => 'Pago de Aporte Voluntario']
+            ['name' => 'Pago de Aporte Directo']
 
         ];
 

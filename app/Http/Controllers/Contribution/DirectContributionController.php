@@ -20,6 +20,7 @@ use Muserpol\Contribution;
 use Muserpol\Category;
 use Muserpol\ContributionRate;
 use Muserpol\IpcRate;
+use Muserpol\BaseWage;
 
 class DirectContributionController extends Controller
 {
@@ -63,19 +64,19 @@ class DirectContributionController extends Controller
         }
 
         return Datatables::of($direct_contributions)
-                        ->editColumn('code', function ($direct_contribution) { return $direct_contribution->getCode(); })
-                        ->addColumn('affiliate_name', function ($direct_contribution) { return $direct_contribution->affiliate->getTittleName(); })
-                        ->addColumn('total', function ($direct_contribution) { return Util::formatMoney($direct_contribution->total); })
-                        ->editColumn('created_at', function ($direct_contribution) { return Util::getDateShort($direct_contribution->created_at); })
-                        ->addColumn('action', function ($direct_contribution) { return
-                            '<div class="btn-group" style="margin:-3px 0;">
-                                <a href="direct_contribution/ '.$direct_contribution->id.'" class="btn btn-primary btn-raised btn-sm">&nbsp;&nbsp;<i class="glyphicon glyphicon-eye-open"></i>&nbsp;&nbsp;</a>
-                                <a href="" class="btn btn-primary btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">&nbsp;<span class="caret"></span>&nbsp;</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="direct_contribution/delete/ '.$direct_contribution->id.' " style="padding:3px 10px;"><i class="glyphicon glyphicon-ban-circle"></i> Anular</a></li>
-                                </ul>
-                            </div>';})
-                        ->make(true);
+                ->editColumn('code', function ($direct_contribution) { return $direct_contribution->getCode(); })
+                ->addColumn('affiliate_name', function ($direct_contribution) { return $direct_contribution->affiliate->getTittleName(); })
+                ->addColumn('total', function ($direct_contribution) { return Util::formatMoney($direct_contribution->total); })
+                ->editColumn('created_at', function ($direct_contribution) { return Util::getDateShort($direct_contribution->created_at); })
+                ->addColumn('action', function ($direct_contribution) { return
+                    '<div class="btn-group" style="margin:-3px 0;">
+                        <a href="direct_contribution/ '.$direct_contribution->id.'" class="btn btn-primary btn-raised btn-sm">&nbsp;&nbsp;<i class="glyphicon glyphicon-eye-open"></i>&nbsp;&nbsp;</a>
+                        <a href="" class="btn btn-primary btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">&nbsp;<span class="caret"></span>&nbsp;</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="direct_contribution/delete/ '.$direct_contribution->id.' " style="padding:3px 10px;"><i class="glyphicon glyphicon-ban-circle"></i> Anular</a></li>
+                        </ul>
+                    </div>';})
+                ->make(true);
     }
 
     /**
@@ -145,15 +146,19 @@ class DirectContributionController extends Controller
         }
 
         if (!$last_contribution) {
-            $date = Carbon::createFromDate($year, $months[0]["id"], 1)->subMonth();
-            $last_contribution = null;
-            while (!$last_contribution) {
-                $last_contribution = Contribution::affiliateidIs($affiliate->id)->where('month_year', '=', $date->toDateString())->first();
-                $date = $date->subMonth();
+            $date = Carbon::createFromDate($year, $months[0]["id"], 1);
+            $last_contribution = Contribution::affiliateidIs($affiliate->id)->where('month_year', '<', $date->toDateString())->first();
+            $last_contribution->date = Util::getDateShort($last_contribution->month_year);
+            if (!$last_contribution) {
+                $last_contribution = new Contribution;
+                $base_wage = BaseWage::whereYear('month_year', '<=', $year)->first();
+                $last_contribution->base_wage = $base_wage->amount;
+                $last_contribution->study_bonus = 0;
+                $last_contribution->position_bonus = 0;
+                $last_contribution->border_bonus = 0;
+                $last_contribution->east_bonus = 0;
             }
         }
-
-        $last_contribution->date = Util::getDateShort($last_contribution->month_year);
 
         if ($category_id) {
             $affiliate->category_id = $category_id;
@@ -168,7 +173,6 @@ class DirectContributionController extends Controller
             'months' => $months,
             'year' => $year,
             'last_contribution' => $last_contribution
-
         ];
     }
 
@@ -193,6 +197,7 @@ class DirectContributionController extends Controller
         $last_contribution->position_bonus = $request->position_bonus;
         $last_contribution->border_bonus = $request->border_bonus;
         $last_contribution->east_bonus = $request->east_bonus;
+        $last_contribution->date = $request->last_contribution_date;
 
         $data = [
 
@@ -300,6 +305,20 @@ class DirectContributionController extends Controller
                 }
 
             }
+
+            $voucher = new Voucher;
+            $voucher->user_id = Auth::user()->id;
+            $voucher->affiliate_id = $request->affiliate_id;
+            $voucher->voucher_type_id = 1;
+            $voucher->direct_contribution_id = $direct_contribution->id;
+            $last_voucher = Voucher::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
+            if ($last_voucher) {
+                $voucher->code = $last_voucher->code + 1;
+            }else{
+                $voucher->code = 1;
+            }
+            $voucher->total = $data->sum_total;
+            $voucher->save();
 
             $message = "Aportes Guardados";
             Session::flash('message', $message);
