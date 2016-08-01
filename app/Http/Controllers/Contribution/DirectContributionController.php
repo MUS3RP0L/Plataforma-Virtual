@@ -339,9 +339,16 @@ class DirectContributionController extends Controller
     public function show($id)
     {
         $direct_contribution = DirectContribution::idIs($id)->first();
+        $affiliate = Affiliate::IdIs($direct_contribution->affiliate_id)->first();
+        $contribution = Contribution::where('direct_contribution_id', '=', $direct_contribution->id)->first();
+
 
         $data = [
             'direct_contribution' => $direct_contribution,
+            'affiliate' => $affiliate,
+            'year' => $contribution->month_year,
+            'type' => $contribution  ? "Normal" : "Reintegro",
+
         ];
 
         return view('direct_contributions.show', $data);
@@ -349,13 +356,13 @@ class DirectContributionController extends Controller
 
     public function PrintDirectContribution($id)
     {
-        $direct_contribution = DirectContribution::IdIs($id)->first();
+        $direct_contribution = DirectContribution::idIs($id)->first();
         $affiliate = Affiliate::IdIs($direct_contribution->affiliate_id)->first();
         $date = Util::getDateEdit(date('Y-m-d'));
 
         $current_date = Carbon::now();
         $hour = Carbon::parse($current_date)->toTimeString();
-        $view = \View::make('direct_contributions.print.show', compact('DirectContribution','affiliate','date','hour'))->render();
+        $view = \View::make('direct_contributions.print.show', compact('direct_contribution','affiliate','date','hour'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $direct_contribution->id;
         $pdf->loadHTML($view)->setPaper('letter');
