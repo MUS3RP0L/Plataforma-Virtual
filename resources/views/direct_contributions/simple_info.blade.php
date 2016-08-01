@@ -108,10 +108,16 @@
                                 <td style="border-top:1px solid #d4e4cd;border-bottom:1px solid #d4e4cd;">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            Último Aporte
+                                            Total
                                         </div>
                                         <div class="col-md-6">
-                                            {!! $last_contribution->date !!}
+
+                                            @if($direct_contribution)
+                                                {!! $direct_contribution->total !!}
+                                            @else
+                                                <span data-bind="text: sum_total()">
+                                            @endif
+
                                         </div>
                                     </div>
                                 </td>
