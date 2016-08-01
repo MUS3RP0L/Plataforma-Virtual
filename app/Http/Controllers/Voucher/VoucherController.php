@@ -22,7 +22,7 @@ class VoucherController extends Controller
     public function Data(Request $request)
     {
 
-        $vouchers = Voucher::select(['id', 'affiliate_id', 'contribution_type_id', 'code', 'created_at', 'total']);
+        $vouchers = Voucher::select(['id', 'affiliate_id', 'code', 'created_at', 'total']);
 
         return Datatables::of($vouchers)
                         ->editColumn('code', function ($voucher) { return $voucher->getCode(); })
