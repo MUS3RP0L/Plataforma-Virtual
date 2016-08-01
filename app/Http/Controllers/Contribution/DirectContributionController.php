@@ -35,8 +35,32 @@ class DirectContributionController extends Controller
 
     public function Data(Request $request)
     {
-
         $direct_contributions = DirectContribution::select(['id', 'affiliate_id', 'type', 'code', 'created_at', 'total']);
+
+        if ($request->has('code'))
+        {
+            $direct_contributions->where(function($direct_contributions) use ($request)
+            {
+                $code = trim($request->get('code'));
+                $direct_contributions->where('code', 'like', "%{$code}%");
+            });
+        }
+        if ($request->has('affiliate_name'))
+        {
+            $direct_contributions->where(function($direct_contributions) use ($request)
+            {
+                $affiliate_name = trim($request->get('affiliate_name'));
+                $direct_contributions->where('affiliate_name', 'like', "%{$affiliate_name}%");
+            });
+        }
+        if ($request->has('date'))
+        {
+            $direct_contributions->where(function($direct_contributions) use ($request)
+            {
+                $date = Util::datePick($request->get('date'));
+                $direct_contributions->where('created_at', 'like', "%{$date}%");
+            });
+        }
 
         return Datatables::of($direct_contributions)
                         ->editColumn('code', function ($direct_contribution) { return $direct_contribution->getCode(); })
@@ -45,13 +69,12 @@ class DirectContributionController extends Controller
                         ->editColumn('created_at', function ($direct_contribution) { return Util::getDateShort($direct_contribution->created_at); })
                         ->addColumn('action', function ($direct_contribution) { return  '
                         <div class="btn-group" style="margin:-3px 0;">
-                            <a href="aportepago/' . $direct_contribution->id . '" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a href="direct_contribution/' . $direct_contribution->id . '" class="btn btn-success btn-raised btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
                             <a href="" data-target="#" class="btn btn-success btn-raised btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li role="separator" class="divider"></li>
                             </ul>
                         </div>';})
-
                         ->make(true);
     }
 

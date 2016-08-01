@@ -113,7 +113,7 @@
 @push('scripts')
 <script>
 
-        var oTable = $('#affiliates-table').DataTable({
+    var oTable = $('#affiliates-table').DataTable({
         "dom": '<"top">t<"bottom"p>',
         processing: true,
         serverSide: true,
