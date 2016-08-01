@@ -193,11 +193,11 @@ class ImportPayroll extends Command
 
                         $affiliate->category_id = $category_id;
                         $affiliate->user_id = 1;
-                        $affiliate->last_name = $result->pat;
-                        $affiliate->mothers_last_name = $result->mat;
-                        $affiliate->first_name = $first_name;
-                        $affiliate->second_name = $second_name;
-                        $affiliate->surname_husband = $result->apes;
+                        $affiliate->last_name = Util::replaceCharacter($result->pat);
+                        $affiliate->mothers_last_name = Util::replaceCharacter($result->mat);
+                        $affiliate->first_name = Util::replaceCharacter($first_name);
+                        $affiliate->second_name = Util::replaceCharacter($second_name);
+                        $affiliate->surname_husband = Util::replaceCharacter($result->apes);
                         $affiliate->civil_status = $result->eciv;
                         $affiliate->nua = $result->nua;
                         $affiliate->afp = Util::getAfp($result->afp);

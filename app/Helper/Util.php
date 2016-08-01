@@ -96,7 +96,12 @@ class Util
  		}
     }
 
-
+	public static function replaceCharacter($string)
+	{
+		if ($string) {
+			return str_replace("¥", "Ñ", $string);
+		}
+	}
 
 
 
