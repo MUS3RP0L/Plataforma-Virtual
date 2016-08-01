@@ -9,7 +9,7 @@ class ContributionRateTableSeeder extends Seeder
      *
      * @return void
      */
-    
+
     public function run()
     {
         Eloquent::unguard();
@@ -22,7 +22,7 @@ class ContributionRateTableSeeder extends Seeder
     private function createContributionRates()
     {
         $statuses = [
-        
+
 			['month_year' => '1985-1-1', 'rate_active' => '7.0000', 'retirement_fund' => '.0000', 'mortuary_quota'  =>'.0000', 'mortuary_aid' => '7.0000', 'user_id' => '1'],
 			['month_year' => '1985-2-1', 'rate_active' => '7.0000', 'retirement_fund' => '.0000', 'mortuary_quota'  =>'.0000', 'mortuary_aid' => '7.0000', 'user_id' => '1'],
 			['month_year' => '1985-3-1', 'rate_active' => '7.0000', 'retirement_fund' => '.0000', 'mortuary_quota'  =>'.0000', 'mortuary_aid' => '7.0000', 'user_id' => '1'],
@@ -401,13 +401,14 @@ class ContributionRateTableSeeder extends Seeder
 			['month_year' => '2016-4-1', 'rate_active' => '2.5000', 'retirement_fund' =>'1.8500', 'mortuary_quota'  =>'.6500', 'mortuary_aid' => '1.5000', 'user_id' => '1'],
 			['month_year' => '2016-5-1', 'rate_active' => '2.5000', 'retirement_fund' =>'1.8500', 'mortuary_quota'  =>'.6500', 'mortuary_aid' => '1.5000', 'user_id' => '1'],
 			['month_year' => '2016-6-1', 'rate_active' => '2.5000', 'retirement_fund' =>'1.8500', 'mortuary_quota'  =>'.6500', 'mortuary_aid' => '1.5000', 'user_id' => '1'],
-			['month_year' => '2016-7-1', 'rate_active' => '2.5000', 'retirement_fund' =>'1.8500', 'mortuary_quota'  =>'.6500', 'mortuary_aid' => '1.5000', 'user_id' => '1']
+			['month_year' => '2016-7-1', 'rate_active' => '2.5000', 'retirement_fund' =>'1.8500', 'mortuary_quota'  =>'.6500', 'mortuary_aid' => '1.5000', 'user_id' => '1'],
+			['month_year' => '2016-8-1', 'rate_active' => '2.5000', 'retirement_fund' =>'1.8500', 'mortuary_quota'  =>'.6500', 'mortuary_aid' => '1.5000', 'user_id' => '1']
         ];
 
         foreach ($statuses as $status) {
 
             Muserpol\ContributionRate::create($status);
-            
+
         }
     }
 }
