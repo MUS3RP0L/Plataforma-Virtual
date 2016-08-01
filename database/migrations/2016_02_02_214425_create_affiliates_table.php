@@ -125,7 +125,7 @@ class CreateAffiliatesTable extends Migration
             $table->date('service_end_date')->nullable();
             $table->date('change_date')->nullable();
             $table->string('zone')->nullable();
-            $table->string('Street')->nullable();
+            $table->string('street')->nullable();
             $table->string('number_address')->nullable();
             $table->string('phone')->nullable();
             $table->string('cell_phone')->nullable();
