@@ -49,11 +49,11 @@ class ImportReimbursement extends Command
 
             if ($this->confirm('Are you sure to import the folder ' . $FolderName . '? [y|N]') && $FolderName) {
 
-                ini_set('upload_max_filesize', '99999M');
-                ini_set('post_max_size', '99999M');
+                // ini_set('upload_max_filesize', '99999M');
+                // ini_set('post_max_size', '99999M');
+                ini_set('memory_limit', '-1');
                 ini_set('max_execution_time', '-1');
                 ini_set('max_input_time', '-1');
-                ini_set('memory_limit', '-1');
                 set_time_limit('-1');
 
                 $time_start = microtime(true);
@@ -67,11 +67,11 @@ class ImportReimbursement extends Command
 
                         global $NotFounf, $NewReimbursement, $Progress, $FolderName, $Date;
 
-                        ini_set('upload_max_filesize', '9999M');
-                        ini_set('post_max_size', '9999M');
+                        // ini_set('upload_max_filesize', '9999M');
+                        // ini_set('post_max_size', '9999M');
+                        ini_set('memory_limit', '-1');
                         ini_set('max_execution_time', '-1');
                         ini_set('max_input_time', '-1');
-                        ini_set('memory_limit', '-1');
                         set_time_limit('-1');
 
                         $month_year = Carbon::createFromDate(Util::formatYear($result->a_o), Util::zero($result->mes), 1)->toDateString();
