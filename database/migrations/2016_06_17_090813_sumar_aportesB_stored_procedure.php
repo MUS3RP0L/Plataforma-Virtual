@@ -12,7 +12,9 @@ class SumarAportesBStoredProcedure extends Migration
      */
     public function up() {
 
-        DB::unprepared('CREATE PROCEDURE sumar_aportesB(IN mes int, anio int) BEGIN SELECT COUNT(DISTINCT(id)) total, SUM(contributions.base_wage) sueldo, SUM(contributions.seniority_bonus) anti,SUM(contributions.study_bonus) b_est, SUM(contributions.position_bonus) b_car, SUM(contributions.border_bonus) b_fro, SUM(contributions.east_bonus) b_ori,SUM(contributions.public_security_bonus) b_seg, SUM(contributions.gain) gan, SUM(contributions.quotable) cot, SUM(contributions.total) mus,SUM(contributions.retirement_fund) fr, SUM(contributions.mortuary_quota) sv FROM contributions WHERE MONTH(contributions.month_year) = mes and YEAR(contributions.month_year) = anio; END');
+        DB::unprepared('CREATE PROCEDURE sum_contributionsB(IN month int, year int) BEGIN SELECT COUNT(DISTINCT(contributions.id)) count_id, SUM(contributions.base_wage) salary, SUM(contributions.seniority_bonus) seniority_bonus,SUM(contributions.study_bonus) study_bonus, SUM(contributions.position_bonus) position_bonus, SUM(contributions.border_bonus) border_bonus, SUM(contributions.east_bonus) east_bonus,SUM(contributions.public_security_bonus) public_security_bonus, SUM(contributions.gain) gain, SUM(contributions.quotable) quotable, SUM(contributions.total) total,SUM(contributions.retirement_fund) retirement_fund, SUM(contributions.mortuary_quota) mortuary_quota FROM contributions left join affiliates on(contributions.affiliate_id=affiliates.id) left join affiliate_types on(affiliates.affiliate_type_id = affiliate_types.id)  WHERE MONTH(contributions.month_year) = month and YEAR(contributions.month_year) = year and affiliate_types.id=2; END');
+
+
 
     }
 
@@ -23,7 +25,7 @@ class SumarAportesBStoredProcedure extends Migration
      */
     public function down() {
 
-        $sql = "DROP PROCEDURE IF EXISTS sumar_aportesB";
+        $sql = "DROP PROCEDURE IF EXISTS sum_contributionsB";
         DB::connection()->getPdo()->exec($sql);
 
     }

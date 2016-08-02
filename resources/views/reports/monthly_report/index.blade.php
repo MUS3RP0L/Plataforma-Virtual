@@ -69,81 +69,81 @@
                                 </tr>
                                 <tr>
                                     <th>Total de Registros</th>
-                                    <td style="text-align: right">{{ $totalC }}</td>
-                                    <td style="text-align: right">{{ $totalB }}</td>
-                                    <td style="text-align: right">{{ $total }}</td>
+                                    <td style="text-align: right">{{ $count_idC }}</td>
+                                    <td style="text-align: right">{{ $count_idB }}</td>
+                                    <td style="text-align: right">{{ $total_count_id }}</td>
                                 </tr>
                                 <tr>
                                     <th>Sueldo</th>
-                                    <td style="text-align: right">{{ $totalSueldoC }}</td>
-                                    <td style="text-align: right">{{ $totalSueldoB }}</td>
-                                    <td style="text-align: right">{{ $totalSueldo }}</td>
+                                    <td style="text-align: right">{{ $salaryC }}</td>
+                                    <td style="text-align: right">{{ $salaryB }}</td>
+                                    <td style="text-align: right">{{ $total_salary }}</td>
                                 </tr>
                                 <tr>
                                     <th>Bono Antigüedad</th>
-                                    <td style="text-align: right">{{ $totalAntiC }}</td>
-                                    <td style="text-align: right">{{ $totalAntiB }}</td>
-                                    <td style="text-align: right">{{ $totalAnti }}</td>
+                                    <td style="text-align: right">{{ $seniority_bonusC }}</td>
+                                    <td style="text-align: right">{{ $seniority_bonusB }}</td>
+                                    <td style="text-align: right">{{ $total_seniority_bonus }}</td>
                                 </tr>
                                 <tr>
                                     <th>Bono Estudio</th>
-                                    <td style="text-align: right">{{ $totalB_estC }}</td>
-                                    <td style="text-align: right">{{ $totalB_estB }}</td>
-                                    <td style="text-align: right">{{ $totalB_est }}</td>
+                                    <td style="text-align: right">{{ $study_bonusC }}</td>
+                                    <td style="text-align: right">{{ $study_bonusB }}</td>
+                                    <td style="text-align: right">{{ $total_study_bonus }}</td>
                                 </tr>
                                 <tr>
                                     <th>Bono Cargo</th>
-                                    <td style="text-align: right">{{ $totalB_carC }}</td>
-                                    <td style="text-align: right">{{ $totalB_carB }}</td>
-                                    <td style="text-align: right">{{ $totalB_car }}</td>
+                                    <td style="text-align: right">{{ $position_bonusC }}</td>
+                                    <td style="text-align: right">{{ $position_bonusB }}</td>
+                                    <td style="text-align: right">{{ $total_position_bonus }}</td>
                                 </tr>
                                	<tr>
                                     <th>Bono Frontera</th>
-                                    <td style="text-align: right">{{ $totalB_froC }}</td>
-                                    <td style="text-align: right">{{ $totalB_froB }}</td>
-                                    <td style="text-align: right">{{ $totalB_fro }}</td>
+                                    <td style="text-align: right">{{ $border_bonusC }}</td>
+                                    <td style="text-align: right">{{ $border_bonusB }}</td>
+                                    <td style="text-align: right">{{ $total_border_bonus }}</td>
                                 </tr>
                                 <tr>
                                     <th>Bono Oriente</th>
-                                    <td style="text-align: right">{{ $totalB_oriC }}</td>
-                                    <td style="text-align: right">{{ $totalB_oriB }}</td>
-                                    <td style="text-align: right">{{ $totalB_ori }}</td>
+                                    <td style="text-align: right">{{ $east_bonusC }}</td>
+                                    <td style="text-align: right">{{ $east_bonusB }}</td>
+                                    <td style="text-align: right">{{ $total_east_bonus }}</td>
                                 </tr>
                                 <tr>
                                     <th>Bono Seguridad Ciudadana</th>
-                                    <td style="text-align: right">{{ $totalB_segC }}</td>
-                                    <td style="text-align: right">{{ $totalB_segB }}</td>
-                                    <td style="text-align: right">{{ $totalB_seg }}</td>
+                                    <td style="text-align: right">{{ $public_security_bonusC }}</td>
+                                    <td style="text-align: right">{{ $public_security_bonusB }}</td>
+                                    <td style="text-align: right">{{ $total_public_security_bonus }}</td>
                                 </tr>
                                 <tr>
                                     <th>Ganancia</th>
-                                    <td style="text-align: right">{{ $totalGanadoC }}</td>
-                                    <td style="text-align: right">{{ $totalGanadoB }}</td>
-                                    <td style="text-align: right">{{ $totalGanado }}</td>
+                                    <td style="text-align: right">{{ $gainC }}</td>
+                                    <td style="text-align: right">{{ $gainB }}</td>
+                                    <td style="text-align: right">{{ $total_gain }}</td>
                                 </tr>
                                	<tr>
                                     <th>Cotizable</th>
-                                    <td style="text-align: right">{{ $totalCotiC }}</td>
-                                    <td style="text-align: right">{{ $totalCotiB }}</td>
-                                    <td style="text-align: right">{{ $totalCoti }}</td>
+                                    <td style="text-align: right">{{ $quotableC }}</td>
+                                    <td style="text-align: right">{{ $quotableB }}</td>
+                                    <td style="text-align: right">{{ $total_quotable }}</td>
                                 </tr>
                                 <tr>
                                     <th>Fondo de Retiro</th>
-                                    <td style="text-align: right">{{ $totalFrC }}</td>
-                                    <td style="text-align: right">{{ $totalFrB }}</td>
-                                    <td style="text-align: right">{{ $totalFr }}</td>
+                                    <td style="text-align: right">{{ $retirement_fundC }}</td>
+                                    <td style="text-align: right">{{ $retirement_fundB }}</td>
+                                    <td style="text-align: right">{{ $total_retirement_fund }}</td>
                                 </tr>
                                 <tr>
                                     <th>Seguro de Vida</th>
-                                    <td style="text-align: right">{{ $totalSvC }}</td>
-                                    <td style="text-align: right">{{ $totalSvB }}</td>
-                                    <td style="text-align: right">{{ $totalSv }}</td>
+                                    <td style="text-align: right">{{ $mortuary_quotaC }}</td>
+                                    <td style="text-align: right">{{ $mortuary_quotaB }}</td>
+                                    <td style="text-align: right">{{ $total_mortuary_quota }}</td>
                                 </tr>
                                 <tr class="active">
                                     <th>Aporte Muserpol</th>
-                                    <td style="text-align: right">{{ $totalMuserpolC }}</td>
-                                    <td style="text-align: right">{{ $totalMuserpolB }}</td>
-                                    <td style="text-align: right">{{ $totalMuserpol }}</td>
+                                    <td style="text-align: right">{{ $totalC }}</td>
+                                    <td style="text-align: right">{{ $totalB }}</td>
+                                    <td style="text-align: right">{{ $total }}</td>
                                 </tr>
                             </table>
 
