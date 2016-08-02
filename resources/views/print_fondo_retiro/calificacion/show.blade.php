@@ -38,7 +38,7 @@
             </tr>
             <tr>
               <th class="service">ESTADO CIVIL</th>
-              <td class="info">{!! $affiliate->getCivil() !!}</td>
+              <td class="info">{!! $affiliate->getCivilStatus() !!}</td>
             </tr>
             <tr>
               <th class="service">EDAD</th>
@@ -81,19 +81,19 @@
             </tr>
             <tr>
               <th class="service">PERIODO DE APORTE</th>
-              <td class="info">{!! $affiliate->fech_ini_apor ? "DESDE " . $afiliado->getFull_fech_ini_apor() . " - HASTA " . $afiliado->getFull_fech_fin_apor() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_apor() : '' !!}</td>
+              <td class="info">{!! $affiliate->fech_ini_apor ? "DESDE " . $affiliate->getFull_fech_ini_apor() . " - HASTA " . $affiliate->getFull_fech_fin_apor() . "<br>TOTAL " . $affiliate->getYearsAndMonths_fech_ini_apor() : '' !!}</td>
             </tr>
             <tr>
               <th class="service">PERIODO DE SERVICIO</th>
-              <td class="info">{!! $afiliado->fech_ini_serv ? "DESDE " . $afiliado->getFull_fech_ini_serv() . " - HASTA " . $afiliado->getFull_fech_fin_serv() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_fin_serv() : '' !!}</td>
+              <td class="info">{!! $affiliate->fech_ini_serv ? "DESDE " . $affiliate->getFull_fech_ini_serv() . " - HASTA " . $affiliate->getFull_fech_fin_serv() . "<br>TOTAL " . $affiliate->getYearsAndMonths_fech_fin_serv() : '' !!}</td>
             </tr>
             <tr>
               <th class="service">PERIODO ADICIONAL</th>
-              <td class="info">{!! $afiliado->fech_ini_anti ? "DESDE " . $afiliado->getFull_fech_ini_anti() . " - HASTA " . $afiliado->getFull_fech_fin_anti() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_anti() : '' !!}</td>
+              <td class="info">{!! $affiliate->fech_ini_anti ? "DESDE " . $affiliate->getFull_fech_ini_anti() . " - HASTA " . $affiliate->getFull_fech_fin_anti() . "<br>TOTAL " . $affiliate->getYearsAndMonths_fech_ini_anti() : '' !!}</td>
             </tr>
             <tr>
               <th class="service">PERIODO DE RECONOCIMIENTO</th>
-              <td class="info">{!! $afiliado->fech_ini_reco ? "DESDE " . $afiliado->getFull_fech_ini_reco() . " - HASTA " . $afiliado->getFull_fech_fin_reco() . "<br>TOTAL " . $afiliado->getYearsAndMonths_fech_ini_reco() : '' !!}</td>
+              <td class="info">{!! $affiliate->fech_ini_reco ? "DESDE " . $affiliate->getFull_fech_ini_reco() . " - HASTA " . $affiliate->getFull_fech_fin_reco() . "<br>TOTAL " . $affiliate->getYearsAndMonths_fech_ini_reco() : '' !!}</td>
             </tr>
           </table>
       </div>
@@ -156,7 +156,7 @@
           </table>
       </div>
 
-      
+
 
 <div class="page-break"></div>
 
@@ -200,7 +200,7 @@
           </tr>
         </table>
         <h1>
-          <b>       
+          <b>
             FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
             MODALIDAD: {!! $retirementfund->retirement_fund_modality->name !!}<br>
             CALIFICACIÓN
@@ -226,7 +226,7 @@
           <tr>
             <th class="service">PERIODO DE APORTES</th>
             <td class="total">{!! $retirementfund->fech_ini_pcot ? "Desde " . $retirementfund->getFull_fech_ini_pcot() . " - Hasta " . $retirementfund->getFull_fech_fin_pcot() : '' !!}</td>
-          </tr>       
+          </tr>
           <tr>
             <th class="service">TIEMPO COTIZABLE</th>
             <td class="total">{!! $retirementfund->fech_ini_pcot ? $retirementfund->getYearsAndMonths_fech_pcot() : '' !!}</td>
@@ -267,5 +267,5 @@
           </tr>
       </table>
 
-      
+
 @endsection

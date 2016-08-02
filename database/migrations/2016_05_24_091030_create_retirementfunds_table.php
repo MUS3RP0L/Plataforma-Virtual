@@ -114,7 +114,7 @@ class CreateRetirementFundsTable extends Migration
             $table->string('identity_card')->required();
             $table->string('last_name')->nullable();
             $table->string('mothers_last_name')->nullable();
-            $table->string('name')->nullable();
+            $table->string('first_name')->nullable();
             $table->string('kinship')->nullable();
             $table->string('home_address')->nullable();
             $table->string('home_phone_number')->nullable();

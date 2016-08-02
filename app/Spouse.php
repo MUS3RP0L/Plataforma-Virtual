@@ -14,7 +14,7 @@ class Spouse extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        
+
         'user_id',
         'affiliate_id',
         'identity_card',
@@ -24,7 +24,7 @@ class Spouse extends Model
         'second_name',
         'birth_date',
         'date_death',
-        'reason_death'      
+        'reason_death'
     ];
 
     protected $guarded = ['id'];
@@ -40,12 +40,12 @@ class Spouse extends Model
     }
 
     public function getShortBirthDate()
-    {   
+    {
         return Util::getDateShort($this->birth_date);
     }
 
     public function getShortDateDeath()
-    {   
+    {
         return Util::getDateShort($this->date_death);
     }
 
@@ -54,7 +54,7 @@ class Spouse extends Model
         return Util::getDateEdit($this->birth_date);
     }
     public function getEditDateDeath()
-    {   
+    {
         return Util::getDateEdit($this->birth_date);
     }
 
@@ -70,29 +70,29 @@ class Spouse extends Model
 
 
 
-    
 
-    
 
-  
+
+
+
 
     public function getFullNametoPrint()
     {
-        return $this->nom . ' ' . $this->nom2 . ' ' . $this->pat. ' ' . $this->mat;
+        return $this->fisrt_name . ' ' . $this->second_name . ' ' . $this->last_name. ' ' . $this->mothers_last_name;
     }
-    
+
     public function getFullDateNactoPrint()
-    {   
-        if ($this->fech_nac) {
+    {
+        if ($this->birth_date) {
             $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-            return date("d", strtotime($this->fech_nac))." de ".$meses[date("m", strtotime($this->fech_nac))-1]. " de ".date("Y", strtotime($this->fech_nac));
+            return date("d", strtotime($this->birth_date))." de ".$meses[date("m", strtotime($this->birth_date))-1]. " de ".date("Y", strtotime($this->fech_nac));
         }
     }
     public function getFull_fech_decetoPrint()
-    {   
-        if ($this->fech_dece) {
+    {
+        if ($this->date_death) {
             $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-            return date("d", strtotime($this->fech_dece))." ".$meses[date("n", strtotime($this->fech_dece))-1]. " ".date("Y", strtotime($this->fech_dece)); 
+            return date("d", strtotime($this->date_death))." ".$meses[date("n", strtotime($this->date_death))-1]. " ".date("Y", strtotime($this->date_death));
         }
     }
 

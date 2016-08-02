@@ -17,7 +17,7 @@ class Applicant extends Model
 		'identity_card',
 		'last_name',
 		'mothers_last_name',
-		'name',
+		'first_name',
 		'kinship',
 		'home_address',
     'home_phone_number',
@@ -46,7 +46,7 @@ class Applicant extends Model
 
     public function getFullNametoPrint()
     {
-        return $this->nom . ' ' . $this->pat. ' ' . $this->mat;
+        return $this->first_name . ' ' . $this->last_name. ' ' . $this->mothers_last_name;
     }
 
     public function getParentesco()
