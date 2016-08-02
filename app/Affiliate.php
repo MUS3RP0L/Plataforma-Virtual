@@ -278,11 +278,11 @@ class Affiliate extends Model
 
     public function getFull_fech_ini_apor()
     {
-        return Util::getdateabreperiod($this->fech_ini_apor);
+        return Util::getDateAbrePeriod($this->fech_ini_apor);
     }
     public function getFull_fech_fin_apor()
     {
-        return Util::getdateabreperiod($this->fech_fin_apor);
+        return Util::getDateAbrePeriod($this->fech_fin_apor);
     }
     public function getYearsAndMonths_fech_ini_apor()
     {
@@ -291,11 +291,11 @@ class Affiliate extends Model
 
     public function getFull_fech_ini_serv()
     {
-        return Util::getdateabreperiod($this->fech_ini_serv);
+        return Util::getDateAbrePeriod($this->fech_ini_serv);
     }
     public function getFull_fech_fin_serv()
     {
-        return Util::getdateabreperiod($this->fech_fin_serv);
+        return Util::getDateAbrePeriod($this->fech_fin_serv);
     }
     public function getYearsAndMonths_fech_fin_serv()
     {

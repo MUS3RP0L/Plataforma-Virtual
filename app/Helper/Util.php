@@ -247,15 +247,15 @@ class Util
 	public static function getDateShort($date)
 	{
 		if ($date) {
-        	$meses = array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC");
+        	$meses = array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
 			return date("d", strtotime($date))." ".$meses[date("n", strtotime($date))-1]. " ".date("Y", strtotime($date));
         }
 	}
 
-	public static function getdateabreperiod($date)
+	public static function getDateAbrePeriod($date)
 	{
 		if ($date) {
-        	$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMB","OCTUBRE","NOVIEMB","DICIEMB");
+			$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 			return $meses[date("n", strtotime($date))-1]. " ".date("Y", strtotime($date));
         }
 	}

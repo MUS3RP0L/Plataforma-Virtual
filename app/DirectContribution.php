@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Carbon\Carbon;
+use Muserpol\Helper\Util;
+
+use Muserpol\Contribution;
 
 class DirectContribution extends Model
 {
@@ -46,5 +49,13 @@ class DirectContribution extends Model
         if ($this->code) {
             return $this->code . "/" . Carbon::parse($this->created_at)->year;
         }
+    }
+
+    public function period()
+    {
+       $second = Contribution::select('month_year')->where('contributions.direct_contribution_id', '=', $this->id)->orderBy('id', 'desc')->first();
+       $first = Contribution::select('month_year')->where('contributions.direct_contribution_id', '=', $this->id)->orderBy('id', 'asc')->first();
+
+       return "De " . Util::getDateAbrePeriod($first->month_year) ." a " . Util::getDateAbrePeriod($second->month_year);
     }
 }
