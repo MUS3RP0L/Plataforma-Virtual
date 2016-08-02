@@ -250,10 +250,12 @@ class DirectContributionController extends Controller
             $affiliate = Affiliate::IdIs($request->affiliate_id)->first();
             $last_direct_contribution = DirectContribution::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             if ($last_direct_contribution) {
-                $direct_contribution->code = $last_direct_contribution->code + 1;
+                $number_code = util::$number($last_direct_contribution->code);
+                $code = $number_code + 1;
             }else{
-                $direct_contribution->code = 1;
+                $code = 1;
             }
+            $direct_contribution->code = $code . "/" . $now->year;
 
             $direct_contribution->user_id = Auth::user()->id;
             $direct_contribution->affiliate_id = $request->affiliate_id;
@@ -314,10 +316,13 @@ class DirectContributionController extends Controller
             $voucher->direct_contribution_id = $direct_contribution->id;
             $last_voucher = Voucher::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             if ($last_voucher) {
-                $voucher->code = $last_voucher->code + 1;
+                $number_code = util::$number($last_voucher->code);
+                $code = $number_code + 1;
             }else{
-                $voucher->code = 1;
+                $code = 1;
             }
+            $voucher->code = $code . "/" . $now->year;
+
             $voucher->total = $data->sum_total;
             $voucher->save();
 
