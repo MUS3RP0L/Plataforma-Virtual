@@ -4,6 +4,8 @@ namespace Muserpol;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
+
 class Voucher extends Model
 {
     protected $table = 'vouchers';
@@ -24,6 +26,16 @@ class Voucher extends Model
 	];
 
 	protected $guarded = ['id'];
+
+    public function affiliate(){
+
+        return $this->belongsTo('Muserpol\Affiliate');
+    }
+
+    public function voucher_type(){
+
+        return $this->belongsTo('Muserpol\VoucherType');
+    }
 
     public function scopeIdIs($query, $id)
     {
