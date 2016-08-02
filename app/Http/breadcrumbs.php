@@ -68,6 +68,12 @@
         $breadcrumbs->push('Comprobantes de Aportes Directos', URL::to('aportepago'));
     });
 
+    //Show Direct Contribution
+    Breadcrumbs::register('show_direct_contribution', function($breadcrumbs) {
+        $breadcrumbs->push('Comprobante de Aporte Directo', URL::to('aportepago'));
+    });
+
+
     //Show Voucher
     Breadcrumbs::register('show_voucher', function($breadcrumbs) {
         $breadcrumbs->push('Comprobantes de Cobros', URL::to('voucher'));

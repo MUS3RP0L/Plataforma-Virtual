@@ -16,7 +16,7 @@ class Document extends Model
     	'reception_date',
     	'status',
     	'comment'
-        
+
     ];
 
     protected $guarded = ['id'];
@@ -37,11 +37,11 @@ class Document extends Model
     }
 
     public function getData_fech_requi()
-    {   
-        return Util::getdateabre($this->fech_pres);
+    {
+        return Util::getDateShort($this->fech_pres);
     }
     public function getDataEdit()
-    {   
+    {
         return Util::getdateforEdit($this->fech_pres);
     }
 }
@@ -49,11 +49,11 @@ class Document extends Model
 Document::created(function($document)
 {
     Activity::createdDocument($document);
-    
+
 });
 
 Document::updating(function($document)
 {
     Activity::updateDocument($document);
-    
+
 });
