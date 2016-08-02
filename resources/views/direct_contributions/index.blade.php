@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                                {!! Form::label('date', 'Fecha de Emsión', ['class' => 'col-md-5 control-label']) !!}
+                                                {!! Form::label('date', 'Fecha de Emisión', ['class' => 'col-md-5 control-label']) !!}
                                             <div class="col-md-7">
                                     			<div class="input-group">
                                                     <input type="text" class="form-control datepicker" name="date" value="">
