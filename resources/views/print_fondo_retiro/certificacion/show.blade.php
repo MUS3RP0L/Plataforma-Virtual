@@ -31,7 +31,7 @@
             @if ($affiliate->surname_husband)
             <td class="certitle" style="width: 23%">APELLIDO MATRIMONIO</td>
             @endif
-        </tr>    
+        </tr>
       </table>
       <table class="tablet1">
         <tr>
@@ -41,7 +41,7 @@
               <td class="cert">{!! $affiliate->registration !!}</td>
               <td class="certitle2"></td>
               <td class="cert">{!! $affiliate->degree->shortened !!}</td>
-              
+
         </tr>
         <tr>
               <td class="certitle" style="width: 25%">CI.</td>
@@ -62,9 +62,9 @@
               <th class="grand service"><center>TIPO DE PRESTACIÓN</center></th>
               <th class="grand service"><center>SIGLA</center></th>
               <th class="grand service"><center>ESTADO</center></th>
-             </tr>             
+             </tr>
               @foreach ($antecedent as $item)
-              <tr>              
+              <tr>
                 <td style="width: 80%" class="info">{!! $item->antecedent_file->name !!}</td>
                 <td style="width: 20%" class="info">{!! $item->antecedent_file->shortened !!}</td>
                 @if ($item->status == 1)
@@ -72,9 +72,9 @@
                 @else
                 <td class="info"> </td>
                 @endif
-                
-              </tr>              
-              @endforeach           
+
+              </tr>
+              @endforeach
           </table>
       </div>
       <br>
@@ -87,13 +87,13 @@
                   <th class="grand service"><center>MOTIVO BAJA</center></th>
                   <th class="grand service"><center>FECHA FALLECIMIENTO</center></th>
                   <th class="grand service"><center>N° FOJAS DEL EXPEDIENTE</center></th>
-                
+
               </tr>
               <tr>
-                  <td class="info"><center>{!! $affiliate->getDataEdit_fech_ing() !!}</center></td>
-                  <td class="info"><center>{!! $affiliate->getData_fech_baja() !!}</center></td>
-                  <td class="info"><center>{!! $affiliate->date_decommissioned !!}</center></td>
-                  <td class="info"><center>{!! $affiliate->getDataEdit() !!}</center></td>
+                  <td class="info"><center>{!! $affiliate->getShortDateEntry() !!}</center></td>
+                  <td class="info"><center>{!! $affiliate->getEditDateDecommissioned() !!}</center></td>
+                  <td class="info"><center>{!! $affiliate->reason_decommissioned !!}</center></td>
+                  <td class="info"><center>{!! $affiliate->getEditDateDeath() !!}</center></td>
                   <td class="info"> </td>
               </tr>
             </table>
@@ -107,16 +107,16 @@
                   <th class="grand service"><center>APELLIDO PATERNO</center></th>
                   <th class="grand service"><center>APELLIDO MATERNO</center></th>
                   <th class="grand service"><center>APELLIDO MATRIMONIO</center></th>
-                  <th class="grand service"><center>VINCULO CON TITULAR</center></th>                
-              </tr>                     
+                  <th class="grand service"><center>VINCULO CON TITULAR</center></th>
+              </tr>
               <tr>
-                    
-                    <td class="info">{!! $solicitante->name !!}</td>
-                    <td class="info">{!! $solicitante->last_name !!}</td>
-                    <td class="info">{!! $solicitante->mothers_last_name !!}</td>
+
+                    <td class="info">{!! $applicant->name !!}</td>
+                    <td class="info">{!! $applicant->last_name !!}</td>
+                    <td class="info">{!! $applicant->mothers_last_name !!}</td>
                     <td class="info"></td>
-                    <td class="info">{!! $solicitante->kinship !!}</td>
-              </tr>               
+                    <td class="info">{!! $applicant->kinship !!}</td>
+              </tr>
             </table>
         </div>
         <br>
