@@ -103,6 +103,14 @@ class Util
 		}
 	}
 
+	public static function separateCode($code)
+	{
+		$number = explode("/", $code);
+		if ($number) {
+			return $number[0];
+		}
+	}
+
 
 
 
