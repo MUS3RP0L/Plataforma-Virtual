@@ -114,7 +114,6 @@
             { data: 'period', bSortable: false },
             { data: 'total', bSortable: false },
             { data: 'created_at', bSortable: false },
-            // { data: 'status', bSortable: false },
             { data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, sClass: "text-center" }
         ]
     });

@@ -41,11 +41,4 @@ class Voucher extends Model
     {
         return $query->where('id', $id);
     }
-
-    public function getCode()
-    {
-        if ($this->code) {
-            return $this->code . "/" . Carbon::parse($this->created_at)->year;
-        }
-    }
 }

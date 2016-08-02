@@ -44,13 +44,6 @@ class DirectContribution extends Model
         return $query->where('id', $id);
     }
 
-    public function getCode()
-    {
-        if ($this->code) {
-            return $this->code . "/" . Carbon::parse($this->created_at)->year;
-        }
-    }
-
     public function period()
     {
        $second = Contribution::select('month_year')->where('contributions.direct_contribution_id', '=', $this->id)->orderBy('id', 'desc')->first();

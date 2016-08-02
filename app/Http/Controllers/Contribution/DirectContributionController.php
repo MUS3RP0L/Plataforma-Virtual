@@ -65,7 +65,6 @@ class DirectContributionController extends Controller
         }
 
         return Datatables::of($direct_contributions)
-                ->editColumn('code', function ($direct_contribution) { return $direct_contribution->getCode(); })
                 ->addColumn('affiliate_name', function ($direct_contribution) { return $direct_contribution->affiliate->getTittleName(); })
                 ->addColumn('period', function ($direct_contribution) { return $direct_contribution->period(); })
                 ->addColumn('total', function ($direct_contribution) { return Util::formatMoney($direct_contribution->total); })

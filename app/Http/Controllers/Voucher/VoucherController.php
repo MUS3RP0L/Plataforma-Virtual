@@ -64,7 +64,6 @@ class VoucherController extends Controller
         }
 
         return Datatables::of($vouchers)
-                ->editColumn('code', function ($voucher) { return $voucher->getCode(); })
                 ->addColumn('affiliate_name', function ($voucher) { return $voucher->affiliate->getTittleName(); })
                 ->editColumn('voucher_type', function ($voucher) { return $voucher->voucher_type->name; })
                 ->addColumn('total', function ($voucher) { return Util::formatMoney($voucher->total); })
