@@ -149,7 +149,7 @@ class DirectContributionController extends Controller
         if (!$last_contribution) {
             $date = Carbon::createFromDate($year, $months[0]["id"], 1);
             $last_contribution = Contribution::affiliateidIs($affiliate->id)->where('month_year', '<', $date->toDateString())->first();
-            $last_contribution->date = Util::getDateShort($last_contribution->month_year);
+
             if (!$last_contribution) {
                 $last_contribution = new Contribution;
                 $base_wage = BaseWage::whereYear('month_year', '<=', $year)->first();
@@ -159,6 +159,7 @@ class DirectContributionController extends Controller
                 $last_contribution->border_bonus = 0;
                 $last_contribution->east_bonus = 0;
             }
+            $last_contribution->date = Util::getDateShort($last_contribution->month_year);
         }
 
         if ($category_id) {
@@ -173,7 +174,8 @@ class DirectContributionController extends Controller
             'ipc_actual' => $ipc_actual,
             'months' => $months,
             'year' => $year,
-            'last_contribution' => $last_contribution
+            'last_contribution' => $last_contribution,
+            'direct_contribution' => ''
         ];
     }
 
