@@ -21,6 +21,7 @@ use Muserpol\ContributionRate;
 use Muserpol\IpcRate;
 use Muserpol\BaseWage;
 use Muserpol\Voucher;
+use Muserpol\VoucherType;
 
 class VoucherController extends Controller
 {
@@ -31,7 +32,19 @@ class VoucherController extends Controller
      */
     public function index()
     {
-        return view('vouchers.index');
+        $voucher_types = VoucherType::all();
+        $voucher_types_list =  ['' => ''];
+        foreach ($voucher_types as $item) {
+            $voucher_types_list[$item->id]=$item->name;
+        }
+
+        $data = [
+
+            'voucher_types_list' => $voucher_types_list
+
+        ];
+
+        return view('vouchers.index', $data);
     }
 
     public function Data(Request $request)
@@ -54,12 +67,28 @@ class VoucherController extends Controller
                 $vouchers->where('affiliate_name', 'like', "%{$affiliate_name}%");
             });
         }
-        if ($request->has('date'))
+        if ($request->has('creation_date'))
         {
             $vouchers->where(function($vouchers) use ($request)
             {
-                $date = Util::datePick($request->get('date'));
-                $vouchers->where('created_at', 'like', "%{$date}%");
+                $creation_date = Util::datePick($request->get('creation_date'));
+                $vouchers->where('created_at', 'like', "%{$creation_date}%");
+            });
+        }
+        if ($request->has('voucher_type'))
+        {
+            $vouchers->where(function($vouchers) use ($request)
+            {
+                $voucher_type = trim($request->get('voucher_type'));
+                $vouchers->where('voucher_type_id', 'like', "%{$voucher_type}%");
+            });
+        }
+        if ($request->has('payment_date'))
+        {
+            $vouchers->where(function($vouchers) use ($request)
+            {
+                $payment_date = Util::datePick($request->get('payment_date'));
+                $vouchers->where('payment_date', 'like', "%{$payment_date}%");
             });
         }
 

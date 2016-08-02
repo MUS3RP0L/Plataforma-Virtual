@@ -25,23 +25,39 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            {!! Form::label('affiliate_name', 'Nombre Afiliado', ['class' => 'col-md-5 control-label']) !!}
+                                                {!! Form::label('creation_date', 'Fecha de Emisión', ['class' => 'col-md-5 control-label']) !!}
                                             <div class="col-md-7">
-                                                {!! Form::text('affiliate_name', '', ['class'=> 'form-control']) !!}
-                                                <span class="help-block">Escriba el Nombre Afiliado</span>
+                                    			<div class="input-group">
+                                                    <input type="text" class="form-control datepicker" name="creation_date" value="">
+                                                    <div class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                                {!! Form::label('date', 'Fecha de Emsión', ['class' => 'col-md-5 control-label']) !!}
+                                                {!! Form::label('payment_date', 'Fecha de Pago', ['class' => 'col-md-5 control-label']) !!}
                                             <div class="col-md-7">
                                     			<div class="input-group">
-                                                    <input type="text" class="form-control datepicker" name="date" value="">
+                                                    <input type="text" class="form-control datepicker" name="payment_date" value="">
                                                     <div class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row"><br>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                                {!! Form::label('voucher_type', 'Concepto', ['class' => 'col-md-4 control-label']) !!}
+                                            <div class="col-md-7">
+                                                {!! Form::select('voucher_type', $voucher_types_list, '', ['class' => 'combobox form-control']) !!}
+                                                <span class="help-block">Seleccione el Concepto</span>
                                             </div>
                                         </div>
                                     </div>
@@ -87,6 +103,10 @@
 @push('scripts')
 <script>
 
+    $(document).ready(function(){
+       $('.combobox').combobox();
+    });
+
     $('.datepicker').datepicker({
         format: "dd/mm/yyyy",
         language: "es",
@@ -106,7 +126,9 @@
             data: function (d) {
                 d.code = $('input[name=code]').val();
                 d.affiliate_name = $('input[name=affiliate_name]').val();
-                d.date = $('input[name=date]').val();
+                d.creation_date = $('input[name=creation_date]').val();
+                d.voucher_type = $('input[name=voucher_type]').val();
+                d.payment_date = $('input[name=payment_date]').val();
                 d.post = $('input[name=post]').val();
             }
         },

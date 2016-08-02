@@ -65,17 +65,12 @@
 
     //Show Direct Contributions
     Breadcrumbs::register('show_direct_contributions', function($breadcrumbs) {
-        $breadcrumbs->push('Aportes Directos', URL::to('aportepago'));
-    });
-
-    //Show Contribution
-    Breadcrumbs::register('show_direct_contribution', function($breadcrumbs) {
-        $breadcrumbs->push('Aporte Directo', URL::to('aportepago'));
+        $breadcrumbs->push('Comprobantes de Aportes Directos', URL::to('aportepago'));
     });
 
     //Show Voucher
     Breadcrumbs::register('show_voucher', function($breadcrumbs) {
-        $breadcrumbs->push('Comprobantes de Pago', URL::to('voucher'));
+        $breadcrumbs->push('Comprobantes de Cobros', URL::to('voucher'));
     });
 
 
