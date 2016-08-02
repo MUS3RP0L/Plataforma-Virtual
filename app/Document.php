@@ -38,7 +38,7 @@ class Document extends Model
 
     public function getData_fech_requi()
     {
-        return Util::getDateShort($this->fech_pres);
+        return Util::getDateAbrePeriod($this->reception_date);
     }
     public function getDataEdit()
     {

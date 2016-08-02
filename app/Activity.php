@@ -142,7 +142,7 @@ class Activity extends Model
 			$activity->user_id = Auth::user()->id;
 			$activity->affiliate_id = $RetirementFund->affiliate_id;
 			$activity->antecedent_id = $antecedent->id;
-			$activity->retirement_fund_id = $antecedente->retirement_fund_id;
+			$activity->retirement_fund_id = $antecedent->retirement_fund_id;
 			$activity->activity_type_id = ACTIVITY_TYPE_CREATE_ANTECEDENT;
 			$activity->message = Util::encodeActivity(Auth::user(), 'Creó al Antecedente', $affiliate);
 			$activity->save();
