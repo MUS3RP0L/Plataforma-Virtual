@@ -25,7 +25,7 @@
 <div id="project">
     <table>
       <tr>
-        <th colspan="2" class="grand service" style="text-align:left;">Periodo:</th>
+        <th colspan="2" class="grand service" style="text-align:left;">Periodo: {{ $direct_contribution->period() }}  </th>
       </tr>
     </table>
 </div>
