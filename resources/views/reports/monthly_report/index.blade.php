@@ -58,15 +58,20 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    total de Registros: {{ $total }}
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
+                        <div class="col-md-12">
                             <table class="table table-bordered table-hover" style="width:100%;font-size: 14px">
                                 <tr class="success">
                                     <th></th>
                                     <th>Comando</th>
                                     <th>Batallón</th>
                                     <th>Totales</th>
+                                </tr>
+                                <tr>
+                                    <th>Total de Registros</th>
+                                    <td style="text-align: right">{{ $totalC }}</td>
+                                    <td style="text-align: right">{{ $totalB }}</td>
+                                    <td style="text-align: right">{{ $total }}</td>
                                 </tr>
                                 <tr>
                                     <th>Sueldo</th>

@@ -110,7 +110,9 @@ class ReportController extends Controller
 
         $data = [
 
-            'total' => Util::formatMoney($total),
+            'totalC' => $totalC,
+            'totalB' => $totalB,
+            'total' => $total,
             'totalSueldoC' => Util::formatMoney($sueldoC),
             'totalSueldoB' => Util::formatMoney($sueldoB),
             'totalSueldo' => Util::formatMoney($sueldo),
