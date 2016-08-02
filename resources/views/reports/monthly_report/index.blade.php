@@ -63,9 +63,9 @@
                             <table class="table table-bordered table-hover" style="width:100%;font-size: 14px">
                                 <tr class="success">
                                     <th></th>
-                                    <th>Comando</th>
-                                    <th>Batallón</th>
-                                    <th>Totales</th>
+                                    <th style="text-align: center">Comando General</th>
+                                    <th style="text-align: center">Batallón de Seguridad</th>
+                                    <th style="text-align: center">Comando y Batallón</th>
                                 </tr>
                                 <tr>
                                     <th>Total de Registros</th>
