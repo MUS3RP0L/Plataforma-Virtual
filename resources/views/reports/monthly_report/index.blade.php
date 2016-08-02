@@ -16,7 +16,7 @@
 								<div class="form-group form-group-lg">
                                         {!! Form::label('year', 'AÑO', ['class' => 'col-md-3 control-label']) !!}
                                     <div class="col-md-9">
-                                        {!! Form::select('year', $years, $year, ['class' => 'combobox form-control', 'required' => 'required']) !!}
+                                        {!! Form::select('year', $years_list, $year, ['class' => 'combobox form-control', 'required' => 'required']) !!}
                                         <span class="help-block">Seleccione el Año</span>
                                     </div>
                                 </div>
@@ -25,7 +25,7 @@
 					        	<div class="form-group form-group-lg">
                                         {!! Form::label('month', 'MES', ['class' => 'col-md-3 control-label']) !!}
                                     <div class="col-md-9">
-                                        {!! Form::select('month', $months, $month, ['class' => 'combobox form-control', 'required' => 'required']) !!}
+                                        {!! Form::select('month', $months_list, $month, ['class' => 'combobox form-control', 'required' => 'required']) !!}
                                         <span class="help-block">Seleccione el Mes</span>
                                     </div>
                             	</div>
