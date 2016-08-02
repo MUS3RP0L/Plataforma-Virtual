@@ -114,7 +114,7 @@
                     <td class="info">{!! $applicant->name !!}</td>
                     <td class="info">{!! $applicant->last_name !!}</td>
                     <td class="info">{!! $applicant->mothers_last_name !!}</td>
-                    <td class="info"></td>
+                    <td class="info">{!! $applicant->surname_husband !!}</td>
                     <td class="info">{!! $applicant->kinship !!}</td>
               </tr>
             </table>
