@@ -11,24 +11,24 @@ class Applicant extends Model
     protected $table = 'applicants';
 
 	protected $fillable = [
-	    
-        'retirement_fund_id',
-        'applicant_type_id',
+
+    'retirement_fund_id',
+    'applicant_type_id',
 		'identity_card',
 		'last_name',
 		'mothers_last_name',
 		'name',
 		'kinship',
 		'home_address',
-        'home_phone_number',
-        'home_cell_phone_number',
-        'work_address'
-		
+    'home_phone_number',
+    'home_cell_phone_number',
+    'work_address'
+
 	];
 
 	protected $guarded = ['id'];
 
-	
+
     public function applicant_type()
     {
         return $this->belongsTo('Muserpol\ApplicantType');
@@ -51,15 +51,15 @@ class Applicant extends Model
 
     public function getParentesco()
     {
-        if ($this->soliType->id == 3) {
-            return $this->paren;
+        if ($this->applicant_type->id == 3) {
+            return $this->kinship;
         }else{
-            return $this->soliType->name;
+            return $this->applicant_type->name;
         }
     }
 
     public function getFullDateNactoPrint()
-    {   
+    {
         return Util::getfulldate($this->fech_nac);
     }
 
@@ -85,14 +85,13 @@ class Applicant extends Model
 }
 
 Applicant::created(function($applicant)
-{   
+{
     Activity::createdApplicant($applicant);
-    
+
 });
 
 Applicant::updating(function($applicant)
-{   
+{
     Activity::updateApplicant($applicant);
-    
-});
 
+});
