@@ -19,35 +19,44 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public static function getViewModel()
     {
-      $years = DB::table('contributions')->select(DB::raw('DISTINCT YEAR(contributions.month_year ) years'))->orderBy('years', 'desc')->get();
-      $years_list = [];
-      foreach ($years as $item) {
-          $years_list[$item->years]=$item->years;
-      }
-      $months_list = Util::getArrayMonths();
-      return [
+        $years = DB::table('contributions')->select(DB::raw('DISTINCT YEAR(contributions.month_year ) years'))
+                    ->orderBy('years', 'desc')->get();
 
-          'years_list' => $years_list,
-          'months_list' => $months_list,
-          'result' => 0,
-          'year' => '',
-          'month' => '',
-      ];
+        $years_list = [];
+        foreach ($years as $item) {
+            $years_list[$item->years]=$item->years;
+        }
+
+        $months_list = Util::getArrayMonths();
+
+        return [
+
+            'years_list' => $years_list,
+            'months_list' => $months_list
+
+        ];
     }
 
     public function ShowMonthlyReport()
     {
-      return view('reports.monthly_report.index', self::getViewModel());
+        $data = [
+
+            'result' => false,
+            'year' => '',
+            'month' => ''
+        ];
+
+        $data = array_merge($data, self::getViewModel());
+
+        return view('reports.monthly_report.index', $data);
     }
 
     public function GenerateMonthlyReport(Request $request)
     {
-        $date = Carbon::createFromDate($request->year, $request->month, 1)->toDateString();
-        $year1 = Carbon::parse($date)->year;
-        $month1 = Carbon::parse($date)->month;
-        $totalRegistrosC = DB::select('call sumar_aportesC('.$month1.','.$year1.')');
+        $totalRegistrosC = DB::select('call sumar_aportesC(' . $request->month . ',' . $request->year . ')');
 
         foreach ($totalRegistrosC as $item) {
             $totalC = $item->total;
@@ -64,7 +73,8 @@ class ReportController extends Controller
             $svC = $item->sv;
             $musC = $item->mus;
         }
-        $totalRegistrosB = DB::select('call sumar_aportesB('.$month1.','.$year1.')');
+
+        $totalRegistrosB = DB::select('call sumar_aportesB(' . $request->month . ',' . $request->year . ')');
 
         foreach ($totalRegistrosB as $item) {
             $totalB = $item->total;
@@ -81,6 +91,7 @@ class ReportController extends Controller
             $svB = $item->sv;
             $musB = $item->mus;
         }
+
         $total = $totalC + $totalB;
         $sueldo = $sueldoC + $sueldoB;
         $anti = $antiC + $antiB;
@@ -96,7 +107,9 @@ class ReportController extends Controller
         $mus = $musC + $musB;
 
         $data_years = $this->getViewModel();
-        $data = array(
+
+        $data = [
+
             'total' => Util::formatMoney($total),
             'totalSueldoC' => Util::formatMoney($sueldoC),
             'totalSueldoB' => Util::formatMoney($sueldoB),
@@ -136,10 +149,12 @@ class ReportController extends Controller
             'totalMuserpol' => Util::formatMoney($mus),
             'year' => $request->year,
             'month' => $request->month,
-            'years_list' => $data_years['years_list'],
-            'months_list' => $data_years['months_list'],
-            'result' => 1
-        );
+            'result' => true
+
+        ];
+
+        $data = array_merge($data, self::getViewModel());
+
         return view('reports.monthly_report.index', $data);
     }
 }
