@@ -61,6 +61,7 @@ class Applicant extends Model
     {
         return Util::getfulldate($this->fech_nac);
     }
+  
     public function getFullNumber()
     {
         return $this->home_phone_number . ' ' . $this->home_cell_phone_number;

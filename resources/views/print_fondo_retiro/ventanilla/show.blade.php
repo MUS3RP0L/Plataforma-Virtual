@@ -42,7 +42,7 @@
             </tr>
             <tr>
               <th class="service">DIRECCIÓN DE DOMICILIO</th>
-              <td class="info">{!! $applicant->getFullDireccDomitoPrint() !!}</td>
+              <td class="info">{!! $applicant->home_address!!}</td>
             </tr>
             <tr>
               <th class="service">TELEFONO DOMICILIO</th>
@@ -58,7 +58,7 @@
             </tr>
           </table>
       </div>
-       <br> 
+       <br>
        <table class="tablet">
           <tr>
             <td style="width: 60%;border: 0px;">
@@ -78,7 +78,7 @@
               <?php $i=1;?>
                @foreach ($document as $item)
               <tr>
-                <td style="width:1%" class="info">{!! $i !!}</td>  
+                <td style="width:1%" class="info">{!! $i !!}</td>
                 <td style="width:75%" class="info">{!! $item->requirement->name !!}</td>
                 @if ($item->status == 1)
                   <td class="info"><center><img class="circle" src="{!! asset('assets/images/check.png') !!}" style="width:70%" alt="icon"></center></td>
@@ -88,7 +88,7 @@
                 <td style="width:20%" class="info"><center>{!! $item->getData_fech_requi() !!}</center></td>
               </tr>
               <?php $i++;?>
-              @endforeach         
+              @endforeach
             </table>
         </div>
         <br>
