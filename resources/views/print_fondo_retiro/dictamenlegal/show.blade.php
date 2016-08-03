@@ -22,12 +22,12 @@
       </table>
       <br>
 
-      <p align="justify"> En fecha {!! $date !!} mediante nota el Sr. {!! $applicant->getFullNametoPrint() !!} 
+      <p align="justify"> En fecha {!! $date !!} mediante nota el Sr. {!! $applicant->getFullNametoPrint() !!}
         con CI. {!! $applicant->identity_card !!} en calidad de BENEFICIARIO solicita la declaración de Fondo
         de Retiro policial <b>{!! $retirementfund->retirement_fund_modality->name !!}</b>, adjunto la documentación pertinente
         cumpliendo con los requisitos exigidos:
       </p>
-                                    
+
       <div id="project">
           <table>
             <tr>
@@ -37,14 +37,14 @@
             <?php $i=1; ?>
              @foreach ($document as $item)
             <tr>
-              <td style="width: 5%";class="info">{!! $i !!}</td>  
+              <td style="width: 5%";class="info">{!! $i !!}</td>
               <td class="info">{!! $item->requirement->name !!}</td>
-           
+
             </tr>
             <?php $i++; ?>
             @endforeach
 
-            
+
           </table>
       </div><br>
       <p align="justify">
@@ -60,9 +60,9 @@
 
       <p align="justify">
         Por lo que, Acesoria Legal de la Direccion de Beneficios Económicos DICTAMINA, de acuerdo a los Arts. 3,
-        5, 6, 19, 20, 21, 25, 30, y disposicion primera del Reglamento Fondo de Retiro Policial Individual de la 
-        Mutual de Servicios al Polcia " MUSERPOL", Resolucion del Directorio Nª 01/ 2014 de la fecha 12 de marzo 
-        de 2014, se reconosca los derechos y se otorgue el veneficio del Fondo de Retiro Policila Individual por 
+        5, 6, 19, 20, 21, 25, 30, y disposicion primera del Reglamento Fondo de Retiro Policial Individual de la
+        Mutual de Servicios al Polcia " MUSERPOL", Resolucion del Directorio Nª 01/ 2014 de la fecha 12 de marzo
+        de 2014, se reconosca los derechos y se otorgue el veneficio del Fondo de Retiro Policila Individual por
         Jubilacion a favor de :
       </p>
 
