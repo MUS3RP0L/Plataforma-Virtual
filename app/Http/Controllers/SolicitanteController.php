@@ -100,7 +100,7 @@ class SolicitanteController extends Controller
 
         $messages = [
             'ci.min' => 'El mínimo de caracteres permitidos para Carnet de Identidad es 4',
-            'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3', 
+            'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3',
             'pat.regex' => 'Sólo se aceptan letras para apellido paterno',
 
             'nom.min' => 'El mínimo de caracteres permitidos para nombres es 3',
@@ -110,9 +110,9 @@ class SolicitanteController extends Controller
 
 
         ];
-        
+
         $validator = Validator::make($request->all(), $rules, $messages);
-        
+
         if ($validator->fails()){
             return redirect('tramite_fondo_retiro/'.$id)
             ->withErrors($validator)
@@ -129,7 +129,7 @@ class SolicitanteController extends Controller
 
             switch ($request->type) {
                 case 'soli':
-                    
+
                     $ApplicantType = ApplicantType::where('id', '=', $request->type_soli)->first();
                     $Applicant->applicant_type_id = $ApplicantType->id;
 
@@ -138,24 +138,24 @@ class SolicitanteController extends Controller
                     $Applicant->identity_card = trim($request->ci);
                     $Applicant->last_name = trim($request->pat);
                     $Applicant->mothers_last_name = trim($request->mat);
-                    $Applicant->name = trim($request->nom);
+                    $Applicant->first_name = trim($request->nom);
 
                     $Applicant->kinship = trim($request->paren);
 
                     $Applicant->home_address = trim($request->direc_domi);
                     $Applicant->home_phone_number = trim($request->tele_domi);
                     $Applicant->home_cell_phone_number = trim($request->celu_domi);
-                    
+
                     $Applicant->work_address = trim($request->direc_trab);
 
                     $Applicant->save();
-                    
+
                     $message = "Información de Solicitante actualizada con éxito";
                     break;
             }
             Session::flash('message', $message);
         }
-        
+
         return redirect('tramite_fondo_retiro/'.$id);
     }
 
