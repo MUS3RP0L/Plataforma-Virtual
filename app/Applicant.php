@@ -12,17 +12,17 @@ class Applicant extends Model
 
 	protected $fillable = [
 
-    'retirement_fund_id',
-    'applicant_type_id',
+        'retirement_fund_id',
+        'applicant_type_id',
 		'identity_card',
 		'last_name',
 		'mothers_last_name',
 		'first_name',
 		'kinship',
 		'home_address',
-    'home_phone_number',
-    'home_cell_phone_number',
-    'work_address'
+        'home_phone_number',
+        'home_cell_phone_number',
+        'work_address'
 
 	];
 
