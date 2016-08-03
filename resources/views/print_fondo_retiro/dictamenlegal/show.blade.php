@@ -55,7 +55,7 @@
         que no tiene deuda con la institucion.
       </p>
 
-      <P>Reconociendoce el monto de TOTAL de Bs. ,a favor del beneficiario.</P>
+      <P>Reconociendoce el monto de TOTAL de Bs., a favor del beneficiario.</P>
       <p><b>Observación:</b> {!! $retirementfund->comment !!}</p><br>
 
       <p align="justify">
@@ -67,7 +67,7 @@
       </p>
 
       <p>
-        <b>Sr. {!! $retirementfund->getFullNametoPrint() !!}</b> con <b>CI. {!! $affiliate->identity_card !!}</b> en calidad de titular.
+        <b>Sr. {!! $affiliate->getFullNametoPrint() !!}</b> con <b>CI. {!! $affiliate->identity_card !!}</b> en calidad de titular.
       </p>
 
 @endsection
