@@ -143,11 +143,11 @@
             </tr>
             <tr>
               <th class="service">DIRECCIÓN DE DOMICILIO</th>
-              <td class="info">{!! $applicant->getFullDireccDomitoPrint() !!}</td>
+              <td class="info">{!! $applicant->home_address !!}</td>
             </tr>
             <tr>
               <th class="service">DIRECCIÓN DE TRABAJO</th>
-              <td class="info">{!! $applicant->getFullDireccTrabtoPrint() !!}</td>
+              <td class="info">{!! $applicant->work_address !!}</td>
             </tr>
             <tr>
               <th class="service">TELEFONO CELULAR Y/O DOMICILIO</th>

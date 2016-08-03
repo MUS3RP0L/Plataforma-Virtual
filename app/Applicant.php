@@ -57,25 +57,13 @@ class Applicant extends Model
             return $this->applicant_type->name;
         }
     }
-
     public function getFullDateNactoPrint()
     {
         return Util::getfulldate($this->fech_nac);
     }
-
-    public function getFullDireccDomitoPrint()
-    {
-        return $this->calle_domi . ' ' . $this->num_domi . ' ' . $this->zona_domi;
-    }
-
-    public function getFullDireccTrabtoPrint()
-    {
-        return $this->calle_trab . ' ' . $this->num_trab . ' ' . $this->zona_trab;
-    }
-
     public function getFullNumber()
     {
-        return $this->tele_domi . ' ' . $this->celu_domi;
+        return $this->home_phone_number . ' ' . $this->home_cell_phone_number;
     }
 
     public function getFullName()
