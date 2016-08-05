@@ -127,6 +127,7 @@ class VoucherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
      public function store(Request $request)
      {
          return $this->save($request);
@@ -182,21 +183,16 @@ class VoucherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($voucher)
     {
-        $direct_contribution = DirectContribution::idIs($id)->first();
-        $affiliate = Affiliate::IdIs($direct_contribution->affiliate_id)->first();
-        $contribution = Contribution::where('direct_contribution_id', '=', $direct_contribution->id)->first();
+        $affiliate = Affiliate::IdIs($voucher->affiliate_id)->first();
 
         $data = [
-            'direct_contribution' => $direct_contribution,
+            'voucher' => $voucher,
             'affiliate' => $affiliate,
-            'year' => $contribution->month_year,
-            'type' => $contribution  ? "Normal" : "Reintegro",
-
         ];
 
-        return view('direct_contributions.show', $data);
+        return view('vouchers.show', $data);
     }
 
     public function PrintDirectContribution($id)
