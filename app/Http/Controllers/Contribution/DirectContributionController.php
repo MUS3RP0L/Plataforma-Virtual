@@ -30,6 +30,7 @@ class DirectContributionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         return view('direct_contributions.index');
@@ -78,16 +79,6 @@ class DirectContributionController extends Controller
                         </ul>
                     </div>';})
                 ->make(true);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     public static function getViewModel($affiliate_id, $year, $category_id = null, $last_contribution = null)
@@ -343,12 +334,10 @@ class DirectContributionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show($id)
+    public function show($direct_contribution)
     {
-        $direct_contribution = DirectContribution::idIs($id)->first();
         $affiliate = Affiliate::IdIs($direct_contribution->affiliate_id)->first();
         $contribution = Contribution::where('direct_contribution_id', '=', $direct_contribution->id)->first();
-
 
         $data = [
             'direct_contribution' => $direct_contribution,
