@@ -51,7 +51,7 @@
                                             <div class="col-md-5">
                                                 Total Bs
                                             </div>
-                                            <div class="col-md-7    ">
+                                            <div class="col-md-7">
                                                 {!! $voucher->total !!}
                                             </div>
                                         </div>
@@ -112,23 +112,38 @@
 </div>
 
 
-<div id="myModal-update" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg">
+<div id="myModal-update" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Actualizar</h4>
+                <h4 class="modal-title">Cobrar</h4>
             </div>
             <div class="modal-body">
 
                 {!! Form::open(['url' => 'calculation_contribution', 'role' => 'form', 'class' => 'form-horizontal']) !!}
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                {!! Form::label('base_wage', 'Haber Básico', ['class' => 'col-md-5 control-label']) !!}
-                                <div class="col-md-4">
-                                    {!! Form::text('base_wage', '', ['class'=> 'form-control', 'required']) !!}
-                                    <span class="help-block">Escriba el Haber Básico</span>
+                                {!! Form::label('Total', 'Total', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-6">
+                                    <h3>{!! $voucher->total !!}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {!! Form::label('received', 'Recibido', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-3">
+                                    <input data-bind="value: received, valueUpdate: 'afterkeydown'" class="form-control" style="font-size:24px;"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {!! Form::label('Cambio', 'Cambio', ['class' => 'col-md-5 control-label']) !!}
+                                <div class="col-md-6">
+                                    <h3><span data-bind="text: change()"></span></h3>
                                 </div>
                             </div>
                         </div>
@@ -150,6 +165,25 @@
 
 @push('scripts')
 <script>
+
+    function CalculationChange(voucher) {
+
+        var self = this;
+
+        self.received = ko.observable();
+        self.change = ko.computed(function() {
+            var rest = self.received() - parseFloat(voucher.total);
+            return rest ? rest : 0;
+        });
+
+    }
+    window.model = new CalculationChange({!! $voucher !!});
+    ko.applyBindings(model);
+
+    function roundToTwo(num) {
+        var val = +(Math.round(num + "e+2")  + "e-2");
+        return num ? parseFloat(Math.round(parseFloat(val) * 100) / 100).toFixed(2) : 0;
+    }
 
 </script>
 @endpush
