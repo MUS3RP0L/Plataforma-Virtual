@@ -135,7 +135,11 @@ class ImportPayroll extends Command
                             $unit_id = Unit::select('id')->where('breakdown_id', 3)->where('code', '20190')->first()->id;
                         }
                         else{
-                            $unit_id = Unit::select('id')->where('breakdown_id', $breakdown_id)->where('code', $result->uni)->first()->id;
+                            if (Unit::select('id')->where('breakdown_id', $breakdown_id)->where('code', $result->uni)) {
+                                $unit_id = Unit::select('id')->where('breakdown_id', $breakdown_id)->where('code', $result->uni)->first()->id;
+                            }else {
+                                $unit_id = Unit::select('id')->where('code', $result->uni)->first()->id;
+                            }
                         }
 
                         if($result->niv && $result->gra) {
