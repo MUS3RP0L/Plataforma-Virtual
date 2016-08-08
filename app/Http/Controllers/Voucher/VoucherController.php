@@ -96,7 +96,7 @@ class VoucherController extends Controller
                 ->addColumn('affiliate_name', function ($voucher) { return $voucher->affiliate->getTittleName(); })
                 ->editColumn('voucher_type', function ($voucher) { return $voucher->voucher_type->name; })
                 ->addColumn('total', function ($voucher) { return Util::formatMoney($voucher->total); })
-                ->editColumn('created_at', function ($voucher) { return Util::getDateShort($voucher->created_at); })
+                ->editColumn('created_at', function ($voucher) { return $voucher->getCreationDate(); })
                 ->addColumn('status', function ($voucher) { return $voucher->payment_date ? 'Pagado' : 'Pendiente'; })
                 ->editColumn('payment_date', function ($voucher) { return $voucher->payment_date ? Util::getDateShort($voucher->payment_date) : '-'; })
                 ->addColumn('action', function ($voucher) { return
@@ -178,6 +178,7 @@ class VoucherController extends Controller
     public function show($voucher)
     {
         $affiliate = Affiliate::IdIs($voucher->affiliate_id)->first();
+        $voucher->total = Util::formatMoney($voucher->total);
 
         $data = [
             'voucher' => $voucher,
