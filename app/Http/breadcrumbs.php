@@ -69,16 +69,22 @@
     });
 
     //Show Direct Contribution
-    Breadcrumbs::register('show_direct_contribution', function($breadcrumbs) {
+    Breadcrumbs::register('show_direct_contribution', function($breadcrumbs, $affiliate) {
+        $breadcrumbs->parent('show_affiliate', $affiliate);
         $breadcrumbs->push('Comprobante de Aporte Directo', URL::to('aportepago'));
     });
 
 
-    //Show Voucher
-    Breadcrumbs::register('show_voucher', function($breadcrumbs) {
+    //Show vouchers
+    Breadcrumbs::register('show_vouchers', function($breadcrumbs) {
         $breadcrumbs->push('Comprobantes de Cobros', URL::to('voucher'));
     });
 
+    //Show Voucher
+    Breadcrumbs::register('show_vouchers', function($breadcrumbs) {
+        $breadcrumbs->parent('show_affiliate', $affiliate);
+        $breadcrumbs->push('Comprobante de Cobro', URL::to('voucher'));
+    });
 
 
 
