@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-    {!! Breadcrumbs::render('show_voucher') !!}
+    {!! Breadcrumbs::render('show_vouchers') !!}
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">

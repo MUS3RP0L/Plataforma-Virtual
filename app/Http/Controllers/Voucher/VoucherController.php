@@ -101,7 +101,7 @@ class VoucherController extends Controller
                 ->editColumn('payment_date', function ($voucher) { return $voucher->payment_date ? Util::getDateShort($voucher->payment_date) : '-'; })
                 ->addColumn('action', function ($voucher) { return
                     '<div class="btn-group" style="margin:-3px 0;">
-                        <a href="voucher/ '.$voucher->id.'" class="btn btn-primary btn-raised btn-sm">&nbsp;&nbsp;<i class="glyphicon glyphicon-eye-open"></i>&nbsp;&nbsp;</a>
+                        <a href="voucher/'.$voucher->id.'" class="btn btn-primary btn-raised btn-sm">&nbsp;&nbsp;<i class="glyphicon glyphicon-eye-open"></i>&nbsp;&nbsp;</a>
                         <a href="" class="btn btn-primary btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">&nbsp;<span class="caret"></span>&nbsp;</a>
                         <ul class="dropdown-menu">
                             <li><a href="voucher/delete/ '.$voucher->id.' " style="padding:3px 10px;"><i class="glyphicon glyphicon-ban-circle"></i> Anular</a></li>
@@ -130,10 +130,10 @@ class VoucherController extends Controller
 
      public function store(Request $request)
      {
-         return $this->save($request);
+
      }
 
-     public function save($request)
+     public function save($request, $user = false)
      {
          $rules = [
 
@@ -158,14 +158,6 @@ class VoucherController extends Controller
             $voucher = new Voucher;
             $voucher->user_id = Auth::user()->id;
             $voucher->affiliate_id = $request->affiliate_id;
-            $voucher->voucher_type_id = 1;
-            $voucher->direct_contribution_id = $direct_contribution->id;
-            $last_voucher = Voucher::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
-            if ($last_voucher) {
-                $voucher->code = $last_voucher->code + 1;
-            }else {
-                $voucher->code = 1;
-            }
             $voucher->total = $data->sum_total;
             $voucher->save();
 
@@ -195,19 +187,19 @@ class VoucherController extends Controller
         return view('vouchers.show', $data);
     }
 
-    public function PrintDirectContribution($id)
+    public function PrintVoucher($id)
     {
-        $direct_contribution = DirectContribution::idIs($id)->first();
-        $affiliate = Affiliate::IdIs($direct_contribution->affiliate_id)->first();
-        $date = Util::getDateEdit(date('Y-m-d'));
-
-        $current_date = Carbon::now();
-        $hour = Carbon::parse($current_date)->toTimeString();
-        $view = \View::make('direct_contributions.print.show', compact('direct_contribution','affiliate','date','hour'))->render();
-        $pdf = \App::make('dompdf.wrapper');
-        $name_input = $direct_contribution->id;
-        $pdf->loadHTML($view)->setPaper('letter');
-        return $pdf->stream();
+        // $direct_contribution = DirectContribution::idIs($id)->first();
+        // $affiliate = Affiliate::IdIs($direct_contribution->affiliate_id)->first();
+        // $date = Util::getDateEdit(date('Y-m-d'));
+        //
+        // $current_date = Carbon::now();
+        // $hour = Carbon::parse($current_date)->toTimeString();
+        // $view = \View::make('direct_contributions.print.show', compact('direct_contribution','affiliate','date','hour'))->render();
+        // $pdf = \App::make('dompdf.wrapper');
+        // $name_input = $direct_contribution->id;
+        // $pdf->loadHTML($view)->setPaper('letter');
+        // return $pdf->stream();
     }
 
 
@@ -217,6 +209,7 @@ class VoucherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         //
@@ -229,9 +222,10 @@ class VoucherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, $voucher)
     {
-        //
+        return $this->save($request, $voucher);
     }
 
     /**

@@ -81,7 +81,7 @@
     });
 
     //Show Voucher
-    Breadcrumbs::register('show_vouchers', function($breadcrumbs) {
+    Breadcrumbs::register('show_voucher', function($breadcrumbs, $affiliate) {
         $breadcrumbs->parent('show_affiliate', $affiliate);
         $breadcrumbs->push('Comprobante de Cobro', URL::to('voucher'));
     });
