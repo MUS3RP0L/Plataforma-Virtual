@@ -370,8 +370,7 @@ class AffiliateController extends Controller
         $date = Util::getfulldate(date('Y-m-d'));
         $view = \View::make('affiliates.print.show', compact('affiliate', 'spouse','total_gain','total_public_security_bonus','total_quotable','total_retirement_fund','total_mortuary_quota','total','contributions','date'))->render();
         $pdf = \App::make('dompdf.wrapper');
-        $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
-        $pdf->loadHTML($view)->setPaper('legal','landscape')->save('pdf/fondo_retiro/certificacion/' . $name_input . '.pdf');
+        $pdf->loadHTML($view)->setPaper('legal','landscape');
         return $pdf->stream();
     }
 
