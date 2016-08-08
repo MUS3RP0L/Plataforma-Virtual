@@ -131,12 +131,13 @@ class Util
 	}
 
 	public static function decimal($number)
-	{   $number = str_replace ( ',' , '' , $number );
+	{ if ($number) {
+		$number = str_replace ( ',' , '' , $number );
 		$sueMon = substr($number, 0, -2);
 		$sueDeci = substr($number, -2);
 		$sue = $sueMon . "." . $sueDeci;
-
 		return $sue;
+	  }
 	}
 
 	public static function date($date)
