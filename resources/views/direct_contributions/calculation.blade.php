@@ -1,4 +1,5 @@
 @extends('layout')
+
 @section('content')
 <div class="container-fluid">
     {!! Breadcrumbs::render('register_contribution', $affiliate) !!}
