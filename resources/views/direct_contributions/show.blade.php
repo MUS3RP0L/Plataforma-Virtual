@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-    {!! Breadcrumbs::render('show_direct_contribution') !!}
+    {!! Breadcrumbs::render('show_direct_contribution', $affiliate) !!}
     <div class="row">
         <div class="col-md-12 text-right">
             <a href="{!! url('direct_contribution') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">

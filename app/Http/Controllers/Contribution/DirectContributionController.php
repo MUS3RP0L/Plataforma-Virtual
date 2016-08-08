@@ -72,7 +72,7 @@ class DirectContributionController extends Controller
                 ->editColumn('created_at', function ($direct_contribution) { return Util::getDateShort($direct_contribution->created_at); })
                 ->addColumn('action', function ($direct_contribution) { return
                     '<div class="btn-group" style="margin:-3px 0;">
-                        <a href="direct_contribution/ '.$direct_contribution->id.'" class="btn btn-primary btn-raised btn-sm">&nbsp;&nbsp;<i class="glyphicon glyphicon-eye-open"></i>&nbsp;&nbsp;</a>
+                        <a href="direct_contribution/'.$direct_contribution->id.'" class="btn btn-primary btn-raised btn-sm">&nbsp;&nbsp;<i class="glyphicon glyphicon-eye-open"></i>&nbsp;&nbsp;</a>
                         <a href="" class="btn btn-primary btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">&nbsp;<span class="caret"></span>&nbsp;</a>
                         <ul class="dropdown-menu">
                             <li><a href="direct_contribution/delete/ '.$direct_contribution->id.' " style="padding:3px 10px;"><i class="glyphicon glyphicon-ban-circle"></i> Anular</a></li>
