@@ -248,7 +248,7 @@ class DirectContributionController extends Controller
             }else{
                 $code = 1;
             }
-            
+
             $direct_contribution->code = $code . "/" . $now->year;
             $direct_contribution->user_id = Auth::user()->id;
             $direct_contribution->affiliate_id = $request->affiliate_id;
@@ -309,7 +309,7 @@ class DirectContributionController extends Controller
             $voucher->direct_contribution_id = $direct_contribution->id;
             $last_voucher = Voucher::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             if ($last_voucher) {
-                $number_code = util::$number($last_voucher->code);
+                $number_code = Util::separateCode($last_voucher->code);
                 $code = $number_code + 1;
             }else{
                 $code = 1;
