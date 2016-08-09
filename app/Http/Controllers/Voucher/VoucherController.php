@@ -130,43 +130,41 @@ class VoucherController extends Controller
 
      public function store(Request $request)
      {
-
+        //
      }
 
-     public function save($request, $user = false)
+     public function save($request, $voucher = false)
      {
-         $rules = [
+        //  $rules = [
+         //
+        //      'affiliate_id' => 'required',
+         //
+        //  ];
 
-             'affiliate_id' => 'required',
+        //  $messages = [
+         //
+        //      'affiliate_id.required' => 'Afiliado no disponible',
+        //  ];
 
-         ];
+        //  $validator = Validator::make($request->all(), $rules, $messages);
+         //
+        //  if ($validator->fails()) {
+        //      return redirect('voucher/'.$voucher->id)
+        //      ->withErrors($validator)
+        //      ->withInput();
+        //  }
+        //  else {
 
-         $messages = [
-
-             'affiliate_id.required' => 'Afiliado no disponible',
-         ];
-
-         $validator = Validator::make($request->all(), $rules, $messages);
-
-         if ($validator->fails()) {
-             return redirect('affiliate/'.$request->affiliate_id)
-             ->withErrors($validator)
-             ->withInput();
-         }
-         else {
-
-            $voucher = new Voucher;
-            $voucher->user_id = Auth::user()->id;
-            $voucher->affiliate_id = $request->affiliate_id;
-            $voucher->total = $data->sum_total;
+            $current_date = Carbon::now();
+            $voucher->payment_date = $current_date->toDateString();
             $voucher->save();
 
             $message = "Aportes Guardados";
             Session::flash('message', $message);
 
-        }
+        // }
 
-        return redirect('direct_contribution/'.$direct_contribution->id);
+        return redirect('voucher/'.$voucher->id);
     }
 
     /**

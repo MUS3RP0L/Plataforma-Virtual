@@ -5,14 +5,16 @@
     {!! Breadcrumbs::render('show_voucher', $affiliate) !!}
     <div class="row">
         <div class="col-md-4 col-md-offset-6">
-            <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Cobrar">
-                <a href="" data-target="#myModal-update" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
-                    &nbsp;<span class="glyphicon glyphicon-usd"></span>&nbsp;
-                </a>
-            </div>
+            @if(!$voucher->payment_date)
+                <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Cobrar">
+                    <a href="" data-target="#myModal-update" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
+                        &nbsp;<span class="glyphicon glyphicon-usd"></span>&nbsp;
+                    </a>
+                </div>
+            @endif
         </div>
         <div class="col-md-2 text-right">
-            <a href="{!! url('direct_contribution') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;</a>
+            <a href="{!! url('voucher') !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-warning" data-toggle="tooltip" data-placement="top" data-original-title="Atrás">&nbsp;<span class="glyphicon glyphicon-share-alt"></span>&nbsp;</a>
         </div>
     </div>
 
@@ -96,19 +98,20 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Despliegue</h3>
-                </div>
-                <div class="panel-body">
-                    <iframe src="{!! url('print_voucher/' . $voucher->id) !!}" width="99%" height="1200"></iframe>
+    @if($voucher->payment_date)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Despliegue</h3>
+                    </div>
+                    <div class="panel-body">
+                        <iframe src="{!! url('print_voucher/' . $voucher->id) !!}" width="99%" height="1200"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 </div>
 
 
@@ -121,7 +124,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::open(['url' => 'calculation_contribution', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+                {!! Form::model($voucher, ['method' => 'PATCH', 'route' => ['voucher.update', $voucher->id], 'class' => 'form-horizontal']) !!}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -148,6 +151,7 @@
                             </div>
                         </div>
                     </div>
+                    {!! Form::hidden('data', null, ['data-bind'=> 'value: ko.toJSON(model)']) !!}
                     <div class="row text-center">
                         <div class="form-group">
                             <div class="col-md-12">
@@ -155,7 +159,7 @@
                             </div>
                         </div>
                     </div>
-                    {!! Form::close() !!}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
@@ -172,7 +176,11 @@
 
         self.received = ko.observable();
         self.change = ko.computed(function() {
-            var rest = self.received() - parseFloat(voucher.total);
+            var rest = 0;
+            if (self.received()) {
+                rest = roundToTwo(parseFloat(self.received()) - parseFloat(voucher.total));
+            }
+            if (rest < 0) { rest = 0; };
             return rest ? rest : 0;
         });
 
