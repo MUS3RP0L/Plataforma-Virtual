@@ -39,7 +39,7 @@ class Applicant extends Model
         return $this->belongsTo('Muserpol\RetirementFund');
     }
 
-    public function scopeFonTraIs($query, $id)
+    public function scopeRetirementFundIs($query, $id)
     {
         return $query->where('retirement_fund_id', $id);
     }
