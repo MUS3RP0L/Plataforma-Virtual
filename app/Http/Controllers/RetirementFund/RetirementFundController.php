@@ -28,7 +28,7 @@ use Muserpol\Antecedent;
 use Muserpol\AntecedentFile;
 
 
-class FondoTramiteController extends Controller
+class RetirementFundController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -77,13 +77,13 @@ class FondoTramiteController extends Controller
     public function getData($afid){
 
         $affiliate = Affiliate::idIs($afid)->first();
-        
+
         $spouse = Spouse::affiliateidIs($afid)->first();
         if (!$spouse) {$spouse = new Spouse;}
-        
+
         $retirementfund = RetirementFund::afiIs($afid)->first();
         if (!$retirementfund) {
-            
+
             $now = Carbon::now();
             $last = RetirementFund::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             $retirementfund = new RetirementFund;
@@ -98,7 +98,7 @@ class FondoTramiteController extends Controller
 
         $applicant = Applicant::fonTraIs($retirementfund->id)->first();
         if (!$applicant) {$applicant = new Applicant;}
-        
+
          $requirement = Requirement::modalidadIs($retirementfund->retirement_fund_modality_id)->get();
          $document = Document::fonTraIs($retirementfund->id)->get();
          $antecedent = Antecedent::fonTraIs($retirementfund->id)->get();
@@ -170,7 +170,7 @@ class FondoTramiteController extends Controller
     }
 
 
-    public function print_ventanilla($afid) 
+    public function print_ventanilla($afid)
     {
         $data = $this->getData($afid);
         $affiliate = $data['affiliate'];
@@ -187,7 +187,7 @@ class FondoTramiteController extends Controller
         return $pdf->stream();
     }
 
-    public function print_certificacion($afid) 
+    public function print_certificacion($afid)
     {
         $data = $this->getData($afid);
         $affiliate = $data['affiliate'];
@@ -203,7 +203,7 @@ class FondoTramiteController extends Controller
         $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/certificacion/' . $name_input . '.pdf');
         return $pdf->stream();
     }
-    
+
     public function print_calificacion($afid)
     {
         $data = $this->getData($afid);
@@ -249,21 +249,21 @@ class FondoTramiteController extends Controller
     }
 
     public function save($request, $id = false)
-    {       
+    {
         $rules = [
-            
+
             'affiliate_id' => 'numeric',
             'retirement_fund_modality_id' => 'numeric',
         ];
 
         $messages = [
-            
-            'affiliate_id.numeric' => 'Solo se aceptan números para id afiliado', 
+
+            'affiliate_id.numeric' => 'Solo se aceptan números para id afiliado',
             'retirement_fund_modality_id.numeric' => 'Solo se aceptan números para id modalidad'
         ];
-        
+
         $validator = Validator::make($request->all(), $rules, $messages);
-        
+
         if ($validator->fails()){
             return redirect('tramite_fondo_retiro/'.$id)
             ->withErrors($validator)
@@ -309,17 +309,17 @@ class FondoTramiteController extends Controller
                             break;
                         }
                         $message = "Información General de Fondo de Retiro actualizado con éxito";
-                    }     
+                    }
                 break;
 
                 case 'docu':
                     if($retirementfund->retirement_fund_modality_id)
                     {
                         foreach (json_decode($request->data) as $item)
-                          {   
+                          {
                             $Document = Document::where('retirement_fund_id', '=', $retirementfund->id)
                                             ->where('requirement_id', '=', $item->requisito_id)->first();
-                            
+
                             if (!$Document) {
                                 $Document = new Document;
                                 $Document->retirement_fund_id = $retirementfund->id;
@@ -329,22 +329,22 @@ class FondoTramiteController extends Controller
                             $Document->reception_date = date('Y-m-d');
                             $Document->save();
 
-                            $retirementfund->reception_date = date('Y-m-d'); 
+                            $retirementfund->reception_date = date('Y-m-d');
                             $retirementfund->save();
                         }
 
                         $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
                     }else{
                         $message = "Seleccione la modalidad y la ciudad";
-                    }                
+                    }
                 break;
 
                 case 'antec':
                     foreach (json_decode($request->data) as $item)
-                    {   
+                    {
                         $antecedent = Antecedent::where('retirement_fund_id', '=', $retirementfund->id)
                                         ->where('antecedent_file_id', '=', $item->prestacion_id)->first();
-                        
+
                         if (!$antecedent) {
                             $antecedent = new Antecedent;
                             $antecedent->retirement_fund_id = $retirementfund->id;
@@ -355,7 +355,7 @@ class FondoTramiteController extends Controller
                         $antecedent->save();
                     }
 
-                     $retirementfund->check_file_date = date('Y-m-d'); 
+                     $retirementfund->check_file_date = date('Y-m-d');
                      $retirementfund->save();
 
                     $message = "Información de requisitos de Fondo de Retiro actualizado con éxito";
@@ -365,7 +365,7 @@ class FondoTramiteController extends Controller
                     $affiliate->service_start_date = Util::datePickPeriod($request->fech_ini_serv);
                     $affiliate->service_end_date = Util::datePickPeriod($request->fech_fin_serv);
                     $affiliate->save();
-                    
+
                     $retirementfund->anticipation_start_date = Util::datePickPeriod($request->fech_ini_anti);
                     $retirementfund->anticipation_end_date = Util::datePickPeriod($request->fech_fin_anti);
 
@@ -373,16 +373,16 @@ class FondoTramiteController extends Controller
                     $retirementfund->recognized_end_date = Util::datePickPeriod($request->fech_fin_reco);
                     $retirementfund->save();
 
-                    $retirementfund->qualification_date = date('Y-m-d'); 
+                    $retirementfund->qualification_date = date('Y-m-d');
                     $retirementfund->save();
-                    
+
                     $message = "Información de Periodos de Aporte actualizado con éxito";
                 break;
 
             }
             Session::flash('message', $message);
         }
-        
+
         return redirect('tramite_fondo_retiro/'.$id);
     }
 

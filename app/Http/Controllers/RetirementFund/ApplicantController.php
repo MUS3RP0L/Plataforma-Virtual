@@ -20,7 +20,7 @@ use Muserpol\Applicant;
 use Muserpol\ApplicantType;
 use Muserpol\RetirementFund;
 
-class SolicitanteController extends Controller
+class ApplicantController extends Controller
 {
     /**
      * Display a listing of the resource.
