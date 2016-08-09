@@ -88,14 +88,15 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('print_voucher/{voucher_id}', 'Voucher\VoucherController@PrintVoucher');
 
 	// Applicant
-	Route::resource('applicant', 'ApplicantController');
+	Route::resource('applicant', 'RetirementFund\ApplicantController');
 
 	// Retirement Fund
-	Route::resource('retirement_fund', 'RetirementFundController');
-	Route::get('tramite_fondo_retiro_ventanilla/{afid}', 'FondoTramiteController@print_ventanilla');
-	Route::get('tramite_fondo_retiro_certificacion/{afid}', 'FondoTramiteController@print_certificacion');
-	Route::get('tramite_fondo_retiro_calificacion/{afid}', 'FondoTramiteController@print_calificacion');
-	Route::get('tramite_fondo_retiro_dictamenlegal/{afid}', 'FondoTramiteController@print_dictamenlegal');
+	Route::resource('retirement_fund', 'RetirementFund\RetirementFundController');
+
+	Route::get('retirement_fund_print_reception/{afid}', 'RetirementFund\RetirementFundController@print_reception');
+	Route::get('retirement_fund_print_certification/{afid}', 'RetirementFund\RetirementFundController@print_certification');
+	Route::get('retirement_fund_print_qualification/{afid}', 'RetirementFund\RetirementFundController@print_qualification');
+	Route::get('retirement_fund_print_dictamenlegal/{afid}', 'RetirementFund\RetirementFundController@print_dictamenlegal');
 
 });
 

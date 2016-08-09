@@ -85,6 +85,11 @@
         $breadcrumbs->push('Comprobante de Cobro', URL::to('voucher'));
     });
 
+    // Retirement Funds
+    Breadcrumbs::register('retirement_funds', function($breadcrumbs) {
+        $breadcrumbs->push('Trámites de Fondo de Retiro');
+    });
+
     // Retirement Fund
     Breadcrumbs::register('retirement_fund', function($breadcrumbs, $affiliate) {
         $breadcrumbs->parent('show_affiliate', $affiliate);
