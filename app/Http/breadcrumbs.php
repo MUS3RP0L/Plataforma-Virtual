@@ -74,7 +74,6 @@
         $breadcrumbs->push('Comprobante de Aporte Directo', URL::to('aportepago'));
     });
 
-
     //Show vouchers
     Breadcrumbs::register('show_vouchers', function($breadcrumbs) {
         $breadcrumbs->push('Comprobantes de Cobros', URL::to('voucher'));
@@ -86,11 +85,8 @@
         $breadcrumbs->push('Comprobante de Cobro', URL::to('voucher'));
     });
 
-
-
-
-// Fondo de Retiro
-Breadcrumbs::register('fondo_tramite', function($breadcrumbs, $afiliado) {
-    $breadcrumbs->parent('show_afiliado', $afiliado);
-    $breadcrumbs->push('Trámite de Fondo de Retiro');
-});
+    // Retirement Fund
+    Breadcrumbs::register('retirement_fund', function($breadcrumbs, $affiliate) {
+        $breadcrumbs->parent('show_affiliate', $affiliate);
+        $breadcrumbs->push('Trámite de Fondo de Retiro');
+    });
