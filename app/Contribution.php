@@ -23,6 +23,7 @@ class Contribution extends Model
         'direct_contribution_id',
         'degree_id',
         'unit_id',
+        'breakdown_id',
         'category_id',
     	'month_year',
         'item',

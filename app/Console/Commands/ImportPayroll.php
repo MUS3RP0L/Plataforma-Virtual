@@ -232,6 +232,7 @@ class ImportPayroll extends Command
                                 if ($result->uni) {
                                     $contribution->unit_id = $unit_id;
                                 }
+                                $contribution->breakdown_id = $breakdown_id;
                                 if ($result->gra) {
                                     $contribution->degree_id = $degree_id;
                                 }

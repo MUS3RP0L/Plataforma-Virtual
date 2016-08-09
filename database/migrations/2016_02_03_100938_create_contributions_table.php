@@ -55,6 +55,7 @@ class CreateContributionsTable extends Migration
             $table->UnsignedBigInteger('direct_contribution_id')->nullable();
             $table->UnsignedBigInteger('degree_id')->nullable();
             $table->UnsignedBigInteger('unit_id')->nullable();
+            $table->UnsignedBigInteger('breakdown_id')->nullable();
             $table->UnsignedBigInteger('category_id')->nullable();
             $table->date('month_year')->required();
             $table->string('item')->nullable();
