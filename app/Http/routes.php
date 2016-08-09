@@ -83,6 +83,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// Vouchers
 	Route::resource('voucher', 'Voucher\VoucherController');
+
 	Route::get('get_voucher', array('as'=>'get_voucher', 'uses'=>'Voucher\VoucherController@Data'));
 
 	Route::get('print_voucher/{voucher_id}', 'Voucher\VoucherController@PrintVoucher');
@@ -92,6 +93,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// Retirement Fund
 	Route::resource('retirement_fund', 'RetirementFund\RetirementFundController');
+
+	Route::get('get_retirement_fund', array('as'=>'get_retirement_fund', 'uses'=>'RetirementFund\RetirementFundController@Data'));
 
 	Route::get('retirement_fund_print_reception/{afid}', 'RetirementFund\RetirementFundController@print_reception');
 	Route::get('retirement_fund_print_certification/{afid}', 'RetirementFund\RetirementFundController@print_certification');

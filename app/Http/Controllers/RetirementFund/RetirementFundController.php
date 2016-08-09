@@ -1,6 +1,6 @@
 <?php
 
-namespace Muserpol\Http\Controllers;
+namespace Muserpol\Http\Controllers\RetirementFund;
 
 use Illuminate\Http\Request;
 
@@ -35,19 +35,65 @@ class RetirementFundController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        $retirement_fund_modality = RetirementFundModality::all();
+        $retirement_fund_modality_list =  ['' => ''];
+        foreach ($retirement_fund_modality as $item) {
+            $retirement_fund_modality_list[$item->id]=$item->name;
+        }
+
+        $data = [
+
+            'retirement_fund_modality_list' => $retirement_fund_modality_list
+
+        ];
+
+        return view('retirement_funds.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function Data(Request $request)
     {
-        //
+        $retirement_funds = RetirementFund::select(['id', 'affiliate_id', 'retirement_fund_modality_id', 'code', 'created_at', 'total']);
+
+        if ($request->has('code'))
+        {
+            $retirement_funds->where(function($retirement_funds) use ($request)
+            {
+                $code = trim($request->get('code'));
+                $retirement_funds->where('code', 'like', "%{$code}%");
+            });
+        }
+        if ($request->has('affiliate_name'))
+        {
+            $retirement_funds->where(function($retirement_funds) use ($request)
+            {
+                $affiliate_name = trim($request->get('affiliate_name'));
+                $retirement_funds->where('affiliate_name', 'like', "%{$affiliate_name}%");
+            });
+        }
+        if ($request->has('retirement_fund_modality_id'))
+        {
+            $retirement_funds->where(function($retirement_funds) use ($request)
+            {
+                $retirement_fund_modality_id = trim($request->get('retirement_fund_modality_id'));
+                $retirement_funds->where('retirement_fund_modality_id', 'like', "%{$retirement_fund_modality_id}%");
+            });
+        }
+
+        return Datatables::of($retirement_funds)
+                ->addColumn('affiliate_name', function ($retirement_fund) { return $retirement_fund->affiliate->getTittleName(); })
+                ->addColumn('total', function ($retirement_fund) { return Util::formatMoney($retirement_fund->total); })
+                ->addColumn('action', function ($retirement_fund) { return
+                    '<div class="btn-group" style="margin:-3px 0;">
+                        <a href="retirement_fund/'.$retirement_fund->id.'" class="btn btn-primary btn-raised btn-sm">&nbsp;&nbsp;<i class="glyphicon glyphicon-eye-open"></i>&nbsp;&nbsp;</a>
+                        <a href="" class="btn btn-primary btn-raised btn-sm dropdown-toggle" data-toggle="dropdown">&nbsp;<span class="caret"></span>&nbsp;</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="retirement_fund/delete/ '.$retirement_fund->id.' " style="padding:3px 10px;"><i class="glyphicon glyphicon-ban-circle"></i> Anular</a></li>
+                        </ul>
+                    </div>';})
+                ->make(true);
     }
 
     public static function getViewModel()
