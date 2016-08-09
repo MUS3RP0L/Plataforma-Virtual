@@ -18,7 +18,7 @@ class RetirementFund extends Model
     protected $dates = ['deleted_at'];
 
 	protected $fillable = [
-		
+
 		'affiliate_id',
 		'retirement_fund_modality_id',
 		'city_id',
@@ -33,11 +33,11 @@ class RetirementFund extends Model
         'recognized_end_date',
         'total_quotable',
         'total_additional_quotable',
-        'rensubtotaldimiento',
+        'subtotal',
         'performance',
         'total',
         'comment'
-		
+
 	];
 
 	protected $guarded = ['id'];
@@ -71,7 +71,7 @@ class RetirementFund extends Model
     {
         return $this->hasMany('Muserpol\Applicant');
     }
-    
+
     public function scopeIdIs($query, $id)
     {
         return $query->where('id', $id)->where('deleted_at', '=', null)->orderBy('id', 'desc');
@@ -86,15 +86,15 @@ class RetirementFund extends Model
        return $query = DB::table('retirement_funds')
                     ->select(DB::raw('COUNT(*) total, month(retirement_funds.reception_date) as month'))
                     ->whereMonth('retirement_funds.reception_date', '=', $month)
-                    ->whereYear('retirement_funds.reception_date', '=', $year);        
-    }  
+                    ->whereYear('retirement_funds.reception_date', '=', $year);
+    }
 
     public function getFull_fech_ini_anti()
-    {   
+    {
         return Util::getdateabreperiod($this->fech_ini_anti);
     }
     public function getFull_fech_fin_anti()
-    {   
+    {
         return Util::getdateabreperiod($this->fech_fin_anti);
     }
     public function getYearsAndMonths_fech_ini_anti()
@@ -103,11 +103,11 @@ class RetirementFund extends Model
     }
 
     public function getFull_fech_ini_reco()
-    {   
+    {
         return Util::getdateabreperiod($this->fech_ini_reco);
     }
     public function getFull_fech_fin_reco()
-    {   
+    {
         return Util::getdateabreperiod($this->fech_fin_reco);
     }
     public function getYearsAndMonths_fech_ini_reco()
@@ -136,18 +136,18 @@ class RetirementFund extends Model
             return "VENTANILLA";
         }
     }
-    
+
 
 }
 
 RetirementFund::created(function($retirementfund)
 {
     Activity::createdRetirementFund($retirementfund);
-    
+
 });
 
 RetirementFund::updating(function($retirementfund)
 {
     Activity::updateRetirementFund($retirementfund);
-    
+
 });
