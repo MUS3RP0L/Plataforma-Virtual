@@ -1,6 +1,6 @@
 <?php
 
-namespace Muserpol\Http\Controllers;
+namespace Muserpol\Http\Controllers\RetirementFund;
 
 use Illuminate\Http\Request;
 
@@ -22,58 +22,6 @@ use Muserpol\RetirementFund;
 
 class ApplicantController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -82,91 +30,72 @@ class ApplicantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, $retirement_fund_id)
     {
-        return $this->save($request, $id);
+        return $this->save($request, $retirement_fund_id);
     }
 
-    public function save($request, $id = false)
+    public function save($request, $retirement_fund_id = false)
     {
         $rules = [
-            'ci' => 'min:4',
-            'pat' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'nom' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'tele_domi' =>'numeric',
-            'celu_domi' =>'numeric',
 
+            'identity_card' => 'min:4',
+            'last_name' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'first_name' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'home_address' =>'numeric',
+            'home_phone_number' =>'numeric',
         ];
 
         $messages = [
-            'ci.min' => 'El mínimo de caracteres permitidos para Carnet de Identidad es 4',
-            'pat.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3',
-            'pat.regex' => 'Sólo se aceptan letras para apellido paterno',
 
-            'nom.min' => 'El mínimo de caracteres permitidos para nombres es 3',
-            'nom.regex' => 'Sólo se aceptan letras para primer nombre',
-            'tele_domi.numeric' => 'Sólo se aceptan números para teléfono',
-            'celu_domi.numeric' => 'Sólo se aceptan números para celular',
-
-
+            'identity_card.min' => 'El mínimo de caracteres permitidos para Carnet de Identidad es 4',
+            'last_name.min' => 'El mínimo de caracteres permitidos para apellido paterno es 3',
+            'last_name.regex' => 'Sólo se aceptan letras para apellido paterno',
+            'first_name.min' => 'El mínimo de caracteres permitidos para nombres es 3',
+            'first_name.regex' => 'Sólo se aceptan letras para primer nombre',
+            'home_address.numeric' => 'Sólo se aceptan números para teléfono',
+            'home_phone_number.numeric' => 'Sólo se aceptan números para celular',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()){
-            return redirect('tramite_fondo_retiro/'.$id)
+            return redirect('retirement_fund/'.$retirement_fund_id)
             ->withErrors($validator)
             ->withInput();
         }
         else{
 
-            $RetirementFund = RetirementFund::afiIs($id)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
-            $Applicant = Applicant::fonTraIs($RetirementFund->id)->orderBy('id', 'asc')->first();
+            $RetirementFund = RetirementFund::afiIs($retirement_fund_id)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
+            $Applicant = Applicant::retirementFundIs($RetirementFund->id)->orderBy('id', 'asc')->first();
 
             if (!$Applicant) {
                 $Applicant = new Applicant;
             }
 
-            switch ($request->type) {
-                case 'soli':
+            $ApplicantType = ApplicantType::where('id', '=', $request->type_applicant)->first();
+            $Applicant->applicant_type_id = $ApplicantType->id;
+            $Applicant->retirement_fund_id = $RetirementFund->id;
+            $Applicant->identity_card = trim($request->identity_card);
+            $Applicant->last_name = trim($request->last_name);
+            $Applicant->mothers_last_name = trim($request->mothers_last_name);
+            $Applicant->first_name = trim($request->first_name);
+            $Applicant->kinship = trim($request->kinship);
+            $Applicant->home_address = trim($request->home_address);
+            $Applicant->home_phone_number = trim($request->home_phone_number);
+            $Applicant->home_cell_phone_number = trim($request->home_cell_phone_number);
+            $Applicant->work_address = trim($request->work_address);
 
-                    $ApplicantType = ApplicantType::where('id', '=', $request->type_soli)->first();
-                    $Applicant->applicant_type_id = $ApplicantType->id;
+            $Applicant->save();
 
-                    $Applicant->retirement_fund_id = $RetirementFund->id;
+            $message = "Información de Solicitante actualizada con éxito";
 
-                    $Applicant->identity_card = trim($request->ci);
-                    $Applicant->last_name = trim($request->pat);
-                    $Applicant->mothers_last_name = trim($request->mat);
-                    $Applicant->first_name = trim($request->nom);
-
-                    $Applicant->kinship = trim($request->paren);
-
-                    $Applicant->home_address = trim($request->direc_domi);
-                    $Applicant->home_phone_number = trim($request->tele_domi);
-                    $Applicant->home_cell_phone_number = trim($request->celu_domi);
-
-                    $Applicant->work_address = trim($request->direc_trab);
-
-                    $Applicant->save();
-
-                    $message = "Información de Solicitante actualizada con éxito";
-                    break;
             }
             Session::flash('message', $message);
         }
 
-        return redirect('tramite_fondo_retiro/'.$id);
+        return redirect('retirement_fund/'.$retirement_fund_id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
