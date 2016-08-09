@@ -243,13 +243,13 @@ class DirectContributionController extends Controller
             $affiliate = Affiliate::IdIs($request->affiliate_id)->first();
             $last_direct_contribution = DirectContribution::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             if ($last_direct_contribution) {
-                $number_code = util::$number($last_direct_contribution->code);
+                $number_code = Util::separateCode($last_direct_contribution->code);
                 $code = $number_code + 1;
             }else{
                 $code = 1;
             }
+            
             $direct_contribution->code = $code . "/" . $now->year;
-
             $direct_contribution->user_id = Auth::user()->id;
             $direct_contribution->affiliate_id = $request->affiliate_id;
             $direct_contribution->affiliate_name = $affiliate->getTittleName();
