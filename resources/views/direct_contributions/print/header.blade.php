@@ -45,7 +45,7 @@
       </table>
       <h1>
         <b>
-          FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
+          PAGO DE APORTES DIRECTOS<br>
           {{-- MODALIDAD: {!! $retirementfund->retirement_fund_modality->name !!}<br> --}}
           @yield('title2')
         </b>
