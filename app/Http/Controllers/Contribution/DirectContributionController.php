@@ -363,7 +363,21 @@ class DirectContributionController extends Controller
         $hour = Carbon::parse($current_date)->toTimeString();
         $view = \View::make('direct_contributions.print.show', compact('header1','header2','title','date','hour','direct_contribution','affiliate'))->render();
         $pdf = \App::make('dompdf.wrapper');
-        $name_input = $direct_contribution->id;
+        $pdf->loadHTML($view)->setPaper('letter');
+        return $pdf->stream();
+    }
+
+    public function PrintCompromise($id)
+    {
+        $header1 = "DIRECCIÓN DE BENEFICIOS ECONÓMICOS";
+        $header2 = "UNIDAD DE FONDO DE RETIRO POLICIAL INDIVIDUAL";
+        $title = "COMPROMISO DE PAGO DE APORTES EN FORMA DIRECTA AL BENEFICIO ECONOMICO DEL SEGURO DE VIDA TITULARES";
+        $affiliate = Affiliate::IdIs($id)->first();
+        $date = Util::getDateEdit(date('Y-m-d'));
+        $current_date = Carbon::now();
+        $hour = Carbon::parse($current_date)->toTimeString();
+        $view = \View::make('direct_contributions.print.compromise', compact('header1','header2','title','date','hour','affiliate'))->render();
+        $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper('letter');
         return $pdf->stream();
     }

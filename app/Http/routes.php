@@ -87,6 +87,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('get_voucher', array('as'=>'get_voucher', 'uses'=>'Voucher\VoucherController@Data'));
 
 	Route::get('print_voucher/{voucher_id}', 'Voucher\VoucherController@PrintVoucher');
+	Route::get('print_compromise/{afid}', 'Contribution\DirectContributionController@PrintCompromise');
 
 	// Applicant
 	Route::resource('applicant', 'RetirementFund\ApplicantController');

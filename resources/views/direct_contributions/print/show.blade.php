@@ -9,15 +9,13 @@
             <td class="info" style="border: 0px;">N°: {{ trim($direct_contribution->code) }}  </td>
             <td class="info" style="border: 0px;" >Titular: {{ trim($affiliate->getTittleName()) }}</td>
             <td class="info" style="border: 0px;" >Matrícula: {{ $affiliate->registration }}</td>
-
         </tr>
-
         <tr>
             <td class="info" style="border: 0px;" > Tipo: {{ $affiliate->affiliate_state->name }}</td>
             <td class="info" style="border: 0px;" > Grado: {{ $affiliate->degree->name }}</td>
         </tr>
     </table>
-    
+
 </div>
 <div id="project">
     <table>

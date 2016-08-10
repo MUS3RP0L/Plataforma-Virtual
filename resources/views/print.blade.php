@@ -40,7 +40,7 @@
       </table>
       <h1>
         <b><br>
-          {{ $title }} <br>
+          <center>{{ $title }}</center> <br>
           @yield('title2')
         </b>
       </h1>
