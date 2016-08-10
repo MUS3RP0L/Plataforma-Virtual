@@ -9,7 +9,7 @@ class Requirement extends Model
     protected $table = 'requirements';
 
 	protected $fillable = [
-		
+
         'retirement_fund_modality_id',
 		'name',
         'shortened'
@@ -27,7 +27,7 @@ class Requirement extends Model
         return $this->hasMany('Muserpol\Document');
     }
 
-    public function scopeModalidadIs($query, $id)
+    public function scopeModalityIs($query, $id)
     {
         return $query->where('retirement_fund_modality_id', $id);
     }
