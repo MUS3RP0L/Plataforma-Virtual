@@ -734,6 +734,9 @@
 
 
 
+
+
+
 <div id="myModal-modality" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog">
         <div class="modal-content panel-warning">
@@ -913,9 +916,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <div id="myModal-requisitos" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
