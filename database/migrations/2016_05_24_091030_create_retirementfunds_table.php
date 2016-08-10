@@ -27,7 +27,7 @@ class CreateRetirementFundsTable extends Migration
             $table->UnsignedBigInteger('affiliate_id');
             $table->UnsignedBigInteger('retirement_fund_modality_id')->nullable();
             $table->UnsignedBigInteger('city_id')->nullable();
-            $table->string('code');
+            $table->string('code')->unique()->required();
             $table->date('reception_date')->nullable();
             $table->date('check_file_date')->nullable();
             $table->date('qualification_date')->nullable();
