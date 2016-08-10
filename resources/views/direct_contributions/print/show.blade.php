@@ -25,13 +25,8 @@
 <div id="project">
     <table>
       <tr>
-        <th colspan="2" class="grand service" style="text-align:left;">Periodo: {{ $direct_contribution->period() }}  </th>
+          <td colspan="6" class="grand service" style="text-align:center;">Periodo: {{ $direct_contribution->period() }}  </td>
       </tr>
-    </table>
-</div>
-
-<div id="project">
-    <table>
       <tr>
         <td class="grand service" style="text-align:center;" >Cotizable</td>
         <td class="grand service" style="text-align:center;">Aporte</td>
