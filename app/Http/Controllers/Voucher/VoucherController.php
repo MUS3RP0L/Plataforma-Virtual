@@ -188,17 +188,20 @@ class VoucherController extends Controller
 
     public function PrintVoucher($id)
     {
-        // $direct_contribution = DirectContribution::idIs($id)->first();
-        // $affiliate = Affiliate::IdIs($direct_contribution->affiliate_id)->first();
-        // $date = Util::getDateEdit(date('Y-m-d'));
-        //
-        // $current_date = Carbon::now();
-        // $hour = Carbon::parse($current_date)->toTimeString();
-        // $view = \View::make('direct_contributions.print.show', compact('direct_contribution','affiliate','date','hour'))->render();
-        // $pdf = \App::make('dompdf.wrapper');
-        // $name_input = $direct_contribution->id;
-        // $pdf->loadHTML($view)->setPaper('letter');
-        // return $pdf->stream();
+        $header1 = "DIRECCIÓN DE BENEFICIOS ECONÓMICOS";
+        $header2 = "UNIDAD DE FONDO DE RETIRO POLICIAL INDIVIDUAL";
+        $title = "RECIBO OFICIAL";
+        $date = Util::getDateEdit(date('Y-m-d'));
+        $current_date = Carbon::now();
+        $hour = Carbon::parse($current_date)->toTimeString();
+        $direct_contribution = DirectContribution::idIs($id)->first();
+        $voucher = Voucher::idIs($id)->first();
+        $affiliate = Affiliate::IdIs($voucher->affiliate_id)->first();
+
+        $view = \View::make('vouchers.print.show', compact('header1','header2','title','date','hour', 'affiliate','voucher', 'direct_contribution'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view)->setPaper('letter');
+        return $pdf->stream();
     }
 
 

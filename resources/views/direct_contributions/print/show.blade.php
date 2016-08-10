@@ -1,4 +1,4 @@
-@extends('direct_contributions.print.header')
+@extends('print')
 
 @section('content')
 
@@ -17,7 +17,7 @@
     </tr>
     <tr>
       <th style="border: 0px;text-align:left;">
-        Titular: {{ $affiliate->degree->name }}
+        Grado: {{ $affiliate->degree->name }}
       </th>
     </tr>
 </table>
@@ -34,8 +34,8 @@
     <table>
       <tr>
         <td class="grand service" style="text-align:center;" >Cotizable</td>
-        <td class="grand service" style="text-align:center;">Aporte
-        <td class="grand service" style="text-align:center;">F.R.P.</td></td>
+        <td class="grand service" style="text-align:center;">Aporte</td>
+        <td class="grand service" style="text-align:center;">F.R.P.</td>
         <td class="grand service" style="text-align:center;">Cuota Mortuoria</td>
         <td class="grand service" style="text-align:center;">Ajuste IPC</td>
         <td class="grand service" style="text-align:center;">Total Aporte</td>

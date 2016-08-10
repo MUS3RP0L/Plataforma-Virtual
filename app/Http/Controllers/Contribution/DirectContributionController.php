@@ -352,13 +352,16 @@ class DirectContributionController extends Controller
 
     public function PrintDirectContribution($id)
     {
+        $header1 = "DIRECCIÓN DE BENEFICIOS ECONÓMICOS";
+        $header2 = "UNIDAD DE FONDO DE RETIRO POLICIAL INDIVIDUAL";
+        $title = "PAGO DE APORTES DIRECTOS";
         $direct_contribution = DirectContribution::idIs($id)->first();
         $affiliate = Affiliate::IdIs($direct_contribution->affiliate_id)->first();
         $date = Util::getDateEdit(date('Y-m-d'));
 
         $current_date = Carbon::now();
         $hour = Carbon::parse($current_date)->toTimeString();
-        $view = \View::make('direct_contributions.print.show', compact('direct_contribution','affiliate','date','hour'))->render();
+        $view = \View::make('direct_contributions.print.show', compact('header1','header2','title','date','hour','direct_contribution','affiliate'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $direct_contribution->id;
         $pdf->loadHTML($view)->setPaper('letter');
