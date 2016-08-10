@@ -61,41 +61,40 @@ class ApplicantController extends Controller
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()){
-            return redirect('retirement_fund/'.$retirement_fund_id)
+            return redirect('retirement_fund/' . $retirement_fund_id)
             ->withErrors($validator)
             ->withInput();
         }
         else{
 
             $RetirementFund = RetirementFund::afiIs($retirement_fund_id)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
-            $Applicant = Applicant::retirementFundIs($RetirementFund->id)->orderBy('id', 'asc')->first();
+            $applicant = Applicant::retirementFundIs($RetirementFund->id)->orderBy('id', 'asc')->first();
 
-            if (!$Applicant) {
-                $Applicant = new Applicant;
+            if (!$applicant) {
+                $applicant = new Applicant;
             }
 
-            $ApplicantType = ApplicantType::where('id', '=', $request->type_applicant)->first();
-            $Applicant->applicant_type_id = $ApplicantType->id;
-            $Applicant->retirement_fund_id = $RetirementFund->id;
-            $Applicant->identity_card = trim($request->identity_card);
-            $Applicant->last_name = trim($request->last_name);
-            $Applicant->mothers_last_name = trim($request->mothers_last_name);
-            $Applicant->first_name = trim($request->first_name);
-            $Applicant->kinship = trim($request->kinship);
-            $Applicant->home_address = trim($request->home_address);
-            $Applicant->home_phone_number = trim($request->home_phone_number);
-            $Applicant->home_cell_phone_number = trim($request->home_cell_phone_number);
-            $Applicant->work_address = trim($request->work_address);
+            $applicant_type = ApplicantType::where('id', '=', $request->type_applicant)->first();
+            $applicant->applicant_type_id = $applicant_type->id;
+            $applicant->retirement_fund_id = $RetirementFund->id;
+            $applicant->identity_card = trim($request->identity_card);
+            $applicant->last_name = trim($request->last_name);
+            $applicant->mothers_last_name = trim($request->mothers_last_name);
+            $applicant->first_name = trim($request->first_name);
+            $applicant->kinship = trim($request->kinship);
+            $applicant->home_address = trim($request->home_address);
+            $applicant->home_phone_number = trim($request->home_phone_number);
+            $applicant->home_cell_phone_number = trim($request->home_cell_phone_number);
+            $applicant->work_address = trim($request->work_address);
 
-            $Applicant->save();
+            $applicant->save();
 
             $message = "Información de Solicitante actualizada con éxito";
 
             }
             Session::flash('message', $message);
-        }
 
-        return redirect('retirement_fund/'.$retirement_fund_id);
+        return redirect('retirement_fund/' . $retirement_fund_id);
     }
 
 }

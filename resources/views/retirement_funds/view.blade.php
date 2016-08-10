@@ -239,7 +239,7 @@
                                                             Nombre(s)
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $applicant->name !!}
+                                                            {!! $applicant->first_name !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -301,20 +301,19 @@
 
                                 @else
                                     @if($info_modality == 1)
-                                    <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-applicant">
-                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante">
-                                                <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">
-                                            </button>
+                                        <div class="row text-center">
+                                            <div data-toggle="modal" data-target="#myModal-applicant">
+                                                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante">
+                                                    <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
                                     @else
-                                    <div class="row text-center">
-
+                                        <div class="row text-center">
                                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal-applicant" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante" disabled="disabled">
                                                 <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">
                                             </button>
-                                    </div>
+                                        </div>
                                     @endif
                                 @endif
                             </div>
@@ -829,37 +828,37 @@
                     <div class="col-md-3">
                         <div class="form-group label-floating" data-bind="fadeVisible: parenShow">
                             <label class="control-label" for="focusedInput2">Parentesco</label>
-                            {!! Form::text('paren', $applicant->kinship, ['class'=> 'form-control', 'id'=> 'focusedInput2', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                            {!! Form::text('kinship', $applicant->kinship, ['class'=> 'form-control', 'id'=> 'focusedInput2', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group">
-                                {!! Form::label('ci', 'Carnet Identidad', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('identity_card', 'Carnet Identidad', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('ci', $applicant->identity_card,['class'=> 'form-control', 'required', 'data-bind' => 'value: soli_ci']) !!}
+                                {!! Form::text('identity_card', $applicant->identity_card,['class'=> 'form-control', 'required', 'data-bind' => 'value: soli_ci']) !!}
                                 <span class="help-block">Núm. Carnet de Identidad</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('pat', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('last_name', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('pat', $applicant->last_name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
+                                {!! Form::text('last_name', $applicant->last_name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
                                 <span class="help-block">Escriba Apellido Paterno</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('mat', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('mothers_last_name', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('mat', $applicant->mothers_last_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mat']) !!}
+                                {!! Form::text('mothers_last_name', $applicant->mothers_last_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mat']) !!}
                                 <span class="help-block">Escriba Apellido Materno</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('nom', 'Nombre(s)', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('first_name', 'Nombre(s)', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('nom', $applicant->name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
+                                {!! Form::text('first_name', $applicant->first_name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
                                 <span class="help-block">Escriba los Nombre(s)</span>
                             </div>
                         </div>
@@ -867,30 +866,30 @@
 
                     <div class="col-md-7">
                         <div class="form-group">
-                                {!! Form::label('direc_domi', 'Domicilio  Actual', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('home_address', 'Domicilio  Actual', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('direc_domi', $applicant->home_address, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_direc_domi']) !!}
+                                {!! Form::text('home_address', $applicant->home_address, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_direc_domi']) !!}
                                 <span class="help-block">Escriba Domicilio Actual</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('tele_domi', 'Teléfono fijo', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('home_phone_number', 'Teléfono fijo', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('tele_domi', $applicant->home_phone_number, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_tele_domi']) !!}
+                                {!! Form::text('home_phone_number', $applicant->home_phone_number, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_tele_domi']) !!}
                                 <span class="help-block">Escriba Número Teléfono fijo</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('celu_domi', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('home_cell_phone_number', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('celu_domi', $applicant->home_cell_phone_number, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_celu']) !!}
+                                {!! Form::text('home_cell_phone_number', $applicant->home_cell_phone_number, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_celu']) !!}
                                 <span class="help-block">Escriba NúmeroTeléfono Celular</span>
                             </div>
                         </div>
                         <div class="form-group">
-                                {!! Form::label('direc_trab', 'Domicilio Trabajo', ['class' => 'col-md-5 control-label']) !!}
+                                {!! Form::label('home_address', 'Domicilio Trabajo', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('direc_trab', $applicant->home_address, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
+                                {!! Form::text('home_address', $applicant->home_address, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()']) !!}
                                 <span class="help-block">Escriba Domicilio de Trabajo</span>
                             </div>
                         </div>
@@ -1320,7 +1319,7 @@
 
         this.lastSavedJson2 = ko.observable("");
 
-        this.typeToShow = ko.observable('' + applicant.soli_type_id);
+        this.typeToShow = ko.observable('' + applicant.applicant_type_id);
         this.parenShow = ko.observable(false);
         this.parenShow = ko.pureComputed(function() {
             var desiredType = this.typeToShow();
