@@ -67,6 +67,19 @@ class ImportPayroll extends Command
                         ini_set('max_input_time', '-1');
                         set_time_limit('-1');
 
+                        if (!isset($result->car) or !isset($result->pat) or !isset($result->mat) or !isset($result->nom) or
+                            !isset($result->nom2) or !isset($result->apes) or !isset($result->eciv) or !isset($result->sex) or
+                            !isset($result->nac) or !isset($result->ing) or !isset($result->mes) or !isset($result->a_o) or
+                            !isset($result->uni) or !isset($result->desg) or !isset($result->niv) or !isset($result->gra) or
+                            !isset($result->item) or !isset($result->sue) or !isset($result->cat) or !isset($result->est) or
+                            !isset($result->carg) or !isset($result->fro) or !isset($result->ori) or !isset($result->bseg) or
+                            !isset($result->dfu) or !isset($result->nat) or !isset($result->lac) or !isset($result->pre) or
+                            !isset($result->sub) or !isset($result->gan) or !isset($result->afp) or !isset($result->pag) or
+                            !isset($result->nua) or !isset($result->mus)) {
+                            $this->error('Missing columns in the file!');
+                            exit();
+                        }
+
                         switch ($FolderName) {
 
                             case 'c1':
