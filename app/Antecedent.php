@@ -30,18 +30,18 @@ class Antecedent extends Model
         return $this->belongsTo('Muserpol\AntecedentFile');
     }
 
-    public function scopeFonTraIs($query, $id)
+    public function scopeRetirementFundIs($query, $id)
     {
         return $query->where('retirement_fund_id', $id);
     }
 
     public function getData_fech_requi()
-    {   
+    {
         return Util::getdateabre($this->fech_pres);
     }
 
     public function getDataEdit()
-    {   
+    {
         return Util::getdateforEdit($this->fecha);
     }
 
@@ -50,11 +50,11 @@ class Antecedent extends Model
 Antecedent::created(function($antecedent)
 {
     Activity::createdAntecedent($antecedent);
-    
+
 });
 
 Antecedent::updating(function($antecedent)
 {
     Activity::updateAntecedent($antecedent);
-    
+
 });
