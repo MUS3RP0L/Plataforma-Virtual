@@ -144,36 +144,36 @@ class RetirementFundController extends Controller
         $applicant = Applicant::retirementFundIs($retirement_fund->id)->first();
         if (!$applicant) {$applicant = new Applicant;}
 
-         $requirement = Requirement::modalityIs($retirement_fund->retirement_fund_modality_id)->get();
-         $document = Document::retirementFundIs($retirement_fund->id)->get();
-         $antecedent = Antecedent::retirementFundIs($retirement_fund->id)->get();
+         $requirements = Requirement::modalityIs($retirement_fund->retirement_fund_modality_id)->get();
+         $documents = Document::retirementFundIs($retirement_fund->id)->get();
+         $antecedents = Antecedent::retirementFundIs($retirement_fund->id)->get();
 
         if ($retirement_fund->retirement_fund_modality_id) {
-            $info_gen = TRUE;
+            $info_modality = TRUE;
         }else{
-            $info_gen = FALSE;
+            $info_modality = FALSE;
         }
         if ($applicant->identity_card) {
-            $info_soli = TRUE;
+            $info_applicant = TRUE;
         }else{
-            $info_soli = FALSE;
+            $info_applicant = FALSE;
         }
         if (Document::retirementFundIs($retirement_fund->id)->first()) {
-            $info_docu = TRUE;
+            $info_documents = TRUE;
         }else{
-            $info_docu = FALSE;
+            $info_documents = FALSE;
         }
 
         if (Antecedent::retirementFundIs($retirement_fund->id)->first()) {
-            $info_antec = TRUE;
+            $info_antecedents = TRUE;
         }else{
-            $info_antec = FALSE;
+            $info_antecedents = FALSE;
         }
 
         if ($retirement_fund->comment) {
-            $info_obs = TRUE;
+            $info_comment = TRUE;
         }else{
-            $info_obs = FALSE;
+            $info_comment = FALSE;
         }
 
         $lastContribution = Contribution::affiliateidIs($affiliate->id)->orderBy('month_year', 'desc')->first();
@@ -185,15 +185,14 @@ class RetirementFundController extends Controller
             'spouse' => $spouse,
             'retirement_fund' => $retirement_fund,
             'applicant' => $applicant,
-            'requirement' => $requirement,
-            'document' => $document,
-            'antecedent' => $antecedent,
-            'antecedent2' => $antecedent,
-            'info_gen' => $info_gen,
-            'info_soli' => $info_soli,
-            'info_docu' => $info_docu,
-            'info_obs' => $info_obs,
-            'info_antec' => $info_antec
+            'requirements' => $requirements,
+            'document' => $documents,
+            'antecedents' => $antecedents,
+            'info_modality' => $info_modality,
+            'info_applicant' => $info_applicant,
+            'info_documents' => $info_documents,
+            'info_antecedents' => $info_antecedents,
+            'info_comment' => $info_comment
         );
 
         $data = array_merge($data, self::getViewModel());
@@ -320,21 +319,21 @@ class RetirementFundController extends Controller
 
             switch ($request->type) {
 
-                case 'gene':
+                case 'form_modality':
 
-                    if($request->modalidad == 4 && $affiliate->date_decommissioned == null)
+                    if($request->modality == 4 && $affiliate->date_decommissioned == null)
                     {
                         $message = "Ingrese Fecha de deceso de Afiliado";
                     }
                     else{
 
-                        if ($request->modalidad) {
-                        $retirement_fund->retirement_fund_modality_id = trim($request->modalidad);
+                        if ($request->modality) {
+                        $retirement_fund->retirement_fund_modality_id = trim($request->modality);
                         }
-                        $retirement_fund->city_id = trim($request->departamento);
+                        $retirement_fund->city_id = trim($request->city);
                         $retirement_fund->save();
 
-                        switch ($request->modalidad) {
+                        switch ($request->modality) {
                             case '1':
                                 $affiliate->affiliate_state_id = 8;
                                 $affiliate->save();
@@ -427,7 +426,7 @@ class RetirementFundController extends Controller
             Session::flash('message', $message);
         }
 
-        return redirect('tramite_fondo_retiro/'.$id);
+        return redirect('retirement_fund/'.$id);
     }
 
     public function destroy($afid)

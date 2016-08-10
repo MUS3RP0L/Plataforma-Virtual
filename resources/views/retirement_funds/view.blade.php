@@ -8,59 +8,59 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-6">
                     @if($retirement_fund->reception_date)
-                     <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
-                        <a href="" data-target="#myModal-print-reception" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
-                            &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
-                        </a>
-                    </div>
+                        <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
+                            <a href="" data-target="#myModal-print-reception" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
+                                &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
+                            </a>
+                        </div>
                     @else
-                      <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
-                        <a class="btn btn-raised btn-success disabled">
-                            &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
-                        </a>
-                      </div>
+                        <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
+                            <a class="btn btn-raised btn-success disabled">
+                                &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
+                            </a>
+                        </div>
                     @endif
 
                     @if(($retirement_fund->reception_date) && ($retirement_fund->check_file_date))
-                    <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
-                        <a href="" data-target="#myModal-print-check_file" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                        &nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
-                        </a>
-                    </div>
-                    @else
-                    <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
-                        <a class="btn btn-raised btn-success disabled">
+                        <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
+                            <a href="" data-target="#myModal-print-check_file" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                             &nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    @else
+                        <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
+                            <a class="btn btn-raised btn-success disabled">
+                                &nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
+                            </a>
+                        </div>
                     @endif
 
-                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec))
-                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
-                        <a href="" data-target="#myModal-print-qualification" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                        &nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;
-                        </a>
-                    </div>
+                    @if(($info_modality) && ($info_applicant) && ($info_documents) && ($info_antecedents))
+                        <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
+                            <a href="" data-target="#myModal-print-qualification" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                            &nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;
+                            </a>
+                        </div>
                     @else
-                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
-                        <a href="" data-target="#myModal-print-qualification" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
-                        &nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;
-                        </a>
-                    </div>
+                        <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
+                            <a class="btn btn-raised btn-success disabled">
+                            &nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;
+                            </a>
+                        </div>
                     @endif
 
-                    @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec))
-                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
-                        <a href="" data-target="#myModal-print-legal_assessment" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
-                        &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
-                        </a>
-                    </div>
+                    @if(($info_modality) && ($info_applicant) && ($info_documents) && ($info_antecedents))
+                        <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
+                            <a href="" data-target="#myModal-print-legal_assessment" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                            &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
+                            </a>
+                        </div>
                     @else
-                    <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
-                        <a href="" data-target="#myModal-print-legal_assessment" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
-                        &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
-                        </a>
-                    </div>
+                        <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
+                            <a class="btn btn-raised btn-success disabled">
+                            &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
+                            </a>
+                        </div>
                     @endif
                 </div>
                 <div class="col-md-2 text-right">
@@ -91,7 +91,7 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title"><span class="glyphicon glyphicon-inbox"></span> Informacion General</h3>
                                 </div>
-                                @if($info_gen)
+                                @if($info_modality)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-modality">
                                             <span class="glyphicon glyphicon-pencil"></span>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
-                                @if($info_gen)
+                                @if($info_modality)
                                     <div class="col-md-6">
                                         <table class="table table-responsive" style="width:100%;">
                                             <tr>
@@ -179,7 +179,7 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title"><span class="glyphicon glyphicon-inbox"></span> Información de Solicitante</h3>
                                 </div>
-                                @if($info_soli == 1)
+                                @if($info_applicant == 1)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-applicant">
                                             <span class="glyphicon glyphicon-pencil" ></span>
@@ -191,7 +191,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_soli == 1)
+                                @if($info_applicant == 1)
 
                                     <div class="col-md-6">
 
@@ -300,7 +300,7 @@
                                     </div>
 
                                 @else
-                                    @if($info_gen == 1)
+                                    @if($info_modality == 1)
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-applicant">
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante">
@@ -327,7 +327,7 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title"><span class="glyphicon glyphicon-inbox"></span> Documentos Presentados</h3>
                                 </div>
-                                @if($info_docu)
+                                @if($info_documents)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-requisitos">
                                             <span class="glyphicon glyphicon-pencil" ></span>
@@ -339,7 +339,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_docu)
+                                @if($info_documents)
 
                                     <div class="col-md-12">
 
@@ -353,7 +353,7 @@
                                             </thead>
                                             <tbody>
 
-                                                @foreach ($document as $item)
+                                                @foreach ($documents as $item)
                                                     <tr>
                                                         <td>{!! $item->requirement->shortened !!}</td>
                                                         <td>
@@ -379,7 +379,7 @@
                                     </div>
 
                                 @else
-                                    @if($info_gen == 1 && $info_soli == 1)
+                                    @if($info_modality == 1 && $info_applicant == 1)
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-requisitos">
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos">
@@ -409,7 +409,7 @@
                                 <div class="col-md-11">
                                     <h3 class="panel-title"><span class="glyphicon glyphicon-folder-open"></span> Trámite Cancelados</h3>
                                 </div>
-                                @if($info_antec)
+                                @if($info_antecedents)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
                                         <div data-toggle="modal" data-target="#myModal-antec">
                                             <span class="glyphicon glyphicon-pencil" ></span>
@@ -421,7 +421,7 @@
                         <div class="panel-body" style="font-size: 14px">
                             <div class="row" style="margin-bottom:0px;">
 
-                                @if($info_antec)
+                                @if($info_antecedents)
 
                                     <div class="col-md-12">
 
@@ -435,7 +435,7 @@
                                             </thead>
                                             <tbody>
 
-                                                @foreach ($antecedent as $item)
+                                                @foreach ($antecedents as $item)
                                                     <tr>
                                                         <td>{!! $item->antecedent_file->shortened !!}</td>
                                                         <td>{!! $item->antecedent_file->name !!}</td>
@@ -455,7 +455,7 @@
                                     </div>
 
                                 @else
-                                    @if($info_gen == 1 && $info_soli == 1 && $info_docu == 1)
+                                    @if($info_modality == 1 && $info_applicant == 1 && $info_documents == 1)
                                     <div class="row text-center">
                                         <div data-toggle="modal" data-target="#myModal-antec">
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Requisitos">
@@ -743,53 +743,50 @@
                 <h4 class="modal-title">Editar Información General</h4>
             </div>
             <div class="modal-body">
-
                 {!! Form::model($retirement_fund, ['method' => 'PATCH', 'route' => ['retirement_fund.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
-                <input type="hidden" name="type" value="gene"/>
-                <div class="row">
-                    <div class="col-md-12">
-
-                        @if(($info_gen))
-                        <div class="form-group">
-                            <div class="col-md-4 text-right">
-                                Modalidad
-                            </div>
-                            <div class="col-md-8">
-                                 {!! $retirement_fund->retirement_fund_modality->name !!}
-                            </div>
-                        </div>
-                        @else
-                        <div class="form-group">
-                            {!! Form::label('modalidad', 'Modalidad', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::select('modalidad', $modalities_list, $retirement_fund->retirement_fund_modality_id, ['class' => 'combobox form-control ', 'required' ]) !!}
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                                    {!! Form::label('departamento', 'Ciudad', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-8">
-                                {!! Form::select('departamento', $cities_list, $retirement_fund->city_id, ['class' => 'combobox form-control', 'required' ]) !!}
-                                <span class="help-block">Seleccione el departamento</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row text-center">
-                    <div class="form-group">
+                    <input type="hidden" name="type" value="form_modality"/>
+                    <div class="row">
                         <div class="col-md-12">
-                            <a href="{!! url('retirement_fund/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
+
+                            @if(($info_modality))
+                                <div class="form-group">
+                                    <div class="col-md-4 text-right">
+                                        Modalidad
+                                    </div>
+                                    <div class="col-md-8">
+                                         {!! $retirement_fund->retirement_fund_modality->name !!}
+                                    </div>
+                                </div>
+                            @else
+                                <div class="form-group">
+                                    {!! Form::label('modality', 'Modalidad', ['class' => 'col-md-4 control-label']) !!}
+                                    <div class="col-md-8">
+                                        {!! Form::select('modality', $modalities_list, $retirement_fund->retirement_fund_modality_id, ['class' => 'combobox form-control ', 'required' ]) !!}
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
-                </div>
-            {!! Form::close() !!}
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                        {!! Form::label('city', 'Ciudad', ['class' => 'col-md-4 control-label']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::select('city', $cities_list, $retirement_fund->city_id, ['class' => 'combobox form-control', 'required' ]) !!}
+                                    <span class="help-block">Seleccione el departamento</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <a href="{!! url('retirement_fund/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
@@ -930,7 +927,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($requirement, ['method' => 'PATCH', 'route' => ['retirement_fund.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($requirements, ['method' => 'PATCH', 'route' => ['retirement_fund.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="docu"/>
                 <div class="row">
                     <div class="col-md-12" data-bind="event: { mouseover: enableDetails, mouseout: disableDetails }">
@@ -1284,7 +1281,7 @@
     var solicitante = {!! $applicant !!};
 
     var Model = function(requirement, antecedentfile) {
-        @if ($info_docu)
+        @if ($info_documents)
             this.requirement = ko.observableArray(ko.utils.arrayMap(requirement, function(document) {
             return { requisito_id: document.requirement_id, requiname: document.requirement.name, booleanValue: document.status };
             }));
@@ -1294,7 +1291,7 @@
             }));
         @endif
 
-        @if ($info_antec)
+        @if ($info_antecedents)
             this.antecedentfile = ko.observableArray(ko.utils.arrayMap(antecedentfile, function(document) {
             return { prestacion_id: document.antecedent_file_id, sigla: document.antecedent_file.shortened, prestaname: document.antecedent_file.name, booleanValue: document.status };
             }));
@@ -1441,17 +1438,17 @@
         }
     };
 
-    @if ($info_docu)
-        @if ($info_antec)
-        ko.applyBindings(new Model({!! $document !!}, {!! $antecedent !!}));
+    @if ($info_documents)
+        @if ($info_antecedents)
+        ko.applyBindings(new Model({!! $documents !!}, {!! $antecedents !!}));
         @else
-        ko.applyBindings(new Model({!! $document !!}, {!! $antecedent_files !!}));
+        ko.applyBindings(new Model({!! $documents !!}, {!! $antecedent_files !!}));
         @endif
     @else
-        @if ($info_antec)
-        ko.applyBindings(new Model({!! $requirement !!}, {!! $antecedent !!}));
+        @if ($info_antecedents)
+        ko.applyBindings(new Model({!! $requirements !!}, {!! $antecedents !!}));
         @else
-        ko.applyBindings(new Model({!! $requirement !!}, {!! $antecedent_files !!}));
+        ko.applyBindings(new Model({!! $requirements !!}, {!! $antecedent_files !!}));
         @endif
     @endif
 
