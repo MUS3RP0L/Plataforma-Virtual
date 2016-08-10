@@ -1,36 +1,35 @@
 @extends('layout')
 
 @section('content')
-
 <div class="container-fluid">
-
+    {!! Breadcrumbs::render('retirement_fund', $affiliate) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4 col-md-offset-6">
-                    @if($retirementfund->reception_date)
+                    @if($retirement_fund->reception_date)
                      <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
-                        <a href="" data-target="#myModal-print-ventanilla" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
+                        <a href="" data-target="#myModal-print-reception" class="btn btn-raised btn-success dropdown-toggle enabled" data-toggle="modal">
                             &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
                         </a>
                     </div>
                     @else
                       <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Ventanilla">
-                        <a href="" data-target="#myModal-print-ventanilla" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
+                        <a class="btn btn-raised btn-success disabled">
                             &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
                         </a>
                       </div>
                     @endif
 
-                    @if(($retirementfund->reception_date) && ($retirementfund->check_file_date))
+                    @if(($retirement_fund->reception_date) && ($retirement_fund->check_file_date))
                     <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
-                        <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                        <a href="" data-target="#myModal-print-check_file" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
                         </a>
                     </div>
                     @else
                     <div class="btn-group" style="margin:-6px 1px 12px;" data-toggle="tooltip" data-placement="top" data-original-title="Certificación">
-                        <a href="" data-target="#myModal-printcertificacion" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
+                        <a class="btn btn-raised btn-success disabled">
                             &nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;
                         </a>
                     </div>
@@ -38,13 +37,13 @@
 
                     @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec))
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
-                        <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                        <a href="" data-target="#myModal-print-qualification" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;
                         </a>
                     </div>
                     @else
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Calificación">
-                        <a href="" data-target="#myModal-printcalificacion" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
+                        <a href="" data-target="#myModal-print-qualification" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
                         &nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;
                         </a>
                     </div>
@@ -52,13 +51,13 @@
 
                     @if(($info_gen) && ($info_soli) && ($info_docu) && ($info_antec))
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
-                        <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
+                        <a href="" data-target="#myModal-print-legal_assessment" class="btn btn-raised btn-success dropdown-toggle" data-toggle="modal">
                         &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
                         </a>
                     </div>
                     @else
                     <div class="btn-group" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Dictamen Legal">
-                        <a href="" data-target="#myModal-printdictamen" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
+                        <a href="" data-target="#myModal-print-legal_assessment" class="btn btn-raised btn-success dropdown-toggle disabled" data-toggle="modal">
                         &nbsp;<span class="glyphicon glyphicon-inbox"></span>&nbsp;
                         </a>
                     </div>
@@ -94,7 +93,7 @@
                                 </div>
                                 @if($info_gen)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                        <div data-toggle="modal" data-target="#myModal-modalidad">
+                                        <div data-toggle="modal" data-target="#myModal-modality">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </div>
                                     </div>
@@ -113,7 +112,7 @@
                                                             Modalidad
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $retirementfund->retirement_fund_modality->shortened !!}
+                                                            {!! $retirement_fund->retirement_fund_modality->shortened !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -125,7 +124,7 @@
                                                             Ciudad
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $retirementfund->city->name !!}
+                                                            {!! $retirement_fund->city->name !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -141,7 +140,7 @@
                                                             Número Tramite
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $retirementfund->getNumberTram() !!}
+                                                            {!! $retirement_fund->getNumberTram() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -153,7 +152,7 @@
                                                             Estado
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $retirementfund->getStatus() !!}
+                                                            {!! $retirement_fund->getStatus() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -163,7 +162,7 @@
                                     </div>
                                 @else
                                     <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-modalidad">
+                                        <div data-toggle="modal" data-target="#myModal-modality">
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar Datos Generales">
                                                 <img class="circle" src="{!! asset('assets/images/modalidad.png') !!}" width="45px" alt="icon">
                                             </button>
@@ -182,7 +181,7 @@
                                 </div>
                                 @if($info_soli == 1)
                                     <div class="col-md-1 text-right" data-toggle="tooltip" data-placement="top" data-original-title="Editar">
-                                        <div data-toggle="modal" data-target="#myModal-solicitante">
+                                        <div data-toggle="modal" data-target="#myModal-applicant">
                                             <span class="glyphicon glyphicon-pencil" ></span>
                                         </div>
                                     </div>
@@ -303,7 +302,7 @@
                                 @else
                                     @if($info_gen == 1)
                                     <div class="row text-center">
-                                        <div data-toggle="modal" data-target="#myModal-solicitante">
+                                        <div data-toggle="modal" data-target="#myModal-applicant">
                                             <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante">
                                                 <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">
                                             </button>
@@ -312,7 +311,7 @@
                                     @else
                                     <div class="row text-center">
 
-                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal-solicitante" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante" disabled="disabled">
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal-applicant" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Adicionar Solicitante" disabled="disabled">
                                                 <img class="circle" src="{!! asset('assets/images/requisitos.png') !!}" width="45px" alt="icon">
                                             </button>
                                     </div>
@@ -604,7 +603,7 @@
                                 </div>
                             @endif
 
-                            @if($retirementfund->anticipation_start_date)
+                            @if($retirement_fund->anticipation_start_date)
                                 <br>
                                 <div class="row text-center">
                                     <div class="col-md-12">
@@ -621,7 +620,7 @@
                                                             Desde
                                                         </div>
                                                         <div class="col-md-8">
-                                                            {!! $retirementfund->getFull_fech_ini_anti() !!}
+                                                            {!! $retirement_fund->getFull_fech_ini_anti() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -637,7 +636,7 @@
                                                             Hasta
                                                         </div>
                                                         <div class="col-md-8">
-                                                            {!! $retirementfund->getFull_fech_fin_anti() !!}
+                                                            {!! $retirement_fund->getFull_fech_fin_anti() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -653,7 +652,7 @@
                                                             Total
                                                         </div>
                                                         <div class="col-md-9">
-                                                            {!! $retirementfund->getYearsAndMonths_fech_ini_anti() !!}
+                                                            {!! $retirement_fund->getYearsAndMonths_fech_ini_anti() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -663,7 +662,7 @@
                                 </div>
                             @endif
 
-                            @if($retirementfund->recodnized_start_date)
+                            @if($retirement_fund->recodnized_start_date)
                                 <br>
                                 <div class="row text-center">
                                     <div class="col-md-12">
@@ -680,7 +679,7 @@
                                                             Desde
                                                         </div>
                                                         <div class="col-md-8">
-                                                            {!! $retirementfund->getFull_fech_ini_reco() !!}
+                                                            {!! $retirement_fund->getFull_fech_ini_reco() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -696,7 +695,7 @@
                                                             Hasta
                                                         </div>
                                                         <div class="col-md-8">
-                                                            {!! $retirementfund->getFull_fech_fin_reco() !!}
+                                                            {!! $retirement_fund->getFull_fech_fin_reco() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -712,7 +711,7 @@
                                                             Total
                                                         </div>
                                                         <div class="col-md-9">
-                                                            {!! $retirementfund->getYearsAndMonths_fech_ini_reco() !!}
+                                                            {!! $retirement_fund->getYearsAndMonths_fech_ini_reco() !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -736,7 +735,7 @@
 
 
 
-<div id="myModal-modalidad" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="myModal-modality" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -745,7 +744,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($retirementfund, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($retirement_fund, ['method' => 'PATCH', 'route' => ['retirement_fund.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="gene"/>
                 <div class="row">
                     <div class="col-md-12">
@@ -756,14 +755,14 @@
                                 Modalidad
                             </div>
                             <div class="col-md-8">
-                                 {!! $retirementfund->retirement_fund_modality->name !!}
+                                 {!! $retirement_fund->retirement_fund_modality->name !!}
                             </div>
                         </div>
                         @else
                         <div class="form-group">
                             {!! Form::label('modalidad', 'Modalidad', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::select('modalidad', $list_modality, $retirementfund->retirement_fund_modality_id, ['class' => 'combobox form-control ', 'required' ]) !!}
+                                {!! Form::select('modalidad', $modalities_list, $retirement_fund->retirement_fund_modality_id, ['class' => 'combobox form-control ', 'required' ]) !!}
                             </div>
                         </div>
                         @endif
@@ -774,7 +773,7 @@
                         <div class="form-group">
                                     {!! Form::label('departamento', 'Ciudad', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-8">
-                                {!! Form::select('departamento', $list_city, $retirementfund->city_id, ['class' => 'combobox form-control', 'required' ]) !!}
+                                {!! Form::select('departamento', $cities_list, $retirement_fund->city_id, ['class' => 'combobox form-control', 'required' ]) !!}
                                 <span class="help-block">Seleccione el departamento</span>
                             </div>
                         </div>
@@ -784,7 +783,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('retirement_fund/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -796,7 +795,7 @@
     </div>
 </div>
 
-<div id="myModal-solicitante" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="myModal-applicant" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -805,7 +804,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($applicant, ['method' => 'PATCH', 'route' => ['solicitante.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($applicant, ['method' => 'PATCH', 'route' => ['applicant.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
 
                 <div class="row">
                     <div class="col-md-3 col-md-offset-3">
@@ -907,7 +906,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('retirement_fund/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -931,7 +930,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($requirement, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($requirement, ['method' => 'PATCH', 'route' => ['retirement_fund.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="docu"/>
                 <div class="row">
                     <div class="col-md-12" data-bind="event: { mouseover: enableDetails, mouseout: disableDetails }">
@@ -963,7 +962,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
+                            <a href="{!! url('retirement_fund/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;&nbsp;</button>
                         </div>
                     </div>
@@ -984,7 +983,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($antecedentfile, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($antecedent_files, ['method' => 'PATCH', 'route' => ['retirement_fund.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="antec"/>
                 <div class="row">
                     <div class="col-md-12" data-bind="event: { mouseover: enableDetails2, mouseout: disableDetails2 }">
@@ -1018,7 +1017,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{!! url('retirement_fund/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
                             &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
                         </div>
                     </div>
@@ -1039,7 +1038,7 @@
             </div>
             <div class="modal-body">
 
-                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['tramite_fondo_retiro.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
+                {!! Form::model($affiliate, ['method' => 'PATCH', 'route' => ['retirement_fund.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="type" value="periods"/>
                 <div class="row">
                     <h5 class="modal-title">Años de Aportes</h5>
@@ -1157,7 +1156,7 @@
                 <div class="row text-center">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="{!! url('retirement_fund/' . $affiliate->id) !!}" data-target="#" class="btn btn-raised btn-warning">Cancelar&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></a>
                             &nbsp;&nbsp;<button type="submit" class="btn btn-raised btn-primary">Actualizar&nbsp;&nbsp;<span class="glyphicon glyphicon-floppy-disk"></span></button>
                         </div>
                     </div>
@@ -1171,7 +1170,7 @@
 
 
 
-<div id="myModal-print-ventanilla" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="myModal-print-reception" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -1179,13 +1178,13 @@
                 <h4 class="modal-title">Ventanilla Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro_ventanilla/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('retirement_fund_ventanilla/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
 </div>
 
-<div id="myModal-printcertificacion" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="myModal-print-check_file" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -1193,13 +1192,13 @@
                 <h4 class="modal-title">Certificación Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro_certificacion/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('retirement_fund_certificacion/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
 </div>
 
-<div id="myModal-printcalificacion" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="myModal-print-qualification" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -1207,13 +1206,13 @@
                 <h4 class="modal-title">Calificación de Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro_calificacion/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('retirement_fund_calificacion/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
 </div>
 
-<div id="myModal-printdictamen" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="myModal-print-legal_assessment" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
         <div class="modal-content panel-warning">
             <div class="modal-header">
@@ -1221,7 +1220,7 @@
                 <h4 class="modal-title">Dictamen Legal</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('tramite_fondo_retiro_dictamenlegal/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('retirement_fund_dictamenlegal/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
@@ -1230,7 +1229,7 @@
 <div id="myModal-delete" class="modal fade">
     <div class="modal-dialog">
         <div class="alert alert-dismissible alert-danger">
-           {!! Form::model($affiliate, ['method' => 'DELETE', 'route' => ['tramite_fondo_retiro.destroy', $affiliate->id], 'class' => 'form-horizontal']) !!}
+           {!! Form::model($affiliate, ['method' => 'DELETE', 'route' => ['retirement_fund.destroy', $affiliate->id], 'class' => 'form-horizontal']) !!}
 
                 <div class="modal-body text-center">
                     <p><br>
@@ -1446,13 +1445,13 @@
         @if ($info_antec)
         ko.applyBindings(new Model({!! $document !!}, {!! $antecedent !!}));
         @else
-        ko.applyBindings(new Model({!! $document !!}, {!! $antecedentfile !!}));
+        ko.applyBindings(new Model({!! $document !!}, {!! $antecedent_files !!}));
         @endif
     @else
         @if ($info_antec)
         ko.applyBindings(new Model({!! $requirement !!}, {!! $antecedent !!}));
         @else
-        ko.applyBindings(new Model({!! $requirement !!}, {!! $antecedentfile !!}));
+        ko.applyBindings(new Model({!! $requirement !!}, {!! $antecedent_files !!}));
         @endif
     @endif
 

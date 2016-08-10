@@ -119,8 +119,8 @@ class RetirementFundController extends Controller
         ];
     }
 
-    public function getData($afid){
-
+    public function getData($afid)
+    {
         $affiliate = Affiliate::idIs($afid)->first();
 
         $spouse = Spouse::affiliateidIs($afid)->first();
@@ -128,16 +128,15 @@ class RetirementFundController extends Controller
 
         $retirement_fund = RetirementFund::afiIs($afid)->first();
         if (!$retirement_fund) {
+            $last_retirement_fund = RetirementFund::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             $now = Carbon::now();
             $retirement_fund = new RetirementFund;
-            $last_retirement_fund = RetirementFund::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             if ($last_retirement_fund) {
                 $number_code = Util::separateCode($last_retirement_fund->code);
                 $code = $number_code + 1;
             }else{
                 $code = 1;
             }
-
             $retirement_fund->affiliate_id = $afid;
             $retirement_fund->save();
         }
@@ -145,7 +144,7 @@ class RetirementFundController extends Controller
         $applicant = Applicant::retirementFundIs($retirement_fund->id)->first();
         if (!$applicant) {$applicant = new Applicant;}
 
-         $requirement = Requirement::modalidadIs($retirement_fund->retirement_fund_modality_id)->get();
+         $requirement = Requirement::modalityIs($retirement_fund->retirement_fund_modality_id)->get();
          $document = Document::retirementFundIs($retirement_fund->id)->get();
          $antecedent = Antecedent::retirementFundIs($retirement_fund->id)->get();
 
@@ -184,7 +183,7 @@ class RetirementFundController extends Controller
         $data = array(
             'affiliate' => $affiliate,
             'spouse' => $spouse,
-            'retirementfund' => $retirement_fund,
+            'retirement_fund' => $retirement_fund,
             'applicant' => $applicant,
             'requirement' => $requirement,
             'document' => $document,
@@ -200,7 +199,6 @@ class RetirementFundController extends Controller
         $data = array_merge($data, self::getViewModel());
 
         return $data;
-      // return response()->json($data);
     }
 
 
@@ -212,7 +210,7 @@ class RetirementFundController extends Controller
      */
     public function show($id)
     {
-        return view('fondotramite.view', self::getData($id));
+        return view('retirement_funds.view', self::getData($id));
     }
 
 
