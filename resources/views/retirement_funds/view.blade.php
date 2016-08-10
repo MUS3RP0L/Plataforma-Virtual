@@ -140,7 +140,7 @@
                                                             Número Tramite
                                                         </div>
                                                         <div class="col-md-6">
-                                                            {!! $retirement_fund->getNumberTram() !!}
+                                                            {!! $retirement_fund->code !!}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -1276,9 +1276,9 @@
     });
 
 
-    var titular = {!! $affiliate !!};
-    var conyuge = {!! $spouse !!};
-    var solicitante = {!! $applicant !!};
+    var affiliate = {!! $affiliate !!};
+    var spouse = {!! $spouse !!};
+    var applicant = {!! $applicant !!};
 
     var Model = function(requirement, antecedentfile) {
         @if ($info_documents)
@@ -1320,80 +1320,79 @@
 
         this.lastSavedJson2 = ko.observable("");
 
-        this.typeToShow = ko.observable('' + solicitante.soli_type_id);
+        this.typeToShow = ko.observable('' + applicant.soli_type_id);
         this.parenShow = ko.observable(false);
         this.parenShow = ko.pureComputed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '3') return true;
-
         }, this);
 
         this.soli_ci = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                return titular.identity_card;
+                return affiliate.identity_card;
             }
             if (desiredType == '2'){
-                return conyuge.identity_card;
+                return spouse.identity_card;
             }
             if (desiredType == '3'){
-                return solicitante.identity_card;
+                return applicant.identity_card;
             }
         }, this);
 
         this.soli_pat = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                return titular.last_name;
+                return affiliate.last_name;
             }
             if (desiredType == '2'){
-                return conyuge.last_name;
+                return spouse.last_name;
             }
             if (desiredType == '3'){
-                return solicitante.last_name;
+                return applicant.last_name;
             }
         }, this);
 
         this.soli_mat = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                return titular.mothers_last_name;
+                return affiliate.mothers_last_name;
             }
             if (desiredType == '2'){
-                return conyuge.mothers_last_name;
+                return spouse.mothers_last_name;
             }
             if (desiredType == '3'){
-                return solicitante.mothers_last_name;
+                return applicant.mothers_last_name;
             }
         }, this);
 
         this.soli_nom = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                var nom2 = titular.second_name ? titular.second_name : '';
-                return titular.first_name +" "+ second_name;
+                var second_name = affiliate.second_name ? affiliate.second_name : '';
+                return affiliate.first_name +" "+ second_name;
             }
             if (desiredType == '2'){
-                return conyuge.first_name;
+                return spouse.first_name;
             }
             if (desiredType == '3'){
-                return solicitante.first_name;
+                return applicant.first_name;
             }
         }, this);
 
         this.soli_direc_domi = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                var zona = titular.zone ? titular.zone : '';
-                var calle = titular.street ? titular.street : '';
-                var num_domi = titular.number_address ? "N° " + titular.number_address : '';
+                var zone = affiliate.zone ? affiliate.zone : '';
+                var street = affiliate.street ? affiliate.street : '';
+                var number_address = affiliate.number_address ? "N° " + affiliate.number_address : '';
                 return zone + " " + street + " " + number_address;
             }
             if (desiredType == '2'){
-                return solicitante.home_address;
+                return applicant.home_address;
             }
             if (desiredType == '3'){
-                return solicitante.home_address;
+                return applicant.home_address;
             }
 
         }, this);
@@ -1401,30 +1400,30 @@
         this.soli_tele_domi = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                return titular.tele;
+                return affiliate.tele;
             }
             if (desiredType == '2'){
-                return solicitante.home_phone_number;
+                return applicant.home_phone_number;
             }
             if (desiredType == '3'){
-                return solicitante.home_phone_number;
+                return applicant.home_phone_number;
             }
         }, this);
 
         this.soli_celu = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
-                return titular.cell_phone;
+                return affiliate.cell_phone;
             }
             if (desiredType == '2'){
-                return solicitante.home_cell_phone_number;
+                return applicant.home_cell_phone_number;
             }
             if (desiredType == '3'){
-                return solicitante.home_cell_phone_number;
+                return applicant.home_cell_phone_number;
             }
         }, this);
 
-        this.periodoValue = ko.observable(titular.fech_ini_reco ? true : false);
+        this.periodoValue = ko.observable(affiliate.fech_ini_reco ? true : false);
     };
 
     ko.bindingHandlers.fadeVisible = {
