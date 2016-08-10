@@ -43,12 +43,6 @@ class ImportPayroll extends Command
     public function handle()
     {
         global $NewAffi, $UpdateAffi, $NewContri, $Progress, $FolderName, $Date;
-        // ini_set('upload_max_filesize', '999999M');
-        // ini_set('post_max_size', '999999M');
-        ini_set('memory_limit', '-1');
-        ini_set('max_execution_time', '-1');
-        ini_set('max_input_time', '-1');
-        set_time_limit('-1');
 
         $password = $this->ask('Enter the password');
 
@@ -68,8 +62,6 @@ class ImportPayroll extends Command
                     $rows->each(function($result) {
 
                         global $NewAffi, $UpdateAffi, $NewContri, $Progress, $FolderName, $Date;
-                        // ini_set('upload_max_filesize', '999999M');
-                        // ini_set('post_max_size', '999999M');
                         ini_set('memory_limit', '-1');
                         ini_set('max_execution_time', '-1');
                         ini_set('max_input_time', '-1');
@@ -268,7 +260,8 @@ class ImportPayroll extends Command
                                     $contribution->retirement_fund = $contribution->total * 1.85 / $percentage;
                                     $contribution->mortuary_quota = $contribution->total * 0.65 / $percentage;
                                 }else {
-                                    break;
+                                    $this->error('Unknown percentage of contribution!');
+                                    exit();
                                 }
                                 $contribution->save();
                                 $NewContri ++;
@@ -310,6 +303,7 @@ class ImportPayroll extends Command
         }
         else{
             $this->error('Incorrect password!');
+            exit();
         }
     }
 }
