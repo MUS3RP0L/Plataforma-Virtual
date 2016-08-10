@@ -128,8 +128,8 @@ class RetirementFundController extends Controller
 
         $retirement_fund = RetirementFund::afiIs($afid)->first();
         if (!$retirement_fund) {
-            $last_retirement_fund = RetirementFund::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             $now = Carbon::now();
+            $last_retirement_fund = RetirementFund::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
             $retirement_fund = new RetirementFund;
             if ($last_retirement_fund) {
                 $number_code = Util::separateCode($last_retirement_fund->code);
@@ -137,6 +137,7 @@ class RetirementFundController extends Controller
             }else{
                 $code = 1;
             }
+            $retirement_fund->code = $code . "/" . $now->year;
             $retirement_fund->affiliate_id = $afid;
             $retirement_fund->save();
         }
