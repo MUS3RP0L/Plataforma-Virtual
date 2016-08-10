@@ -2,26 +2,23 @@
 
 @section('content')
 
-<br>
-<table class="table">
-    <tr>
-        <th style="border: 0px;text-align:left;">
-            Titular: {{ $affiliate->getTittleName() }}
-        </th>
-        <th style="border: 0px">
-          Matrícula: {{ $affiliate->registration }}
-        </th>
-        <th style="border: 0px">
-          Tipo: {{ $affiliate->affiliate_state->name }}
-        </th>
-    </tr>
-    <tr>
-      <th style="border: 0px;text-align:left;">
-        Grado: {{ $affiliate->degree->name }}
-      </th>
-    </tr>
-</table>
 
+<div id="project">
+    <table >
+        <tr>
+            <td class="info" style="border: 0px;">N°: {{ trim($direct_contribution->code) }}  </td>
+            <td class="info" style="border: 0px;" >Titular: {{ trim($affiliate->getTittleName()) }}</td>
+            <td class="info" style="border: 0px;" >Matrícula: {{ $affiliate->registration }}</td>
+
+        </tr>
+
+        <tr>
+            <td class="info" style="border: 0px;" > Tipo: {{ $affiliate->affiliate_state->name }}</td>
+            <td class="info" style="border: 0px;" > Grado: {{ $affiliate->degree->name }}</td>
+        </tr>
+    </table>
+    
+</div>
 <div id="project">
     <table>
       <tr>
