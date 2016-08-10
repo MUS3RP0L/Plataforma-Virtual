@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4 col-md-offset-6">
-                    <a href="{!! url('tramite_fondo_retiro/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
+                    <a href="{!! url('retirement_fund/' . $affiliate->id) !!}" style="margin:-6px 1px 12px;" class="btn btn-raised btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Fondo Retiro">
                         &nbsp;<span class="glyphicon glyphicon-piggy-bank"></span>&nbsp;
                     </a>
 

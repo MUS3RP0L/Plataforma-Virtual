@@ -99,24 +99,23 @@ class RetirementFundController extends Controller
     public static function getViewModel()
     {
         $modality = RetirementFundModality::all();
-        $list_modality = array('' => '');
+        $modalities_list = array('' => '');
         foreach ($modality as $item) {
-             $list_modality[$item->id]=$item->name;
+             $modalities_list[$item->id]=$item->name;
         }
 
         $city = City::all();
-        $list_city = array('' => '');
+        $cities_list = array('' => '');
         foreach ($city as $item) {
-             $list_city[$item->id]=$item->name;
+             $cities_list[$item->id]=$item->name;
         }
 
-        $antecedentfile = AntecedentFile::all();
-
+        $antecedent_files = AntecedentFile::all();
 
         return [
-            'list_modality' => $list_modality,
-            'list_city' => $list_city,
-            'antecedentfile' => $antecedentfile
+            'modalities_list' => $modalities_list,
+            'cities_list' => $cities_list,
+            'antecedent_files' => $antecedent_files
         ];
     }
 
@@ -129,7 +128,6 @@ class RetirementFundController extends Controller
 
         $retirement_fund = RetirementFund::afiIs($afid)->first();
         if (!$retirement_fund) {
-
             $now = Carbon::now();
             $retirement_fund = new RetirementFund;
             $last_retirement_fund = RetirementFund::whereYear('created_at', '=', $now->year)->where('deleted_at', '=', null)->orderBy('id', 'desc')->first();
@@ -144,12 +142,12 @@ class RetirementFundController extends Controller
             $retirement_fund->save();
         }
 
-        $applicant = Applicant::fonTraIs($retirement_fund->id)->first();
+        $applicant = Applicant::retirementFundIs($retirement_fund->id)->first();
         if (!$applicant) {$applicant = new Applicant;}
 
          $requirement = Requirement::modalidadIs($retirement_fund->retirement_fund_modality_id)->get();
-         $document = Document::fonTraIs($retirement_fund->id)->get();
-         $antecedent = Antecedent::fonTraIs($retirement_fund->id)->get();
+         $document = Document::retirementFundIs($retirement_fund->id)->get();
+         $antecedent = Antecedent::retirementFundIs($retirement_fund->id)->get();
 
         if ($retirement_fund->retirement_fund_modality_id) {
             $info_gen = TRUE;
@@ -161,13 +159,13 @@ class RetirementFundController extends Controller
         }else{
             $info_soli = FALSE;
         }
-        if (Document::fonTraIs($retirement_fund->id)->first()) {
+        if (Document::retirementFundIs($retirement_fund->id)->first()) {
             $info_docu = TRUE;
         }else{
             $info_docu = FALSE;
         }
 
-        if (Antecedent::fonTraIs($retirement_fund->id)->first()) {
+        if (Antecedent::retirementFundIs($retirement_fund->id)->first()) {
             $info_antec = TRUE;
         }else{
             $info_antec = FALSE;
