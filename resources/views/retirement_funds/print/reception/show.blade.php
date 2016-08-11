@@ -1,4 +1,4 @@
-@extends('print_fondo_retiro.layoutPrint')
+@extends('retirement_funds.print.layout')
 
 @section('title')
 
@@ -54,7 +54,7 @@
             </tr>
             <tr>
               <th class="service">CIUDAD</th>
-              <td class="info">{!! $retirementfund->city->name !!}</td>
+              <td class="info">{!! $retirement_fund->city->name !!}</td>
             </tr>
           </table>
       </div>
@@ -76,7 +76,7 @@
                 <th class="grand">FECHA</th>
               </tr>
               <?php $i=1;?>
-               @foreach ($document as $item)
+               @foreach ($documents as $item)
               <tr>
                 <td style="width:1%" class="info">{!! $i !!}</td>
                 <td style="width:75%" class="info">{!! $item->requirement->name !!}</td>

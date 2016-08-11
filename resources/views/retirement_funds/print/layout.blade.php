@@ -31,7 +31,7 @@
       <table class="tablet">
         <tr>
           <td style="border: 0px;">
-            <div class="title"><b>N° de Tramite: {{ $retirementfund->getNumberTram() }}</b></div>
+            <div class="title"><b>N° de Tramite: {{ $retirement_fund->getNumberTram() }}</b></div>
           </td>
           <td style="border: 0px;text-align:right;">
             <div class="title"><b>Fecha de Emisión: La Paz, {!! $date !!}</b></div>
@@ -44,9 +44,9 @@
         </tr>
       </table>
       <h1>
-        <b>       
+        <b>
           FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
-          MODALIDAD: {!! $retirementfund->retirement_fund_modality->name !!}<br>
+          MODALIDAD: {!! $retirement_fund->retirement_fund_modality->name !!}<br>
           @yield('title2')
         </b>
       </h1>
