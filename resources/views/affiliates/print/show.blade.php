@@ -122,7 +122,7 @@
         <th class="info" style="text-align:center;">{!! $total_quotable !!}</th>
         <th class="info" style="text-align:center;">{!! $total_retirement_fund !!}</th>
         <th class="info" style="text-align:center;">{!! $total_mortuary_quota !!}</th>
-        <th class="info" style="text-align:center;">{{!! $total !!}}</th>
+        <th class="info" style="text-align:center;">{{ $total }}</th>
         </tr>
 
     </table>
