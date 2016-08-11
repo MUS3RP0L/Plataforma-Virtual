@@ -357,6 +357,12 @@ class AffiliateController extends Controller
 
     public function print_affiliate($affiliate)
     {
+        $header1 = "DIRECCIÓN DE BENEFICIOS ECONÓMICOS";
+        $header2 = "UNIDAD DE FONDO DE RETIRO POLICIAL INDIVIDUAL";
+        $title = "REPORTE DE AFILIADO";
+        $date = Util::getDateEdit(date('Y-m-d'));
+        $current_date = Carbon::now();
+        $hour = Carbon::parse($current_date)->toTimeString();
         $data = $this->getData($affiliate);
         $affiliate = $data['affiliate'];
         $spouse = $data['spouse'];
@@ -368,7 +374,7 @@ class AffiliateController extends Controller
         $total = $data['total'];
         $contributions = Contribution::select(['id', 'month_year', 'degree_id', 'unit_id', 'item', 'base_wage','seniority_bonus', 'study_bonus', 'position_bonus', 'border_bonus', 'east_bonus', 'public_security_bonus', 'gain', 'quotable', 'retirement_fund', 'mortuary_quota', 'total'])->where('affiliate_id', $affiliate->id)->get();
         $date = Util::getfulldate(date('Y-m-d'));
-        $view = \View::make('affiliates.print.show', compact('affiliate', 'spouse','total_gain','total_public_security_bonus','total_quotable','total_retirement_fund','total_mortuary_quota','total','contributions','date'))->render();
+        $view = \View::make('affiliates.print.show', compact('header1','header2','title','date','hour','affiliate', 'spouse','total_gain','total_public_security_bonus','total_quotable','total_retirement_fund','total_mortuary_quota','total','contributions'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper('legal','landscape');
         return $pdf->stream();
