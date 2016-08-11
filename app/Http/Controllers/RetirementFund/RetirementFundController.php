@@ -223,8 +223,7 @@ class RetirementFundController extends Controller
         $documents = $data['documents'];
         $retirement_fund = $data['retirement_fund'];
         $date = Util::getfulldate(date('Y-m-d'));
-        $view = \View::make('retirement_funds.print.reception.show', compact('affiliate', 'requirements', 'applicant', 'documents', 'retirement_fund', 'date'))->render();
-        $pdf = \App::make('dompdf.wrapper');
+        $view = \View::make('retirement_funds.print.reception.show', compact('affiliate', 'requirements', 'applicant', 'documents', 'retirement_fund', 'date'))->render(); $pdf = \App::make('dompdf.wrapper');
         $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
         $pdf->loadHTML($view)->setPaper('letter');
         return $pdf->stream();
@@ -236,11 +235,11 @@ class RetirementFundController extends Controller
         $affiliate = $data['affiliate'];
         $applicant = $data['applicant'];
         $retirement_fund = $data['retirement_fund'];
+        $antecedent_files = $data['antecedent_files'];
         $antecedents = $data['antecedents'];
-        $antecedent = $data['antecedent'];
         $date = Util::getfulldate(date('Y-m-d'));
 
-        $view = \View::make('retirement_funds.print.check_file.show', compact('affiliate', 'applicant', 'retirement_fund', 'antecedents', 'antecedent', 'date'))->render();
+        $view = \View::make('retirement_funds.print.check_file.show', compact('affiliate', 'applicant', 'retirement_fund', 'antecedent_files', 'antecedents', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
         $pdf->loadHTML($view)->setPaper('letter');

@@ -1,4 +1,4 @@
-@extends('print_fondo_retiro.layoutPrint')
+@extends('retirement_funds.print.layout')
 
 @section('title')
   ARCHIVO DE BENEFICIOS ECONÓMICOS
@@ -12,7 +12,7 @@
 
       <p>El suscrito Encargado de  Archivo de Beneficios Económicos:</p>
       <p>CERTIFICA QUE:</p>
-      <p>A  requerimiento  de la Hoja de trámite N° {{ $retirementfund->getNumberTram() }} de  Ventanilla de Beneficios Económicos,  se realiza  la  revisión manual de los datos que  figuran en el expediente presentado  en  favor del titular señor(a):</p>
+      <p>A  requerimiento  de la Hoja de trámite N° {{ $retirement_fund->getNumberTram() }} de  Ventanilla de Beneficios Económicos,  se realiza  la  revisión manual de los datos que  figuran en el expediente presentado  en  favor del titular señor(a):</p>
       </table>
 
       <table class="tablet1">
@@ -63,7 +63,7 @@
               <th class="grand service"><center>SIGLA</center></th>
               <th class="grand service"><center>ESTADO</center></th>
              </tr>
-              @foreach ($antecedent as $item)
+              @foreach ($antecedents as $item)
               <tr>
                 <td style="width: 80%" class="info">{!! $item->antecedent_file->name !!}</td>
                 <td style="width: 20%" class="info">{!! $item->antecedent_file->shortened !!}</td>
