@@ -840,28 +840,28 @@
                         <div class="form-group">
                                 {!! Form::label('identity_card', 'Carnet Identidad', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('identity_card', $applicant->identity_card,['class'=> 'form-control', 'required', 'data-bind' => 'value: soli_ci']) !!}
+                                {!! Form::text('identity_card', $applicant->identity_card,['class'=> 'form-control', 'required', 'data-bind' => 'value: soli_identity_card']) !!}
                                 <span class="help-block">Núm. Carnet de Identidad</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('last_name', 'Apellido Paterno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('last_name', $applicant->last_name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_pat']) !!}
+                                {!! Form::text('last_name', $applicant->last_name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_last_name']) !!}
                                 <span class="help-block">Escriba Apellido Paterno</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('mothers_last_name', 'Apellido Materno', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('mothers_last_name', $applicant->mothers_last_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mat']) !!}
+                                {!! Form::text('mothers_last_name', $applicant->mothers_last_name, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_mothers_last_name']) !!}
                                 <span class="help-block">Escriba Apellido Materno</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('first_name', 'Nombre(s)', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('first_name', $applicant->first_name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_nom']) !!}
+                                {!! Form::text('first_name', $applicant->first_name, ['class'=> 'form-control', 'required', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_first_name']) !!}
                                 <span class="help-block">Escriba los Nombre(s)</span>
                             </div>
                         </div>
@@ -871,21 +871,21 @@
                         <div class="form-group">
                                 {!! Form::label('home_address', 'Domicilio  Actual', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('home_address', $applicant->home_address, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_direc_domi']) !!}
+                                {!! Form::text('home_address', $applicant->home_address, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_home_address']) !!}
                                 <span class="help-block">Escriba Domicilio Actual</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('home_phone_number', 'Teléfono fijo', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('home_phone_number', $applicant->home_phone_number, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_tele_domi']) !!}
+                                {!! Form::text('home_phone_number', $applicant->home_phone_number, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_home_phone_number']) !!}
                                 <span class="help-block">Escriba Número Teléfono fijo</span>
                             </div>
                         </div>
                         <div class="form-group">
                                 {!! Form::label('home_cell_phone_number', 'Teléfono Celular', ['class' => 'col-md-5 control-label']) !!}
                             <div class="col-md-7">
-                                {!! Form::text('home_cell_phone_number', $applicant->home_cell_phone_number, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_celu']) !!}
+                                {!! Form::text('home_cell_phone_number', $applicant->home_cell_phone_number, ['class'=> 'form-control', 'onkeyup' => 'this.value=this.value.toUpperCase()', 'data-bind' => 'value: soli_home_cell_phone_number']) !!}
                                 <span class="help-block">Escriba NúmeroTeléfono Celular</span>
                             </div>
                         </div>
@@ -927,7 +927,7 @@
             <div class="modal-body">
 
                 {!! Form::model($requirements, ['method' => 'PATCH', 'route' => ['retirement_fund.update', $affiliate->id], 'class' => 'form-horizontal']) !!}
-                <input type="hidden" name="type" value="docu"/>
+                <input type="hidden" name="type" value="form_document"/>
                 <div class="row">
                     <div class="col-md-12" data-bind="event: { mouseover: enableDetails, mouseout: disableDetails }">
                         <table class="table table-striped table-hover" style="width:100%;font-size: 14px">
@@ -1174,7 +1174,7 @@
                 <h4 class="modal-title">Ventanilla Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('retirement_fund_ventanilla/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('retirement_fund_print_reception/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
@@ -1188,7 +1188,7 @@
                 <h4 class="modal-title">Certificación Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('retirement_fund_certificacion/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('retirement_fund_print_check_file/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
@@ -1202,7 +1202,7 @@
                 <h4 class="modal-title">Calificación de Fondo de Retiro</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('retirement_fund_calificacion/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('retirement_fund_print_qualification/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
@@ -1216,7 +1216,7 @@
                 <h4 class="modal-title">Dictamen Legal</h4>
             </div>
             <div class="modal-body">
-                <iframe src="{!! url('retirement_fund_dictamenlegal/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
+                <iframe src="{!! url('retirement_fund_print_legal_assessment/' . $affiliate->id) !!}" width="99%" height="1200"></iframe>
             </div>
         </div>
     </div>
@@ -1282,11 +1282,11 @@
     var Model = function(requirement, antecedentfile) {
         @if ($info_documents)
             this.requirement = ko.observableArray(ko.utils.arrayMap(requirement, function(document) {
-            return { requisito_id: document.requirement_id, requiname: document.requirement.name, booleanValue: document.status };
+            return { requirement_id: document.requirement_id, requiname: document.requirement.name, booleanValue: document.status };
             }));
         @else
             this.requirement = ko.observableArray(ko.utils.arrayMap(requirement, function(document) {
-            return { requisito_id: document.id, requiname: document.name, booleanValue: false };
+            return { requirement_id: document.id, requiname: document.name, booleanValue: false };
             }));
         @endif
 
@@ -1306,9 +1306,7 @@
         this.disableDetails = function() {
             this.lastSavedJson(JSON.stringify(ko.toJS(this.requirement), null, 2));
         };
-
         this.lastSavedJson = ko.observable("");
-
 
         this.enableDetails2 = function() {
             this.lastSavedJson2(JSON.stringify(ko.toJS(this.antecedentfile), null, 2));
@@ -1316,7 +1314,6 @@
         this.disableDetails2 = function() {
             this.lastSavedJson2(JSON.stringify(ko.toJS(this.antecedentfile), null, 2));
         };
-
         this.lastSavedJson2 = ko.observable("");
 
         this.typeToShow = ko.observable('' + applicant.applicant_type_id);
@@ -1326,7 +1323,7 @@
             if (desiredType == '3') return true;
         }, this);
 
-        this.soli_ci = ko.computed(function() {
+        this.soli_identity_card = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
                 return affiliate.identity_card;
@@ -1339,7 +1336,7 @@
             }
         }, this);
 
-        this.soli_pat = ko.computed(function() {
+        this.soli_last_name = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
                 return affiliate.last_name;
@@ -1352,7 +1349,7 @@
             }
         }, this);
 
-        this.soli_mat = ko.computed(function() {
+        this.soli_mothers_last_name = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
                 return affiliate.mothers_last_name;
@@ -1365,7 +1362,7 @@
             }
         }, this);
 
-        this.soli_nom = ko.computed(function() {
+        this.soli_first_name = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
                 var second_name = affiliate.second_name ? affiliate.second_name : '';
@@ -1379,7 +1376,7 @@
             }
         }, this);
 
-        this.soli_direc_domi = ko.computed(function() {
+        this.soli_home_address = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
                 var zone = affiliate.zone ? affiliate.zone : '';
@@ -1396,7 +1393,7 @@
 
         }, this);
 
-        this.soli_tele_domi = ko.computed(function() {
+        this.soli_home_phone_number = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
                 return affiliate.tele;
@@ -1409,7 +1406,7 @@
             }
         }, this);
 
-        this.soli_celu = ko.computed(function() {
+        this.soli_home_cell_phone_number = ko.computed(function() {
             var desiredType = this.typeToShow();
             if (desiredType == '1'){
                 return affiliate.cell_phone;

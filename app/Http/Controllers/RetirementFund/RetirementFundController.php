@@ -187,7 +187,7 @@ class RetirementFundController extends Controller
             'retirement_fund' => $retirement_fund,
             'applicant' => $applicant,
             'requirements' => $requirements,
-            'document' => $documents,
+            'documents' => $documents,
             'antecedents' => $antecedents,
             'info_modality' => $info_modality,
             'info_applicant' => $info_applicant,
@@ -214,24 +214,24 @@ class RetirementFundController extends Controller
     }
 
 
-    public function print_ventanilla($afid)
+    public function print_reception($afid)
     {
         $data = $this->getData($afid);
         $affiliate = $data['affiliate'];
-        $requirement = $data['requirement'];
+        $requirements = $data['requirements'];
         $applicant = $data['applicant'];
-        $document = $data['document'];
-        $retirement_fund = $data['retirementfund'];
+        $documents = $data['documents'];
+        $retirement_fund = $data['retirement_fund'];
         $date = Util::getfulldate(date('Y-m-d'));
 
-        $view = \View::make('print_fondo_retiro.ventanilla.show', compact('affiliate', 'requirement', 'applicant', 'document', 'retirementfund', 'date'))->render();
+        $view = \View::make('print_fondo_retiro.ventanilla.show', compact('affiliate', 'requirements', 'applicant', 'documents', 'retirement_fund', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/ventanilla/' . $name_input . '.pdf');
+        $pdf->loadHTML($view)->setPaper('letter');
         return $pdf->stream();
     }
 
-    public function print_certificacion($afid)
+    public function print_check_file($afid)
     {
         $data = $this->getData($afid);
         $affiliate = $data['affiliate'];
@@ -244,11 +244,11 @@ class RetirementFundController extends Controller
         $view = \View::make('print_fondo_retiro.certificacion.show', compact('affiliate', 'applicant', 'retirementfund', 'antecedentfile', 'antecedent', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/certificacion/' . $name_input . '.pdf');
+        $pdf->loadHTML($view)->setPaper('letter');
         return $pdf->stream();
     }
 
-    public function print_calificacion($afid)
+    public function print_qualification($afid)
     {
         $data = $this->getData($afid);
         $affiliate = $data['affiliate'];
@@ -260,11 +260,11 @@ class RetirementFundController extends Controller
         $view =  \View::make('print_fondo_retiro.calificacion.show', compact('affiliate', 'spouse','applicant', 'retirementfund', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/calificacion/' . $name_input . '.pdf');
+        $pdf->loadHTML($view)->setPaper('letter');
         return $pdf->stream('calif');
     }
 
-    public function print_dictamenlegal($afid)
+    public function print_legal_assessment($afid)
     {
         $data = $this->getData($afid);
         $affiliate = $data['affiliate'];
@@ -275,7 +275,7 @@ class RetirementFundController extends Controller
         $view =  \View::make('print_fondo_retiro.dictamenlegal.show', compact('affiliate', 'applicant','retirementfund','document', 'date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $name_input = $affiliate->id ."-" . $affiliate->last_name ."-" . $affiliate->mothers_last_name ."-" . $affiliate->first_name ."-" . $affiliate->identity_card;
-        $pdf->loadHTML($view)->setPaper('letter')->save('pdf/fondo_retiro/dictamen_legal/' . $name_input . '.pdf');
+        $pdf->loadHTML($view)->setPaper('letter');
         return $pdf->stream('calif');
     }
 
@@ -356,18 +356,19 @@ class RetirementFundController extends Controller
                     }
                 break;
 
-                case 'docu':
+                case 'form_document':
+
                     if($retirement_fund->retirement_fund_modality_id)
                     {
                         foreach (json_decode($request->data) as $item)
                           {
                             $Document = Document::where('retirement_fund_id', '=', $retirement_fund->id)
-                                            ->where('requirement_id', '=', $item->requisito_id)->first();
+                                        ->where('requirement_id', '=', $item->requirement_id)->first();
 
                             if (!$Document) {
                                 $Document = new Document;
                                 $Document->retirement_fund_id = $retirement_fund->id;
-                                $Document->requirement_id = $item->requisito_id;
+                                $Document->requirement_id = $item->requirement_id;
                             }
                             $Document->status = $item->booleanValue;
                             $Document->reception_date = date('Y-m-d');
