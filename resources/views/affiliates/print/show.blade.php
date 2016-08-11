@@ -204,7 +204,7 @@
             @foreach($contributions as $item)
             <tr>
               <td >{!! $i !!}</td>
-              <td >{!! $item->month_year !!}</td>
+              <td >{!! Util::getDateEdit($item->month_year) !!}</td>
               <td >{!! $item->degree_id ? $item->degree->code_level . "-" . $item->degree->code_degree : '' !!}</td>
               <td >{!! $item->unit_id ? $item->unit->code : '' !!}</td>
               <td >{!! $item->item !!}</td>
