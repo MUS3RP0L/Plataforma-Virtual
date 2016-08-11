@@ -1,4 +1,4 @@
-@extends('print_fondo_retiro.layoutPrint')
+@extends('retirement_funds.print.layout')
 
 @section('title')
   LEGAL FONDO DE RETIRO POLICIAL INDIVIDUAL
@@ -16,7 +16,7 @@
             <div class="title"><b>REF: </b>FONDO DE RETIRO POLICIAL INDIVIDUAL</div>
           </td>
           <td style="width: 40%;border: 0px;text-align:right;">
-            <div class="title"><b>MODALIDAD: </b>{!! $retirementfund->retirement_fund_modality->name !!}</div>
+            <div class="title"><b>MODALIDAD: </b>{!! $retirement_fund->retirement_fund_modality->name !!}</div>
           </td>
         </tr>
       </table>
@@ -24,7 +24,7 @@
 
       <p align="justify"> En fecha {!! $date !!} mediante nota el Sr. {!! $applicant->getFullNametoPrint() !!}
         con CI. {!! $applicant->identity_card !!} en calidad de BENEFICIARIO solicita la declaración de Fondo
-        de Retiro policial <b>{!! $retirementfund->retirement_fund_modality->name !!}</b>, adjunto la documentación pertinente
+        de Retiro policial <b>{!! $retirement_fund->retirement_fund_modality->name !!}</b>, adjunto la documentación pertinente
         cumpliendo con los requisitos exigidos:
       </p>
 
@@ -35,7 +35,7 @@
               <td class="info"><center><b>DOCUMENTACIÓN PRESENTADA</b><center></td>
             </tr>
             <?php $i=1; ?>
-             @foreach ($document as $item)
+             @foreach ($documents as $item)
             <tr>
               <td style="width: 5%";class="info">{!! $i !!}</td>
               <td class="info">{!! $item->requirement->name !!}</td>
@@ -48,7 +48,7 @@
           </table>
       </div><br>
       <p align="justify">
-        Que, de acuerdo a la hoja de liquidacion <b>Nª {!! $retirementfund->id !!}</b> y liquidacion FRP-556 de la fecha 8 de abril de 2015,
+        Que, de acuerdo a la hoja de liquidacion <b>Nª {!! $retirement_fund->id !!}</b> y liquidacion FRP-556 de la fecha 8 de abril de 2015,
         correspondiente a abril de 1987 hasta marzo de 2013 años, realizado por el Calificador de la Direccion de
         Beneficios Economicos, por el periodo de 26 años y o meses, que en fecha 18 de abril de 2015, la Unidad
         de Recuperacion y Cobranza emite Certificacion de Prestamos con Garantia de Haberes, en el mismo certifica
@@ -56,7 +56,7 @@
       </p>
 
       <P>Reconociendoce el monto de TOTAL de Bs., a favor del beneficiario.</P>
-      <p><b>Observación:</b> {!! $retirementfund->comment !!}</p><br>
+      <p><b>Observación:</b> {!! $retirement_fund->comment !!}</p><br>
 
       <p align="justify">
         Por lo que, Acesoria Legal de la Direccion de Beneficios Económicos DICTAMINA, de acuerdo a los Arts. 3,
