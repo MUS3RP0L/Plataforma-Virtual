@@ -1,4 +1,4 @@
-@extends('print_fondo_retiro.layoutPrint')
+@extends('retirement_funds.print.layout')
 
 @section('title')
   FICHA TÉCNICA DE CALIFICACIÓN
@@ -187,7 +187,7 @@
         <table class="tablet">
           <tr>
             <td style="border: 0px;">
-              <div class="title"><b>N° de Tramite: {{ $retirementfund->getNumberTram() }}</b></div>
+              <div class="title"><b>N° de Tramite: {{ $retirement_fund->getNumberTram() }}</b></div>
             </td>
             <td style="border: 0px;text-align:right;">
               <div class="title"><b>Fecha de Emisión: La Paz, {!! $date !!}</b></div>
@@ -202,7 +202,7 @@
         <h1>
           <b>
             FONDO DE RETIRO POLICIAL INDIVIDUAL<br>
-            MODALIDAD: {!! $retirementfund->retirement_fund_modality->name !!}<br>
+            MODALIDAD: {!! $retirement_fund->retirement_fund_modality->name !!}<br>
             CALIFICACIÓN
             <h3>(Página 2/2)</h3>
           </b>
@@ -225,15 +225,15 @@
           </tr>
           <tr>
             <th class="service">PERIODO DE APORTES</th>
-            <td class="total">{!! $retirementfund->fech_ini_pcot ? "Desde " . $retirementfund->getFull_fech_ini_pcot() . " - Hasta " . $retirementfund->getFull_fech_fin_pcot() : '' !!}</td>
+            <td class="total">{!! $retirement_fund->fech_ini_pcot ? "Desde " . $retirement_fund->getFull_fech_ini_pcot() . " - Hasta " . $retirement_fund->getFull_fech_fin_pcot() : '' !!}</td>
           </tr>
           <tr>
             <th class="service">TIEMPO COTIZABLE</th>
-            <td class="total">{!! $retirementfund->fech_ini_pcot ? $retirementfund->getYearsAndMonths_fech_pcot() : '' !!}</td>
+            <td class="total">{!! $retirement_fund->fech_ini_pcot ? $retirement_fund->getYearsAndMonths_fech_pcot() : '' !!}</td>
           </tr>
           <tr>
             <th class="service">TOTAL DE MESES COTIZABLES</th>
-            <td class="total">{!! $retirementfund->fech_ini_pcot ? $retirementfund->getMonths_fech_pcot() : '' !!}</td>
+            <td class="total">{!! $retirement_fund->fech_ini_pcot ? $retirement_fund->getMonths_fech_pcot() : '' !!}</td>
           </tr>
       </table>
 
