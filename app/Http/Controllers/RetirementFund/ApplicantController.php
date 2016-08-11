@@ -43,8 +43,8 @@ class ApplicantController extends Controller
             'identity_card' => 'min:4',
             'last_name' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
             'first_name' => 'min:3|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
-            'home_address' =>'numeric',
             'home_phone_number' =>'numeric',
+            'home_cell_phone_number' =>'numeric',
         ];
 
         $messages = [
@@ -54,8 +54,8 @@ class ApplicantController extends Controller
             'last_name.regex' => 'Sólo se aceptan letras para apellido paterno',
             'first_name.min' => 'El mínimo de caracteres permitidos para nombres es 3',
             'first_name.regex' => 'Sólo se aceptan letras para primer nombre',
-            'home_address.numeric' => 'Sólo se aceptan números para teléfono',
-            'home_phone_number.numeric' => 'Sólo se aceptan números para celular',
+            'home_phone_number.numeric' => 'Sólo se aceptan números para teléfono',
+            'home_cell_phone_number.numeric' => 'Sólo se aceptan números para celular',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
