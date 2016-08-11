@@ -38,8 +38,8 @@
         <th class="info" style="text-align:center;">{{ $direct_contribution->ipc }}</th>
         <th class="info" style="text-align:center;">{{ $direct_contribution->total }}</th>
       </tr>
-
     </table>
+    <h4 style="text-align: left"> SON: {{ Util::convertir($direct_contribution->total,'Bolivianos','Centavos') }}.</h4>
     <br>
     <br>
     <br>
@@ -56,7 +56,8 @@
               <th class="info" style="border: 0px;text-align:center;" >COBRADO POR</th>
           </tr>
     </table>
-    <p>***Esta liquidación no es válida sin el Refrendo y Sello de Tesorería***
+
+    <p>***Esta liquidación no es válida sin el Refrendo y Sello de Tesorería***</p>
 </div>
 
 
