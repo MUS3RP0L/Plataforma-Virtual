@@ -373,9 +373,10 @@ class DirectContributionController extends Controller
         $header2 = "UNIDAD DE FONDO DE RETIRO POLICIAL INDIVIDUAL";
         $title = "COMPROMISO DE PAGO DE APORTES EN FORMA DIRECTA AL BENEFICIO ECONOMICO DEL SEGURO DE VIDA TITULARES";
         $affiliate = Affiliate::IdIs($id)->first();
-        $date = Util::getDateEdit(date('Y-m-d'));
+        //$date = Util::getDateEdit(date('Y-m-d'));
         $current_date = Carbon::now();
         $hour = Carbon::parse($current_date)->toTimeString();
+        $date = Carbon::parse($current_date)->toDateString();
         $view = \View::make('direct_contributions.print.compromise', compact('header1','header2','title','date','hour','affiliate'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper('letter');

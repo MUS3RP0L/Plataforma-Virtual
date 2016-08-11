@@ -103,37 +103,34 @@
 </table>
 
 <div class="title"><b>III. RESUMEN DE APORTE</b></div>
-      <div id="project">
+    <div id="project">
         <table>
             <tr>
-              <th colspan="2" class="grand service">DATOS DE APORTE</th>
-            </tr>
-            <tr>
-              <th class="service">GANADO</th>
-              <td class="info" style="width: 60%">{!! $total_gain !!}</td>
-            </tr>
-            <tr>
-              <th class="service">BONO DE SEGURIDAD CIUDADANA</th>
-              <td class="info" style="width: 60%">{!! $total_public_security_bonus !!}</td>
-            </tr>
-            <tr>
-              <th class="service">COTIZABLE</th>
-              <td class="info" style="width: 60%">{!! $total_quotable !!}</td>
-            </tr>
-            <tr>
-              <th class="service">APORTE FONDO DE RETIRO</th>
-              <td class="info" style="width: 60%">{!! $total_retirement_fund !!}</td>
-            </tr>
-            <tr>
-              <th class="service">APORTE SEGURO DE VIDA</th>
-              <td class="info" style="width: 60%">{!! $total_mortuary_quota !!}</td>
-            </tr>
-             <tr>
-              <th class="service">APORTE MUSERPOL</th>
-              <td class="info" style="width: 60%">{!! $total !!}</td>
-            </tr>
-          </table>
+          <td colspan="6" class="grand service" style="text-align:center;">DATOS DE APORTES</td>
+        </tr>
+        <tr>
+        <td class="grand service" style="text-align:center;" >GANADO</td>
+        <td class="grand service" style="text-align:center;">BONO DE SEGURIDAD CIUDADANA</td>
+        <td class="grand service" style="text-align:center;">COTIZABLE</td>
+        <td class="grand service" style="text-align:center;">APORTE FONDO DE RETIRO</td>
+        <td class="grand service" style="text-align:center;">APORTE SEGURO DE VIDA</td>
+        <td class="grand service" style="text-align:center;">APORTE MUSERPOL</td>
+        </tr>
+        <tr>
+        <th class="info" style="text-align:center;" >{!! $total_gain !!}</th>
+        <th class="info" style="text-align:center;">{!! $total_public_security_bonus !!}</th>
+        <th class="info" style="text-align:center;">{!! $total_quotable !!}</th>
+        <th class="info" style="text-align:center;">{!! $total_retirement_fund !!}</th>
+        <th class="info" style="text-align:center;">{!! $total_mortuary_quota !!}</th>
+        <th class="info" style="text-align:center;">{{ $total }}</th>
+        </tr>
+
+    </table>
+
 </div>
+<footer>
+  PLATAFORMA VIRUTAL - MUTUAL DE SERVICIOS AL POLICIA
+</footer>
 <div class="page-break"></div>
       <header class="clearfix">
         <table class="tableh">
@@ -144,7 +141,7 @@
                   </div>
                 </th>
                 <th style="width: 50%;border: 0px">
-                  <h3><b>MUTUAL DE SERVICIOS AL POLICÍA<br>
+                  <h3><b>MUTUAL DE SERVICIOS AL POLICIA<br>
                       DIRECCIÓN DE BENEFICIOS ECONÓMICOS<br>
                       UNIDAD DE FONDO DE RETIRO POLICIAL INDIVIDUAL
                       </b></h3>
@@ -190,12 +187,12 @@
               <th class="grand">UNIDAD</th>
               <th class="grand">ITEM</th>
               <th class="grand">SUELDO</th>
-              <th class="grand">B ANTIGUEDAD</th>
-              <th class="grand">B ESTUDIO</th>
-              <th class="grand">B CARGO</th>
-              <th class="grand">B FRONTERA</th>
-              <th class="grand">B ORIENTE</th>
-              <th class="grand">B SEGURIDAD</th>
+              <th class="grand">BANTIG</th>
+              <th class="grand">BESTUDIO</th>
+              <th class="grand">BCARGO</th>
+              <th class="grand">BFRONTERA</th>
+              <th class="grand">BORIENTE</th>
+              <th class="grand">BSEG</th>
               <th class="grand">GANADO</th>
               <th class="grand">COTIZABLE</th>
               <th class="grand">F.R.</th>
@@ -206,23 +203,23 @@
            <?php $i=1;?>
             @foreach($contributions as $item)
             <tr>
-              <td class="info">{!! $i !!}</td>
-              <td class="info">{!! $item->month_year !!}</td>
-              <td class="info">{!! $item->degree_id ? $item->degree->code_level . "-" . $item->degree->code_degree : '' !!}</td>
-              <td class="info">{!! $item->unit->code !!}</td>
-              <td class="info">{!! $item->item !!}</td>
-              <td class="info">{!! Util::formatMoney($item->base_wage) !!}</td>
-              <td class="info">{!! Util::formatMoney($item->seniority_bonus) !!}</td>
-              <td class="info">{!! Util::formatMoney($item->study_bonus) !!}</td>
-              <td class="info">{!! Util::formatMoney($item->position_bonus) !!}</td>
-              <td class="info">{!! Util::formatMoney($item->border_bonus) !!}</td>
-              <td class="info">{!! Util::formatMoney($item->east_bonus) !!}</td>
-              <td class="info">{!! Util::formatMoney($item->public_security_bonus) !!}</td>
-              <td class="info">{!! Util::formatMoney($item->gain) !!}</td>
-              <td class="info">{!! Util::formatMoney($item->quotable) !!}</td>
-              <td class="info">{!! Util::formatMoney($item->retirement_fund) !!}</td>
-              <td class="info">{!! Util::formatMoney($item->mortuary_quota) !!}</td>
-              <td class="info">{!! Util::formatMoney($item->total) !!}</td>
+              <td >{!! $i !!}</td>
+              <td >{!! $item->month_year !!}</td>
+              <td >{!! $item->degree_id ? $item->degree->code_level . "-" . $item->degree->code_degree : '' !!}</td>
+              <td >{!! $item->unit_id ? $item->unit->code : '' !!}</td>
+              <td >{!! $item->item !!}</td>
+              <td >{!! Util::formatMoney($item->base_wage) !!}</td>
+              <td >{!! Util::formatMoney($item->seniority_bonus) !!}</td>
+              <td >{!! Util::formatMoney($item->study_bonus) !!}</td>
+              <td >{!! Util::formatMoney($item->position_bonus) !!}</td>
+              <td >{!! Util::formatMoney($item->border_bonus) !!}</td>
+              <td >{!! Util::formatMoney($item->east_bonus) !!}</td>
+              <td >{!! Util::formatMoney($item->public_security_bonus) !!}</td>
+              <td >{!! Util::formatMoney($item->gain) !!}</td>
+              <td >{!! Util::formatMoney($item->quotable) !!}</td>
+              <td >{!! Util::formatMoney($item->retirement_fund) !!}</td>
+              <td >{!! Util::formatMoney($item->mortuary_quota) !!}</td>
+              <td >{!! Util::formatMoney($item->total) !!}</td>
             </tr>
             <?php $i++;?>
             @endforeach
