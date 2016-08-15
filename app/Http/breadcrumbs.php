@@ -44,7 +44,6 @@
     Breadcrumbs::register('affiliates', function($breadcrumbs) {
         $breadcrumbs->push('Afiliados', URL::to('affiliate'));
     });
-
     // Show Affiliate
     Breadcrumbs::register('show_affiliate', function($breadcrumbs, $affiliate) {
         $breadcrumbs->parent('affiliates');
@@ -56,18 +55,15 @@
         $breadcrumbs->parent('show_affiliate', $affiliate);
         $breadcrumbs->push('Aportes');
     });
-
     // Show Register Contribution
     Breadcrumbs::register('register_contribution', function($breadcrumbs, $affiliate) {
         $breadcrumbs->parent('show_affiliate', $affiliate);
         $breadcrumbs->push('Registro de Aporte');
     });
-
     //Show Direct Contributions
     Breadcrumbs::register('show_direct_contributions', function($breadcrumbs) {
         $breadcrumbs->push('Comprobantes de Aportes Directos', URL::to('aportepago'));
     });
-
     //Show Direct Contribution
     Breadcrumbs::register('show_direct_contribution', function($breadcrumbs, $affiliate) {
         $breadcrumbs->parent('show_affiliate', $affiliate);
@@ -78,7 +74,6 @@
     Breadcrumbs::register('show_vouchers', function($breadcrumbs) {
         $breadcrumbs->push('Comprobantes de Cobros', URL::to('voucher'));
     });
-
     //Show Voucher
     Breadcrumbs::register('show_voucher', function($breadcrumbs, $affiliate) {
         $breadcrumbs->parent('show_affiliate', $affiliate);
@@ -89,7 +84,6 @@
     Breadcrumbs::register('retirement_funds', function($breadcrumbs) {
         $breadcrumbs->push('Trámites de Fondo de Retiro');
     });
-
     // Retirement Fund
     Breadcrumbs::register('retirement_fund', function($breadcrumbs, $affiliate) {
         $breadcrumbs->parent('show_affiliate', $affiliate);
